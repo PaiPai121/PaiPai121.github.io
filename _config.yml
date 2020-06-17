@@ -1,3 +1,7 @@
 name: PaiPai
 markdown: kramdown
 encoding: utf-8
+collections:
+ image:
+    tag: wallpaper
+    
