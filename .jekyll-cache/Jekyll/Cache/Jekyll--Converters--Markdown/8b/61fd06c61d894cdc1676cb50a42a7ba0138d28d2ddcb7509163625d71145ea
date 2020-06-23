@@ -1,0 +1,95 @@
+I"<!-- TOC -->
+
+<ul>
+  <li><a href="#1-laplace变换">1. Laplace变换</a>
+    <ul>
+      <li><a href="#11-基本性质">1.1. 基本性质</a>
+        <ul>
+          <li><a href="#111-线性">1.1.1. 线性</a></li>
+          <li><a href="#112-解析性">1.1.2. 解析性</a></li>
+          <li><a href="#113-反演">1.1.3. 反演</a>
+            <ul>
+              <li><a href="#导数反演">导数反演</a></li>
+              <li><a href="#积分反演">积分反演</a></li>
+              <li><a href="#普遍反演">普遍反演</a></li>
+              <li><a href="#卷积定理-s这个不会可以去死了s">卷积定理 <del>(这个不会可以去死了)</del></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+<h1 id="1-laplace变换">1. Laplace变换</h1>
+<p>一种积分变换，将f(t)变换为F(p)<del>(可能s更常见)</del>
+$F(p) = \int_0^\infty e^{-pt}f(t)dt$</p>
+
+<h2 id="11-基本性质">1.1. 基本性质</h2>
+<h3 id="111-线性">1.1.1. 线性</h3>
+<p>$\mathcal{L}(\alpha_1f_1(t) + \alpha_2f_2(t)) = \alpha_1\mathcal{L}(f_1(t)) + \alpha_2\mathcal{L}(f_2(t))$</p>
+<h3 id="112-解析性">1.1.2. 解析性</h3>
+<p>如果满足Laplace变换存在的充分条件，则
+   $|e^{-pt}f(t)|&lt;Me^{-(s-s_0)t},s = Rep$
+   当 
+   $s-s_0\ge\delta&gt;0$
+   时</p>
+
+<p>$|e^{-pt}f(t)|&lt;Me^{-\delta t}$
+   而积分
+   $\int_0^\infty Me^{-\delta t}dt$
+   收敛
+   故
+   $\int_0^{\infty}e^{-pt}f(t)dt$
+   在
+   $Rep \ge s_0 +\delta$
+   中一致收敛
+   因此F(p)在Re p&gt;s0内解析</p>
+<h3 id="113-反演">1.1.3. 反演</h3>
+<p>#### 导数反演 
+   $F^{(n)}(p)=\frac{d^n}{dp^n}\int_0^\infty f(t)e^{-pt}dt=\int_0^\infty (-t)^nf(t)e^{-pt}dt$
+   所以
+   $\mathcal{L}((-t)^nf(t))=(\mathcal{L}(f(t)))^{(n)}$
+  易得
+  若F是有理函数，则总可以通过部分分式求反演
+  #### 积分反演
+  如果</p>
+
+<p>$\int_p^\infty f(q)dq$</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>存在，t趋于0时</td>
+      <td>f(t)/t</td>
+      <td>有界，则</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$\mathcal{L}(\frac{f(t)}{t})=\int_p^\infty F(q)dq $</p>
+
+<p>如果两端积分存在</p>
+
+<p>$\int_0^\infty F(p)dp=\int_0^\infty \frac{f(t)}{t}dt$</p>
+
+<p><strong>例如</strong>
+  $\int_0^\infty \frac{\sin t}{t}dt = \int_0^\infty \frac{1}{p^2+1}dp = \frac{\pi}{2}$
+ #### 普遍反演
+  $p = s+i\sigma$</p>
+
+<p>若
+    1. F(p)在Re p&gt;s0解析
+    2. 在Re p&gt;s0中，当|p|趋于无穷的时候，F(p)一致趋于0
+    3. 对所有Re p = s &gt; s0，积分
+    $\int_{s-i\infty}^{s+i\infty}|F(p)|d\sigma$
+    收敛 
+  则有F(p)是
+  $f(t) = \frac{1}{2\pi i}\int_{s-i\infty}^{s+i\infty}F(p)e^{pt}dp$
+  的Laplace变换</p>
+
+<p>#### 卷积定理 <del>(这个不会可以去死了)</del></p>
+
+<p>$\mathcal{L}(\int_0^t f_1(\tau)f_2(t-\tau)d\tau) = F_1(p)F_2(p)$</p>
+:ET
