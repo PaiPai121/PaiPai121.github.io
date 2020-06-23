@@ -48,3 +48,31 @@ ul.posts li {
 	display:flex;
 	justify-content:space-around;
 }
+
+.row{
+    margin:20px auto 40px;
+    display:flex;
+}
+
+.col-md-3{
+    width :30%
+}
+
+.col-md-9{
+    width :70%
+}
+
+.social-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-bar{
+    width: 70%;
+}
+
+.social{
+    font-size:0px;
+    color:#ffffff;
+}
+
