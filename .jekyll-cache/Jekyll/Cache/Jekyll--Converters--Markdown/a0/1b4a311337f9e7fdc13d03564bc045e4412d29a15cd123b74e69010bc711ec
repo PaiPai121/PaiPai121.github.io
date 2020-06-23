@@ -1,0 +1,443 @@
+I")0<h1 id="线性偏微分方程解的叠加性">线性偏微分方程解的叠加性</h1>
+<p>L为线性算符，将线性偏微分方程统一写为</p>
+
+\[L[u] = f\]
+
+<p>u为未知函数，f为已知函数，是非齐次项。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">方程类型</th>
+      <th style="text-align: center">方程</th>
+      <th style="text-align: center">线性算符L</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">波动方程</td>
+      <td style="text-align: center">$\frac{\partial^2u}{\partial t^2}-a^2\nabla^2u=f$</td>
+      <td style="text-align: center">$L\equiv \frac{\partial^2}{\partial t^2}-a^2\nabla^2$</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">热传导方程</td>
+      <td style="text-align: center">$\frac{\partial u}{\partial t}- \kappa \nabla^2u=f$</td>
+      <td style="text-align: center">$\frac{\partial }{\partial t}- \kappa \nabla^2$</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Poisson方程</td>
+      <td style="text-align: center">$\nabla^2 u=f$</td>
+      <td style="text-align: center">$\nabla^2 $</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="基本性质">基本性质</h2>
+<ol>
+  <li>若u1,u2都是L[u]=0的解，则其线性组合也是齐次方程的解</li>
+</ol>
+
+\[L[c_1u_1+c_2u_2] = 0\]
+
+<ol>
+  <li>若u1和u2都是L[u] = f的解，则其差一定是相应齐次方程的解</li>
+</ol>
+
+\[L[u_1-u_2]=0\]
+
+<ol>
+  <li>若u1、u2分别满足非齐次方程</li>
+</ol>
+
+\[L[u_1]=f_1,L[u_2]=f_2\]
+
+<p>则其线性组合满足非齐次方程</p>
+
+\[L[c_1u_1+c_2u_2] = c_1f_1+c_2f_2\]
+
+<h2 id="线性齐次偏微分方程的通解">线性齐次偏微分方程的通解</h2>
+
+<p>常系数线性齐次偏微分方程的基本形式为</p>
+
+\[A_0\frac{\partial^n u}{\partial x^n}+A_1\frac{\partial^n u}{\partial x^{n-1}\partial y} + ... + A_n\frac{\partial^n u}{\partial y^n} + B_0\frac{\partial^{n-1} u}{\partial x^{n-1}}+...+M\frac{\partial u}{\partial x}+N \frac{\partial u}{ \partial y}+Pu=0\]
+
+<p>即</p>
+
+\[L(D_x,D_y)u=[A_0D_x^n+A_1D_x^{n-1}D_y+ ... + A_nD_y^n + B_0D_x^{n-1}+...+MD_x+N D_y+P]u=0\]
+
+<h3 id="l齐次">L齐次</h3>
+<p>若L是DxDy的齐次式
+$L(D_x,D_y)$
+，下方程可以分解为n个线性算符的乘积。</p>
+
+\[[A_0D_x^n+A_1D_x^{n-1}D_y+ ... + A_nD_y^n]u=0\]
+
+<p>即</p>
+
+\[L(D_x,D_y)=A_0(D_x-\alpha_1D_y)(D_x-\alpha_2D_y)...(D_x-\alpha_nD_y)\]
+
+<p><strong>尝试计算</strong>
+取试探解
+$u = \phi(y+\alpha x)$
+有</p>
+
+\[D_x^ku = \alpha^k\phi^{(k)}(y+\alpha x)\]
+
+\[D_y^ku = \phi^{(k)}(y+\alpha x)\]
+
+\[D_x^r D_y^s u = \alpha^r\phi^{(r+s)}(y+\alpha x)\]
+
+<p>代回原方程有</p>
+
+\[[A_0\alpha^n + A_1\alpha^{n-1}+ ... + A_n]\phi^{(n)}(y+\alpha x) =0\]
+
+<p>则有附加方程</p>
+
+\[A_0\alpha^n + A_1\alpha^{n-1} +...+A_n =0\]
+
+<p>如果解a1a2…互不相等，则通解为</p>
+
+\[u = \phi_1(y+\alpha_1 x)+\phi_2(y+\alpha_2 x)+ ... +\phi_n(y+\alpha_n x)\]
+
+<p>其中
+$\phi_i$
+是互相独立的任意n次可微函数</p>
+
+<p>若某个
+$\alpha$
+为n重根，则其对应的为</p>
+
+\[u = x^{n-1}\phi_1(y+\alpha x) + ... + x\phi_{n-1}(y+\alpha x) + \phi_n(y + \alpha x)\]
+
+<p><strong>例：</strong>
+<span id="波动方程行波解">求</span>
+$\frac{\partial^2 u}{\partial x^2} - a^2 \frac{\partial^2u}{\partial y^2}= 0$
+的通解，a为常数</p>
+
+<p><strong>解：</strong>
+令
+$u=\phi(y+\alpha x)$
+则附加方程
+$\alpha^2 - a^2 =0$
+的解为
+$\alpha = \pm a$
+则方程的通解为</p>
+
+\[u = \phi_1(y+a x)+\phi_2(y-ax)\]
+
+<h3 id="l-非齐次">L 非齐次</h3>
+<p>一阶偏微分方程</p>
+
+\[(D_x - \alpha D_y -\beta)z = 0\]
+
+<p>如果f(x,y,z)=0是方程的解，必有</p>
+
+\[\frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz = 0\]
+
+<p>另一方面，有</p>
+
+\[D_xz=-\frac{\partial f/\partial x}{\partial f/\partial z},D_yz=-\frac{\partial f/\partial y}{\partial f/\partial z}\]
+
+<p>将其带入前式，有</p>
+
+\[\frac{\partial f}{\partial x}- \alpha \frac{\partial f}{\partial y} + \beta z \frac{\partial f}{\partial z} = 0\]
+
+<p>将其与原式比较，有</p>
+
+\[\frac{dx}{1}=\frac{dy}{-\alpha}=\frac{dz}{\beta z}\]
+
+<p>称之为<span id="Lagrange">Lagrange辅助方程组</span></p>
+
+<p>可以解出</p>
+
+\[y + \alpha x = C,\beta x = \ln z -\ln C'\]
+
+<p>因此通解为 
+$z = e^{\beta x}\phi (y+\alpha x)$</p>
+
+<p><span id="nonlinear">若有重复性因子</span>，如
+$(D_x - \alpha D_y -\beta)^2z = 0$
+则通解为
+$z = (x+1)e^{\beta x}\phi (y+\alpha x)$</p>
+
+<p>L不是Dx和Dy的齐次式时，如果能将L分解为n个因子，也容易求出通解</p>
+
+<p><strong>例：</strong>
+求
+$\frac{\partial^2 u}{\partial x^2}-\frac{\partial^2 u}{\partial x\partial y}-2\frac{\partial^2 u}{\partial y ^2}+ 2\frac{\partial u}{\partial x}+2\frac{\partial u}{\partial y} = 0$
+的通解</p>
+
+<p><strong>解：</strong></p>
+
+\[(D_x^2-D_xD_y-2D_y^2+2D_x+2D_y)u = (D_x+D_y)(D_x - 2D_y + 2)u = 0\]
+
+<p>其中
+$(D_x - 2D_y + 2)u = 0$
+的通解为
+$u = e^{-2 x}\phi(y+2x)$</p>
+
+<p>而对
+$(D_x+D_y)y = 0$
+而言
+取试探解
+$y=\phi(y+\alpha x)$
+有附加方程
+$\alpha + 1 = 0$
+所以
+$\alpha = -1$</p>
+
+<p>其通解为</p>
+
+\[y = \phi(x-y)\]
+
+<p>方程的通解为</p>
+
+\[u = \phi(x-y) +e^{-2x}\phi(y+2x)\]
+
+<p><del>不对啊TMD我咋觉得书上算的不对呢</del></p>
+
+<h2 id="线性非齐次偏微分方程的通解">线性非齐次偏微分方程的通解</h2>
+<p>其通解可分解为<kbd>非齐次方程的任意特解</kbd>+<kbd>齐次方程的通解</kbd></p>
+
+<p>设方程为</p>
+
+\[L(D_x,D_y)u = f(x,y)\]
+
+<p>其特解可表示为</p>
+
+\[u_0=\frac{1}{L(D_x,D_y)}f(x,y)\]
+
+<h3 id="求特解">求特解</h3>
+<h4 id="基本特性">基本特性</h4>
+<ol>
+  <li>若
+$f(x,y) = e^{ax+b}$
+且L不为0，则</li>
+</ol>
+
+\[\frac{1}{L(D_x,D_y)}e^{ax+by} = \frac{1}{L(a,b)}e^{ax+by}\]
+
+<p>理由求偏导公式可以简易证明。</p>
+
+<ol>
+  <li>若
+$f(x,y) = e^{i(ax+by)}$
+则有</li>
+</ol>
+
+\[\frac{1}{L(D_x,D_y)}e^{i(ax+by)} = \frac{1}{L(ia,ib)}e^{i(ax+by)}\]
+
+<p>因此若a和b为实数，且L中的系数也是实数，则有</p>
+
+<p>\(\frac{1}{L(D_x,D_y)}\sin(ax+by)=Im[\frac{1}{L(ia,ib)}e^{i(ax+by)}]\)
+以及</p>
+
+\[\frac{1}{L(D_x,D_y)}\cos(ax+by)=Re[\frac{1}{L(ia,ib)}e^{i(ax+by)}]\]
+
+<ol>
+  <li>若
+$f(x,y) = e^{ax+by}g(x,y)$
+则</li>
+</ol>
+
+\[\frac{1}{L(D_x,D_y)}e^{ax+by}g(x,y)=e^{ax+by}\frac{1}{L(D_x+a,D_y+b)}g(x,y)\]
+
+<ol>
+  <li>若
+$f(x,y) = x^my^n$
+则可将
+$1/L(D_x,D_y)$
+展开为DxDy的幂级数然后求特解</li>
+</ol>
+
+<p><strong>例：</strong>
+求
+$(D_x^2-2D_xD_y+D_y^2)u = 12xy$
+的通解
+<strong>解：</strong>
+特解可取</p>
+
+\[\begin{aligned}
+u_0 &amp;= \frac{12}{(D_x-D_y)^2}xy\\
+&amp;=\frac{12}{D_x^2}(1-\frac{D_y}{D_x})^{-2}xy \\
+&amp;=\frac{12}{D_x^2}[1+2\frac{D_y}{D_x}+...]xy\\
+&amp;=12[y\frac{1}{D_x^2}x+\frac{2}{D_x^3}x]\\
+&amp;=12[\frac{1}{6}x^3y+\frac{1}{12}x^4]\\
+&amp;=x^4+2x^3y
+\end{aligned}\]
+
+<p>其通解可以参考<a href="#nonlinear">前文</a>
+因此本题通解为</p>
+
+\[u = x\phi (y+x)+\phi (y+x) + x^4 + 2x^3y\]
+
+<h4 id="相关推论">相关推论</h4>
+<p><strong>1. 若非齐次项为f(ax+by)，且L是DxDy的齐(n)次式，则</strong></p>
+
+\[\frac{1}{L(D_x,D_y)}g(n)(ax+by)=\frac{1}{L(a,b)}g(ax+by)\]
+
+<p><strong>例：</strong>
+求解
+$\frac{\partial^2 \nu}{\partial x^2}+ \frac{\partial^2\nu}{\partial y^2}= 12(x+y)$</p>
+
+<p><strong>解：</strong>
+符合推论1条件，有</p>
+
+\[\nu_0 = \frac{12}{(D_x^2+D_y^2)}(x+y) = \frac{12}{(1^2+1^2)3!}(x+y)^3 = (x+y)^3\]
+
+<p><strong>2. 对一般的非齐次项，可通过求解Lagrange辅助方程求解，如</strong></p>
+
+\[(D_x-\alpha D_y)u = f(x,y\]
+
+<p>其<a href="#Lagrange">lagrange辅助方程</a>为</p>
+
+\[\frac{dx}{1}= \frac{dy}{-\alpha} = \frac{du}{f(x,y)}\]
+
+<p>由
+$dx = dy/(-\alpha)$
+得
+$y+\alpha x =c$
+代入
+$dx = du/f(x,y)$
+得</p>
+
+\[du = f(x,y)dx = f(x,c-\alpha x)dx,u=\int f(x,c-\alpha x)dx\]
+
+<p>计算出积分后，用
+$y + \alpha x$
+代替c，即得特解</p>
+
+\[u_0 = \frac{1}{D_x-\alpha D_y}f(x,y) = [f(x,c-\alpha x)dx]_{c=y+\alpha x}\]
+
+<p><strong>例：</strong>
+解
+$(2D_x-3D_y)(D_x+D_y)u = 5e^{x-y}$
+<strong>解：</strong>
+齐次方程通解为
+$\phi(y-x)+\psi(2y+3x)$</p>
+
+<p>非齐次方程特解可取</p>
+
+\[\begin{aligned}
+u_0 &amp;= \frac{5}{(2D_x-3D_y)(D_x+D_y)}e^{x-y}\\
+&amp;=\frac{1}{D_x+D_y}[\frac{5}{2-3(-1)}e^{x-y}]\\
+&amp;=\frac{1}{D_x+D_y}e^{x-y}\\
+&amp;=\int e^{x-(c+x)}dx|_{c=y-x}\\
+&amp;=xe^{x-y}
+\end{aligned}\]
+
+<p>所以通解为</p>
+
+\[u = xe^{x-y} + \phi(y-x)+\psi(2y+3x)\]
+
+<h2 id="特殊变系数齐次微分方程待补充">特殊变系数齐次微分方程(待补充)</h2>
+
+<h1 id="波动方程的行波解">波动方程的行波解</h1>
+<p>波动方程</p>
+
+\[\frac{\partial^2 u}{\partial x^2} - a^2 \frac{\partial^2u}{\partial y^2}= 0\]
+
+<p>的通解在<a href="#波动方程行波解">前文</a>
+将其改写为</p>
+
+\[u(x,t)=f(x-at)+g(x+at)\]
+
+<p>这表明波动方程的通解由沿x正向和负向传播的两个波组成。</p>
+
+<p><strong>求定解问题</strong></p>
+
+\[\begin{aligned}
+&amp;\frac{\partial^2 u}{\partial t^2} - a^2\frac{\partial^2 u}{\partial x^2} = 0, -\infty &lt; x &lt; \infty,t&gt;0\\
+&amp;u(x,t)|_{t=0} = \phi(x),-\infty&lt;x&lt;\infty\\
+&amp;\frac{\partial u}{\partial t}|_{t=0} = \psi(x),-\infty &lt; x &lt;\infty
+\end{aligned}\]
+
+<p><strong>解:</strong>
+我们已知方程的通解，现在的问题是如何根据边界条件确定f和g
+将通解带入初始条件，得到</p>
+
+\[f(x)+g(x) = \phi(x)\]
+
+<p>以及</p>
+
+\[a[f'(x)-g'(x)]=-\psi(x)\]
+
+<p>将其积分，有</p>
+
+\[f(x)-g(x) = -\frac{1}{a}\int_0^x\psi(\xi)d\xi + C\]
+
+<p>联立有</p>
+
+\[f(x) = \frac{1}{2}\phi(x) - \frac{1}{2a}\int_0^x\psi(\xi)d\xi + \frac{C}{2}\]
+
+<p>以及</p>
+
+\[\phi(x) = \frac{1}{2}\phi(x) + \frac{1}{2a}\int_0^x\psi(\xi)d\xi - \frac{C}{2}\]
+
+<p>将其带回有</p>
+
+\[\begin{aligned}
+u(x,t) &amp; = f(x-at) + g(x+at)\\
+&amp; = \frac{1}{2}\phi(x-at) - \frac{1}{2a}\int_0^{x+at}\psi(\xi)d\xi+\frac{C}{2} +\frac{1}{2}\phi(x) + \frac{1}{2a}\int_0^x\psi(\xi)d\xi - \frac{C}{2}\\
+&amp;=\frac{1}{2}[\phi(x-at)+\phi(x+at)] + \frac{1}{2a}\int_{x-at}^{x+at}\psi(\xi)d\xi
+\end{aligned}\]
+
+<p>便完成了波动方程的定解问题，称位一维波动方程定解问题的行波解，或d’Alembert解
+第一项表示初始唯一激发的行波t=0时波形为
+$\phi(x)$
+，以后分为相等的两部分独立向左右传播，速度为a；第二项表示由初速度激发的行波，在t=0时在x处速度为
+$\phi(x)$
+，在t时刻它将左右对称的扩散到[x-at,x+at]的范围，传播速度也是a</p>
+
+<h1 id="波的耗散和色散">波的耗散和色散</h1>
+<p>只考察前节向右传播的波
+$u(x,t)=f(x-at)$
+，是一阶波动方程</p>
+
+\[\frac{\partial u}{\partial t}+a\frac{\partial u}{\partial x}= 0\]
+
+<p>的解，在此基础上可以进一步包括进方程建立过程中略去的高级项，便可以表现出耗散和色散。</p>
+<h2 id="耗散">耗散</h2>
+<p>首先加上u的二阶偏导</p>
+
+\[\frac{\partial u}{\partial t}+a\frac{\partial u}{\partial x}-\alpha \frac{\partial^2 u}{\partial x^2}= 0\]
+
+<p>谐波形式的解为</p>
+
+\[u(x,t)=\int_{-\infty}^\infty A(k)e^{i(kx-\omega t)}dk\]
+
+<p>代入可以有</p>
+
+\[u(x,t)=\int_{-\infty}^\infty A(k)e^{-\alpha k^2t}e^{ik(x-at)}dk\]
+
+<p>这说明振幅随时间指数衰减
+由于衰减因子与k有关，不同k的分量衰减速度不同，因此波的覆盖区间大小不变，但波形不断变化。</p>
+<h2 id="色散">色散</h2>
+<p>如果加上三次项，有</p>
+
+\[\frac{\partial u}{\partial t}+a\frac{\partial u}{\partial x} + \beta \frac{\partial^2 u}{\partial x^2}= 0\]
+
+<p>如果仍要寻找谐波形式解，波数和角频率一定要满足
+$\omega = k(a - \beta k^2)$
+因此</p>
+
+\[kx-\omega t = k[x-(a-\beta k^2)t]\]
+
+<p>则解为</p>
+
+\[u(x,t)=\int_{-\infty}^\infty A(k)e^{ik[x-(a-\beta k^2)t]}dk\]
+
+<p>波的传播速率（相速度）为
+$v_p = \frac{\omega}{k}=a - \beta k^2$</p>
+
+<p>是k的函数，说明波数不同，传播速度不同，甚至对于
+$k^2&lt;a/\beta$
+和
+$k^2&gt;a/\beta$
+的分量，传播方向也不同，因此随着时间增大，覆盖区间也越大，在空间一点上，波的组成成分随着时间变化，即色散
+定义另一种传播速率</p>
+
+\[v_g = \frac{d\omega}{dk} = a -3\beta k^2\]
+
+<p>称位群速度，是波包的传播速率，也就是能量的传播速率。</p>
+:ET

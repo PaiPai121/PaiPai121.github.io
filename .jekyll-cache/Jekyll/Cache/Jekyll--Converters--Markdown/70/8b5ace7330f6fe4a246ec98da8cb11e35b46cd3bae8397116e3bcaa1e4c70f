@@ -1,0 +1,16 @@
+I"o<h1 id="线性偏微分方程解的叠加性">线性偏微分方程解的叠加性</h1>
+<p>L为线性算符，将线性偏微分方程统一写为</p>
+
+\[L[u] = f\]
+
+<p>u为未知函数，f为已知函数，是非齐次项。</p>
+
+<p>&lt;div align:”center”&gt;
+|方程类型|方程|线性算符L|
+|:-:|:-:|:-:|
+|波动方程| $\frac{\partial^2u}{\partial t^2}-a^2\nabla^2u=f$ |$L\equiv \frac{\partial^2}{\partial t^2}-a^2\nabla^2$ |
+|热传导方程|$\frac{\partial u}{\partial t}- \kappa \nabla^2u=f$|$\frac{\partial }{\partial t}- \kappa \nabla^2$|
+|Poisson方程|$\nabla^2 u=f$|$\nabla^2 $|</p>
+
+<p>&lt;/div&gt;</p>
+:ET
