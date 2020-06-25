@@ -1,0 +1,380 @@
+I"*<!-- TOC -->
+
+<ul>
+  <li><a href="#1-分离变量法">1. 分离变量法</a>
+    <ul>
+      <li><a href="#11-两端固定的弦的自由振动">1.1. 两端固定的弦的自由振动</a>
+        <ul>
+          <li><a href="#111-分离变量">1.1.1. 分离变量</a></li>
+          <li><a href="#112-求解本征值">1.1.2. 求解本征值</a></li>
+          <li><a href="#113-求特解">1.1.3. 求特解</a></li>
+          <li><a href="#114-叠加">1.1.4. 叠加</a></li>
+          <li><a href="#115-利用本征函数的正交性确定叠加系数">1.1.5. 利用本征函数的正交性确定叠加系数</a></li>
+          <li><a href="#116-解的物理意义">1.1.6. 解的物理意义</a></li>
+          <li><a href="#117-弦的总能量">1.1.7. 弦的总能量</a></li>
+        </ul>
+      </li>
+      <li><a href="#12-矩形区域稳定问题">1.2. 矩形区域稳定问题</a></li>
+      <li><a href="#13-固定弦的强迫振动">1.3. 固定弦的强迫振动</a></li>
+      <li><a href="#14-非齐次边界条件">1.4. 非齐次边界条件</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+<h1 id="1-分离变量法">1. 分离变量法</h1>
+<ul>
+  <li>
+    <p>分离变量法是偏微分方程定解最常用的方法。</p>
+  </li>
+  <li>通常解微分方程总是先求出特解，然后由线性无关的特解叠加出通解，然后用定解条件确定叠加系数</li>
+  <li>对一阶偏微分方程，常化为一阶线性常微分方程组的求解</li>
+  <li>对二阶及更高阶的偏微分方程，即使求出通解，其中的待定函数也很难根据定解条件求出。</li>
+  <li>可以先求出满足方程及一部分定解问题的全部特解，再叠加起来，再利用另一部分定界条件求出叠加系数</li>
+</ul>
+
+<h2 id="11-两端固定的弦的自由振动">1.1. 两端固定的弦的自由振动</h2>
+
+<h3 id="111-分离变量">1.1.1. 分离变量</h3>
+<p>其方程和定解条件为</p>
+
+\[\begin{cases}
+\frac{\partial^2 u}{\partial t^2}-a^2\frac{\partial^2 u}{\partial x^2}=0, &amp; 0&lt;x&lt;l,t&gt;0 \\
+u|_{x=0}=0, u|_{x=l}=0,&amp;t\ge0,\\
+u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}|_{t=0} = \psi(x),&amp;0\le x \le l
+\end{cases}\]
+
+<p>方程和边界条件都是齐次的，而初始条件是非齐次的。
+希望特解有分离变量的形式，即</p>
+
+\[u(x,t)=X(x)T(t)\]
+
+<p>将u(x,t)代入方程，有</p>
+
+\[X(x)T''(t)=a^2X''(x)T(t)\]
+
+<p>俩高端除以X(x)T(t)，有</p>
+
+\[\frac{1}{a^2}\frac{T''(t)}{T(t)} = \frac{X''(x)}{X(x)}\]
+
+<p>左端是t的函数，右端是x的函数，因此若左右相等，比如等于一个与x和t都无关的常数，使其为
+$-\lambda$
+，则结果可改写成</p>
+
+\[\begin{cases}
+T''(t) + \lambda a^2T(t)=0\\
+X''(x)+\lambda X(x)=0
+\end{cases}\]
+
+<p>代入边界条件，有</p>
+
+\[X(0)T(t)=0,X(l)T(t)=0\]
+
+<p>因此有</p>
+
+\[X(0)=0,X(l)=0\]
+
+<p>否则函数恒为0</p>
+
+<h3 id="112-求解本征值">1.1.2. 求解本征值</h3>
+<p>函数X(x)的常微分方程定解问题称为本征值问题，特点是方程含有一个待定常数
+$\lambda$
+，而定解条件是一对齐次边界条件。
+只有
+$\lambda$
+取某些特定值时，才能既满足常微分方程，又满足边界条件，称为本征值，相应非零解为本征函数。</p>
+
+<p>如果有解的话，本征值
+$\lambda$
+必为正数。
+(证明见《数学物理方法(吴崇试)》p293)</p>
+
+<p>常微分方程</p>
+
+\[X''(x)+\lambda X(x)=0\]
+
+<p>的<span class="常微分方程通解1">通解</span>为</p>
+
+\[X(x)=A\sin \sqrt{\lambda}x + B\cos \sqrt{\lambda} x\]
+
+<p>代入边界条件，有</p>
+
+\[B = 0,A\sin\sqrt{\lambda}t = 0\]
+
+<p>所以有</p>
+
+\[\sqrt{\lambda}l=n\pi,\lambda_n=(\frac{n\pi}{l})^2,n = 1,2,3...\]
+
+<p>相应的本征函数为</p>
+
+\[X_{n}(x)=\sin\frac{n\pi}{l}x\]
+
+<p>可简单取A=1。</p>
+
+<h3 id="113-求特解">1.1.3. 求特解</h3>
+
+<p>对每一对本征值，应由方程</p>
+
+\[T''(t) + \lambda a^2T(t)=0\]
+
+<p>求出相应的
+$T_n(t)$
+，即</p>
+
+\[T_n(t)=C_n\sin\frac{n\pi}{l}at+D_n\cos\frac{n\pi}{l}at\]
+
+<p>(仍然利用相同形式的<a href="#常微分方程通解1">常微分方程通解</a>)
+由此可以求得满足偏微分方程和边界条件的特解</p>
+
+\[u_n(x,t)=(C_n\sin\frac{n\pi}{l}at+D_n\cos\frac{n\pi}{l}at)\sin\frac{n\pi}{l}x \  (n=1,2,3...)\]
+
+<p>共有无穷多个特解，但一般来讲，单独的任何一个特解很难恰好满足问题中的初始条件。</p>
+
+<h3 id="114-叠加">1.1.4. 叠加</h3>
+<p>如果把全部无穷多特解叠加</p>
+
+\[u(x,t)=\Sigma_{n=1}^\infty(C_n\sin\frac{n\pi}{l}at+D_n\cos\frac{n\pi}{l}at)\sin\frac{n\pi}{l}x\]
+
+<p>只要级数有一定的收敛性，那得到的u依然是满足条件的解，称位一般解。与通解相比，它还满足齐次边界条件。</p>
+
+<h3 id="115-利用本征函数的正交性确定叠加系数">1.1.5. 利用本征函数的正交性确定叠加系数</h3>
+<p>系数
+$C_n$
+和
+$D_n$
+应满足</p>
+
+\[\Sigma_{n=1}^\infty D_n\sin\frac{n\pi}{l}x=\phi(x)\]
+
+<p>以及</p>
+
+\[\Sigma_{n=1}^\infty C_n\frac{n\pi}{l}\sin\frac{n\pi}{l}x=\psi(x)\]
+
+<p>设
+$X(x)=\sin\frac{n\pi}{l}x$
+和
+$X_m(x)=\sin\frac{m\pi}{l}x$
+是分别对应不相等的本征值
+$\lambda_n$
+和
+$\lambda_m$
+的本征函数，易得</p>
+
+\[\begin{aligned}
+&amp;X_n''(x)+\lambda_n X_n(x)=0\\
+&amp; X_n(0) = 0,X_n(l) = 0\\
+&amp;X_m''(x)+\lambda_m X_m(x)=0\\
+&amp; X_m(0) = 0,X_m(l) = 0\\
+\end{aligned}\]
+
+<p>分别乘
+$X_m(x)$
+以及
+$X_n(x)$
+并相减，积分
+有</p>
+
+\[\begin{aligned}
+(\lambda_n-\lambda_m)&amp;\int_0^lX_n(x)X_m(x)dx\\
+=&amp;\int_0^l[X_n(x)X''_m(x)-X_m(x)X_n''(x)]dx \\
+= &amp;[X_n(x)X'_m(x)-X_m(x)X_n'(x)]|_0^l=0
+\end{aligned}\]
+
+<p>因此本征函数正交 <del>（woc哪个鬼才配出来的，太牛逼了）</del></p>
+
+<p>还可以计算本征函数的模方</p>
+
+\[||X_n||^2 \equiv \int_0^lX^2_n(x)dx=\frac{l}{2}\]
+
+<p>在
+$
+\Sigma_{n=1}^\infty D_n\sin\frac{n\pi}{l}x=\phi(x)
+$
+两侧同乘
+$\sin\frac{m\pi}{l}x$
+并积分，有</p>
+
+\[\begin{aligned}
+\int_0^l\phi(x)\sin\frac{m\pi}{l}xdx
+&amp;=\int_0^l\Sigma_{n=1}^\infty D_n\sin\frac{n\pi}{l}x\sin\frac{m\pi}{l}xdx\\
+&amp;=\Sigma_{n=1}^\infty D_n\int_0^l \sin\frac{n\pi}{l}x\sin\frac{m\pi}{l}xdx \\
+&amp;= D_m\frac{l}{2}
+\end{aligned}\]
+
+<p>所以有
+$D_n=\frac{2}{l}\int_0^l\phi(x)\sin\frac{n\pi}{l}xdx$</p>
+
+<p>同样，有</p>
+
+<p>$D_n=\frac{2}{n\pi a}\int_0^l\psi(x)\sin\frac{n\pi}{l}xdx$</p>
+
+<h3 id="116-解的物理意义">1.1.6. 解的物理意义</h3>
+<p>特解</p>
+
+\[u_n(x,t)=(C_n\sin\frac{n\pi}{l}at+D_n\cos\frac{n\pi}{l}at)\sin\frac{n\pi}{l}x=A_n\sin(\omega_nt+\delta_n)\sin k_n x\]
+
+<p>其中
+$u_n(x,t)$
+是一个主播,
+$A_n\sin k_n x$
+为弦上各点振幅分布,
+$\sin(\omega_nt+\delta_n)$
+为相位因子.
+整个问题的解是这些驻波的叠加,因此也成为驻波法.</p>
+
+<p>固有频率的最小值
+$\omega_1=\frac{\pi}{l}a$
+称位基频,其他故有频率都是基频的整数倍.</p>
+
+<h3 id="117-弦的总能量">1.1.7. 弦的总能量</h3>
+<ul>
+  <li>动能</li>
+</ul>
+
+\[\frac{1}{2}\int_0^l\rho(\frac{\partial u}{\partial t})^2dx\]
+
+<ul>
+  <li>势能</li>
+</ul>
+
+\[\frac{1}{2}\int_0^lT(\frac{\partial u}{\partial x})^2dx\]
+
+<p>所以总能量为</p>
+
+\[E(t)=\frac{1}{2}\int_0^l\rho(\frac{\partial u}{\partial t})^2dx+\frac{1}{2}\int_0^lT(\frac{\partial u}{\partial x})^2dx\]
+
+<p>将解代入,得</p>
+
+\[E(t)= \frac{m\pi^2a^2}{4l^2}\Sigma_{n=1}^\infty n^2[|C_n|^2+|D_n|^2]\]
+
+<p>与时间无关,因此总能量守恒</p>
+
+<h2 id="12-矩形区域稳定问题">1.2. 矩形区域稳定问题</h2>
+<p>求解Laplace方程别介问题
+设有定解问题</p>
+
+\[\begin{aligned}
+&amp;\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2} = 0&amp;,0&lt;x&lt;1,0&lt;y&lt;b\\
+&amp;u|_{x=0}=0,\frac{\partial u}{\partial x}|_{x=a}=0&amp;,-\le y\le b\\
+&amp;u|_{y=0}=f(x)&amp;,\frac{\partial u}{\partial y}|_{y=b}=0,-\le x\le a
+\end{aligned}\]
+
+<p>仍用分离变量法求解</p>
+
+\[u(x,y)=X(x)Y(y)\]
+
+<p>有</p>
+
+\[\frac{X''(x)}{X(x)}=-\frac{Y''(y)}{Y(y)}\]
+
+<p>同理有</p>
+
+\[X''(x)+\lambda X(x)=0,Y''(y)-\lambda Y(y)=0\]
+
+<p>由边界条件</p>
+
+\[X(0)Y(y)=0,X'(a)Y(y)=0\]
+
+<p>求解有本征值
+$\lambda_n=(\frac{2n+1}{2a}\pi)^2$
+和本征函数
+$X_n(x)=\sin\frac{2n+1}{2a}\pi x$</p>
+
+<p>相应有</p>
+
+\[Y_n(y)=C_n\sinh \frac{2n+1}{2a}\pi y+D_n\cosh\frac{2n+1}{2a}\pi y\]
+
+<p>特解</p>
+
+\[u_n(x,y)=(C_n\sinh\frac{2n+1}{2a}\pi y+D_n\cosh\frac{2n+1}{2a}\pi y)\sin\frac{2n+1}{2a}\pi x\]
+
+<p>同理可求得叠加的一般解,并根据本征函数正交归一性求得叠加系数.</p>
+
+<h2 id="13-固定弦的强迫振动">1.3. 固定弦的强迫振动</h2>
+
+\[\begin{cases}
+\frac{\partial^2 u}{\partial t^2}-a^2\frac{\partial^2 u}{\partial x^2}=f(x,t), &amp; 0&lt;x&lt;l,t&gt;0 \\
+u|_{x=0}=0, u|_{x=l}=0,&amp;t\ge0,\\
+u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}|_{t=0} = \psi(x),&amp;0\le x \le l
+\end{cases}\]
+
+<p>与之前相比, 增加了非齐次项.
+不妨先求得非齐次方程的一个特解v(x,t)
+设
+$u(x,t)=v(x,t)+\omega(x,t)$
+则
+$\omega(x,t)$
+是相应齐次方程的解.
+所以重点问题就是求这个特解</p>
+
+<p><strong>例:</strong></p>
+
+\[\begin{cases}
+\frac{\partial^2 u}{\partial t^2}-a^2\frac{\partial^2 u}{\partial x^2}=f(x,t), &amp; 0&lt;x&lt;l,t&gt;0 \\
+u|_{x=0}=0, u|_{x=l}=0,&amp;t\ge0,\\
+u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}|_{t=0} = \psi(x),&amp;0\le x \le l
+\end{cases}\]
+
+<p><strong>解:</strong>
+设
+$u(x,t)=v(x)+\omega(x,t)$
+其中
+$v(x)$
+可以通过边界条件求出</p>
+
+\[\begin{cases}
+v''(x)=-\frac{1}{a^2}f(x)\\
+v(0)=,v(l)=0
+\end{cases}\]
+
+<p>而w(x,t)是齐次偏微分方程的解,也可按过去的方法求出</p>
+
+<h2 id="14-非齐次边界条件">1.4. 非齐次边界条件</h2>
+
+<p><strong>例:</strong></p>
+
+\[\begin{cases}
+\frac{\partial^2 u}{\partial t^2}-\kappa\frac{\partial^2 u}{\partial x^2}=0, &amp; 0&lt;x&lt;l,t&gt;0 \\
+u|_{x=0}=A\sin\omega t, u|_{x=l}=0,&amp;t\ge0,\\
+u|_{t=0}=0&amp;0\le x \le l
+\end{cases}\]
+
+<p><strong>解:</strong>
+针对</p>
+
+<p>\(\begin{cases}
+\frac{\partial^2 u}{\partial t^2}-\kappa\frac{\partial^2 u}{\partial x^2}=0, &amp; 0&lt;x&lt;l,t&gt;0 \\
+u|_{x=0}=\mu(t), u|_{x=l}=\nu(t),&amp;t\ge0,\\
+u|_{t=0}=0&amp;0\le x \le l
+\end{cases}\)
+有
+设齐次化函数为
+$v(x,t)=A(t)x+B(t)$</p>
+
+<p>得到
+$B(t)=\mu(t),A(t)=\frac{1}{l}[\nu(t)-\mu(t)]$</p>
+
+<p>因此
+$B(t)=A\sin\omega t,A(t)=-\frac{1}{l}A\sin\omega t$</p>
+
+<p>所以</p>
+
+<p>$v(x,t)=A(1-\frac{x}{l})\sin\omega t$</p>
+
+<p>令</p>
+
+<p>$u(x,t)=A(1-\frac{x}{l})\sin\omega t + \omega(x,t)$</p>
+
+<p>则
+$\omega(x,t)$
+为满足定解问题</p>
+
+\[\begin{cases}
+\frac{\partial^2 \omega}{\partial t^2}-\kappa\frac{\partial^2 \omega}{\partial x^2}=-A\omega(1-\frac{x}{l})\cos\omega t, &amp; 0&lt;x&lt;l,t&gt;0 \\
+\omega|_{x=0}=0, \omega|_{x=l}=0,&amp;t\ge0,\\
+u|_{t=0}=0&amp;0\le x \le l
+\end{cases}\]
+
+<p>的解
+可以按前述方法求得</p>
+:ET

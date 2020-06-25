@@ -1,0 +1,571 @@
+I"��<!-- TOC -->
+
+<ul>
+  <li><a href="#1-词频的提取和可视化">1. 词频的提取和可视化</a>
+    <ul>
+      <li><a href="#11-基本内容">1.1. 基本内容</a></li>
+      <li><a href="#12-代码实现">1.2. 代码实现</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-逻辑回归logistic-regression">2. 逻辑回归(Logistic regression)</a>
+    <ul>
+      <li><a href="#21-基本概念">2.1. 基本概念</a></li>
+      <li><a href="#22-如何获得θ">2.2. 如何获得θ</a></li>
+      <li><a href="#23-代码实现">2.3. 代码实现</a>
+        <ul>
+          <li><a href="#231-数据绘制">2.3.1. 数据绘制</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#3-模型的验证与精确度">3. 模型的验证与精确度</a></li>
+  <li><a href="#4-逻辑回归背后的intuition">4. 逻辑回归背后的intuition</a>
+    <ul>
+      <li><a href="#41-cost-function">4.1. Cost Function</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+<h1 id="1-词频的提取和可视化">1. 词频的提取和可视化</h1>
+<h2 id="11-基本内容">1.1. 基本内容</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I am Happy Because I am learning NLP @deeplearning
+</code></pre></div></div>
+
+<p>经过预处理后得到</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[happy,learn,nlp]
+</code></pre></div></div>
+
+<p>然后进行特征提取有</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1,4,2]
+</code></pre></div></div>
+
+<p>将一个语料集中的所有m个语料都进行特征提取，最终可以获得一个矩阵</p>
+
+\[\begin{matrix}
+    1&amp;X^{(1)}_1&amp;X_2^{(1)}\\
+    1&amp;X^{(2)}_1&amp;X_2^{(2)}\\
+    ...&amp;...&amp;...\\
+    1&amp;X^{(m)}_1&amp;X_2^{(m)}
+\end{matrix}\]
+
+<ol>
+  <li>首先，建立frequency dictionary</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">freqs</span> <span class="o">=</span> <span class="n">build_freqs</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span><span class="c1">#Build frequencies dictionary
+</span></code></pre></div></div>
+
+<ol>
+  <li>初始化相同大小的矩阵X</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="c1">#Initialize matrix (预先import numpy as np)
+</span></code></pre></div></div>
+
+<ol>
+  <li>遍历删除stop words、stemming、URLs、handles并进行lower casing</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span><span class="c1"># For every tweet
+</span>    <span class="n">p_tweet</span> <span class="o">=</span> <span class="n">process_tweet</span><span class="p">(</span><span class="n">tweets</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="c1">#Process tweet
+</span></code></pre></div></div>
+
+<ol>
+  <li>通过对positive和negative的频率求和来提取特征</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">p_tweet</span><span class="p">,</span><span class="n">freqs</span><span class="p">)</span><span class="c1"># Extract Features
+</span></code></pre></div></div>
+
+<h2 id="12-代码实现">1.2. 代码实现</h2>
+<p>首先依然是 <strong>引入必要的库</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nltk</span>                                  <span class="c1"># Python library for NLP
+</span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">twitter_samples</span>      <span class="c1"># sample Twitter dataset from NLTK
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>              <span class="c1"># visualization library
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>                           <span class="c1"># library for scientific computing and matrix operations
+</span></code></pre></div></div>
+
+<p>其中
+process_tweet()函数实现清除文本，将其分割为单独的单词，删除stopwords，并将单词转换为Stem。
+build_freqs()函数计算整个Corpus中单词在positive的频率和在negative的频率，构建freqs字典，key是元组(word,label)</p>
+
+<p><strong>下载所需的内容</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># download the stopwords for the process_tweet function
+</span><span class="n">nltk</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="s">'stopwords'</span><span class="p">)</span>
+
+<span class="c1"># import our convenience functions
+</span><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">process_tweet</span><span class="p">,</span> <span class="n">build_freqs</span>
+</code></pre></div></div>
+
+<p><strong>加载数据集</strong>
+仍然与上一节相同</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># select the lists of positive and negative tweets
+</span><span class="n">all_positive_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'positive_tweets.json'</span><span class="p">)</span>
+<span class="n">all_negative_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'negative_tweets.json'</span><span class="p">)</span>
+
+<span class="c1"># concatenate the lists, 1st part is the positive tweets followed by the negative
+</span><span class="n">tweets</span> <span class="o">=</span> <span class="n">all_positive_tweets</span> <span class="o">+</span> <span class="n">all_negative_tweets</span>
+
+<span class="c1"># let's see how many tweets we have
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Number of tweets: "</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>建立一个Labels array</strong>其中前5000个元素的label是1，后5000个元素的label是0.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># make a numpy array representing labels of the tweets
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">all_positive_tweets</span><span class="p">))),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">all_negative_tweets</span><span class="p">))))</span>
+</code></pre></div></div>
+
+<p>(python字典知识可参考<a href="https://www.runoob.com/python/python-dictionary.html">菜鸟教程</a>)</p>
+
+<p><strong>构建Word frequency dictionary</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">build_freqs</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
+    <span class="s">"""Build frequencies.
+    Input:
+        tweets: a list of tweets
+        ys: an m x 1 array with the sentiment label of each tweet
+            (either 0 or 1)
+    Output:
+        freqs: a dictionary mapping each (word, sentiment) pair to its
+        frequency
+    """</span>
+    <span class="c1"># Convert np array to list since zip needs an iterable.
+</span>    <span class="c1">#将np数组转换为列表，因为zip需要一个可迭代对象
+</span>    <span class="c1"># The squeeze is necessary or the list ends up with one element.
+</span>    <span class="c1">#Squeeze是必要的，否则list将以单个元素解为
+</span>    <span class="c1"># Also note that this is just a NOP if ys is already a list.
+</span>    <span class="n">yslist</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">ys</span><span class="p">).</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="c1"># Start with an empty dictionary and populate it by looping over all tweets
+</span>    <span class="c1"># and over all processed words in each tweet.
+</span>    <span class="n">freqs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">yslist</span><span class="p">,</span> <span class="n">tweets</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">process_tweet</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
+            <span class="n">pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># 键为(word,label)元组
+</span>            <span class="k">if</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+                <span class="n">freqs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># 计数+1
+</span>            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freqs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 如果没有计数过则初始化为1
+</span>    <span class="k">return</span> <span class="n">freqs</span>
+</code></pre></div></div>
+
+<p>现在将这个函数投入使用</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># create frequency dictionary
+</span><span class="n">freqs</span> <span class="o">=</span> <span class="n">build_freqs</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c1"># check data type
+</span><span class="k">print</span><span class="p">(</span><span class="s">f'type(freqs) = </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="c1"># check length of the dictionary
+</span><span class="k">print</span><span class="p">(</span><span class="s">f'len(freqs) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>但是字典信息太繁杂了，难以观察。</p>
+
+<p><strong>选择想要可视化的一部分单词</strong>
+可以用元组来储存这个临时信息。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># select some words to appear in the report. we will assume that each word is unique (i.e. no duplicates)
+</span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s">'happi'</span><span class="p">,</span> <span class="s">'merri'</span><span class="p">,</span> <span class="s">'nice'</span><span class="p">,</span> <span class="s">'good'</span><span class="p">,</span> <span class="s">'bad'</span><span class="p">,</span> <span class="s">'sad'</span><span class="p">,</span> <span class="s">'mad'</span><span class="p">,</span> <span class="s">'best'</span><span class="p">,</span> <span class="s">'pretti'</span><span class="p">,</span>
+        <span class="s">'❤'</span><span class="p">,</span> <span class="s">':)'</span><span class="p">,</span> <span class="s">':('</span><span class="p">,</span> <span class="s">'😒'</span><span class="p">,</span> <span class="s">'😬'</span><span class="p">,</span> <span class="s">'😄'</span><span class="p">,</span> <span class="s">'😍'</span><span class="p">,</span> <span class="s">'♛'</span><span class="p">,</span>
+        <span class="s">'song'</span><span class="p">,</span> <span class="s">'idea'</span><span class="p">,</span> <span class="s">'power'</span><span class="p">,</span> <span class="s">'play'</span><span class="p">,</span> <span class="s">'magnific'</span><span class="p">]</span>
+
+<span class="c1"># list representing our table of word counts.
+# each element consist of a sublist with this pattern: [&lt;word&gt;, &lt;positive_count&gt;, &lt;negative_count&gt;]
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># loop through our selected words
+</span><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+    
+    <span class="c1"># initialize positive and negative counts
+</span>    <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">neg</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="c1"># retrieve number of positive counts
+</span>    <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+        
+    <span class="c1"># retrieve number of negative counts
+</span>    <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+        <span class="n">neg</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+        
+    <span class="c1"># append the word counts to the table
+</span>    <span class="n">data</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">word</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">neg</span><span class="p">])</span>
+    
+<span class="n">data</span>
+</code></pre></div></div>
+
+<p>可以用对数坐标的散点图来将其绘出，横纵坐标分别是positive和negative的频率</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># convert positive raw counts to logarithmic scale. we add 1 to avoid log(0)
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>  
+
+<span class="c1"># do the same for the negative counts
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span> 
+
+<span class="c1"># Plot a dot for each pair of words
+</span><span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  
+
+<span class="c1"># assign axis labels
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Log Positive count"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Log Negative count"</span><span class="p">)</span>
+
+<span class="c1"># Add the word as the label at the same position as you added the points just before
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'red'</span><span class="p">)</span> <span class="c1"># Plot the red line that divides the 2 areas.
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>有</p>
+<div align="middle">
+<img src="/pics/NLP/wordfreqs.png" width="500" />
+</div>
+<p>很明显的是 :) 和 :( 与情绪有非常大的相关性。</p>
+
+<h1 id="2-逻辑回归logistic-regression">2. 逻辑回归(Logistic regression)</h1>
+<h2 id="21-基本概念">2.1. 基本概念</h2>
+<p>使用之前提取的特征来判断是积极还是消极的情绪。</p>
+
+<p>逻辑回归使用Sigmoid 函数（输出范围 0到1 ）
+其表达式为</p>
+
+\[\sigma(z) = \frac{1}{1+e^{-z}}\]
+
+<p>函数图像为</p>
+<div align="middle">
+<img src="/pics/NLP/SigmoidFunction.png" width="500" />
+</div>
+
+<p>在前节中已经提到过有监督学习的基本模型</p>
+<div align="middle">
+<img src="/pics/NLP/SML.png" width="500" />
+</div>
+<p>而在逻辑回归中，Prediction Function就是Sigmoid函数。
+在逻辑回归中的函数H表达式为</p>
+
+\[h(x^{(i)},\theta)=\frac{1}{1+e^{-\theta^T x^{(i)}}}\]
+
+<p>它取决于
+$\theta,x,i$</p>
+
+<p>为了分类，我们需要一个阈值，通常将其设定为0.5，与之对应的
+$\theta^T$
+与
+$x$
+的点乘结果为0。</p>
+
+<p>如果点乘结果小于0，预测是negative，如果大于0则是positive。</p>
+
+<p><strong>例：</strong>
+Text为</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@YMourri and @ AndrewYNg are tuning a GREAT AI model
+</code></pre></div></div>
+
+<p>经过预处理后为</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[tun,ai,great,model]
+</code></pre></div></div>
+
+<p>获得的向量x为</p>
+
+\[x^{i} = \begin{bmatrix}
+    1\\3476\\245
+\end{bmatrix}\]
+
+<p>而
+$\theta$
+是我们希望得到的，有了它就可以做预测了。
+现在我们先假设我们已经得到了一个
+$\theta$
+其值为</p>
+
+\[\theta = \begin{bmatrix}
+    0.00003\\0.00150\\-0.00120
+\end{bmatrix}\]
+
+<p>则可求得其点乘结果为4.92，可以预测是positive</p>
+
+<h2 id="22-如何获得θ">2.2. 如何获得θ</h2>
+
+<ol>
+  <li>初始化参数θ</li>
+  <li>使用Logistic函数获得观测值</li>
+  <li>在cost函数的梯度方向上更新θ</li>
+  <li></li>
+</ol>
+<div align="middle">
+<img src="/pics/NLP/CostIteration.png" width="500" />
+</div>
+
+<ol>
+  <li>计算Cost的值J，判断是否完成迭代</li>
+</ol>
+
+<div align="middle">
+<img src="/pics/NLP/TrainingLR.png" width="500" />
+</div>
+
+<p>这个过程称之为梯度下降法</p>
+
+<h2 id="23-代码实现">2.3. 代码实现</h2>
+<p>（前面的import啥略过了）</p>
+
+<ul>
+  <li>加载数据集</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># select the set of positive and negative tweets
+</span><span class="n">all_positive_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'positive_tweets.json'</span><span class="p">)</span>
+<span class="n">all_negative_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'negative_tweets.json'</span><span class="p">)</span>
+
+<span class="n">tweets</span> <span class="o">=</span> <span class="n">all_positive_tweets</span> <span class="o">+</span> <span class="n">all_negative_tweets</span> <span class="c1">## Concatenate the lists. 
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">all_positive_tweets</span><span class="p">),</span><span class="mi">1</span><span class="p">)),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">all_negative_tweets</span><span class="p">),</span><span class="mi">1</span><span class="p">)),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># split the data into two pieces, one for training and one for testing (validation set) 
+</span><span class="n">train_pos</span>  <span class="o">=</span> <span class="n">all_positive_tweets</span><span class="p">[:</span><span class="mi">4000</span><span class="p">]</span>
+<span class="n">train_neg</span>  <span class="o">=</span> <span class="n">all_negative_tweets</span><span class="p">[:</span><span class="mi">4000</span><span class="p">]</span>
+
+<span class="n">train_x</span> <span class="o">=</span> <span class="n">train_pos</span> <span class="o">+</span> <span class="n">train_neg</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Number of tweets: "</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>加载特征</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'logistic_features.csv'</span><span class="p">);</span> <span class="c1"># Load a 3 columns csv file using pandas function
+</span><span class="n">data</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Print the first 10 data entries
+</span></code></pre></div></div>
+
+<p>前十个数据列表</p>
+<div align="middle">
+<img src="/pics/NLP/data10.png" width="500" />
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Each feature is labeled as bias, positive and negative
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s">'bias'</span><span class="p">,</span> <span class="s">'positive'</span><span class="p">,</span> <span class="s">'negative'</span><span class="p">]].</span><span class="n">values</span> <span class="c1"># Get only the numerical values of the dataframe
+</span><span class="n">Y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'sentiment'</span><span class="p">].</span><span class="n">values</span><span class="p">;</span> <span class="c1"># Put in Y the corresponding labels or sentiments
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># Print the shape of the X part
+</span><span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># Print some rows of X
+</span></code></pre></div></div>
+
+<ul>
+  <li>加载一个预先训练好的逻辑回归模型
+先来一个初始的θ</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">theta</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7e-08</span><span class="p">,</span> <span class="mf">0.0005239</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.00055517</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>画一下数据的散点图</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the samples using columns 1 and 2 of the matrix
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">]</span>
+
+<span class="c1"># Color based on the sentiment Y
+</span><span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Plot a dot for each pair of words
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Positive"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Negative"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div align="middle">
+<img src="/pics/NLP/dataplot1.png" width="500" />
+</div>
+
+<p>可以看出y=x这条线可以很好的将内容分开，可以预计模型精度不错。</p>
+
+<h3 id="231-数据绘制">2.3.1. 数据绘制</h3>
+<p>画一条灰线来表示正区域和负区域之间的截止，即为</p>
+
+\[z = \theta \cdot x = 0\]
+
+<p>红色和绿色的线点在相应的情绪的方向是计算使用垂直线的分离线计算在前面的方程(neg函数)。它必须指向与Logit函数的导数相同的方向，但大小可能不同。它只是为了模型的可视化表示。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Equation for the separation plane
+# It give a value in the negative axe as a function of a positive value
+# f(pos, neg, W) = w0 + w1 * pos + w2 * neg = 0
+# s(pos, W) = (w0 - w1 * pos) / w2
+</span><span class="k">def</span> <span class="nf">neg</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Equation for the direction of the sentiments change
+# We don't care about the magnitude of the change. We are only interested 
+# in the direction. So this direction is just a perpendicular function to the 
+# separation plane
+# df(pos, W) = pos * w2 / w1
+</span><span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span>    <span class="n">pos</span> <span class="o">*</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the samples using columns 1 and 2 of the matrix
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">]</span>
+
+<span class="c1"># Color base on the sentiment Y
+</span><span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Plot a dot for each pair of words
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Positive"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Negative"</span><span class="p">)</span>
+
+<span class="c1"># Now lets represent the logistic regression model in this chart. 
+</span><span class="n">maxpos</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="mi">5000</span> <span class="c1"># The pos value for the direction vectors origin
+</span>
+<span class="c1"># Plot a gray line that divides the 2 areas.
+</span><span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span>  <span class="n">maxpos</span><span class="p">],</span> <span class="p">[</span><span class="n">neg</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>   <span class="n">neg</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">maxpos</span><span class="p">)],</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'gray'</span><span class="p">)</span> 
+
+<span class="c1"># Plot a green line pointing to the positive direction
+</span><span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">neg</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="n">offset</span><span class="p">,</span> <span class="n">direction</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="n">head_width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">'g'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+<span class="c1"># Plot a red line pointing to the negative direction
+</span><span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">neg</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="o">-</span><span class="n">offset</span><span class="p">,</span> <span class="o">-</span><span class="n">direction</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="n">head_width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'r'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>可以获得图像</p>
+
+<div align="middle">
+<img src="/pics/NLP/dataplot2.png" width="500" />
+</div>
+
+<h1 id="3-模型的验证与精确度">3. 模型的验证与精确度</h1>
+<p>我们有数据集X，标签集Y以及获得的θ，使用预测函数进行预测，观测其是否超过阈值</p>
+
+\[pred = h(X_{val},\theta)\ge 0.5\]
+
+<p>通过和阈值的比较可以获得对应X的标签，将预测的标签与Y作比较</p>
+
+<p>将正确次数求和除以总数即得准确率</p>
+
+\[\Sigma_{i=1}^m\frac{(pred^{(i)}==y_{val}^{(i)})}{m}\]
+
+<h1 id="4-逻辑回归背后的intuition">4. 逻辑回归背后的intuition</h1>
+
+<h2 id="41-cost-function">4.1. Cost Function</h2>
+
+\[J(\theta)=-\frac{1}{m}\Sigma_{i=1}^m[y^{(i)}\log h(x^{(i)},\theta)+(1-y^{(i)})\log(1-h(x^{(i)},\theta)]\]
+
+<p>损失函数是一个很复杂的表达式，现在来拆分一下它的概念。</p>
+
+<p>最左侧的求和意味着是将每个训练样本的损失加和再取平均,负号的作用则是让最后的数值为正数。（因为log一个小于1的正数肯定是负的嘛）</p>
+
+<p>括号里的第一项</p>
+
+\[y^{(i)}\log h(x^{(i)},\theta)\]
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">y</th>
+      <th style="text-align: center">h</th>
+      <th style="text-align: center">ylog(h)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">any</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0.99</td>
+      <td style="text-align: center">~ 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">~0</td>
+      <td style="text-align: center">-inf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>也就是说预测越接近标签，值越小（y=0，h=1的时候是特例）</p>
+
+<p>接下来看第二项</p>
+
+\[(1-y^{(i)})\log(1-h(x^{(i)},\theta)\]
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">y</th>
+      <th style="text-align: center">h</th>
+      <th style="text-align: center">finally</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">any</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">~ 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">~1</td>
+      <td style="text-align: center">-inf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>与之前类似，区别是(y=1 h=0的时候是特例)</p>
+
+<p>将两项叠加有</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">y</th>
+      <th style="text-align: center">h</th>
+      <th style="text-align: center">finally</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">~0</td>
+      <td style="text-align: center">-inf</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">~1</td>
+      <td style="text-align: center">~0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">~0</td>
+      <td style="text-align: center">~ 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">~1</td>
+      <td style="text-align: center">-inf</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

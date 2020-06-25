@@ -1,5 +1,8 @@
 name: PaiPai
+highlighter: rouge
 markdown: kramdown
+
+syntax_highlighter: rouge
 encoding: utf-8
 collections:
  image:
