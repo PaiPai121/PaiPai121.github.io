@@ -2,7 +2,7 @@
 layout: post
 title: "概率与贝叶斯公式"
 tag: "NLP"
-date: 2019-06-18
+date: 2019-06-19
 categories: 自然语言处理
 ---
 <!-- TOC -->
@@ -173,6 +173,7 @@ doc:I am happy because I am learning
 $$\lambda(\omega)=\log\frac{P(\omega|pos)}{P(\omega|neg)}$$
 
 表：
+
 |word|Pos|Neg|λ|
 |:-:|:-:|:-:|:-:|
 |I|0.05|0.05|0|
@@ -190,7 +191,7 @@ $$\lambda(happy)=\log\frac{0.09}{0.01}\approx 2.2$$
 
 计算Log likelihood
 
-$\log(likelihood)=\Sigma_{i=1}^m\log\frac{P(\omega_i|pos)}{P(\omega_i|neg)}=\Sigma_{i=1}^m\lambda(\omega_i) = 3.3$
+$$\log(likelihood)=\Sigma_{i=1}^m\log\frac{P(\omega_i|pos)}{P(\omega_i|neg)}=\Sigma_{i=1}^m\lambda(\omega_i) = 3.3$$
 
 在对数似然下，只要非中性词才有贡献，比如刚才的句子中只要happy和learning有效，而negative的词语的贡献为负。对数处理下的threshold是0而不是1.
 
@@ -247,9 +248,9 @@ plt.ylabel("Negative") # y-axis label
 ```
 
 可得
-
+{%raw%}
 <img src="/pics/NLP/bayesdata.png" width = 500>
-
+{%endraw%}
 可应以看出两个class的word被直线y=x所分开。
 
 - 用置信椭圆(Confidence Ellipses)实现朴素贝叶斯
@@ -259,9 +260,9 @@ plt.ylabel("Negative") # y-axis label
 - 中心:分布的数值平均
 - 高度和宽度:和变量的分布相关，用户必须指定绘制椭圆所需的标准偏差量。
 - 角度:与属性间的协方差相关。
-
+{%raw%}
 <img src = "/pics/NLP/ConfidenceEllipse.jpg" width = 500>
-
+{%endraw%}
 n_std为正态分布标准差
 |σ|2σ|3σ|
 |:-:|:-:|:-:|
@@ -300,9 +301,9 @@ ax.legend()
 
 plt.show()
 ```
-
+{%raw%}
 <img src="/pics/NLP/bayesdata2.png" width = 500>
-
+{%endraw%}
 - 修改数据
 两个分布有重叠，使用原始数据的话，朴素贝叶斯方法的精度会比较低。
 
@@ -319,9 +320,9 @@ data2.positive[data.sentiment == 1] =  data2.positive / 1.5 - 50 # Modify the po
 data_pos = data2[data2.sentiment == 1] # Filter only the positive samples
 data_neg = data[data2.sentiment == 0] # Filter only the negative samples
 ```
-
+{%raw%}
 <img src="/pics/NLP/bayesdata3.png" width = 500>
-
+{%endraw%}
 ~~咋重叠更大了呢~~
 
 ## 4.2. 使用朴素贝叶斯进行验证
