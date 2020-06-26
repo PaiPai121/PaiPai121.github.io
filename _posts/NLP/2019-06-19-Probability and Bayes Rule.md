@@ -146,6 +146,7 @@ $$P(w_i|class)=\frac{freq(w_i,class)+1}{N_{class}+V_{class}}$$
 这个过程就是拉普拉斯平滑。
 
 # 3. 对数似然
+
 ## 3.1. 似然
 word可能有很多种情感，不过在sentiment classification中，它们被分为：neutral，positive和negative三种。（通过他们的条件概率）
 
@@ -157,7 +158,10 @@ Neutral的词语的ratio解进1，对负面情绪小于1，正面情绪大于1.
 
 如果你取positive和negative的比值，这个值称之为先验比例(prior ratio)。
 即有
+
+
 $$\frac{P(pos)}{P(neg)}\Pi_{i=1}^m\frac{P(w_i|{Pos})}{P(w_i|Neg)} = \frac{freq(w_i,1)+1}{freq(w_i,0)+1}$$
+
 
 当然如果pos和neg的数量相同则这个先验比例就不存在了。
 
@@ -248,9 +252,11 @@ plt.ylabel("Negative") # y-axis label
 ```
 
 可得
-{%raw%}
+
+
 <img src="/pics/NLP/bayesdata.png" width = 500>
-{%endraw%}
+
+
 可应以看出两个class的word被直线y=x所分开。
 
 - 用置信椭圆(Confidence Ellipses)实现朴素贝叶斯
@@ -260,9 +266,13 @@ plt.ylabel("Negative") # y-axis label
 - 中心:分布的数值平均
 - 高度和宽度:和变量的分布相关，用户必须指定绘制椭圆所需的标准偏差量。
 - 角度:与属性间的协方差相关。
-{%raw%}
+
+
+
 <img src = "/pics/NLP/ConfidenceEllipse.jpg" width = 500>
-{%endraw%}
+
+
+
 n_std为正态分布标准差
 |σ|2σ|3σ|
 |:-:|:-:|:-:|
@@ -301,9 +311,13 @@ ax.legend()
 
 plt.show()
 ```
-{%raw%}
+
+
+
 <img src="/pics/NLP/bayesdata2.png" width = 500>
-{%endraw%}
+
+
+
 - 修改数据
 两个分布有重叠，使用原始数据的话，朴素贝叶斯方法的精度会比较低。
 
@@ -320,9 +334,13 @@ data2.positive[data.sentiment == 1] =  data2.positive / 1.5 - 50 # Modify the po
 data_pos = data2[data2.sentiment == 1] # Filter only the positive samples
 data_neg = data[data2.sentiment == 0] # Filter only the negative samples
 ```
-{%raw%}
+
+
+
 <img src="/pics/NLP/bayesdata3.png" width = 500>
-{%endraw%}
+
+
+
 ~~咋重叠更大了呢~~
 
 ## 4.2. 使用朴素贝叶斯进行验证

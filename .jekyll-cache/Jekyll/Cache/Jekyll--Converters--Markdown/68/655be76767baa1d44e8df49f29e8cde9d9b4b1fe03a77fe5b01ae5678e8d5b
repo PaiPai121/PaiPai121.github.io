@@ -1,0 +1,977 @@
+I""�<!-- TOC -->
+
+<ul>
+  <li><a href="#1-贝叶斯公式">1. 贝叶斯公式</a>
+    <ul>
+      <li><a href="#11-条件概率">1.1. 条件概率</a></li>
+      <li><a href="#12-贝叶斯公式">1.2. 贝叶斯公式</a></li>
+      <li><a href="#13-朴素贝叶斯">1.3. 朴素贝叶斯</a>
+        <ul>
+          <li><a href="#131-二值分类的朴素贝叶斯推理条件规则">1.3.1. 二值分类的朴素贝叶斯推理条件规则</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#2-拉普拉斯算子平滑laplacian-smoothing">2. <span id="laplace">拉普拉斯算子平滑</span>(Laplacian smoothing)</a></li>
+  <li><a href="#3-对数似然">3. 对数似然</a>
+    <ul>
+      <li><a href="#31-似然">3.1. 似然</a></li>
+      <li><a href="#32-为什么取对数">3.2. 为什么取对数</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-训练朴素贝叶斯分类器">4. 训练朴素贝叶斯分类器</a>
+    <ul>
+      <li><a href="#41-观测数据">4.1. 观测数据</a></li>
+      <li><a href="#42-使用朴素贝叶斯进行验证">4.2. 使用朴素贝叶斯进行验证</a></li>
+      <li><a href="#43-朴素贝叶斯的前提假设">4.3. 朴素贝叶斯的前提假设</a></li>
+      <li><a href="#44-错误分析">4.4. 错误分析</a></li>
+    </ul>
+  </li>
+  <li><a href="#5-代码实现">5. 代码实现</a>
+    <ul>
+      <li><a href="#51-数据的处理">5.1. 数据的处理</a></li>
+      <li><a href="#52-训练朴素贝叶斯模型">5.2. 训练朴素贝叶斯模型</a></li>
+      <li><a href="#53-测试贝叶斯模型">5.3. 测试贝叶斯模型</a>
+        <ul>
+          <li><a href="#531-进行预测">5.3.1. 进行预测</a></li>
+          <li><a href="#532-进行测试">5.3.2. 进行测试</a></li>
+          <li><a href="#533-用实例测试">5.3.3. 用实例测试</a></li>
+          <li><a href="#534-通过积极消极ratio过滤词语">5.3.4. 通过积极消极ratio过滤词语</a>
+            <ul>
+              <li><a href="#5341-获取ratio">5.3.4.1. 获取ratio</a></li>
+              <li><a href="#5342-根据阈值获取词语">5.3.4.2. 根据阈值获取词语</a></li>
+              <li><a href="#5343-错误分析">5.3.4.3. 错误分析</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+<h1 id="1-贝叶斯公式">1. 贝叶斯公式</h1>
+<h2 id="11-条件概率">1.1. 条件概率</h2>
+
+\[P(A|B)=\frac{P(A \cap B)}{P(B)}\]
+
+<h2 id="12-贝叶斯公式">1.2. 贝叶斯公式</h2>
+<p>由于</p>
+
+\[P(A|B)=\frac{P(A \cap B)}{P(B)}\]
+
+\[P(B|A)=\frac{P(B \cap A)}{P(A)}\]
+
+<p>则有</p>
+
+\[P(B|A) = P(A|B)\times\frac{P(B)}{P(A)}\]
+
+<h2 id="13-朴素贝叶斯">1.3. 朴素贝叶斯</h2>
+<p>朴素贝叶斯也是有监督学习的常用模型，与逻辑回归有一定的共同之处
+<strong>朴素：</strong> 这种方法假设用于分类的特征都是独立的。（现实中这种情况很少见）</p>
+
+<p>与之前的类似</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I am happy because I am learning NLP
+I am happy, not sad
+I am sad, I am not learning NLP
+I am sad,not happy
+</code></pre></div></div>
+
+<p>可以得到</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">word</th>
+      <th style="text-align: center">Pos</th>
+      <th style="text-align: center">Neg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">I</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">am</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">happy</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">because</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">learning</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NLP</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sad</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">not</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">N<sub>class</sub></td>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">13</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>接下来计算两个class的条件概率</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">word</th>
+      <th style="text-align: center">Pos</th>
+      <th style="text-align: center">Neg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">I</td>
+      <td style="text-align: center">0.24</td>
+      <td style="text-align: center">0.25</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">am</td>
+      <td style="text-align: center">0.24</td>
+      <td style="text-align: center">0.25</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">happy</td>
+      <td style="text-align: center">0.15</td>
+      <td style="text-align: center">0.08</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">because</td>
+      <td style="text-align: center">0.08</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">learning</td>
+      <td style="text-align: center">0.08</td>
+      <td style="text-align: center">0.08</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NLP</td>
+      <td style="text-align: center">0.08</td>
+      <td style="text-align: center">0.08</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sad</td>
+      <td style="text-align: center">0.08</td>
+      <td style="text-align: center">0.17</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">not</td>
+      <td style="text-align: center">0.08</td>
+      <td style="text-align: center">0.17</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Sum</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>概率相等或相近的对感情并无很大影响，大多为中性词，而相差比较大的则对情感有较大影响。</p>
+
+<p>特殊例子是because，它不在Neg组中出现，需要平滑概率函数来解决这个问题</p>
+
+<h3 id="131-二值分类的朴素贝叶斯推理条件规则">1.3.1. 二值分类的朴素贝叶斯推理条件规则</h3>
+
+\[\Sigma_{i=1}^m\frac{P(\omega_i|pos)}{P(\omega_i|neg)}\]
+
+<p>现在假设我们获取了一条新的句子</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I am happy today;I am learning
+</code></pre></div></div>
+
+<p>代入公式，则有（我的表和课程不太一样，我没有吧because的概率0提高）</p>
+
+\[\frac{0.24}{0.25}\frac{0.24}{0.25}\frac{0.15}{0.08}\frac{0.24}{0.25}\frac{0.24}{0.25}\frac{0.08}{0.08}\]
+
+<p>其中today不在我们的vocabulary中，因此未作处理。</p>
+
+<p>结果是大于1的，可以猜测是positive</p>
+
+<h1 id="2-拉普拉斯算子平滑laplacian-smoothing">2. <span id="laplace">拉普拉斯算子平滑</span>(Laplacian smoothing)</h1>
+
+<p>在之前的内容中，我们得知</p>
+
+\[P(w_i|class)=\frac{freq(w_i,class)}{N_{class}},class \in \{pos,neg\}\]
+
+<p>其中N是所有单词的频数。
+平滑函数则是</p>
+
+\[P(w_i|class)=\frac{freq(w_i,class)+1}{N_{class}+V_{class}}\]
+
+<p>其中V是class中独立的单词（不重复的）的个数。+1使得0概率得以避免，而分母上的V又使得概率和为1</p>
+
+<p>这个过程就是拉普拉斯平滑。</p>
+
+<h1 id="3-对数似然">3. 对数似然</h1>
+
+<h2 id="31-似然">3.1. 似然</h2>
+<p>word可能有很多种情感，不过在sentiment classification中，它们被分为：neutral，positive和negative三种。（通过他们的条件概率）</p>
+
+\[ratio(w_i) = \frac{P(w_i|{Pos})}{P(w_i|Neg)} = \frac{freq(w_i,1)+1}{freq(w_i,0)+1}\]
+
+<p>Neutral的词语的ratio解进1，对负面情绪小于1，正面情绪大于1.</p>
+
+<p>这就称为似然(likelihood)</p>
+
+<p>如果你取positive和negative的比值，这个值称之为先验比例(prior ratio)。
+即有</p>
+
+\[\frac{P(pos)}{P(neg)}\Pi_{i=1}^m\frac{P(w_i|{Pos})}{P(w_i|Neg)} = \frac{freq(w_i,1)+1}{freq(w_i,0)+1}\]
+
+<p>当然如果pos和neg的数量相同则这个先验比例就不存在了。</p>
+
+<h2 id="32-为什么取对数">3.2. 为什么取对数</h2>
+<p>情感概率的计算需要许多数字和0-1直接的数值相乘，当乘积太小而无法储存在计算机上时便会出现数值下溢(underflow)的风险。
+因此我们可以对数值取对数。</p>
+
+\[\log(\frac{P(pos)}{P(neg)}\Pi_{i=1}^m\frac{P(w_i|{Pos})}{P(w_i|Neg)}) = \log(\frac{P(pos)}{P(neg)})+\Sigma_{i=1}^m\log(\frac{P(w_i|{Pos})}{P(w_i|Neg)})=\log(prior)+\log(likelihood)\]
+
+<p><strong>例：</strong>
+doc:I am happy because I am learning</p>
+
+\[\lambda(\omega)=\log\frac{P(\omega|pos)}{P(\omega|neg)}\]
+
+<p>表：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">word</th>
+      <th style="text-align: center">Pos</th>
+      <th style="text-align: center">Neg</th>
+      <th style="text-align: center">λ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">I</td>
+      <td style="text-align: center">0.05</td>
+      <td style="text-align: center">0.05</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">am</td>
+      <td style="text-align: center">0.04</td>
+      <td style="text-align: center">0.04</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">happy</td>
+      <td style="text-align: center">0.09</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">2.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">because</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">learning</td>
+      <td style="text-align: center">0.03</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">1.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">NLP</td>
+      <td style="text-align: center">0.02</td>
+      <td style="text-align: center">0.02</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">sad</td>
+      <td style="text-align: center">0.01</td>
+      <td style="text-align: center">0.09</td>
+      <td style="text-align: center">-2.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">not</td>
+      <td style="text-align: center">0.02</td>
+      <td style="text-align: center">0.03</td>
+      <td style="text-align: center">-0.4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可以计算出</p>
+
+\[\lambda(happy)=\log\frac{0.09}{0.01}\approx 2.2\]
+
+<p>计算Log likelihood</p>
+
+\[\log(likelihood)=\Sigma_{i=1}^m\log\frac{P(\omega_i|pos)}{P(\omega_i|neg)}=\Sigma_{i=1}^m\lambda(\omega_i) = 3.3\]
+
+<p>在对数似然下，只要非中性词才有贡献，比如刚才的句子中只要happy和learning有效，而negative的词语的贡献为负。对数处理下的threshold是0而不是1.</p>
+
+<h1 id="4-训练朴素贝叶斯分类器">4. 训练朴素贝叶斯分类器</h1>
+<ul>
+  <li>
+    <ol>
+      <li>收集数据测试模型</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>预处理(与前节相同)</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>word计数，计算对应条件概率P(w</td>
+              <td>pos),P(w</td>
+              <td>neg)</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>计算λ</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>计算对数先验概率 log(prior) = log(P(pos)/P(neg))</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="41-观测数据">4.1. 观测数据</h2>
+<ul>
+  <li>首先依然是引入必要的库</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> <span class="c1"># Library for linear algebra and math utils
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="c1"># Dataframe library
+</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1"># Library for plots
+</span><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">confidence_ellipse</span> <span class="c1"># Function to add confidence ellipses to charts
+</span></code></pre></div></div>
+
+<ul>
+  <li>为每个tweet计算likelihoods</li>
+</ul>
+
+\[\log(\frac{P(tweet|pos)}{P(tweet|neg)}) = \log(P(tweet|pos)) - \log(P(tweet|neg))\]
+
+\[positive = \log(P(tweet|pos))=\Sigma_{i=0}^n \log P(W_i|pos)\]
+
+\[negative = \log(P(tweet|neg))=\Sigma_{i=0}^n \log P(W_i|neg)\]
+
+<p>此部分代码在assign中，待补充</p>
+
+<ul>
+  <li>绘制数据
+前两列数据分别是positive和negative</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1">#Create a new figure with a custom size
+</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">]</span> <span class="c1"># Define a color palete
+</span>
+<span class="c1"># Color base on sentiment
+</span><span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> 
+    <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="n">sentiment</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'*'</span><span class="p">)</span>  <span class="c1"># Plot a dot for each tweet
+</span>
+<span class="c1"># Custom limits for this chart
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Positive"</span><span class="p">)</span> <span class="c1"># x-axis label
+</span><span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Negative"</span><span class="p">)</span> <span class="c1"># y-axis label
+</span></code></pre></div></div>
+
+<p>可得</p>
+
+<p><img src="/pics/NLP/bayesdata.png" width="500" /></p>
+
+<p>可应以看出两个class的word被直线y=x所分开。</p>
+
+<ul>
+  <li>用置信椭圆(Confidence Ellipses)实现朴素贝叶斯</li>
+</ul>
+
+<p>置信椭圆是一种可视化二维随机变量的方法。比在笛卡尔平面上绘制点的效果梗好。因为在大数据集中，点可能会严重重叠从而隐藏了数据的真实分布。
+置信椭圆用四个参数总结数据集的信息:</p>
+<ul>
+  <li>中心:分布的数值平均</li>
+  <li>高度和宽度:和变量的分布相关，用户必须指定绘制椭圆所需的标准偏差量。</li>
+  <li>角度:与属性间的协方差相关。</li>
+</ul>
+
+<p><img src="/pics/NLP/ConfidenceEllipse.jpg" width="500" /></p>
+
+<p>n_std为正态分布标准差
+|σ|2σ|3σ|
+|:-:|:-:|:-:|
+|68%|95%|99%|</p>
+
+<p>利用函数<a href="https://matplotlib.org/3.1.1/gallery/statistics/confidence_ellipse.html#sphx-glr-gallery-statistics-confidence-ellipse-py">confidence_ellipse</a>来进行<span id="con_ell">可视化</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot the samples using columns 1 and 2 of the matrix
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">]</span> <span class="c1"># Define a color palete
+</span>
+<span class="c1"># Color base on sentiment
+</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="n">sentiment</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'*'</span><span class="p">)</span>  <span class="c1"># Plot a dot for tweet
+</span>
+<span class="c1"># Custom limits for this chart
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>  
+<span class="n">plt</span><span class="p">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Positive"</span><span class="p">)</span> <span class="c1"># x-axis label
+</span><span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Negative"</span><span class="p">)</span> <span class="c1"># y-axis label
+</span>
+<span class="n">data_pos</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># Filter only the positive samples
+</span><span class="n">data_neg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># Filter only the negative samples
+</span>
+<span class="c1"># Print confidence ellipses of 2 std
+</span><span class="n">confidence_ellipse</span><span class="p">(</span><span class="n">data_pos</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data_pos</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">r'$2\sigma$'</span> <span class="p">)</span>
+<span class="n">confidence_ellipse</span><span class="p">(</span><span class="n">data_neg</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data_neg</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'orange'</span><span class="p">)</span>
+
+<span class="c1"># Print confidence ellipses of 3 std
+</span><span class="n">confidence_ellipse</span><span class="p">(</span><span class="n">data_pos</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data_pos</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">':'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">r'$3\sigma$'</span><span class="p">)</span>
+<span class="n">confidence_ellipse</span><span class="p">(</span><span class="n">data_neg</span><span class="p">.</span><span class="n">positive</span><span class="p">,</span> <span class="n">data_neg</span><span class="p">.</span><span class="n">negative</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_std</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'orange'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">':'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/pics/NLP/bayesdata2.png" width="500" /></p>
+
+<ul>
+  <li>修改数据
+两个分布有重叠，使用原始数据的话，朴素贝叶斯方法的精度会比较低。</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># Copy the whole data frame
+</span>
+<span class="c1"># The following 2 lines only modify the entries in the data frame where sentiment == 1
+</span><span class="n">data2</span><span class="p">.</span><span class="n">negative</span><span class="p">[</span><span class="n">data</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="n">data2</span><span class="p">.</span><span class="n">negative</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">+</span> <span class="mi">50</span> <span class="c1"># Modify the negative attribute
+</span><span class="n">data2</span><span class="p">.</span><span class="n">positive</span><span class="p">[</span><span class="n">data</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="n">data2</span><span class="p">.</span><span class="n">positive</span> <span class="o">/</span> <span class="mf">1.5</span> <span class="o">-</span> <span class="mi">50</span> <span class="c1"># Modify the positive attribute 
+</span></code></pre></div></div>
+<p>使用<a href="#con_ell">同样的方法</a>进行可视化(稍加改动,更换数据集)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_pos</span> <span class="o">=</span> <span class="n">data2</span><span class="p">[</span><span class="n">data2</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># Filter only the positive samples
+</span><span class="n">data_neg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data2</span><span class="p">.</span><span class="n">sentiment</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># Filter only the negative samples
+</span></code></pre></div></div>
+
+<p><img src="/pics/NLP/bayesdata3.png" width="500" /></p>
+
+<p><del>咋重叠更大了呢</del></p>
+
+<h2 id="42-使用朴素贝叶斯进行验证">4.2. 使用朴素贝叶斯进行验证</h2>
+<p>与之前的类似，仍然是用预测函数去进行预测</p>
+
+\[score = predict(X_{val},\lambda,\log prior)\]
+
+<p>预测结果为score是否大于阈值</p>
+
+\[pred = score &gt; 0\]
+
+<p>同样有准确率</p>
+
+\[\frac{1}{m}\Sigma_{i=1}^m(pred_i==Y_{val_i})\]
+
+<p>当你使用朴素贝叶斯预测情感时，你实际上做的是通过每个类别中词出现的概率来对其进行估计</p>
+
+<p>实际在的朴素贝叶斯应用包括</p>
+<ul>
+  <li>语义分析</li>
+  <li>作者识别</li>
+  <li>信息检索</li>
+  <li>词义消歧</li>
+</ul>
+
+<h2 id="43-朴素贝叶斯的前提假设">4.3. 朴素贝叶斯的前提假设</h2>
+<p>Naive Bayes是一个非常简单的模型，因为它不需要设置任何自定义参数。因为它对数据做出了假设。</p>
+
+<ul>
+  <li>第一个假设是与每个类相关的预测器或特性之间的独立性。</li>
+  <li>第二个假设与验证集有关。</li>
+</ul>
+
+<p>让我们探讨一下这些假设以及它们如何影响结果。为了说明如何实现特性之间的独立性，让我们看一下下面的句子。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>It is sunny and hot in the Sahara Desert
+</code></pre></div></div>
+<p>朴素贝叶斯首先假定text中的单词是各个独立的，但是我们可以发现，并非如此，sunny和hot经常同时出现，因此一个句子中的单词并非总是相互独立的，但是朴素贝叶斯就非要这么任务 <del>任性</del>
+着可能导致你错误的估计单词的条件概率。</p>
+
+<p>另一个假定和数据集有关，一个好的数据集有相同比例的positive、negative tweets随机样本。
+然而，绝大多数的数据集是人工balanced。在实际的tweet流中，positive的tweet比他们的消极反义词出现的更多。（可能是由于negative被禁止货品比等等）这也会影响朴素贝叶斯模型的准确率。</p>
+
+<h2 id="44-错误分析">4.4. 错误分析</h2>
+<ul>
+  <li>punctuation 标点
+<strong>例：</strong>
+My beloved grandmother :(</li>
+</ul>
+
+<p>最后的:(是有含义的，却会被处理掉</p>
+
+<ul>
+  <li>
+    <p>removing words 移除单词
+<strong>例：</strong>
+This is not good,because your attitude is not even cose to being nice
+如果移除像not、this这样的中性词，留下的便是
+Good, attitude, close, nice
+这句话便会被推测为positive，这显然不对。</p>
+  </li>
+  <li>word order 词序
+<strong>例：</strong>
+    <ul>
+      <li>I am happy because I did not go</li>
+      <li>I am not happy because I did go
+两句话表现出来截然相反的情感态度，not作为一个重要的节点被朴素贝叶斯分类器忽略了。</li>
+    </ul>
+  </li>
+  <li>adversarial attack
+对抗性攻击这个术语描述了一些常见的语言现象，比如讽刺、反讽和委婉语。
+人类可以很容易的区分这些，但是机器不能。
+<strong>例：</strong>
+    <ul>
+      <li>This is a ridiculously powerful movie. The plot was gripping and I cried right through until the ending!
+推主很enjoy这个电影
+但是在朴素贝叶斯分类器的视角下
+processed_tweet:[ridicul,power,movi,plot,grip,cry,end]
+情绪就很negative了</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="5-代码实现">5. 代码实现</h1>
+
+<ul>
+  <li>必要的库</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">process_tweet</span><span class="p">,</span> <span class="n">lookup</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span><span class="p">,</span> <span class="n">twitter_samples</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">TweetTokenizer</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getcwd</span>
+<span class="c1"># add folder, tmp2, from our local workspace containing pre-downloaded corpora files to nltk's data path
+</span><span class="n">filePath</span> <span class="o">=</span> <span class="s">f"</span><span class="si">{</span><span class="n">getcwd</span><span class="p">()</span><span class="si">}</span><span class="s">/../tmp2/"</span>
+<span class="n">nltk</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>数据集的引入</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># get the sets of positive and negative tweets
+</span><span class="n">all_positive_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'positive_tweets.json'</span><span class="p">)</span>
+<span class="n">all_negative_tweets</span> <span class="o">=</span> <span class="n">twitter_samples</span><span class="p">.</span><span class="n">strings</span><span class="p">(</span><span class="s">'negative_tweets.json'</span><span class="p">)</span>
+
+<span class="c1"># split the data into two pieces, one for training and one for testing (validation set)
+</span><span class="n">test_pos</span> <span class="o">=</span> <span class="n">all_positive_tweets</span><span class="p">[</span><span class="mi">4000</span><span class="p">:]</span>
+<span class="n">train_pos</span> <span class="o">=</span> <span class="n">all_positive_tweets</span><span class="p">[:</span><span class="mi">4000</span><span class="p">]</span>
+<span class="n">test_neg</span> <span class="o">=</span> <span class="n">all_negative_tweets</span><span class="p">[</span><span class="mi">4000</span><span class="p">:]</span>
+<span class="n">train_neg</span> <span class="o">=</span> <span class="n">all_negative_tweets</span><span class="p">[:</span><span class="mi">4000</span><span class="p">]</span>
+
+<span class="n">train_x</span> <span class="o">=</span> <span class="n">train_pos</span> <span class="o">+</span> <span class="n">train_neg</span>
+<span class="n">test_x</span> <span class="o">=</span> <span class="n">test_pos</span> <span class="o">+</span> <span class="n">test_neg</span>
+
+<span class="c1"># avoid assumptions about the length of all_positive_tweets
+</span><span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_pos</span><span class="p">)),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_neg</span><span class="p">)))</span>
+<span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_pos</span><span class="p">)),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_neg</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<h2 id="51-数据的处理">5.1. 数据的处理</h2>
+<ol>
+  <li>建立dictionary来保存(word,label)对应的频数。</li>
+  <li>建立lookup()函数来返回元组在tweets出现的次数。</li>
+</ol>
+
+<p>lookup函数有</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">lookup</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        freqs: a dictionary with the frequency of each pair (or tuple)
+        word: the word to look up
+        label: the label corresponding to the word
+    Output:
+        n: the number of times the word with its corresponding label appears.
+    '''</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># freqs.get((word, label), 0)
+</span>
+    <span class="n">pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pair</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">n</span>
+
+</code></pre></div></div>
+
+<p>count_tweets函数应能实现找出tweets list中每个词在label的情况下出现次数
+<strong>如:</strong> [“i am rather excited”, “you are rather happy”]</p>
+
+<p>有</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ ("rather", 1): 2 ("happi", 1) : 1 ("excit", 1) : 1 }
+</code></pre></div></div>
+
+<p>其实现为</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C1 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">count_tweets</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">tweets</span><span class="p">,</span> <span class="n">ys</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        result: a dictionary that will be used to map each pair to its frequency
+        tweets: a list of tweets
+        ys: a list corresponding to the sentiment of each tweet (either 0 or 1)
+    Output:
+        result: a dictionary mapping each pair to its frequency
+    '''</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">tweets</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">process_tweet</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
+            <span class="c1"># define the key, which is the word and label tuple
+</span>            <span class="n">pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+            <span class="c1"># if the key exists in the dictionary, increment the count
+</span>            <span class="k">if</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># else, if the key is new, add it to the dictionary and set the count to 1
+</span>            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h2 id="52-训练朴素贝叶斯模型">5.2. 训练朴素贝叶斯模型</h2>
+
+<p>建立好字典</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Build the freqs dictionary for later uses
+</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="n">count_tweets</span><span class="p">({},</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>计算unique words的数量V</li>
+  <li>计算每个单词的pos频率freq<sub>pos</sub>和neg频率freq<sub>neg</sub></li>
+  <li>计算pos单词总数N<sub>pos</sub>,neg单词总数N<sub>neg</sub>以及unique pos单词总数V<sub>pos</sub>，unique neg单词总数V<sub>neg</sub></li>
+  <li>计算条目总数D，pos条目总数D<sub>pos</sub>,neg条目总数D<sub>neg</sub></li>
+  <li>计算log prior</li>
+  <li>计算对数似然 log likelihood(使用<a href="#laplace">拉普拉斯算子平滑</a>)</li>
+</ul>
+
+<p>代码实现</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C2 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">train_naive_bayes</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        freqs: dictionary from (word, label) to how often the word appears
+        train_x: a list of tweets
+        train_y: a list of labels correponding to the tweets (0,1)
+    Output:
+        logprior: the log prior. (equation 3 above)
+        loglikelihood: the log likelihood of you Naive bayes equation. (equation 6 above)
+    '''</span>
+    <span class="n">loglikelihood</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">logprior</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>
+    <span class="c1"># calculate V, the number of unique words in the vocabulary
+</span>    <span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+
+    <span class="c1"># calculate N_pos, N_neg, V_pos, V_neg
+</span>    <span class="n">N_pos</span> <span class="o">=</span> <span class="n">N_neg</span> <span class="o">=</span> <span class="n">V_pos</span> <span class="o">=</span> <span class="n">V_neg</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1"># if the label is positive (greater than zero)
+</span>        <span class="k">if</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># increment the count of unique positive words by 1
+</span>            <span class="n">V_pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Increment the number of positive words by the count for this (word, label) pair
+</span>            <span class="n">N_pos</span> <span class="o">+=</span> <span class="n">freqs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
+
+        <span class="c1"># else, the label is negative
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># increment the count of unique negative words by 1
+</span>            <span class="n">V_neg</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># increment the number of negative words by the count for this (word,label) pair
+</span>            <span class="n">N_neg</span> <span class="o">+=</span> <span class="n">freqs</span><span class="p">[</span><span class="n">pair</span><span class="p">]</span>
+
+    <span class="c1"># Calculate D, the number of documents
+</span>    <span class="n">D</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_y</span><span class="p">)</span>
+
+    <span class="c1"># Calculate D_pos, the number of positive documents
+</span>    <span class="n">D_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">train_y</span><span class="p">)</span>
+
+    <span class="c1"># Calculate D_neg, the number of negative documents
+</span>    <span class="n">D_neg</span> <span class="o">=</span> <span class="n">D</span><span class="o">-</span><span class="n">D_pos</span>
+
+    <span class="c1"># Calculate logprior
+</span>    <span class="n">logprior</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">D_pos</span><span class="o">/</span><span class="n">D_neg</span><span class="p">)</span>
+
+    <span class="c1"># For each word in the vocabulary...
+</span>    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">:</span>
+        <span class="c1"># get the positive and negative frequency of the word
+</span>        <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">freq_pos</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[(</span><span class="n">word</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">freq_pos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">freq_neg</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[(</span><span class="n">word</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">freq_neg</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># calculate the probability that each word is positive, and negative
+</span>        <span class="n">p_w_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq_pos</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N_pos</span><span class="o">+</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">p_w_neg</span> <span class="o">=</span> <span class="p">(</span><span class="n">freq_neg</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N_neg</span><span class="o">+</span><span class="n">V</span><span class="p">)</span>
+
+        <span class="c1"># calculate the log likelihood of the word
+</span>        <span class="n">loglikelihood</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">p_w_pos</span><span class="o">/</span><span class="n">p_w_neg</span><span class="p">)</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span>
+
+</code></pre></div></div>
+
+<h2 id="53-测试贝叶斯模型">5.3. 测试贝叶斯模型</h2>
+<h3 id="531-进行预测">5.3.1. 进行预测</h3>
+<p>预测概率有</p>
+
+\[p = \log prior + \Sigma^N_i(loglikelihood_i)\]
+
+<p>对应实现有</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C4 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">naive_bayes_predict</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        tweet: a string
+        logprior: a number
+        loglikelihood: a dictionary of words mapping to numbers
+    Output:
+        p: the sum of all the logliklihoods of each word in the tweet (if found in the dictionary) + logprior (a number)
+
+    '''</span>
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="c1"># process the tweet to get a list of words
+</span>    <span class="n">word_l</span> <span class="o">=</span> <span class="n">process_tweet</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+
+    <span class="c1"># initialize probability to zero
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># add the logprior
+</span>    <span class="n">p</span> <span class="o">+=</span> <span class="n">logprior</span>
+    
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_l</span><span class="p">:</span>
+
+        <span class="c1"># check if the word exists in the loglikelihood dictionary
+</span>        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">loglikelihood</span><span class="p">:</span>
+            <span class="c1"># add the log likelihood of that word to the probability
+</span>            <span class="n">p</span> <span class="o">+=</span> <span class="n">loglikelihood</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">p</span>
+
+</code></pre></div></div>
+
+<h3 id="532-进行测试">5.3.2. 进行测试</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C6 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">test_naive_bayes</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">):</span>
+    <span class="s">"""
+    Input:
+        test_x: A list of tweets
+        test_y: the corresponding labels for the list of tweets
+        logprior: the logprior
+        loglikelihood: a dictionary with the loglikelihoods for each word
+    Output:
+        accuracy: (# of tweets classified correctly)/(total # of tweets)
+    """</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># return this properly
+</span>
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="n">y_hats</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">test_x</span><span class="p">:</span>
+        <span class="c1"># if the prediction is &gt; 0
+</span>        <span class="k">if</span> <span class="n">naive_bayes_predict</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># the predicted class is 1
+</span>            <span class="n">y_hat_i</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># otherwise the predicted class is 0
+</span>            <span class="n">y_hat_i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># append the predicted class to the list y_hats
+</span>        <span class="n">y_hats</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_hat_i</span><span class="p">)</span>
+
+    <span class="c1"># error is the average of the absolute values of the differences between y_hats and test_y
+</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_hats</span><span class="p">).</span><span class="n">transpose</span><span class="p">()</span> <span class="o">!=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_y</span><span class="p">)))</span>
+
+    <span class="c1"># Accuracy is 1 minus the error
+</span>    <span class="n">accuracy</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">error</span><span class="c1">#为啥不直接算呢
+</span>
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">accuracy</span>
+</code></pre></div></div>
+
+<h3 id="533-用实例测试">5.3.3. 用实例测试</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C7 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+# You do not have to input any code in this cell, but it is relevant to grading, so please do not change anything
+</span>
+<span class="c1"># Run this cell to test your function
+</span><span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'I am happy'</span><span class="p">,</span> <span class="s">'I am bad'</span><span class="p">,</span> <span class="s">'this movie should have been great.'</span><span class="p">,</span> <span class="s">'great'</span><span class="p">,</span> <span class="s">'great great'</span><span class="p">,</span> <span class="s">'great great great'</span><span class="p">,</span> <span class="s">'great great great great'</span><span class="p">]:</span>
+    <span class="c1"># print( '%s -&gt; %f' % (tweet, naive_bayes_predict(tweet, logprior, loglikelihood)))
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">naive_bayes_predict</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">)</span>
+<span class="c1">#     print(f'{tweet} -&gt; {p:.2f} ({p_category})')
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">f'</span><span class="si">{</span><span class="n">tweet</span><span class="si">}</span><span class="s"> -&gt; </span><span class="si">{</span><span class="n">p</span><span class="p">:.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>有结果</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I am happy -&gt; 2.15
+I am bad -&gt; -1.29
+this movie should have been great. -&gt; 2.14
+great -&gt; 2.14
+great great -&gt; 4.28
+great great great -&gt; 6.41
+great great great great -&gt; 8.55
+</code></pre></div></div>
+
+<h3 id="534-通过积极消极ratio过滤词语">5.3.4. 通过积极消极ratio过滤词语</h3>
+
+<h4 id="5341-获取ratio">5.3.4.1. 获取ratio</h4>
+
+\[ratio = \frac{pos_words+1}{neg_words+1}\]
+
+<p>对应代码有</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C8 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">get_ratio</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        freqs: dictionary containing the words
+        word: string to lookup
+
+    Output: a dictionary with keys 'positive', 'negative', and 'ratio'.
+        Example: {'positive': 10, 'negative': 20, 'ratio': 0.5}
+    '''</span>
+    <span class="n">pos_neg_ratio</span> <span class="o">=</span> <span class="p">{</span><span class="s">'positive'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">'negative'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">'ratio'</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="c1"># use lookup() to find positive counts for the word (denoted by the integer 1)
+</span>    <span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">'positive'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span><span class="n">word</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># use lookup() to find negative counts for the word (denoted by integer 0)
+</span>    <span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">'negative'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span><span class="n">word</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># calculate the ratio of positive to negative counts for the word
+</span>    <span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">'ratio'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">'positive'</span><span class="p">]</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">'negative'</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">### END CODE HERE ###
+</span>    <span class="k">return</span> <span class="n">pos_neg_ratio</span>
+</code></pre></div></div>
+
+<h4 id="5342-根据阈值获取词语">5.3.4.2. 根据阈值获取词语</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C9 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">get_words_by_threshold</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        freqs: dictionary of words
+        label: 1 for positive, 0 for negative
+        threshold: ratio that will be used as the cutoff for including a word in the returned dictionary
+    Output:
+        word_set: dictionary containing the word and information on its positive count, negative count, and ratio of positive to negative counts.
+        example of a key value pair:
+        {'happi':
+            {'positive': 10, 'negative': 20, 'ratio': 0.5}
+        }
+    '''</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">word</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="c1"># get the positive/negative ratio for a word
+</span>        <span class="n">pos_neg_ratio</span> <span class="o">=</span> <span class="n">get_ratio</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span><span class="n">word</span><span class="p">)</span>
+
+        <span class="c1"># if the label is 1 and the ratio is greater than or equal to the threshold...
+</span>        <span class="k">if</span> <span class="n">label</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">"ratio"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+
+            <span class="c1"># Add the pos_neg_ratio to the dictionary
+</span>            <span class="n">word_list</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_neg_ratio</span>
+
+        <span class="c1"># If the label is 0 and the pos_neg_ratio is less than or equal to the threshold...
+</span>        <span class="k">elif</span> <span class="n">label</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pos_neg_ratio</span><span class="p">[</span><span class="s">"ratio"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">:</span>
+
+            <span class="c1"># Add the pos_neg_ratio to the dictionary
+</span>            <span class="n">word_list</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_neg_ratio</span>
+
+        <span class="c1"># otherwise, do not include this word in the list (do nothing)
+</span>
+    <span class="c1">### END CODE HERE ###
+</span>    <span class="k">return</span> <span class="n">word_list</span>
+</code></pre></div></div>
+
+<h4 id="5343-错误分析">5.3.4.3. 错误分析</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Truth Predicted Tweet'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span><span class="p">):</span>
+    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">naive_bayes_predict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logprior</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'%d</span><span class="se">\t</span><span class="s">%0.2f</span><span class="se">\t</span><span class="s">%s'</span> <span class="o">%</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">sign</span><span class="p">(</span><span class="n">y_hat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">process_tweet</span><span class="p">(</span><span class="n">x</span><span class="p">)).</span><span class="n">encode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">,</span> <span class="s">'ignore'</span><span class="p">)))</span>
+</code></pre></div></div>
+:ET
