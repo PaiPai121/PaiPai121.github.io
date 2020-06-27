@@ -1,0 +1,380 @@
+I"�~<!-- TOC -->
+
+<ul>
+  <li><a href="#1-predict-the-countries-from-capitals-从首都猜测国家">1. Predict the Countries from Capitals 从首都猜测国家</a>
+    <ul>
+      <li><a href="#11-引入数据">1.1. 引入数据</a></li>
+      <li><a href="#12-预测词语关系">1.2. 预测词语关系</a>
+        <ul>
+          <li><a href="#121-余弦相似性">1.2.1. 余弦相似性</a></li>
+          <li><a href="#122-欧氏距离">1.2.2. 欧氏距离</a></li>
+          <li><a href="#123-寻找首都对应的国家">1.2.3. 寻找首都对应的国家</a></li>
+          <li><a href="#124-模型精度">1.2.4. 模型精度</a></li>
+          <li><a href="#125-使用pca绘制向量">1.2.5. 使用PCA绘制向量</a></li>
+          <li><a href="#pca测试">PCA测试</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+<h1 id="1-predict-the-countries-from-capitals-从首都猜测国家">1. Predict the Countries from Capitals 从首都猜测国家</h1>
+<h2 id="11-引入数据">1.1. 引入数据</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Run this cell to import packages.
+</span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_vectors</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'capitals.txt'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'city1'</span><span class="p">,</span> <span class="s">'country1'</span><span class="p">,</span> <span class="s">'city2'</span><span class="p">,</span> <span class="s">'country2'</span><span class="p">]</span>
+
+<span class="c1"># print first five elements in the DataFrame
+</span><span class="n">data</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>由于Google new 数据集大约有3.64Gb，不能由工作区直接处理，因此下载并命名为了word_embeddings_capitals.p，如果想在自己的PC上运行可以从<a href="https://code.google.com/archive/p/word2vec/">此链接</a>
+下载，并运行如下代码</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="p">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s">'./GoogleNews-vectors-negative300.bin'</span><span class="p">,</span> <span class="n">binary</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'capitals.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">).</span><span class="n">read</span><span class="p">()</span>
+<span class="n">set_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nltk</span><span class="p">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="n">select_words</span> <span class="o">=</span> <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'king'</span><span class="p">,</span> <span class="s">'queen'</span><span class="p">,</span> <span class="s">'oil'</span><span class="p">,</span> <span class="s">'gas'</span><span class="p">,</span> <span class="s">'happy'</span><span class="p">,</span> <span class="s">'sad'</span><span class="p">,</span> <span class="s">'city'</span><span class="p">,</span> <span class="s">'town'</span><span class="p">,</span> <span class="s">'village'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">,</span> <span class="s">'continent'</span><span class="p">,</span> <span class="s">'petroleum'</span><span class="p">,</span> <span class="s">'joyful'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">select_words</span><span class="p">:</span>
+    <span class="n">set_words</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_word_embeddings</span><span class="p">(</span><span class="n">embeddings</span><span class="p">):</span>
+
+    <span class="n">word_embeddings</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">.</span><span class="n">vocab</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">set_words</span><span class="p">:</span>
+            <span class="n">word_embeddings</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">word_embeddings</span>
+
+
+<span class="c1"># Testing your function
+</span><span class="n">word_embeddings</span> <span class="o">=</span> <span class="n">get_word_embeddings</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">))</span>
+<span class="n">pickle</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span> <span class="n">word_embeddings</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span> <span class="s">"word_embeddings_subset.p"</span><span class="p">,</span> <span class="s">"wb"</span> <span class="p">)</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">word_embeddings</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">"word_embeddings_subset.p"</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">))</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">)</span>  <span class="c1"># there should be 243 words that will be used in this assignment
+</span><span class="k">print</span><span class="p">(</span><span class="s">"dimension: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">[</span><span class="s">'Spain'</span><span class="p">].</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<h2 id="12-预测词语关系">1.2. 预测词语关系</h2>
+
+<p>现在编写一个函数来预测单词之间的关系，实现如下图的功能</p>
+
+<p><img src="/pics/NLP/vectorAssign1.jpg" /></p>
+
+<h3 id="121-余弦相似性">1.2.1. 余弦相似性</h3>
+<p>如之前所述</p>
+
+\[\cos(\theta) = \frac{\vec A\cdot \vec B}{||\vec A||\cdot||\vec B||}\]
+
+<p>则代码实现为</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C1 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        A: a numpy array which corresponds to a word vector
+        B: A numpy array which corresponds to a word vector
+    Output:
+        cos: numerical number representing the cosine similarity between A and B.
+    '''</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">norma</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">normb</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> 
+    <span class="n">cos</span> <span class="o">=</span> <span class="n">dot</span><span class="o">/</span><span class="n">norma</span><span class="o">/</span><span class="n">normb</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>    <span class="k">return</span> <span class="n">cos</span>
+
+
+<span class="n">king</span> <span class="o">=</span> <span class="n">word_embeddings</span><span class="p">[</span><span class="s">'king'</span><span class="p">]</span>
+<span class="n">queen</span> <span class="o">=</span> <span class="n">word_embeddings</span><span class="p">[</span><span class="s">'queen'</span><span class="p">]</span>
+
+<span class="n">cosine_similarity</span><span class="p">(</span><span class="n">king</span><span class="p">,</span> <span class="n">queen</span><span class="p">)</span>
+
+<span class="c1">## 输出为 0.6510957
+</span></code></pre></div></div>
+
+<h3 id="122-欧氏距离">1.2.2. 欧氏距离</h3>
+
+<p>同样如前节所述</p>
+
+\[d(A,B) = d(B,A) = \sqrt{\Sigma_{i=1}^n(A_i-B_i)^2}\]
+
+<p>代码实现为</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C2 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">euclidean</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="s">"""
+    Input:
+        A: a numpy array which corresponds to a word vector
+        B: A numpy array which corresponds to a word vector
+    Output:
+        d: numerical number representing the Euclidean distance between A and B.
+    """</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>
+    <span class="c1"># euclidean distance
+</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">B</span><span class="p">)</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+<span class="c1"># Test your function
+</span><span class="n">euclidean</span><span class="p">(</span><span class="n">king</span><span class="p">,</span> <span class="n">queen</span><span class="p">)</span>
+
+<span class="c1">## 输出为 2.4796925
+</span></code></pre></div></div>
+
+<h3 id="123-寻找首都对应的国家">1.2.3. 寻找首都对应的国家</h3>
+<p>给定了以下词语
+Athens、 Greece、 Baghdad
+已知雅典是希腊的首都，希望得到巴格达是伊拉克的首都。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C3 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">get_country</span><span class="p">(</span><span class="n">city1</span><span class="p">,</span> <span class="n">country1</span><span class="p">,</span> <span class="n">city2</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">):</span>
+    <span class="s">"""
+    Input:
+        city1: a string (the capital city of country1)
+        country1: a string (the country of capital1)
+        city2: a string (the capital city of country2)
+        embeddings: a dictionary where the keys are words and values are their embeddings
+    Output:
+        countries: a dictionary with the most likely country and its similarity score
+    """</span>
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>
+    <span class="c1"># store the city1, country 1, and city 2 in a set called group
+</span>    <span class="n">group</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">city1</span><span class="p">,</span><span class="n">country1</span><span class="p">,</span><span class="n">city2</span><span class="p">))</span>
+
+    <span class="c1"># get embeddings of city 1
+</span>    <span class="n">city1_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">city1</span><span class="p">]</span>
+
+    <span class="c1"># get embedding of country 1
+</span>    <span class="n">country1_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">country1</span><span class="p">]</span>
+
+    <span class="c1"># get embedding of city 2
+</span>    <span class="n">city2_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">city2</span><span class="p">]</span>
+
+    <span class="c1"># get embedding of country 2 (it's a combination of the embeddings of country 1, city 1 and city 2)
+</span>    <span class="c1"># Remember: King - Man + Woman = Queen
+</span>    <span class="n">vec</span> <span class="o">=</span> <span class="n">country1_emb</span> <span class="o">-</span> <span class="n">city1_emb</span> <span class="o">+</span> <span class="n">city2_emb</span>
+
+    <span class="c1"># Initialize the similarity to -1 (it will be replaced by a similarities that are closer to +1)
+</span>    <span class="n">similarity</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># initialize country to an empty string
+</span>    <span class="n">country</span> <span class="o">=</span> <span class="s">''</span>
+
+    <span class="c1"># loop through all words in the embeddings dictionary
+</span>    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+
+        <span class="c1"># first check that the word is not already in the 'group'
+</span>        <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+
+            <span class="c1"># get the word embedding
+</span>            <span class="n">word_emb</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+
+            <span class="c1"># calculate cosine similarity between embedding of country 2 and the word in the embeddings dictionary
+</span>            <span class="n">cur_similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">word_emb</span><span class="p">,</span><span class="n">vec</span><span class="p">)</span>
+
+            <span class="c1"># if the cosine similarity is more similar than the previously best similarity...
+</span>            <span class="k">if</span> <span class="n">cur_similarity</span> <span class="o">&gt;</span> <span class="n">similarity</span><span class="p">:</span>
+
+                <span class="c1"># update the similarity to the new, better similarity
+</span>                <span class="n">similarity</span> <span class="o">=</span> <span class="n">cur_similarity</span>
+
+                <span class="c1"># store the country as a tuple, which contains the word and the similarity
+</span>                <span class="n">country</span> <span class="o">=</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">similarity</span><span class="p">)</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">country</span>
+
+
+<span class="c1">### 进行预测国家
+</span>
+<span class="c1"># Testing your function, note to make it more robust you can return the 5 most similar words.
+</span><span class="n">get_country</span><span class="p">(</span><span class="s">'Athens'</span><span class="p">,</span> <span class="s">'Greece'</span><span class="p">,</span> <span class="s">'Cairo'</span><span class="p">,</span> <span class="n">word_embeddings</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>则可以得到结果(‘Egypt’, 0.76268214)</p>
+
+<h3 id="124-模型精度">1.2.4. 模型精度</h3>
+
+\[Accuracy = \frac{Correct\ of\ predictions}{Total\ of\ predictions}\]
+
+<p>按照定义计算，有</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C4 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">get_accuracy</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="s">'''
+    Input:
+        word_embeddings: a dictionary where the key is a word and the value is its embedding
+        data: a pandas dataframe containing all the country and capital city pairs
+    
+    Output:
+        accuracy: the accuracy of the model
+    '''</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="c1"># initialize num correct to zero
+</span>    <span class="n">num_correct</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># loop through the rows of the dataframe
+</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="c1"># get city1
+</span>        <span class="n">city1</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"city1"</span><span class="p">]</span>
+
+        <span class="c1"># get country1
+</span>        <span class="n">country1</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"country1"</span><span class="p">]</span>
+
+        <span class="c1"># get city2
+</span>        <span class="n">city2</span> <span class="o">=</span>  <span class="n">row</span><span class="p">[</span><span class="s">"city2"</span><span class="p">]</span>
+
+        <span class="c1"># get country2
+</span>        <span class="n">country2</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"country2"</span><span class="p">]</span>
+
+        <span class="c1"># use get_country to find the predicted country2
+</span>        <span class="n">predicted_country2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_country</span><span class="p">(</span><span class="n">city1</span><span class="p">,</span> <span class="n">country1</span><span class="p">,</span> <span class="n">city2</span><span class="p">,</span> <span class="n">word_embeddings</span><span class="p">)</span>
+
+        <span class="c1"># if the predicted country2 is the same as the actual country2...
+</span>        <span class="k">if</span> <span class="n">predicted_country2</span> <span class="o">==</span> <span class="n">country2</span><span class="p">:</span>
+            <span class="c1"># increment the number of correct by 1
+</span>            <span class="n">num_correct</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># get the number of rows in the data dataframe (length of dataframe)
+</span>    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># calculate the accuracy by dividing the number correct by m
+</span>    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">num_correct</span> <span class="o">/</span> <span class="n">m</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>    <span class="k">return</span> <span class="n">accuracy</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">get_accuracy</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f"Accuracy is </span><span class="si">{</span><span class="n">accuracy</span><span class="p">:.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1">## Accuracy is 0.92
+</span></code></pre></div></div>
+
+<h3 id="125-使用pca绘制向量">1.2.5. 使用PCA绘制向量</h3>
+<ol>
+  <li>平均归一化数据</li>
+  <li>计算数据的协方差矩阵</li>
+  <li>计算特征值和特征向量</li>
+  <li>给归一化的数据乘前k个特征值</li>
+</ol>
+
+<p>本次目标是把数据降到二维，以便绘图，其计算函数如下</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># UNQ_C5 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
+</span><span class="k">def</span> <span class="nf">compute_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="s">"""
+    Input:
+        X: of dimension (m,n) where each row corresponds to a word vector
+        n_components: Number of components you want to keep.
+    Output:
+        X_reduced: data transformed in 2 dims/columns + regenerated original data
+    """</span>
+
+    <span class="c1">### START CODE HERE (REPLACE INSTANCES OF 'None' with your code) ###
+</span>    <span class="c1"># mean center the data
+</span>    <span class="n">X_demeaned</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># calculate the covariance matrix
+</span>    <span class="n">covariance_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cov</span><span class="p">(</span><span class="n">X_demeaned</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="c1"># calculate eigenvectors &amp; eigenvalues of the covariance matrix
+</span>    <span class="n">eigen_vals</span><span class="p">,</span> <span class="n">eigen_vecs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">covariance_matrix</span><span class="p">,</span> <span class="n">UPLO</span><span class="o">=</span><span class="s">'L'</span><span class="p">)</span>
+    
+    <span class="c1"># sort eigenvalue in increasing order (get the indices from the sort)
+</span>    <span class="n">idx_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigen_vals</span><span class="p">)</span>
+    
+    <span class="c1"># reverse the order so that it's from highest to lowest.
+</span>    <span class="n">idx_sorted_decreasing</span> <span class="o">=</span> <span class="n">idx_sorted</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># sort the eigen values by idx_sorted_decreasing
+</span>    <span class="n">eigen_vals_sorted</span> <span class="o">=</span> <span class="n">eigen_vals</span><span class="p">[</span><span class="n">idx_sorted_decreasing</span><span class="p">]</span>
+
+    <span class="c1"># sort eigenvectors using the idx_sorted_decreasing indices
+</span>    <span class="n">eigen_vecs_sorted</span> <span class="o">=</span> <span class="n">eigen_vecs</span><span class="p">[:,</span><span class="n">idx_sorted_decreasing</span><span class="p">]</span>
+
+    <span class="c1"># select the first n eigenvectors (n is desired dimension
+</span>    <span class="c1"># of rescaled data array, or dims_rescaled_data)
+</span>    <span class="n">eigen_vecs_subset</span> <span class="o">=</span> <span class="n">eigen_vecs_sorted</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">n_components</span><span class="p">]</span>
+
+    <span class="c1"># transform the data by multiplying the transpose of the eigenvectors 
+</span>    <span class="c1"># with the transpose of the de-meaned data
+</span>    <span class="c1"># Then take the transpose of that product.
+</span>    <span class="n">X_reduced</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">eigen_vecs_subset</span><span class="p">.</span><span class="n">transpose</span><span class="p">(),</span><span class="n">X_demeaned</span><span class="p">.</span><span class="n">transpose</span><span class="p">())</span>
+
+    <span class="c1">### END CODE HERE ###
+</span>
+    <span class="k">return</span> <span class="n">X_reduced</span><span class="p">.</span><span class="n">transpose</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>原文中的hints给的十分详细，按照hints内容可以轻易写出这个结果。
+hint原文如下</p>
+<ul>
+  <li>Use numpy.mean(a,axis=None) : If you set axis = 0, you take the mean for each column. If you set axis = 1, you take the mean for each row. Remember that each row is a word vector, and the number of columns are the number of dimensions in a word vector.</li>
+  <li>Use numpy.cov(m, rowvar=True) . This calculates the covariance matrix. By default rowvar is True. From the documentation: “If rowvar is True (default), then each row represents a variable, with observations in the columns.” In our case, each row is a word vector observation, and each column is a feature (variable).</li>
+  <li>Use numpy.linalg.eigh(a, UPLO=’L’)</li>
+  <li>Use numpy.argsort sorts the values in an array from smallest to largest, then returns the indices from this sort.</li>
+  <li>In order to reverse the order of a list, you can use: x[::-1].</li>
+  <li>To apply the sorted indices to eigenvalues, you can use this format x[indices_sorted].
+When applying the sorted indices to eigen vectors, note that each column represents an eigenvector. In order to preserve the rows but sort on the columns, you can use this format x[:,indices_sorted]</li>
+  <li>To transform the data using a subset of the most relevant principle components, take the matrix multiplication of the eigenvectors with the original data.</li>
+  <li>The data is of shape (n_observations, n_features).</li>
+  <li>The subset of eigenvectors are in a matrix of shape (n_features, n_components).</li>
+  <li>To multiply these together, take the transposes of both the eigenvectors (n_components, n_features) and the data (n_features, n_observations).</li>
+  <li>The product of these two has dimensions (n_components,n_observations)</li>
+  <li>
+    <p>Take its transpose to get the shape (n_observations, n_components).</p>
+
+    <h3 id="pca测试">PCA测试</h3>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'oil'</span><span class="p">,</span> <span class="s">'gas'</span><span class="p">,</span> <span class="s">'happy'</span><span class="p">,</span> <span class="s">'sad'</span><span class="p">,</span> <span class="s">'city'</span><span class="p">,</span> <span class="s">'town'</span><span class="p">,</span>
+         <span class="s">'village'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">,</span> <span class="s">'continent'</span><span class="p">,</span> <span class="s">'petroleum'</span><span class="p">,</span> <span class="s">'joyful'</span><span class="p">]</span>
+
+<span class="c1"># given a list of words and the embeddings, it returns a matrix with all the embeddings
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">get_vectors</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'You have 11 words each of 300 dimensions thus X.shape is:'</span><span class="p">,</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">compute_pca</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>有结果</p>
+
+<p><img src="/pics/NLP/PCA.png" /></p>
+:ET

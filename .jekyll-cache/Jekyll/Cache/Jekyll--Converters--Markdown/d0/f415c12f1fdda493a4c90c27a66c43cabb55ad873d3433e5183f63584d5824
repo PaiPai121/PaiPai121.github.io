@@ -1,0 +1,798 @@
+I"#=<!-- TOC -->
+
+<ul>
+  <li><a href="#1-word-by-word-design">1. word by word design</a>
+    <ul>
+      <li><a href="#11-co-occurrence-matrix">1.1. co-occurrence matrix</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-word-by-documnet-design">2. word by Documnet Design</a></li>
+  <li><a href="#3-欧氏距离euclidean-distance">3. 欧氏距离(Euclidean Distance)</a></li>
+  <li><a href="#4-余弦相似性">4. 余弦相似性</a></li>
+  <li><a href="#5-向量空间与words">5. 向量空间与words</a></li>
+  <li><a href="#6-嵌入词的比对-manipulating-word-embeddings">6. 嵌入词的比对 Manipulating word embeddings</a>
+    <ul>
+      <li><a href="#61-引入必要的库和词库">6.1. 引入必要的库和词库</a></li>
+      <li><a href="#62-嵌入词的操作">6.2. 嵌入词的操作</a></li>
+      <li><a href="#63-单词距离">6.3. 单词距离</a>
+        <ul>
+          <li><a href="#631-预测首都">6.3.1. 预测首都</a></li>
+          <li><a href="#632-将句子表达为向量">6.3.2. 将句子表达为向量</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#7-pca-主成分分析">7. PCA 主成分分析</a>
+    <ul>
+      <li><a href="#71-特征值和特征向量">7.1. 特征值和特征向量</a></li>
+      <li><a href="#72-获得一组不相干特征">7.2. 获得一组不相干特征</a></li>
+      <li><a href="#73-pca的另一种解释">7.3. PCA的另一种解释</a>
+        <ul>
+          <li><a href="#731-依然是引入必要的库">7.3.1. 依然是引入必要的库</a></li>
+          <li><a href="#732-pcatr变换模型">7.3.2. pcaTr变换模型</a>
+            <ul>
+              <li><a href="#7321-旋转矩阵">7.3.2.1. 旋转矩阵</a></li>
+              <li><a href="#7322-相关正则随机变量">7.3.2.2. 相关正则随机变量</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#8-附最简单的numpy与线性代数">8. 附：最简单的Numpy与线性代数</a>
+    <ul>
+      <li><a href="#81-numpy-array-与-list的区别">8.1. numpy array 与 list的区别</a></li>
+      <li><a href="#82-运算">8.2. 运算</a>
+        <ul>
+          <li><a href="#821-加法">8.2.1. 加法</a></li>
+          <li><a href="#822-乘法">8.2.2. 乘法</a></li>
+        </ul>
+      </li>
+      <li><a href="#83-矩阵">8.3. 矩阵</a>
+        <ul>
+          <li><a href="#831-矩阵的运算">8.3.1. 矩阵的运算</a></li>
+          <li><a href="#832-矩阵的转置">8.3.2. 矩阵的转置</a></li>
+          <li><a href="#833-矩阵的范数">8.3.3. 矩阵的范数</a></li>
+          <li><a href="#834-点乘">8.3.4. 点乘</a></li>
+          <li><a href="#835-按行或列求和">8.3.5. 按行或列求和</a></li>
+          <li><a href="#836-按行或列求平均">8.3.6. 按行或列求平均</a></li>
+          <li><a href="#837-按行中心化矩阵">8.3.7. 按行中心化矩阵</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+
+<p>who, what, where, how, and etc</p>
+
+<p>这节的基础线性代数知识太简单了，可以掠过。</p>
+<h1 id="1-word-by-word-design">1. word by word design</h1>
+<h2 id="11-co-occurrence-matrix">1.1. co-occurrence matrix</h2>
+<p>两个单词间的co-occurrence是指它们在你的语料库中在一定单词距离k内一起出现的次数</p>
+
+<p><strong>例：</strong>
+比如有两句话</p>
+
+<p>I like simple data</p>
+
+<p>I prefer simple raw data</p>
+
+<p>且k=2</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">simple</th>
+      <th style="text-align: center">raw</th>
+      <th style="text-align: center">like</th>
+      <th style="text-align: center">I</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">data</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其中的2代表simple和data同时出现两次，后面两个1分别代表raw、like和data同时出现1次，0代表在k=2内I不和data同时出现</p>
+
+<h1 id="2-word-by-documnet-design">2. word by Documnet Design</h1>
+
+<p><strong>例：</strong>
+有Entertainment、Economy、Machine Learning三个文档</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"> </th>
+      <th style="text-align: center">Entertainment</th>
+      <th style="text-align: center">Economy</th>
+      <th style="text-align: center">Machine Learning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">data</td>
+      <td style="text-align: center">500</td>
+      <td style="text-align: center">6620</td>
+      <td style="text-align: center">9320</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">film</td>
+      <td style="text-align: center">7000</td>
+      <td style="text-align: center">4000</td>
+      <td style="text-align: center">1000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/pics/NLP/Vector1.png" /></p>
+
+<p>从图像上来讲，Economy和ML更加相近（相近:angle,distance）</p>
+
+<h1 id="3-欧氏距离euclidean-distance">3. 欧氏距离(Euclidean Distance)</h1>
+
+<p><img src="/pics/NLP/Vector2.png" /></p>
+
+<p>基本数学知识，不再赘述
+python 中的</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="n">w</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="4-余弦相似性">4. 余弦相似性</h1>
+
+<p><img src="/pics/NLP/Vector3.png" /></p>
+
+<p>图中d2 &lt; d1，仅从距离判断，agriculture和history比agriculture和food更加接近。
+另一种相似度的判断法是判断他们的余弦，角度越小则越相似。</p>
+
+<p>在本例中，余弦更加适用于判断相似性。</p>
+
+\[\vec v\cdot\vec w =||\vec v|| \cdot ||\vec w|| \cos(\beta),\cos(\beta) = \frac{\vec v\cdot \vec w}{||\vec v|| \cdot ||\vec w||}\]
+
+<p>由于坐标都是正数，因此一定都在第一象限内，夹角一定小于90°。最相似时两向量方向相同。</p>
+
+<h1 id="5-向量空间与words">5. 向量空间与words</h1>
+
+<p><strong>例：</strong></p>
+
+<p><img src="/pics/NLP/Vector4.png" width="600" /></p>
+
+<p>如图所示，首先有USA到首都Washington的向量[5,-1]
+借此向量来预测Russia的首都，以Russia为起点做向量，终点为[10,4]，最近的点是Moscow</p>
+
+<h1 id="6-嵌入词的比对-manipulating-word-embeddings">6. 嵌入词的比对 Manipulating word embeddings</h1>
+
+<h2 id="61-引入必要的库和词库">6.1. 引入必要的库和词库</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="c1"># Library for Dataframes 
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> <span class="c1"># Library for math functions
+</span><span class="kn">import</span> <span class="nn">pickle</span> <span class="c1"># Python object serialization library. Not secure
+</span>
+<span class="n">word_embeddings</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="s">"word_embeddings_subset.p"</span><span class="p">,</span> <span class="s">"rb"</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">)</span> <span class="c1"># there should be 243 words that will be used in this assignment
+</span>
+<span class="n">countryVector</span> <span class="o">=</span> <span class="n">word_embeddings</span><span class="p">[</span><span class="s">'country'</span><span class="p">]</span> <span class="c1"># Get the vector representation for the word 'country'
+</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">countryVector</span><span class="p">))</span> <span class="c1"># Print the type of the vector. Note it is a numpy array
+</span><span class="k">print</span><span class="p">(</span><span class="n">countryVector</span><span class="p">)</span> <span class="c1"># Print the values of the vector.  
+</span></code></pre></div></div>
+
+<p>向量长度为300(谷歌新闻的Vocabulary size约为3 million)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Get the vector for a given word:
+</span><span class="k">def</span> <span class="nf">vec</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">word_embeddings</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="62-嵌入词的操作">6.2. 嵌入词的操作</h2>
+<p>word有很多属性，我们暂且先用两个属性来堆砌进行可视化。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1"># Import matplotlib
+</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'oil'</span><span class="p">,</span> <span class="s">'gas'</span><span class="p">,</span> <span class="s">'happy'</span><span class="p">,</span> <span class="s">'sad'</span><span class="p">,</span> <span class="s">'city'</span><span class="p">,</span> <span class="s">'town'</span><span class="p">,</span> <span class="s">'village'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">,</span> <span class="s">'continent'</span><span class="p">,</span> <span class="s">'petroleum'</span><span class="p">,</span> <span class="s">'joyful'</span><span class="p">]</span>
+
+<span class="n">bag2d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">vec</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">])</span> <span class="c1"># Convert each word to its vector representation
+</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="c1"># Create custom size image
+</span>
+<span class="n">col1</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># Select the column for the x axis
+</span><span class="n">col2</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Select the column for the y axis
+</span>
+<span class="c1"># Print an arrow for each word
+</span><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">bag2d</span><span class="p">:</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">)</span>
+
+    
+<span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">bag2d</span><span class="p">[:,</span> <span class="n">col1</span><span class="p">],</span> <span class="n">bag2d</span><span class="p">[:,</span> <span class="n">col2</span><span class="p">]);</span> <span class="c1"># Plot a dot for each word
+</span>
+<span class="c1"># Add the word label over each dot in the scatter plot
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="n">bag2d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">col1</span><span class="p">],</span> <span class="n">bag2d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">col2</span><span class="p">]))</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>可得
+<img src="/pics/NLP/Vector5.png" /></p>
+
+<h2 id="63-单词距离">6.3. 单词距离</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sad'</span><span class="p">,</span> <span class="s">'happy'</span><span class="p">,</span> <span class="s">'town'</span><span class="p">,</span> <span class="s">'village'</span><span class="p">]</span>
+
+<span class="n">bag2d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">vec</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">])</span> <span class="c1"># Convert each word to its vector representation
+</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="c1"># Create custom size image
+</span>
+<span class="n">col1</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># Select the column for the x axe
+</span><span class="n">col2</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Select the column for the y axe
+</span>
+<span class="c1"># Print an arrow for each word
+</span><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">bag2d</span><span class="p">:</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">word</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">)</span>
+    
+<span class="c1"># print the vector difference between village and town
+</span><span class="n">village</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'village'</span><span class="p">)</span>
+<span class="n">town</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'town'</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">town</span> <span class="o">-</span> <span class="n">village</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">village</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">village</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">diff</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">diff</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">fc</span><span class="o">=</span><span class="s">'b'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'b'</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">)</span>
+
+<span class="c1"># print the vector difference between village and town
+</span><span class="n">sad</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'sad'</span><span class="p">)</span>
+<span class="n">happy</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'happy'</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">happy</span> <span class="o">-</span> <span class="n">sad</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">sad</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">sad</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">diff</span><span class="p">[</span><span class="n">col1</span><span class="p">],</span> <span class="n">diff</span><span class="p">[</span><span class="n">col2</span><span class="p">],</span> <span class="n">fc</span><span class="o">=</span><span class="s">'b'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s">'b'</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">bag2d</span><span class="p">[:,</span> <span class="n">col1</span><span class="p">],</span> <span class="n">bag2d</span><span class="p">[:,</span> <span class="n">col2</span><span class="p">]);</span> <span class="c1"># Plot a dot for each word
+</span>
+<span class="c1"># Add the word label over each dot in the scatter plot
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="n">bag2d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">col1</span><span class="p">],</span> <span class="n">bag2d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">col2</span><span class="p">]))</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/pics/NLP/Vector6.png" /></p>
+
+<p>可以计算对应向量的范数</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec</span><span class="p">(</span><span class="s">'town'</span><span class="p">)))</span> <span class="c1"># Print the norm of the word town
+</span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec</span><span class="p">(</span><span class="s">'sad'</span><span class="p">)))</span> <span class="c1"># Print the norm of the word sad
+</span></code></pre></div></div>
+
+<h3 id="631-预测首都">6.3.1. 预测首都</h3>
+<p>与前文所述方法相同
+通过向量可以从Madrid向可能以Madrid为首都的国家方向移动</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">capital</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'France'</span><span class="p">)</span> <span class="o">-</span> <span class="n">vec</span><span class="p">(</span><span class="s">'Paris'</span><span class="p">)</span>
+<span class="n">country</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="s">'Madrid'</span><span class="p">)</span> <span class="o">+</span> <span class="n">capital</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">country</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span> <span class="c1"># Print the first 5 values of the vector
+</span></code></pre></div></div>
+
+<p>不过向量结果和spain并不相同</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">diff</span> <span class="o">=</span> <span class="n">country</span> <span class="o">-</span> <span class="n">vec</span><span class="p">(</span><span class="s">'Spain'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">diff</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>实际上我们应当查找附近的单词，建立一个findword的方法</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a dataframe out of the dictionary embedding. This facilitate the algebraic operations
+</span><span class="n">keys</span> <span class="o">=</span> <span class="n">word_embeddings</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_embeddings</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">keys</span><span class="p">)</span>
+<span class="c1"># Define a function to find the closest word to a vector:
+</span><span class="k">def</span> <span class="nf">find_closest_word</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Calculate the vector difference from each word to the input vector
+</span>    <span class="n">diff</span> <span class="o">=</span> <span class="n">embedding</span><span class="p">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">v</span> 
+    <span class="c1"># Get the norm of each difference vector. 
+</span>    <span class="c1"># It means the squared euclidean distance from each word to the input vector
+</span>    <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">diff</span> <span class="o">*</span> <span class="n">diff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Find the index of the minimun distance in the array
+</span>    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span>
+    <span class="c1"># Return the row name for this item
+</span>    <span class="k">return</span> <span class="n">embedding</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span>
+
+<span class="c1"># Print some rows of the embedding as a Dataframe
+</span><span class="n">embedding</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>可以找到目标国家Spain</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">find_closest_word</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+
+<span class="s">'Spain'</span>
+</code></pre></div></div>
+
+<p>其他国家同理</p>
+
+<h3 id="632-将句子表达为向量">6.3.2. 将句子表达为向量</h3>
+
+<p>一整个句子可以表示为单词向量的求和，如</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">doc</span> <span class="o">=</span> <span class="s">"Spain petroleum city king"</span>
+<span class="n">vdoc</span> <span class="o">=</span> <span class="p">[</span><span class="n">vec</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">" "</span><span class="p">)]</span>
+<span class="n">doc2vec</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">vdoc</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">doc2vec</span>
+</code></pre></div></div>
+
+<h1 id="7-pca-主成分分析">7. PCA 主成分分析</h1>
+<p>高维向量很难直观的观察，可以通过PCA将其降维成如二维向量，以便观测相似性。</p>
+<h2 id="71-特征值和特征向量">7.1. 特征值和特征向量</h2>
+<p><strong>Eignvector(特征向量)</strong> Uncorrelated features for your data 数据的不相关特征</p>
+
+<p><strong>Eignvalue(特征值)</strong> the amount of information retained by each feature 每个特性保留的信息量</p>
+
+<h2 id="72-获得一组不相干特征">7.2. 获得一组不相干特征</h2>
+<ul>
+  <li>归一化数据</li>
+</ul>
+
+\[x_i=\frac{x_i-\mu_{x_i}}{\sigma_{x_i}}\]
+
+<ul>
+  <li>
+    <p>获得协方差矩阵</p>
+  </li>
+  <li>
+    <p>SVD(singular value decomposition 奇异值分解)</p>
+  </li>
+</ul>
+
+<p><img src="/pics/NLP/Vector7.png" /></p>
+
+<p>获得三个矩阵
+第一个矩阵的列为特征向量，第二个矩阵的对角线元素为特征值，
+<del>第三个矩阵好可怜</del></p>
+
+<ul>
+  <li>将数据投影到新的特征组合</li>
+</ul>
+
+<p>设特征向量矩阵为U，特征值矩阵为S</p>
+<ol>
+  <li>将嵌入词矩阵与U进行点乘</li>
+</ol>
+
+\[X'=XU[:,0:n]\]
+
+<p>n是目标维数。此处可以取2.</p>
+
+<ol>
+  <li>获得新向量空间中的变量权重百分比</li>
+</ol>
+
+\[\frac{\Sigma_{i=0}^1S_{ii}}{\Sigma_{j=0}^dS_{jj}}\]
+
+<h2 id="73-pca的另一种解释">7.3. PCA的另一种解释</h2>
+<h3 id="731-依然是引入必要的库">7.3.1. 依然是引入必要的库</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>                         <span class="c1"># Linear algebra library
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>            <span class="c1"># library for visualization
+</span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>      <span class="c1"># PCA library
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>                        <span class="c1"># Data frame library
+</span><span class="kn">import</span> <span class="nn">math</span>                                <span class="c1"># Library for math functions
+</span><span class="kn">import</span> <span class="nn">random</span>                              <span class="c1"># Library for pseudo random numbers
+</span></code></pre></div></div>
+
+<p>首先考虑一对随机变量x，y，若y=nx，则y和x是完全相关的。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># The amount of the correlation
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># Generate 1000 samples from a uniform random variable
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">*</span> <span class="n">n</span> <span class="c1"># Make y = n * x
+</span>
+<span class="c1"># PCA works better if the data is centered
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Center x. Remove its mean
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># Center y. Remove its mean
+</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'x'</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s">'y'</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span> <span class="c1"># Create a data frame with x and y
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="c1"># Plot the original correlated data in blue
+</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Instantiate a PCA. Choose to get 2 output variables
+</span>
+<span class="c1"># Create the transformation model for this data. Internally, it gets the rotation 
+# matrix and the explained variance
+</span><span class="n">pcaTr</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">rotatedData</span> <span class="o">=</span> <span class="n">pcaTr</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># Transform the data base on the rotation matrix of pcaTr
+# # Create a data frame with the new variables. We call these new variables PC1 and PC2
+</span><span class="n">dataPCA</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">rotatedData</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'PC1'</span><span class="p">,</span> <span class="s">'PC2'</span><span class="p">])</span> 
+
+<span class="c1"># Plot the transformed data in orange
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dataPCA</span><span class="p">.</span><span class="n">PC1</span><span class="p">,</span> <span class="n">dataPCA</span><span class="p">.</span><span class="n">PC2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/pics/NLP/Vector8.png" /></p>
+
+<p>PCA结果是一条横线</p>
+
+<h3 id="732-pcatr变换模型">7.3.2. pcaTr变换模型</h3>
+<h4 id="7321-旋转矩阵">7.3.2.1. 旋转矩阵</h4>
+<p>PCA模型由旋转矩阵及相关explained的方程组成。</p>
+<ul>
+  <li>pcaTr.components_ 有旋转矩阵</li>
+  <li>pcaTr.explained_variance_ 有每个主成分的 explained variance</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Eigenvectors or principal component: First row must be in the direction of [1, n]'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pcaTr</span><span class="p">.</span><span class="n">components_</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Eigenvalues or explained variance'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pcaTr</span><span class="p">.</span><span class="n">explained_variance_</span><span class="p">)</span>
+
+<span class="n">Eigenvectors</span> <span class="ow">or</span> <span class="n">principal</span> <span class="n">component</span><span class="p">:</span> <span class="n">First</span> <span class="n">row</span> <span class="n">must</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">direction</span> <span class="n">of</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">0.70710678</span> <span class="o">-</span><span class="mf">0.70710678</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.70710678</span>  <span class="mf">0.70710678</span><span class="p">]]</span>
+
+<span class="n">Eigenvalues</span> <span class="ow">or</span> <span class="n">explained</span> <span class="n">variance</span>
+<span class="p">[</span><span class="mf">1.59534053e-01</span> <span class="mf">1.29660514e-32</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="7322-相关正则随机变量">7.3.2.2. 相关正则随机变量</h4>
+
+<p>使用由两个具有不同方差的随机变量组成的数据集。
+<strong>获得方法</strong>
+创建两个独立的正太随机变量，然后用旋转矩阵将它们组合起来，新的结果变量将是原随机变量的线性组合，从而相互关联。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="n">mlines</span>
+<span class="kn">import</span> <span class="nn">matplotlib.transforms</span> <span class="k">as</span> <span class="n">mtransforms</span>
+
+<span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">std1</span> <span class="o">=</span> <span class="mi">1</span>     <span class="c1"># The desired standard deviation of our first random variable
+</span><span class="n">std2</span> <span class="o">=</span> <span class="mf">0.333</span> <span class="c1"># The desired standard deviation of our second random variable
+</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">std1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="c1"># Get 1000 samples from x ~ N(0, std1)
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Get 1000 samples from y ~ N(0, std2)
+#y = y + np.random.normal(0,1,1000)*noiseLevel * np.sin(0.78)
+</span>
+<span class="c1"># PCA works better if the data is centered
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Center x 
+</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># Center y
+</span>
+<span class="c1">#Define a pair of dependent variables with a desired amount of covariance
+</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Magnitude of covariance. 
+</span><span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arctan</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># Convert the covariance to and angle
+</span><span class="k">print</span><span class="p">(</span><span class="s">'angle: '</span><span class="p">,</span>  <span class="n">angle</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Create a rotation matrix using the given angle
+</span><span class="n">rotationMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)],</span>
+                 <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)]])</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s">'rotationMatrix'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rotationMatrix</span><span class="p">)</span>
+
+<span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="n">x</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="n">y</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">T</span> <span class="c1"># Create a matrix with columns x and y
+</span>
+<span class="c1"># Transform the data using the rotation matrix. It correlates the two variables
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">)</span> <span class="c1"># Return a nD array
+</span>
+<span class="c1"># Print the rotated data
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">angle</span><span class="p">:</span>  <span class="mf">45.0</span>
+<span class="n">rotationMatrix</span>
+<span class="p">[[</span> <span class="mf">0.70710678</span>  <span class="mf">0.70710678</span><span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.70710678</span>  <span class="mf">0.70710678</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<p>将原始数据也画出来</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Print the original data in blue
+</span>
+<span class="c1"># Apply PCA. In theory, the Eigenvector matrix must be the 
+# inverse of the original rotationMatrix. 
+</span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Instantiate a PCA. Choose to get 2 output variables
+</span>
+<span class="c1"># Create the transformation model for this data. Internally it gets the rotation 
+# matrix and the explained variance
+</span><span class="n">pcaTr</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Create an array with the transformed data
+</span><span class="n">dataPCA</span> <span class="o">=</span> <span class="n">pcaTr</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Eigenvectors or principal component: First row must be in the direction of [1, n]'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pcaTr</span><span class="p">.</span><span class="n">components_</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Eigenvalues or explained variance'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pcaTr</span><span class="p">.</span><span class="n">explained_variance_</span><span class="p">)</span>
+
+<span class="c1"># Print the rotated data
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dataPCA</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">dataPCA</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Plot the first component axe. Use the explained variance to scale the vector
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">std1</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">std1</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span> <span class="s">'k-'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span>
+<span class="c1"># Plot the second component axe. Use the explained variance to scale the vector
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">std2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">rotationMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">std2</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span> <span class="s">'k-'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'green'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Eigenvectors or principal component: First row must be in the direction of [1, n]
+[[-0.70825968 -0.705952  ]
+ [ 0.705952   -0.70825968]]
+
+Eigenvalues or explained variance
+[1.02258823 0.11290988]
+</code></pre></div></div>
+
+<p><img src="/pics/NLP/Vector9.png" /></p>
+
+<p>其意义为：用PCA变换找出用于创建相关变量(蓝色)的旋转矩阵，使用PCA模型变换我们的数据，将这些变量作为我们的原始不相干变量。</p>
+
+<h1 id="8-附最简单的numpy与线性代数">8. 附：最简单的Numpy与线性代数</h1>
+<h2 id="81-numpy-array-与-list的区别">8.1. numpy array 与 list的区别</h2>
+<ul>
+  <li>数据类型
+```python
+import numpy as np  # The swiss knife of the data scientist.
+alist = [1, 2, 3, 4, 5]   # Define a python list. It looks like an np array
+narray = np.array([1, 2, 3, 4]) # Define a numpy array
+print(alist)
+print(narray)</li>
+</ul>
+
+<p>print(type(alist))
+print(type(narray))</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+结果为
+
+```python
+[1, 2, 3, 4, 5]
+[1 2 3 4]
+&lt;class 'list'&gt;
+&lt;class 'numpy.ndarray'&gt;
+</code></pre></div></div>
+
+<h2 id="82-运算">8.2. 运算</h2>
+<h3 id="821-加法">8.2.1. 加法</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">narray</span> <span class="o">+</span> <span class="n">narray</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span> <span class="o">+</span> <span class="n">alist</span><span class="p">)</span>
+
+<span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="822-乘法">8.2.2. 乘法</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">narray</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="p">[</span> <span class="mi">3</span>  <span class="mi">6</span>  <span class="mi">9</span> <span class="mi">12</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="83-矩阵">8.3. 矩阵</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">npmatrix1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">narray</span><span class="p">,</span> <span class="n">narray</span><span class="p">,</span> <span class="n">narray</span><span class="p">])</span> <span class="c1"># Matrix initialized with NumPy arrays
+</span><span class="n">npmatrix2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">alist</span><span class="p">,</span> <span class="n">alist</span><span class="p">,</span> <span class="n">alist</span><span class="p">])</span> <span class="c1"># Matrix initialized with lists
+</span><span class="n">npmatrix3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">narray</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">narray</span><span class="p">])</span> <span class="c1"># Matrix initialized with both types
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">npmatrix1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">npmatrix2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">npmatrix3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>矩阵每行应有相同数量的元素，不然可能出现非预期结果</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">badmatrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span> <span class="c1"># Define a matrix. Note the third row contains 3 elements
+</span><span class="k">print</span><span class="p">(</span><span class="n">badmatrix</span><span class="p">)</span> <span class="c1"># Print the malformed matrix
+</span><span class="k">print</span><span class="p">(</span><span class="n">badmatrix</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># It is supposed to scale the whole matrix
+</span><span class="p">[</span><span class="nb">list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="nb">list</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="nb">list</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])]</span>
+<span class="p">[</span><span class="nb">list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="nb">list</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="nb">list</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])]</span>
+</code></pre></div></div>
+
+<h3 id="831-矩阵的运算">8.3.1. 矩阵的运算</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">okmatrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="c1"># Scale by 2 and translate 1 unit the matrix
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">okmatrix</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># For each element in the matrix, multiply by 2 and add 1
+</span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">[[</span><span class="mi">3</span> <span class="mi">5</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">7</span> <span class="mi">9</span><span class="p">]]</span>
+<span class="c1"># Add two sum compatible matrices
+</span><span class="n">result1</span> <span class="o">=</span> <span class="n">okmatrix</span> <span class="o">+</span> <span class="n">okmatrix</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+
+<span class="c1"># Subtract two sum compatible matrices. This is called the difference vector
+</span><span class="n">result2</span> <span class="o">=</span> <span class="n">okmatrix</span> <span class="o">-</span> <span class="n">okmatrix</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+<span class="p">[[</span><span class="mi">2</span> <span class="mi">4</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">6</span> <span class="mi">8</span><span class="p">]]</span>
+<span class="p">[[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">]]</span>
+</code></pre></div></div>
+<p>乘法默认是元素相乘</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">okmatrix</span> <span class="o">*</span> <span class="n">okmatrix</span> <span class="c1"># Multiply each element by itself
+</span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">[[</span> <span class="mi">1</span>  <span class="mi">4</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mi">9</span> <span class="mi">16</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<h3 id="832-矩阵的转置">8.3.2. 矩阵的转置</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matrix3x2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span> <span class="c1"># Define a 3x2 matrix
+</span><span class="k">print</span><span class="p">(</span><span class="s">'Original matrix 3 x 2'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matrix3x2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Transposed matrix 2 x 3'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matrix3x2</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">Original</span> <span class="n">matrix</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">2</span>
+<span class="p">[[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">5</span> <span class="mi">6</span><span class="p">]]</span>
+<span class="n">Transposed</span> <span class="n">matrix</span> <span class="mi">2</span> <span class="n">x</span> <span class="mi">3</span>
+<span class="p">[[</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<p>但是这对1D array无效</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1"># Define an array
+</span><span class="k">print</span><span class="p">(</span><span class="s">'Original array'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparray</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Transposed array'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparray</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">Original</span> <span class="n">array</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">Transposed</span> <span class="n">array</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>除非操作改为</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span> <span class="c1"># Define a 1 x 4 matrix. Note the 2 level of square brackets
+</span><span class="k">print</span><span class="p">(</span><span class="s">'Original array'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparray</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Transposed array'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparray</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">Original</span> <span class="n">array</span>
+<span class="p">[[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="n">Transposed</span> <span class="n">array</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<h3 id="833-矩阵的范数">8.3.3. 矩阵的范数</h3>
+<p>2范数的定义为</p>
+
+\[norm(\vec a)=||\vec a||=\sqrt{\Sigma_{i=1}^na_I^2}\]
+
+<p>如果无axis参数则计算矩阵的范数</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span> <span class="c1"># Define an array
+</span><span class="n">norm1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">nparray1</span><span class="p">)</span>
+
+<span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span> <span class="c1"># Define a 2 x 2 matrix. Note the 2 level of square brackets
+</span><span class="n">norm2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">nparray2</span><span class="p">)</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="n">norm1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">norm2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>如果有参数axis
+axis=0 为行
+axis=1 为列</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span> <span class="c1"># Define a 3 x 2 matrix. 
+</span>
+<span class="n">normByCols</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Get the norm for each column. Returns 2 elements
+</span><span class="n">normByRows</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># get the norm for each row. Returns 3 elements
+</span>
+<span class="k">print</span><span class="p">(</span><span class="n">normByCols</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">normByRows</span><span class="p">)</span>
+
+<span class="p">[</span><span class="mf">3.74165739</span> <span class="mf">3.74165739</span><span class="p">]</span>
+<span class="p">[</span><span class="mf">1.41421356</span> <span class="mf">2.82842712</span> <span class="mf">4.24264069</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="834-点乘">8.3.4. 点乘</h3>
+<p>定义为</p>
+
+\[\vec a\cdot\vec b = \Sigma_{i=1}^n a_ib_i\]
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1"># Define an array
+</span><span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span> <span class="c1"># Define an array
+</span>
+<span class="n">flavor1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nparray1</span><span class="p">,</span> <span class="n">nparray2</span><span class="p">)</span> <span class="c1"># Recommended way
+</span><span class="k">print</span><span class="p">(</span><span class="n">flavor1</span><span class="p">)</span>
+
+<span class="n">flavor2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nparray1</span> <span class="o">*</span> <span class="n">nparray2</span><span class="p">)</span> <span class="c1"># Ok way
+</span><span class="k">print</span><span class="p">(</span><span class="n">flavor2</span><span class="p">)</span>
+
+<span class="n">flavor3</span> <span class="o">=</span> <span class="n">nparray1</span> <span class="o">@</span> <span class="n">nparray2</span>         <span class="c1"># Geeks way
+</span><span class="k">print</span><span class="p">(</span><span class="n">flavor3</span><span class="p">)</span>
+
+<span class="c1"># As you never should do:             # Noobs way
+</span><span class="n">flavor4</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nparray1</span><span class="p">,</span> <span class="n">nparray2</span><span class="p">):</span>
+    <span class="n">flavor4</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">flavor4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="835-按行或列求和">8.3.5. 按行或列求和</h3>
+<p>axis=0 为行
+axis=1 为列</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span> <span class="c1"># Define a 3 x 2 matrix. 
+</span>
+<span class="n">sumByCols</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Get the sum for each column. Returns 2 elements
+</span><span class="n">sumByRows</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># get the sum for each row. Returns 3 elements
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Sum by columns: '</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sumByCols</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Sum by rows:'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sumByRows</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="836-按行或列求平均">8.3.6. 按行或列求平均</h3>
+<p>axis=0 为行
+axis=1 为列</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]])</span> <span class="c1"># Define a 3 x 2 matrix. Chosen to be a matrix with 0 mean
+</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nparray2</span><span class="p">)</span> <span class="c1"># Get the mean for the whole matrix
+</span><span class="n">meanByCols</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Get the mean for each column. Returns 2 elements
+</span><span class="n">meanByRows</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># get the mean for each row. Returns 3 elements
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Matrix mean: '</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Mean by columns: '</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">meanByCols</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Mean by rows:'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">meanByRows</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="837-按行中心化矩阵">8.3.7. 按行中心化矩阵</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nparray2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span> <span class="c1"># Define a 3 x 2 matrix. 
+</span>
+<span class="n">nparrayCentered</span> <span class="o">=</span> <span class="n">nparray2</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nparray2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Remove the mean for each column
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Original matrix'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparray2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Centered by columns matrix'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparrayCentered</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'New mean by column'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nparrayCentered</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">Original</span> <span class="n">matrix</span>
+<span class="p">[[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">2</span> <span class="mi">2</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">3</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">Centered</span> <span class="n">by</span> <span class="n">columns</span> <span class="n">matrix</span>
+<span class="p">[[</span><span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.</span>  <span class="mf">0.</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mf">1.</span>  <span class="mf">1.</span><span class="p">]]</span>
+<span class="n">New</span> <span class="n">mean</span> <span class="n">by</span> <span class="n">column</span>
+<span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+</code></pre></div></div>
+
+:ET
