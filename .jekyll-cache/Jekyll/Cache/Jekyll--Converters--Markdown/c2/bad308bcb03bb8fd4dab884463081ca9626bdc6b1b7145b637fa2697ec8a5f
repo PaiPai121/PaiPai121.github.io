@@ -1,0 +1,294 @@
+I"##<h1 id="正交曲面坐标系">正交曲面坐标系</h1>
+
+<p>对不同问题常考虑不同的坐标系，如对圆形区域，首选平面极坐标，对圆柱形区域，首选柱坐标系，对球形，则首选球坐标系，对这些坐标系进行概括，可定义曲面坐标系
+$x^1,x^2,x^3$</p>
+
+<p>其中</p>
+
+\[x^1=\xi(x,y,z),x^2 = \eta(x,y,z),x^3 = \zeta(x,y,z)\]
+
+<p>它的坐标面是三组曲面<del>噢我有点不太了解的亚子</del></p>
+
+\[x^1=常数,x^2 = 常数,x^3 = 常数\]
+
+<p>空间任意点坐标x1x2x3由过该点的三个坐标面决定，为保证相互独立，要求Jacobi行列式</p>
+
+\[\frac{\partial(x^1,x^2,x^3)}{\partial(x,y,z)} \equiv 
+\begin{vmatrix}
+    \frac{\partial x^1}{\partial x} &amp; \frac{\partial x^1}{\partial y} &amp;
+\frac{\partial x^1}{\partial z}\\
+\frac{\partial x^2}{\partial x} &amp; \frac{\partial x^2}{\partial y} &amp;
+\frac{\partial x^2}{\partial z}\\
+\frac{\partial x^3}{\partial x} &amp; \frac{\partial x^3}{\partial y} &amp;
+\frac{\partial x^3}{\partial z}
+\end{vmatrix}\]
+
+<p>对于空间中任意一点，如果过该点的三个坐标面总是相互垂直，则称位正交曲面坐标系。</p>
+
+<p>更常用的方法是计算出弧长</p>
+
+\[\begin{aligned}
+ds^2 &amp;= dx^2+dy^2+dz^2\\
+&amp;=(\frac{\partial x}{\partial x^1}dx^1+\frac{\partial x}{\partial x^2}dx^2 + \frac{\partial x}{\partial x^3}dx^3)^2\\
+&amp;+(\frac{\partial y}{\partial x^1}dx^1+\frac{\partial y}{\partial x^2}dx^2 + \frac{\partial y}{\partial x^3}dx^3)^2\\
+&amp;+(\frac{\partial z}{\partial x^1}dx^1+\frac{\partial z}{\partial x^2}dx^2 + \frac{\partial z}{\partial x^3}dx^3)^2\\
+&amp;=\Sigma_{i,j=1,2,3}g_{i,j}dx^idx^j
+\end{aligned}\]
+
+<p>其中</p>
+
+\[g_{ij} = g_{ji} = \frac{\partial x}{\partial x^3}\frac{\partial x}{\partial x^j} + \frac{\partial y}{\partial x^i}\frac{\partial y}{\partial x^j} + \frac{\partial z}{\partial x^i}\frac{\partial z}{\partial x^j}\]
+
+<p>如果</p>
+
+\[g_{ij} = g_{ii}\delta_{ij}\]
+
+<p>则称此为正交曲线坐标系，gij构成的矩阵称为度规</p>
+
+<h2 id="柱坐标系">柱坐标系</h2>
+
+\[x = r \cos\theta,y=r\sin\theta,z=z\]
+
+<p>因此柱坐标系的弧长有</p>
+
+\[ds^2=dx^2+dy^2+dz^2=dr^2+r^2d\theta^2+dz^2\]
+
+<p>有</p>
+
+\[g_{11}=1,g_{22}=r^2,g_{33}=1\]
+
+<p>所有柱坐标系是正交曲面坐标系。
+（那个条件好像其实就是矩阵g是对角阵）</p>
+
+<h2 id="球坐标系">球坐标系</h2>
+
+\[x = r\sin\theta\cos\phi,y = r\sin\theta\sin\phi,z=r\cos\theta\]
+
+<p>同理有</p>
+
+\[ds^2 = dr^2+r^2d\theta^2 + r^2 \sin^2\theta d\phi^2\]
+
+<p>也是正交曲面坐标系</p>
+
+<h1 id="正交曲面坐标系的laplace算符">正交曲面坐标系的Laplace算符</h1>
+
+<h2 id="外微分法则">外微分法则</h2>
+
+<h3 id="外微分算符">外微分算符</h3>
+
+<p>算符d作用在标量函数上</p>
+
+\[d:f\to df = \Sigma\frac{\partial f}{\partial x^i}dx^i\]
+
+<p>得到的df称为一次微分形式。</p>
+
+<p>如对柱坐标系</p>
+
+\[du = \frac{\partial u}{\partial r}dr+\frac{\partial u}{\partial \theta}d\theta +\frac{\partial u}{\partial z}dz\]
+
+<p>对球坐标系</p>
+
+\[du = \frac{\partial u}{\partial r}dr+\frac{\partial u}{\partial \theta}d\theta +\frac{\partial u}{\partial \phi}d\phi\]
+
+<h3 id="运算法则">运算法则</h3>
+
+<ol>
+  <li>
+\[df = \Sigma_i\frac{\partial f}{\partial x^i}dx^i = \Sigma_i\frac{\partial f}{\partial y^i}dy^i\]
+  </li>
+</ol>
+
+<p>一次微分形式给出的是梯度的协变微分形式。</p>
+
+<ol>
+  <li>若有p次微分</li>
+</ol>
+
+\[\alpha = \Sigma \alpha_Idx^I\]
+
+<p>则</p>
+
+\[d\alpha = d(\Sigma_I\alpha_Idx^I) = \Sigma_i\Sigma_I\frac{\partial \alpha_I}{\partial x^i}dx^i \wedge dx^I\]
+
+<p>其中</p>
+
+\[dx^I\equiv dx^{i_1}\wedge dx^{i_2}\wedge dx^{i_3}...\wedge dx^{i_p}\]
+
+\[dx^i\wedge dx^j \equiv -dx^j\wedge dx^i,dx^i\wedge dx^i=0\]
+
+<ol>
+  <li>设α是p次微分，β和γ是q次微分</li>
+</ol>
+
+\[\begin{aligned}
+d(\beta+\gamma) = d\beta + d\gamma\\
+d(\alpha\wedge\beta) = (d\alpha)\wedge\beta + (-)^p\alpha\wedge(d\beta)\\
+d(d\alpha) = 0
+\end{aligned}\]
+
+<ol>
+  <li>“*“是一个线性变换，把p次微分变换为n-p次微分</li>
+</ol>
+
+\[*dx^i=\frac{\sqrt{\det G}}{g_{ii}}dx^I\]
+
+\[*dx^I = \frac{-g_{ii}}{\sqrt{\det G}}dx^i\]
+
+<p>其中(i,I)构成(1,2,3)的<a href="https://baike.baidu.com/item/%E5%A5%87%E6%8E%92%E5%88%97/18881587?fr=aladdin">偶排列</a>(逆序数为偶数的排列称为偶排列)</p>
+
+\[*1=\sqrt{\det G}dx^1\wedge dx^2\wedge d x^3\]
+
+\[*(\sqrt{\det G}dx^1\wedge dx^2\wedge d x^3)=1\]
+
+<h2 id="正交坐标系下的laplace算符">正交坐标系下的Laplace算符</h2>
+
+<p><em>d</em>d是Laplace算符
+$\nabla^2$
+的协变微分形式</p>
+
+<p>如柱坐标系下</p>
+
+\[*d*du=\frac{1}{r}\frac{\partial}{\partial r}(r\frac{\partial u}{\partial r})+\frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}+\frac{\partial^2 u}{\partial z^2}\]
+
+<p>那么Laplace算符在柱坐标系下</p>
+
+\[\nabla^2=\frac{1}{r}\frac{\partial}{\partial r}(r\frac{\partial }{\partial r})+\frac{1}{r^2}\frac{\partial^2 }{\partial \theta^2}+\frac{\partial^2 }{\partial z^2}\]
+
+<h2 id="laplace算符平移转动和反射不变性">Laplace算符平移、转动和反射不变性</h2>
+
+<p>在直角坐标系下
+平移不变性显而易见。
+关于坐标轴取向</p>
+
+\[\begin{bmatrix}
+    x\\y\\z
+\end{bmatrix}=
+\begin{bmatrix}
+    a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}\\a_{31}&amp;a_{32}&amp;a_{33}
+\end{bmatrix}
+\begin{bmatrix}
+    x'\\y'\\z'
+\end{bmatrix}\]
+
+<p>如果矩阵A是正交变换，则laplace算符形式不变</p>
+
+<p><del>爷不证了</del></p>
+
+<p>(绕固定轴旋转的旋转矩阵是正交的)
+绕过原点的任意轴转动，Laplace算符都不变</p>
+
+<p>空间反射：x’ = -x,y’=-y,z’=-z下也是不变的</p>
+
+<h2 id="圆形区域">圆形区域</h2>
+<p>定解问题</p>
+
+\[\begin{aligned}
+\frac{\partial^2u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0,x^2+y^2 &lt; a^2,\\
+u|_{x^2+y^2=a^2} = f
+\end{aligned}\]
+
+<p>方程虽然能分离变量，但是边界条件不能分离变量，因此可以改成极坐标</p>
+
+\[\frac{1}{r}\frac{\partial}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \phi^2} = 0,0&lt;r&lt;a\\
+u|_{r=a} = f(\phi)\]
+
+<p>可以令</p>
+
+\[u(r,\phi)=R(r)\Phi(\phi)\]
+
+<p>代入方程，有</p>
+
+\[\frac{1}{r}\frac{d}{dr}(r\frac{dR}{dr})\phi+\frac{R}{r^2}\frac{d^2\Phi}{d\phi^2}=0\]
+
+\[\frac{r}{R}\frac{d}{dr}(r\frac{dR}{dr})=-\frac{1}{\phi}\frac{d^2\Phi}{d\phi^2}=\lambda\]
+
+<p>可以<span id="原方程">分离变量</span></p>
+
+\[r\frac{d}{dr}(r\frac{dR}{dr})-\lambda R = 0\]
+
+\[\frac{d^2\Phi}{d\phi^2}+\lambda\Phi = 0\]
+
+<p>但是对于边界条件仍然不能分离变量。
+这是由于变换到极坐标系时并不等价。(比如极角在0到2pi的十分偏导无定义)</p>
+
+<p>应当补充周期条件</p>
+
+\[u(r,\phi)|_{\phi =0}=u(r,\phi)|_{\phi=2\pi}\]
+
+<p>以及</p>
+
+\[\frac{\partial u(r,\phi)}{\partial \phi}|_{\phi =0}=\frac{\partial u(r,\phi)}{\partial \phi}|_{\phi=2\pi}\]
+
+<p>所以有</p>
+
+\[\Phi(0) = \Phi(2\pi),\Phi'(0)=\Phi'(2\pi)\]
+
+<p>原方程通解为</p>
+
+\[\Phi(\phi) = A\sin\sqrt \lambda \phi+B\cos\sqrt \lambda \phi\]
+
+<p>代入周期边界条件有</p>
+
+\[B= A\sin\sqrt \lambda 2\pi+B\cos\sqrt \lambda 2\pi,
+A= A\cos\sqrt \lambda 2\pi-B\sin\sqrt \lambda 2\pi\]
+
+<p>其有非0解的充要条件(<a href="https://baike.baidu.com/item/%E9%BD%90%E6%AC%A1%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/2225933?fr=aladdin">齐次线性方程组有非0解</a>)是</p>
+
+\[2(\cos\sqrt\lambda 2\pi -1)=0\]
+
+<p>可求得本征值</p>
+
+\[\lambda_{m}=m^2,m=1,2,3,4....\]
+
+<p>对于一个本征值，有两个本征函数</p>
+
+\[\Phi_{m1} (\phi) = \sin m \phi.\Phi_{m2}(\phi)=\cos m \phi\]
+
+<p>然后再去求<a href="#原方程">原方程的解</a>
+使用t=ln r做变量替换，有</p>
+
+\[\frac{d}{dt}=r\frac{d}{dr}\]
+
+<p>则原方程变为常系数常微分方程</p>
+
+\[\frac{d^2R}{dt^2}-\lambda R =0\]
+
+<p>当特征值为0时，通解为</p>
+
+\[R_0(r) = C_0+D_0t=C_0+D_0\ln r\]
+
+<p>当不为0时候，为</p>
+
+\[R_m(r) = C_me^{mt}+D_me^{-mt}=C_mr^m+D_mr^{-m}\]
+
+<p>则全部特解为</p>
+
+\[\begin{aligned}
+u_0(r,\phi) &amp;= C_0+D_0\ln r\\
+u_(m1)(r,\phi) &amp;= (C_{m_1}r^{m_1}+D_{m_1}r^{-m_1})\sin m \phi\\
+u_(m_2)(r,\phi) &amp;= (C_{m_2}r^{m_2}+D_{m_2}r^{-m_2})\cos m \phi
+\end{aligned}\]
+
+<p>叠加起来可得一般解，同时考虑有界条件，使得ln和指数函数的系数为0（否则r=0时候酱趋于无穷）</p>
+
+<p>然后可以通过分离变量法标准做法或傅里叶变换求出系数。</p>
+
+<h2 id="helmholtz方程在柱坐标系下分离变量">Helmholtz方程在柱坐标系下分离变量</h2>
+
+\[\nabla ^2 u + k^2 u = 0\]
+
+<p>在柱坐标系中为</p>
+
+\[\frac{1}{r}\frac{\partial u}{\partial r}(r\frac{\partial u}{\partial r})+\frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}+\frac{\partial^2 u}{\partial z^2}+k^2u=0\]
+
+<p>涉及三个自变量，可以先分离一个</p>
+
+\[u(r,\theta,z)=v(r,\theta)Z(z)\]
+
+<p>然后再</p>
+
+\[v(r,\theta) = R(r)\Theta(\theta)\]
+
+<p>此处不抄了。</p>
+
+:ET
