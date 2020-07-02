@@ -1,7 +1,7 @@
 name: PaiPai
 highlighter: rouge
 markdown: kramdown
-
+plugins: [jekyll-paginate, jekyll-jupyter-notebook]
 syntax_highlighter: rouge
 encoding: utf-8
 collections:
