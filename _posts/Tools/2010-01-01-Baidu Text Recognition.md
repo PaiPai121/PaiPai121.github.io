@@ -2,7 +2,7 @@
 layout: post
 title: "利用百度api和python实现文字识别小工具"
 tag: "Little Tools"
-date: 2015-01-02
+date: 2010-01-01
 categories: 工具
 ---
 <!-- TOC -->
