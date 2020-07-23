@@ -66,4 +66,49 @@ categories: PYNQ
 
 
 # SDK
+
+## 板级支持包
+
 点击File >> Launch SDK，并在弹出的对话框中点击OK，启动SDK工具
+（这里发现一个问题，就是如果你的工程名字中有空格，会出现奇怪的错误）
+
+点击File >> New >> Board Support Package 创建板级支持包
+
+![](/pics/PYNQ/lab1/board.png)
+
+然后果断finish
+
+## 新工程
+
+点击File >> New >> Application Project 创建新工程，命名为lab1，点击Next
+（板级支持包别让他新建，选use existing）
+
+选择Empty Application，然后再Finish
+
+右键Lab1里面的src文件，选择import
+
+选择 General>>file System 
+选择铱元素科技提供的source文件，并finish
+
+不过有个问题嗷，就是我这咋报错了呢？？？
+
+![](/pics/PYNQ/lab1/deviceid.png)
+
+一番研究之后发现是我和教程给那两个AXIGPIO模块命名不一样，所以打开头文件
+xparameters.h
+可以找到现在的命名
+
+![](/pics/PYNQ/lab1/deviceid2.png)
+
+对应的改一下就可以咯。
+
+点击加号进行下载检测
+
+![](/pics/PYNQ/lab1/com.png)
+
+点击上方的Program FPGA按键
+搞他！
+
+
+
+（两个开关要置0，跳线接在JTAG上）
