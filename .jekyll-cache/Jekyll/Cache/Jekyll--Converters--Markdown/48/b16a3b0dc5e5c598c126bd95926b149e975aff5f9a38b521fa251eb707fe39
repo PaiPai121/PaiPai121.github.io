@@ -1,0 +1,111 @@
+I"9<h1 id="工程创建">工程创建</h1>
+<p>创建RTL类型的工程并在board选项中选择PYNQ-Z2
+（不必添加源文件和约束）</p>
+
+<p><img src="/pics/PYNQ/lab1/project.png" alt="" /></p>
+
+<p>进入后创建block design</p>
+
+<p><img src="/pics/PYNQ/lab1/create%20block%20design.png" alt="" /></p>
+
+<p>然后在diagram窗口创建名字里包含ZYNQ的IP核
+并在创建完成后点击Run Block Automation，使其自动完成预设电路配置。</p>
+
+<p><img src="/pics/PYNQ/lab1/runblock.png" alt="" /></p>
+
+<h1 id="zynq">ZYNQ</h1>
+<p>双击ZYNQ模块打开可配置模块窗口。</p>
+
+<p><img src="/pics/PYNQ/lab1/ZYNQcore.png" alt="" /></p>
+
+<p>其中绿色高亮模块为可更改模块，将IO模块中除UART0之外的框框全部去掉。</p>
+
+<ul>
+  <li>点击Diagram中的加号，选择search，找到AXI GPIO并添加，命名为Buttons</li>
+</ul>
+
+<p>双击打开，将Board interface中的GPIO修改为btns 4bits</p>
+
+<p><img src="/pics/PYNQ/lab1/btns.png" alt="" /></p>
+
+<p>点击Run Connection Automation，并勾选所有选项，使其自动连接。</p>
+
+<p><img src="/pics/PYNQ/lab1/mgj.png" alt="妈个鸡什么鬼畜" /></p>
+
+<ul>
+  <li>
+    <p>再添加一个GPIO，命名为Leds，同样将Board interface中的GPIO修改为leds 4bits</p>
+  </li>
+  <li>
+    <p>再添加一个GPIO，命名为Switchs，同样将Board interface中的GPIO修改为sws 2bits</p>
+  </li>
+</ul>
+
+<p>继续Run Connection Automation，并勾选所有选项，使其自动连接。</p>
+
+<p><img src="/pics/PYNQ/lab1/hft.png" alt="也太jb乱了，还是看官方图吧" /></p>
+
+<h2 id="生成输出文件">生成输出文件</h2>
+<p>右键sources里面的system（也可能是你起的别的什么鬼东西），选Generate output Products</p>
+
+<p><img src="/pics/PYNQ/lab1/Gout.png" alt="" /></p>
+
+<p>在弹出的对话框勾选Out of context per IP</p>
+
+<p>同样右键选择Create HDL Wrapper生成顶层文件（在弹出窗口中选第二项 let vivado manage wrapper and auto-update）</p>
+
+<h2 id="生成bit文件">生成bit文件</h2>
+
+<p><img src="/pics.pics/PYNQ/lab1/gebit.png" alt="" /></p>
+
+<p>选择generate bitstream</p>
+
+<h2 id="导出sdk">导出SDK</h2>
+<p>在File»Export»Export Hardware将其导出，勾选include bitsteam</p>
+
+<h1 id="sdk">SDK</h1>
+
+<h2 id="板级支持包">板级支持包</h2>
+
+<p>点击File » Launch SDK，并在弹出的对话框中点击OK，启动SDK工具
+（这里发现一个问题，就是如果你的工程名字中有空格，会出现奇怪的错误）</p>
+
+<p>点击File » New » Board Support Package 创建板级支持包</p>
+
+<p><img src="/pics/PYNQ/lab1/board.png" alt="" /></p>
+
+<p>然后果断finish</p>
+
+<h2 id="新工程">新工程</h2>
+
+<p>点击File » New » Application Project 创建新工程，命名为lab1，点击Next
+（板级支持包别让他新建，选use existing）</p>
+
+<p>选择Empty Application，然后再Finish</p>
+
+<p>右键Lab1里面的src文件，选择import</p>
+
+<p>选择 General»file System 
+选择铱元素科技提供的source文件，并finish</p>
+
+<p>不过有个问题嗷，就是我这咋报错了呢？？？</p>
+
+<p><img src="/pics/PYNQ/lab1/deviceid.png" alt="" /></p>
+
+<p>一番研究之后发现是我和教程给那两个AXIGPIO模块命名不一样，所以打开头文件
+xparameters.h
+可以找到现在的命名</p>
+
+<p><img src="/pics/PYNQ/lab1/deviceid2.png" alt="" /></p>
+
+<p>对应的改一下就可以咯。</p>
+
+<p>点击加号进行下载检测</p>
+
+<p><img src="/pics/PYNQ/lab1/com.png" alt="" /></p>
+
+<p>点击上方的Program FPGA按键
+搞他！</p>
+
+<p>（两个开关要置0，跳线接在JTAG上）</p>
+:ET

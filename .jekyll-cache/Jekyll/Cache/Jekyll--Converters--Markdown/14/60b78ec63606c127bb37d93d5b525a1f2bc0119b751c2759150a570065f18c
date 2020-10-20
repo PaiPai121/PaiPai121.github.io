@@ -1,0 +1,118 @@
+I"{<h1 id="基本内容">基本内容</h1>
+<h2 id="傅里叶系数近似">傅里叶系数近似</h2>
+<p>周期函数傅里叶系数的计算</p>
+
+\[\hat f(k) = \frac{1}{2\pi}\int_0^{2\pi}f(y)e^{-iky}dy\]
+
+<p>将其进行等距剖分有</p>
+
+\[y_i = \frac{2\pi(j-1)}{N},j=1,2,...,N\]
+
+<p>可以用矩形公式或梯形公式进行数值离散</p>
+
+\[\frac{1}{N}\Sigma_{j=1}^Nf(y_j)e^{-iky_j}\]
+
+<h2 id="导数近似">导数近似</h2>
+<p>导数为</p>
+
+\[\frac{f(x_0+h) - f(x_0)}{h}\]
+
+\[\frac{f(x_0+h) - f(x_0-h)}{2h}\]
+
+<p>这是局部的近似</p>
+
+<h3 id="谱方法近似">谱方法近似</h3>
+
+<p>假定fx是
+$2\pi$
+周期的函数，在一个周期上有等距剖分</p>
+
+\[y_j=\frac{2\pi j-1}{N},j=1,...,N\]
+
+<p>这些点上的函数采样值为</p>
+
+\[X_j=f(y_j)\]
+
+<ul>
+  <li>用X来构造f的逼近函数g</li>
+  <li>使用g的导数来作为f的导数的近似</li>
+</ul>
+
+<h4 id="逼近函数g">逼近函数g</h4>
+
+<p>f应有傅里叶级数展开</p>
+
+\[f(x)=\Sigma_{k=-\infty}^\infty \hat f(k)e^{ikx}\]
+
+<p>而FFT变是通过X计算了</p>
+
+\[\hat f(k),k=0,...,N/2,-N/2+1,...,-1\]
+
+<p>的近似值</p>
+
+<p>将傅里叶展开截断，令</p>
+
+\[g(x) = \Sigma_{k=-\frac{N}{2}+1}^{\frac{N}{2}}\hat f(k)e^{ikx}\]
+
+<p>作为f的近似
+其导数为</p>
+
+\[g'(x)=\Sigma_{k=-\frac{N}{2}+1}^{\frac{N}{2}}ik\hat f(k)e^{ikx}\]
+
+<p>而真正的f在xj上的导数为</p>
+
+\[g'(x_j)=\Sigma_{k=-\frac{N}{2}+1}^{\frac{N}{2}}ik\hat f(k)e^{ikx_j}\]
+
+<p>而ifft是</p>
+
+\[X_j = \frac{1}{N}\Sigma_{k=1}^NY_kexp(i(k-1)y)j),e^{iky_j}=e^{i(k+N)y_j}\]
+
+<p>有</p>
+
+\[\Sigma_{k=-\frac{N}{2}+1}^{\frac{N}{2}}ik\hat f(k)e^{ikx_j} = \Sigma_{k=0}^{\frac{N}{2}}ik\hat f(k)e^{ikx_j}+\Sigma_{k=-\frac{N}{2}+1}^{-1}ik\hat f(k)e^{i(k+N)x_j}\]
+
+<p>所以导数计算可以</p>
+<ul>
+  <li>计算采样点函数值</li>
+  <li>fft计算傅里叶系数近似</li>
+  <li>乘ik</li>
+  <li>逆变换ifft</li>
+</ul>
+
+<h4 id="实例">实例</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">demo2</span><span class="p">():</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># 数值导数
+</span>    <span class="n">deri_Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1j</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mf">1j</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="c1"># 精确导数
+</span>    <span class="n">deri_exact</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">deri_Y</span><span class="p">,</span><span class="s">'r-o'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">deri_exact</span><span class="p">,</span><span class="s">'b-.'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">"numerical"</span><span class="p">,</span><span class="s">"exact"</span><span class="p">])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">demo2</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="能带计算">能带计算</h1>
+
+<p>哈密尔顿量</p>
+
+\[H=-\frac{1}{2}\partial^2_x+V_\Gamma(x)\]
+
+<p>本征态</p>
+
+\[H\psi(x) = E_m\psi(x)\]
+
+<h2 id="周期边界条件">周期边界条件</h2>
+
+\[g(x) = \psi(x+2\pi)\]
+
+:ET

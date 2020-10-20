@@ -1,0 +1,68 @@
+I"h<h1 id="1-守恒量">1. 守恒量</h1>
+<p>一个力学量
+$\hat A$
+在一个量子力学体系中是守恒的，指对该体系中的任何一个允许态，有</p>
+
+\[\frac{d}{dt}&lt;\Psi(t)|\hat A|\Psi(t)&gt; \equiv 0\]
+
+<p>为了使其成立，要求</p>
+
+\[\frac{\partial \hat A}{\partial t} =0 ,[\hat A,\hat H]=0\]
+
+<p>要求A不显含时间，而且能量和力学量同时可测。
+由上一章可知有一共同本征函数族</p>
+
+\[\hat H \psi_{nk} = E_n\psi_{nk},\hat A\psi_{nk} = A_k\psi_{nk}\]
+
+<p>体系任意一个态展开</p>
+
+\[\Psi(t) = \Sigma_{n,k}a_{nk}(t)\psi_{nk}\]
+
+<p>一通乱证有</p>
+
+\[\frac{d}{dt}|a_{nk}(t)|^2=0\]
+
+<p><strong>例：</strong>氢原子中电子的哈密顿量</p>
+
+\[\hat{H} = \frac{\hat p^2}{2m}-\frac{e^2}{r}\]
+
+<p>角动量在中心力场是守恒量
+而动量不是。</p>
+
+<h2 id="守恒量与对称性">守恒量与对称性</h2>
+<h3 id="noether定理">Noether定理</h3>
+<p>一个给定力学体系的守恒量是由体系的对称性决定的。</p>
+
+<h3 id="对称性">对称性</h3>
+<p>薛定谔方程有
+\(i\hbar\frac{\partial}{\partial t}|\Psi&gt;=\hat H|\Psi&gt;\)</p>
+
+<p>如果做一个平移或转动，有</p>
+
+\[\hat H\to\hat H',|\Psi&gt;\to|\Psi'&gt;\]
+
+<p>仍属于同一个希尔伯特空间，有一个酉正算符</p>
+
+\[|\Psi&gt;\equiv \hat Q|\Psi'&gt;\]
+
+<p>如果前后变换的哈密顿量相同，则成为是一个对称变换。
+此时有</p>
+
+\[i\hbar\frac{\partial}{\partial t}|\Psi&gt; = i\hbar\frac{\partial}{\partial t}\hat Q|\Psi&gt;=\hat H'|\Psi'&gt;=\hat H |\Psi'&gt;=\hat H \hat Q|\Psi&gt;\]
+
+<p>有</p>
+
+\[i\hbar\frac{\partial}{\partial t}|\Psi&gt; = \hat Q^{-1}\hat H \hat Q|\Psi&gt;\]
+
+<p>有</p>
+
+\[\hat Q^{-1}\hat H\hat Q = \hat H\]
+
+<p>即</p>
+
+\[[\hat Q,\hat H] = 0\]
+
+<p>这是Noether定理的量子力学表达形式。</p>
+
+<h3 id="平移不变性和动量守恒">平移不变性和动量守恒</h3>
+:ET
