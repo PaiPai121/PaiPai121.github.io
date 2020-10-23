@@ -34,7 +34,7 @@ $$\forall X \exists Y(Y = \cup X = \{a|\exists b(b\in X  \wedge a \in b  )\})$$
 
 - 4. 幂集公理：任给一个集合X，都有一个恰好由它的子集合的全体组成的集合P(X)，即
 
-$$\forall X \exist Y (Y = P(X) = \{A|A\in X\})$$
+$$\forall X \exists Y (Y = P(X) = \{A|A\in X\})$$
 
 - 5. 无限集公理：存在一个满足如下两条要求（a）和（b）的集合X，
 （a）X含一个元素；
