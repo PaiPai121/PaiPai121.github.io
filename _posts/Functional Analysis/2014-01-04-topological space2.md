@@ -2,7 +2,7 @@
 layout: post
 title: "Topological Space 拓扑空间（二） 基本性质"
 tag: "泛函分析"
-date: 2014-01-01
+date: 2014-01-04
 categories: 数理基础
 ---
 - [1. 拓扑空间的连续性](#1-拓扑空间的连续性)

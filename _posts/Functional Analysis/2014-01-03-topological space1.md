@@ -2,7 +2,7 @@
 layout: post
 title: "Topological Space 拓扑空间（一） 基本概念"
 tag: "泛函分析"
-date: 2014-01-01
+date: 2014-01-03
 categories: 数理基础
 ---
 
