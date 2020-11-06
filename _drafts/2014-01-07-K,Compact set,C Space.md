@@ -30,3 +30,12 @@ $\rho(x,y) + \rho(y,z) = \mathop{sup}\limits_i |x_i-y_i| + \mathop{sup}\limits_i
 <!----->
 
 $\mathop{sup}\limits_i |x_n-x_0| \to 0,\sum_{i=0}^\infty |x_n-x_0| \not \to 0$
+
+## 唯一线性连续延拓
+
+设X为赋范向量空间 $\tilde{ X}$ 的稠密子空间，Y是Banach空间， $A: X\to Y$ 为连续线性算子，则存在唯一的连续线性算子 $\tilde{A}:\tilde{X}\to Y$ ,$\tilde{A}$是A的延拓，即当 $x\in X$ 时， $\tilde{A}x = Ax$ ，而且对任何 $\tilde{x}\in \tilde{X}$ 和元素 $x_n\in X$ 的任何序列 $(x_n)_{n=1}^\infty$ , 当它在 $\tilde{X}$ 中满足 $\lim_{n\to\infty} x_n = \tilde{x}$ 时
+
+$$\tilde{A}\tilde{x} = \lim_{n\to\infty} Ax_n$$
+
+$$||\tilde{A}||_{\mathcal{L}(\tilde{X};Y)} = ||A||_{\mathcal{L}(X;Y)}$$
+

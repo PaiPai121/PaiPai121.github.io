@@ -1,13 +1,30 @@
-import matplotlib.pyplot as plt
-import numpy as np
+class Solution:
+    def sortByBits(self, arr):
+        def calOnes(num):
+            r = 0
+            while num > 0 :
+                if num % 2 == 1:
+                    r += 1
+                num //= 2
+            return r
+        realr = []        
+        onedict = {}
+        for n in arr:
+            ones = calOnes(n)
+            if ones in onedict.keys():
+                onedict[ones].append(n)
+            else:
+                onedict[ones] = [n]
+        
+        kl = list(onedict.keys())
+        kl.sort()
 
+        for key in kl:
+            print(onedict[key])
+            onedict[kl].sort()
+            realr.append(onedict[kl])
 
-x = np.linspace(-10,10,1000)
+        return realr
 
-y1 = -x*x
-y2 = -5*x
-plt.plot(x,y1)
-plt.plot(x,y2)
-plt.plot(2.5,-2.5*5,"*")
-plt.plot(2.5,-2.5*2.5,"*")
-plt.show()
+s = Solution()
+s.sortByBits([0,1,2,3,4,5,6,7,8])
