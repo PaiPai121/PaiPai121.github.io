@@ -51,7 +51,9 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<meta name="generator" content="Hexo 6.3.0"></head>
+	<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 	<body>
 		<div
@@ -85,7 +87,7 @@
 	</div>
 	<div class="kira-count">
 		<div><span>文章</span>4</div>
-		<div><span>标签</span>2</div>
+		<div><span>标签</span>3</div>
 		<div><span>分类</span>0</div>
 	</div>
 	<div class="kira-list">
@@ -229,7 +231,7 @@
 			
 	<div class="kira-widget-wrap">
 		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
-			<a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 20px;">日常</a>
+			<a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 20px;">日常</a>
 		</div>
 		
 	</div>
@@ -341,10 +343,23 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2024年06月21日</a>
-			<a><i class="kirafont icon-edit-fill"></i>41 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>846 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
-		<h1><span id="c的补习">C++的补习</span></h1><h1><span id="基础数学知识补习">基础数学知识补习</span></h1><h2><span id="向量和坐标">向量和坐标</span></h2><p>任意向量$\vec{a}$在基$(e_1,e_2,e_3)$的坐标为<br>$$\vec{a} &#x3D; [e_1,e_2,e_3]\begin{matrix}{}ctor$$</p>
+		<h1><span id="c的补习">C++的补习</span></h1><h1><span id="基础数学知识补习">基础数学知识补习</span></h1><h2><span id="向量和坐标">向量和坐标</span></h2><p>任意向量$\vec{a}$在基$(e_1,e_2,e_3)$的坐标为</p>
+<p>$$\vec{a} &#x3D; [\vec{e_1},\vec{e_2},\vec{e_3}]\begin{bmatrix}a_1\a_2\a_3<br>\end{bmatrix} &#x3D; a_1\vec{e_1} + a_2\vec{e_2} + a_3\vec{e_3} $$<br>左手坐标系：<br>通过矢量积$\vec{x}\times\vec{y}$ 的结果沿z方向<br>$$\vec{x}\times\vec{y} &#x3D; \begin{vmatrix}e_1 &amp; e_2 &amp;e_3\a_1 &amp; a_2 &amp; a_3\b_1&amp;b_2&amp;b_3\end{vmatrix}&#x3D; \begin{bmatrix}a_2b_3-a_3b_2\a_3b_1-a_1b_3\a_1b_2-a_2b_1\end{bmatrix} &#x3D; \begin{bmatrix}0&amp;-a_3&amp;a_2\a_3&amp;0&amp;a_1\a_2&amp;a_1&amp;0\end{bmatrix}b&#x3D;a^b$$</p>
+<h2><span id="欧式变换">欧式变换</span></h2><p>旋转加平移——刚体运动</p>
+<h3><span id="基本旋转与平移">基本旋转与平移</span></h3><p>$$[e_1,e_2,e_3]\begin{bmatrix}a_1\a_2\a_3\end{bmatrix}&#x3D;[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\a_2’\a_3’\end{bmatrix}$$<br>刚体运动，坐标基矢与该坐标系下的矢量的内积是不变量。</p>
+<p><strong>旋转矩阵</strong></p>
+<p>$$\begin{bmatrix}a_1\a_2\a_3\end{bmatrix}&#x3D;[e_1,e_2,e_3]^T[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\a_2’\a_3’\end{bmatrix}&#x3D;\begin{bmatrix}e_1^Te_1’&amp;e_1^Te_2’&amp;e_1^Te_3’\e_2^Te_1’&amp;e_2^Te_2’&amp;e_2^Te_3’\e_3^Te_1’&amp;e_3^Te_2’&amp;e_3^Te_3’\end{bmatrix}&#x3D;Ra’$$</p>
+<p>两个坐标系的基的内积构成旋转矩阵，两个向量的积等于其夹角的余弦值也称为方向余弦矩阵。他是行列式为1的正交矩阵。n维旋转矩阵构成的集合为一个特殊正交群(Special Orthogonal Group)。转置矩阵为原矩阵的相反旋转。<br>$$SO(n) &#x3D; {R\in \mathbb{R}^{n\times n}|RR^T&#x3D;I,det(R) &#x3D; 1}$$<br><strong>平移</strong><br>在原矢量上加上一个向量即可<br><strong>欧式坐标变换</strong><br>$$a’ &#x3D; Ra+t$$<br>坐标系的下表从右向左读，如下式中为从2到1的旋转矩阵<br>$$a_1&#x3D;R_{12}a_2+t_{12}$$</p>
+<h3><span id="齐次坐标">齐次坐标</span></h3><p>$$\begin{bmatrix}a’\1\end{bmatrix} &#x3D; \begin{bmatrix}R&amp;t\0^T&amp;1\end{bmatrix}\begin{bmatrix}a\1\end{bmatrix} &#x3D; T\begin{bmatrix}a\1\end{bmatrix} $$</p>
+<p>在每一个三维向量的末尾添加1，就可以变成齐次坐标计算。T为变换矩阵。<br>$$\widetilde{b} &#x3D; T_1 \widetilde{a}, \widetilde{c} &#x3D; T_2 \widetilde{b}, \widetilde{c} &#x3D; T_1T_2 \widetilde{a}$$<br>特殊欧式群SE()(Special Euclidean Group)<br>该矩阵的逆为<br>$$T^{-1} &#x3D; \begin{bmatrix} R^T &amp; - R^Tt\0^T &amp;1\end{bmatrix}$$</p>
+<h3><span id="eigen">Eigen</span></h3><p>安装eigen</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/eigenteam/eigen-git-mirror.git<br><span class="hljs-built_in">cd</span> eigen-git-mirror<br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>sudo make install<br></code></pre></td></tr></table></figure>
+<p>基本使用方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 求解方程</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, MATRIX_SIZE&gt; matrix_NN = MatrixXd::<span class="hljs-built_in">Random</span> (MATRIX_SIZE, MATRIX_SIZE); <span class="hljs-comment">// 随机生成一个矩阵</span><br><br>matrix_NN = matrix_NN * matrix_NN.<span class="hljs-built_in">transpose</span>(); <span class="hljs-comment">// X= （AAT），此时X是半正定的。</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, <span class="hljs-number">1</span>&gt; matrix_b = MatrixXd::<span class="hljs-built_in">Random</span> (MATRIX_SIZE, <span class="hljs-number">1</span>);<br><br><span class="hljs-type">clock_t</span> time_start = <span class="hljs-built_in">clock</span>();<br><br><span class="hljs-comment">// 直接求逆</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, <span class="hljs-number">1</span>&gt; x = matrix_NN.<span class="hljs-built_in">inverse</span>()*matrix_b;<br><br>  <br><br>cout &lt;&lt; <span class="hljs-string">&quot;time consumption of normal inverse is &quot;</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">&quot;ms&quot;</span> &lt;&lt; endl;<br><br>  <br><br>cout&lt;&lt; <span class="hljs-string">&quot;x = &quot;</span> &lt;&lt; endl &lt;&lt; x &lt;&lt; endl;<br><br>  <br><br><span class="hljs-comment">// 矩阵分解</span><br><br>time_start = <span class="hljs-built_in">clock</span>();<br><br>x = matrix_NN.<span class="hljs-built_in">colPivHouseholderQr</span> ().<span class="hljs-built_in">solve</span>(matrix_b); <span class="hljs-comment">// 用matrix_NN和matrix_b进行解方程。</span><br><br>cout &lt;&lt; <span class="hljs-string">&quot;time consumption of Qr decomposition is &quot;</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">&quot;ms&quot;</span> &lt;&lt; endl;<br><br>  <br><br><span class="hljs-comment">// 正定矩阵 cholesky分解</span><br><br>time_start = <span class="hljs-built_in">clock</span>();<br><br>x = matrix_NN.<span class="hljs-built_in">ldlt</span>().<span class="hljs-built_in">solve</span>(matrix_b);<br><br>cout &lt;&lt; <span class="hljs-string">&quot;time consumption of cholesky decomposition is &quot;</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">&quot;ms&quot;</span> &lt;&lt; endl;<br><br>cout&lt;&lt;<span class="hljs-string">&quot;x is &quot;</span>&lt;&lt;endl&lt;&lt;x&lt;&lt;endl;<br></code></pre></td></tr></table></figure>
+<p>我记得一年级的时候老师反复强调求解线性方程组的时候，要解方程，不要求逆<br>$$Fx &#x3D; b$$<br>一定不要通过$x &#x3D; F^{-1}b$ 去计算而是要直接解方程。<br>至于QR分解，cholesky分解我属实是忘记了。</p>
 
 	</article>
 
@@ -366,6 +381,8 @@
 	
 	<div class="kira-post-meta kira-rainbow">
 		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
 		
 	</div>
 	
