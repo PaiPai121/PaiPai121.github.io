@@ -74,7 +74,34 @@
 			alt="战斗包子"
 		/>
     </a>
+
+    <!-- 音乐播放器 -->
+    <div id="aplayer" class="aplayer"></div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script>
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        autoplay: false,
+        theme: '#b7daff',
+        loop: 'all',
+        order: 'random',
+        preload: 'auto',
+        volume: 0.7,
+        audio: [
+            {
+                name: 'Song Title',
+                artist: 'Artist Name',
+                url: '/music/逆光.mp3',  
+                cover: '/image/miku.jpg'  
+            }
+        ]
+    });
+</script>
+
 		<div class="kira-body">
 			<div class="kira-sidebar" id="sidebar">
 	<div class="kira-avatar mdui-ripple">

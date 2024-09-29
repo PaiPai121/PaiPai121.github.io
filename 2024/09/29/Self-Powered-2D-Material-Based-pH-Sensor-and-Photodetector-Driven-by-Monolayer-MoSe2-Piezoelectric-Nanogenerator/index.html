@@ -74,7 +74,34 @@
 			alt="战斗包子"
 		/>
     </a>
+
+    <!-- 音乐播放器 -->
+    <div id="aplayer" class="aplayer"></div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script>
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        autoplay: false,
+        theme: '#b7daff',
+        loop: 'all',
+        order: 'random',
+        preload: 'auto',
+        volume: 0.7,
+        audio: [
+            {
+                name: 'Song Title',
+                artist: 'Artist Name',
+                url: '/music/逆光.mp3',  
+                cover: '/image/miku.jpg'  
+            }
+        ]
+    });
+</script>
+
 		<div class="kira-body">
 			<div class="kira-sidebar" id="sidebar">
 	<div class="kira-avatar mdui-ripple">
@@ -346,10 +373,17 @@
 			<a><i class="kirafont icon-edit-fill"></i>56 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<p>欢迎查看我的 PDF 文件：<a href="/pdf/li-zhang-2020-self-powered-2d-material-based-ph-sensor-and-photodetector-driven-by-monolayer-mose2-piezoelectric.pdf" target="_blank" rel="noopener noreferrer">下载 PDF</a></p>
+		<p>
+欢迎查看我的 PDF
+文件：<a href="/pdf/li-zhang-2020-self-powered-2d-material-based-ph-sensor-and-photodetector-driven-by-monolayer-mose2-piezoelectric.pdf" target="_blank" rel="noopener noreferrer">下载
+PDF</a>
+</p>
 <p><br> <!-- 添加换行 --></p>
 <iframe id="pdf-iframe" src="/pdf/li-zhang-2020-self-powered-2d-material-based-ph-sensor-and-photodetector-driven-by-monolayer-mose2-piezoelectric.pdf" style="border: none;" onload="resizeIframe(this)">
-    <p>您的浏览器不支持嵌入 PDF 文件，请<a href="/pdf/s41378-024-00761-x.pdf">点击这里下载 PDF</a>.</p>
+<p>
+您的浏览器不支持嵌入 PDF
+文件，请<a href="/pdf/s41378-024-00761-x.pdf">点击这里下载 PDF</a>.
+</p>
 </iframe>
 <script>
 function resizeIframe(iframe) {
