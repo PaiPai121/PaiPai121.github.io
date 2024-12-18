@@ -215,6 +215,22 @@
 			</div>
 		</a>
 		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
 	</div>
 	<aside id="kira-sidebar">
 		
@@ -412,102 +428,130 @@
 <li>[[#lambda函数的作用域|lambda函数的作用域]]</li>
 <li>[[#共享指针|共享指针]]</li>
 <li>[[#共享指针#基本概念|基本概念]]</li>
-<li>[[#共享指针#注意事项|注意事项]] ### 标准库函数std::move()
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::<span class="hljs-built_in">move</span>()<br><br><br><span class="hljs-comment">// 头文件定义为</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">typename</span> std::remove_reference&lt;T&gt;::<span class="hljs-function">type&amp;&amp; <span class="hljs-title">move</span><span class="hljs-params">(T&amp;&amp; t)</span> <span class="hljs-keyword">noexcept</span></span>;<br><br></code></pre></td></tr></table></figure>
-<code>std::move</code> 接受一个参数，并将其转换为右值引用。右值引用是绑定到临时对象的引用，它们可以用来指示资源的移动而不是复制。</li>
+<li>[[#共享指针#注意事项|注意事项]]</li>
 </ul>
-<ol type="1">
+<h3><span id="标准库函数stdmove"> 标准库函数std::move()</span></h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::<span class="hljs-built_in">move</span>()<br><br><br><span class="hljs-comment">// 头文件定义为</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">typename</span> std::remove_reference&lt;T&gt;::<span class="hljs-function">type&amp;&amp; <span class="hljs-title">move</span><span class="hljs-params">(T&amp;&amp; t)</span> <span class="hljs-keyword">noexcept</span></span>;<br><br></code></pre></td></tr></table></figure>
+<p><code>std::move</code> 接受一个参数，并将其转换为右值引用。右值引用是绑定到临时对象的引用，它们可以用来指示资源的移动而不是复制。</p>
+<ol>
 <li><strong>返回局部对象</strong>：‌当函数需要返回一个局部对象时，‌使用std::move可以避免拷贝操作，‌直接返回对象的资源，‌从而提高性能。‌</li>
 <li><strong>传递临时对象</strong>：‌当需要将一个临时对象传递给另一个作用域时，‌使用std::move可以优化资源的转移，‌避免不必要的拷贝。‌</li>
-<li><strong>容器操作</strong>：‌在STL容器中操作时，‌使用std::move可以避免在插入或移动元素时发生的大量拷贝操作，‌从而提高容器操作的效率。‌
-例如 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> path = <span class="hljs-built_in">Path</span>(std::<span class="hljs-built_in">move</span>(LaneSemgent), <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>, ego_pose);<br></code></pre></td></tr></table></figure>
-可以将LaneSemgent临时实现Path的实例化，减少资源开销。</li>
+<li><strong>容器操作</strong>：‌在STL容器中操作时，‌使用std::move可以避免在插入或移动元素时发生的大量拷贝操作，‌从而提高容器操作的效率。‌<br>
+例如</li>
 </ol>
-<h2><span id="标准库函数stdstoll">标准库函数<code>std::stoll</code> </span></h2>
-<p>C++
-标准库中的一个函数，用于将字符串转换为 <code>long long</code> 类型的整数。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123; std::string str = <span class="hljs-string">&quot;123456789012345&quot;</span>; <br>			 <span class="hljs-type">long</span> <span class="hljs-type">long</span> num = std::<span class="hljs-built_in">stoll</span>(str); std::cout &lt;&lt; <span class="hljs-string">&quot;转换后的数字是: &quot;</span> &lt;&lt; num &lt;&lt; std::endl; <br>			 <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;<br></code></pre></td></tr></table></figure></p>
-<h2><span id="成员初始化列表">成员初始化列表</span></h2>
-<p>在C++中，构造函数名称后面跟着的冒号 (<code>:</code>)
-是用来引入成员初始化列表（Member Initialization
-List）的。成员初始化列表是用来初始化类中的成员变量的一种方式，特别是当这些成员变量是引用或常量时，或者是其他需要通过构造函数来初始化的类对象时。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> path = <span class="hljs-built_in">Path</span>(std::<span class="hljs-built_in">move</span>(LaneSemgent), <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>, ego_pose);<br></code></pre></td></tr></table></figure>
+<p>可以将LaneSemgent临时实现Path的实例化，减少资源开销。</p>
+<h2><span id="标准库函数stdstoll"> 标准库函数<code>std::stoll</code></span></h2>
+<p>C++ 标准库中的一个函数，用于将字符串转换为 <code>long long</code> 类型的整数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123; std::string str = <span class="hljs-string">&quot;123456789012345&quot;</span>; <br>			 <span class="hljs-type">long</span> <span class="hljs-type">long</span> num = std::<span class="hljs-built_in">stoll</span>(str); std::cout &lt;&lt; <span class="hljs-string">&quot;转换后的数字是: &quot;</span> &lt;&lt; num &lt;&lt; std::endl; <br>			 <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;<br></code></pre></td></tr></table></figure>
+<h2><span id="成员初始化列表"> 成员初始化列表</span></h2>
+<p>在C++中，构造函数名称后面跟着的冒号 (<code>:</code>) 是用来引入成员初始化列表（Member Initialization List）的。成员初始化列表是用来初始化类中的成员变量的一种方式，特别是当这些成员变量是引用或常量时，或者是其他需要通过构造函数来初始化的类对象时。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BezierCurve</span> &#123;<br>	<br>	<span class="hljs-keyword">public</span>:<br>	<br>		<span class="hljs-built_in">BezierCurve</span>(<span class="hljs-type">const</span> std::vector&lt;Vec2d&gt;&amp; control_points)<br>		<br>		: <span class="hljs-built_in">control_points_</span>(control_points) &#123;<br>		<br>			<span class="hljs-keyword">if</span> (control_points_.<span class="hljs-built_in">size</span>() &lt; <span class="hljs-number">2</span>) &#123;<br>			<br>				<span class="hljs-keyword">return</span>;<br>			<br>			&#125;<br>			<br>			<span class="hljs-type">double</span> delta_x = control_points_.<span class="hljs-built_in">back</span>().<span class="hljs-built_in">x</span>() - control_points_.<span class="hljs-built_in">front</span>().<span class="hljs-built_in">x</span>();<br>			<br>			<span class="hljs-type">double</span> delta_y = control_points_.<span class="hljs-built_in">back</span>().<span class="hljs-built_in">y</span>() - control_points_.<span class="hljs-built_in">front</span>().<span class="hljs-built_in">y</span>();<br>			<br>			distance_ =<br>			<br>			std::<span class="hljs-built_in">sqrt</span>(delta_x * delta_x + delta_y * delta_y); <span class="hljs-comment">// 起点和终点的距离</span><br>		<br>		&#125;<br>......<br></code></pre></td></tr></table></figure>
 <p>这里的 <code>: control_points_(control_points)</code> 表示使用传入的 <code>control_points</code> 参数来直接初始化成员变量 <code>control_points_</code>。冒号后面的部分是在构造函数执行之前发生的成员变量的直接初始化。</p>
-<h2><span id="emplace_back">emplace_back</span></h2>
-<p><code>emplace_back</code> 是 C++11
-中引入的一个 <code>std::vector</code> 容器的成员函数，它用于在容器的末尾直接构造一个元素。与 <code>push_back</code> 不同，<code>emplace_back</code> 允许你直接在容器内存中构造对象，而不需要创建一个临时对象然后再复制或移动它到容器中。
-1.
-<strong>直接构造</strong>：<code>emplace_back</code> 使用提供的参数直接在容器末尾构造元素，这通常通过调用元素的构造函数来实现。</p>
-<ol start="2" type="1">
-<li><p><strong>性能优势</strong>：由于避免了临时对象的创建、复制或移动，<code>emplace_back</code> 可以在某些情况下提供更好的性能，尤其是当构造的对象类型不支持移动操作，或者移动操作的开销较大时。</p></li>
-<li><p><strong>参数转发</strong>：<code>emplace_back</code> 支持完美转发，这意味着它可以接受任意类型的参数，并将其正确地转发给元素的构造函数。</p></li>
-<li><p><strong>用法</strong>：<code>emplace_back</code> 的用法与 <code>push_back</code> 类似，但是它使用构造函数参数而不是一个已经存在的对象。
-## 函数的const关键字
-在C++中，函数定义中的<code>const</code>关键字放在参数列表之后，表示该函数承诺不会修改类的成员变量（也称为成员属性）。在您提供的函数签名<code>bool Path::GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const</code>中，<code>const</code>关键字的具体含义如下：</p></li>
+<h2><span id="emplace_back"> emplace_back</span></h2>
+<p><code>emplace_back</code> 是 C++11 中引入的一个 <code>std::vector</code> 容器的成员函数，它用于在容器的末尾直接构造一个元素。与 <code>push_back</code> 不同，<code>emplace_back</code> 允许你直接在容器内存中构造对象，而不需要创建一个临时对象然后再复制或移动它到容器中。</p>
+<ol>
+<li>
+<p><strong>直接构造</strong>：<code>emplace_back</code> 使用提供的参数直接在容器末尾构造元素，这通常通过调用元素的构造函数来实现。</p>
+</li>
+<li>
+<p><strong>性能优势</strong>：由于避免了临时对象的创建、复制或移动，<code>emplace_back</code> 可以在某些情况下提供更好的性能，尤其是当构造的对象类型不支持移动操作，或者移动操作的开销较大时。</p>
+</li>
+<li>
+<p><strong>参数转发</strong>：<code>emplace_back</code> 支持完美转发，这意味着它可以接受任意类型的参数，并将其正确地转发给元素的构造函数。</p>
+</li>
+<li>
+<p><strong>用法</strong>：<code>emplace_back</code> 的用法与 <code>push_back</code> 类似，但是它使用构造函数参数而不是一个已经存在的对象。</p>
+</li>
 </ol>
+<h2><span id="函数的const关键字"> 函数的const关键字</span></h2>
+<p>在C++中，函数定义中的<code>const</code>关键字放在参数列表之后，表示该函数承诺不会修改类的成员变量（也称为成员属性）。在您提供的函数签名<code>bool Path::GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const</code>中，<code>const</code>关键字的具体含义如下：</p>
 <ul>
-<li><p><code>const Vec2d&amp; point</code>：表示<code>point</code>参数是一个对常量的引用，这意味着函数内部不能修改<code>point</code>引用的值。</p></li>
-<li><p><code>double* accumulate_s</code>：表示<code>accumulate_s</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p></li>
-<li><p><code>double* lateral</code>：表示<code>lateral</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p></li>
-<li><p><code>double* min_distance</code>：表示<code>min_distance</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p></li>
-<li><p><code>const</code>：位于参数列表之后，表示<code>GetProjection</code>是一个常成员函数（也称为“不变成员函数”），意味着在执行过程中，该函数不会修改任何类的成员变量。</p></li>
+<li>
+<p><code>const Vec2d&amp; point</code>：表示<code>point</code>参数是一个对常量的引用，这意味着函数内部不能修改<code>point</code>引用的值。</p>
+</li>
+<li>
+<p><code>double* accumulate_s</code>：表示<code>accumulate_s</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>double* lateral</code>：表示<code>lateral</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>double* min_distance</code>：表示<code>min_distance</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>const</code>：位于参数列表之后，表示<code>GetProjection</code>是一个常成员函数（也称为“不变成员函数”），意味着在执行过程中，该函数不会修改任何类的成员变量。</p>
+</li>
 </ul>
-<p>简而言之，<code>const</code>关键字在函数参数列表之后的使用，是为了保证调用该函数不会对对象的状态（成员变量）造成任何改变。这是面向对象编程中封装性和不变性的一个重要方面。
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// GetProjection是一个常成员函数，它不会修改Path对象的任何成员变量 bool GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const &#123; // 函数体，可以读取成员变量，但不能修改它们 // ... &#125;</span><br></code></pre></td></tr></table></figure> ## this指针</p>
+<p>简而言之，<code>const</code>关键字在函数参数列表之后的使用，是为了保证调用该函数不会对对象的状态（成员变量）造成任何改变。这是面向对象编程中封装性和不变性的一个重要方面。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// GetProjection是一个常成员函数，它不会修改Path对象的任何成员变量 bool GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const &#123; // 函数体，可以读取成员变量，但不能修改它们 // ... &#125;</span><br></code></pre></td></tr></table></figure>
+<h2><span id="this指针"> this指针</span></h2>
 <p>在C++中，<code>this</code>指针是一个隐式的指针，它指向当前对象的实例。当你调用一个类的成员函数时，<code>this</code>指针指向当前对象的实例。这个指针在类的方法和构造函数中都是可用的，并且是唯一的，因为它是当前对象的指针。</p>
-<p><code>this</code>指针的类型是<code>const T*</code>，其中<code>T</code>是当前类的类型。这意味着你可以通过<code>this</code>指针来访问类的成员变量和方法。
-（类似于python中的self） <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-type">int</span> member;<br><br>  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMember</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>-&gt;member = value;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
-<h2><span id="lambda函数的作用域">lambda函数的作用域</span></h2>
+<p><code>this</code>指针的类型是<code>const T*</code>，其中<code>T</code>是当前类的类型。这意味着你可以通过<code>this</code>指针来访问类的成员变量和方法。<br>
+（类似于python中的self）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-type">int</span> member;<br><br>  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMember</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>-&gt;member = value;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2><span id="lambda函数的作用域"> lambda函数的作用域</span></h2>
 <p>Lambda函数的作用域是指在lambda表达式中可以访问的变量和函数的范围。Lambda函数的作用域可以分为以下几种：</p>
-<ol type="1">
-<li><p><strong>全局作用域</strong>：</p>
+<ol>
+<li>
+<p><strong>全局作用域</strong>：</p>
 <ul>
 <li>在lambda表达式中，可以访问全局作用域中的变量和函数。</li>
 <li>全局作用域是指在lambda表达式定义的外部作用域。</li>
-</ul></li>
-<li><p><strong>局部作用域</strong>：</p>
+</ul>
+</li>
+<li>
+<p><strong>局部作用域</strong>：</p>
 <ul>
 <li>在lambda表达式中，可以访问局部作用域中的变量和函数。</li>
 <li>局部作用域是指在lambda表达式定义的内部作用域。</li>
-</ul></li>
-<li><p><strong>捕获作用域</strong>：</p>
+</ul>
+</li>
+<li>
+<p><strong>捕获作用域</strong>：</p>
 <ul>
 <li>在lambda表达式中，可以使用捕获列表捕获局部作用域中的变量。</li>
 <li>捕获作用域是指在lambda表达式定义时，通过捕获列表捕获的变量和函数的作用域。</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>捕获列表用于指定lambda表达式中可以访问的变量和函数。捕获列表可以包含三种捕获方式：</p>
-<ol type="1">
-<li><p><strong>值捕获（By Value）</strong>：</p>
+<ol>
+<li>
+<p><strong>值捕获（By Value）</strong>：</p>
 <ul>
 <li>将局部变量的值复制到lambda表达式内部。</li>
 <li>例如：<code>[x](int y) &#123; return x + y; &#125;</code></li>
-</ul></li>
-<li><p><strong>引用捕获（By Reference）</strong>：</p>
+</ul>
+</li>
+<li>
+<p><strong>引用捕获（By Reference）</strong>：</p>
 <ul>
 <li>将局部变量的引用传递到lambda表达式内部。</li>
 <li>例如：<code>[&amp;x](int y) &#123; return x + y; &#125;</code></li>
-</ul></li>
-<li><p><strong>捕获列表（Capture List）</strong>：</p>
+</ul>
+</li>
+<li>
+<p><strong>捕获列表（Capture List）</strong>：</p>
 <ul>
 <li>指定要捕获的变量和它们的捕获方式。</li>
 <li>例如：<code>[x, &amp;y](int z) &#123; return x + y + z; &#125;</code></li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>在lambda表达式内部，可以按照捕获列表中的指定方式访问捕获的变量。如果捕获列表中没有指定要捕获的变量，那么lambda表达式内部不能访问局部作用域中的变量。</p>
 <p>如果你在lambda表达式中捕获了<code>this</code>指针，那么你就可以直接访问对象的各个成员。<code>this</code>指针是一个隐式的指针，它指向当前对象的实例。在lambda表达式中捕获<code>this</code>指针意味着你可以在lambda内部访问和修改当前对象的成员变量和方法。</p>
-<h2><span id="共享指针">共享指针</span></h2>
-<p>共享指针（Shared
-Pointer）是C++11标准库中引入的一种智能指针，用于实现共享所有权的概念。在C++中，共享指针是通过<code>&lt;memory&gt;</code>头文件中的<code>std::shared_ptr</code>类模板实现的。共享指针的主要特点是多个共享指针可以指向同一个对象，并且这个对象会在最后一个共享指针被销毁或重置时自动销毁。</p>
+<h2><span id="共享指针"> 共享指针</span></h2>
+<p>共享指针（Shared Pointer）是C<ins>11标准库中引入的一种智能指针，用于实现共享所有权的概念。在C</ins>中，共享指针是通过<code>&lt;memory&gt;</code>头文件中的<code>std::shared_ptr</code>类模板实现的。共享指针的主要特点是多个共享指针可以指向同一个对象，并且这个对象会在最后一个共享指针被销毁或重置时自动销毁。</p>
 <p>以下是共享指针的详细介绍：</p>
-<h3><span id="基本概念">基本概念</span></h3>
+<h3><span id="基本概念"> 基本概念</span></h3>
 <ul>
 <li><strong>所有权共享</strong>：多个<code>shared_ptr</code>实例可以共享对同一个对象的引用。每个<code>shared_ptr</code>都有一个关联的引用计数器，用于跟踪有多少个<code>shared_ptr</code>实例指向同一个对象。</li>
 <li><strong>自动内存管理</strong>：当最后一个指向对象的<code>shared_ptr</code>被销毁或重置时，对象也会被自动销毁，通常是调用对象的析构函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><br><span class="hljs-comment">// 使用默认构造函数</span><br>std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; ptr1;<br><br><span class="hljs-comment">// 使用new表达式</span><br><span class="hljs-function">std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>(<span class="hljs-number">10</span>))</span></span>;<br><br><span class="hljs-comment">// 使用make_shared函数，这是更推荐的方式，因为它可以减少内存分配的次数</span><br>std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; ptr3 = std::<span class="hljs-built_in">make_shared</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">20</span>);<br></code></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++">ptr3.<span class="hljs-built_in">reset</span>(); <span class="hljs-comment">// 重置指针，对象将被销毁（如果这是最后一个指向它的指针）</span><br>ptr3.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">40</span>)); <span class="hljs-comment">// 重置指针，指向新的对象</span><br><br><span class="hljs-type">size_t</span> count = ptr2.<span class="hljs-built_in">use_count</span>(); <span class="hljs-comment">// 获取引用计数</span><br><span class="hljs-type">bool</span> isUnique = ptr2.<span class="hljs-built_in">unique</span>(); <span class="hljs-comment">// 检查是否是唯一指针</span><br></code></pre></td></tr></table></figure>
-<h3><span id="注意事项">注意事项</span></h3>
+<h3><span id="注意事项"> 注意事项</span></h3>
 <ul>
 <li><strong>循环引用</strong>：当两个或多个对象通过共享指针相互引用时，可能会发生循环引用，导致内存泄漏。为了解决这个问题，可以使用弱共享指针（<code>std::weak_ptr</code>）。</li>
 <li><strong>性能开销</strong>：共享指针比原始指针更大，因为它们需要额外的空间来存储引用计数和控制块。此外，引用计数的增加和减少可能会引入性能开销。</li>
