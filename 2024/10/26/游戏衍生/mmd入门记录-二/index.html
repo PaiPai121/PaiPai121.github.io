@@ -113,7 +113,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>30</div>
+		<div><span>文章</span>34</div>
 		<div><span>标签</span>10</div>
 		<div><span>分类</span>0</div>
 	</div>
@@ -319,7 +319,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
 		</div>
 	</div>
 
@@ -419,389 +419,456 @@
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 18 分钟</a>
 		</div>
 		<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> #
-布面与身体的运动规律 通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> # 布面与身体的运动规律
-通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> # 布面与身体的运动规律
-通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png">
-但如果取消与裙子所在的组5的碰撞 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> # 布面与身体的运动规律
-通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> #
-布面与身体的运动规律 通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"> 抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt><br>
+但如果取消与裙子所在的组5的碰撞</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> # 布面与身体的运动规律
-通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure> # 布面与身体的运动规律
-通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
-<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
-<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt><br>
+抬腿穿模</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
+<p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
+<p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs table-of-contents"><br></code></pre></td></tr></table></figure>
-<h1><span id="布面与身体的运动规律">布面与身体的运动规律</span></h1>
-<p>通常其他3D建模软件——&gt;将裙子设置为布料 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png"></p>
-<p>MMD -&gt;创建骨骼和刚体 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png"></p>
+<h1><span id="布面与身体的运动规律"> 布面与身体的运动规律</span></h1>
+<p>通常其他3D建模软件——&gt;将裙子设置为布料<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141818.png" alt></p>
+<p>MMD -&gt;创建骨骼和刚体<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027141947.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142259.png" alt></p>
 <p>mmd中通过刚体的碰撞带动骨骼运动进而模拟布料</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png"></p>
-<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起
-<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png">
-但如果取消与裙子所在的组5的碰撞 <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png"> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png"> 抬腿穿模</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png"></p>
-<h1><span id="尝试做一个简单的mmd">尝试做一个简单的mmd</span></h1>
-<h2><span id="导入场景">导入场景</span></h2>
-<p>模之屋有很多制作的非常精美的场景可以用
-但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ
-‵-′)ノ”(ノ﹏&lt;。)） <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027142739.png" alt></p>
+<p>比如我们现在默认裙子和大腿是有碰撞的，那么我们抬起腿，再播放一下，会出现裙子抬起<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143333.png" alt><br>
+但如果取消与裙子所在的组5的碰撞<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143419.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143458.png" alt><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027143144.png" alt><br>
+抬腿穿模</p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027144935.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241027145039.png" alt></p>
+<h1><span id="尝试做一个简单的mmd"> 尝试做一个简单的mmd</span></h1>
+<h2><span id="导入场景"> 导入场景</span></h2>
+<p>模之屋有很多制作的非常精美的场景可以用<br>
+但是这里我打算用一下之前给我的出租屋建的模型，这样就好像在我家一样（Pia!(ｏ ‵-′)ノ”(ノ﹏&lt;。)）<br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031203829.png" alt></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72914261">最系统的MMD零基础入门教程宝典</a></p>
-<h2><span id="镜头导入与调整">镜头导入与调整</span></h2>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a>
-之前简单的给镜头打了几个关键帧，实现了镜头的动画
-，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布
-- 极乐净土镜头配布</a> <img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png"></p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png"></p>
+<h2><span id="镜头导入与调整"> 镜头导入与调整</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gn4y1X71M?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender之MMD导入镜头动作调整镜头动作</a><br>
+之前简单的给镜头打了几个关键帧，实现了镜头的动画 ，这次导入别人的镜头看一下，这里我使用的是<a target="_blank" rel="noopener" href="https://www.aplaybox.com/details/motion/gT6jmXe2Uc22">极乐净土镜头配布 - 极乐净土镜头配布</a><br>
+<img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031220810.png" alt></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031222854.png" alt></p>
 <p>与原来不同的是导入相机动作后，原相机上多了一个空物体作为父级。</p>
-<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png"></p>
+<p><img src="/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%BA%8C/Pasted_image_20241031234615.png" alt></p>
 
 	</article>
 
