@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 冰汽时代 最后的秋天 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+
+    <!-- 音乐播放器 -->
+    <div id="aplayer" class="aplayer"></div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script>
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        autoplay: false,
+        theme: '#b7daff',
+        loop: 'all',
+        order: 'random',
+        preload: 'auto',
+        volume: 0.7,
+        audio: [
+            {
+                name: 'Song Title',
+                artist: 'Artist Name',
+                url: '/music/逆光.mp3',  
+                cover: '/image/miku.jpg'  
+            }
+        ]
+    });
+</script>
+
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>47</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/MMD/" style="font-size: 12.5px;">MMD</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 12.5px;">凸优化</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 17.5px;">学习</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 15px;">开发</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 20px;">日常</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 10px;">游戏杂谈</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 10px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2025
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="冰汽时代 最后的秋天"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>冰汽时代 最后的秋天</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年09月13日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.6k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
+		</div>
+		<p>最后的秋天</p>
+<p>阶级划分：<br>
+工人和工程师<br>
+在《冰汽时代》中，工人和工程师之间存在着一道天然且不可逾越的鸿沟。工程师拥有专业技能、管理权威，被视为独立的群体；而工人则是一个可替换的、同质化的劳动力池。可是日常生活中也许习惯上其实我们更常见的是工人和工程师都是无产阶级，对抗有产阶级，而游戏里几乎没有可能对抗幕后的大资本家。。</p>
+<p>超时工作：<br>
+哥们和大模型讨论，是正常工时好还是24小时两班倒好<br>
+我：白天正常工时，一下班立刻切24小时工时。白天给他希望高效率工作，晚上也不许下班！<br>
+在游戏中，玩家为了赶在最终期限前完成发电机建设，签署“延长工时”、“24小时轮班”等法案，或是默许工人在有毒气体弥漫、随时可能发生坍塌的危险环境中作业，都是为了追求更高的生产效率。这些法案与本篇无异，唯一的区别只是本篇已经到了生死存亡的境地，而此时若非有上帝视角，只是老板的又一个大规模工程。可对背井离乡而言的工人而言，都是要赌上性命。</p>
+<p>远离家乡：<br>
+背后的资本家按照时间节点一步步催着赶紧让工人加班<br>
+现实中公司也因为项目交付节点，逼迫我们天天加班和出差。</p>
+<p>工人们抵达113号工地，背景离乡开始建造大型发电机，像我离开家乡跑到北京工作又被公司发配出差。</p>
+<p>人的异化：<br>
+在高层的眼中，我们也如同游戏中的数字一样，只是完成节点的数据，并无家庭或人情味。<br>
+在《冰汽时代》的游戏过程中，我们会逐渐将工人的死亡从一个个悲剧，看作是需要管理的统计数据——一种可以为了赶工期而接受的代价，一定数量的工伤事故和职业病，成为可被量化的能量塔建造成本。<br>
+相比本篇而言，这里有每天下降的动力，作为邪恶包工头，你不得不保证鼓励员工们提高动力。<br>
+我的方法大概就是丰盛美食+教堂技能卡CD用+工会技能卡CD用，基本上可以把动力一直拉满，吃30%效率的buff。<br>
+也许就像日常中老板给我画大饼吧。<br>
+对管理者——玩家而言，逐步危险的工作环境像是温水煮青蛙，一不注意发现已经变成致命风险了。可初见的时候几乎都不怎么会点开看工作环境的危险程度。</p>
+<p>《最后的秋天》将时间拨回灾难性的寒冬之前。这一次，我们对抗的不再是自然的伟力，而是资本的意志。玩家不再是挣扎求生的领袖，而是背负着交付期限（DDL）的“包工头”。<br>
+一、 隐身的资本家与虚假的阶级</p>
+<p>游戏伊始，工人们背井离乡抵达工地，这正如我离开家乡去北京工作，又被公司发配到各地出差。<br>
+一道天然的鸿沟横亘在工人和工程师之间：工程师拥有技能和权威，被视为独立的专业人士；而工人则是一个庞大、可替换的劳动力池。<br>
+但在现实中，我们更习惯将工程师和工人都视为“无产阶级”。吊诡的是，在《最后的秋天》中，真正的幕后资本家始终隐身，他们只作为“最后期限”和催促进度的压力而存在。玩家所扮演的管理者，与工地上的所有人一样，都在为那个不可违抗的意志服务，几乎没有反抗的余地。</p>
+<p>二、 期限的暴政：从“延长工时”到“24小时轮班”</p>
+<p>为了赶在最终期限前完工，背后的资本家按时间节点步步紧逼，就像现实中公司为了项目交付，逼迫我们无休止地加班和出差。<br>
+于是，玩家被迫签署“延长工时”、“24小时轮班”等法案，默许工人在有毒气体弥漫、随时可能坍塌的环境中作业，一切只为追求更高的生产效率。我们甚至会玩弄“白天正常工时安抚人心，晚上一键切换24小时轮班”的把戏，只为压榨最后一丝效率。<br>
+这与本篇的生死存亡不同。若非拥有上帝视角，在“秋天”的背景下，这仅仅是老板的又一个大型工程。但对工人而言，无论是在冰天雪地还是在尘土飞扬的工地，赌上的都是性命。</p>
+<p>三、 人的异化：从“画大饼”到“可接受的伤亡”</p>
+<p>或许在高层的眼中，我们也如同游戏中的数字，只是完成节点的数据，并无人情味可言。而在游戏中，我们很快就学会了将工人的死亡从一个个悲剧，看作是需要管理的统计数据——一种可以为了赶工期而接受的代价。一定数量的工伤事故和职业病，被冷酷地量化为能量塔的建造成本。<br>
+如果说我大幅增加安全度，规范流程，大概率为的不是工人安全，而是出现意外事件后SL，想尽可能保住建设的进度。</p>
+<p>与本篇不同，“秋天”引入了“动力”系统。作为“邪恶的包工头”，你必须想尽办法维持工人的动力。我的方法通常是：丰盛美食、教堂技能、工会技能卡着CD用，不惜一切代价把动力拉满，只为享受那30%的效率Buff。给工人们猛猛喂大饼。逐步恶化的工作环境就像一锅温水煮青蛙。当你一门心思扑在效率和进度上时，很容易就忽略了那个代表“危险程度”的标识，直到风险悄然变为致命。</p>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/09/13/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3-%E6%9C%80%E5%90%8E%E7%9A%84%E7%A7%8B%E5%8D%83/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;09&#x2F;13&#x2F;冰汽时代-最后的秋千&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;09&#x2F;13&#x2F;冰汽时代-最后的秋千&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

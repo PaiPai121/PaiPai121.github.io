@@ -113,7 +113,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>39</div>
+		<div><span>文章</span>47</div>
 		<div><span>标签</span>10</div>
 		<div><span>分类</span>0</div>
 	</div>
@@ -319,7 +319,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
 		</div>
 	</div>
 
@@ -421,27 +421,43 @@
 			<a><i class="kirafont icon-edit-fill"></i>492 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
-		<h2><span id="纹理过滤设置"> 纹理过滤设置</span></h2>
-<p>在 Godot 中，纹理过滤的 nearest 和 linear 是两种不同的插值方式，用于处理纹理在缩放时的表现。</p>
-<ol>
-<li>Nearest (最近邻)<br>
-原理: 选择离采样点最近的纹理像素（texel）颜色。</li>
+		<h2><span id="纹理过滤设置">纹理过滤设置</span></h2>
+<p>在 Godot 中，纹理过滤的 nearest 和 linear
+是两种不同的插值方式，用于处理纹理在缩放时的表现。</p>
+<ol type="1">
+<li>Nearest (最近邻) 原理:
+选择离采样点最近的纹理像素（texel）颜色。</li>
 </ol>
-<p>效果: 纹理在放大或缩小时会呈现像素化的效果，边缘清晰但可能显得锯齿状。</p>
+<p>效果:
+纹理在放大或缩小时会呈现像素化的效果，边缘清晰但可能显得锯齿状。</p>
 <p>适用场景: 适合像素艺术或需要保持锐利边缘的游戏。</p>
-<ol start="2">
-<li>Linear (线性)<br>
-原理: 对采样点周围的多个纹理像素进行加权平均，生成平滑的颜色过渡。</li>
+<ol start="2" type="1">
+<li>Linear (线性) 原理:
+对采样点周围的多个纹理像素进行加权平均，生成平滑的颜色过渡。</li>
 </ol>
 <p>效果: 纹理在放大或缩小时会显得平滑，但可能模糊细节。</p>
 <p>适用场景: 适合需要平滑过渡的3D游戏或高分辨率纹理。</p>
 <p>在2d游戏背景中，用Nearest更好一点</p>
-<h1><span id="使用http请求"> 使用http请求</span></h1>
-<p>Error request(url: String, custom_headers: PackedStringArray = PackedStringArray(), method: HTTPClient.Method = 0, request_data: String = “”)</p>
-<p>在底层的 HTTPClient 上创建请求。如果没有配置错误，它会尝试使用 HTTPClient.connect_to_host() 连接并将参数传递给 HTTPClient.request()。</p>
-<p>如果成功创建请求，则返回 OK。（并不意味着服务器已响应），如果不在树中，则返回 ERR_UNCONFIGURED；如果仍在处理先前的请求，则返回 ERR_BUSY；如果给定的字符串不是有效的 URL 格式，则返回 ERR_INVALID_PARAMETER；或者如果不使用线程并且 HTTPClient 无法连接到主机，则返回 ERR_CANT_CONNECT。</p>
-<p>注意：当 method 为 HTTPClient.METHOD_GET 时，通过 request_data 发送的有效载荷可能会被服务器忽略，甚至导致服务器拒绝请求（见 RFC 7231 第 4.3.1 节了解更多详情）。作为一种变通方法，可以在 URL 中将数据作为查询字符串发送（有关示例，请参见 String.uri_encode()）。</p>
-<p>注意：建议使用传输加密（TLS）并避免在 HTTP GET URL 参数中发送敏感信息（例如登录凭据）。考虑改用 HTTP POST 请求或 HTTP 报头来获取此类信息。</p>
+<h1><span id="使用http请求">使用http请求</span></h1>
+<p>Error request(url: String, custom_headers: PackedStringArray =
+PackedStringArray(), method: HTTPClient.Method = 0, request_data: String
+= "")</p>
+<p>在底层的 HTTPClient 上创建请求。如果没有配置错误，它会尝试使用
+HTTPClient.connect_to_host() 连接并将参数传递给
+HTTPClient.request()。</p>
+<p>如果成功创建请求，则返回
+OK。（并不意味着服务器已响应），如果不在树中，则返回
+ERR_UNCONFIGURED；如果仍在处理先前的请求，则返回
+ERR_BUSY；如果给定的字符串不是有效的 URL 格式，则返回
+ERR_INVALID_PARAMETER；或者如果不使用线程并且 HTTPClient
+无法连接到主机，则返回 ERR_CANT_CONNECT。</p>
+<p>注意：当 method 为 HTTPClient.METHOD_GET 时，通过 request_data
+发送的有效载荷可能会被服务器忽略，甚至导致服务器拒绝请求（见 RFC 7231 第
+4.3.1 节了解更多详情）。作为一种变通方法，可以在 URL
+中将数据作为查询字符串发送（有关示例，请参见 String.uri_encode()）。</p>
+<p>注意：建议使用传输加密（TLS）并避免在 HTTP GET URL
+参数中发送敏感信息（例如登录凭据）。考虑改用 HTTP POST 请求或 HTTP
+报头来获取此类信息。</p>
 
 	</article>
 
