@@ -414,9 +414,9 @@
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2025年08月07日</a>
-			<a><i class="kirafont icon-edit-fill"></i>698 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2025年10月22日</a>
+			<a><i class="kirafont icon-edit-fill"></i>928 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<h1><span id="个人信息">个人信息</span></h1>
 <ul>
@@ -509,12 +509,20 @@ CN117318690A[P]. 2023-12-29.</p>
 </tbody>
 </table>
 <h1><span id="工作经历">工作经历</span></h1>
-<h2><span id="自动驾驶规控算法工程师-2024年7月-至今">自动驾驶规控算法工程师​​ （
-2024年7月 至今）</span></h2>
-<p>全局坐标系参考线开发 · 规则型系统 · 量产级C++ <strong>835项目 ·
-全局坐标系参考线系统开发</strong><br>
-技术栈： - <strong>动态参考线生成框架</strong><br>
-- 设计B样条拟合+QP优化算法（OSQP求解器），</p>
+<h2><span id="自动驾驶规控算法工程师-2024年7月-~-至今">自动驾驶规控算法工程师 （
+2024年7月 ~ 至今 ）</span></h2>
+<p><strong>835项目 · 参考线（Trajectory Planning）系统</strong> CNOA ·
+参考线/轨迹规划系统</p>
+<p>自动驾驶规控 (Planning) 模块的算法栈开发，<strong>负责 CNOA
+功能的参考线 (Reference Line) 生成与轨迹优化</strong>。 *
+<strong>设计并交付</strong>了鲁棒的地图-感知时空配准算法，通过<strong>融合轻地图（非HD-Map）</strong>与实时车道线感知，显著提升了在交叉路口、匝道汇流等高动态场景下的轨迹稳定与乘坐体验。
+* <strong>开发</strong>了基于导航路径与实时交通流的<strong>智能车道决策
+(Lane Decision)
+逻辑</strong>，处理复杂的道路分叉、汇流与动态避障场景，确保决策的最优性与安全性。
+*
+<strong>重构并优化</strong>了基于B样条的<strong>QP轨迹精调模块</strong>，以路沿/障碍物为<strong>硬约束</strong>，以平顺度(Jerk)、曲率为<strong>代价函数</strong>，实现了高标准的轨迹稳定性与舒适性。
+* <strong>攻克</strong>了多个棘手Corner
+Cases：例如，设计“历史保持-贝塞尔过渡-目标车道”三段式粗解管线，<strong>解决了在非结构化路段（强依赖Frenet坐标系失效）的轨迹生成难题</strong>。</p>
 <h2><span id></span></h2>
 
 	</article>
