@@ -51,9 +51,9 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+	<!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -415,37 +415,38 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2024年07月26日</a>
-			<a><i class="kirafont icon-edit-fill"></i>838 字</a>
+			<a><i class="kirafont icon-edit-fill"></i>836 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
-		<h2><span id="安装">安装</span></h2>
+		<h2><span id="安装"> 安装</span></h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-update<br>sudo apt install -y protobuf-compiler protobuf-c-compiler<br></code></pre></td></tr></table></figure>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs protobuf">syntax = <span class="hljs-string">&quot;proto2&quot;</span>;<br><br><span class="hljs-keyword">package</span> protoTest; <span class="hljs-comment">// namespace</span><br><br>  <br><br><span class="hljs-keyword">message </span><span class="hljs-title class_">Example1</span> &#123;<br><br><span class="hljs-comment">// 数字类型的集合</span><br><br><span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">optional</span> <span class="hljs-type">int32</span> age = <span class="hljs-number">2</span>;<br><br><span class="hljs-keyword">message </span><span class="hljs-title class_">EmbeddedMessage</span> &#123;<br><br><span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> stringVal = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">optional</span> <span class="hljs-type">bytes</span> bytesVal = <span class="hljs-number">2</span>;<br><br>&#125; <span class="hljs-comment">// 字段甚至可以又是一个message</span><br><br><span class="hljs-comment">// 字段规则：required -&gt; 字段只能也必须出现 1 次</span><br><br><span class="hljs-comment">// 字段规则：optional -&gt; 字段可出现 0 次或1次</span><br><br><span class="hljs-comment">// 字段规则：repeated -&gt; 字段可出现任意多次（包括 0）</span><br><br><span class="hljs-comment">// 类型：int32、int64、sint32、sint64、string、32-bit ....</span><br><br><span class="hljs-comment">// 字段编号：0 ~ 536870911（除去 19000 到 19999 之间的数字）</span><br><br><span class="hljs-comment">// 字段规则 类型 名称 = 字段编号;</span><br><br>  <br><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>1、syntax 关键字表示使用的protobuf的版本，如不指定则默认使用
-“proto2”</p>
-<p>2、package关键字
-表示“包”，生成目标语言文件后对应C++中的namespace命名空间，用于防止不同的消息类型间的命名冲突</p>
-<p>3、message对应C++中的类， 内部包含各种属性，
-其中repeated修饰数据类型表示是一个数组的概念</p>
-<h2><span id="编译">编译</span></h2>
+<p>1、syntax 关键字表示使用的protobuf的版本，如不指定则默认使用 “proto2”</p>
+<p>2、package关键字 表示“包”，生成目标语言文件后对应C++中的namespace命名空间，用于防止不同的消息类型间的命名冲突</p>
+<p>3、message对应C++中的类， 内部包含各种属性， 其中repeated修饰数据类型表示是一个数组的概念</p>
+<h2><span id="编译"> 编译</span></h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">protoc [-I] --xxx_out=OUT_DIR file.proto<br></code></pre></td></tr></table></figure>
-<p>如 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">protoc --cpp_out=. example.proto<br></code></pre></td></tr></table></figure></p>
+<p>如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">protoc --cpp_out=. example.proto<br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++ main_test.cpp xxx.pb.cc -o main_test -lprotobuf<br></code></pre></td></tr></table></figure>
-<p>这样会报错 必须链接pthread（为什么）<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SupperMary/p/17740803.html">参考</a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++ main.cpp example.pb.cc -o main_test -lprotobuf -pthread<br></code></pre></td></tr></table></figure></p>
-<p>需要注意的是，message的同级属性的num不能重复 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">编号也是有范围的,编号只能从`1 ~ 2^29 -1`之间进行取数，其中`19000 ~ 19999`不可取，因为这些编号已经被PB官方征用了!使用了编译就会出错;<br></code></pre></td></tr></table></figure> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62106937/article/details/134095333">参考1</a></p>
-<h2><span id="在c中引用">在C++中引用</span></h2>
-<p>package定义的命名空间会转换为C++中的namespase命名空间,message定义的类会转换为C++中国class定义的类,同时还会增加一系列与该属性字段相关的方法:</p>
+<p>这样会报错<br>
+必须链接pthread（为什么）<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SupperMary/p/17740803.html">参考</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++ main.cpp example.pb.cc -o main_test -lprotobuf -pthread<br></code></pre></td></tr></table></figure>
+<p>需要注意的是，message的同级属性的num不能重复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">编号也是有范围的,编号只能从`1 ~ 2^29 -1`之间进行取数，其中`19000 ~ 19999`不可取，因为这些编号已经被PB官方征用了!使用了编译就会出错;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62106937/article/details/134095333">参考1</a></p>
+<h2><span id="在c中引用"> 在C++中引用</span></h2>
+<p>package定义的命名空间会转换为C<ins>中的namespase命名空间,message定义的类会转换为C</ins>中国class定义的类,同时还会增加一系列与该属性字段相关的方法:</p>
 <ul>
 <li>clear_xxx(): 清除改字段的值;</li>
 <li>xxx(): 获取当前字段的值;</li>
 <li>set_xxx(): 为当前字段设置值;</li>
-<li>mutable_xxx()
-:获取当前字段的地址,对于自定义类型来说protoc不会为其生成set_xxx()的方法来设置值，因为它没办法预测用户到底想如何给自定义类型设置值，但是它会生成对应的mutable_xxx()函数,利用mutable_xxx()函数我们可以获取到当前字段的地址，然后再利用字段的内置set_xxx()方法进行对自定义类型中的各个字段进行初始化，对于protobuf内置的类型protoc不会为其生成mutable_xxx()方法，当然string等除外，这些基本类型利用set_xxx()方法就能够设置值了。</li>
+<li>mutable_xxx() :获取当前字段的地址,对于自定义类型来说protoc不会为其生成set_xxx()的方法来设置值，因为它没办法预测用户到底想如何给自定义类型设置值，但是它会生成对应的mutable_xxx()函数,利用mutable_xxx()函数我们可以获取到当前字段的地址，然后再利用字段的内置set_xxx()方法进行对自定义类型中的各个字段进行初始化，对于protobuf内置的类型protoc不会为其生成mutable_xxx()方法，当然string等除外，这些基本类型利用set_xxx()方法就能够设置值了。</li>
 </ul>
-<h2><span id="序列化与反序列化">序列化与反序列化</span></h2>
-<p>![20240715100645.png] ![20240715100654.png]</p>
-<h2><span id="项目实例">项目实例</span></h2>
+<h2><span id="序列化与反序列化"> 序列化与反序列化</span></h2>
+<p>![20240715100645.png]<br>
+![20240715100654.png]</p>
+<h2><span id="项目实例"> 项目实例</span></h2>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs protobuf">syntax = <span class="hljs-string">&quot;proto2&quot;</span>;<br><br><span class="hljs-keyword">package</span> rina.planning;<br><br><span class="hljs-keyword">message </span><span class="hljs-title class_">TrafficLightState</span> &#123;<br><br><span class="hljs-keyword">enum </span><span class="hljs-title class_">TLState</span> &#123;<br><br>INIT = <span class="hljs-number">0</span>;<br><br>LANE_FOLLOW = <span class="hljs-number">1</span>;<br><br>APPROACH = <span class="hljs-number">2</span>;<br><br>STOP = <span class="hljs-number">3</span>;<br><br>UNKNOWN_LIGHT = <span class="hljs-number">4</span>;<br><br>CROSSING = <span class="hljs-number">5</span>;<br><br>TURN_WAIT = <span class="hljs-number">6</span>;<br><br>&#125;<br><br><span class="hljs-keyword">optional</span> TLState tl_state = <span class="hljs-number">1</span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>交通灯信号，定义枚举变量TLState和一个TLState字段tl_state。</p>
 <p>看上去项目中的protobuf主要的数据类型是double，bool和enum</p>
