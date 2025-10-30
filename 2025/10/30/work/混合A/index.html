@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 基于搜索的路径生成 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+
+    <!-- 音乐播放器 -->
+    <!-- <div id="aplayer" class="aplayer"></div> -->
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- 
+<script>
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        autoplay: false,
+        theme: '#b7daff',
+        loop: 'all',
+        order: 'random',
+        preload: 'auto',
+        volume: 0.7,
+        audio: [
+            {
+                name: 'Song Title',
+                artist: 'Artist Name',
+                url: '/music/逆光.mp3',  
+                cover: '/image/miku.jpg'  
+            }
+        ]
+    });
+</script> -->
+
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>54</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/MMD/" style="font-size: 12.5px;">MMD</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 12.5px;">凸优化</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 17.5px;">学习</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 15px;">开发</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 20px;">日常</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 12.5px;">游戏杂谈</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 10px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">29</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2025
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="基于搜索的路径生成"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>基于搜索的路径生成</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年10月30日</a>
+			<a><i class="kirafont icon-edit-fill"></i>5.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 25 分钟</a>
+		</div>
+		<h1><span id="bfs-广度优先搜索">BFS (广度优先搜索)</span></h1>
+<h2><span id="1-核心思想逐层扩散">1. 核心思想：逐层扩散</span></h2>
+<p>BFS 的核心思想可以比喻为“水波纹”：</p>
+<ul>
+<li>它从一个 <code>start</code> (起点) 开始。</li>
+<li>像波纹一样，<strong>一层一层</strong>地、<strong>均匀地</strong>向外探索。</li>
+<li>它会先访问所有距离起点为1的节点（第1层），然后才访问所有距离为2的节点（第2层），以此类推。</li>
+</ul>
+<h2><span id="2-核心保证最短路径">2. 核心保证：最短路径</span></h2>
+<ul>
+<li><strong>最优性</strong>：在<strong>无权重图</strong>（或所有边权重都为1）中，BFS
+<strong>保证</strong>能找到<strong>步数最短</strong>的路径。</li>
+<li><strong>原因</strong>：由于它是逐层探索的，当它<strong>第一次</strong>到达
+<code>goal</code> (终点) 时，所经过的“层数”必然是最少的。</li>
+</ul>
+<h2><span id="3-bfs的三大法宝核心数据结构">3. BFS
+的三大法宝（核心数据结构）</span></h2>
+<p>BFS 的实现依赖三个关键工具：</p>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">工具</th>
+<th style="text-align: left;">数据结构</th>
+<th style="text-align: left;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1. 待办列表</strong></td>
+<td style="text-align: left;"><code>Queue</code> (队列)</td>
+<td style="text-align: left;"><strong>(先进先出 -
+FIFO)</strong>。保证算法“逐层”按顺序探索。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2. 足迹记录</strong></td>
+<td style="text-align: left;"><code>Set</code> (集合)</td>
+<td style="text-align: left;"><strong>( <code>visited</code>
+)</strong>。防止算法重复访问节点或陷入死循环。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. 面包屑</strong></td>
+<td style="text-align: left;"><code>Dictionary</code> (字典)</td>
+<td style="text-align: left;"><strong>( <code>parent</code>
+)</strong>。记录每个节点“从哪来”，用于在最后<strong>回溯路径</strong>。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="4-算法执行伪代码">4. 算法执行伪代码</span></h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function BFS(start, goal):<br>  # 1. 初始化三大法宝<br>  queue = new Queue()     // 放入起点<br>  queue.add(start)<br>  <br>  visited = new Set()     // 标记起点<br>  visited.add(start)<br>  <br>  parent = new Map()      // 记录起点<br>  parent.set(start, null) <br><br>  # 2. 循环，直到队列为空<br>  while queue.is_not_empty():<br>    <br>    current_node = queue.pop_front() # 从队列头部取出<br><br>    # 3. 检查是否到达终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br><br>    # 4. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 5. 关键检查：是否是“新”节点<br>      if neighbor not in visited:<br>        <br>        # 6. 标记、入队、记录<br>        visited.add(neighbor)         # 标记为已访问<br>        parent.set(neighbor, current_node)  # 记录父节点<br>        queue.add_back(neighbor)      # 放入队尾，等待探索<br>        <br>  # 7. 队列为空，仍未找到<br>  return &quot;No Path Found&quot;<br></code></pre></td></tr></table></figure>
+<h2><span id="5-算法特性总结">5. 算法特性总结</span></h2>
+<p>完备性 (Completeness): 是。只要路径存在，BFS 一定能找到。 最优性
+(Optimality): 是 (仅限无权重图)。 时间复杂度 (Time):
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V + E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> = 节点 (Vertex) 数量。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> = 边
+(Edge) 数量。(每个节点和每条边最多被访问一次)。 空间复杂度 (Space):
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span>(在最坏情况下，Queue 和 visited 集合可能需要存储所有
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> 个节点)。</p>
+<h2><span id="6-算法缺陷">6. 算法缺陷</span></h2>
+<p>不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。</p>
+<p>搜索盲目：
+像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。</p>
+<p>反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。</p>
+<h1><span id="dijkstra-算法-学习笔记">Dijkstra 算法 学习笔记</span></h1>
+<h3><span id="1-核心思想成本优先">1. 核心思想：成本优先</span></h3>
+<p>Dijkstra (迪杰斯特拉) 算法是 BFS 的“<strong>升级版</strong>”。</p>
+<ul>
+<li><strong>BFS
+的目标</strong>：找到<strong>步数最少</strong>的路径。</li>
+<li><strong>Dijkstra
+的目标</strong>：在<strong>带权重</strong>的图中，找到<strong>累计成本最低</strong>的路径。</li>
+</ul>
+<p>它的核心规则是：<strong>永远优先探索从起点出发，累计成本最低的那个““前沿”
+(frontier) 节点</strong>。</p>
+<h3><span id="2-核心保证成本最优">2. 核心保证：成本最优</span></h3>
+<ul>
+<li><strong>最优性</strong>：<strong>是</strong>。只要图中没有<strong>负权重</strong>的边，Dijkstra
+<strong>保证</strong>能找到从起点到<strong>所有</strong>其他节点的<strong>最低成本路径</strong>。</li>
+<li><strong>原因</strong>：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出
+<code>goal</code> (终点)
+时，它所记录的成本<strong>必然</strong>是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。</li>
+</ul>
+<h3><span id="3-dijkstra-的升级工具upgraded-tools">3. Dijkstra 的“升级工具”
+(Upgraded Tools)</span></h3>
+<p>Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。</p>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">目的</th>
+<th style="text-align: left;">BFS (步数最少)</th>
+<th style="text-align: left;">Dijkstra (成本最低)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1. 待办列表</strong></td>
+<td style="text-align: left;"><code>Queue</code> (先进先出)</td>
+<td style="text-align: left;"><strong><code>PriorityQueue</code>
+(最小堆)</strong><br> (用 <code>heapq</code> 实现) <br>
+自动将<strong>成本最低</strong>的节点排到最前。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2. 足迹记录</strong></td>
+<td style="text-align: left;"><code>visited</code> (Set) <br>
+(只关心“去过没”)</td>
+<td style="text-align: left;"><strong><code>cost_so_far</code>
+(Dictionary)</strong> <br> (关心“花销多少”)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. 面包屑</strong></td>
+<td style="text-align: left;"><code>parent</code> (Dictionary)</td>
+<td style="text-align: left;"><strong><code>parent</code>
+(Dictionary)</strong> <br>
+(工作方式相同，但只在找到<strong>更便宜</strong>路径时才更新)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3><span id="4-算法执行伪代码-专业版">4. 算法执行伪代码 (专业版)</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function Dijkstra(start, goal):<br>  # 1. 初始化<br>  pq = new PriorityQueue()<br>  heapq.heappush(pq, (0, start)) # (cost, node)<br>  <br>  cost_so_far = &#123;start: 0&#125;<br>  parent = &#123;start: None&#125;<br><br>  # 2. 循环，直到队列为空<br>  while pq.is_not_empty():<br>    <br>    current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的<br><br>    # 3. (关键优化) 处理“过时”节点<br>    if current_cost &gt; cost_so_far[current_node]:<br>      continue # 这是一条旧的、更贵的路径，跳过<br><br>    # 4. 检查终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br><br>    # 5. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 6. 计算新路径的 *累计成本*<br>      new_cost = current_cost + get_cost(neighbor)<br>      <br>      # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径<br>      if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]:<br>        <br>        # 8. 是！更新所有记录<br>        cost_so_far[neighbor] = new_cost<br>        parent[neighbor] = current_node<br>        heapq.heappush(pq, (new_cost, neighbor))<br>        <br>  # 9. 队列为空，仍未找到<br>  return &quot;No Path Found&quot;<br></code></pre></td></tr></table></figure>
+<h2><span id="5-算法特性总结">5. 算法特性总结</span></h2>
+<p>完备性 (Completeness): 是。只要路径存在，一定能找到。 最优性
+(Optimality): 是 (前提：图中没有负权重的边)。 时间复杂度 (Time):
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>E</mi><mo>+</mo><mi>V</mi><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O((E+V) \log V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">((</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><mi>log</mi><mo>⁡</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(E \log V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> = 节点数, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> =
+边数。复杂度主要取决于优先队列 (heapq) 的性能。 空间复杂度 (Space):
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span>cost_so_far 和 parent 最多存储 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> 个节点。pq
+在最坏情况下也可能存储 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span> 个节点。</p>
+<h2><span id="6-算法缺陷">6. 算法缺陷</span></h2>
+<p>Dijkstra
+最大的缺陷是<strong>效率</strong>，而不是<strong>正确性</strong>（在无负权边的情况下）。</p>
+<p><strong>它是一个“盲目搜索” (Blind Search) 算法</strong>。</p>
+<ul>
+<li><strong>缺陷描述</strong>：Dijkstra
+算法虽然很“聪明”，会优先探索<strong>累计成本低</strong>的路径，但它没有<strong>“方向感”
+(direction)</strong>。</li>
+<li><strong>具体表现</strong>：如果您的终点 <code>G</code>
+在地图的<strong>东边</strong>，Dijkstra
+算法在向东探索的同时，也会<strong>花费同样多的精力</strong>去探索<strong>西边</strong>、<strong>南边</strong>和<strong>北边</strong>的所有路径（只要它们的成本也很低）。</li>
+<li><strong>后果</strong>：它会探索大量“不相关” (irrelevant)
+的区域，导致在大地图上效率低下。</li>
+</ul>
+<p><strong>一句话总结缺陷：</strong> Dijkstra
+找到了<strong>最优</strong>的路径，但代价是<strong>盲目</strong>地探索了太多的区域，效率不高。</p>
+<p>(这正是我们下一个要学的 <strong>A* 算法</strong> 所要解决的问题，A*
+通过引入“启发函数” (heuristic) 解决了“盲目” (blindness) 问题。)</p>
+<hr>
+<h3><span id="为什么负权重边会破坏break-dijkstra">为什么负权重边会““破坏”
+(Break) Dijkstra？</span></h3>
+<p>因为负权重边<strong>打破了 Dijkstra 算法的根本前提</strong>。</p>
+<ul>
+<li><p><strong>Dijkstra 的根本前提（假设）</strong>：
+“一条路径的成本只会随着它的变长而增加（或保持不变）。它<em>永远</em>不会减少。
+一旦我找到了一个到 <code>A</code> 节点成本为 <code>10</code>
+的路径，我就<strong>最终确定</strong>了
+<code>cost_so_far[A] = 10</code>。我永远不需要再回头看
+<code>A</code>，因为任何未来能到达 <code>A</code>
+的新路径，都必然是绕了更远的路，成本必定
+<code>&gt; 10</code>。”</p></li>
+<li><p><strong>负权重边如何打破这个前提</strong>： 负权重边意味着“捷径”
+(shortcuts) 或“回扣”
+(rebates)，它允许你“时间倒流”，在未来找到一条更短的路径。</p></li>
+</ul>
+<h4><span id="举例说明">举例说明：</span></h4>
+<p>想象一个简单的地图，有三个节点：<code>S</code> (起点),
+<code>A</code>, <code>B</code>。</p>
+<p><strong>路径 1：</strong> <code>S -&gt; A</code> * 成本 =
+<strong>2</strong></p>
+<p><strong>路径 2：</strong> <code>S -&gt; B</code> * 成本 =
+<strong>5</strong></p>
+<p><strong>路径 3：</strong> <code>B -&gt; A</code> * 成本 =
+<strong>-4</strong> (一个强大的““漩涡”)</p>
+<hr>
+<p><strong>Dijkstra 的执行过程：</strong></p>
+<ol type="1">
+<li><strong>初始化</strong>：
+<ul>
+<li><code>pq</code> = <code>[ (0, S) ]</code></li>
+<li><code>cost_so_far</code> = <code>&#123; S: 0 &#125;</code></li>
+</ul></li>
+<li><strong>Step 1</strong>：
+<ul>
+<li>弹出 <code>(0, S)</code>。</li>
+<li>探索 <code>S</code> 的邻居 <code>A</code> 和 <code>B</code>。</li>
+<li><strong>找到 <code>A</code></strong>：新成本是
+<code>0 + 2 = 2</code>。</li>
+<li><strong>找到 <code>B</code></strong>：新成本是
+<code>0 + 5 = 5</code>。</li>
+<li>更新法宝：
+<ul>
+<li><code>pq</code> = <code>[ (2, A), (5, B) ]</code> (A
+在前，成本更低)</li>
+<li><code>cost_so_far</code> = <code>&#123; S: 0, A: 2, B: 5 &#125;</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Step 2</strong>：
+<ul>
+<li>弹出成本最低的 <code>(2, A)</code>。</li>
+<li><strong>Dijkstra 在此刻““敲定” (finalizes)</strong>：“<code>A</code>
+的最低成本<strong>绝对</strong>是 <code>2</code>。”</li>
+<li>(假设 <code>A</code> 没有邻居，探索结束)</li>
+</ul></li>
+<li><strong>Step 3</strong>：
+<ul>
+<li>弹出 <code>(5, B)</code>。</li>
+<li>探索 <code>B</code> 的邻居 <code>A</code>。</li>
+<li><strong>找到 <code>A</code></strong>：新成本是
+<code>current_cost (5)</code> + <code>cost(B-&gt;A) (-4)</code> =
+<strong>1</strong>。</li>
+<li><strong>发现矛盾！</strong> 算法发现了一条到 <code>A</code> 成本为
+<code>1</code> 的新路径。</li>
+</ul></li>
+</ol>
+<p><strong>问题所在：</strong> Dijkstra 算法在 <strong>Step 2</strong>
+时，已经<strong>错误地</strong>““承诺” (finalized) <code>A</code>
+的成本是 <code>2</code>。它（在简单实现中）不会再回头去更新
+<code>A</code> 和 <code>A</code>
+的所有邻居。它已经基于一个<strong>错误的前提</strong>（<code>A</code>=2）继续工作了。</p>
+<p><strong>一句话总结：</strong> 负权重边允许““未来” (later)
+路径推翻““早期” (earlier) 的最优解，这违背了 Dijkstra
+算法的贪心（Greedy）假设。</p>
+<p>(注：专门用于处理负权重边的算法叫
+<strong>Bellman-Ford</strong>，但它比 Dijkstra 慢得多。)</p>
+<p>如果有负边会在那里来回走</p>
+<h1><span id="a-a-star">A* (A-Star)</span></h1>
+<h3><span id="1-核心思想dijkstra-方向感">1. 核心思想：Dijkstra + “方向感”</span></h3>
+<p>A* 算法是 Dijkstra 算法的“智能”升级版。</p>
+<ul>
+<li><strong>Dijkstra
+的问题</strong>：它很“聪明”，总能找到成本最低的路径，但它很“盲目”。它会向所有方向探索“廉价”的路径，即使那个方向离终点十万八千里。</li>
+<li><strong>A* 的解决方案</strong>：A* 在 Dijkstra 的“成本意识” (Cost)
+基础上，增加了一个“指南针” (Compass)，这个指南针永远指向终点。</li>
+</ul>
+<p>这个“指南针”就是 <strong>启发函数 (Heuristic)</strong>。</p>
+<h3><span id="2-a-的核心公式">2. A* 的核心公式</span></h3>
+<p>A* 通过一个新公式 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 来决定优先队列的顺序：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n) = g(n) + h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>
+<ul>
+<li><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (G-Cost)</strong>：从<strong>起点</strong>
+<code>S</code> 走到节点 <code>n</code>
+的<strong>“实际累计成本”</strong>。
+<ul>
+<li><strong>作用</strong>：与 Dijkstra
+一样，这是我们<strong>永久记录</strong>在 <code>cost_so_far</code>
+字典中的“真实花费”。</li>
+<li><strong>地位</strong>：算法的<strong>“事实依据”</strong>。</li>
+</ul></li>
+<li><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (H-Cost)</strong>：从节点 <code>n</code>
+走到<strong>终点</strong> <code>G</code> 的<strong>“估计成本”</strong>
+(Heuristic)。
+<ul>
+<li><strong>作用</strong>：这就是“指南针”。它为算法提供了“方向感”。</li>
+<li><strong>最常用的</strong>：<strong>曼哈顿距离</strong> (
+<code>abs(n.x - G.x) + abs(n.y - G.y)</code> )。</li>
+<li><strong>地位</strong>：算法的<strong>“最佳猜测”</strong>。</li>
+</ul></li>
+<li><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (F-Cost)</strong>：从起点经过 <code>n</code>
+到达终点的<strong>“估计总成本”</strong>。
+<ul>
+<li><strong>作用</strong>：它的<strong>唯一</strong>作用，就是作为
+<code>heapq</code> 优先队列的<strong>“排序标签”</strong>。</li>
+<li><strong>地位</strong>：算法的<strong>“决策依据”</strong>。</li>
+</ul></li>
+</ul>
+<h3><span id="3-a-的法宝-数据结构">3. A* 的“法宝” (数据结构)</span></h3>
+<p>A* 的法宝与 Dijkstra 几乎一样，但用途被严格分开了：</p>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">目的</th>
+<th style="text-align: left;">Dijkstra</th>
+<th style="text-align: left;">A* (A-Star)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1. 待办列表</strong></td>
+<td style="text-align: left;"><code>PriorityQueue (heapq)</code><br>
+(存储 <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></strong> 用于排序)</td>
+<td style="text-align: left;"><code>PriorityQueue (heapq)</code><br>
+(存储 <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></strong> 用于排序)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2. 成本记录</strong></td>
+<td style="text-align: left;"><code>cost_so_far</code> (dict)<br> (存储
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>)</td>
+<td style="text-align: left;"><code>g_cost_so_far</code> (dict)<br>
+(<strong>仍然</strong>只存储 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. 面包屑</strong></td>
+<td style="text-align: left;"><code>parent</code> (dict)</td>
+<td style="text-align: left;"><code>parent</code> (dict) <br>
+(完全不变)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A* 最关键的原则</strong>：<strong>G-Cost (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span>)
+用于永久记录，F-Cost (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>) 用于队列排序。</strong></p>
+<hr>
+<h3><span id="4-算法执行伪代码-专业版">4. 算法执行伪代码 (专业版)</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function A_Star(start, goal):<br>  # 1. 初始化<br>  # g_cost_so_far 只记录 G-Cost<br>  g_cost_so_far = &#123;start: 0&#125;<br>  parent = &#123;start: None&#125;<br>  <br>  # pq (优先队列) 只记录 F-Cost<br>  pq = new PriorityQueue()<br>  h_start = heuristic(start, goal)<br>  f_start = g_cost_so_far[start] + h_start<br>  heapq.heappush(pq, (f_start, start)) # (F-Cost, node)<br><br>  # 2. 循环<br>  while pq.is_not_empty():<br>    <br>    current_f_cost, current_node = heapq.heappop(pq)<br>    <br>    # 3. 检查终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br>      <br>    # (专业优化：可以在这里检查弹出的节点是否“过时”)<br>    # if current_f_cost &gt; g_cost_so_far[current_node] + heuristic(current_node, goal):<br>    #   continue<br>      <br>    # 4. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 5. 计算 *新* 的 G-Cost<br>      # g(n) = g(current) + step_cost<br>      step_cost = get_cost(neighbor) # (+ wall_penalty, etc.)<br>      new_g_cost = g_cost_so_far[current_node] + step_cost<br>      <br>      # 6. (A* 的灵魂) 检查 G-Cost 记录<br>      if neighbor not in g_cost_so_far or new_g_cost &lt; g_cost_so_far[neighbor]:<br>        <br>        # 7. 更新 G-Cost 记录 (永久记录)<br>        g_cost_so_far[neighbor] = new_g_cost<br>        <br>        # 8. 计算 F-Cost (用于排序)<br>        h_cost = heuristic(neighbor, goal)<br>        f_cost = new_g_cost + h_cost<br>        <br>        # 9. 推入队列<br>        heapq.heappush(pq, (f_cost, neighbor))<br>        parent[neighbor] = current_node<br>        <br>  # 10. 队列为空<br>  return &quot;No Path Found&quot;<br></code></pre></td></tr></table></figure>
+<h3><span id="5-算法特性总结">5. 算法特性总结</span></h3>
+<ul>
+<li><strong>完备性 (Completeness):</strong>
+<strong>是</strong>。只要路径存在，一定能找到。</li>
+<li><strong>最优性 (Optimality):</strong>
+<strong>是</strong>，<strong>当且仅当</strong>启发函数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>
+是“<strong>可接受的</strong>”
+(Admissible)，即它<strong>永远不会高估</strong>到终点的实际成本。</li>
+<li><strong>时间复杂度 (Time):</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>E</mi><mo>+</mo><mi>V</mi><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O((E+V) \log V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">((</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span>。在实践中，由于
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 的引导，它<strong>远远快于</strong> Dijkstra。</li>
+<li><strong>空间复杂度 (Space):</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+<hr>
+<h3><span id="6-a-的缺陷与局限">6. A* 的缺陷与局限</span></h3>
+<p>A* 已经非常接近“完美”的网格搜索算法，但它仍有局限：</p>
+<ol type="1">
+<li><strong>静态算法</strong>：和 BFS/Dijkstra
+一样，它假设地图是<strong>固定不变</strong>的。如果路径中途突然出现障碍物（如行人），它必须<strong>从头重新规划</strong>。
+(注：D* Lite 等算法专门解决这个问题)。</li>
+<li><strong>路径“质量”问题</strong>：
+<ul>
+<li>A* 找到的路径是“成本最低”的，但不一定是“最平滑”或“最安全”的。</li>
+<li>如您所见，它会紧贴墙壁拐弯。我们必须<strong>手动修改成本函数</strong>（如增加
+<code>WALL_PENALTY</code>）来“诱导”它走得更平滑，这不是算法自带的功能。</li>
+</ul></li>
+<li><strong>网格的诅咒</strong>：
+<ul>
+<li>它找到的路径是由网格点组成的，充满了 90 度的“锯齿”转弯。</li>
+<li>在自动驾驶中，还需要一个“后处理”步骤（如路径平滑）才能将这些点变成车辆可以实际执行的平滑曲线。</li>
+</ul></li>
+<li><strong>启发函数的依赖</strong>：
+<ul>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">h(n) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，A* <strong>退化</strong>为
+Dijkstra（聪明但盲目）。</li>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> <strong>高估</strong>了成本（“不可接受”），A*
+会变得很快，但<strong>不再保证</strong>找到最优路径。</li>
+</ul></li>
+</ol>
+<h1><span id="搜索算法对比bfs-vs-dijkstravs-a">搜索算法对比：BFS vs Dijkstra
+vs A*</span></h1>
+<p>这三种算法是“基于搜索”的路径规划的基石，它们之间有着清晰的““升级””关系。</p>
+<h2><span id="1-算法的升级与降级关系">1. 算法的““升级””与““降级””关系</span></h2>
+<p>您可以将这三者视为一个不断进化的工具：</p>
+<p><strong>BFS (广度优先搜索) -&gt; (升级) -&gt; Dijkstra -&gt; (升级)
+-&gt; A*</strong></p>
+<hr>
+<h3><span id="1-bfs-gt-dijkstra-的升级">1. BFS -&gt; Dijkstra 的“升级”</span></h3>
+<ul>
+<li><strong>BFS 的缺陷</strong>：
+它只懂““步数””，不懂““成本””。在它看来，走 1 公里的高速公路（1步）和走 1
+公里的沼泽（1步）代价相同。</li>
+<li><strong>Dijkstra 如何“升级”</strong>：
+<ol type="1">
+<li><strong>引入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (G-Cost)</strong>：Dijkstra
+引入了<strong>““累计实际成本””</strong>的概念。它不再关心走了几步，只关心<strong>““到这里一共花了多少钱””</strong>。</li>
+<li><strong>升级数据结构</strong>：它将 BFS 的 <code>Queue</code>
+(先进先出队列) 升级为 <code>PriorityQueue</code>
+(最小堆)，使其总是优先探索当前 <code>g(n)</code> 最低的节点。</li>
+</ol></li>
+</ul>
+<p><strong>结论</strong>：Dijkstra 就是““一个能处理带权重图（成本）的
+BFS””。</p>
+<p><strong>““降级””</strong>：如果在一个 Dijkstra
+算法中，你把<strong>所有</strong>的““成本”” (cost) 都设为
+<code>1</code>，那么 Dijkstra 的行为将和 BFS
+<strong>完全一致</strong>。</p>
+<hr>
+<h3><span id="2-dijkstra-gt-a-的升级">2. Dijkstra -&gt; A* 的“升级”</span></h3>
+<ul>
+<li><strong>Dijkstra 的缺陷</strong>：
+它虽然““聪明””（懂成本），但依旧““盲目””。它没有方向感。如果终点在东边，它会同时向西边探索，只要西边的路也足够便宜。</li>
+<li><strong>A* 如何“升级”</strong>：
+<ol type="1">
+<li><strong>引入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (H-Cost)</strong>：A*
+引入了<strong>““启发函数””</strong>（Heuristic），即一个指向终点的““指南针””。这是一个对““未来””成本的<strong>““最佳猜测””</strong>。</li>
+<li><strong>升级决策公式</strong>：它不再像 Dijkstra 那样只根据
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 来排优先级，而是根据一个新的公式 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n) = g(n) + h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>
+来决定优先级。这使得它会<strong>有方向地</strong>、<strong>优先</strong>探索那些““看起来离终点更近””的节点。</li>
+</ol></li>
+</ul>
+<p><strong>结论</strong>：A* 就是““一个带有‘方向感’（启发函数）的
+Dijkstra 算法””。</p>
+<p><strong>““降级””</strong>：如果在一个 A* 算法中，你把““启发函数””
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> <strong>恒定设为 <code>0</code></strong>，那么
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(n) = g(n) + 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，A* 算法就<strong>完全退化</strong>成了 Dijkstra
+算法。</p>
+<hr>
+<h2><span id="2-三种算法优缺点对比">2. 三种算法优缺点对比</span></h2>
+<table>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">算法</th>
+<th style="text-align: left;">核心思想 (优先级)</th>
+<th style="text-align: left;">优点 (Pros)</th>
+<th style="text-align: left;">缺点 (Cons)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>BFS</strong> (广度优先)</td>
+<td style="text-align: left;"><strong>先进先出</strong> (FIFO)</td>
+<td style="text-align: left;">1. 简单，易于实现。<br> 2.
+<strong>保证</strong>找到<strong>步数最少</strong>的路径。</td>
+<td style="text-align: left;">1.
+<strong>致命缺陷</strong>：无法处理““权重””或““成本””。<br> 2.
+盲目搜索，效率低下。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Dijkstra</strong>
+(迪杰斯特拉)</td>
+<td style="text-align: left;"><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>
+(G-Cost)</strong><br> (到起点的累计成本)</td>
+<td style="text-align: left;">1.
+<strong>保证</strong>找到<strong>成本最低</strong>的路径。<br> 2.
+适用于绝大多数““最优路径””问题（只要没有负权边）。</td>
+<td style="text-align: left;">1.
+<strong>盲目搜索</strong>：没有方向感，会探索大量无关区域。<br> 2.
+效率低于 A*。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A*</strong> (A-Star)</td>
+<td style="text-align: left;"><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(n) = g(n) + h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></strong><br>
+(G-Cost + H-Cost)</td>
+<td style="text-align: left;">1. <strong>Dijkstra
+的所有优点</strong>：保证找到成本最低的路径（需
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>““可接受””）。<br> 2. <strong>效率极高</strong>：受
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 引导，只探索““有希望””的区域。</td>
+<td style="text-align: left;">1. 算法性能依赖 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>
+的好坏。<br> 2.
+与前两者一样，是<strong>静态算法</strong>，无法直接处理动态障碍物。</td>
+</tr>
+</tbody>
+</table>
+<h1><span id="搜索代码分析">搜索代码分析</span></h1>
+<h3><span id="1-高层概述">📈 1. 高层概述</span></h3>
+<p>整个轨迹生成过程在 <code>SafetyCorridorGenerator</code>
+类中协调。其<code>process</code>方法是主入口，但核心逻辑分布在
+<code>setSearchInputdata</code> (准备搜索) 和 <code>performSearch</code>
+(执行搜索) 中。</p>
+<p>这个过程并不是只搜索一条轨迹，而是<strong>并行搜索三条备选轨迹</strong>（当前车道、左侧车道、右侧车道），然后从中选出最优的一条。</p>
+<hr>
+<h3><span id="2-详细步骤分解">👣 2. 详细步骤分解</span></h3>
+<h4><span id="第1步前处理与参考线生成setdiscretereferencepoints">第1步：前处理与参考线生成
+(<code>setDiscreteReferencePoints</code>)</span></h4>
+<p>在进行A*搜索之前，系统首先需要一条“粗略的参考线”
+(<code>disref_polyline_</code>)。</p>
+<ol type="1">
+<li><strong>输入</strong>：系统接收多条原始的参考折线
+(<code>ref_polylinesylines</code>)。</li>
+<li><strong>投影</strong>：计算车辆在这些折线上的投影位置
+(<code>ego_proj_len</code>)，以确定车辆的当前进度。</li>
+<li><strong>平滑</strong>：截取车辆前方一定范围内的参考线，并使用
+<code>shape_point_smoother_new_</code>
+对其进行平滑处理。这个平滑器（来自
+<code>shape_point_smoother.cpp</code>）是一个基于 <strong>OSQP
+(二次规划) 的B样条优化器</strong>。</li>
+<li><strong>输出</strong>：生成一条平滑的中心参考线
+(<code>disref_polyline_pwg_</code>)。这条线将用于A*搜索的启发函数（Heuristic）和目标点定义。</li>
+</ol>
+<h4><span id="第2步设置搜索任务setsearchinputdata">第2步：设置搜索任务
+(<code>setSearchInputdata</code>)</span></h4>
+<p>此函数为A*搜索准备所有输入数据。</p>
+<ol type="1">
+<li><strong>定义起止点</strong>：
+<ul>
+<li><strong>起点 (<code>start_point</code>)</strong>:
+如果是第一次搜索，起点就是车辆当前位置 (0, 0,
+0)。如果不是，它会使用上一帧轨迹的“缝合点”
+(<code>stitch_info_</code>)，确保轨迹的连续性。</li>
+<li><strong>终点 (<code>end_point</code>)</strong>:
+通过在第1步生成的平滑参考线上向前推进一定距离
+(<code>search_point_end_dist_</code>) 来动态确定。</li>
+</ul></li>
+<li><strong>定义障碍物</strong>：
+<ul>
+<li>将硬障碍物（如 <code>corridor_polyline_left_</code> 和
+<code>corridor_polyline_right_</code>）和软障碍物（如
+<code>laneline_table_</code>，即车道线）转换为搜索算法所需的格式。</li>
+</ul></li>
+<li><strong>创建并行任务</strong>：
+<ul>
+<li>这是本系统的一个关键特性。它不只创建一个搜索任务，而是创建三个：
+<ul>
+<li><code>search_data_current</code> (当前车道)</li>
+<li><code>search_data_left</code> (左侧车道)</li>
+<li><code>search_data_right</code> (右侧车道)</li>
+</ul></li>
+<li>它通过 <code>startpointcheck_inglobal</code>
+函数检查立即向左/向右变道是否可行，如果可行，则将左/右搜索任务的起点横向偏移一个车道宽度
+(<code>shift_lane_width</code>)。</li>
+</ul></li>
+</ol>
+<h4><span id="第3步并行执行搜索performsearch">第3步：并行执行搜索
+(<code>performSearch</code>)</span></h4>
+<ol type="1">
+<li><strong>提交任务</strong>：将上一步创建的三个搜索任务
+(<code>search_data_vec_</code>) 提交到一个线程池
+(<code>search_ThreadPool</code>) 中。</li>
+<li><strong>执行搜索</strong>：线程池中的每个线程都会执行一个 lambda
+函数 <code>search_craft</code>。</li>
+<li><strong>实例化A</strong>*：在 <code>search_craft</code>
+中，系统会实例化一个 <code>HybridAStar</code> 对象（来自
+<code>hybrid_a_star.cpp</code>）。</li>
+<li><strong>调用搜索</strong>：调用
+<code>hybridAstar.performAstarSearch</code>
+函数，传入起点、终点、障碍物和车道线数据。</li>
+</ol>
+<h4><span id="第4步混合a核心算法hybridastarperformastarsearch">第4步：混合A*核心算法
+(<code>HybridAStar::performAstarSearch</code>)</span></h4>
+<p>这是混合A*算法的核心实现，它在 <code>hybrid_a_star.cpp</code>
+文件中。</p>
+<ol type="1">
+<li><strong>初始化</strong>：
+<ul>
+<li>创建一个优先队列 (<code>open_pq_</code>) 作为 A* 的 Open Set。</li>
+<li>将 <code>start_node_</code> 放入队列。</li>
+<li>A*搜索使用一个<strong>启发函数 (Heuristic)</strong>
+来估计到终点的代价。这里的实现 (<code>HoloObstacleHeuristic</code>)
+是一种简化的启发：它计算节点沿着粗参考线到终点的<strong>纵向距离 +
+横向偏离距离</strong>。</li>
+<li>(注意：代码中注释掉了使用 <code>GridSearch</code> (来自
+<code>grid_search.cpp</code>) 作为更复杂启发函数的选项)。</li>
+</ul></li>
+<li><strong>A* 搜索循环</strong>：
+<ul>
+<li><code>while (!open_pq_.empty() ...)</code>：循环直到找到路径或 Open
+Set 为空。</li>
+<li><strong>弹出节点</strong>：从队列中弹出代价 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> (
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mi>g</mi><mo>+</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">f = g + h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span> ) 最小的节点 <code>current_node</code>。</li>
+<li><strong>检查终点</strong>：<code>ChecknodeIsFinal</code>
+检查是否到达终点。</li>
+</ul></li>
+<li><strong>节点扩展 (关键的 "Hybrid" 部分)</strong>：
+<ul>
+<li><code>Next_node_generator</code>：这是“混合”A<em>与“栅格”A</em>的根本区别。它不是在栅格上向8个方向扩展，而是<strong>模拟车辆的运动学模型</strong>。</li>
+<li>它通过尝试一组离散的转向角 (<code>-max_steer_angle_</code> 到
+<code>+max_steer_angle_</code>) 并向前行驶一小段距离
+(<code>step_size_</code>)
+来生成一系列<strong>运动学上可行的</strong>子节点。</li>
+</ul></li>
+<li><strong>代价计算 (<code>CalculateNodeCost</code>)</strong>：
+<ul>
+<li><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (真实代价)</strong>：在 <code>TrajCost</code>
+中计算。这个代价函数会惩罚：
+<ul>
+<li>倒车 (<code>traj_back_penalty_</code>)</li>
+<li>换挡 (<code>traj_gear_switch_penalty_</code>)</li>
+<li>大转向角 (<code>traj_steer_penalty_</code>)</li>
+<li>转向角变化率 (<code>traj_steer_change_penalty_</code>)</li>
+</ul></li>
+<li><strong>车道线代价</strong>：<code>LineCrossCost</code>
+会在节点扩展时检查是否穿过了软边界（车道线）。如果穿过，会施加一个巨大的惩罚
+(<code>soft_boundary_penalty_ * 100</code>)，使A*算法倾向于不跨越车道线。</li>
+<li><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> (启发代价)</strong>：如前所述，使用
+<code>HoloObstacleHeuristic</code> 计算。</li>
+</ul></li>
+<li><strong>碰撞检测 (<code>ValidityCheck</code>)</strong>：
+<ul>
+<li>每个生成的 <code>next_node</code> 都会被检查是否与硬障碍物
+(<code>obstacles_linesegments_vec_</code>) 发生碰撞。</li>
+<li>碰撞的节点会被丢弃。</li>
+</ul></li>
+<li><strong>路径回溯 (<code>GetNodeResult</code>)</strong>：
+<ul>
+<li>当A*循环找到 <code>final_node_</code> 时，它会通过
+<code>GetPreNode()</code>
+链条从终点反向回溯到起点，提取出一条由节点组成的原始路径
+(<code>result-&gt;x</code>, <code>result-&gt;y</code>)。</li>
+</ul></li>
+</ol>
+<h4><span id="第5步后处理-路径平滑-hybridastarperformastarsearch">第5步：后处理
+- 路径平滑 (<code>HybridAStar::performAstarSearch</code>)</span></h4>
+<p>A*搜索出的原始路径是粗糙且不连续的，<strong>不能直接使用</strong>。</p>
+<ol type="1">
+<li><strong>路径加密</strong>：<code>Densification_result</code>
+将A*输出的稀疏节点路径加密为固定间隔（如0.5米）的点。</li>
+<li><strong>约束填充</strong>：<code>FillSearchResultToOptimizer</code>
+将路径点和沿途的约束（车道线、障碍物边界）填充到
+<code>constraint_pool_</code> (来自 <code>constraint_pool.cpp</code>)
+中。</li>
+<li><strong>B样条优化</strong>：系统调用
+<code>search_result_smoother_-&gt;Solve()</code>。
+<ul>
+<li>这与第1步中的平滑器是同一个东西：一个基于 <strong>OSQP
+的B样条优化器</strong>（来自
+<code>shape_point_smoother_osqp_interface.cpp</code>）。</li>
+<li>它将A*生成的（加密）路径作为<strong>强参考</strong>。</li>
+<li>它求解一个二次规划问题，目标是找到一条B样条曲线，使其**在满足车辆动力学约束（如曲率、曲率变化率）和避障约束的同时，尽可能接近A*找到的路径**。</li>
+<li><code>CalculateKernel</code>
+定义了优化的目标函数，它最小化位置、速度、加速度、Jerk（加加速度）和Snap（加加加速度）的加权和。</li>
+</ul></li>
+<li><strong>最终轨迹</strong>：平滑器的输出
+(<code>result-&gt;optimized_x</code>,
+<code>result-&gt;optimized_y</code>) 才是真正平滑、可执行的轨迹。</li>
+</ol>
+<h4><span id="第6步轨迹选择performsearch">第6步：轨迹选择
+(<code>performSearch</code>)</span></h4>
+<ol type="1">
+<li>线程池中的三个搜索任务（左、中、右）都完成后，<code>performSearch</code>
+函数会得到最多三个平滑后的轨迹。</li>
+<li>它通过一个简单的“最近”逻辑
+(<code>nearst_road_id</code>)，遍历所有轨迹上的点，找出离车辆当前位置
+(<code>car_current_pos</code>) 最近的那条轨迹。</li>
+<li><strong>输出</strong>：将选中的这条轨迹（包含了缝合点和新生成的平滑轨迹）作为最终结果
+(<code>disref_positon_</code>, <code>disref_heading_</code>)。</li>
+</ol>
+<hr>
+<h3><span id="️-3-关键文件与函数映射">🏛️ 3. 关键文件与函数映射</span></h3>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">功能</th>
+<th style="text-align: left;">主要文件</th>
+<th style="text-align: left;">关键函数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>流程总控</strong></td>
+<td style="text-align: left;"><code>safetycorridor_generator.cpp</code></td>
+<td style="text-align: left;"><code>process</code>,
+<code>performSearch</code>, <code>setSearchInputdata</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>并行搜索</strong></td>
+<td style="text-align: left;"><code>search_thread_pool.cpp</code></td>
+<td style="text-align: left;"><code>search_ThreadPool::ForEach</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">**混合A*搜索**</td>
+<td style="text-align: left;"><code>hybrid_a_star.cpp</code></td>
+<td style="text-align: left;"><code>performAstarSearch</code>,
+<code>Next_node_generator</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>代价函数</strong></td>
+<td style="text-align: left;"><code>hybrid_a_star.cpp</code></td>
+<td style="text-align: left;"><code>CalculateNodeCost</code>,
+<code>TrajCost</code>, <code>LineCrossCost</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>启发函数</strong></td>
+<td style="text-align: left;"><code>hybrid_a_star.cpp</code></td>
+<td style="text-align: left;"><code>HoloObstacleHeuristic</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(备用)启发函数</strong></td>
+<td style="text-align: left;"><code>grid_search.cpp</code></td>
+<td style="text-align: left;"><code>GenerateDpMap</code>
+(生成代价地图)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>路径平滑</strong></td>
+<td style="text-align: left;"><code>shape_point_smoother.cpp</code></td>
+<td style="text-align: left;"><code>QpWithOsqp</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>OSQP优化器</strong></td>
+<td style="text-align: left;"><code>shape_point_smoother_osqp_interface.cpp</code></td>
+<td style="text-align: left;"><code>Solve</code>,
+<code>CalculateKernel</code>,
+<code>CalculateAffineConstraint</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>约束管理</strong></td>
+<td style="text-align: left;"><code>constraint_pool.cpp</code></td>
+<td style="text-align: left;"><code>queryConstraineLineSeg</code></td>
+</tr>
+</tbody>
+</table>
+<p>总结来说，这是一个非常健壮的轨迹生成系统。它使用<strong>混合A</strong>*来解决高维（带运动学约束）的路径查找问题，同时通过<strong>并行搜索</strong>来探索不同的车道选项，最后依靠<strong>B样条QP优化</strong>来确保生成的轨迹平滑且可行。</p>
+<p>希望这个解读对您有帮助！</p>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/10/30/work/%E6%B7%B7%E5%90%88A/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;30&#x2F;work&#x2F;混合A&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;30&#x2F;work&#x2F;混合A&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
