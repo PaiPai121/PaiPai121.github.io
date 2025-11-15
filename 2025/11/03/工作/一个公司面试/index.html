@@ -394,99 +394,119 @@
 			<a><i class="kirafont icon-edit-fill"></i>1.3k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
-		<html><head></head><body><h1><span id="一个公司-面试经验"><span id="%E4%B8%80%E4%B8%AA%E5%85%AC%E5%8F%B8-%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C"> 一个公司 面试经验</span></span></h1>
+		<html><head></head><body><h1><span id="一个公司-面试经验"><span id="%E4%B8%80%E4%B8%AA%E5%85%AC%E5%8F%B8-%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C">一个公司 面试经验</span></span></h1>
 <hr>
-<h2><span id="基本情况"><span id="%E5%9F%BA%E6%9C%AC%E6%83%85%E5%86%B5"> 📌 基本情况</span></span></h2>
+<h2><span id="基本情况"><span id="%E5%9F%BA%E6%9C%AC%E6%83%85%E5%86%B5">📌 基本情况</span></span></h2>
 <ul>
 <li><strong>公司:</strong> **公司</li>
 <li><strong>岗位:</strong> PNC (规划控制) 核心工程师</li>
 <li><strong>面试轮次:</strong> 共三轮技术面 + 一轮 HR 面</li>
 </ul>
 <hr>
-<h2><span id="️-一面-pnc核心工程师"><span id="%EF%B8%8F-%E4%B8%80%E9%9D%A2-pnc%E6%A0%B8%E5%BF%83%E5%B7%A5%E7%A8%8B%E5%B8%88"> ➡️ 一面 (PNC核心工程师)</span></span></h2>
+<h2><span id="️-一面-pnc核心工程师"><span id="%EF%B8%8F-%E4%B8%80%E9%9D%A2-pnc%E6%A0%B8%E5%BF%83%E5%B7%A5%E7%A8%8B%E5%B8%88">➡️ 一面 (PNC核心工程师)</span></span></h2>
 <ul>
-<li><strong>内容:</strong> 自我介绍，以及针对过去项目（835项目）的沟通。</li>
-<li><strong>面试官评价:</strong> 评论 835 项目架构有些头重脚轻，认为参考线部分承担过多，导致解耦合不好，团队沟通效率低。</li>
+<li><strong>内容:</strong>
+自我介绍，以及针对过去项目（835项目）的沟通。</li>
+<li><strong>面试官评价:</strong> 评论 835
+项目架构有些头重脚轻，认为参考线部分承担过多，导致解耦合不好，团队沟通效率低。</li>
 </ul>
-<h3><span id="c-八股"><span id="c-%E5%85%AB%E8%82%A1"> C++ 八股</span></span></h3>
-<p><strong>问题：</strong><br>
-说说 <code>const int *a</code>, <code>int const *a</code>, <code>const int a</code>, <code>int *const a</code>, <code>const int *const a</code> 分别是什么，有什么特点。</p>
+<h3><span id="c-八股"><span id="c-%E5%85%AB%E8%82%A1">C++ 八股</span></span></h3>
+<p><strong>问题：</strong> 说说 <code>const int *a</code>,
+<code>int const *a</code>, <code>const int a</code>,
+<code>int *const a</code>, <code>const int *const a</code>
+分别是什么，有什么特点。</p>
 <blockquote>
 <p>(面试者注：我当时没答出来)</p>
 </blockquote>
-<p><strong>正确回答：</strong></p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> a;        <span class="hljs-comment">// a 是一个常量，不允许修改。</span><br><span class="hljs-number">2.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *a;      <span class="hljs-comment">// a 指针所指向的内存里的值不变，即 (*a) 不变。</span><br><span class="hljs-number">3.</span> <span class="hljs-type">int</span> <span class="hljs-type">const</span> *a;      <span class="hljs-comment">// 同 const int *a。</span><br><span class="hljs-number">4.</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a;      <span class="hljs-comment">// a 指针所指向的内存地址不变，即 a 不变。</span><br><span class="hljs-number">5.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a; <span class="hljs-comment">// 都不变，即 (*a) 不变，a 也不变。</span><br></code></pre></td></tr></tbody></table></figure>
-<h3><span id="编程题目"><span id="%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE"> 编程题目</span></span></h3>
+<p><strong>正确回答：</strong> </p><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> a;        <span class="hljs-comment">// a 是一个常量，不允许修改。</span><br><span class="hljs-number">2.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *a;      <span class="hljs-comment">// a 指针所指向的内存里的值不变，即 (*a) 不变。</span><br><span class="hljs-number">3.</span> <span class="hljs-type">int</span> <span class="hljs-type">const</span> *a;      <span class="hljs-comment">// 同 const int *a。</span><br><span class="hljs-number">4.</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a;      <span class="hljs-comment">// a 指针所指向的内存地址不变，即 a 不变。</span><br><span class="hljs-number">5.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a; <span class="hljs-comment">// 都不变，即 (*a) 不变，a 也不变。</span><br></code></pre></td></tr></tbody></table></figure><p></p>
+<h3><span id="编程题目"><span id="%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE">编程题目</span></span></h3>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game-ii/">LeetCode 45. 跳跃游戏 II</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game-ii/">LeetCode 45.
+跳跃游戏 II</a></li>
 </ul>
 <hr>
-<h2><span id="️-二面-pnc团队大leader"><span id="%EF%B8%8F-%E4%BA%8C%E9%9D%A2-pnc%E5%9B%A2%E9%98%9F%E5%A4%A7leader"> ➡️ 二面 (PNC团队大leader)</span></span></h2>
+<h2><span id="️-二面-pnc团队大leader"><span id="%EF%B8%8F-%E4%BA%8C%E9%9D%A2-pnc%E5%9B%A2%E9%98%9F%E5%A4%A7leader">➡️ 二面 (PNC团队大leader)</span></span></h2>
 <p>这一面主要深入聊了项目经历，面试官比较关心<strong>换道决策</strong>。</p>
-<h3><span id="1-项目经历介绍-经纬恒润-cx835-城市领航辅助项目"><span id="1-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86%E4%BB%8B%E7%BB%8D-%E7%BB%8F%E7%BA%AC%E6%81%92%E6%B6%A6-cx835-%E5%9F%8E%E5%B8%82%E9%A2%86%E8%88%AA%E8%BE%85%E5%8A%A9%E9%A1%B9%E7%9B%AE"> 1. 项目经历介绍 (经纬恒润 CX835 城市领航辅助项目)</span></span></h3>
+<h3><span id="1-项目经历介绍经纬恒润-cx835-城市领航辅助项目"><span id="1-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86%E4%BB%8B%E7%BB%8D%E7%BB%8F%E7%BA%AC%E6%81%92%E6%B6%A6-cx835-%E5%9F%8E%E5%B8%82%E9%A2%86%E8%88%AA%E8%BE%85%E5%8A%A9%E9%A1%B9%E7%9B%AE">1. 项目经历介绍
+(经纬恒润 CX835 城市领航辅助项目)</span></span></h3>
 <ul>
-<li><strong>项目概况：</strong> 2024 年 6 月毕业后参与，当时处于方案确定时期。</li>
-<li><strong>规控框架：</strong> 获取感知和地图信息 -&gt; 确定车道属性 -&gt; 生成参考线 -&gt; 以参考线为坐标系处理动态障碍物 -&gt; 实现绕行和换道。</li>
-<li><strong>过路口方案：</strong> 最初方案有问题，引入轻地图方案，后经多次优化，解决地图信息偏差、车道宽度/数量错误等问题。</li>
+<li><strong>项目概况：</strong> 2024 年 6
+月毕业后参与，当时处于方案确定时期。</li>
+<li><strong>规控框架：</strong> 获取感知和地图信息 -&gt; 确定车道属性
+-&gt; 生成参考线 -&gt; 以参考线为坐标系处理动态障碍物 -&gt;
+实现绕行和换道。</li>
+<li><strong>过路口方案：</strong>
+最初方案有问题，引入轻地图方案，后经多次优化，解决地图信息偏差、车道宽度/数量错误等问题。</li>
 <li><strong>复杂场景处理 (如右转专用道)：</strong>
 <ul>
 <li>早期：混合 A* 搜索方案。</li>
 <li>后期：采集专家轨迹生成参考线（泛化性差，是临时方案）。</li>
 <li>配合状态机处理不同场景。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3><span id="2-方案验证方式"><span id="2-%E6%96%B9%E6%A1%88%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F"> 2. 方案验证方式</span></span></h3>
+<h3><span id="2-方案验证方式"><span id="2-%E6%96%B9%E6%A1%88%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F">2. 方案验证方式</span></span></h3>
 <ul>
 <li><strong>验证方法：</strong> 数采团队路测，高频问题直接反馈。</li>
-<li><strong>版本管理：</strong> 分 Daily Build (每天跑 50-100 公里) 和稳定版 (每天跑 200-300 公里)。</li>
-<li><strong>路线选择：</strong> 不固定，根据代码提交内容选择不同路况。</li>
-<li><strong>问题解决流程：</strong> 发现问题打 tag -&gt; 修改后数据回灌验证 -&gt; 测试同学原场景复现 -&gt; 确认解决后提交。</li>
-<li><strong>避免场景回退：</strong> 评估代码改动量。小改动简单测试；大改动多次测试，测试部通过后再提至稳定版。</li>
+<li><strong>版本管理：</strong> 分 Daily Build (每天跑 50-100 公里)
+和稳定版 (每天跑 200-300 公里)。</li>
+<li><strong>路线选择：</strong>
+不固定，根据代码提交内容选择不同路况。</li>
+<li><strong>问题解决流程：</strong> 发现问题打 tag -&gt;
+修改后数据回灌验证 -&gt; 测试同学原场景复现 -&gt; 确认解决后提交。</li>
+<li><strong>避免场景回退：</strong>
+评估代码改动量。小改动简单测试；大改动多次测试，测试部通过后再提至稳定版。</li>
 </ul>
-<h3><span id="3-技术问题交流"><span id="3-%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E4%BA%A4%E6%B5%81"> 3. 技术问题交流</span></span></h3>
+<h3><span id="3-技术问题交流"><span id="3-%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E4%BA%A4%E6%B5%81">3. 技术问题交流</span></span></h3>
 <ul>
 <li><strong>修路场景处理：</strong>
 <ul>
 <li>感知不到道线时，参考线以原位置粗解。</li>
 <li>用激光雷达点云的 Free Space 确定边界约束，绕过施工区域。</li>
 <li>锥筒间距小于 2 米认为不可通过。</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>感知距离及限速：</strong>
 <ul>
 <li>感知距离：车辆 &gt;80m，行人 ~60m，锥桶/水马 ~40m。</li>
 <li>规控使用：车道线后处理后，下游规控拿到 60m 以内。</li>
 <li>调速：根据感知距离、激光雷达边界和地图信息调整（目前方案较粗糙）。</li>
+</ul></li>
+<li><strong>专家轨迹维护：</strong>
+离线采集，作为地图图层。自车到对应区域用其作为目标车道中心线（泛化性差，临时方案）。</li>
+<li><strong>自构图情况：</strong>
+目前没有专门团队做，方案较粗糙，处于踩南昌交付区域场景阶段。</li>
+<li><strong>个人负责内容：</strong>
+轻地图方案边界生成、参考线策略，参与部分车道选择决策。</li>
 </ul>
-</li>
-<li><strong>专家轨迹维护：</strong> 离线采集，作为地图图层。自车到对应区域用其作为目标车道中心线（泛化性差，临时方案）。</li>
-<li><strong>自构图情况：</strong> 目前没有专门团队做，方案较粗糙，处于踩南昌交付区域场景阶段。</li>
-<li><strong>个人负责内容：</strong> 轻地图方案边界生成、参考线策略，参与部分车道选择决策。</li>
-</ul>
-<h3><span id="4-岗位相关交流-kargo-的技术栈"><span id="4-%E5%B2%97%E4%BD%8D%E7%9B%B8%E5%85%B3%E4%BA%A4%E6%B5%81-kargo-%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"> 4. 岗位相关交流 (Kargo 的技术栈)</span></span></h3>
+<h3><span id="4-岗位相关交流-kargo的技术栈"><span id="4-%E5%B2%97%E4%BD%8D%E7%9B%B8%E5%85%B3%E4%BA%A4%E6%B5%81-kargo%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88">4. 岗位相关交流 (Kargo
+的技术栈)</span></span></h3>
 <ul>
-<li><strong>L4 卡车问题：</strong> 接管率低，单车处理不了就降级，远程接管（车上有安全员）。后续想融合高精地图和高清地图。</li>
-<li><strong>轨迹生成方式：</strong> 基于优化，依赖优化空间下的边界信息约束。目前是重图方案，中短期想演进到轻图结合方案。</li>
-<li><strong>换道决策：</strong> 分静态判断和动态检查。选道根据候选区域和导航信息，还有推荐换道和 MLC 方案。</li>
-<li><strong>入职任务（可能）：</strong> 环境结构生成和宏观行为决策（换道相关）。</li>
-<li><strong>AI 应用：</strong> 换道框架做轨迹评价选优，有 AI 强化学习方案用于轨迹生成。</li>
+<li><strong>L4 卡车问题：</strong>
+接管率低，单车处理不了就降级，远程接管（车上有安全员）。后续想融合高精地图和高清地图。</li>
+<li><strong>轨迹生成方式：</strong>
+基于优化，依赖优化空间下的边界信息约束。目前是重图方案，中短期想演进到轻图结合方案。</li>
+<li><strong>换道决策：</strong>
+分静态判断和动态检查。选道根据候选区域和导航信息，还有推荐换道和 MLC
+方案。</li>
+<li><strong>入职任务（可能）：</strong>
+环境结构生成和宏观行为决策（换道相关）。</li>
+<li><strong>AI 应用：</strong> 换道框架做轨迹评价选优，有 AI
+强化学习方案用于轨迹生成。</li>
 <li><strong>卡车换道问题：</strong>
 <ul>
 <li>卡车换道能力弱，可在轨迹评价中建模。</li>
 <li>求解空间无可达目标车道轨迹时，减速等待。</li>
 <li>采用时空联合方式做决策。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <hr>
-<h2><span id="️-三面-可能是未来的mentor"><span id="%EF%B8%8F-%E4%B8%89%E9%9D%A2-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%AA%E6%9D%A5%E7%9A%84mentor"> ➡️ 三面 (可能是未来的Mentor)</span></span></h2>
+<h2><span id="️-三面-可能是未来的mentor"><span id="%EF%B8%8F-%E4%B8%89%E9%9D%A2-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%AA%E6%9D%A5%E7%9A%84mentor">➡️ 三面 (可能是未来的Mentor)</span></span></h2>
 <ul>
 <li><strong>内容：</strong> 交流内容与二面类似。</li>
-<li><strong>面试官评价：</strong> 评价我之前（835）的技术栈比较滞后。</li>
+<li><strong>面试官评价：</strong>
+评价我之前（835）的技术栈比较滞后。</li>
 </ul>
 <hr>
-<h2><span id="️-hr面"><span id="%EF%B8%8F-hr%E9%9D%A2"> ➡️ HR面</span></span></h2>
+<h2><span id="️-hr面"><span id="%EF%B8%8F-hr%E9%9D%A2">➡️ HR面</span></span></h2>
 <ul>
 <li><strong>常规问题：</strong>
 <ul>
@@ -496,24 +516,21 @@
 <li>有无接触其他企业。</li>
 <li>当前薪资。</li>
 <li>最快什么时候入职。</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>公司介绍：</strong>
 <ul>
 <li>介绍公司情况。</li>
 <li>后续流程与决策。</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>技术适应流程 (Onboarding)：</strong>
 <ul>
 <li>有新员工培训。</li>
 <li>会配 Mentor 带小项目。</li>
 <li>合同三年，试用期 6 个月。</li>
 <li>设置明确的试用期目标，有中期反馈和转正答辩。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1><span id="周二反馈"><span id="%E5%91%A8%E4%BA%8C%E5%8F%8D%E9%A6%88"> 周二反馈</span></span></h1>
+<h1><span id="周二反馈"><span id="%E5%91%A8%E4%BA%8C%E5%8F%8D%E9%A6%88">周二反馈</span></span></h1>
 <p>岗位不匹配，拒了我</p>
 </body></html>
 	</article>

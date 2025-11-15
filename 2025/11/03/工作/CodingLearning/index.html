@@ -392,312 +392,268 @@
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月03日</a>
 			<a><i class="kirafont icon-edit-fill"></i>2.2k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 9 分钟</a>
 		</div>
-		<html><head></head><body><h1><span id="链表"><span id="%E9%93%BE%E8%A1%A8"> 链表</span></span></h1>
-<ul>
-<li>[x] 141. 环形链表  (比较简单)</li>
-<li>[x] 142. 环形链表 II （需要注意Floyd判圈）</li>
-</ul>
-<h1><span id="链表"><span id="%E9%93%BE%E8%A1%A8"> 链表</span></span></h1>
-<ul>
-<li>[x] 141. 环形链表  (比较简单)</li>
-<li>[x] 142. 环形链表 II （需要注意Floyd判圈）<br>
-<img data-fancybox="gallery" data-sizes="auto" data-src="/2025/11/03/%E5%B7%A5%E4%BD%9C/CodingLearning/image.png" alt="alt text" class="lazyload"><br>
-fast 指针已经走完了环的 n 圈，因此它走过的总距离为</li>
-</ul>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mi>n</mi><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mtext>。</mtext></mrow><annotation encoding="application/x-tex">a+n(b+c)+b=a+(n+1)b+nc。</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">。</span></span></span></span></span>
-<p>而 slow 指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow 指针多走了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">nb+nc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span></span></span></span> 的距离。</p>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mn>2</mn><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a + (n+1)b + nc = 2  (nb+nc)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mi>c</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = (n-1)b +nc = c + (n-1)(b+c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span>
-<ul>
-<li>
-<p>[x] 160. 相交链表<br>
-方案1：直接hash，复杂度比较差<br>
-方案2：双指针<br>
-在指针 pA 移动了 a+c+b 次、指针 pB 移动了 b+c+a 次之后一定会是重复节点。如果无相交就是空节点 妙啊</p>
-</li>
-<li>
-<p>[x] 19. 删除链表的倒数第 N 个结点<br>
-方案1：两次遍历</p>
-</li>
+		<html><head></head><body><h1><span id="链表"><span id="%E9%93%BE%E8%A1%A8">链表</span></span></h1>
+<ul class="task-list">
+<li><p><label><input type="checkbox" checked>141. 环形链表
+(比较简单)</label></p></li>
+<li><p><label><input type="checkbox" checked>142. 环形链表 II
+（需要注意Floyd判圈） # 链表</label></p></li>
+<li><p><label><input type="checkbox" checked>141. 环形链表
+(比较简单)</label></p></li>
+<li><p><label><input type="checkbox" checked>142. 环形链表 II
+（需要注意Floyd判圈） <img data-fancybox="gallery" data-sizes="auto" data-src="/2025/11/03/%E5%B7%A5%E4%BD%9C/CodingLearning/image.png" alt="alt text" class="lazyload"> fast
+指针已经走完了环的 n 圈，因此它走过的总距离为 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mi>n</mi><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mtext>。</mtext></mrow><annotation encoding="application/x-tex">a+n(b+c)+b=a+(n+1)b+nc。</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">。</span></span></span></span></span> 而 slow
+指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow 指针多走了
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">nb+nc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span></span></span></span> 的距离。 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mn>2</mn><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a + (n+1)b + nc = 2  (nb+nc)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span> <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mi>c</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = (n-1)b +nc = c + (n-1)(b+c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span></label></p></li>
+<li><p><label><input type="checkbox" checked>160. 相交链表
+方案1：直接hash，复杂度比较差 方案2：双指针 在指针 pA 移动了 a+c+b
+次、指针 pB 移动了 b+c+a 次之后一定会是重复节点。如果无相交就是空节点
+妙啊</label></p></li>
+<li><p><label><input type="checkbox" checked>19. 删除链表的倒数第 N
+个结点 方案1：两次遍历</label></p></li>
 </ul>
 <p>方案2：栈</p>
-<ul>
-<li>
-<p>[x] 21.  合并两个有序链表<br>
-很简单</p>
-</li>
-<li>
-<p>[x] 23. 合并 K 个升序链表<br>
-直接递归，但是复杂度较高<br>
-待优化为分治或优先队列</p>
-</li>
-<li>
-<p>[x] 86. 分隔链表<br>
-直接模拟</p>
-</li>
-<li>
-<p>[x] 876. 链表的中间结点<br>
-很简单</p>
-</li>
+<ul class="task-list">
+<li><p><label><input type="checkbox" checked>21. 合并两个有序链表
+很简单</label></p></li>
+<li><p><label><input type="checkbox" checked>23. 合并 K 个升序链表
+直接递归，但是复杂度较高 待优化为分治或优先队列</label></p></li>
+<li><p><label><input type="checkbox" checked>86. 分隔链表
+直接模拟</label></p></li>
+<li><p><label><input type="checkbox" checked>876. 链表的中间结点
+很简单</label></p></li>
 </ul>
-<h1><span id="数组"><span id="%E6%95%B0%E7%BB%84"> 数组</span></span></h1>
+<h1><span id="数组"><span id="%E6%95%B0%E7%BB%84">数组</span></span></h1>
 <ul>
-<li>
-<p>[x] 167. 两数之和 II - 输入有序数组<br>
-双指针</p>
-</li>
-<li>
-<p>[ ] 5. 最长回文子串<br>
-这个做的不好，再看看</p>
-</li>
-<li>
-<p>[ ]</p>
-</li>
+<li><p><label><input type="checkbox" checked>167. 两数之和 II -
+输入有序数组 双指针</label></p></li>
+<li><p><label><input type="checkbox">5. 最长回文子串
+这个做的不好，再看看</label></p></li>
+<li><p>[ ]</p></li>
 </ul>
-<h2><span id="滑动窗口"><span id="%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"> 滑动窗口</span></span></h2>
+<h2><span id="滑动窗口"><span id="%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3">滑动窗口</span></span></h2>
 <ul>
-<li>[x] 438. 找到字符串中所有字母异位词</li>
-<li>[x] 567. 字符串的排列</li>
-<li>[x] 76. 最小覆盖子串<br>
-做的不好</li>
+<li><label><input type="checkbox" checked>438.
+找到字符串中所有字母异位词</label></li>
+<li><label><input type="checkbox" checked>567.
+字符串的排列</label></li>
+<li><label><input type="checkbox" checked>76. 最小覆盖子串
+做的不好</label></li>
 <li>[ ]</li>
 </ul>
-<h2><span id="动态规划"><span id="%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"> 动态规划</span></span></h2>
-<ul>
-<li>[x] 322. 零钱兑换</li>
-<li>[x] 509. 斐波那契数</li>
+<h2><span id="动态规划"><span id="%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>322.
+零钱兑换</label></li>
+<li><label><input type="checkbox" checked>509.
+斐波那契数</label></li>
 </ul>
-<h2><span id="回溯"><span id="%E5%9B%9E%E6%BA%AF"> 回溯</span></span></h2>
+<h2><span id="回溯"><span id="%E5%9B%9E%E6%BA%AF">回溯</span></span></h2>
 <ul>
-<li>[x] 46. Permutations<br>
-一点也不会</li>
-<li>[x] 216. 组合总和 III<br>
-比较简单，可以记一下visited</li>
-<li>[x] 39. 组合总和<br>
-也很简单，允许重复，不需要记录visited</li>
-<li>[x] 40. 组合总和 II<br>
-需要去重，额外考虑一下排序然后如何去重</li>
-<li>[x] 47. 全排列 II<br>
-需要考虑去重，前一个visited</li>
+<li><label><input type="checkbox" checked>46. Permutations
+一点也不会</label></li>
+<li><label><input type="checkbox" checked>216. 组合总和 III
+比较简单，可以记一下visited</label></li>
+<li><label><input type="checkbox" checked>39. 组合总和
+也很简单，允许重复，不需要记录visited</label></li>
+<li><label><input type="checkbox" checked>40. 组合总和 II
+需要去重，额外考虑一下排序然后如何去重</label></li>
+<li><label><input type="checkbox" checked>47. 全排列 II
+需要考虑去重，前一个visited</label></li>
 <li>[ ]</li>
 </ul>
-<h2><span id="bfs"><span id="bfs"> BFS</span></span></h2>
-<ul>
-<li>[x] 752. 打开转盘锁<br>
-简易BFS</li>
-<li>[x] 773. 滑动谜题<br>
-需要将二维数组字符串化</li>
+<h2><span id="bfs"><span id="bfs">BFS</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>752. 打开转盘锁
+简易BFS</label></li>
+<li><label><input type="checkbox" checked>773. 滑动谜题
+需要将二维数组字符串化</label></li>
 </ul>
-<h2><span id="贪心"><span id="%E8%B4%AA%E5%BF%83"> 贪心</span></span></h2>
-<ul>
-<li>[x] 55. 跳跃游戏<br>
-要贪心，不要动态规划</li>
-<li>[x] 45. 跳跃游戏 II<br>
-kargo面试coding原题<br>
-记住当前跳的最远距离，每跳更新最远能跳到哪里。如果index更新到当前最远距离了，步数就必须加一</li>
+<h2><span id="贪心"><span id="%E8%B4%AA%E5%BF%83">贪心</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>55. 跳跃游戏
+要贪心，不要动态规划</label></li>
+<li><label><input type="checkbox" checked>45. 跳跃游戏 II
+kargo面试coding原题
+记住当前跳的最远距离，每跳更新最远能跳到哪里。如果index更新到当前最远距离了，步数就必须加一</label></li>
 </ul>
-<p>贪心还需要学习</p>
-<ul>
-<li>[x] 2654. 使数组所有元素变成 1 的最少操作次数<br>
-不好想，核心思路是我们可以找到一个最小的区间，这个区间内所有数字的 gcd 是 1。假设这个区间长度是 minLen，那么由这些数字得到一个 1 所需的次数是 minLen−1；然后再由这个 1 使得其他数字都变为 1 所需的次数是 n−1。因此总共需要 minLen+n−2 次操作。</li>
-</ul>
-<h2><span id="分治"><span id="%E5%88%86%E6%B2%BB"> 分治</span></span></h2>
-<ul>
-<li>[x] 23. 合并K个升序链表<br>
-直接递归也能跑。效率地点</li>
+<p>贪心还需要学习 - [x] 2654. 使数组所有元素变成 1 的最少操作次数
+不好想，核心思路是我们可以找到一个最小的区间，这个区间内所有数字的 gcd
+是 1。假设这个区间长度是 minLen，那么由这些数字得到一个 1 所需的次数是
+minLen−1；然后再由这个 1 使得其他数字都变为 1 所需的次数是
+n−1。因此总共需要 minLen+n−2 次操作。</p>
+<h2><span id="分治"><span id="%E5%88%86%E6%B2%BB">分治</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>23. 合并K个升序链表
+直接递归也能跑。效率地点</label></li>
 </ul>
 <!-- ## 新石器面经
 - [x] 206. 反转链表 -->
-<h2><span id="单调栈"><span id="%E5%8D%95%E8%B0%83%E6%A0%88"> 单调栈</span></span></h2>
-<p><strong>- [ ] 3542. 将所有元素变为 0 的最少操作次数</strong><br>
+<h2><span id="单调栈"><span id="%E5%8D%95%E8%B0%83%E6%A0%88">单调栈</span></span></h2>
+<p><strong>- [ ] 3542. 将所有元素变为 0 的最少操作次数</strong>
 不会做，多看看</p>
-<h2><span id="二维差分数组"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84"> 二维差分数组？</span></span></h2>
-<ul>
-<li>[x] 2536. 子矩阵元素加 1<br>
-不好做。暴力模拟虽然容易，但是会超时<br>
-需要想到利用二维前缀和<br>
-可以先用1109熟悉一下一维的前缀和</li>
-<li>[x] 1109. 航班预订统计<br>
-知道差分的话比较好想。</li>
+<h2><span id="二维差分数组"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84">二维差分数组？</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>2536. 子矩阵元素加 1
+不好做。暴力模拟虽然容易，但是会超时 需要想到利用二维前缀和
+可以先用1109熟悉一下一维的前缀和</label></li>
+<li><label><input type="checkbox" checked>1109. 航班预订统计
+知道差分的话比较好想。</label></li>
 </ul>
-<h3><span id="二维差分公式"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8F"> 二维差分公式</span></span></h3>
-<p>在二维中，还原（计算前缀和）的公式是： mat[x][y] = diff[x][y] + mat[x-1][y] + mat[x][y-1] - mat[x-1][y-1]</p>
+<h3><span id="二维差分公式"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8F">二维差分公式</span></span></h3>
+<p>在二维中，还原（计算前缀和）的公式是： mat[x][y] = diff[x][y] +
+mat[x-1][y] + mat[x][y-1] - mat[x-1][y-1]</p>
 <p>这个公式反过来告诉我们一个至关重要的信息：</p>
-<p>二维的关键：在差分数组 diff 的 (r, c) 位置放一个 +1，在计算前缀和时，它会影响它右下方的所有元素！</p>
-<p>也就是说，所有 (x, y) 满足 x &gt;= r 且 y &gt;= c 的 mat[x][y] 都会被这个 +1 影响。</p>
+<p>二维的关键：在差分数组 diff 的 (r, c) 位置放一个
++1，在计算前缀和时，它会影响它右下方的所有元素！</p>
+<p>也就是说，所有 (x, y) 满足 x &gt;= r 且 y &gt;= c 的 mat[x][y]
+都会被这个 +1 影响。</p>
 <p>res[i][j] = 差分值 + 上方和 + 左方和 - 左上方和</p>
-<h3><span id="练习题目"><span id="%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE"> 练习题目</span></span></h3>
-<ul>
-<li>[x] LCR 013. 二维区域和检索 - 矩阵不可变<br>
-二维前缀和即可</li>
-<li>[x] LeetCode 1314. 矩阵区域和<br>
-比较套路，直接二维前缀和</li>
-<li>[x] LeetCode 2132. 用邮票贴满网格图<br>
-困难题，一眼丁真，没有思路<br>
-和AI讨论一下思路以后勉强能做，不看参考代码可以做出来</li>
+<h3><span id="练习题目"><span id="%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE">练习题目</span></span></h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>LCR 013. 二维区域和检索 -
+矩阵不可变 二维前缀和即可</label></li>
+<li><label><input type="checkbox" checked>LeetCode 1314. 矩阵区域和
+比较套路，直接二维前缀和</label></li>
+<li><label><input type="checkbox" checked>LeetCode 2132.
+用邮票贴满网格图 困难题，一眼丁真，没有思路
+和AI讨论一下思路以后勉强能做，不看参考代码可以做出来</label></li>
 </ul>
-<h1><span id="计算几何"><span id="%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95"> 计算几何</span></span></h1>
+<h1><span id="计算几何"><span id="%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95">计算几何</span></span></h1>
 <ul>
-<li>
-<p>[ ] 1232. 缀点成线<br>
-easy</p>
-</li>
-<li>
-<p>[ ] <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/erect-the-fence/">LeetCode 587. 安装栅栏 (Erect the Fence)</a><br>
-如何构建最小凸包</p>
-</li>
-<li>
-<p>[ ]</p>
-</li>
+<li><p><label><input type="checkbox">1232. 缀点成线
+easy</label></p></li>
+<li><p><label><input type="checkbox"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/erect-the-fence/">LeetCode 587.
+安装栅栏 (Erect the Fence)</a> 如何构建最小凸包</label></p></li>
+<li><p>[ ]</p></li>
 </ul>
-<p>fast 指针已经走完了环的 n 圈，因此它走过的总距离为</p>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mi>n</mi><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mtext>。</mtext></mrow><annotation encoding="application/x-tex">a+n(b+c)+b=a+(n+1)b+nc。</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">。</span></span></span></span></span>
-<p>而 slow 指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow 指针多走了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">nb+nc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span></span></span></span> 的距离。</p>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mn>2</mn><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a + (n+1)b + nc = 2  (nb+nc)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span>
-<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mi>c</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = (n-1)b +nc = c + (n-1)(b+c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span>
-<ul>
-<li>
-<p>[x] 160. 相交链表<br>
-方案1：直接hash，复杂度比较差<br>
-方案2：双指针<br>
-在指针 pA 移动了 a+c+b 次、指针 pB 移动了 b+c+a 次之后一定会是重复节点。如果无相交就是空节点 妙啊</p>
-</li>
-<li>
-<p>[x] 19. 删除链表的倒数第 N 个结点<br>
-方案1：两次遍历</p>
-</li>
+<p>fast 指针已经走完了环的 n 圈，因此它走过的总距离为 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mi>n</mi><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mtext>。</mtext></mrow><annotation encoding="application/x-tex">a+n(b+c)+b=a+(n+1)b+nc。</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">。</span></span></span></span></span> 而
+slow 指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow
+指针多走了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">nb+nc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span></span></span></span> 的距离。 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mn>2</mn><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a + (n+1)b + nc = 2  (nb+nc)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span> <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>b</mi><mo>+</mo><mi>n</mi><mi>c</mi><mo>=</mo><mi>c</mi><mo>+</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a = (n-1)b +nc = c + (n-1)(b+c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span></span></p>
+<ul class="task-list">
+<li><p><label><input type="checkbox" checked>160. 相交链表
+方案1：直接hash，复杂度比较差 方案2：双指针 在指针 pA 移动了 a+c+b
+次、指针 pB 移动了 b+c+a 次之后一定会是重复节点。如果无相交就是空节点
+妙啊</label></p></li>
+<li><p><label><input type="checkbox" checked>19. 删除链表的倒数第 N
+个结点 方案1：两次遍历</label></p></li>
 </ul>
 <p>方案2：栈</p>
-<ul>
-<li>
-<p>[x] 21.  合并两个有序链表<br>
-很简单</p>
-</li>
-<li>
-<p>[x] 23. 合并 K 个升序链表<br>
-直接递归，但是复杂度较高<br>
-待优化为分治或优先队列</p>
-</li>
-<li>
-<p>[x] 86. 分隔链表<br>
-直接模拟</p>
-</li>
-<li>
-<p>[x] 876. 链表的中间结点<br>
-很简单</p>
-</li>
+<ul class="task-list">
+<li><p><label><input type="checkbox" checked>21. 合并两个有序链表
+很简单</label></p></li>
+<li><p><label><input type="checkbox" checked>23. 合并 K 个升序链表
+直接递归，但是复杂度较高 待优化为分治或优先队列</label></p></li>
+<li><p><label><input type="checkbox" checked>86. 分隔链表
+直接模拟</label></p></li>
+<li><p><label><input type="checkbox" checked>876. 链表的中间结点
+很简单</label></p></li>
 </ul>
-<h1><span id="数组"><span id="%E6%95%B0%E7%BB%84"> 数组</span></span></h1>
+<h1><span id="数组"><span id="%E6%95%B0%E7%BB%84">数组</span></span></h1>
 <ul>
-<li>
-<p>[x] 167. 两数之和 II - 输入有序数组<br>
-双指针</p>
-</li>
-<li>
-<p>[ ] 5. 最长回文子串<br>
-这个做的不好，再看看</p>
-</li>
-<li>
-<p>[ ]</p>
-</li>
+<li><p><label><input type="checkbox" checked>167. 两数之和 II -
+输入有序数组 双指针</label></p></li>
+<li><p><label><input type="checkbox">5. 最长回文子串
+这个做的不好，再看看</label></p></li>
+<li><p>[ ]</p></li>
 </ul>
-<h2><span id="滑动窗口"><span id="%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"> 滑动窗口</span></span></h2>
+<h2><span id="滑动窗口"><span id="%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3">滑动窗口</span></span></h2>
 <ul>
-<li>[x] 438. 找到字符串中所有字母异位词</li>
-<li>[x] 567. 字符串的排列</li>
-<li>[x] 76. 最小覆盖子串<br>
-做的不好</li>
+<li><label><input type="checkbox" checked>438.
+找到字符串中所有字母异位词</label></li>
+<li><label><input type="checkbox" checked>567.
+字符串的排列</label></li>
+<li><label><input type="checkbox" checked>76. 最小覆盖子串
+做的不好</label></li>
 <li>[ ]</li>
 </ul>
-<h2><span id="动态规划"><span id="%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"> 动态规划</span></span></h2>
-<ul>
-<li>[x] 322. 零钱兑换</li>
-<li>[x] 509. 斐波那契数</li>
+<h2><span id="动态规划"><span id="%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>322.
+零钱兑换</label></li>
+<li><label><input type="checkbox" checked>509.
+斐波那契数</label></li>
 </ul>
-<h2><span id="回溯"><span id="%E5%9B%9E%E6%BA%AF"> 回溯</span></span></h2>
+<h2><span id="回溯"><span id="%E5%9B%9E%E6%BA%AF">回溯</span></span></h2>
 <ul>
-<li>[x] 46. Permutations<br>
-一点也不会</li>
-<li>[x] 216. 组合总和 III<br>
-比较简单，可以记一下visited</li>
-<li>[x] 39. 组合总和<br>
-也很简单，允许重复，不需要记录visited</li>
-<li>[x] 40. 组合总和 II<br>
-需要去重，额外考虑一下排序然后如何去重</li>
-<li>[x] 47. 全排列 II<br>
-需要考虑去重，前一个visited</li>
+<li><label><input type="checkbox" checked>46. Permutations
+一点也不会</label></li>
+<li><label><input type="checkbox" checked>216. 组合总和 III
+比较简单，可以记一下visited</label></li>
+<li><label><input type="checkbox" checked>39. 组合总和
+也很简单，允许重复，不需要记录visited</label></li>
+<li><label><input type="checkbox" checked>40. 组合总和 II
+需要去重，额外考虑一下排序然后如何去重</label></li>
+<li><label><input type="checkbox" checked>47. 全排列 II
+需要考虑去重，前一个visited</label></li>
 <li>[ ]</li>
 </ul>
-<h2><span id="bfs"><span id="bfs"> BFS</span></span></h2>
-<ul>
-<li>[x] 752. 打开转盘锁<br>
-简易BFS</li>
-<li>[x] 773. 滑动谜题<br>
-需要将二维数组字符串化</li>
+<h2><span id="bfs"><span id="bfs">BFS</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>752. 打开转盘锁
+简易BFS</label></li>
+<li><label><input type="checkbox" checked>773. 滑动谜题
+需要将二维数组字符串化</label></li>
 </ul>
-<h2><span id="贪心"><span id="%E8%B4%AA%E5%BF%83"> 贪心</span></span></h2>
-<ul>
-<li>[x] 55. 跳跃游戏<br>
-要贪心，不要动态规划</li>
-<li>[x] 45. 跳跃游戏 II<br>
-kargo面试coding原题<br>
-记住当前跳的最远距离，每跳更新最远能跳到哪里。如果index更新到当前最远距离了，步数就必须加一</li>
+<h2><span id="贪心"><span id="%E8%B4%AA%E5%BF%83">贪心</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>55. 跳跃游戏
+要贪心，不要动态规划</label></li>
+<li><label><input type="checkbox" checked>45. 跳跃游戏 II
+kargo面试coding原题
+记住当前跳的最远距离，每跳更新最远能跳到哪里。如果index更新到当前最远距离了，步数就必须加一</label></li>
 </ul>
-<p>贪心还需要学习</p>
-<ul>
-<li>[x] 2654. 使数组所有元素变成 1 的最少操作次数<br>
-不好想，核心思路是我们可以找到一个最小的区间，这个区间内所有数字的 gcd 是 1。假设这个区间长度是 minLen，那么由这些数字得到一个 1 所需的次数是 minLen−1；然后再由这个 1 使得其他数字都变为 1 所需的次数是 n−1。因此总共需要 minLen+n−2 次操作。</li>
-</ul>
-<h2><span id="分治"><span id="%E5%88%86%E6%B2%BB"> 分治</span></span></h2>
-<ul>
-<li>[x] 23. 合并K个升序链表<br>
-直接递归也能跑。效率地点</li>
+<p>贪心还需要学习 - [x] 2654. 使数组所有元素变成 1 的最少操作次数
+不好想，核心思路是我们可以找到一个最小的区间，这个区间内所有数字的 gcd
+是 1。假设这个区间长度是 minLen，那么由这些数字得到一个 1 所需的次数是
+minLen−1；然后再由这个 1 使得其他数字都变为 1 所需的次数是
+n−1。因此总共需要 minLen+n−2 次操作。</p>
+<h2><span id="分治"><span id="%E5%88%86%E6%B2%BB">分治</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>23. 合并K个升序链表
+直接递归也能跑。效率地点</label></li>
 </ul>
 <!-- ## 新石器面经
 - [x] 206. 反转链表 -->
-<h2><span id="单调栈"><span id="%E5%8D%95%E8%B0%83%E6%A0%88"> 单调栈</span></span></h2>
-<p><strong>- [ ] 3542. 将所有元素变为 0 的最少操作次数</strong><br>
+<h2><span id="单调栈"><span id="%E5%8D%95%E8%B0%83%E6%A0%88">单调栈</span></span></h2>
+<p><strong>- [ ] 3542. 将所有元素变为 0 的最少操作次数</strong>
 不会做，多看看</p>
-<h2><span id="二维差分数组"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84"> 二维差分数组？</span></span></h2>
-<ul>
-<li>[x] 2536. 子矩阵元素加 1<br>
-不好做。暴力模拟虽然容易，但是会超时<br>
-需要想到利用二维前缀和<br>
-可以先用1109熟悉一下一维的前缀和</li>
-<li>[x] 1109. 航班预订统计<br>
-知道差分的话比较好想。</li>
+<h2><span id="二维差分数组"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84">二维差分数组？</span></span></h2>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>2536. 子矩阵元素加 1
+不好做。暴力模拟虽然容易，但是会超时 需要想到利用二维前缀和
+可以先用1109熟悉一下一维的前缀和</label></li>
+<li><label><input type="checkbox" checked>1109. 航班预订统计
+知道差分的话比较好想。</label></li>
 </ul>
-<h3><span id="二维差分公式"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8F"> 二维差分公式</span></span></h3>
-<p>在二维中，还原（计算前缀和）的公式是： mat[x][y] = diff[x][y] + mat[x-1][y] + mat[x][y-1] - mat[x-1][y-1]</p>
+<h3><span id="二维差分公式"><span id="%E4%BA%8C%E7%BB%B4%E5%B7%AE%E5%88%86%E5%85%AC%E5%BC%8F">二维差分公式</span></span></h3>
+<p>在二维中，还原（计算前缀和）的公式是： mat[x][y] = diff[x][y] +
+mat[x-1][y] + mat[x][y-1] - mat[x-1][y-1]</p>
 <p>这个公式反过来告诉我们一个至关重要的信息：</p>
-<p>二维的关键：在差分数组 diff 的 (r, c) 位置放一个 +1，在计算前缀和时，它会影响它右下方的所有元素！</p>
-<p>也就是说，所有 (x, y) 满足 x &gt;= r 且 y &gt;= c 的 mat[x][y] 都会被这个 +1 影响。</p>
+<p>二维的关键：在差分数组 diff 的 (r, c) 位置放一个
++1，在计算前缀和时，它会影响它右下方的所有元素！</p>
+<p>也就是说，所有 (x, y) 满足 x &gt;= r 且 y &gt;= c 的 mat[x][y]
+都会被这个 +1 影响。</p>
 <p>res[i][j] = 差分值 + 上方和 + 左方和 - 左上方和</p>
-<h3><span id="练习题目"><span id="%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE"> 练习题目</span></span></h3>
-<ul>
-<li>[x] LCR 013. 二维区域和检索 - 矩阵不可变<br>
-二维前缀和即可</li>
-<li>[x] LeetCode 1314. 矩阵区域和<br>
-比较套路，直接二维前缀和</li>
-<li>[x] LeetCode 2132. 用邮票贴满网格图<br>
-困难题，一眼丁真，没有思路<br>
-和AI讨论一下思路以后勉强能做，不看参考代码可以做出来</li>
+<h3><span id="练习题目"><span id="%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE">练习题目</span></span></h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked>LCR 013. 二维区域和检索 -
+矩阵不可变 二维前缀和即可</label></li>
+<li><label><input type="checkbox" checked>LeetCode 1314. 矩阵区域和
+比较套路，直接二维前缀和</label></li>
+<li><label><input type="checkbox" checked>LeetCode 2132.
+用邮票贴满网格图 困难题，一眼丁真，没有思路
+和AI讨论一下思路以后勉强能做，不看参考代码可以做出来</label></li>
 </ul>
-<h1><span id="计算几何"><span id="%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95"> 计算几何</span></span></h1>
+<h1><span id="计算几何"><span id="%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95">计算几何</span></span></h1>
 <ul>
-<li>
-<p>[ ] 1232. 缀点成线<br>
-easy</p>
-</li>
-<li>
-<p>[ ] <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/erect-the-fence/">LeetCode 587. 安装栅栏 (Erect the Fence)</a><br>
-如何构建最小凸包</p>
-</li>
-<li>
-<p>[ ]</p>
-</li>
+<li><p><label><input type="checkbox">1232. 缀点成线
+easy</label></p></li>
+<li><p><label><input type="checkbox"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/erect-the-fence/">LeetCode 587.
+安装栅栏 (Erect the Fence)</a> 如何构建最小凸包</label></p></li>
+<li><p>[ ]</p></li>
 </ul>
 </body></html>
 	</article>
