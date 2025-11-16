@@ -391,30 +391,32 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年01月30日</a>
-			<a><i class="kirafont icon-edit-fill"></i>849 字</a>
+			<a><i class="kirafont icon-edit-fill"></i>847 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
-		<html><head></head><body><h1><span id="在godot中接入大模型api实现npc的自动对话"><span id="%E5%9C%A8godot%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%A4%A7%E6%A8%A1%E5%9E%8Bapi%E5%AE%9E%E7%8E%B0npc%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%B9%E8%AF%9D">在godot中接入大模型api，实现npc的自动对话</span></span></h1>
-<h2><span id="目录"><span id="%E7%9B%AE%E5%BD%95">目录</span></span></h2>
+		<html><head></head><body><h1><span id="在godot中接入大模型api实现npc的自动对话"><span id="%E5%9C%A8godot%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%A4%A7%E6%A8%A1%E5%9E%8Bapi%E5%AE%9E%E7%8E%B0npc%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%B9%E8%AF%9D"> 在godot中接入大模型api，实现npc的自动对话</span></span></h1>
+<h2><span id="目录"><span id="%E7%9B%AE%E5%BD%95"> 目录</span></span></h2>
 <ul>
-<li><a href="#在godot中接入大模型api实现npc的自动对话">在godot中接入大模型api，实现npc的自动对话</a>
+<li><a href="#%E5%9C%A8godot%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%A4%A7%E6%A8%A1%E5%9E%8Bapi%E5%AE%9E%E7%8E%B0npc%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%B9%E8%AF%9D">在godot中接入大模型api，实现npc的自动对话</a>
 <ul>
-<li><a href="#目录">目录</a></li>
-<li><a href="#概述">概述</a></li>
-<li><a href="#实现思路">实现思路</a>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">实现思路</a>
 <ul>
-<li><a href="#架构">架构</a></li>
-<li><a href="#对话模块dialoguemanagergd">对话模块（DialogueManager.gd）</a></li>
-<li><a href="#代码">代码</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#%E6%9E%B6%E6%9E%84">架构</a></li>
+<li><a href="#%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9D%97dialoguemanagergd">对话模块（DialogueManager.gd）</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
 </ul>
-<h2><span id="概述"><span id="%E6%A6%82%E8%BF%B0">概述</span></span></h2>
-<p>最近计划利用godot做一个游戏demo，其中会随机产生各种npc，然后npc之间会相互对话。
-大概思路就是给每个角色一个状态机，控制其idle、moving、chatting等状态。通过Area2D的碰撞判断范围内有没有其他角色，然后发起对话请求。被接受后调用大模型的API进行对话。
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="概述"><span id="%E6%A6%82%E8%BF%B0"> 概述</span></span></h2>
+<p>最近计划利用godot做一个游戏demo，其中会随机产生各种npc，然后npc之间会相互对话。<br>
+大概思路就是给每个角色一个状态机，控制其idle、moving、chatting等状态。通过Area2D的碰撞判断范围内有没有其他角色，然后发起对话请求。被接受后调用大模型的API进行对话。<br>
 初次用godot也是头回通过https去访问大模型的api（毕竟gdscript没有python的包），感谢大模型一直帮我解疑答惑顺便给我埋坑让我疯狂debug</p>
-<h2><span id="实现思路"><span id="%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF">实现思路</span></span></h2>
-<h3><span id="架构"><span id="%E6%9E%B6%E6%9E%84">架构</span></span></h3>
+<h2><span id="实现思路"><span id="%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"> 实现思路</span></span></h2>
+<h3><span id="架构"><span id="%E6%9E%B6%E6%9E%84"> 架构</span></span></h3>
 <pre class="mermaid">graph TD
     A[Character Controller] --&gt; B[State Machine]
     A --&gt; C[Dialogue Manager]
@@ -442,14 +444,20 @@
         NPC2-&gt;&gt;NPC1: 发送回复
     end
     NPC1-&gt;&gt;NPC2: 结束对话</pre>
-<h3><span id="对话模块dialoguemanagergd"><span id="%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9D%97dialoguemanagergd">对话模块（DialogueManager.gd）</span></span></h3>
+<h3><span id="对话模块"><span id="%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9D%97dialoguemanagergd"> 对话模块（）</span></span></h3>
 <p>实现要点：</p>
 <ul>
-<li><p>异步HTTP请求</p></li>
-<li><p>上下文记忆管理</p></li>
-<li><p>错误重试机制</p></li>
+<li>
+<p>异步HTTP请求</p>
+</li>
+<li>
+<p>上下文记忆管理</p>
+</li>
+<li>
+<p>错误重试机制</p>
+</li>
 </ul>
-其流程为
+<p>其流程为</p>
 <pre class="mermaid">graph TD
     A[生成对话请求] --&gt; B[构建消息体]
     B --&gt; C[创建HTTPRequest]
@@ -482,86 +490,85 @@ var character : CharacterBody2D
 var is_getting : bool = false
 
 func _init(parent:CharacterBody2D) -&gt; void:
-    character = parent
+	character = parent
 
-    
+	
 func generate_response(prompt: String = "hello") -&gt; void:
-    if is_getting:
-        return
-    var messages = prepare_messages(prompt)
-    var headers = [
-        "Authorization: Bearer " + API_KEY,
-        "Content-Type: application/json"
-        ]
-    print(headers)
-    var payload = {
-        "model": MODEL,
-        "messages": messages,
-        #"tags": ["glm-4", "tool"],
-        "temperature": 0.7  # You can adjust this parameter as needed
-    }
-    var body = JSON.stringify(
-    {
-      "model": "glm-4",
-      "messages": [
-        {"role": "user", "content": "你好"}
-      ],
-      "temperature": 0.7
-    })
-    #var body = JSON.stringify(payload)
-    print("body:")
-    print(body)
-    var request = HTTPRequest.new()
-    add_child(request)
-    # 等待节点初始化完成
-    await get_tree().process_frame
-    request.set_timeout(TIMEOUT)
-    request.request_completed.connect(_on_response_received)
-    var result = request.request(BASE_URL, headers, HTTPClient.METHOD_POST, body)
-    print(result)
-    is_getting = true
-    print("request send")
-    
-    
+	if is_getting:
+		return
+	var messages = prepare_messages(prompt)
+	var headers = [
+		"Authorization: Bearer " + API_KEY,
+		"Content-Type: application/json"
+		]
+	print(headers)
+	var payload = {
+		"model": MODEL,
+		"messages": messages,
+		#"tags": ["glm-4", "tool"],
+		"temperature": 0.7  # You can adjust this parameter as needed
+	}
+	var body = JSON.stringify(
+	{
+	  "model": "glm-4",
+	  "messages": [
+		{"role": "user", "content": "你好"}
+	  ],
+	  "temperature": 0.7
+	})
+	#var body = JSON.stringify(payload)
+	print("body:")
+	print(body)
+	var request = HTTPRequest.new()
+	add_child(request)
+	# 等待节点初始化完成
+	await get_tree().process_frame
+	request.set_timeout(TIMEOUT)
+	request.request_completed.connect(_on_response_received)
+	var result = request.request(BASE_URL, headers, HTTPClient.METHOD_POST, body)
+	print(result)
+	is_getting = true
+	print("request send")
+	
+	
 func prepare_messages(prompt: String) -&gt; Array:
-    var context = [
-        {"role": "system", "content": "假设你是一个普通人，模拟和其他人的对话"},
-        {"role": "user", "content": prompt}
-    ]
-    context = history + context
-    
-    return context
+	var context = [
+		{"role": "system", "content": "假设你是一个普通人，模拟和其他人的对话"},
+		{"role": "user", "content": prompt}
+	]
+	context = history + context
+	
+	return context
 
 func _on_response_received(result: int, code: int, headers: Array, body: PackedByteArray):
-    print("response received")
-    if result != HTTPRequest.RESULT_SUCCESS:
-        character.receive_message("（思考中...）")
-        return
-    
-    var response = JSON.parse_string(body.get_string_from_utf8())
-    print("response.error:")
-    print(response.error)
-    print("content:")
-    print(response)
-    if response.error != null:
-        character.receive_message("（解析API响应失败，请稍后再试...）")
-        is_getting = false
-        return
-        
-    var message = response.choices[0].message.content
-    character.receive_message(message)
-    print("message:")
-    print(message)
-    
-    # 保存历史记录
-    var history_entry = {"role": "assistant", "content": message}
-    history.append(history_entry)
-    print(history)
-    is_getting = false
+	print("response received")
+	if result != HTTPRequest.RESULT_SUCCESS:
+		character.receive_message("（思考中...）")
+		return
+	
+	var response = JSON.parse_string(body.get_string_from_utf8())
+	print("response.error:")
+	print(response.error)
+	print("content:")
+	print(response)
+	if response.error != null:
+		character.receive_message("（解析API响应失败，请稍后再试...）")
+		is_getting = false
+		return
+		
+	var message = response.choices[0].message.content
+	character.receive_message(message)
+	print("message:")
+	print(message)
+	
+	# 保存历史记录
+	var history_entry = {"role": "assistant", "content": message}
+	history.append(history_entry)
+	print(history)
+	is_getting = false
 
 func _clear_history():
-    history.clear()</pre>
-</body></html>
+	history.clear()</pre></body></html>
 	</article>
 
 	 
