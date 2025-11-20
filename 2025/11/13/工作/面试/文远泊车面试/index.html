@@ -389,8 +389,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月13日</a>
-			<a><i class="kirafont icon-edit-fill"></i>2.6k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.1k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 12 分钟</a>
 		</div>
 		<html><head></head><body><h1><span id="一面豆包总结泊车"><span id="%E4%B8%80%E9%9D%A2%E8%B1%86%E5%8C%85%E6%80%BB%E7%BB%93%E6%B3%8A%E8%BD%A6"> 一面豆包总结（泊车）</span></span></h1>
 <h2><span id="一-行车项目方案框架"><span id="%E4%B8%80-%E8%A1%8C%E8%BD%A6%E9%A1%B9%E7%9B%AE%E6%96%B9%E6%A1%88%E6%A1%86%E6%9E%B6"> 一、行车项目方案框架</span></span></h2>
@@ -411,7 +411,7 @@
 <li>下游决策模块校验目标参考线可用性、动态障碍物情况及换道空间。</li>
 <li>校验通过后发起换道意图，追踪的free model系切换至目标参考线，以6-7秒后位置l=0为约束完成换道。</li>
 </ol>
-<h3><span id="四感知补全模块let-them-cover"><span id="%E5%9B%9B%E6%84%9F%E7%9F%A5%E8%A1%A5%E5%85%A8%E6%A8%A1%E5%9D%97let-them-cover"> （四）感知补全模块（let them cover）</span></span></h3>
+<h3><span id="四感知补全模块"><span id="%E5%9B%9B%E6%84%9F%E7%9F%A5%E8%A1%A5%E5%85%A8%E6%A8%A1%E5%9D%97"> （四）感知补全模块</span></span></h3>
 <ol>
 <li>弥补感知模型缺陷，针对孤立石墩、石柱、间断隔离带等无法识别的障碍物进行补全。</li>
 <li>规控团队获取激光雷达点云，将自车周围地图栅格化，确定可通行区域及目标开口。</li>
@@ -559,7 +559,78 @@
 <ul>
 <li>面试官确认无更多问题，张同学完成提问交流，会议结束。</li>
 </ul>
-</body></html>
+<h1><span id="二面"><span id="%E4%BA%8C%E9%9D%A2"> 二面</span></span></h1>
+<h2><span id="1-工作经历介绍"><span id="1-%E5%B7%A5%E4%BD%9C%E7%BB%8F%E5%8E%86%E4%BB%8B%E7%BB%8D"> 1. 工作经历介绍</span></span></h2>
+<ul>
+<li><strong>候选人背景</strong>：奶黄包，2024年7月毕业后开始做规控。</li>
+<li><strong>项目内容</strong>：参与城市领航辅助驾驶项目，主要负责 Planning 模块中的<strong>横向规划</strong>部分（特别是参考线开发）。</li>
+<li><strong>模块架构</strong>：
+<ul>
+<li>上游：定位地图和感知模块。</li>
+<li>下游：生成参考线用于全局轨迹规划。</li>
+</ul>
+</li>
+<li><strong>功能逻辑</strong>：
+<ul>
+<li>参考线在不考虑动态障碍物的情况下生成，用于道路居中或换道。</li>
+<li><strong>换道实现</strong>：通过切换目标参考线（左或右）实现横向轨迹规划，利用 <strong>QP（二次规划）</strong> 平滑生成换道轨迹。</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-参考线生成与优化"><span id="2-%E5%8F%82%E8%80%83%E7%BA%BF%E7%94%9F%E6%88%90%E4%B8%8E%E4%BC%98%E5%8C%96"> 2. 参考线生成与优化</span></span></h2>
+<ul>
+<li><strong>平行车道场景</strong>：通过感知车道线排序和车道组生成参考线，优化后用于道路居中。</li>
+<li><strong>路口场景</strong>：采用<strong>三段式拼接方法</strong>生成参考线：
+<ol>
+<li>历史参考线（固定）</li>
+<li>贝塞尔曲线（连接）</li>
+<li>远端引导车道（来自地图或感知信息）</li>
+</ol>
+</li>
+<li><strong>约束优化</strong>：引入路沿约束模块，避免参考线过于靠近路沿，提升过路口安全性。</li>
+</ul>
+<h2><span id="3-动态障碍物处理"><span id="3-%E5%8A%A8%E6%80%81%E9%9A%9C%E7%A2%8D%E7%89%A9%E5%A4%84%E7%90%86"> 3. 动态障碍物处理</span></span></h2>
+<ul>
+<li><strong>换道决策</strong>：考虑动态障碍物，通过加速度区间预判可行轨迹，确保安全换道。</li>
+<li><strong>绕行避让</strong>：通过 QP 问题求解生成避让轨迹，约束障碍物侵入区域的横向偏移。</li>
+</ul>
+<h2><span id="4-掉头功能实现"><span id="4-%E6%8E%89%E5%A4%B4%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"> 4. 掉头功能实现</span></span></h2>
+<ul>
+<li><strong>现状</strong>：量产版本暂不支持掉头功能。</li>
+<li><strong>尝试方案</strong>（非量产）：
+<ul>
+<li>方案一：利用dot车道三段式拼接。</li>
+<li>方案二：混合 A* (Hybrid A*) 搜索。</li>
+<li><em>结果</em>：性能均较差，未上线。</li>
+</ul>
+</li>
+</ul>
+<h2><span id="5-算法题目讨论"><span id="5-%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE%E8%AE%A8%E8%AE%BA"> 5. 算法题目讨论</span></span></h2>
+<ul>
+<li><strong>题目</strong>：给定一个数组，需要将其分成N段，使得所有段的和的最大值最小。</li>
+</ul>
+<!-- 
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;climits&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCosValueDP</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> N)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">if</span> (n &lt; N) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <br>    <span class="hljs-comment">// prefixSum[i] 表示前i个元素的和</span><br>    <span class="hljs-function">vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt; <span class="hljs-title">prefixSum</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        prefixSum[i] = prefixSum[i - <span class="hljs-number">1</span>] + nums[i - <span class="hljs-number">1</span>];<br>    &#125;<br>    <br>    <span class="hljs-comment">// dp[i][k] 表示前i个元素分成k段的最小cos值</span><br>    vector&lt;vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt;(N + <span class="hljs-number">1</span>, LLONG_MAX));<br>    <br>    <span class="hljs-comment">// 初始化：分成1段的情况</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        dp[i][<span class="hljs-number">1</span>] = prefixSum[i];<br>    &#125;<br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">2</span>; k &lt;= N; k++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = k; i &lt;= n; i++) &#123;  <span class="hljs-comment">// 至少需要k个元素才能分成k段</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = k - <span class="hljs-number">1</span>; j &lt; i; j++) &#123;<br>                <span class="hljs-comment">// 前j个元素分成k-1段，第k段是j+1到i</span><br>                <span class="hljs-type">long</span> <span class="hljs-type">long</span> currentMax = <span class="hljs-built_in">max</span>(dp[j][k - <span class="hljs-number">1</span>], prefixSum[i] - prefixSum[j]);<br>                dp[i][k] = <span class="hljs-built_in">min</span>(dp[i][k], currentMax);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> dp[n][N];<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>–&gt;</p>
+<h2 id="6-岗位技术栈与工作内容"><a class="markdownIt-Anchor" href="#6-岗位技术栈与工作内容"></a> 6. 岗位技术栈与工作内容</h2>
+<ul>
+<li><strong>技术方向</strong>：涉及从“有图”到“无图”的过渡技术，包括感知-规划模型优化、后处理兜底、安全性问题处理等。</li>
+<li><strong>目标</strong>：将 L3 级别功能推向 L4。</li>
+<li><strong>工作强度</strong>：
+<ul>
+<li>L3 项目：已定型，优化压力较小。</li>
+<li>L4 项目：代码要求严格，节点交付时较忙（995工作制）。</li>
+<li>节点附近至少是995</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-数据驱动与模型训练"><a class="markdownIt-Anchor" href="#7-数据驱动与模型训练"></a> 7. 数据驱动与模型训练</h2>
+<ul>
+<li><strong>数据来源</strong>：自有车辆采集（几十辆车，每天10小时有效数据）。</li>
+<li><strong>数据处理</strong>：标注工作外包。</li>
+<li><strong>模型训练</strong>：通常需要几千小时的数据量。</li>
+</ul>
+--></body></html>
 	</article>
 
 	 
