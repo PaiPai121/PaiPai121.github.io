@@ -84,7 +84,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>79</div>
+		<div><span>文章</span>80</div>
 		<div><span>标签</span>19</div>
 		<div><span>分类</span>0</div>
 	</div>
@@ -290,7 +290,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">52</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li></ul>
 		</div>
 	</div>
 
@@ -386,8 +386,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月19日</a>
-			<a><i class="kirafont icon-edit-fill"></i>1.3k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.1k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
 		</div>
 		<!-- toc --><html><head></head><body><ul>
 <li><a href="#diffusion-planner-%E5%92%8C-pluto">Diffusion planner 和 pluto</a>
@@ -407,13 +407,42 @@
 <li><a href="#%E8%80%83%E9%A2%98%E4%B8%89ego-status-reconstruction%E8%87%AA%E8%BD%A6%E7%8A%B6%E6%80%81%E9%87%8D%E5%BB%BA">✅ 考题三：Ego-Status Reconstruction（自车状态重建）</a></li>
 </ul>
 </li>
-<li><a href="#%E7%BB%88%E6%9E%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93">🎯 终极一句话总结</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
 </ul>
 </li>
 <li><a href="#%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%A4%E5%A4%A7%E9%97%AE%E9%A2%98">模仿学习的两大问题：</a>
 <ul>
 <li><a href="#shortcut%E8%B5%B0%E6%8D%B7%E5%BE%84">shortcut（走捷径）：</a></li>
 <li><a href="#copycat%E5%A4%8D%E5%88%B6%E7%8C%AB%E7%8C%AB%E5%96%B5%E6%83%AF%E6%80%A7%E9%97%AE%E9%A2%98">copycat（复制猫猫，喵！惯性问题）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%85%E7%9C%8B%E4%B8%80%E4%B8%8Buniad">浅看一下UniAD</a></li>
+<li><a href="#%E5%88%9D%E6%AD%A5%E6%A6%82%E5%BF%B5%E7%9A%84%E8%AE%A4%E8%AF%86">初步概念的认识</a></li>
+<li><a href="#transformer">Transformer</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%B1%82%E8%BE%93%E5%85%A5embedding">数据层（输入Embedding）</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E5%B1%82qkv-query-key-value">逻辑层（Q/K/V， Query-Key-Value）</a>
+<ul>
+<li><a href="#key-%E5%92%8C-value">key 和 value</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%BE%97%E5%88%B0%E6%B3%A8%E6%84%8F%E5%8A%9B">如何计算得到注意力？</a></li>
+</ul>
+</li>
+<li><a href="#mlp%E7%9A%84%E8%9E%8D%E5%90%88">mlp的融合</a></li>
+<li><a href="#%E4%B8%80%E4%B8%AA%E7%B2%97%E7%B3%99%E7%9A%84%E7%90%86%E8%A7%A3">一个粗糙的理解</a></li>
+<li><a href="#uniad%E7%9A%84%E6%9E%B6%E6%9E%84">UniAD的架构</a>
+<ul>
+<li><a href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%9E%84%E5%BB%BA">特征提取与构建</a>
+<ul>
+<li><a href="#bev-feature%E4%B8%8E-cost-map%E7%9A%84%E5%8C%BA%E5%88%AB">BEV Feature与 Cost Map的区别</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%B7%9F%E8%B8%AA-trackformer">检测与跟踪 (TrackFormer)</a>
+<ul>
+<li><a href="#object-queries">Object Queries</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -468,7 +497,7 @@
 <li><strong>总结逻辑</strong>：<br>
 通过 <strong>多任务学习 (Multi-task Learning)</strong>，倒逼主干网络 (Backbone) 去提取出真正有意义的<strong>高层语义特征</strong>（规则、意图、物理约束），而不是去拟合不可靠的像素级噪音。提高了模型在陌生场景下的<strong>泛化能力</strong>。</li>
 </ul>
-<h2><span id="终极一句话总结"><span id="%E7%BB%88%E6%9E%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"> 🎯 终极一句话总结</span></span></h2>
+<h2><span id="总结"><span id="%E6%80%BB%E7%BB%93"> 总结</span></span></h2>
 <blockquote>
 <p><strong>Pluto 就是通过设计辅助任务的 Cost，强制模型学习高层语义状态量，从而避免 Shortcut（因果混淆/惯性依赖）。</strong></p>
 </blockquote>
@@ -482,13 +511,146 @@
 <p>（车是很典型的案例，速度等状态量不会在时间轴突变，只加xy，heading（heading其实是不是也可以不加，可以通过差分递推？），其他状态量可通过积分得到。）</p>
 <p>待阅读论文：</p>
 <ul>
-<li>
-<p>[x] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.14222">PlanT: Explainable Planning Transformers via Object-Level Representations</a></p>
-</li>
-<li>
-<p>[x] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2309.10443">Rethinking Imitation-based Planner for Autonomous Driving</a></p>
-</li>
+<li>[x] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2309.10443">Rethinking Imitation-based Planner for Autonomous Driving</a></li>
+<li>[x] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2212.10156">Planning-oriented Autonomous Driving</a></li>
 </ul>
+<h1><span id="浅看一下uniad"><span id="%E6%B5%85%E7%9C%8B%E4%B8%80%E4%B8%8Buniad"> 浅看一下UniAD</span></span></h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/OpenDriveLab/UniAD/blob/v2.0/projects/mmdet3d_plugin/uniad/dense_heads/planning_head.py">planning</a></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, </span><br><span class="hljs-params">            bev_embed, </span><br><span class="hljs-params">            occ_mask, </span><br><span class="hljs-params">            bev_pos, </span><br><span class="hljs-params">            sdc_traj_query, </span><br><span class="hljs-params">            sdc_track_query, </span><br><span class="hljs-params">            command</span>):<br>    <span class="hljs-string">"""</span><br><span class="hljs-string">    Forward pass for PlanningHeadSingleMode.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        bev_embed (torch.Tensor): Bird's eye view feature embedding.</span><br><span class="hljs-string">        occ_mask (torch.Tensor): Instance mask for occupancy.</span><br><span class="hljs-string">        bev_pos (torch.Tensor): BEV position.</span><br><span class="hljs-string">        sdc_traj_query (torch.Tensor): SDC trajectory query.</span><br><span class="hljs-string">        sdc_track_query (torch.Tensor): SDC track query.</span><br><span class="hljs-string">        command (int): Driving command.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Returns:</span><br><span class="hljs-string">        dict: A dictionary containing SDC trajectory and all SDC trajectories.</span><br><span class="hljs-string">    """</span><br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="初步概念的认识"><span id="%E5%88%9D%E6%AD%A5%E6%A6%82%E5%BF%B5%E7%9A%84%E8%AE%A4%E8%AF%86"> 初步概念的认识</span></span></h1>
+<h1><span id="transformer"><span id="transformer"> Transformer</span></span></h1>
+<h2><span id="数据层输入embedding"><span id="%E6%95%B0%E6%8D%AE%E5%B1%82%E8%BE%93%E5%85%A5embedding"> 数据层（输入Embedding）</span></span></h2>
+<p>所有的东西（车、车道、指令、红绿灯），进入网络后，都会变成一个 长长的向量（比如长度 256 的浮点数组）。</p>
+<p>Embedding (嵌入)：用网络学习一组参数，这个参数表示某些概念。比如embedding的左转概念就是学出来的一个向量</p>
+<h2><span id="逻辑层qkv-query-key-value"><span id="%E9%80%BB%E8%BE%91%E5%B1%82qkv-query-key-value"> 逻辑层（Q/K/V， Query-Key-Value）</span></span></h2>
+<ul>
+<li>
+<ol>
+<li>Query (查询) = 意图、状态等信息，如command向量和track query（自车位姿、轨迹，其他车辆轨迹等）</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Key (键) = 位置信息（Pos）和语义特征。它的作用是用来被 Query 匹配的。</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Value (值) = 包含了位置和特征。它的作用是被提取的内容。</li>
+</ol>
+</li>
+<li></li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">plan_query = self.attn_module(plan_query, bev_feat)<br></code></pre></td></tr></tbody></table></figure>
+<p>在UniAD中，plan_query(Query (Q))	“我要去哪？”(包含了 Command + 当前状态 + 预测趋势)</p>
+<p>bev_feat(Key (K) &amp; Value (V))       “地图上有啥？”(包含了 BEV 地图特征 + 位置编码)</p>
+<h3><span id="key-和-value"><span id="key-%E5%92%8C-value"> key 和 value</span></span></h3>
+<p>key和value共同组成了一个字典，根据每一个key可以找到对应的value</p>
+<blockquote>
+<p>在 attn_module (MultiheadAttention) 的内部，第一件事就是做线性变换（Linear Projection）：<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>K</mi><mo>=</mo><mtext>bev_feat</mtext><mo>×</mo><msub><mi>W</mi><mi>K</mi></msub></mrow><annotation encoding="application/x-tex">K = \text{bev\_feat} \times W_K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0044em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">bev_feat</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo>=</mo><mtext>bev_feat</mtext><mo>×</mo><msub><mi>W</mi><mi>V</mi></msub></mrow><annotation encoding="application/x-tex">V = \text{bev\_feat} \times W_V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0044em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">bev_feat</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>K</mi></msub></mrow><annotation encoding="application/x-tex">W_K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (Key 的权重矩阵)：这是网络学出来的参数。它的目的是把原始特征变成适合“被搜索”的样子（比如突出位置信息、类别信息）。</p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>V</mi></msub></mrow><annotation encoding="application/x-tex">W_V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (Value 的权重矩阵)：这是另一组参数。它的目的是把原始特征变成适合“被规划使用”的样子（比如突出速度、加速度、曲率信息）。
+<p>它们源自同一个 Input，但通过两个不同的全连接层 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>K</mi></msub><mo separator="true">,</mo><msub><mi>W</mi><mi>V</mi></msub></mrow><annotation encoding="application/x-tex">W_K, W_V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</p>
+</blockquote>
+<h3><span id="如何计算得到注意力"><span id="%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%BE%97%E5%88%B0%E6%B3%A8%E6%84%8F%E5%8A%9B"> 如何计算得到注意力？</span></span></h3>
+<p><strong>注意力:</strong></p>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>t</mi><mi>t</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">(</mo><mi>Q</mi><mo separator="true">,</mo><mi>K</mi><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">)</mo><mo>=</mo><mi>S</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup><mo stretchy="false">)</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">Attention(Q, K, V) = Softmax(QK^T)V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">tt</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0913em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>
+<ol>
+<li>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">QK^T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0358em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span> (矩阵乘法)：计算 Query 和 Key 的相似度（也就是 Attention Score）。
+</li>
+<li>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Softmax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">t</span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span></span></span></span> (归一化)：把分数变成概率。
+</li>
+<li>
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋅</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">\cdot V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">⋅</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> (加权求和)：根据概率提取信息。
+</li>
+</ol>
+<h2><span id="mlp的融合"><span id="mlp%E7%9A%84%E8%9E%8D%E5%90%88"> mlp的融合</span></span></h2>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">self.mlp_fuser = nn.Sequential(<br>                nn.Linear(embed_dims*fuser_dim, embed_dims),<br>                nn.LayerNorm(embed_dims),<br>                nn.ReLU(inplace=<span class="hljs-literal">True</span>),<br>            )<br></code></pre></td></tr></tbody></table></figure>
+<ol>
+<li><strong>Linear</strong><br>
+<strong>向量压缩：</strong> 假设我们每个向量长256，此时我们的东西是由如下内容拼出来的</li>
+<li>sdc_traj_query (256)</li>
+<li>sdc_track_query (256)</li>
+<li>navi_embed (256)</li>
+</ol>
+<p>把 768 维大向量，重新压缩回标准的 256 维，以便后面的 Transformer 处理。</p>
+<ol start="2">
+<li>
+<p><strong>LayerNorm</strong><br>
+<strong>归一化：</strong> LayerNorm 强制把这 256 个特征拉回到一个相对标准的范围（均值为0，方差为1附近）</p>
+</li>
+<li>
+<p><strong>nn.ReLU(inplace=True)</strong><br>
+非线性的激活函数<br>
+然后.max(1)得到最好的轨迹作为规划意图</p>
+</li>
+</ol>
+<h2><span id="一个粗糙的理解"><span id="%E4%B8%80%E4%B8%AA%E7%B2%97%E7%B3%99%E7%9A%84%E7%90%86%E8%A7%A3"> 一个粗糙的理解</span></span></h2>
+<p>我们训练的网络中需要训练到哪些呢？</p>
+<ol>
+<li>输入的图像数据、导航指令等，经过网络转换成一组向量特征。</li>
+<li>MLP（多层感知机） Fuser：把“我是谁(Track)”、“我去哪(Command)”、“未来咋样(Motion)” 先融合 起来，变成一个强有力的 Query。</li>
+<li>意图和自车状态特征作为Q，bev特征会训练得到两个权重矩阵，一个权重矩阵在和bev特征向量相乘后会把 BEV 特征转换成适合被 Query 搜索 的形态，而另一个权重矩阵和bev特征向量相乘后会把 BEV 特征转换成适合 规划使用 的形态。</li>
+<li>使用SOFTMAX将各个注意力加权</li>
+<li>生成轨迹 (Reg Branch)，也是一个MLP：把懂环境的意图，通过全连接层，算成轨迹坐标。</li>
+<li>选取最佳轨迹</li>
+</ol>
+<h2><span id="uniad的架构"><span id="uniad%E7%9A%84%E6%9E%B6%E6%9E%84"> UniAD的架构</span></span></h2>
+<pre class="mermaid">graph TD
+    A["摄像头图像 Images"] --&gt; B("Backbone &amp; BEVFormer")
+    B -- 生成 --&gt; C["BEV 特征图 (Key/Value)"]
+
+    D["预设的 Object Queries"] --&gt; E("检测与跟踪 TrackFormer")
+    C --&gt; E
+    E -- "产出 Track Queries" --&gt; F("预测 MotionFormer")
+    
+    C --&gt; F
+    F -- "产出 Motion Queries" --&gt; G("规划 PlanningFormer")
+    
+    C --&gt; G
+    H["导航指令 Command"] --&gt; G
+    
+    G -- 输出 --&gt; I["自车轨迹 (红线)"]</pre>
+<h3><span id="特征提取与构建"><span id="%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%9E%84%E5%BB%BA"> 特征提取与构建</span></span></h3>
+<ol>
+<li>
+<p>Backbone (主干网络): 图像首先经过类似 ResNet 的网络，提取 2D 图像特征。</p>
+</li>
+<li>
+<p>BEVFormer: 这是最关键的一步。它通过 View Transformation（视角转换） 将 2D 图像特征“提升”到 3D 的 BEV（鸟瞰图） 空间。</p>
+</li>
+<li>
+<p>它使用 Attention 机制，查询 BEV 网格中的每一个点对应图像中的哪些像素。</p>
+</li>
+<li>
+<p>输出 (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>): BEV Features。这是一个高维的特征网格（比如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mo>×</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">200 \times 200</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">200</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">200</span></span></span></span> 的网格），它就像上帝视角的地图，包含了车道线、路沿等静态信息，也隐含了障碍物的位置信息。</p>
+</li>
+</ol>
+<h4><span id="bev-feature与-cost-map的区别"><span id="bev-feature%E4%B8%8E-cost-map%E7%9A%84%E5%8C%BA%E5%88%AB"> BEV Feature与 Cost Map的区别</span></span></h4>
+<p><strong>Rule-based Cost Map (标量图):</strong><br>
+形式: 通常是一个二维矩阵（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">H \times W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>）。<br>
+内容: 每一个格子（Grid）里只有一个数字（Scalar），代表“经过这里的代价”。<br>
+<strong>BEV Feature (高维张量):</strong><br>
+形式: 是一个三维张量（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>W</mi><mo>×</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">H \times W \times C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>），其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 是通道数（Channel），通常是 256 或更多。<br>
+内容: 每一个格子对应的不再是一个数字，而是一串长长的向量（比如 256 个浮点数）。<br>
+特点: 包含高维语义信息。 这串数字里隐含了“这是一条虚线”、“这是湿滑路面”、“这是半个车头”等丰富信息，甚至是人类语言难以描述的特征。<br>
+优点: 它是可导的。如果最终轨迹与人类驾驶员的轨迹（Ground Truth）不一致，Gradient（梯度）可以直接通过 BEV Feature 反向传播回去，自动修正 Backbone 提取特征的方式。</p>
+<h3><span id="检测与跟踪-trackformer"><span id="%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%B7%9F%E8%B8%AA-trackformer"> 检测与跟踪 (TrackFormer)</span></span></h3>
+<h4><span id="object-queries"><span id="object-queries"> Object Queries</span></span></h4>
+<p>Object Queries 是一组固定数量的可学习参数（Learnable Parameters）。</p>
+<p>假设我们在模型中预设了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 个查询（例如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>900</mn></mrow><annotation encoding="application/x-tex">N=900</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">900</span></span></span></span>），每个查询向量的维度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span>（例如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>256</mn></mrow><annotation encoding="application/x-tex">d=256</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span>）。那么，Object Queries 初始化为一个矩阵 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi>o</mi><mi>b</mi><mi>j</mi></mrow></msub><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>N</mi><mo>×</mo><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">Q_{obj} \in \mathbb{R}^{N \times d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">bj</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p>A. 位置部分 (Positional Embedding) —— “在哪里看”<br>
+这是 Query 的“锚点”属性。经过训练，这 900 个 Query 会学习到不同的空间偏好。</p>
+<blockquote>
+<p>Query #1 可能专注于 BEV 空间的左上角。<br>
+Query #2 可能专注于十字路口的中心。<br>
+学术解释： 它是对场景进行稀疏采样的空间先验（Spatial Prior）。它告诉网络去关注哪些区域可能出现物体。</p>
+</blockquote>
+<p>B. 内容部分 (Content Embedding) —— “看到了什么”<br>
+这是 Query 的“容器”属性。在未经解码器处理前，它通常初始化为零或随机值。<br>
+随着它在 Transformer Decoder 层级中流动（Layer by Layer），它不断地通过 Cross-Attention 从 BEV 特征中“吸取”信息。<br>
+最终，这个向量将编码目标物体的类别（Class）和回归参数（Bounding Box / Velocity）。</p>
 </body></html>
 	</article>
 
