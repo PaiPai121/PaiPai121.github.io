@@ -84,7 +84,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>118</div>
+		<div><span>文章</span>121</div>
 		<div><span>标签</span>24</div>
 		<div><span>分类</span>0</div>
 	</div>
@@ -290,7 +290,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
 		</div>
 	</div>
 
@@ -298,7 +298,7 @@
 		
 	</aside>
 	<div class="kira-copyright">
-		&copy; 2025
+		&copy; 2026
 		<a href="/">战斗包子</a>
 		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
 		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
@@ -389,7 +389,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月02日</a>
-			<a><i class="kirafont icon-edit-fill"></i>598 字</a>
+			<a><i class="kirafont icon-edit-fill"></i>686 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
 		<html><head></head><body><h1><span id="windows环境下g无输出的解决方案"><span id="windows%E7%8E%AF%E5%A2%83%E4%B8%8Bg%E6%97%A0%E8%BE%93%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"> windows环境下g++无输出的解决方案</span></span></h1>
@@ -417,7 +417,15 @@ git config --global https.<a target="_blank" rel="noopener" href="https://github
 <p>我的mac设置的是</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">kzz6991@SurfaceAir PaiPai121.io % git config --global --get http.proxy<br>http://127.0.0.1:2081<br>kzz6991@SurfaceAir PaiPai121.io % git config --global --get https.proxy<br>http://127.0.0.1:2081<br></code></pre></td></tr></tbody></table></figure>
 <p>如果要去除：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global --<span class="hljs-built_in">unset</span> http.proxy<br>git config --global --<span class="hljs-built_in">unset</span> https.proxy<br></code></pre></td></tr></tbody></table></figure></body></html>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global --<span class="hljs-built_in">unset</span> http.proxy<br>git config --global --<span class="hljs-built_in">unset</span> https.proxy<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="配置ssh免密登录"><span id="%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"> 配置ssh免密登录</span></span></h1>
+<p>查看是否已经存在密钥</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> <span class="hljs-variable">$env</span>:USERPROFILE\.ssh\id_rsa.pub<br></code></pre></td></tr></tbody></table></figure>
+<p>如不存在，则创建</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -b 4096<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="读取本地公钥-gt-登录服务器-gt-创建ssh目录-gt-把公钥追加写入授权文件"><span id="%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E5%85%AC%E9%92%A5-%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%88%9B%E5%BB%BAssh%E7%9B%AE%E5%BD%95-%E6%8A%8A%E5%85%AC%E9%92%A5%E8%BF%BD%E5%8A%A0%E5%86%99%E5%85%A5%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6"> 读取本地公钥 -&gt; 登录服务器 -&gt; 创建.ssh目录 -&gt; 把公钥追加写入授权文件</span></span></h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">type</span> <span class="hljs-variable">$env</span>:USERPROFILE\.ssh\id_rsa.pub | ssh root@148.135.91.160 <span class="hljs-string">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span><br></code></pre></td></tr></tbody></table></figure>
+</body></html>
 	</article>
 
 	 
