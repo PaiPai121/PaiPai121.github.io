@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -420,30 +405,21 @@
 		</div>
 		<html><head></head><body><h1><span id="latex%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2">LaTeX公式渲染测试页面</span></h1>
 <h2><span id="%E6%B5%8B%E8%AF%95%E5%8D%95%E4%B8%AA">测试单个</span></h2>
-<p>$$符号</p>
-<p>这是一个使用单个美元符号的行内公式：$E = mc^2$</p>
-<h2><span id="%E6%B5%8B%E8%AF%95%E5%8F%8C">测试双</span></h2>
-<p>$$符号</p>
+<p>$$符号 这是一个使用单个美元符号的行内公式：$E = mc^2$ ## 测试双$$符号</p>
 <p>这是一个使用双美元符号的块级公式：
-$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-$$</p>
+$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$</p>
 <h2><span id="%E6%B5%8B%E8%AF%95%E5%9B%9B%E4%B8%AA%E7%AC%A6%E5%8F%B7">测试四个$符号</span></h2>
-<p>尝试使用四个美元符号：
-$$
-$$E = mc^2
-$$
-$$</p>
+<p>尝试使用四个美元符号：</p>
+<p>$$$$
+E = mc^2</p>
+<p>$$$$</p>
 <h2><span id="%E6%B5%8B%E8%AF%95%E5%85%B6%E4%BB%96latex%E8%AF%AD%E6%B3%95">测试其他LaTeX语法</span></h2>
 <p>行内公式：$\alpha + \beta = \gamma$</p>
-<p>块级公式：
-$$
-\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n
-$$</p>
+<p>块级公式：</p>
+<p>$$\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n$$</p>
 <h2><span id="%E6%B5%8B%E8%AF%95%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6">测试转义字符</span></h2>
 <p>如果需要显示美元符号本身：$100$，或者
-$$$100
-$$。</p>
+$$$100$$。</p>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->
 <script>

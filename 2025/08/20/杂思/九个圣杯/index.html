@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -422,20 +407,16 @@
 <p>如果有两个预言家，预言准确的概率分别为80%和5%，都预言世界毁灭，此时世界毁灭的概率是多少？
 如果世界毁灭的概率为P(A)</p>
 <p>世界毁灭为事件A，如此预言为事件B
-贝叶斯公式计算如此预言时发生事件A的概率
-$$P(B) = P(A) * 0.8 * 0.05 + (1 - P(A)) * 0.2 * 0.95 = 0.19 - 0.15 P(A)
-$$
-$$P(B|A) = 0.8*0.05 = 0.04
-$$
-$$P(A|B) = \frac{P(B|A)}{P(B)}P(A) = \frac{0.04P(A)}{0.19 - 0.15P(A)}
-$$</p>
+贝叶斯公式计算如此预言时发生事件A的概率</p>
+<p>$$P(B) = P(A) * 0.8 * 0.05 + (1 - P(A)) * 0.2 * 0.95 = 0.19 - 0.15 P(A)$$
+$$P(B|A) = 0.8*0.05 = 0.04$$
+$$P(A|B) = \frac{P(B|A)}{P(B)}P(A) = \frac{0.04P(A)}{0.19 - 0.15P(A)}$$</p>
 <h1><span id="story-2">story 2</span></h1>
 <p>如果连投9个圣杯
 经典概型来讲，概率为$(1/2)^9$</p>
 <p>用贝叶斯公式来反推一下关圣帝君应允的概率
-如果说我们预先假设应允的概率是P(A)，如果应允的话，投圣杯的概率是1
-$$P(A|B) = \frac{P(B|A)}{P(B)}P(A) = \frac{1}{P(A) + (1-P(A))(1/2)^9 } P(A)
-$$</p>
+如果说我们预先假设应允的概率是P(A)，如果应允的话，投圣杯的概率是1</p>
+<p>$$P(A|B) = \frac{P(B|A)}{P(B)}P(A) = \frac{1}{P(A) + (1-P(A))(1/2)^9 } P(A)$$</p>
 <p>如果先验认为0.01的概率认可，那9个圣杯后，概率为
 0.01/(0.01 + 0.99 / 2^9)  = 0.837</p>
 <!-- hexo injector body_end start -->

@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -453,21 +438,16 @@
 <!-- tocstop -->
 <h1><span id="%E9%93%BE%E8%A1%A8">链表</span></h1>
 <ul>
-<li>
-<p>[x] 141. 环形链表  (比较简单)</p>
-</li>
-<li>
-<p>[x] 142. 环形链表 II （需要注意Floyd判圈）
+<li>[x] 141. 环形链表  (比较简单)</li>
+<li>[x] 142. 环形链表 II （需要注意Floyd判圈）
 <img data-fancybox="gallery" data-sizes="auto" data-src="image.png" alt="alt text" class="lazyload">
-fast 指针已经走完了环的 n 圈，因此它走过的总距离为
-$$a+n(b+c)+b=a+(n+1)b+nc
-$$
-而 slow 指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow 指针多走了 $nb+nc$ 的距离。
-$$a + (n+1)b + nc = 2  (nb+nc)
-$$
-$$a = (n-1)b +nc = c + (n-1)(b+c)
-$$</p>
-</li>
+fast 指针已经走完了环的 n 圈，因此它走过的总距离为</li>
+</ul>
+<p>$$a+n(b+c)+b=a+(n+1)b+nc$$
+而 slow 指针只走了 a+b 的距离，因此它们在环上相遇时，fast 指针比 slow 指针多走了 $nb+nc$ 的距离。</p>
+<p>$$a + (n+1)b + nc = 2 (nb+nc)$$
+$$a = (n-1)b +nc = c + (n-1)(b+c)$$</p>
+<ul>
 <li>
 <p>[x] 160. 相交链表
 方案1：直接hash，复杂度比较差

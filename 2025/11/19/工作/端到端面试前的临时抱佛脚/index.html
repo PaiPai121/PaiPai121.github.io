@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -488,13 +473,12 @@
 <h3><span id="%E8%BE%85%E5%8A%A9%E4%BB%BB%E5%8A%A1%E7%9B%91%E7%9D%A3-auxiliary-supervision">辅助任务监督 (Auxiliary Supervision)：</span></h3>
 <h3><span id="%F0%9F%93%90-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-loss-function-%E7%9A%84%E8%BF%9B%E5%8C%96">📐 损失函数 (Loss Function) 的进化</span></h3>
 <p><strong>普通模仿学习 (Behavior Cloning, BC)</strong>：
-只看结果，容易死记硬背。
-$$L_{plan} = || \tau_{pred} - \tau_{gt} ||<em>2
-$$ (预测轨迹与专家真值的 L2 距离)
+只看结果，容易死记硬背。</p>
+<p>$$L_{plan} = || \tau_{pred} - \tau_{gt} ||_2$$
+(预测轨迹与专家真值的 L2 距离)
 <strong>PLUTO 架构</strong>：
-引入多重监管，强制理解语义。
-$$L</em>{total} = L_{plan} + \lambda_1 L_{forecast} + \lambda_2 L_{state} + \dots
-$$</p>
+引入多重监管，强制理解语义。</p>
+<p>$$L_{total} = L_{plan} + \lambda_1 L_{forecast} + \lambda_2 L_{state} + \dots$$</p>
 <h3><span id="%F0%9F%A7%A0-%E4%BD%95%E4%B8%BA%E5%BC%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E8%AF%AD%E4%B9%89">🧠 何为“强制学习语义”？</span></h3>
 <ul>
 <li><strong>目的</strong>：防止模型<strong>走捷径 (Shortcut)</strong> 或 <strong>死记硬背 (Rote Memorization)</strong>。</li>
@@ -578,11 +562,11 @@ $$</p>
 <h3><span id="key-%E5%92%8C-value">key 和 value</span></h3>
 <p>key和value共同组成了一个字典，根据每一个key可以找到对应的value</p>
 <blockquote>
-<p>在 attn_module (MultiheadAttention) 的内部，第一件事就是做线性变换（Linear Projection）：
-$$K = \text{bev_feat} \times W_K
-$$
-$$V = \text{bev_feat} \times W_V
-$$$W_K$ (Key 的权重矩阵)：这是网络学出来的参数。它的目的是把原始特征变成适合“被搜索”的样子（比如突出位置信息、类别信息）。</p>
+<p>在 attn_module (MultiheadAttention) 的内部，第一件事就是做线性变换（Linear Projection）：</p>
+</blockquote>
+<p>$$K = \text{bev\\_feat} \times W_K$$
+$$V = \text{bev\\_feat} \times W_V$$$W_K$ (Key 的权重矩阵)：这是网络学出来的参数。它的目的是把原始特征变成适合“被搜索”的样子（比如突出位置信息、类别信息）。</p>
+<blockquote>
 <p>$W_V$ (Value 的权重矩阵)：这是另一组参数。它的目的是把原始特征变成适合“被规划使用”的样子（比如突出速度、加速度、曲率信息）。
 它们源自同一个 Input，但通过两个不同的全连接层 ($W_K, W_V$)</p>
 </blockquote>

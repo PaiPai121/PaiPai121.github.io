@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -412,8 +397,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月08日</a>
-			<a><i class="kirafont icon-edit-fill"></i>10.4k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 52 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>10.6k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 53 分钟</a>
 		</div>
 		<!-- toc --><html><head></head><body><ul>
 <li><a href="#lqr%E5%9F%BA%E7%A1%80">LQR基础</a>
@@ -529,191 +514,118 @@
 </ul>
 <!-- tocstop -->
 <h1><span id="lqr%E5%9F%BA%E7%A1%80">LQR基础</span></h1>
-<p>状态转移：
-$$x_{k+1} = A_k x_t + B_ku_t
-$$
-需要使如下目标函数最优
-$$J(x_0,U) = \frac{1}{2} \Sigma_{k=1}^ {N-1} (x_k^TQ_kx_k + u_k^TR_ku_k) + \frac{1}{2}x_N^TQ_fx_N
-$$</p>
+<p>状态转移：</p>
+<p>$$x_{k+1} = A_k x_t + B_ku_t$$
+需要使如下目标函数最优</p>
+<p>$$J(x_0,U) = \frac{1}{2} \Sigma_{k=1}^ {N-1} (x_k^TQ_kx_k + u_k^TR_ku_k) + \frac{1}{2}x_N^TQ_fx_N$$</p>
 <p>其中三部分为状态成本，控制成本和终点状态成本。</p>
-<p>在终端时刻 $N$，剩余成本即为终端惩罚：
-$$V_N(x_N) = \frac{1}{2} x_N^T Q_f x_N
-$$
-为便于递推，我们定义：
-$$\boldsymbol{S_N = Q_f}
-$$
-所以：
-$$V_N(x_N) = \frac{1}{2} x_N^T S_N x_N
-$$</p>
+<p>在终端时刻 $N$，剩余成本即为终端惩罚：</p>
+<p>$$V_N(x_N) = \frac{1}{2} x_N^T Q_f x_N$$
+为便于递推，我们定义：</p>
+<p>$$\boldsymbol{S_N = Q_f}$$
+所以：</p>
+<p>$$V_N(x_N) = \frac{1}{2} x_N^T S_N x_N$$</p>
 <h3><span id="kn-1-%E6%97%B6%E5%88%BB%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E5%BE%8B-u_n-1">$k=N-1$ 时刻的最优控制律 $u^*_{N-1}$</span></h3>
-<p>$$V_N(x_N) = \frac{1}{2} x_N^TQ_fx_N=\frac{1}{2}x_N^TS_Nx_N
-$$</p>
-<p>根据贝尔曼最优性原理
-$$\begin{aligned}V_{i}(x_{i}) &amp;=
-\min_{u_{i}}
-V_{i+1}(x_{i+1})+ \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i}
-\\&amp;=\min_{u_{i}} \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i} + \frac{1}{2}(A_{i}x_{i} + B_{i}u_{i})^TS_{i+1}(A_{i}x_{i} + B_{i}u_{i})\\
-&amp;=\min_{u_{i}}   \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i} +\frac{1}{2} x_i^TA^TS_{i+1} Ax_i +
-\frac{1}{2} u_i^TB_i^TS_{i+1}B_iu_i + x_i^TA_i^TS_{i+1}B_iu_i \\
-&amp;=\min_{u_{i}}   \frac{1}{2} u_i^T(R_i + B_i^TS_{i+1}B_i)u_i + \frac{1}{2}  x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i + u_i^T(B_i^TS_{i+1}A_i)x_i \\
-\end{aligned}
-$$</p>
-<p>接下来求导
-$$
-\begin{aligned}
-\frac{\partial V}{\partial u} &amp;=
-(R_i + B_i^TS_{i+1}B_i)u_i + (B_i^TS_{i+1}A_i)x_i
-&amp;= 0
-\end{aligned}
-$$
-$$u_i = - (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)x_i
-$$
-$$u_i = -K_ix_i, \ \ \ \ \  K_i = (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)
-$$</p>
+<p>$$V_N(x_N) = \frac{1}{2} x_N^TQ_fx_N=\frac{1}{2}x_N^TS_Nx_N$$</p>
+<p>根据贝尔曼最优性原理</p>
+<p>$$\begin{aligned}V_{i}(x_{i}) &amp;= \min_{u_{i}} V_{i+1}(x_{i+1})+ \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i} \\&amp;=\min_{u_{i}} \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i} + \frac{1}{2}(A_{i}x_{i} + B_{i}u_{i})^TS_{i+1}(A_{i}x_{i} + B_{i}u_{i})\\ &amp;=\min_{u_{i}} \frac{1}{2}u_{i}^TR_{i}u_{i} + \frac{1}{2}x_{i}^TQ_{i}x_{i} +\frac{1}{2} x_i^TA^TS_{i+1} Ax_i + \frac{1}{2} u_i^TB_i^TS_{i+1}B_iu_i + x_i^TA_i^TS_{i+1}B_iu_i \\ &amp;=\min_{u_{i}} \frac{1}{2} u_i^T(R_i + B_i^TS_{i+1}B_i)u_i + \frac{1}{2} x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i + u_i^T(B_i^TS_{i+1}A_i)x_i \\ \end{aligned}$$</p>
+<p>接下来求导</p>
+<p>$$\begin{aligned} \frac{\partial V}{\partial u} &amp;= (R_i + B_i^TS_{i+1}B_i)u_i + (B_i^TS_{i+1}A_i)x_i &amp;= 0 \end{aligned}$$
+$$u_i = - (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)x_i$$
+$$u_i = -K_ix_i, \ \ \ \ \ K_i = (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)$$</p>
 <h3><span id="riccati">Riccati</span></h3>
-<p>代入最优控制
-$$\begin{aligned}V_i(x_i) = &amp;\frac{1}{2} u_i^{<em>T}(R_i + B_i^TS_{i+1}B_i)u_i^</em> + \frac{1}{2}  x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i + u_i^{*T}(B_i^TS_{i+1}A_i)x_i \\
-= &amp; \frac{1}{2} x_i^TK_i^T(R_i + B_i^TS_{i+1}B_i)K_ix_i +
-\frac{1}{2}  x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i - x_i^TK_i^T(B_i^TS_{i+1}A_i)x_i \\
-= &amp; \frac{1}{2} x_i^T (K_i^T(R_i + B_i^TS_{i+1}B_i)K_i + Q_{i} + A_i^TS_{i+1}A_i - 2K_i^T(B_i^TS_{i+1}A_i)) x_i
-\end{aligned}
-$$</p>
+<p>代入最优控制</p>
+<p>$$\begin{aligned}V_i(x_i) = &amp;\frac{1}{2} u_i^{*T}(R_i + B_i^TS_{i+1}B_i)u_i^* + \frac{1}{2} x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i + u_i^{*T}(B_i^TS_{i+1}A_i)x_i \\ = &amp; \frac{1}{2} x_i^TK_i^T(R_i + B_i^TS_{i+1}B_i)K_ix_i + \frac{1}{2} x_i^T(Q_{i} + A_i^TS_{i+1}A_i)x_i - x_i^TK_i^T(B_i^TS_{i+1}A_i)x_i \\ = &amp; \frac{1}{2} x_i^T (K_i^T(R_i + B_i^TS_{i+1}B_i)K_i + Q_{i} + A_i^TS_{i+1}A_i - 2K_i^T(B_i^TS_{i+1}A_i)) x_i \end{aligned}$$</p>
 <h4><span id="%E5%AE%8C%E6%95%B4%E5%BD%A2%E5%BC%8Friccati%E6%96%B9%E7%A8%8B">完整形式Riccati方程</span></h4>
-<p>$$ \begin{aligned}S_i = &amp; Q_i + A_i^TS_{i+1}A_i -  2K^T(B_i^TS_{i+1}A_i) + K_i^TR_iK_i + K_i^T(B_i^TS_{i+1}B_i)K_i \\
-= &amp; Q_i + K_i^TR_iK_i + (A_i - B_iK_i)^TS_{i+1}(A_i - B_iK_i)
-\end{aligned}
-$$</p>
+<p>$$\begin{aligned}S_i = &amp; Q_i + A_i^TS_{i+1}A_i - 2K^T(B_i^TS_{i+1}A_i) + K_i^TR_iK_i + K_i^T(B_i^TS_{i+1}B_i)K_i \\ = &amp; Q_i + K_i^TR_iK_i + (A_i - B_iK_i)^TS_{i+1}(A_i - B_iK_i) \end{aligned}$$</p>
 <h4><span id="%E6%A0%87%E5%87%86%E7%9A%84-%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4-riccati-%E7%9F%A9%E9%98%B5%E6%96%B9%E7%A8%8B-dare">标准的 离散时间 Riccati 矩阵方程 (DARE)：</span></h4>
-<p>将Ki代入
-$$
-\begin{aligned}
-S_i =&amp; Q_i + K_i^TR_iK_i + (A_i - B_iK_i)^TS_{i+1}(A_i - B_iK_i) \\
-= &amp; Q_i + ((R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)) ^T R_i (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i) + (A_i - B_i(R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i))^TS_{i+1}(A_i - B_i(R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)) \\
-= &amp; Q_i + A_i^T S_{i+1} A_i - A_i^T S_{i+1} B_i (R_i + B_i^T S_{i+1} B_i)^{-1} B_i^T S_{i+1} A_i
-\end{aligned}
-$$</p>
+<p>将Ki代入</p>
+<p>$$\begin{aligned} S_i =&amp; Q_i + K_i^TR_iK_i + (A_i - B_iK_i)^TS_{i+1}(A_i - B_iK_i) \\ = &amp; Q_i + ((R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)) ^T R_i (R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i) + (A_i - B_i(R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i))^TS_{i+1}(A_i - B_i(R_i + B_i^TS_{i+1}B_i)^{-1}(B_i^TS_{i+1}A_i)) \\ = &amp; Q_i + A_i^T S_{i+1} A_i - A_i^T S_{i+1} B_i (R_i + B_i^T S_{i+1} B_i)^{-1} B_i^T S_{i+1} A_i \end{aligned}$$</p>
 <h1><span id="ilqr">iLQR</span></h1>
 <p>状态转移方程变成非线性，即
-$$x_{k+1} = f(x_k, u _k)
-$$</p>
+$$x_{k+1} = f(x_k, u _k)$$</p>
 <p>目标函数为
-$$J(x_0,U) = h(x_N) + \Sigma_{k = 0} ^ {N-1} l (x_k,u_k)
-$$</p>
+$$J(x_0,U) = h(x_N) + \Sigma_{k = 0} ^ {N-1} l (x_k,u_k)$$</p>
 <h2><span id="%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E7%94%A8ilqr%E5%8E%BB%E4%BC%98%E5%8C%96%E8%BD%A8%E8%BF%B9">如果我们用iLQR去优化轨迹</span></h2>
 <p>假设我们有一个粗节轨迹$\bold{(\bar x, \bar u)}$，我们希望计算小的扰动$\delta x, \delta u$来改善轨迹。</p>
-<p>扰动为
-$$
-\begin{aligned}
-\delta x_k = x_k - \bar x_k\\
-\delta u_k = u_k - \bar u_k
-\end{aligned}
-$$</p>
+<p>扰动为</p>
+<p>$$\begin{aligned} \delta x_k = x_k - \bar x_k\\ \delta u_k = u_k - \bar u_k \end{aligned}$$</p>
 <p>我们需要将非线性泰勒展开，得到线性的局部目标函数及状态转移方程。</p>
-<p>对状态转移方程进行展开
-$$
-\begin{aligned}
-&amp; x_{k+1} \approx f(\bar x_k, \bar u_k) + \frac{\partial f}{\partial x} |<em>{\bar k} (x_k -\bar x_k) + \frac{\partial f}{\partial u} | <em>{\bar k} (u_k - \bar u_k)
-\\
-&amp; A_k = \frac{\partial f}{\partial x} |</em>{\bar k}
-\\
-&amp; B_k = \frac{\partial f}{\partial u} |</em>{\bar k}
-\\
-&amp; c_k = f(\bar x_k, \bar u_k) - \bar x_{k+1}
-\end{aligned}
-$$</p>
-<p>$$\delta x_{k+1} = A_k\delta x_k + B_k \delta u_k + c_k
-$$</p>
+<p>对状态转移方程进行展开</p>
+<p>$$\begin{aligned} &amp;x_{k+1} \approx f(\bar x_k, \bar u_k) + \frac{\partial f}{\partial x} |_{\bar k} (x_k -\bar x_k) + \frac{\partial f}{\partial u} | _{\bar k} (u_k - \bar u_k) \\ &amp; A_k = \frac{\partial f}{\partial x} |_{\bar k} \\ &amp; B_k = \frac{\partial f}{\partial u} |_{\bar k} \\ &amp; c_k = f(\bar x_k, \bar u_k) - \bar x_{k+1} \end{aligned}$$</p>
+<p>$$\delta x_{k+1} = A_k\delta x_k + B_k \delta u_k + c_k$$</p>
 <h2><span id="%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E7%9A%84%E4%BA%8C%E6%AC%A1%E5%8C%96%E5%B1%80%E9%83%A8%E6%88%90%E6%9C%AC">目标函数的二次化（局部成本）</span></h2>
-<p>$$\delta J = \delta h(x_N) + \Sigma_{k=0}^{N-1} \delta l (x_k, u_k)
-$$</p>
+<p>$$\delta J = \delta h(x_N) + \Sigma_{k=0}^{N-1} \delta l (x_k, u_k)$$</p>
 <h3><span id="%E8%BF%90%E8%A1%8C%E6%88%90%E6%9C%AC">运行成本</span></h3>
-<p>对l进行泰勒展开（在粗解的point上）
-$$
-l(x_k, u_k) \approx l(\bar x_k, \bar u_k) + l_x^T\delta x_k + l_u^T\delta u_k + \frac{1}{2} \delta x_k^T l_{xx} \delta x_k + \frac{1}{2} \delta u_k^T l_{uu} \delta u_k + \delta x_k^Tl_{xu}\delta u_k, \ \ \ \ \ \ \ l(\bar x_k, \bar u_k) 为常数
-$$</p>
+<p>对l进行泰勒展开（在粗解的point上）</p>
+<p>$$l(x_k, u_k) \approx l(\bar x_k, \bar u_k) + l_x^T\delta x_k + l_u^T\delta u_k + \frac{1}{2} \delta x_k^T l_{xx} \delta x_k + \frac{1}{2} \delta u_k^T l_{uu} \delta u_k + \delta x_k^Tl_{xu}\delta u_k, \ \ \ \ \ \ \ l(\bar x_k, \bar u_k) 为常数$$</p>
 <h3><span id="%E7%BB%88%E7%AB%AF%E6%88%90%E6%9C%AC">终端成本</span></h3>
-<p>$$h(x_N) \approx h(\bar x_N) + h^T_x\delta x_N + \frac{1}{2} \delta x_N^T h_{xx}\delta x_N, \ \ \ \ \ \ \ \ h(\bar x_N) 为常数
-$$</p>
+<p>$$h(x_N) \approx h(\bar x_N) + h^T_x\delta x_N + \frac{1}{2} \delta x_N^T h_{xx}\delta x_N, \ \ \ \ \ \ \ \ h(\bar x_N) 为常数$$</p>
 <p>此时可以发现，与LQR相比，iLQR除了二次型外，还有线性项</p>
 <h2><span id="ilqr-%E4%B8%8E-lqr-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9%E5%B7%AE%E5%BC%82">iLQR 与 LQR 的线性项差异</span></h2>
 <h3><span id="%F0%9F%94%B9-lqr-linear-quadratic-regulator%E7%BA%AF%E4%BA%8C%E6%AC%A1%E5%9E%8B">🔹 LQR (Linear Quadratic Regulator)：纯二次型</span></h3>
 <p><strong>核心目标：</strong> 将状态驱动到<strong>原点</strong> $\boldsymbol{x}=\mathbf{0}$。</p>
 <h4><span id="a-%E9%9B%B6%E5%8F%82%E8%80%83%E5%92%8C%E9%9B%B6%E6%A2%AF%E5%BA%A6-zero-reference--zero-gradient">A. 零参考和零梯度 (Zero Reference &amp; Zero Gradient)</span></h4>
 <p>LQR 的局部目标函数是<strong>纯二次型</strong>，且假设最优轨迹是 $\boldsymbol{x}=\mathbf{0}, \boldsymbol{u}=\mathbf{0}$。
-在原点 $\boldsymbol{x}=\mathbf{0}$ 处，成本函数对于状态 $\boldsymbol{x}$ 的<strong>梯度</strong>（一阶导数）总是 <strong>零</strong>：
-$$\frac{\partial l}{\partial \boldsymbol{x}}\bigg|_{\boldsymbol{x}=\mathbf{0}, \boldsymbol{u}=\mathbf{0}} = \mathbf{0}
-$$</p>
+在原点 $\boldsymbol{x}=\mathbf{0}$ 处，成本函数对于状态 $\boldsymbol{x}$ 的<strong>梯度</strong>（一阶导数）总是 <strong>零</strong>：</p>
+<p>$$\frac{\partial l}{\partial \boldsymbol{x}}\bigg|_{\boldsymbol{x}=\mathbf{0}, \boldsymbol{u}=\mathbf{0}} = \mathbf{0}$$</p>
 <h4><span id="b-%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B%E7%9A%84%E6%80%A7%E8%B4%A8%E7%BA%BF%E6%80%A7%E9%A1%B9%E6%B6%88%E5%A4%B1">B. 贝尔曼方程的性质：线性项消失</span></h4>
 <p>由于成本函数在原点没有梯度，所以值函数 $V_k$ 在 $\boldsymbol{x}=\mathbf{0}$ 附近也没有梯度。
-值函数 $V_k$ 的泰勒展开式为：
-$$V_k(\boldsymbol{x}_k) \approx V_k(\mathbf{0}) + \underbrace{\boldsymbol{v}<em>k^T}</em>{\text{梯度}} \boldsymbol{x}_k + \frac{1}{2} \boldsymbol{x}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}} \boldsymbol{x}_k
-$$
-由于 $V_k(\mathbf{0})=0$ 且 $\boldsymbol{v}<em>k = \frac{\partial V_k}{\partial \boldsymbol{x}}|</em>{\boldsymbol{x}=\mathbf{0}} = \mathbf{0}$，所有线性项都消失了。</p>
+值函数 $V_k$ 的泰勒展开式为：</p>
+<p>$$V_k(\boldsymbol{x}_k) \approx V_k(\mathbf{0}) + \underbrace{\boldsymbol{v}_k^T}_{\text{梯度}} \boldsymbol{x}_k + \frac{1}{2} \boldsymbol{x}_k^T \boldsymbol{V}_{\boldsymbol{xx}} \boldsymbol{x}_k$$
+由于 $V_k(\mathbf{0})=0$ 且 $\boldsymbol{v}_k = \frac{\partial V_k}{\partial \boldsymbol{x}}|_{\boldsymbol{x}=\mathbf{0}} = \mathbf{0}$，所有线性项都消失了。</p>
 <blockquote>
 <p><strong>LQR 结论：</strong> 值函数是<strong>纯二次型</strong>：</p>
 </blockquote>
-<p>$$V_k(\boldsymbol{x}_k) = \frac{1}{2} \boldsymbol{x}_k^T \boldsymbol{S}_k \boldsymbol{x}_k
-$$</p>
+<p>$$V_k(\boldsymbol{x}_k) = \frac{1}{2} \boldsymbol{x}_k^T \boldsymbol{S}_k \boldsymbol{x}_k$$</p>
 <hr>
 <h3><span id="%F0%9F%94%B9-ilqr-iterative-lqr%E4%BB%BF%E5%B0%84%E4%BA%8C%E6%AC%A1%E5%9E%8B-affine-quadratic">🔹 iLQR (Iterative LQR)：仿射二次型 (Affine Quadratic)</span></h3>
 <p><strong>核心目标：</strong> 在一条<strong>任意名义轨迹</strong> $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$ 附近进行局部优化。</p>
 <h4><span id="a-%E8%BD%A8%E8%BF%B9%E5%81%8F%E7%A6%BB%E5%8E%9F%E7%82%B9%E5%AD%98%E5%9C%A8%E9%9D%9E%E9%9B%B6%E6%A2%AF%E5%BA%A6-non-zero-gradient">A. 轨迹偏离原点，存在非零梯度 (Non-Zero Gradient)</span></h4>
 <p>名义轨迹 $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$ <strong>通常不经过原点</strong>，且在优化过程中<strong>通常不是最优的</strong>。
-我们在名义点 $\bar{\boldsymbol{x}}_k$ 处计算局部成本 $\boldsymbol{\delta l}$。由于 $\bar{\boldsymbol{x}}<em>k$ 不是最优轨迹，局部成本函数 $l(\boldsymbol{x}, \boldsymbol{u})$ 在 $\bar{\boldsymbol{x}}<em>k$ 处对 $\boldsymbol{x}$ 和 $\boldsymbol{u}$ 的导数<strong>不为零</strong>：
-$$\boldsymbol{l}</em>{\boldsymbol{x}} = \frac{\partial l}{\partial \boldsymbol{x}}\bigg|</em>{\bar{k}} \neq \mathbf{0}
-$$</p>
-<p>$$\boldsymbol{l}<em>{\boldsymbol{u}} = \frac{\partial l}{\partial \boldsymbol{u}}\bigg|</em>{\bar{k}} \neq \mathbf{0}
-$$</p>
+我们在名义点 $\bar{\boldsymbol{x}}_k$ 处计算局部成本 $\boldsymbol{\delta l}$。由于 $\bar{\boldsymbol{x}}_k$ 不是最优轨迹，局部成本函数 $l(\boldsymbol{x}, \boldsymbol{u})$ 在 $\bar{\boldsymbol{x}}_k$ 处对 $\boldsymbol{x}$ 和 $\boldsymbol{u}$ 的导数<strong>不为零</strong>：</p>
+<p>$$\boldsymbol{l}_{\boldsymbol{x}} = \frac{\partial l}{\partial \boldsymbol{x}}\bigg|_{\bar{k}} \neq \mathbf{0}$$</p>
+<p>$$\boldsymbol{l}_{\boldsymbol{u}} = \frac{\partial l}{\partial \boldsymbol{u}}\bigg|_{\bar{k}} \neq \mathbf{0}$$</p>
 <h4><span id="b-%E7%BA%BF%E6%80%A7%E9%A1%B9%E7%9A%84%E5%BC%95%E5%85%A5%E9%A9%B1%E5%8A%A8%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B">B. 线性项的引入：驱动优化过程</span></h4>
-<p>这些非零的梯度 $\boldsymbol{l}<em>{\boldsymbol{x}}$ 和 $\boldsymbol{l}</em>{\boldsymbol{u}}$ 在 Q 函数 $\mathcal{Q}_k$ 的泰勒展开中引入了<strong>线性分量</strong> $\boldsymbol{q}$ 和 $\boldsymbol{r}$：
-$$\mathcal{Q}_k \approx \dots + \underbrace{\boldsymbol{q}^T \boldsymbol{\delta x}<em>k}</em>{\text{非零}} + \underbrace{\boldsymbol{r}^T \boldsymbol{\delta u}<em>k}</em>{\text{非零}} + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \dots
-$$
-由于 $\boldsymbol{q}$ 和 $\boldsymbol{r}$ 不为零，通过贝尔曼方程逆向递推得到的值函数 $V_k$ 的梯度 $\boldsymbol{v}_k$ <strong>也不为零</strong>：
-$$\boldsymbol{v}_k = \boldsymbol{q} - \boldsymbol{M} \boldsymbol{R}^{-1} \boldsymbol{r} \neq \mathbf{0}
-$$</p>
+<p>这些非零的梯度 $\boldsymbol{l}_{\boldsymbol{x}}$ 和 $\boldsymbol{l}_{\boldsymbol{u}}$ 在 Q 函数 $\mathcal{Q}_k$ 的泰勒展开中引入了<strong>线性分量</strong> $\boldsymbol{q}$ 和 $\boldsymbol{r}$：</p>
+<p>$$\mathcal{Q}_k \approx \dots + \underbrace{\boldsymbol{q}^T \boldsymbol{\delta x}_k}_{\text{非零}} + \underbrace{\boldsymbol{r}^T \boldsymbol{\delta u}_k}_{\text{非零}} + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \dots$$
+由于 $\boldsymbol{q}$ 和 $\boldsymbol{r}$ 不为零，通过贝尔曼方程逆向递推得到的值函数 $V_k$ 的梯度 $\boldsymbol{v}_k$ <strong>也不为零</strong>：</p>
+<p>$$\boldsymbol{v}_k = \boldsymbol{q} - \boldsymbol{M} \boldsymbol{R}^{-1} \boldsymbol{r} \neq \mathbf{0}$$</p>
 <blockquote>
 <p><strong>iLQR 结论：</strong> 值函数是<strong>仿射二次型</strong>（包含线性项）：</p>
 </blockquote>
-<p>$$V_k(\boldsymbol{\delta x}_k) \approx \text{const} + \underbrace{\boldsymbol{v}_k^T \boldsymbol{\delta x}<em>k}</em>{\text{非零线性项}} + \frac{1}{2} \boldsymbol{\delta x}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}} \boldsymbol{\delta x}_k
-$$</p>
+<p>$$V_k(\boldsymbol{\delta x}_k) \approx \text{const} + \underbrace{\boldsymbol{v}_k^T \boldsymbol{\delta x}_k}_{\text{非零线性项}} + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{V}_{\boldsymbol{xx}} \boldsymbol{\delta x}_k$$</p>
 <hr>
 <h2><span id="%F0%9F%8E%AF-%E6%80%BB%E7%BB%93%E7%BA%BF%E6%80%A7%E9%A1%B9%E7%9A%84%E4%BD%9C%E7%94%A8">🎯 总结：线性项的作用</span></h2>
 <p>iLQR 中的非零线性项 $\boldsymbol{v}_k^T \boldsymbol{\delta x}_k$ 意味着最优值函数在当前名义点处有一个<strong>非零的斜率</strong>。</p>
 <p>这个斜率就是<strong>优化过程的驱动力</strong>：它告诉我们沿着哪个方向（即最优反馈控制 $\boldsymbol{\delta u}_k^*$）移动 $\boldsymbol{\delta x}$ 可以获得<strong>最大的成本下降</strong>，从而不断地将名义轨迹推向局部最优。</p>
 <h2><span id="ilqr%E7%9A%84%E6%9C%80%E4%BC%98%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0">iLQR的最优目标函数</span></h2>
 <p>终端：
-在k = N 时，最优未来成本是终端成本
-$$V_N(x_N) = h (x_N)
-$$
-将其泰勒展开，去掉常数项，可以得到
-$$V_N(\delta x_N) \approx h^T_x\delta x_N + \frac{1}{2} \delta x^T <em>N h</em>{xx} \delta x_N
-$$</p>
-<p>一般：
-$$
-V_k(\delta x_k) = C_k + v_k^T\delta x_k + \frac{1}{2}\delta x^T_kV_{xx,k} \delta x_k
-$$</p>
-<p>其中，在终端的时候
-$$v_N = h_x,\ \ \ V_{xx,N} = h_{xx}
-$$</p>
+在k = N 时，最优未来成本是终端成本</p>
+<p>$$V_N(x_N) = h (x_N)$$
+将其泰勒展开，去掉常数项，可以得到</p>
+<p>$$V_N(\delta x_N) \approx h^T_x\delta x_N + \frac{1}{2} \delta x^T _N h_{xx} \delta x_N$$</p>
+<p>一般：</p>
+<p>$$V_k(\delta x_k) = C_k + v_k^T\delta x_k + \frac{1}{2}\delta x^T_kV_{xx,k} \delta x_k$$</p>
+<p>其中，在终端的时候</p>
+<p>$$v_N = h_x,\ \ \ V_{xx,N} = h_{xx}$$</p>
 <h3><span id="%E9%80%92%E6%8E%A8%E8%BF%87%E7%A8%8Bk--1------k">递推过程k + 1 ----&gt; k：</span></h3>
-<p>$$Q_k(\delta x_k, \delta u_k) = l (x_k,u_k) + V_{k+1}(x_{k+1})
-$$</p>
-<p>我们的目标是将 $\mathcal{Q}_k$ 在名义轨迹点 $(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k)$ 附近展开，得到一个关于扰动 $(\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k)$ 的<strong>二次近似</strong>：
-$$\mathcal{Q}_k \approx \text{常数} + \boldsymbol{q}^T \boldsymbol{\delta x}_k + \boldsymbol{r}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}_k^T \boldsymbol{R} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}_k^T \boldsymbol{M} \boldsymbol{\delta u}_k
-$$</p>
+<p>$$Q_k(\delta x_k, \delta u_k) = l (x_k,u_k) + V_{k+1}(x_{k+1})$$</p>
+<p>我们的目标是将 $\mathcal{Q}_k$ 在名义轨迹点 $(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k)$ 附近展开，得到一个关于扰动 $(\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k)$ 的<strong>二次近似</strong>：</p>
+<p>$$\mathcal{Q}_k \approx \text{常数} + \boldsymbol{q}^T \boldsymbol{\delta x}_k + \boldsymbol{r}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}_k^T \boldsymbol{R} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}_k^T \boldsymbol{M} \boldsymbol{\delta u}_k$$</p>
 <p><strong>分别展开 $l$ 和 $V_{k+1}$，然后将它们的系数合成</strong>。</p>
 <h4><span id="2-%E5%B7%B2%E7%9F%A5%E4%BF%A1%E6%81%AF-%E8%BE%93%E5%85%A5">2. 已知信息 (输入)</span></h4>
 <p>在 $k$ 时刻的逆向递推中，我们<strong>已知</strong>以下信息：</p>
 <ol>
 <li>
 <p><strong>瞬时成本 $l$ 的导数：</strong>
-$\boldsymbol{l}<em>{\boldsymbol{x}}, \boldsymbol{l}</em>{\boldsymbol{u}}$ (梯度)
-$\boldsymbol{l}<em>{\boldsymbol{xx}}, \boldsymbol{l}</em>{\boldsymbol{uu}}, \boldsymbol{l}_{\boldsymbol{xu}}$ (Hessian)</p>
+$\boldsymbol{l}_{\boldsymbol{x}}, \boldsymbol{l}_{\boldsymbol{u}}$ (梯度)
+$\boldsymbol{l}_{\boldsymbol{xx}}, \boldsymbol{l}_{\boldsymbol{uu}}, \boldsymbol{l}_{\boldsymbol{xu}}$ (Hessian)</p>
 </li>
 <li>
 <p><strong>未来成本 $V_{k+1}$ 的近似：</strong>
-$\boldsymbol{v}<em>{k+1}$ ($V</em>{k+1}$ 对 $\boldsymbol{\delta x}<em>{k+1}$ 的梯度)
-$\boldsymbol{V}</em>{\boldsymbol{xx}, k+1}$ ($V_{k+1}$ 对 $\boldsymbol{\delta x}_{k+1}$ 的 Hessian)</p>
+$\boldsymbol{v}_{k+1}$ ($V_{k+1}$ 对 $\boldsymbol{\delta x}_{k+1}$ 的梯度)
+$\boldsymbol{V}_{\boldsymbol{xx}, k+1}$ ($V_{k+1}$ 对 $\boldsymbol{\delta x}_{k+1}$ 的 Hessian)</p>
 </li>
 <li>
 <p><strong>线性化动力学：</strong>
@@ -721,78 +633,61 @@ $\boldsymbol{\delta x}_{k+1} = \boldsymbol{A}_k \boldsymbol{\delta x}_k + \bolds
 </li>
 </ol>
 <h4><span id="%E7%9E%AC%E6%97%B6%E6%88%90%E6%9C%AC-l-%E7%9A%84%E5%B1%95%E5%BC%80-%E7%9B%B4%E6%8E%A5%E5%B1%95%E5%BC%80">瞬时成本 $l$ 的展开 (直接展开)</span></h4>
-<p>我们首先对 $l(\boldsymbol{x}_k, \boldsymbol{u}_k)$ 在 $(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k)$ 附近进行二阶泰勒展开：
-$$l(\boldsymbol{x}_k, \boldsymbol{u}_k) \approx l(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}<em>k) + \boldsymbol{l}</em>{\boldsymbol{x}}^T \boldsymbol{\delta x}<em>k + \boldsymbol{l}</em>{\boldsymbol{u}}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}<em>k^T \boldsymbol{l}</em>{\boldsymbol{xx}} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}<em>k^T \boldsymbol{l}</em>{\boldsymbol{uu}} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}<em>k^T \boldsymbol{l}</em>{\boldsymbol{xu}} \boldsymbol{\delta u}_k
-$$</p>
+<p>我们首先对 $l(\boldsymbol{x}_k, \boldsymbol{u}_k)$ 在 $(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k)$ 附近进行二阶泰勒展开：</p>
+<p>$$l(\boldsymbol{x}_k, \boldsymbol{u}_k) \approx l(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k) + \boldsymbol{l}_{\boldsymbol{x}}^T \boldsymbol{\delta x}_k + \boldsymbol{l}_{\boldsymbol{u}}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{l}_{\boldsymbol{xx}} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}_k^T \boldsymbol{l}_{\boldsymbol{uu}} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}_k^T \boldsymbol{l}_{\boldsymbol{xu}} \boldsymbol{\delta u}_k$$</p>
 <h4><span id="%E6%9C%AA%E6%9D%A5%E6%88%90%E6%9C%AC-v_k1-%E7%9A%84%E5%B1%95%E5%BC%80-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99">未来成本 $V_{k+1}$ 的展开 (链式法则)</span></h4>
 <p>我们必须将 $V_{k+1}$（它是 $\boldsymbol{\delta x}_{k+1}$ 的函数）转换为 $(\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k)$ 的函数。</p>
-<p>我们从 $V_{k+1}$ 的已知近似开始：
-$$V_{k+1}(\boldsymbol{\delta x}<em>{k+1}) \approx \text{常数} + \boldsymbol{v}</em>{k+1}^T \boldsymbol{\delta x}<em>{k+1} + \frac{1}{2} \boldsymbol{\delta x}</em>{k+1}^T \boldsymbol{V}<em>{\boldsymbol{xx}, k+1} \boldsymbol{\delta x}</em>{k+1}
-$$</p>
+<p>我们从 $V_{k+1}$ 的已知近似开始：</p>
+<p>$$V_{k+1}(\boldsymbol{\delta x}_{k+1}) \approx \text{常数} + \boldsymbol{v}_{k+1}^T \boldsymbol{\delta x}_{k+1} + \frac{1}{2} \boldsymbol{\delta x}_{k+1}^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{\delta x}_{k+1}$$</p>
 <p>现在，我们将线性化动力学 $\boldsymbol{\delta x}_{k+1} = \boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}_k$ 代入上式。</p>
 <h5><span id="v_k1-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的线性项展开</span></h5>
-<p>将 $\boldsymbol{\delta x}<em>{k+1}$ 代入 $\boldsymbol{v}</em>{k+1}^T \boldsymbol{\delta x}<em>{k+1}$：
-$$\boldsymbol{v}</em>{k+1}^T \boldsymbol{\delta x}<em>{k+1} = \boldsymbol{v}</em>{k+1}^T (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}<em>k + \boldsymbol{c}<em>k)
-$$
-$$\boldsymbol{v}</em>{k+1}^T \boldsymbol{\delta x}</em>{k+1} = \underbrace{(\boldsymbol{A}<em>k^T \boldsymbol{v}</em>{k+1})^T \boldsymbol{\delta x}<em>k}</em>{\text{对 } \boldsymbol{\delta x}_k \text{ 线性}} + \underbrace{(\boldsymbol{B}<em>k^T \boldsymbol{v}</em>{k+1})^T \boldsymbol{\delta u}<em>k}</em>{\text{对 } \boldsymbol{\delta u}<em>k \text{ 线性}} + \underbrace{\boldsymbol{v}</em>{k+1}^T \boldsymbol{c}<em>k}</em>{\text{常数}}
-$$</p>
+<p>将 $\boldsymbol{\delta x}_{k+1}$ 代入 $\boldsymbol{v}_{k+1}^T \boldsymbol{\delta x}_{k+1}$：</p>
+<p>$$\boldsymbol{v}_{k+1}^T \boldsymbol{\delta x}_{k+1} = \boldsymbol{v}_{k+1}^T (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}_k)$$
+$$\boldsymbol{v}_{k+1}^T \boldsymbol{\delta x}_{k+1} = \underbrace{(\boldsymbol{A}_k^T \boldsymbol{v}_{k+1})^T \boldsymbol{\delta x}_k}_{\text{对 } \boldsymbol{\delta x}_k \text{ 线性}} + \underbrace{(\boldsymbol{B}_k^T \boldsymbol{v}_{k+1})^T \boldsymbol{\delta u}_k}_{\text{对 } \boldsymbol{\delta u}_k \text{ 线性}} + \underbrace{\boldsymbol{v}_{k+1}^T \boldsymbol{c}_k}_{\text{常数}}$$</p>
 <h5><span id="v_k1-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的二次项展开</span></h5>
-<p>将 $\boldsymbol{\delta x}<em>{k+1}$ 代入 $\frac{1}{2} \boldsymbol{\delta x}</em>{k+1}^T \boldsymbol{V}<em>{\boldsymbol{xx}, k+1} \boldsymbol{\delta x}</em>{k+1}$：
-$$\frac{1}{2} (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}<em>k)^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}_k)
-$$</p>
+<p>将 $\boldsymbol{\delta x}_{k+1}$ 代入 $\frac{1}{2} \boldsymbol{\delta x}_{k+1}^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{\delta x}_{k+1}$：</p>
+<p>$$\frac{1}{2} (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}_k)^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} (\boldsymbol{A}_k \boldsymbol{\delta x}_k + \boldsymbol{B}_k \boldsymbol{\delta u}_k + \boldsymbol{c}_k)$$</p>
 <p>展开这个二次型（我们只保留到二阶，忽略 $\boldsymbol{c}_k$ 的二次项，因为它只是常数）：</p>
-<p><strong>$\boldsymbol{\delta x}_k$ 的二次项:</strong> $\frac{1}{2} (\boldsymbol{A}_k \boldsymbol{\delta x}<em>k)^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} (\boldsymbol{A}_k \boldsymbol{\delta x}_k) = \frac{1}{2} \boldsymbol{\delta x}_k^T (\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{A}_k) \boldsymbol{\delta x}_k$
-<strong>$\boldsymbol{\delta u}_k$ 的二次项:</strong> $\frac{1}{2} (\boldsymbol{B}_k \boldsymbol{\delta u}<em>k)^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} (\boldsymbol{B}_k \boldsymbol{\delta u}_k) = \frac{1}{2} \boldsymbol{\delta u}_k^T (\boldsymbol{B}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{B}_k) \boldsymbol{\delta u}_k$
-<strong>交叉项 ($\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k$):</strong> $\boldsymbol{\delta x}_k^T (\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{B}_k) \boldsymbol{\delta u}_k$
-<strong>线性项 (来自 $\boldsymbol{c}_k$):</strong> $\boldsymbol{\delta x}_k^T (\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{c}_k) + \boldsymbol{\delta u}_k^T (\boldsymbol{B}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{c}_k)$</p>
-<p><em>(注：iLQR 简化忽略了 $f$ 的二阶导数 $\boldsymbol{f}<em>{\boldsymbol{xx}}, \boldsymbol{f}</em>{\boldsymbol{uu}}$，它们本应出现在 $V_{k+1}$ 的展开中。)</em></p>
+<p><strong>$\boldsymbol{\delta x}_k$ 的二次项:</strong> $\frac{1}{2} (\boldsymbol{A}_k \boldsymbol{\delta x}_k)^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} (\boldsymbol{A}_k \boldsymbol{\delta x}_k) = \frac{1}{2} \boldsymbol{\delta x}_k^T (\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{A}_k) \boldsymbol{\delta x}_k$
+<strong>$\boldsymbol{\delta u}_k$ 的二次项:</strong> $\frac{1}{2} (\boldsymbol{B}_k \boldsymbol{\delta u}_k)^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} (\boldsymbol{B}_k \boldsymbol{\delta u}_k) = \frac{1}{2} \boldsymbol{\delta u}_k^T (\boldsymbol{B}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{B}_k) \boldsymbol{\delta u}_k$
+<strong>交叉项 ($\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k$):</strong> $\boldsymbol{\delta x}_k^T (\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{B}_k) \boldsymbol{\delta u}_k$
+<strong>线性项 (来自 $\boldsymbol{c}_k$):</strong> $\boldsymbol{\delta x}_k^T (\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{c}_k) + \boldsymbol{\delta u}_k^T (\boldsymbol{B}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{c}_k)$</p>
+<p><em>(注：iLQR 简化忽略了 $f$ 的二阶导数 $\boldsymbol{f}_{\boldsymbol{xx}}, \boldsymbol{f}_{\boldsymbol{uu}}$，它们本应出现在 $V_{k+1}$ 的展开中。)</em></p>
 <h3><span id="%E5%90%88%E6%88%90-q-%E5%87%BD%E6%95%B0%E7%B3%BB%E6%95%B0">合成 Q 函数系数</span></h3>
 <p>现在我们将<strong>第 1 部分</strong> ($l$ 的展开) 和<strong>第 2 部分</strong> ($V_{k+1}$ 的展开) 的同类项系数相加，得到 $\mathcal{Q}_k$ 的最终系数。</p>
 <h4><span id="%E6%A2%AF%E5%BA%A6-boldsymbolq-%E5%AF%B9-boldsymboldelta-x_k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{q}$ (对 $\boldsymbol{\delta x}_k$ 的线性项)</span></h4>
-<p>$$\boldsymbol{q} = \frac{\partial \mathcal{Q}<em>k}{\partial \boldsymbol{\delta x}<em>k} = \underbrace{\boldsymbol{l}</em>{\boldsymbol{x}}}</em>{\text{来自 } l} + \underbrace{\boldsymbol{A}<em>k^T \boldsymbol{v}</em>{k+1}}<em>{\text{来自 } V</em>{k+1} \text{ 线性项}} + \underbrace{\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{c}<em>k}</em>{\text{来自 } V_{k+1} \text{ 二次项与 } \boldsymbol{c}_k \text{ 交叉}}
-$$</p>
+<p>$$\boldsymbol{q} = \frac{\partial \mathcal{Q}_k}{\partial \boldsymbol{\delta x}_k} = \underbrace{\boldsymbol{l}_{\boldsymbol{x}}}_{\text{来自 } l} + \underbrace{\boldsymbol{A}_k^T \boldsymbol{v}_{k+1}}_{\text{来自 } V_{k+1} \text{ 线性项}} + \underbrace{\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{c}_k}_{\text{来自 } V_{k+1} \text{ 二次项与 } \boldsymbol{c}_k \text{ 交叉}}$$</p>
 <h4><span id="%E6%A2%AF%E5%BA%A6-boldsymbolr-%E5%AF%B9-boldsymboldelta-u_k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{r}$ (对 $\boldsymbol{\delta u}_k$ 的线性项)</span></h4>
-<p>$$\boldsymbol{r} = \frac{\partial \mathcal{Q}<em>k}{\partial \boldsymbol{\delta u}<em>k} = \underbrace{\boldsymbol{l}</em>{\boldsymbol{u}}}</em>{\text{来自 } l} + \underbrace{\boldsymbol{B}<em>k^T \boldsymbol{v}</em>{k+1}}<em>{\text{来自 } V</em>{k+1} \text{ 线性项}} + \underbrace{\boldsymbol{B}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{c}<em>k}</em>{\text{来自 } V_{k+1} \text{ 二次项与 } \boldsymbol{c}_k \text{ 交叉}}
-$$</p>
+<p>$$\boldsymbol{r} = \frac{\partial \mathcal{Q}_k}{\partial \boldsymbol{\delta u}_k} = \underbrace{\boldsymbol{l}_{\boldsymbol{u}}}_{\text{来自 } l} + \underbrace{\boldsymbol{B}_k^T \boldsymbol{v}_{k+1}}_{\text{来自 } V_{k+1} \text{ 线性项}} + \underbrace{\boldsymbol{B}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{c}_k}_{\text{来自 } V_{k+1} \text{ 二次项与 } \boldsymbol{c}_k \text{ 交叉}}$$</p>
 <h4><span id="hessian-boldsymbolq-%E5%AF%B9-boldsymboldelta-x_k-boldsymboldelta-x_k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{Q}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta x}_k$ 的二次项)</span></h4>
-<p>$$\boldsymbol{Q} = \frac{\partial^2 \mathcal{Q}<em>k}{\partial \boldsymbol{\delta x}<em>k^2} = \underbrace{\boldsymbol{l}</em>{\boldsymbol{xx}}}</em>{\text{来自 } l} + \underbrace{\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{A}<em>k}</em>{\text{来自 } V_{k+1} \text{ 二次项}}
-$$</p>
+<p>$$\boldsymbol{Q} = \frac{\partial^2 \mathcal{Q}_k}{\partial \boldsymbol{\delta x}_k^2} = \underbrace{\boldsymbol{l}_{\boldsymbol{xx}}}_{\text{来自 } l} + \underbrace{\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{A}_k}_{\text{来自 } V_{k+1} \text{ 二次项}}$$</p>
 <h4><span id="hessian-boldsymbolr-%E5%AF%B9-boldsymboldelta-u_k-boldsymboldelta-u_k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{R}$ (对 $\boldsymbol{\delta u}_k, \boldsymbol{\delta u}_k$ 的二次项)</span></h4>
-<p>$$\boldsymbol{R} = \frac{\partial^2 \mathcal{Q}<em>k}{\partial \boldsymbol{\delta u}<em>k^2} = \underbrace{\boldsymbol{l}</em>{\boldsymbol{uu}}}</em>{\text{来自 } l} + \underbrace{\boldsymbol{B}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{B}<em>k}</em>{\text{来自 } V_{k+1} \text{ 二次项}}
-$$</p>
+<p>$$\boldsymbol{R} = \frac{\partial^2 \mathcal{Q}_k}{\partial \boldsymbol{\delta u}_k^2} = \underbrace{\boldsymbol{l}_{\boldsymbol{uu}}}_{\text{来自 } l} + \underbrace{\boldsymbol{B}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{B}_k}_{\text{来自 } V_{k+1} \text{ 二次项}}$$</p>
 <h4><span id="hessian-boldsymbolm-%E5%AF%B9-boldsymboldelta-x_k-boldsymboldelta-u_k-%E7%9A%84%E4%BA%A4%E5%8F%89%E9%A1%B9">Hessian $\boldsymbol{M}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k$ 的交叉项)</span></h4>
-<p>$$\boldsymbol{M} = \frac{\partial^2 \mathcal{Q}<em>k}{\partial \boldsymbol{\delta x}<em>k \partial \boldsymbol{\delta u}<em>k} = \underbrace{\boldsymbol{l}</em>{\boldsymbol{xu}}}</em>{\text{来自 } l} + \underbrace{\boldsymbol{A}<em>k^T \boldsymbol{V}</em>{\boldsymbol{xx}, k+1} \boldsymbol{B}<em>k}</em>{\text{来自 } V</em>{k+1} \text{ 二次项}}
-$$</p>
+<p>$$\boldsymbol{M} = \frac{\partial^2 \mathcal{Q}_k}{\partial \boldsymbol{\delta x}_k \partial \boldsymbol{\delta u}_k} = \underbrace{\boldsymbol{l}_{\boldsymbol{xu}}}_{\text{来自 } l} + \underbrace{\boldsymbol{A}_k^T \boldsymbol{V}_{\boldsymbol{xx}, k+1} \boldsymbol{B}_k}_{\text{来自 } V_{k+1} \text{ 二次项}}$$</p>
 <h2><span id="%E6%B1%82%E8%A7%A3%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E6%89%B0%E5%8A%A8">求解最优控制扰动</span></h2>
-<p>求导，就是求导！
-$$\mathcal{Q}_k \approx \text{常数} + \boldsymbol{q}^T \boldsymbol{\delta x}_k + \boldsymbol{r}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}_k^T \boldsymbol{R} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}_k^T \boldsymbol{M} \boldsymbol{\delta u}_k
-$$
-$$\frac{\partial Q_k}{\partial \delta u_k} = r + R\delta u_k + M^T\delta x_k
-$$
-$$\delta u_k^* = - R^{-1}r - R^{-1}M^T\delta x_k = k_k + K_k\delta x_k
-$$</p>
-<p>$$\delta u_k = u_k - \bar u_k
-$$</p>
+<p>求导，就是求导！</p>
+<p>$$\mathcal{Q}_k \approx \text{常数} + \boldsymbol{q}^T \boldsymbol{\delta x}_k + \boldsymbol{r}^T \boldsymbol{\delta u}_k + \frac{1}{2} \boldsymbol{\delta x}_k^T \boldsymbol{Q} \boldsymbol{\delta x}_k + \frac{1}{2} \boldsymbol{\delta u}_k^T \boldsymbol{R} \boldsymbol{\delta u}_k + \boldsymbol{\delta x}_k^T \boldsymbol{M} \boldsymbol{\delta u}_k$$
+$$\frac{\partial Q_k}{\partial \delta u_k} = r + R\delta u_k + M^T\delta x_k$$
+$$\delta u_k^* = - R^{-1}r - R^{-1}M^T\delta x_k = k_k + K_k\delta x_k$$</p>
+<p>$$\delta u_k = u_k - \bar u_k$$</p>
 <p>前馈：$k_k = - R^{-1}r$，抵消成本的梯度 $\boldsymbol{r}$。这是推动轨迹向最优方向移动的主要力量。</p>
 <p>反馈：$K_k = - R^{-1}M^T$，实时修正状态 $\boldsymbol{\delta x}_k$ 的偏差。</p>
 <h2><span id="%E9%80%92%E6%8E%A8%E8%BF%87%E7%A8%8B-k-k-1">递推过程 k-&gt;k-1</span></h2>
 <ol>
 <li>计算$q_{k}$,$r_{k}$,$Q_{k}$,$R_{k}$,$M_{k}$，得到前馈和反馈系数</li>
 <li>计算前馈：$k_k$和反馈：$K_k$</li>
-<li>更新hessian$V_{xx,k}$和梯度$v_k$。因为接下来计算k-1时刻时的q之类的系数需要用到这两个量。
-$$
-\boldsymbol{v}_k = \boldsymbol{q}_k + \boldsymbol{K}_k^T \boldsymbol{r}_k + \boldsymbol{K}_k^T \boldsymbol{R}_k \boldsymbol{k}_k + \boldsymbol{M}_k \boldsymbol{k}<em>k
-$$
-$$\boldsymbol{V}</em>{\boldsymbol{xx}, k} = \boldsymbol{Q}_k + \boldsymbol{K}_k^T \boldsymbol{R}_k \boldsymbol{K}_k + \boldsymbol{M}_k \boldsymbol{K}_k + \boldsymbol{K}_k^T \boldsymbol{M}_k^T
-$$</li>
-<li>计算$q_{k-1}$,$r_{k-1}$,$Q_{k-1}$,$R_{k-1}$,$M_{k-1}$</li>
-<li>计算前馈：$k_{k-1}$和反馈：$K_{k-1}$</li>
+<li>更新hessian$V_{xx,k}$和梯度$v_k$。因为接下来计算k-1时刻时的q之类的系数需要用到这两个量。</li>
 </ol>
+<p>$$\boldsymbol{v}_k = \boldsymbol{q}_k + \boldsymbol{K}_k^T \boldsymbol{r}_k + \boldsymbol{K}_k^T \boldsymbol{R}_k \boldsymbol{k}_k + \boldsymbol{M}_k \boldsymbol{k}_k$$
+$$\boldsymbol{V}_{\boldsymbol{xx}, k} = \boldsymbol{Q}_k + \boldsymbol{K}_k^T \boldsymbol{R}_k \boldsymbol{K}_k + \boldsymbol{M}_k \boldsymbol{K}_k + \boldsymbol{K}_k^T \boldsymbol{M}_k^T$$
+4. 计算$q_{k-1}$,$r_{k-1}$,$Q_{k-1}$,$R_{k-1}$,$M_{k-1}$
+5. 计算前馈：$k_{k-1}$和反馈：$K_{k-1}$</p>
 <h2><span id="%E5%89%8D%E5%90%91%E6%9B%B4%E6%96%B0">前向更新</span></h2>
-<p><strong>目的：</strong> 利用刚刚计算出的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略，生成一条<strong>新的、成本更低</strong>的轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$。</p>
+<p><strong>目的：</strong> 利用刚刚计算出的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略，生成一条<strong>新的、成本更低</strong>的轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$。</p>
 <h3><span id="a-%E6%AD%A5%E9%95%BF%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2-line-search">A. 步长与线性搜索 (Line Search)</span></h3>
 <p>我们<strong>不能</strong>简单地将 $\boldsymbol{\delta u}_k^* = \boldsymbol{k}_k + \boldsymbol{K}_k \boldsymbol{\delta x}_k$ 完全应用。</p>
-<p><strong>为什么？</strong> 因为我们的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略是基于一个<strong>局部线性近似</strong> $f$ 计算出来的。如果 $f$ 的非线性程度很高，应用<strong>完整</strong>的 $\boldsymbol{\delta u}<em>k^*$ （即 $\alpha=1$）可能会导致 $\boldsymbol{x}</em>{\text{new}}$ 严重偏离预期，新轨迹的<strong>总成本 $J$ 反而可能上升</strong>。</p>
+<p><strong>为什么？</strong> 因为我们的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略是基于一个<strong>局部线性近似</strong> $f$ 计算出来的。如果 $f$ 的非线性程度很高，应用<strong>完整</strong>的 $\boldsymbol{\delta u}_k^*$ （即 $\alpha=1$）可能会导致 $\boldsymbol{x}_{\text{new}}$ 严重偏离预期，新轨迹的<strong>总成本 $J$ 反而可能上升</strong>。</p>
 <p>为了确保收敛，我们引入一个<strong>步长 $\alpha$</strong> (Alpha)，$\alpha \in (0, 1]$。</p>
 <h3><span id="b-%E5%89%8D%E5%90%91%E6%9B%B4%E6%96%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4">B. 前向更新的执行步骤</span></h3>
 <ol>
@@ -806,26 +701,27 @@ $$</li>
 <li>
 <p><strong>模拟（Rollout）：</strong>
 从 $k=0$ 到 $N-1$ 循环：</p>
-<p><strong>计算状态偏差：</strong>
-$$\boldsymbol{\delta x}<em>k = \boldsymbol{x}</em>{\text{new}, k} - \bar{\boldsymbol{x}}<em>k
-$$
-(注意：这里是用<strong>新</strong>状态 $\boldsymbol{x}</em>{\text{new}, k}$ 和<strong>旧</strong>名义状态 $\bar{\boldsymbol{x}}_k$ 计算偏差。)</p>
-<p><strong>计算新的控制 $\boldsymbol{u}_{\text{new}, k}$：</strong>
-$$\boldsymbol{u}_{\text{new}, k} = \bar{\boldsymbol{u}}_k + \alpha \cdot \boldsymbol{k}_k + \boldsymbol{K}_k \boldsymbol{\delta x}_k
-$$
-(这是关键：<strong>前馈项 $\boldsymbol{k}_k$ 被 $\alpha$ 缩放</strong>，而反馈项 $\boldsymbol{K}_k$ 通常不缩放或与 $\alpha$ 一起缩放，具体取决于实现。)</p>
-<p><strong>积分（使用真实的非线性动力学 $f$）：</strong>
-$$\boldsymbol{x}<em>{\text{new}, k+1} = f(\boldsymbol{x}</em>{\text{new}, k}, \boldsymbol{u}_{\text{new}, k})
-$$</p>
+<p><strong>计算状态偏差：</strong></p>
 </li>
+</ol>
+<p>$$\boldsymbol{\delta x}_k = \boldsymbol{x}_{\text{new}, k} - \bar{\boldsymbol{x}}_k$$
+(注意：这里是用<strong>新</strong>状态 $\boldsymbol{x}_{\text{new}, k}$ 和<strong>旧</strong>名义状态 $\bar{\boldsymbol{x}}_k$ 计算偏差。)</p>
+<pre><code>**计算新的控制 $\boldsymbol\{u\}\_\{\text\{new\}, k\}$：**
+</code></pre>
+<p>$$\boldsymbol{u}_{\text{new}, k} = \bar{\boldsymbol{u}}_k + \alpha \cdot \boldsymbol{k}_k + \boldsymbol{K}_k \boldsymbol{\delta x}_k$$
+(这是关键：<strong>前馈项 $\boldsymbol{k}_k$ 被 $\alpha$ 缩放</strong>，而反馈项 $\boldsymbol{K}_k$ 通常不缩放或与 $\alpha$ 一起缩放，具体取决于实现。)</p>
+<pre><code>**积分（使用真实的非线性动力学 $f$）：**
+</code></pre>
+<p>$$\boldsymbol{x}_{\text{new}, k+1} = f(\boldsymbol{x}_{\text{new}, k}, \boldsymbol{u}_{\text{new}, k})$$</p>
+<ol start="3">
 <li>
 <p><strong>评估成本：</strong>
-计算新轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$ 的<strong>真实总成本</strong> $J_{\text{new}}$ (使用<strong>原始非线性成本函数</strong> $l$ 和 $h$)。</p>
+计算新轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$ 的<strong>真实总成本</strong> $J_{\text{new}}$ (使用<strong>原始非线性成本函数</strong> $l$ 和 $h$)。</p>
 </li>
 <li>
 <p><strong>接受或拒绝 (Line Search)：</strong>
 <strong>如果 $J_{\text{new}} &lt; J_{\text{old}}$ (成本下降)：</strong>
-<strong>接受！</strong> 新轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$ 优于旧轨迹。
+<strong>接受！</strong> 新轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$ 优于旧轨迹。
 <strong>如果 $J_{\text{new}} \ge J_{\text{old}}$ (成本上升或不变)：</strong>
 <strong>拒绝！</strong> 步子迈得太大了。
 <strong>减小 $\alpha$</strong> (例如 $\alpha = \alpha / 2$)。
@@ -833,15 +729,15 @@ $$</p>
 </li>
 </ol>
 <h2><span id="%E8%BF%AD%E4%BB%A3%E4%B8%8E%E6%94%B6%E6%95%9B">迭代与收敛</span></h2>
-<p><strong>前向更新</strong>成功找到一条成本更低的轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$ 后：</p>
+<p><strong>前向更新</strong>成功找到一条成本更低的轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$ 后：</p>
 <ol>
 <li>
 <p><strong>更新名义轨迹：</strong>
-将 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$ 设为<strong>下一次迭代</strong>的<strong>名义轨迹</strong> $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$。</p>
+将 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$ 设为<strong>下一次迭代</strong>的<strong>名义轨迹</strong> $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$。</p>
 </li>
 <li>
 <p><strong>重复：</strong>
-返回<strong>逆向递推 (Backward Pass)</strong> 阶段，在新的 $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$ 附近重新计算 $\boldsymbol{A}<em>k, \boldsymbol{B}<em>k, l</em>{\boldsymbol{x}}, l</em>{\boldsymbol{xx}} \dots$ 并求解新的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略。</p>
+返回<strong>逆向递推 (Backward Pass)</strong> 阶段，在新的 $(\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}})$ 附近重新计算 $\boldsymbol{A}_k, \boldsymbol{B}_k, l_{\boldsymbol{x}}, l_{\boldsymbol{xx}} \dots$ 并求解新的 $(\boldsymbol{k}, \boldsymbol{K})$ 策略。</p>
 </li>
 <li>
 <p><strong>收敛：</strong>
@@ -863,9 +759,9 @@ $$</p>
 <tbody>
 <tr>
 <td style="text-align:left"><strong>（1）初始化</strong></td>
-<td style="text-align:left">首次粗略猜测 $\boldsymbol{u}<em>{\text{bar}}$，计算初始 $\boldsymbol{x}</em>{\text{bar}}$。</td>
+<td style="text-align:left">首次粗略猜测 $\boldsymbol{u}_{\text{bar}}$，计算初始 $\boldsymbol{x}_{\text{bar}}$。</td>
 <td style="text-align:left"><strong>$\boldsymbol{c}_k \neq 0$</strong> (如果 $\boldsymbol{x}_{\text{bar}}$ 是插值)</td>
-<td style="text-align:left">如果初始轨迹是用直线插值等方式创建的，那么它不满足 $f(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}<em>k) = \bar{\boldsymbol{x}}</em>{k+1}$，此时 $\boldsymbol{c}_k \neq 0$。</td>
+<td style="text-align:left">如果初始轨迹是用直线插值等方式创建的，那么它不满足 $f(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k) = \bar{\boldsymbol{x}}_{k+1}$，此时 $\boldsymbol{c}_k \neq 0$。</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>（2）Backward Pass</strong></td>
@@ -875,9 +771,9 @@ $$</p>
 </tr>
 <tr>
 <td style="text-align:left"><strong>（3）Forward Pass</strong></td>
-<td style="text-align:left">使用 $(\boldsymbol{k}, \boldsymbol{K})$ 策略，通过 <strong>非线性动力学 $f$ 积分</strong> 得到新的轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$。</td>
+<td style="text-align:left">使用 $(\boldsymbol{k}, \boldsymbol{K})$ 策略，通过 <strong>非线性动力学 $f$ 积分</strong> 得到新的轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$。</td>
 <td style="text-align:left"><strong>$\boldsymbol{c}_k$ 被重置为 0</strong></td>
-<td style="text-align:left">新轨迹 $(\boldsymbol{x}<em>{\text{new}}, \boldsymbol{u}</em>{\text{new}})$ 被设为下一轮的 $\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}}$。因为它就是 $f$ 算出来的，所以 $f(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}<em>k) = \bar{\boldsymbol{x}}</em>{k+1}$。</td>
+<td style="text-align:left">新轨迹 $(\boldsymbol{x}_{\text{new}}, \boldsymbol{u}_{\text{new}})$ 被设为下一轮的 $\bar{\boldsymbol{x}}, \bar{\boldsymbol{u}}$。因为它就是 $f$ 算出来的，所以 $f(\bar{\boldsymbol{x}}_k, \bar{\boldsymbol{u}}_k) = \bar{\boldsymbol{x}}_{k+1}$。</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>（4）后续 Backward Pass</strong></td>
@@ -1058,88 +954,39 @@ $$</p>
 <h1><span id="alilqr%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8">ALiLQR在项目中的实际应用</span></h1>
 <h2><span id="%E8%BD%A6%E8%BE%86%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E5%9E%8B">车辆动力学模型</span></h2>
 <h3><span id="1%E5%AE%9A%E4%B9%89%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E5%8F%98%E9%87%8F">1.定义状态变量和控制变量</span></h3>
-<p>$$x = \begin{bmatrix}
-x_0 \\ x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
-\end{bmatrix} = \begin{bmatrix}
-\text{pos_x} &amp; (\text{X坐标}) \\
-\text{pos_y} &amp; (\text{Y坐标}) \\
-\theta &amp; (\text{航向角 Yaw}) \\
-v &amp; (\text{纵向速度}) \\
-a &amp; (\text{纵向加速度}) \\
-\omega &amp; (\text{角速度 YawRate})
-\end{bmatrix}
-$$</p>
-<p>$$u = \begin{bmatrix}
-u_0 \\ u_1
-\end{bmatrix} = \begin{bmatrix}
-\text{Jerk} &amp; (\text{加加速度/变加速率}) \\
-\dot{\omega} &amp; (\text{角加速度})
-\end{bmatrix}
-$$</p>
+<p>$$x = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{bmatrix} = \begin{bmatrix} \text{pos\\_x} &amp; (\text{X坐标}) \\ \text{pos\\_y} &amp; (\text{Y坐标}) \\ \theta &amp; (\text{航向角 Yaw}) \\ v &amp; (\text{纵向速度}) \\ a &amp; (\text{纵向加速度}) \\ \omega &amp; (\text{角速度 YawRate}) \end{bmatrix}$$</p>
+<p>$$u = \begin{bmatrix} u_0 \\ u_1 \end{bmatrix} = \begin{bmatrix} \text{Jerk} &amp; (\text{加加速度/变加速率}) \\ \dot{\omega} &amp; (\text{角加速度}) \end{bmatrix}$$</p>
 <h3><span id="2%E5%AE%9E%E7%8E%B0%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A7%AF%E5%88%86%E7%A6%BB%E6%95%A3">2.实现运动方程与积分离散</span></h3>
 <a href="/2025/11/18/%E5%B7%A5%E4%BD%9C/IDM%E6%A8%A1%E5%9E%8B/" title="运动学模型的前向递推-IDM与自行车">运动学模型的前向递推-IDM与自行车</a>
 <p>使用龙格库塔积分</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">LKPointModel::forward_calculation</span><span class="hljs-params">(<span class="hljs-type">const</span> State&amp; state, <span class="hljs-type">const</span> Control&amp; ctrl,</span></span><br><span class="hljs-params"><span class="hljs-function">                                       State&amp; state_output, <span class="hljs-type">double</span> step)</span> <span class="hljs-type">const</span> </span><br></code></pre></td></tr></tbody></table></figure>
 <p>我们需要得到
-$$A_t = \frac{\partial f_{RK4}(x_t, u_t)}{\partial x} \quad (6 \times 6 \text{ 矩阵})
-$$
-$$B_t = \frac{\partial f_{RK4}(x_t, u_t)}{\partial u} \quad (6 \times 2 \text{ 矩阵})
-$$</p>
+$$A_t = \frac{\partial f_{RK4}(x_t, u_t)}{\partial x} \quad (6 \times 6 \text{ 矩阵})$$
+$$B_t = \frac{\partial f_{RK4}(x_t, u_t)}{\partial u} \quad (6 \times 2 \text{ 矩阵})$$</p>
 <p>一个使用python自动推导并得到C++代码的方式</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sympy <span class="hljs-keyword">as</span> sp<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_jacobian_code</span>():<br>    <span class="hljs-comment"># 1. 定义符号变量</span><br>    <span class="hljs-comment"># 状态变量 x (6维)</span><br>    x, y, theta, v, a, omega = sp.symbols(<span class="hljs-string">'x y theta v a omega'</span>)<br>    state = sp.Matrix([x, y, theta, v, a, omega])<br>    <br>    <span class="hljs-comment"># 控制变量 u (2维)</span><br>    jerk, d_omega = sp.symbols(<span class="hljs-string">'jerk d_omega'</span>)<br>    control = sp.Matrix([jerk, d_omega])<br>    <br>    <span class="hljs-comment"># 时间步长</span><br>    h = sp.symbols(<span class="hljs-string">'h'</span>)<br><br>    <span class="hljs-comment"># 2. 定义连续时间动力学方程 (ODE) f(x, u)</span><br>    <span class="hljs-comment"># 这对应代码中的 continue_gradiant</span><br>    dx = v * sp.cos(theta)<br>    dy = v * sp.sin(theta)<br>    dtheta = omega<br>    dv = a<br>    da = jerk<br>    domega = d_omega<br>    <br>    f_continuous = sp.Matrix([dx, dy, dtheta, dv, da, domega])<br><br>    <span class="hljs-comment"># 3. 定义 RK4 积分步骤 (符号化)</span><br>    <span class="hljs-comment"># k1</span><br>    k1 = f_continuous<br>    <br>    <span class="hljs-comment"># k2 (注意：这里需要把 f_continuous 里的 state 替换为 state + 0.5*h*k1)</span><br>    state_k2 = state + <span class="hljs-number">0.5</span> * h * k1<br>    <span class="hljs-comment"># 替换规则：将原始变量替换为中间变量</span><br>    subs_k2 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">zip</span>(state, state_k2)) <br>    k2 = f_continuous.subs(subs_k2)<br>    <br>    <span class="hljs-comment"># k3</span><br>    state_k3 = state + <span class="hljs-number">0.5</span> * h * k2<br>    subs_k3 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">zip</span>(state, state_k3))<br>    k3 = f_continuous.subs(subs_k3)<br>    <br>    <span class="hljs-comment"># k4</span><br>    state_k4 = state + h * k3<br>    subs_k4 = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">zip</span>(state, state_k4))<br>    k4 = f_continuous.subs(subs_k4)<br>    <br>    <span class="hljs-comment"># 4. 得到离散时间模型 x_{k+1}</span><br>    state_next = state + (h / <span class="hljs-number">6.0</span>) * (k1 + <span class="hljs-number">2</span>*k2 + <span class="hljs-number">2</span>*k3 + k4)<br><br>    <span class="hljs-comment"># 5. 求导！计算 Jacobian A 和 B</span><br>    <span class="hljs-comment"># A = d(state_next) / d(state)</span><br>    A = state_next.jacobian(state)<br>    <br>    <span class="hljs-comment"># B = d(state_next) / d(control)</span><br>    B = state_next.jacobian(control)<br><br>    <span class="hljs-comment"># 6. 代码优化：公共子表达式消除 (CSE)</span><br>    <span class="hljs-comment"># 这一步是"极致速度"的关键。它会把重复计算的 sin, cos 提取出来</span><br>    <span class="hljs-comment"># 比如截图里的 double theta_K1 = ...; double cos_theta_K1 = ...;</span><br>    sub_exprs, (A_simple, B_simple) = sp.cse([A, B])<br><br>    <span class="hljs-comment"># 7. 打印 C++ 代码</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">"// --- 自动生成的 C++ 代码开始 ---"</span>)<br>    <br>    <span class="hljs-comment"># 打印中间变量</span><br>    <span class="hljs-keyword">for</span> var, expr <span class="hljs-keyword">in</span> sub_exprs:<br>        <span class="hljs-comment"># 转换 sympy 表达式为 C++ 格式 (简单替换)</span><br>        c_expr = <span class="hljs-built_in">str</span>(expr).replace(<span class="hljs-string">"sin"</span>, <span class="hljs-string">"std::sin"</span>).replace(<span class="hljs-string">"cos"</span>, <span class="hljs-string">"std::cos"</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"double <span class="hljs-subst">{var}</span> = <span class="hljs-subst">{c_expr}</span>;"</span>)<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n// 填充 A 矩阵"</span>)<br>    rows, cols = A_simple.shape<br>    <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):<br>        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):<br>            val = A_simple[r, c]<br>            <span class="hljs-keyword">if</span> val != <span class="hljs-number">0</span>: <span class="hljs-comment"># 忽略0以节省赋值时间</span><br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"A_output(<span class="hljs-subst">{r}</span>, <span class="hljs-subst">{c}</span>) = <span class="hljs-subst">{val}</span>;"</span>)<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">"\n// 填充 B 矩阵"</span>)<br>    rows, cols = B_simple.shape<br>    <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(rows):<br>        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cols):<br>            val = B_simple[r, c]<br>            <span class="hljs-keyword">if</span> val != <span class="hljs-number">0</span>:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"B_output(<span class="hljs-subst">{r}</span>, <span class="hljs-subst">{c}</span>) = <span class="hljs-subst">{val}</span>;"</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:<br>    generate_jacobian_code()<br></code></pre></td></tr></tbody></table></figure>
 <h2><span id="%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%B1%82%E8%A7%A3%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6">反向传播，求解最优控制</span></h2>
-<p>我们优化的目标函数 $J$ 是同时取决于 状态 $x$ 和 控制 $u$ 的。
-$$J(x, u) = \text{StateCost}(x) + \text{ControlCost}(u)
-$$为了在矩阵运算中方便，iLQR 这里暂时将状态和控制拼成一个增广向量 (Augmented Vector)：
-$$\mathbf{z} = \begin{bmatrix}
-x \\
-u
-\end{bmatrix} \quad (\text{维度 } 6 + 2 = 8)
-$$
+<p>我们优化的目标函数 $J$ 是同时取决于 状态 $x$ 和 控制 $u$ 的。</p>
+<p>$$J(x, u) = \text{StateCost}(x) + \text{ControlCost}(u)$$
+为了在矩阵运算中方便，iLQR 这里暂时将状态和控制拼成一个增广向量 (Augmented Vector)：</p>
+<p>$$\mathbf{z} = \begin{bmatrix} x \\ u \end{bmatrix} \quad (\text{维度 } 6 + 2 = 8)$$
 后面在计算梯度等内容时会拆开的。
 对每一个时间步/参考点i，ActionCostFunction输出：</p>
 <ol>
-<li>
-<p>hessians_[i] (矩阵 H)：一个 $8 \times 8$ 的矩阵（6维状态 + 2维控制）。代表二次项系数。
-$$\mathbf{H} = \begin{bmatrix}
-\color{blue}{w_{x}} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; \color{blue}{w_{y}} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{blue}{w_{a}} &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{red}{w_{j}} &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{red}{w_{\dot{\omega}}}
-\end{bmatrix}
-$$</p>
-</li>
-<li>
-<p>gradiants_[i] (向量 g)：一个 $8 \times 1$ 的向量。代表一次项系数。
-$$\mathbf{g} = \begin{bmatrix}
--2 \cdot w_{x} \cdot \text{ref_x}[i] \\
--2 \cdot w_{y} \cdot \text{ref_y}[i] \\
-\color{gray}{0} \\
-\color{gray}{0} \\
--2 \cdot w_{a} \cdot \text{ref_a}[i] \\
-\color{gray}{0} \\
-\color{green}{0} \\
-\color{green}{0}
-\end{bmatrix}
-$$</p>
-</li>
+<li>hessians_[i] (矩阵 H)：一个 $8 \times 8$ 的矩阵（6维状态 + 2维控制）。代表二次项系数。</li>
 </ol>
-<p><strong>如何获取这两个量？：</strong> 我们要追踪一个参考点 $x_{ref}$。代价函数定义为误差的平方：
-$$J(x) = w \cdot (x - x_{ref})^2 = \underbrace{w}<em>{H} \cdot x^2 + \underbrace{(-2w \cdot x</em>{ref})}<em>{g} \cdot x + \text{const}
-$$
-$$l_x = \frac{\partial J}{\partial x} = 2 \cdot w \cdot (x - x</em>{ref}) = 2wx - 2wx_{ref}
-$$
-$$l_{xx} = \frac{\partial^2 J}{\partial x^2} = 2w
-$$
-那么代入可以有
-$$l_x = g + 2Hx
-$$
-$$l_{xx} = 2H
-$$
+<p>$$\mathbf{H} = \begin{bmatrix} \color{blue}{w_{x}} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; \color{blue}{w_{y}} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{blue}{w_{a}} &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{gray}{0} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{red}{w_{j}} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \color{red}{w_{\dot{\omega}}} \end{bmatrix}$$</p>
+<ol>
+<li>gradiants_[i] (向量 g)：一个 $8 \times 1$ 的向量。代表一次项系数。</li>
+</ol>
+<p>$$\mathbf{g} = \begin{bmatrix} -2 \cdot w_{x} \cdot \text{ref\\_x}[i] \\ -2 \cdot w_{y} \cdot \text{ref\\_y}[i] \\ \color{gray}{0} \\ \color{gray}{0} \\ -2 \cdot w_{a} \cdot \text{ref\\_a}[i] \\ \color{gray}{0} \\ \color{green}{0} \\ \color{green}{0} \end{bmatrix}$$</p>
+<p><strong>如何获取这两个量？：</strong> 我们要追踪一个参考点 $x_{ref}$。代价函数定义为误差的平方：</p>
+<p>$$J(x) = w \cdot (x - x_{ref})^2 = \underbrace{w}_{H} \cdot x^2 + \underbrace{(-2w \cdot x_{ref})}_{g} \cdot x + \text{const}$$</p>
+<p>$$l_x = \frac{\partial J}{\partial x} = 2 \cdot w \cdot (x - x_{ref}) = 2wx - 2wx_{ref}$$</p>
+<p>$$l_{xx} = \frac{\partial^2 J}{\partial x^2} = 2w$$</p>
+<p>那么代入可以有
+$$l_x = g + 2Hx$$</p>
+<p>$$l_{xx} = 2H$$
 我们先预计算出g和H，待进行反向传播时候，代入x，得到真正的梯度。
 这里可以把矩阵的状态变量部分和控制变量部分拆开，即可得到</p>
 <p>$l_x, l_u$ (梯度)</p>
@@ -1152,9 +999,8 @@ $V_x’$ (未来的梯度，代码 Vdx)</p>
 <p>$V_{xx}'$ (未来的 Hessian，代码 Vddx)</p>
 <p>接下来只需要依据公式组装对应的q,r,Q,R,M即可</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// Px 初始值已经是 lx</span><br>Px.<span class="hljs-built_in">noalias</span>() += cur_A.<span class="hljs-built_in">transpose</span>() * Vdx;<br><span class="hljs-comment">// Pu 初始值已经是 lu</span><br>Pu.<span class="hljs-built_in">noalias</span>() += cur_B.<span class="hljs-built_in">transpose</span>() * Vdx;<br><span class="hljs-comment">// Pxx 初始值已经是 lxx</span><br>Pxx.<span class="hljs-built_in">noalias</span>() += cur_A.<span class="hljs-built_in">transpose</span>() * Vddx * cur_A;<br><span class="hljs-comment">// Puu 初始值已经是 luu</span><br>Puu.<span class="hljs-built_in">noalias</span>() += cur_B.<span class="hljs-built_in">transpose</span>() * Vddx * cur_B;<br><span class="hljs-comment">// Pxu 初始值通常是 0 (除非 ActionCost 有交叉项)</span><br>Pxu.<span class="hljs-built_in">noalias</span>() += cur_A.<span class="hljs-built_in">transpose</span>() * Vddx * cur_B;<br></code></pre></td></tr></tbody></table></figure>
-<p>然后求解最优控制量
-$$\delta u = \underbrace{-\mathbf{R}^{-1} \mathbf{r}}<em>{\text{前馈 } k} + \underbrace{-\mathbf{R}^{-1} \mathbf{M}^T}</em>{\text{反馈 } K} \delta x
-$$</p>
+<p>然后求解最优控制量</p>
+<p>$$\delta u = \underbrace{-\mathbf{R}^{-1} \mathbf{r}}_{\text{前馈 } k} + \underbrace{-\mathbf{R}^{-1} \mathbf{M}^T}_{\text{反馈 } K} \delta x$$</p>
 <p>我们要计算两个量：
 <strong>前馈向量</strong> $k$ (Feedforward) $\rightarrow$ 代码中的 grad_temp</p>
 <p><strong>反馈矩阵</strong> $K$ (Feedback) $\rightarrow$ 代码中的 gain_temp</p>
@@ -1168,9 +1014,8 @@ $$</p>
 <p>上一轮迭代留下的旧状态 ($x_{old, i}$) 和 旧控制 ($u_{old, i}$)。</p>
 <p>这一步的策略 $K_i$ 和 $k_i$。</p>
 <p><strong>计算最优控制：</strong>
-$\delta x = x_{new, i} - x_{old, i}$
-$$u_{new, i} = u_{old, i} + \alpha \cdot k_i + K_i \cdot \delta x
-$$</p>
+$\delta x = x_{new, i} - x_{old, i}$</p>
+<p>$$u_{new, i} = u_{old, i} + \alpha \cdot k_i + K_i \cdot \delta x$$</p>
 <p><strong>更新状态：</strong>
 $x_{new, i+1} = f(x_{new, i}, u_{new, i})$</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> step = <span class="hljs-number">0</span>; step &lt; horizon_; step++) {<br>    <br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 1. 保存当前状态 (Save Current State)</span><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 把上一轮迭代推演出的 state 存入新轨迹列表</span><br>    (*new_states_ptr_)[step] = state;<br><br><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 2. 计算状态偏差 (Calculate State Error)</span><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// delta_x = x_new - x_old</span><br>    <span class="hljs-comment">// optimal_states_ptr_ 存储的是上一轮的旧轨迹 (x_old)</span><br>    State state_error = state - (*optimal_states_ptr_)[step];<br><br><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 3. 计算最优控制 u_new (Calculate Optimal Control)</span><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 公式: u_new = u_old + K * delta_x + alpha * k</span><br>    <span class="hljs-comment">// </span><br>    <span class="hljs-comment">// (*optimal_inputs_ptr_)[step]  -&gt; u_old (旧控制)</span><br>    <span class="hljs-comment">// gain_mats_[step].transpose()  -&gt; K (反馈矩阵，注意转置)</span><br>    <span class="hljs-comment">// grad_vecs_[step]              -&gt; k (前馈向量)</span><br>    <br>    Control input = (*optimal_inputs_ptr_)[step] + <br>                    gain_mats_[step].<span class="hljs-built_in">transpose</span>() * state_error + <br>                    alpha * grad_vecs_[step];<br><br>    <span class="hljs-comment">// 保存新计算出的控制量</span><br>    (*new_inputs_ptr_)[step] = (input);<br><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 4. 更新状态 / 动力学推演 (Dynamics Update)</span><br>    <span class="hljs-comment">// -------------------------------------------------------------</span><br>    <span class="hljs-comment">// 公式: x_new_next = f(x_new_curr, u_new_curr)</span><br>    <span class="hljs-comment">// </span><br>    <span class="hljs-comment">// 输入: 当前状态 state, 当前控制 input</span><br>    <span class="hljs-comment">// 输出: 下一时刻状态 (直接更新到 state 变量中)</span><br>    model_ptr_-&gt;forward_calculation(state, input, state);<br>}<br></code></pre></td></tr></tbody></table></figure>
@@ -1203,16 +1048,14 @@ $x_{new, i+1} = f(x_{new, i}, u_{new, i})$</p>
     I -- Yes (实在没救了) --&gt; J[终止: 增加正则化 mu, 重做 Backward]</pre>
 <p><strong>Levenberg-Marquardt 正则化：</strong>
 正定意味着代价函数的形状是一个碗（有最低点）。如果 $Q_{uu}$ 不是正定的（比如它是平的，或者是一个马鞍面），求逆就会出错，或者算出来的方向是错误的（反而让代价变大了）。
-当 $Q_{uu}$ 不正定时，Levenberg-Marquardt 算法说：“别急，我们在对角线上加个正数 $\mu$。”
-$$Q_{uu}^{new} = Q_{uu} + \mu \cdot \mathbf{I}
-$$加了 $\mu$ 之后：矩阵会变得“更正定”，形状会强行变成一个“碗”，保证一定能求逆。代价：算出来的控制方向会偏离纯粹的牛顿方向，更像梯度下降的方向（步长变小，更保守）。</p>
+当 $Q_{uu}$ 不正定时，Levenberg-Marquardt 算法说：“别急，我们在对角线上加个正数 $\mu$。”</p>
+<p>$$Q_{uu}^{new} = Q_{uu} + \mu \cdot \mathbf{I}$$
+加了 $\mu$ 之后：矩阵会变得“更正定”，形状会强行变成一个“碗”，保证一定能求逆。代价：算出来的控制方向会偏离纯粹的牛顿方向，更像梯度下降的方向（步长变小，更保守）。</p>
 <h2><span id="alilqr%E7%9A%84%E5%A4%96%E5%B1%82%E5%BE%AA%E7%8E%AF">ALiLQR的外层循环</span></h2>
-<p>AL-iLQR 的目标函数（Lagrangian）实际上由 三部分 组成：
-$$L(x) = \underbrace{J(x)}<em>{\text{原始代价}} + \underbrace{\lambda \cdot C(x)}</em>{\text{拉格朗日项}} + \underbrace{\frac{1}{2} \mu \cdot C(x)^2}_{\text{二次惩罚项}}
-$$</p>
-<p>前文所说的iLQR过程其实没加这些约束，现在考虑加上
-$$L(x, u) = \underbrace{J_{action}(x, u)}<em>{\text{ActionCostFunction}} + \underbrace{\sum \left( \lambda C(x) + \frac{1}{2}\mu C(x)^2 \right)}</em>{\text{ConstrainCost (Linear  Obstacle)}}
-$$</p>
+<p>AL-iLQR 的目标函数（Lagrangian）实际上由 三部分 组成：</p>
+<p>$$L(x) = \underbrace{J(x)}_{\text{原始代价}} + \underbrace{\lambda \cdot C(x)}_{\text{拉格朗日项}} + \underbrace{\frac{1}{2} \mu \cdot C(x)^2}_{\text{二次惩罚项}}$$</p>
+<p>前文所说的iLQR过程其实没加这些约束，现在考虑加上</p>
+<p>$$L(x, u) = \underbrace{J_{action}(x, u)}_{\text{ActionCostFunction}} + \underbrace{\sum \left( \lambda C(x) + \frac{1}{2}\mu C(x)^2 \right)}_{\text{ConstrainCost (Linear Obstacle)}}$$</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 1. 先拿 ActionCost (基础地形)</span><br>Px.<span class="hljs-built_in">noalias</span>() = state_cost_func_-&gt;<span class="hljs-built_in">gradient_lx</span>(index_step);<br>Pxx.<span class="hljs-built_in">noalias</span>() = state_cost_func_-&gt;<span class="hljs-built_in">hessian_lxx</span>(index_step);<br><br><span class="hljs-comment">// 2. 再加上 Linear Constraints (AL 修正)</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : linear_constrain_cost_list) {<br>    Px.<span class="hljs-built_in">noalias</span>() += iter-&gt;<span class="hljs-built_in">gradient_lx</span>(index_step); <span class="hljs-comment">// 累加</span><br>    Pxx.<span class="hljs-built_in">noalias</span>() += iter-&gt;<span class="hljs-built_in">hessian_lxx</span>(index_step); <span class="hljs-comment">// 累加</span><br>}<br><br><span class="hljs-comment">// 3. 再加上 Obstacle Constraints (AL 修正)</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : obstacle_constrain_cost_list) {<br>    Px.<span class="hljs-built_in">noalias</span>() += iter-&gt;<span class="hljs-built_in">gradient_lx</span>(index_step); <span class="hljs-comment">// 累加</span><br>    Pxx.<span class="hljs-built_in">noalias</span>() += iter-&gt;<span class="hljs-built_in">hessian_lxx</span>(index_step); <span class="hljs-comment">// 累加</span><br>}<br></code></pre></td></tr></tbody></table></figure>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> idx = <span class="hljs-number">0</span>; idx &lt; solver_config_.max_iteration; idx++) {<br>        <span class="hljs-comment">// 如果正则化参数过大，说明问题很难解，提前退出</span><br>        <span class="hljs-keyword">if</span> (mu_ &gt; solver_config_.regular_mu_max) <span class="hljs-keyword">break</span>;<br>        <span class="hljs-comment">// --- 3. 准备数据 ---</span><br>        <span class="hljs-comment">// 根据当前的 x 和 u，计算所有 CostFunction 的 Hessian 和 Gradient</span><br>        <span class="hljs-comment">// 这一步就是之前讨论的：计算 l_x, l_u, l_xx, l_uu</span><br>        optimal_cost = <span class="hljs-built_in">update_traj_of_costfunc_list</span>(optimal_states_ptr_, optimal_inputs_ptr_);<br>        last_cost = optimal_cost;<br>        <span class="hljs-comment">// --- 4. Backward Pass (计算策略 K, k) ---</span><br>        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">backward_pass</span>()) {<br>            <span class="hljs-comment">// 如果矩阵分解失败 (非正定)，说明当前步子迈太大了或者地形太复杂</span><br>            <span class="hljs-comment">// 增大正则化参数 mu_，让矩阵变得“更对角化”，然后重试</span><br>            mu_ = mu_ * solver_config_.mu_regular;<br>            std::cout &lt;&lt; <span class="hljs-string">"backward pass failed, increase mu to "</span> &lt;&lt; mu_ &lt;&lt; std::endl;<br>            <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// 跳过本次循环，带着更大的 mu 重试</span><br>        }<br>        <span class="hljs-comment">// --- 5. Forward Pass (生成新轨迹) ---</span><br>        <span class="hljs-type">bool</span> forward_succ_flag = <span class="hljs-literal">false</span>;<br>        <span class="hljs-comment">// 尝试生成新轨迹，forward_pass 内部包含了 Line Search</span><br>        <span class="hljs-keyword">if</span> (!forward_pass(optimal_cost)) {<br>            <span class="hljs-comment">// 如果 Line Search 失败 (新轨迹代价没降低)</span><br>            <span class="hljs-comment">// 同样增大正则化参数 mu_，让下一次 Backward 算出的策略更保守</span><br>            mu_ = mu_ * solver_config_.mu_regular;<br>             std::cout &lt;&lt; <span class="hljs-string">"forward pass failed, increase mu"</span> &lt;&lt; std::endl;<br>            <span class="hljs-comment">// 注意：代码逻辑可能是 continue，或者在这里就接受失败</span><br>        } <span class="hljs-keyword">else</span> {<br>            <span class="hljs-comment">// 成功！代价降低了</span><br>            forward_succ_flag = <span class="hljs-literal">true</span>;<br>            <span class="hljs-comment">// 减小 mu_，因为优化很顺利，可以迈大步子加速收敛</span><br>            mu_ = std::<span class="hljs-built_in">max</span>(solver_config_.regular_mu_min, mu_ / solver_config_.mu_regular);<br>            <span class="hljs-comment">// 获取新轨迹的真实 Cost</span><br>            optimal_cost = <span class="hljs-built_in">get_traj_value</span>(optimal_states_ptr_, optimal_inputs_ptr_);<br>        }<br><br>        <span class="hljs-comment">// 如果 Forward 失败了，直接进入下一轮循环（带着更大的 mu 重试）</span><br>        <span class="hljs-keyword">if</span> (!forward_succ_flag) <span class="hljs-keyword">continue</span>;<br><br>        <span class="hljs-comment">// --- 6. 约束检查 (AL Update Logic) ---</span><br>        <span class="hljs-type">bool</span> convergence = <span class="hljs-literal">true</span>; <br>        <br>        <span class="hljs-comment">// A. 检查线性约束 (如边界)</span><br>        <span class="hljs-type">bool</span> linear_convergence = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : linear_constrain_cost_list) {<br>            <span class="hljs-comment">// update_constrain_value 返回 true 表示满足约束</span><br>            <span class="hljs-comment">// 这里的逻辑是：只要有一个不满足，linear_convergence 就为 false</span><br>            linear_convergence = (iter-&gt;<span class="hljs-built_in">update_constrain_value</span>()) &amp;&amp; linear_convergence;<br>        }<br>        <span class="hljs-keyword">if</span> (!linear_convergence) {<br>            <span class="hljs-comment">// std::cout &lt;&lt; "Linear constraint violated" &lt;&lt; std::endl;</span><br>        }<br><br>        <span class="hljs-comment">// B. 检查障碍物约束 (如碰撞)</span><br>        <span class="hljs-type">bool</span> obstacle_convergence = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : obstacle_constrain_cost_list) {<br>            obstacle_convergence = (iter-&gt;<span class="hljs-built_in">update_constrain_value</span>()) &amp;&amp; obstacle_convergence;<br>             <span class="hljs-keyword">if</span> (!obstacle_convergence) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 有一个撞了就行了</span><br>        }<br><br>        <span class="hljs-comment">// 总的约束收敛标志</span><br>        convergence = convergence &amp;&amp; linear_convergence &amp;&amp; obstacle_convergence;<br><br>        <span class="hljs-comment">// --- 7. 更新 AL 惩罚 (The "Boss" Steps In) ---</span><br>        <span class="hljs-comment">// 只有在约束未满足时，才需要增加惩罚</span><br>        <br>        <span class="hljs-comment">// 更新线性约束的 Lambda 和 Mu (Penalty)</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : linear_constrain_cost_list) {<br>             iter-&gt;<span class="hljs-built_in">update_lamda_penalty</span>(solver_config_.penatly_growth_factor);<br>        }<br>        <br>        <span class="hljs-comment">// 更新障碍物约束的 Lambda 和 Mu (Penalty)</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; iter : obstacle_constrain_cost_list) {<br>             iter-&gt;<span class="hljs-built_in">update_lamda_penalty</span>(solver_config_.penatly_growth_factor);<br>        }<br><br>        <span class="hljs-comment">// --- 8. 终止条件检查 ---</span><br>        <span class="hljs-comment">// 必须同时满足两个条件：</span><br>        <span class="hljs-comment">// 1. Cost 变化很小 (std::abs(optimal_cost - last_cost) &lt; threshold) -&gt; 说明 iLQR 收敛了</span><br>        <span class="hljs-comment">// 2. convergence 为 true -&gt; 说明约束都满足了</span><br>        <br>        <span class="hljs-keyword">if</span> ((std::<span class="hljs-built_in">abs</span>(optimal_cost - last_cost) &lt; solver_config_.convergence_threshold) &amp;&amp; <br>            convergence) {<br>            <br>            <span class="hljs-comment">// 打印成功信息</span><br>            <span class="hljs-comment">// std::cout &lt;&lt; "Converged at iter: " &lt;&lt; idx &lt;&lt; std::endl;</span><br>            <span class="hljs-keyword">return</span> SolverStatus::SUCCESS;<br>        } <span class="hljs-keyword">else</span> {<br>            <span class="hljs-comment">// 打印未收敛信息</span><br>            <span class="hljs-comment">// std::cout &lt;&lt; "Not converged, iter: " &lt;&lt; idx &lt;&lt; " Cost: " &lt;&lt; optimal_cost &lt;&lt; std::endl;</span><br>        }<br><br>    } <span class="hljs-comment">// End Loop</span><br><br></code></pre></td></tr></tbody></table></figure>
 <p>在每次AL Iteration中，我们先调用内层的iLQR更新代价，然后接茬线性约束和障碍物约束。
@@ -1220,68 +1063,48 @@ $$</p>
 Lambda ($\lambda$) 和 Penalty ($\mu$) 不需要像 $x$ 或 $u$ 那样求导、解方程。
 它们的更新规则非常简单粗暴，就是**“后验调整”**。
 <strong>更新拉格朗日乘子 ($\lambda$):</strong>$\lambda_{new} = \lambda_{old} + \mu \cdot C(x)$直觉： 刚才撞得越狠（$C(x)$ 越大），$\lambda$ 就变得越大。$\lambda$ 就像一个“记仇本”，它记住了你刚才在这里犯过错，下次经过这里时，基础代价就会很高。</p>
-<p><strong>更新惩罚因子 ($\mu$ / Penalty):</strong>$\mu_{new} = \mu_{old} \times \text{growth_factor}$直觉： 代码里的 penatly_growth_factor 通常是 5 或 10。这意味着下一轮，障碍物这堵墙的“硬度”会变成刚才的 10 倍。iLQR 会发现撞墙的代价变得无法承受，被迫选择绕路。</p>
+<p><strong>更新惩罚因子 ($\mu$ / Penalty):</strong>$\mu_{new} = \mu_{old} \times \text{growth\\_factor}$直觉： 代码里的 penatly_growth_factor 通常是 5 或 10。这意味着下一轮，障碍物这堵墙的“硬度”会变成刚才的 10 倍。iLQR 会发现撞墙的代价变得无法承受，被迫选择绕路。</p>
 <h2><span id="alilqr%E7%9A%84constraincost%E6%9E%84%E5%BB%BA">ALiLQR的ConstrainCost构建</span></h2>
 <ol>
-<li>
-<p>车辆模型：覆盖圆分解 (Circle Decomposition)
+<li>车辆模型：覆盖圆分解 (Circle Decomposition)
 在车身中轴线上放一串圆形。只要这几个圆都不撞，车就不撞。
-状态：$x = [pos_x, pos_y, \theta, \dots]$
-第 $j$ 个圆心的位置：
-$$\begin{cases}P_{cx} = pos_x + bias_j \cdot \cos(\theta) \\ P_{cy} = pos_y + bias_j \cdot \sin(\theta)\end{cases}
-$$</p>
-</li>
-<li>
-<p>障碍物模型：简单的圆/点假设障碍物位于 $(x_{obs}, y_{obs})$。</p>
-</li>
-<li>
-<p>约束函数 $C(x)$我们定义：如果距离的平方小于某个阈值 $R_{safe}^2$，就是违规。
-$$C(x) = R_{safe}^2 - \left( (P_{cx} - x_{obs})^2 + (P_{cy} - y_{obs})^2 \right)
-$$如果 $C(x) &gt; 0$ $\rightarrow$ 撞了（距离太近）。如果 $C(x) \le 0$ $\rightarrow$ 安全。
+状态：$x = [pos\\_x, pos\\_y, \theta, \dots]$
+第 $j$ 个圆心的位置：</li>
+</ol>
+<p>$$\begin{cases}P_{cx} = pos_x + bias_j \cdot \cos(\theta) \\ P_{cy} = pos_y + bias_j \cdot \sin(\theta)\end{cases}$$</p>
+<ol start="2">
+<li>障碍物模型：简单的圆/点假设障碍物位于 $(x_{obs}, y_{obs})$。</li>
+<li>约束函数 $C(x)$我们定义：如果距离的平方小于某个阈值 $R_{safe}^2$，就是违规。</li>
+</ol>
+<p>$$C(x) = R_{safe}^2 - \left( (P_{cx} - x_{obs})^2 + (P_{cy} - y_{obs})^2 \right)$$
+如果 $C(x) &gt; 0$ $\rightarrow$ 撞了（距离太近）。如果 $C(x) \le 0$ $\rightarrow$ 安全。
 利用链式法则求导：</p>
-</li>
-<li>
-<p>对 $pos_x$ 求导：
-$$\frac{\partial C}{\partial pos_x} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial pos_x} = -2\Delta x \cdot 1 = -2\Delta x
-$$</p>
-</li>
-<li>
-<p>对 $pos_y$ 求导：
-$$\frac{\partial C}{\partial pos_y} = -2\Delta y \cdot 1 = -2\Delta y
-$$</p>
-</li>
-<li>
-<p>对 $\theta$ 求导 (关键！)：
-$$\frac{\partial C}{\partial \theta} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial \theta} - 2\Delta y \cdot \frac{\partial P_{cy}}{\partial \theta}
-$$
+<ol>
+<li>对 $pos\\_x$ 求导：</li>
+</ol>
+<p>$$\frac{\partial C}{\partial pos\\_x} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial pos\\_x} = -2\Delta x \cdot 1 = -2\Delta x$$</p>
+<ol start="2">
+<li>对 $pos\\_y$ 求导：</li>
+</ol>
+<p>$$\frac{\partial C}{\partial pos\\_y} = -2\Delta y \cdot 1 = -2\Delta y$$</p>
+<ol start="3">
+<li>对 $\theta$ 求导 (关键！)：</li>
+</ol>
+<p>$$\frac{\partial C}{\partial \theta} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial \theta} - 2\Delta y \cdot \frac{\partial P_{cy}}{\partial \theta}$$
 $\frac{\partial P_{cx}}{\partial \theta} = -bias_j \cdot \sin(\theta)$
 $\frac{\partial P_{cy}}{\partial \theta} = bias_j \cdot \cos(\theta)$</p>
-</li>
-</ol>
 <h3><span id="%E7%BB%84%E8%A3%85">组装：</span></h3>
-<p><strong>梯度 $l_x$ (Gradient)</strong>
-$$l_x = \frac{\partial L}{\partial x} = (\lambda + \mu \cdot C(x)) \cdot C’(x)
-$$</p>
-<p><strong>Hessian $l_{xx}$ (Hessian)</strong>
-$$l_{xx} = \mu \cdot C’(x)^T \cdot C’(x) + (\lambda + \mu C) \cdot C’'(x)
-$$</p>
+<p><strong>梯度 $l_x$ (Gradient)</strong></p>
+<p>$$l_x = \frac{\partial L}{\partial x} = (\lambda + \mu \cdot C(x)) \cdot C’(x)$$</p>
+<p><strong>Hessian $l_{xx}$ (Hessian)</strong></p>
+<p>$$l_{xx} = \mu \cdot C’(x)^T \cdot C’(x) + (\lambda + \mu C) \cdot C’'(x)$$</p>
 <p>为什么 ConstraintCost 制造了非对角项？
 ConstraintCost 使用了 Gauss-Newton 近似：
 $H \approx \mu \cdot \mathbf{J} \mathbf{J}^T$。</p>
-<p>这里的 $\mathbf{J}$ 是约束函数 $C(x)$ 的梯度向量（$3 \times 1$）：
-$$\mathbf{J} = \begin{bmatrix}
-\frac{\partial C}{\partial x} \\
-\frac{\partial C}{\partial y} \\
-\frac{\partial C}{\partial \theta}
-\end{bmatrix}
-$$</p>
-<p>当我们做外积（Outer Product） $\mathbf{J} \mathbf{J}^T$ 时：
-$$\mathbf{J} \mathbf{J}^T = \begin{bmatrix}
-(\frac{\partial C}{\partial x})^2 &amp; \color{red}{\frac{\partial C}{\partial x}\frac{\partial C}{\partial y}} &amp; \color{red}{\frac{\partial C}{\partial x}\frac{\partial C}{\partial \theta}} \\
-\color{red}{\frac{\partial C}{\partial y}\frac{\partial C}{\partial x}} &amp; (\frac{\partial C}{\partial y})^2 &amp; \color{red}{\frac{\partial C}{\partial y}\frac{\partial C}{\partial \theta}} \\
-\color{red}{\frac{\partial C}{\partial \theta}\frac{\partial C}{\partial x}} &amp; \color{red}{\frac{\partial C}{\partial \theta}\frac{\partial C}{\partial y}} &amp; (\frac{\partial C}{\partial \theta})^2
-\end{bmatrix}
-$$</p>
+<p>这里的 $\mathbf{J}$ 是约束函数 $C(x)$ 的梯度向量（$3 \times 1$）：</p>
+<p>$$\mathbf{J} = \begin{bmatrix} \frac{\partial C}{\partial x} \\ \frac{\partial C}{\partial y} \\ \frac{\partial C}{\partial \theta} \end{bmatrix}$$</p>
+<p>当我们做外积（Outer Product） $\mathbf{J} \mathbf{J}^T$ 时：</p>
+<p>$$\mathbf{J} \mathbf{J}^T = \begin{bmatrix} (\frac{\partial C}{\partial x})^2 &amp; \color{red}{\frac{\partial C}{\partial x}\frac{\partial C}{\partial y}} &amp; \color{red}{\frac{\partial C}{\partial x}\frac{\partial C}{\partial \theta}} \\ \color{red}{\frac{\partial C}{\partial y}\frac{\partial C}{\partial x}} &amp; (\frac{\partial C}{\partial y})^2 &amp; \color{red}{\frac{\partial C}{\partial y}\frac{\partial C}{\partial \theta}} \\ \color{red}{\frac{\partial C}{\partial \theta}\frac{\partial C}{\partial x}} &amp; \color{red}{\frac{\partial C}{\partial \theta}\frac{\partial C}{\partial y}} &amp; (\frac{\partial C}{\partial \theta})^2 \end{bmatrix}$$</p>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->
 <script>

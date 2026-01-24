@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -514,7 +499,7 @@
 <ul>
 <li><strong>硬约束</strong>: 如果网格点 <code>(t, s)</code> <strong>位于</strong>模块一生成的 ST 障碍物边界<strong>内部</strong>，则 $StateCost = \infty$ (无穷大)。</li>
 <li><strong>效果</strong>: DP 在计算 $min(\dots)$ 时，会自动抛弃任何试图穿过障碍物的路径。<strong>这是强制 DP 绕行的核心机制</strong>。</li>
-<li><strong>软约束 (Buffer Cost)</strong>: 如果 <code>(t, s)</code> 只是<strong>靠近</strong>（但未进入）障碍物边界，则 $StateCost = \text{High_Cost}$。</li>
+<li><strong>软约束 (Buffer Cost)</strong>: 如果 <code>(t, s)</code> 只是<strong>靠近</strong>（但未进入）障碍物边界，则 $StateCost = \text{High\\_Cost}$。</li>
 <li><strong>效果</strong>: 这会鼓励 DP 轨迹尽量在“安全通道”的中央行驶，而不是“贴着”障碍物走，为后续 QP 优化留出裕度。</li>
 </ul>
 </li>
@@ -719,13 +704,13 @@
 <ul>
 <li><strong>ST 边界约束</strong>: (来自模块四)
 <ul>
-<li>$S_t \le S_{\text{upper_bound}, t}$ (例如，不能超过前方障碍物的尾部减去安全距离)</li>
-<li>$S_t \ge S_{\text{lower_bound}, t}$ (例如，不能低于后方障碍物的头部加上安全裕度)</li>
+<li>$S_t \le S_{\text{upper\\_bound}, t}$ (例如，不能超过前方障碍物的尾部减去安全距离)</li>
+<li>$S_t \ge S_{\text{lower\\_bound}, t}$ (例如，不能低于后方障碍物的头部加上安全裕度)</li>
 </ul>
 </li>
 <li><strong>速度约束 (V)</strong>: (来自地图和车辆)
 <ul>
-<li>$V_t \le V_{\text{speed_limit}}$ (道路限速)</li>
+<li>$V_t \le V_{\text{speed\\_limit}}$ (道路限速)</li>
 <li>$V_t \ge 0$ (不能倒车)</li>
 </ul>
 </li>
@@ -762,10 +747,8 @@ $X = [S_0, S_1, \dots, S_M, V_0, V_1, \dots, V_M, A_0, A_1, \dots, A_M]$
 (注：实际求解中，S, V, A 之间通过运动学公式 $S_t = S_{t-1} + V_{t-1}dT + \dots$ 相互关联)</p>
 <h4><span id="32-%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0-cost-function---%E8%BD%AF%E7%BA%A6%E6%9D%9F">3.2 目标函数 (Cost Function) - 软约束</span></h4>
 <p>QP 求解器的<strong>目标</strong>是找到一组 $X$，使得这个<strong>总代价函数 $J$ 最小</strong>。
-正如会议中提到的，这个函数是各项代价的<strong>平方和</strong>（这就是“二次”规划的来源）：
-$$
-J = \min \sum_{t=0}^{M} \left( w_s(S_t - S_{\text{ref}, t})^2 + w_v(V_t - V_{\text{ref}, t})^2 + w_a(A_t)^2 + w_j(Jerk_t)^2 \right)
-$$</p>
+正如会议中提到的，这个函数是各项代价的<strong>平方和</strong>（这就是“二次”规划的来源）：</p>
+<p>$$J = \min \sum_{t=0}^{M} \left( w_s(S_t - S_{\text{ref}, t})^2 + w_v(V_t - V_{\text{ref}, t})^2 + w_a(A_t)^2 + w_j(Jerk_t)^2 \right)$$</p>
 <ul>
 <li><strong>$w_s(S_t - S_{\text{ref}, t})^2$</strong>: <strong>S 路径代价</strong>。惩罚轨迹偏离 DP 参考线的距离。</li>
 <li><strong>$w_v(V_t - V_{\text{ref}, t})^2$</strong>: <strong>V 速度代价</strong>。惩罚速度偏离 DP 参考速度。</li>

@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -423,19 +408,7 @@
 <li><a href="#3-bfs-%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B3%95%E5%AE%9D%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. BFS 的三大法宝（核心数据结构）</a></li>
 <li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81">4. 算法执行伪代码</a></li>
 <li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</a></li>
-<li><a href="#6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</a></li>
-</ul>
-</li>
-<li><a href="#dijkstra-%E7%AE%97%E6%B3%95-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Dijkstra 算法 学习笔记</a>
-<ul>
-<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%88%90%E6%9C%AC%E4%BC%98%E5%85%88">1. 核心思想：成本优先</a></li>
-<li><a href="#2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%88%90%E6%9C%AC%E6%9C%80%E4%BC%98">2. 核心保证：成本最优</a></li>
-<li><a href="#3-dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7-upgraded-tools">3. Dijkstra 的“升级工具” (Upgraded Tools)</a></li>
-<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</a></li>
-</ul>
-<ul>
-<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93-1">5. 算法特性总结</a></li>
-<li><a href="#6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7-1">6. 算法缺陷</a>
+<li><a href="#6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</a>
 <ul>
 <li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B4%9F%E6%9D%83%E9%87%8D%E8%BE%B9%E4%BC%9A%E7%A0%B4%E5%9D%8F-break-dijkstra">为什么负权重边会““破坏” (Break) Dijkstra？</a>
 <ul>
@@ -451,8 +424,8 @@
 <li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3dijkstra--%E6%96%B9%E5%90%91%E6%84%9F">1. 核心思想：Dijkstra + “方向感”</a></li>
 <li><a href="#2-a-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F">2. A* 的核心公式</a></li>
 <li><a href="#3-a-%E7%9A%84%E6%B3%95%E5%AE%9D-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. A* 的“法宝” (数据结构)</a></li>
-<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88-1">4. 算法执行伪代码 (专业版)</a></li>
-<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93-2">5. 算法特性总结</a></li>
+<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</a></li>
+<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93-1">5. 算法特性总结</a></li>
 <li><a href="#6-a-%E7%9A%84%E7%BC%BA%E9%99%B7%E4%B8%8E%E5%B1%80%E9%99%90">6. A* 的缺陷与局限</a></li>
 </ul>
 </li>
@@ -590,61 +563,7 @@
 <p>完备性 (Completeness): 是。只要路径存在，BFS 一定能找到。
 最优性 (Optimality): 是 (仅限无权重图)。
 时间复杂度 (Time): $O(V + E)
-$$V$ = 节点 (Vertex) 数量。$E$ = 边 (Edge) 数量。(每个节点和每条边最多被访问一次)。
-空间复杂度 (Space): $O(V)$(在最坏情况下，Queue 和 visited 集合可能需要存储所有 $V$ 个节点)。</p>
-<h2><span id="6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</span></h2>
-<p>不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。</p>
-<p>搜索盲目： 像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。</p>
-<p>反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。</p>
-<h1><span id="dijkstra-%E7%AE%97%E6%B3%95-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Dijkstra 算法 学习笔记</span></h1>
-<h3><span id="1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%88%90%E6%9C%AC%E4%BC%98%E5%85%88">1. 核心思想：成本优先</span></h3>
-<p>Dijkstra (迪杰斯特拉) 算法是 BFS 的“<strong>升级版</strong>”。</p>
-<ul>
-<li><strong>BFS 的目标</strong>：找到<strong>步数最少</strong>的路径。</li>
-<li><strong>Dijkstra 的目标</strong>：在<strong>带权重</strong>的图中，找到<strong>累计成本最低</strong>的路径。</li>
-</ul>
-<p>它的核心规则是：<strong>永远优先探索从起点出发，累计成本最低的那个““前沿” (frontier) 节点</strong>。</p>
-<h3><span id="2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%88%90%E6%9C%AC%E6%9C%80%E4%BC%98">2. 核心保证：成本最优</span></h3>
-<ul>
-<li><strong>最优性</strong>：<strong>是</strong>。只要图中没有<strong>负权重</strong>的边，Dijkstra <strong>保证</strong>能找到从起点到<strong>所有</strong>其他节点的<strong>最低成本路径</strong>。</li>
-<li><strong>原因</strong>：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出 <code>goal</code> (终点) 时，它所记录的成本<strong>必然</strong>是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。</li>
-</ul>
-<h3><span id="3-dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7-upgraded-tools">3. Dijkstra 的“升级工具” (Upgraded Tools)</span></h3>
-<p>Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">目的</th>
-<th style="text-align:left">BFS (步数最少)</th>
-<th style="text-align:left">Dijkstra (成本最低)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>1. 待办列表</strong></td>
-<td style="text-align:left"><code>Queue</code> (先进先出)</td>
-<td style="text-align:left"><strong><code>PriorityQueue</code> (最小堆)</strong><br> (用 <code>heapq</code> 实现) <br> 自动将<strong>成本最低</strong>的节点排到最前。</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>2. 足迹记录</strong></td>
-<td style="text-align:left"><code>visited</code> (Set) <br> (只关心“去过没”)</td>
-<td style="text-align:left"><strong><code>cost_so_far</code> (Dictionary)</strong> <br> (关心“花销多少”)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>3. 面包屑</strong></td>
-<td style="text-align:left"><code>parent</code> (Dictionary)</td>
-<td style="text-align:left"><strong><code>parent</code> (Dictionary)</strong> <br> (工作方式相同，但只在找到<strong>更便宜</strong>路径时才更新)</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3><span id="4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</span></h3>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function Dijkstra(start, goal):<br>  # 1. 初始化<br>  pq = new PriorityQueue()<br>  heapq.heappush(pq, (0, start)) # (cost, node)<br>  <br>  cost_so_far = {start: 0}<br>  parent = {start: None}<br><br>  # 2. 循环，直到队列为空<br>  while pq.is_not_empty():<br>    <br>    current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的<br><br>    # 3. (关键优化) 处理“过时”节点<br>    if current_cost &gt; cost_so_far[current_node]:<br>      continue # 这是一条旧的、更贵的路径，跳过<br><br>    # 4. 检查终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br><br>    # 5. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 6. 计算新路径的 *累计成本*<br>      new_cost = current_cost + get_cost(neighbor)<br>      <br>      # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径<br>      if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]:<br>        <br>        # 8. 是！更新所有记录<br>        cost_so_far[neighbor] = new_cost<br>        parent[neighbor] = current_node<br>        heapq.heappush(pq, (new_cost, neighbor))<br>        <br>  # 9. 队列为空，仍未找到<br>  return "No Path Found"<br></code></pre></td></tr></tbody></table></figure>
-<h2><span id="5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</span></h2>
-<p>完备性 (Completeness): 是。只要路径存在，一定能找到。
-最优性 (Optimality): 是 (前提：图中没有负权重的边)。
-时间复杂度 (Time): $O((E+V) \log V)$ 或 $O(E \log V)
-$$V$ = 节点数, $E$ = 边数。复杂度主要取决于优先队列 (heapq) 的性能。
+$$V$ = 节点 (Vertex) 数量。$E$ = 边 (Edge) 数量。(每个节点和每条边最多被访问一次)。 空间复杂度 (Space): $O(V)$(在最坏情况下，Queue 和 visited 集合可能需要存储所有 $V$ 个节点)。 ## 6. 算法缺陷 不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。 搜索盲目： 像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。 反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。 # Dijkstra 算法 学习笔记 ### 1. 核心思想：成本优先 Dijkstra (迪杰斯特拉) 算法是 BFS 的“<strong>升级版</strong>”。 * <strong>BFS 的目标</strong>：找到<strong>步数最少</strong>的路径。 * <strong>Dijkstra 的目标</strong>：在<strong>带权重</strong>的图中，找到<strong>累计成本最低</strong>的路径。 它的核心规则是：<strong>永远优先探索从起点出发，累计成本最低的那个““前沿” (frontier) 节点</strong>。 ### 2. 核心保证：成本最优 * <strong>最优性</strong>：<strong>是</strong>。只要图中没有<strong>负权重</strong>的边，Dijkstra <strong>保证</strong>能找到从起点到<strong>所有</strong>其他节点的<strong>最低成本路径</strong>。 * <strong>原因</strong>：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出 <code>goal</code> (终点) 时，它所记录的成本<strong>必然</strong>是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。 ### 3. Dijkstra 的“升级工具” (Upgraded Tools) Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。 | 目的 | BFS (步数最少) | Dijkstra (成本最低) | | :— | :— | :— | | <strong>1. 待办列表</strong> | <code>Queue</code> (先进先出) | <strong><code>PriorityQueue</code> (最小堆)</strong><br> (用 <code>heapq</code> 实现) <br> 自动将<strong>成本最低</strong>的节点排到最前。 | | <strong>2. 足迹记录</strong> | <code>visited</code> (Set) <br> (只关心“去过没”) | <strong><code>cost_so_far</code> (Dictionary)</strong> <br> (关心“花销多少”) | | <strong>3. 面包屑</strong> | <code>parent</code> (Dictionary) | <strong><code>parent</code> (Dictionary)</strong> <br> (工作方式相同，但只在找到<strong>更便宜</strong>路径时才更新) | — ### 4. 算法执行伪代码 (专业版) <code>pseudocode function Dijkstra(start, goal): # 1. 初始化 pq = new PriorityQueue() heapq.heappush(pq, (0, start)) # (cost, node) cost_so_far = {start: 0} parent = {start: None} # 2. 循环，直到队列为空 while pq.is_not_empty(): current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的 # 3. (关键优化) 处理“过时”节点 if current_cost &gt; cost_so_far[current_node]: continue # 这是一条旧的、更贵的路径，跳过 # 4. 检查终点 if current_node == goal: return reconstruct_path(parent, start, goal) # 成功！ # 5. 遍历邻居 for neighbor in get_neighbors(current_node): # 6. 计算新路径的 *累计成本* new_cost = current_cost + get_cost(neighbor) # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径 if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]: # 8. 是！更新所有记录 cost_so_far[neighbor] = new_cost parent[neighbor] = current_node heapq.heappush(pq, (new_cost, neighbor)) # 9. 队列为空，仍未找到 return "No Path Found" </code> ## 5. 算法特性总结 完备性 (Completeness): 是。只要路径存在，一定能找到。 最优性 (Optimality): 是 (前提：图中没有负权重的边)。 时间复杂度 (Time): $O((E+V) \log V)$ 或 $O(E \log V)$$V$ = 节点数, $E$ = 边数。复杂度主要取决于优先队列 (heapq) 的性能。
 空间复杂度 (Space): $O(V)$cost_so_far 和 parent 最多存储 $V$ 个节点。pq 在最坏情况下也可能存储 $O(V)$ 个节点。</p>
 <h2><span id="6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</span></h2>
 <p>Dijkstra 最大的缺陷是<strong>效率</strong>，而不是<strong>正确性</strong>（在无负权边的情况下）。</p>
@@ -741,9 +660,8 @@ Dijkstra 算法在 <strong>Step 2</strong> 时，已经<strong>错误地</strong
 </ul>
 <p>这个“指南针”就是 <strong>启发函数 (Heuristic)</strong>。</p>
 <h3><span id="2-a-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F">2. A* 的核心公式</span></h3>
-<p>A* 通过一个新公式 $f(n)$ 来决定优先队列的顺序：
-$$f(n) = g(n) + h(n)
-$$</p>
+<p>A* 通过一个新公式 $f(n)$ 来决定优先队列的顺序：</p>
+<p>$$f(n) = g(n) + h(n)$$</p>
 <ul>
 <li>
 <p><strong>$g(n)$ (G-Cost)</strong>：从<strong>起点</strong> <code>S</code> 走到节点 <code>n</code> 的**“实际累计成本”**。</p>
@@ -1363,24 +1281,22 @@ $$</p>
 <p><strong>计算新朝向 $\phi_{k+1}$</strong>：</p>
 <ul>
 <li>新朝向角的变化 $\Delta\phi \approx (s_{\text{step}} / L) \times \tan(\delta)$</li>
-<li><strong>计算公式</strong>：
-$$\phi_{k+1} = \phi_k + \frac{s_{\text{step}}}{L} \tan(\delta)
-$$</li>
-</ul>
-</li>
-<li>
-<p><strong>计算新位置 $(x_{k+1}, y_{k+1})$</strong>：</p>
-<ul>
-<li>新位置的变化 $\Delta x \approx s_{\text{step}} \times \cos(\phi)$</li>
-<li>新位置的变化 $\Delta y \approx s_{\text{step}} \times \sin(\phi)$</li>
-<li><strong>计算公式</strong>（您的代码中使用 $\phi_{k+1}$ 进行积分，这是一种欧拉积分法）：
-$$x_{k+1} = x_k + s_{\text{step}} \cos(\phi_{k+1})
-$$</li>
+<li><strong>计算公式</strong>：</li>
 </ul>
 </li>
 </ol>
-<p>$$y_{k+1} = y_k + s_{\text{step}} \sin(\phi_{k+1})
-$$</p>
+<p>$$\phi_{k+1} = \phi_k + \frac{s_{\text{step}}}{L} \tan(\delta)$$</p>
+<ol start="3">
+<li><strong>计算新位置 $(x_{k+1}, y_{k+1})$</strong>：
+<ul>
+<li>新位置的变化 $\Delta x \approx s_{\text{step}} \times \cos(\phi)$</li>
+<li>新位置的变化 $\Delta y \approx s_{\text{step}} \times \sin(\phi)$</li>
+<li><strong>计算公式</strong>（您的代码中使用 $\phi_{k+1}$ 进行积分，这是一种欧拉积分法）：</li>
+</ul>
+</li>
+</ol>
+<p>$$x_{k+1} = x_k + s_{\text{step}} \cos(\phi_{k+1})$$</p>
+<p>$$y_{k+1} = y_k + s_{\text{step}} \sin(\phi_{k+1})$$</p>
 <p><strong>总结</strong>：自行车模型是一个数学公式，它能精确地告诉A*算法：“如果我在 $(x_k, y_k, \phi_k)$，打 $\delta$ 这么多方向，前进 $s_{\text{step}}$ 这么远，我会到达哪个新位姿 $(x_{k+1}, y_{k+1}, \phi_{k+1})$”。这就是混合A*实现“运动学可行”的根本。</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/700681612">自行车运动学模型</a></p>
 <hr>

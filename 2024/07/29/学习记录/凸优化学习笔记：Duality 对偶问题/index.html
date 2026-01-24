@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -416,80 +401,42 @@
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
 		<html><head></head><body><h2><span id="%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AF%B9%E5%81%B6%E5%87%BD%E6%95%B0">拉格朗日对偶函数</span></h2>
-<p>$$\begin{align}minimize\ &amp;f_0(x)\\
-subject\ to\ &amp;f_i(x)\le 0,i=1,…,m\\
-&amp;h_i(x)=0,i=1,…,p\end{align}
-$$
+<p>$$\begin{align}minimize\ &amp;f_0(x)\\ subject\ to\ &amp;f_i(x)\le 0,i=1,…,m\\ &amp;h_i(x)=0,i=1,…,p\end{align}$$
 假设最优值为$p^*$
-Lagrangian duality是将约束通过加权合并到目标函数中，$L:R^n\times R^m\times R^p\to R$。
-$$L(x,\lambda,\nu)=f_0(x)+\Sigma_{i=1}^m\lambda_if_i(x)+\Sigma_{i=1}^p\nu_ih_i(x)
-$$
+Lagrangian duality是将约束通过加权合并到目标函数中，$L:R^n\times R^m\times R^p\to R$。</p>
+<p>$$L(x,\lambda,\nu)=f_0(x)+\Sigma_{i=1}^m\lambda_if_i(x)+\Sigma_{i=1}^p\nu_ih_i(x)$$
 其中$\lambda_i,\nu_i$为拉格朗日乘数。
-拉格朗日对偶函数为
-$$g(\lambda,\nu)=inf\ L(x,\lambda,\nu)=inf\ (f_0(x)+\Sigma_{i=1}^m\lambda_if_i(x)+\Sigma_{i=1}^p\nu_ih_i(x))
-$$
+拉格朗日对偶函数为</p>
+<p>$$g(\lambda,\nu)=inf\ L(x,\lambda,\nu)=inf\ (f_0(x)+\Sigma_{i=1}^m\lambda_if_i(x)+\Sigma_{i=1}^p\nu_ih_i(x))$$
 是凹的，与原问题的凹凸性无关。</p>
 <h3><span id="%E6%9C%80%E4%BC%98%E5%80%BC%E7%9A%84%E4%B8%8B%E7%95%8C">最优值的下界</span></h3>
-<p>假设在$x^<em>$处取的最优值$f_0(x)=p^</em>$，此时由于$\lambda\succeq 0$，
+<p>假设在$x^*$处取的最优值$f_0(x)=p^*$，此时由于$\lambda\succeq 0$，
 $\Sigma_{i=1}^m\lambda_if_i(x)$小于0，虽然$\nu$的符号不确定，但是$h_i=0$，因此有
 $L(x,\lambda,\nu)=f_0(x)+\Sigma_{i=1}^m\lambda_if_i(x)+\Sigma_{i=1}^p\nu_ih_i(x)\le f_0(x)$
 $g(\lambda,\nu)\le L(x,\lambda,\nu)\le f_0(x)$
 该式对任意x成立，因此有$g(\lambda,\nu)\le p^*$
 g能给出下界。</p>
 <h2><span id="%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98">拉格朗日对偶问题</span></h2>
-<p>对任意对$(\lambda,\nu)$，拉格朗日对偶函数都能给出一个最优值的下界。但最优的下界是什么？
-$$\begin{align}
-maximize\ &amp;g(\lambda,\nu)\\
-subject\ to\ &amp;\lambda\succeq0
-\end{align}
-$$
+<p>对任意对$(\lambda,\nu)$，拉格朗日对偶函数都能给出一个最优值的下界。但最优的下界是什么？</p>
+<p>$$\begin{align} maximize\ &amp;g(\lambda,\nu)\\ subject\ to\ &amp;\lambda\succeq0 \end{align}$$
 该问题称为原问题的拉格朗日对偶问题。原问题则称为primal problem。
 dual feasible意为$\lambda\succeq 0,g(\lambda,\nu)&gt;-\infty$
-该问题的最优解$\lambda^<em>,\nu^</em>$被称为dual optimal或optimal Lagrange multipliers。该问题是凸问题，与原问题的凹凸性无关。
-$p^<em>-d^</em>$被称为duality gap</p>
+该问题的最优解$\lambda^*,\nu^*$被称为dual optimal或optimal Lagrange multipliers。该问题是凸问题，与原问题的凹凸性无关。
+$p^*-d^*$被称为duality gap</p>
 <h3><span id="%E4%BE%8Bqcqp%E7%9A%84%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AF%B9%E5%81%B6">例：QCQP的拉格朗日对偶</span></h3>
-<p>$$\begin{align}minimize\ &amp;(1/2)x^TP_0x+q_0^Tx+r_0\\
-subject\ to\ &amp;(1/2)x^TP_ix+q_i^Tx+r_i\le0,i=1,…,m
-\\&amp;P_0\in S_{++}^n, P_i\in S_{+}^n
-\end{align}
-$$</p>
-<p>其拉格朗日函数为
-$$\begin{align}L(x,\lambda)=
-&amp;(1/2)x^TP_0x+q_0^Tx+r_0+\Sigma_{i=1}^m(\lambda_i/2)x^TP_ix+\lambda_iq_i^Tx+\lambda_ir_i\\
-=&amp;(1/2)x^TP(\lambda)x+q(\lambda)^Tx+r(\lambda)\\
-P(\lambda)=&amp;P_0+\Sigma_{i=1}^m\lambda_iP_i,\\
-q(\lambda)=&amp;q_0+\Sigma_{i=1}^m\lambda_iq_i,\\
-r(\lambda)=&amp;r_0+\Sigma_{i=1}^m\lambda_ir_i.
-\end{align}
-$$
-其取最值处应有
-$$\begin{align}\nabla L=&amp;0\\
-=&amp;P(\lambda)x+q(\lambda)^T\\
-x =&amp; -P^{-1}(\lambda)q(\lambda)^T
-\\
-L(-P^{-1}(\lambda)q(\lambda)^T,\lambda)=&amp;
--(1/2)q(\lambda)^TP(\lambda)^{-1}q(\lambda)+r(\lambda)
-\end{align}
-$$</p>
-<p>$$\begin{align}g(\lambda)=&amp;{\inf}\ L(x,\lambda)\\
-=&amp;-(1/2)q(\lambda)^TP(\lambda)^{-1}q(\lambda)+r(\lambda)
-\end{align}
-$$</p>
+<p>$$\begin{align}minimize\ &amp;(1/2)x^TP_0x+q_0^Tx+r_0\\ subject\ to\ &amp;(1/2)x^TP_ix+q_i^Tx+r_i\le0,i=1,…,m \\&amp;P_0\in S_{++}^n, P_i\in S_{+}^n \end{align}$$</p>
+<p>其拉格朗日函数为</p>
+<p>$$\begin{align}L(x,\lambda)= &amp;(1/2)x^TP_0x+q_0^Tx+r_0+\Sigma_{i=1}^m(\lambda_i/2)x^TP_ix+\lambda_iq_i^Tx+\lambda_ir_i\\ =&amp;(1/2)x^TP(\lambda)x+q(\lambda)^Tx+r(\lambda)\\ P(\lambda)=&amp;P_0+\Sigma_{i=1}^m\lambda_iP_i,\\ q(\lambda)=&amp;q_0+\Sigma_{i=1}^m\lambda_iq_i,\\ r(\lambda)=&amp;r_0+\Sigma_{i=1}^m\lambda_ir_i. \end{align}$$
+其取最值处应有</p>
+<p>$$\begin{align}\nabla L=&amp;0\\ =&amp;P(\lambda)x+q(\lambda)^T\\ x =&amp; -P^{-1}(\lambda)q(\lambda)^T \\ L(-P^{-1}(\lambda)q(\lambda)^T,\lambda)=&amp; -(1/2)q(\lambda)^TP(\lambda)^{-1}q(\lambda)+r(\lambda) \end{align}$$</p>
+<p>$$\begin{align}g(\lambda)=&amp;{\inf}\ L(x,\lambda)\\ =&amp;-(1/2)q(\lambda)^TP(\lambda)^{-1}q(\lambda)+r(\lambda) \end{align}$$</p>
 <h2><span id="kkt%E4%BC%98%E5%8C%96%E6%9D%A1%E4%BB%B6">KKT优化条件</span></h2>
 <p>假定函数$f_0,…,f_m,h_1,…,h_p$可微。
-假设$x^<em>$和$(\lambda^</em>,\nu^*)$分别是primal和对偶问题的最优解，且duality gap为0</p>
-<p>由于$x^<em>$为$L(x,\lambda^</em>,\nu^<em>)$的极值点，该处梯度应为0。
-$$\nabla f_0(x^</em>)+\Sigma_{i=1}^m\lambda_i^<em>\nabla f_i(x^</em>)+\Sigma_{i=1}^pv_i^<em>\nabla h_i(x^</em>)=0
-$$
-Karush-Kuhn-Tucker（KKT）条件即为
-$$\begin{align}
-f_i(x^<em>)\le 0\\
-h_i(x^</em>)=0\\
-\lambda_i^<em>\ge 0\\
-\lambda_i^<em>f_i(x^</em>)=0\\
-\nabla f_0(x^</em>)+\Sigma_{i=1}^m\lambda_i^<em>\nabla f_i(x^</em>)+\Sigma_{i=1}^pv_i^<em>\nabla h_i(x^</em>)=0
-\end{align}
-$$
+假设$x^*$和$(\lambda^*,\nu^*)$分别是primal和对偶问题的最优解，且duality gap为0</p>
+<p>由于$x^*$为$L(x,\lambda^*,\nu^*)$的极值点，该处梯度应为0。</p>
+<p>$$\nabla f_0(x^*)+\Sigma_{i=1}^m\lambda_i^*\nabla f_i(x^*)+\Sigma_{i=1}^pv_i^*\nabla h_i(x^*)=0$$
+Karush-Kuhn-Tucker（KKT）条件即为</p>
+<p>$$\begin{align} f_i(x^*)\le 0\\ h_i(x^*)=0\\ \lambda_i^*\ge 0\\ \lambda_i^*f_i(x^*)=0\\ \nabla f_0(x^*)+\Sigma_{i=1}^m\lambda_i^*\nabla f_i(x^*)+\Sigma_{i=1}^pv_i^*\nabla h_i(x^*)=0 \end{align}$$
 在凸优化中，如果原问题和对偶问题都具有凸形式，那么它们的最优值是相等的。这意味着原问题的最优解和对偶问题的最优解是一致的。
 在任何满足以下条件的凸优化问题中：</p>
 <ul>

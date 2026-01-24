@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -477,10 +462,8 @@
 <h3><span id="%F0%9F%92%BB-%E7%BC%96%E7%A8%8B%E9%A2%98%E7%8E%AF%E8%8A%82%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">💻 编程题环节（动态规划）</span></h3>
 <p><strong>题目：</strong> N 天暑假，每天有 <code>A_i</code>, <code>B_i</code>, <code>C_i</code> 三种活动，给定每天活动的幸福度。要求最大化总幸福度，但<strong>不能连续两天做同一种活动</strong>。
 <strong>候选人思路：</strong> 识别出这是典型的动态规划问题，需要将“前一天的决策”加入到状态定义中.
-<strong>最终方案（DP 方程）：</strong> 采用二维 DP 数组 <code>dp_cost[i][j]</code>，表示<strong>第 $i$ 天</strong>做活动 $j$ 时（$j \in {0, 1, 2}$），能获得的最大累计幸福度。
-$$
-dp_cost[i][j] = \text{cost}[i][j] + \max(dp_cost[i-1][k]) \quad \text{for } k \ne j</p>
-<p>$$
+<strong>最终方案（DP 方程）：</strong> 采用二维 DP 数组 <code>dp_cost[i][j]</code>，表示<strong>第 $i$ 天</strong>做活动 $j$ 时（$j \in \{0, 1, 2\}$），能获得的最大累计幸福度。</p>
+<p>$$dp\\_cost[i][j] = \text{cost}[i][j] + \max(dp\\_cost[i-1][k]) \quad \text{for } k \ne j$$
 <strong>空间复杂度优化尝试：</strong> 识别出 DP 状态只依赖于 $i-1$ 天，提出将 $N \times 3$ 的 DP 数组优化为 $2 \times 3$ 或 $1 \times 3$ 的循环替换（In-Place Update）。</p>
 <h2><span id="%E8%BF%99%E9%87%8C%E6%9C%89%E4%B8%AA%E7%AC%91%E6%AD%BB%E6%88%91%E7%9A%84%E5%BF%85%E9%A1%BB%E8%AF%B4%0A">这里有个笑死我的必须说
 <img data-fancybox="gallery" data-sizes="auto" data-src="saws.png" alt="alt text" class="lazyload"></span></h2>

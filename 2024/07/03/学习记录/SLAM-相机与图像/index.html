@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -417,84 +402,44 @@
 		</div>
 		<html><head></head><body><h1><span id="%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B">相机模型</span></h1>
 <h2><span id="%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B">针孔相机模型</span></h2>
-<p>$$X’=f\frac{X}{Z}
-$$
-$$Y’=f\frac{Y}{Z}
-$$
+<p>$$X’=f\frac{X}{Z}$$
+$$Y’=f\frac{Y}{Z}$$
 <img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240703203611.png" alt="20240703203611.png" class="lazyload">
 假设传感器像素屏幕坐标为o-u-v，从左上向游侠。此时像素平面上点P’的坐标为$[u,v]^T$
-如果传感器原点的平移为$[C_x,C_y]^T$
-$$\begin{equation} \left{ \begin{array}{lr}
-u = f_x\frac{X}{Z}+C_x\\
-v = f_y\frac{Y}{Z}+C_y
-\end{array} \right. \end{equation}
-$$
-$$\begin{bmatrix}u\\v\\1\end{bmatrix} = \begin{bmatrix}
-f_x/Z&amp;0&amp;c_x\\0&amp;f_y/Z&amp;c_y\\0&amp;0&amp;1/Z
-\end{bmatrix}
-\begin{bmatrix}
-X\\Y\\Z
-\end{bmatrix}
-=\frac{1}{Z}KP
-$$
+如果传感器原点的平移为$[C_x,C_y]^T$</p>
+<p>$$\begin{equation} \left\{ \begin{array}{lr} u = f_x\frac{X}{Z}+C_x\\ v = f_y\frac{Y}{Z}+C_y \end{array} \right. \end{equation}$$
+$$\begin{bmatrix}u\\v\\1\end{bmatrix} = \begin{bmatrix} f_x/Z&amp;0&amp;c_x\\0&amp;f_y/Z&amp;c_y\\0&amp;0&amp;1/Z \end{bmatrix} \begin{bmatrix} X\\Y\\Z \end{bmatrix} =\frac{1}{Z}KP$$
 其中K为内参矩阵
-对于世界坐标系W中的点$P_W$，若相机位姿为R,t（外参），则有
-$$z\mathbf {P_{UV}} = K (RP_W+t) = KTP_W
-$$
+对于世界坐标系W中的点$P_W$，若相机位姿为R,t（外参），则有</p>
+<p>$$z\mathbf {P_{UV}} = K (RP_W+t) = KTP_W$$
 连线射线上的点都可以对应到同一个像素上，因此一般可以用归一化平面上的点进行处理。这也意味着点的深度在投影过程中被丢失了。</p>
 <h3><span id="%E7%95%B8%E5%8F%98%E7%9A%84%E7%9F%AB%E6%AD%A3">畸变的矫正</span></h3>
 <p>径向畸变
 <img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240703212738.png" alt="20240703212738.png" class="lazyload">
 切向畸变
 <img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240703212747.png" alt="20240703212747.png" class="lazyload"></p>
-<p>对于归一化平面上的任意一点$p = [x,y]^T$，径向畸变可以看作坐标点与原点的距离发生变化，切向畸变可以看成坐标点沿切线方向发生变化（？）。
-$$\begin{align}
-x_{distorted} = x(1+k_1r^2+k_2r^4+k_3r^6)
-\\
-y_{distorted} = y(1+k_1r^2+k_2r^4+k_3r^6)
-\end{align}
-$$
-上式的畸变以径向距离r为变量，描述了径向畸变。
-$$\begin{align}
-x_{distorted} = x+2p_1xy+p_2(r^2+2x^2)
-\\
-y_{distorted} = y+p_1(r^2+2y^2)+2p_2xy
-\end{align}
-$$
+<p>对于归一化平面上的任意一点$p = [x,y]^T$，径向畸变可以看作坐标点与原点的距离发生变化，切向畸变可以看成坐标点沿切线方向发生变化（？）。</p>
+<p>$$\begin{align} x_{distorted} = x(1+k_1r^2+k_2r^4+k_3r^6) \\ y_{distorted} = y(1+k_1r^2+k_2r^4+k_3r^6) \end{align}$$
+上式的畸变以径向距离r为变量，描述了径向畸变。</p>
+<p>$$\begin{align} x_{distorted} = x+2p_1xy+p_2(r^2+2x^2) \\ y_{distorted} = y+p_1(r^2+2y^2)+2p_2xy \end{align}$$
 该式添加了圆锥曲线方程？总之表示的是切向畸变（为什么）</p>
 <ul>
 <li>将三维空间点投影到归一化平面$[x,y]^T$</li>
-<li>计算畸变
-$$\begin{align}
-x_{distorted} = x(1+k_1r^2+k_2r^4+k_3r^6)+2p_1xy+p_2(r^2+2x^2)
-\\
-y_{distorted} = y(1+k_1r^2+k_2r^4+k_3r^6)+p_1(r^2+2y^2)+2p_2xy
-\end{align}
-$$</li>
-<li>畸变点在像素平面的位置为
-$$\begin{equation} \left{ \begin{array}{lr}
-u = f_xx_{distort}+C_x\\
-v = f_yy_{distort}+C_y
-\end{array} \right. \end{equation}
-$$</li>
+<li>计算畸变</li>
 </ul>
-<p>对于实际探测而言，如果已经有像素平面上的坐标$[u,v]^T$，可以逆推出实际点的位置。
-$$\begin{bmatrix}
-x\\
-y
-\end{bmatrix}= f(\begin{bmatrix}
-u\\
-v
-\end{bmatrix})
-$$</p>
+<p>$$\begin{align} x_{distorted} = x(1+k_1r^2+k_2r^4+k_3r^6)+2p_1xy+p_2(r^2+2x^2) \\ y_{distorted} = y(1+k_1r^2+k_2r^4+k_3r^6)+p_1(r^2+2y^2)+2p_2xy \end{align}$$</p>
+<ul>
+<li>畸变点在像素平面的位置为</li>
+</ul>
+<p>$$\begin{equation} \left\{ \begin{array}{lr} u = f_xx_{distort}+C_x\\ v = f_yy_{distort}+C_y \end{array} \right. \end{equation}$$</p>
+<p>对于实际探测而言，如果已经有像素平面上的坐标$[u,v]^T$，可以逆推出实际点的位置。</p>
+<p>$$\begin{bmatrix} x\\ y \end{bmatrix}= f(\begin{bmatrix} u\\ v \end{bmatrix})$$</p>
 <h2><span id="%E5%8F%8C%E7%9B%AE%E7%9B%B8%E6%9C%BA">双目相机</span></h2>
 <p>解决景深的获取
 <img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240703225710.png" alt="20240703225710.png" class="lazyload">b为基线
-世界坐标系中的空间点P在左右相机各成一像PL，PR（位置是归一化平面，O才是像素平面）。(UR是负数)
-$$\frac{b-u_L+u_R}{b} = \frac{z-f}{z}
-$$
-$$z = \frac{fb}{u_L-u_R}
-$$</p>
+世界坐标系中的空间点P在左右相机各成一像PL，PR（位置是归一化平面，O才是像素平面）。(UR是负数)</p>
+<p>$$\frac{b-u_L+u_R}{b} = \frac{z-f}{z}$$
+$$z = \frac{fb}{u_L-u_R}$$</p>
 <h1><span id="%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">代码实现</span></h1>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->

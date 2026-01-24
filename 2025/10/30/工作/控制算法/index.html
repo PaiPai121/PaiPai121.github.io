@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -415,8 +400,8 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年10月30日</a>
-			<a><i class="kirafont icon-edit-fill"></i>7.2k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 30 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>7.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 31 分钟</a>
 		</div>
 		<html><head></head><body><p>本文由AI根据2024年7月版本代码梳理</p>
 <h1><span id="%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E6%96%87%E6%A1%A3">控制系统架构文档</span></h1>
@@ -751,40 +736,29 @@
 </ul>
 </li>
 <li>
-<p><strong>反馈 (Feedback) - PI 补偿</strong>:</p>
-<ul>
-<li>物理模型总是不完美的。系统会计算<strong>加速度误差 <code>Error_Ax</code></strong> = <code>final_acc_out</code> (目标) - <code>ego_accel</code> (实际)。</li>
-<li>一个 PI 控制器（<code>Force_P</code> 和 <code>Force_I</code>）运行在此误差上，以补偿模型的任何不精确性。</li>
-</ul>
+<p>**反馈 (Feedback) - PI 补偿**:
+* 物理模型总是不完美的。系统会计算**加速度误差 <code>Error\_Ax</code>** = <code>final\_acc\_out</code> (目标) - <code>ego\_accel</code> (实际)。
+* 一个 PI 控制器（<code>Force\_P</code> 和 <code>Force\_I</code>）运行在此误差上，以补偿模型的任何不精确性。</p>
 </li>
 <li>
-<p><strong>最终扭矩 (Final Torque)</strong>:</p>
-<ul>
-<li><strong>总力</strong> = $F_{\text{resist}}$ (前馈) + $F_{\text{PI}}$ (反馈)。</li>
-<li><code>Torque_Target_Out</code> = (总力 $\cdot$ 轮胎半径) / (变速箱传动比 $\cdot$ 效率)。</li>
-</ul>
+<p>**最终扭矩 (Final Torque)**:
+* **总力** = $F_{\text{resist}}$ (前馈) + $F_{\text{PI}}$ (反馈)。
+* <code>Torque\_Target\_Out</code> = (总力 $\cdot$ 轮胎半径) / (变速箱传动比 $\cdot$ 效率)。</p>
 </li>
 </ol>
 <h3><span id="74-%E9%A9%BB%E8%BD%A6%E8%B5%B7%E6%AD%A5%E7%8A%B6%E6%80%81%E6%9C%BA-standstill-logic">7.4 驻车/起步状态机 (Standstill Logic)</span></h3>
-<ul>
-<li><strong>职责</strong>: 管理车辆在接近 0 速时的平稳停止和起步，防止“蠕动”或“溜车”。</li>
-<li><strong>关键逻辑</strong>:
-<ul>
-<li>实现了一个简单的<strong>状态机</strong> (<code>Last_sandstill_req</code>)。</li>
-<li><strong>进入驻车</strong>: 如果车速低于阈值（<code>FLAGS_standstill_req_ego_speed_threshold</code>）且目标加速度为负（刹车），在计时器（<code>standstill_timewindow</code>）到期后，设置 <code>standstill_req = 1</code>。</li>
-<li><strong>请求起步</strong>: 如果 <code>standstill_req = 1</code>，且目标加速度高于起步阈值（<code>FLAGS_go_req_final_acc_threshold</code>），在计时器（<code>drive_off_timewindow</code>）到期后，设置 <code>standstill_req = 0</code> (同时 <code>go_req</code> 将变为 1)。</li>
-<li><code>go_req</code> (起步请求) 和 <code>standstill_req</code> (驻车请求) 信号被发送给车辆的 VLC (Vehicle Longitudinal Control) 系统。</li>
-</ul>
-</li>
-</ul>
+<p>* **职责**: 管理车辆在接近 0 速时的平稳停止和起步，防止“蠕动”或“溜车”。
+* **关键逻辑**:
+* 实现了一个简单的**状态机** (<code>Last\_sandstill\_req</code>)。
+* **进入驻车**: 如果车速低于阈值（<code>FLAGS\_standstill\_req\_ego\_speed\_threshold</code>）且目标加速度为负（刹车），在计时器（<code>standstill\_timewindow</code>）到期后，设置 <code>standstill\_req = 1</code>。
+* **请求起步**: 如果 <code>standstill\_req = 1</code>，且目标加速度高于起步阈值（<code>FLAGS\_go\_req\_final\_acc\_threshold</code>），在计时器（<code>drive\_off\_timewindow</code>）到期后，设置 <code>standstill\_req = 0</code> (同时 <code>go\_req</code> 将变为 1)。
+* <code>go\_req</code> (起步请求) 和 <code>standstill\_req</code> (驻车请求) 信号被发送给车辆的 VLC (Vehicle Longitudinal Control) 系统。</p>
 <hr>
 <h2><span id="8-%E6%80%BB%E7%BB%93">8. 总结</span></h2>
 <p><code>rina::control</code> 是一个高度成熟且复杂的控制系统框架。</p>
-<ul>
-<li><strong>架构灵活</strong>: 它通过 <code>FLAGS_use_control_submodules</code> 标志，同时支持“整体式”和“流水线式”两种软件架构，兼顾了低延迟和高解耦的需求。</li>
-<li><strong>算法多样</strong>: 它通过“控制器工厂”模式，实现了 PID、LQR 和 MPC 三种主流控制算法的“可插拔”能力，允许针对不同场景或车型灵活选用。</li>
-<li><strong>逻辑完备</strong>: 它不仅包含了核心算法，还实现了包括驾驶员交互、指令平滑、物理模型（力矩转换）、状态机（驻车管理）和安全冗余在内的完整闭环逻辑。</li>
-</ul>
+<p>* **架构灵活**: 它通过 <code>FLAGS\_use\_control\_submodules</code> 标志，同时支持“整体式”和“流水线式”两种软件架构，兼顾了低延迟和高解耦的需求。
+* **算法多样**: 它通过“控制器工厂”模式，实现了 PID、LQR 和 MPC 三种主流控制算法的“可插拔”能力，允许针对不同场景或车型灵活选用。
+* **逻辑完备**: 它不仅包含了核心算法，还实现了包括驾驶员交互、指令平滑、物理模型（力矩转换）、状态机（驻车管理）和安全冗余在内的完整闭环逻辑。</p>
 <p>该框架的设计展示了清晰的职责分离（验证、算法、安全）、现代控制理论的应用（LQR/MPC）、经典控制的深度实践（级联PID/传递函数）以及对车辆动力学的深刻理解（加速度-扭矩模型）。</p>
 <hr>
 <h2><span id="9-%E5%85%B3%E9%94%AE%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E4%B8%8E%E6%80%BB%E7%BB%93">9. 关键设计原则与总结</span></h2>
@@ -792,174 +766,133 @@
 <h3><span id="91-%E5%8E%9F%E5%88%99%E4%B8%80%E8%81%8C%E8%B4%A3%E5%88%86%E7%A6%BB%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%A7%A3%E8%80%A6-separation-of-concerns">9.1 原则一：职责分离与架构解耦 (Separation of Concerns)</span></h3>
 <p>系统设计严格遵循职责分离原则，体现在两个层面：</p>
 <ol>
-<li><strong>架构解耦</strong>: “流水线”架构（架构 B）是该原则的最佳体现。它将一个复杂的控制任务清晰地分解为三个独立的阶段：<strong>数据验证</strong> (<code>preprocessor_submodule</code>)、<strong>算法计算</strong> (<code>lat_lon_controller_submodule</code>, <code>mpc_controller_submodule</code>) 和<strong>安全冗余</strong> (<code>postprocessor_submodule</code>)。这使得每个模块都可以独立开发、测试和升级。</li>
-<li><strong>算法解耦</strong>: “横纵解耦”策略（策略 B/C）将车辆控制分解为两个正交的问题：<code>lon_controller</code> 只关心纵向（前后）运动，而 <code>lat_controller</code> 只关心横向（左右）运动。这大大降低了算法的设计和调参复杂度。</li>
+<li>**架构解耦**: “流水线”架构（架构 B）是该原则的最佳体现。它将一个复杂的控制任务清晰地分解为三个独立的阶段：**数据验证** (<code>preprocessor\_submodule</code>)、**算法计算** (<code>lat\_lon\_controller\_submodule</code>, <code>mpc\_controller\_submodule</code>) 和**安全冗余** (<code>postprocessor\_submodule</code>)。这使得每个模块都可以独立开发、测试和升级。</li>
+<li>**算法解耦**: “横纵解耦”策略（策略 B/C）将车辆控制分解为两个正交的问题：<code>lon\_controller</code> 只关心纵向（前后）运动，而 <code>lat\_controller</code> 只关心横向（左右）运动。这大大降低了算法的设计和调参复杂度。</li>
 </ol>
 <h3><span id="92-%E5%8E%9F%E5%88%99%E4%BA%8C%E6%8A%BD%E8%B1%A1%E5%8C%96%E4%B8%8E%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-abstraction--factory-pattern">9.2 原则二：抽象化与工厂模式 (Abstraction &amp; Factory Pattern)</span></h3>
-<ul>
-<li><strong>文件</strong>: <code>controller_agent.cc</code></li>
-</ul>
-<p>系统通过 <code>ControllerAgent</code> 类（在“整体式”架构中）和 <code>Controller</code> 基类（未在文件中提供，但隐含存在）实现了一个<strong>工厂模式</strong>。</p>
-<p><code>ControllerAgent</code> 并不关心“具体”是哪个控制器在工作。它只通过 <code>RegisterControllers</code> 方法注册算法实例，并通过一个通用的 <code>ComputeControlCommand</code> 接口来调用它们。这种抽象设计使得添加一个新的控制算法（例如，未来可能加入的 <code>SlidingModeController</code>）变得非常简单，而无需修改任何上层调用逻辑（如 <code>control_component</code>）。</p>
+<p>* **文件**: <code>controller\_agent.cc</code></p>
+<p>系统通过 <code>ControllerAgent</code> 类（在“整体式”架构中）和 <code>Controller</code> 基类（未在文件中提供，但隐含存在）实现了一个**工厂模式**。</p>
+<p><code>ControllerAgent</code> 并不关心“具体”是哪个控制器在工作。它只通过 <code>RegisterControllers</code> 方法注册算法实例，并通过一个通用的 <code>ComputeControlCommand</code> 接口来调用它们。这种抽象设计使得添加一个新的控制算法（例如，未来可能加入的 <code>SlidingModeController</code>）变得非常简单，而无需修改任何上层调用逻辑（如 <code>control\_component</code>）。</p>
 <h3><span id="93-%E5%8E%9F%E5%88%99%E4%B8%89%E9%AB%98%E5%BA%A6%E5%8F%AF%E9%85%8D%E7%BD%AE%E6%80%A7-high-configurability">9.3 原则三：高度可配置性 (High Configurability)</span></h3>
-<ul>
-<li><strong>文件</strong>: <code>control_component.cc</code>, <code>mpc_controller.cc</code>, <code>lat_controller_lqr.cc</code> 等</li>
-</ul>
-<p>整个框架是<strong>配置驱动</strong>的。开发者无需重新编译代码即可彻底改变系统的行为：</p>
+<p>* **文件**: <code>control\_component.cc</code>, <code>mpc\_controller.cc</code>, <code>lat\_controller\_lqr.cc</code> 等</p>
+<p>整个框架是**配置驱动**的。开发者无需重新编译代码即可彻底改变系统的行为：</p>
 <ol>
-<li><strong>架构切换</strong>: 通过 <code>FLAGS_use_control_submodules</code> 标志，可以一键切换“整体式”与“流水线式”架构。</li>
-<li><strong>算法切换</strong>: 通过 <code>control_conf-&gt;active_controllers()</code> 列表，可以选择加载 <code>MPC_CONTROLLER</code>（策略 A），或是加载 <code>LAT_CONTROLLER</code> + <code>LON_CONTROLLER</code>（策略 B/C）。</li>
-<li><strong>参数标定</strong>: 所有的控制参数，如 PID 增益、LQR 代价矩阵 <code>matrix_q_</code>、MPC 权重，以及后处理中的平滑系数，都是从 <code>.conf</code> 配置文件中加载的。</li>
+<li>**架构切换**: 通过 <code>FLAGS\_use\_control\_submodules</code> 标志，可以一键切换“整体式”与“流水线式”架构。</li>
+<li>**算法切换**: 通过 <code>control\_conf-&gt;active\_controllers()</code> 列表，可以选择加载 <code>MPC\_CONTROLLER</code>（策略 A），或是加载 <code>LAT\_CONTROLLER</code> + <code>LON\_CONTROLLER</code>（策略 B/C）。</li>
+<li>**参数标定**: 所有的控制参数，如 PID 增益、LQR 代价矩阵 <code>matrix\_q\_</code>、MPC 权重，以及后处理中的平滑系数，都是从 <code>.conf</code> 配置文件中加载的。</li>
 </ol>
 <h3><span id="94-%E5%8E%9F%E5%88%99%E5%9B%9B%E6%B7%B7%E5%90%88%E6%8E%A7%E5%88%B6-hybrid-control">9.4 原则四：混合控制 (Hybrid Control)</span></h3>
-<ul>
-<li><strong>文件</strong>: <code>control_component.cc</code>, <code>lon_controller.cc</code>, <code>lat_controller_lqr.cc</code></li>
-</ul>
-<p>系统完美融合了<strong>前馈 (Feedforward)</strong> 和<strong>反馈 (Feedback)</strong> 两种控制思想，这是实现高性能控制的基石。</p>
-<ul>
-<li><strong>反馈 (Feedback)</strong>:
-<ul>
-<li><strong>职责</strong>: 补偿<strong>不可预测的误差</strong>和<strong>外部扰动</strong>（如侧风、路面颠簸）。</li>
-<li><strong>实现</strong>: PID、LQR 和 MPC 算法的核心都是反馈控制（基于 <code>station_error</code>, <code>lateral_error</code> 等）。</li>
-</ul>
-</li>
-<li><strong>前馈 (Feedforward)</strong>:
-<ul>
-<li><strong>职责</strong>: 补偿<strong>可预测的</strong>、<strong>基于物理模型</strong>的力，使反馈控制器可以更“轻松”地工作。</li>
-<li><strong>实现</strong>:
-<ol>
-<li><strong>力矩转换模型</strong>: 在 <code>control_component</code> 中，<code>Force_Air</code> (风阻), <code>Force_Rolling</code> (滚阻), <code>Force_Slope</code> (坡阻) 都是纯粹的前馈项。</li>
-<li><strong>曲率前馈</strong>: 在 <code>lat_controller_lqr</code> 中，<code>steer_angle_feedforward</code> 基于路径曲率和车速计算得出，用于提前转动方向盘以应对弯道。</li>
-<li><strong>加速度前馈</strong>: 在 <code>lon_controller</code> 中，<code>preview_acceleration_reference</code> 作为前馈项被直接加到 PID 的输出上。</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
+<p>* **文件**: <code>control\_component.cc</code>, <code>lon\_controller.cc</code>, <code>lat\_controller\_lqr.cc</code></p>
+<p>系统完美融合了**前馈 (Feedforward)** 和**反馈 (Feedback)** 两种控制思想，这是实现高性能控制的基石。</p>
+<p>* **反馈 (Feedback)**:
+* **职责**: 补偿**不可预测的误差**和**外部扰动**（如侧风、路面颠簸）。
+* **实现**: PID、LQR 和 MPC 算法的核心都是反馈控制（基于 <code>station\_error</code>, <code>lateral\_error</code> 等）。
+* **前馈 (Feedforward)**:
+* **职责**: 补偿**可预测的**、**基于物理模型**的力，使反馈控制器可以更“轻松”地工作。
+* **实现**:
+1.  **力矩转换模型**: 在 <code>control\_component</code> 中，<code>Force\_Air</code> (风阻), <code>Force\_Rolling</code> (滚阻), <code>Force\_Slope</code> (坡阻) 都是纯粹的前馈项。
+2.  **曲率前馈**: 在 <code>lat\_controller\_lqr</code> 中，<code>steer\_angle\_feedforward</code> 基于路径曲率和车速计算得出，用于提前转动方向盘以应对弯道。
+3.  **加速度前馈**: 在 <code>lon\_controller</code> 中，<code>preview\_acceleration\_reference</code> 作为前馈项被直接加到 PID 的输出上。</p>
 <h3><span id="95-%E5%8E%9F%E5%88%99%E4%BA%94%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E8%AE%A1-model-based-design">9.5 原则五：基于模型的设计 (Model-Based Design)</span></h3>
-<ul>
-<li><strong>文件</strong>: <code>mpc_controller.cc</code>, <code>lat_controller_lqr.cc</code>, <code>lat_controller.cc</code></li>
-</ul>
+<p>* **文件**: <code>mpc\_controller.cc</code>, <code>lat\_controller\_lqr.cc</code>, <code>lat\_controller.cc</code></p>
 <p>该框架深度依赖于车辆动力学模型和数学模型。</p>
 <ol>
-<li><strong>车辆动力学模型</strong>: LQR 和 MPC 算法均建立在一个<strong>二自由度单车模型</strong>之上（由 <code>matrix_a_</code> 和 <code>matrix_b_</code> 描述）。控制器的性能直接取决于该模型对真实车辆的逼近程度。</li>
-<li><strong>Simulink 集成</strong>: <code>lat_controller.cc</code> 通过集成自动生成的 C 代码 (<code>ads_control_</code>)，展示了<strong>MBD (Model-Based Design)</strong> 的开发流程。算法在 Simulink 中进行图形化设计、仿真和验证，然后一键生成可部署的 C/C++ 代码。</li>
-<li><strong>经典控制理论</strong>: <code>lat_controller.cc</code> 和 <code>transfer_function.cc</code> 对<strong>传递函数</strong>和 <strong>Tustin 变换</strong>的应用，表明工程师在频域内进行了滤波器和补偿器的设计。</li>
+<li>**车辆动力学模型**: LQR 和 MPC 算法均建立在一个**二自由度单车模型**之上（由 <code>matrix\_a\_</code> 和 <code>matrix\_b\_</code> 描述）。控制器的性能直接取决于该模型对真实车辆的逼近程度。</li>
+<li>**Simulink 集成**: <code>lat\_controller.cc</code> 通过集成自动生成的 C 代码 (<code>ads\_control\_</code>)，展示了**MBD (Model-Based Design)** 的开发流程。算法在 Simulink 中进行图形化设计、仿真和验证，然后一键生成可部署的 C/C++ 代码。</li>
+<li>**经典控制理论**: <code>lat\_controller.cc</code> 和 <code>transfer\_function.cc</code> 对**传递函数**和 **Tustin 变换**的应用，表明工程师在频域内进行了滤波器和补偿器的设计。</li>
 </ol>
 <h3><span id="96-%E6%80%BB%E7%BB%93">9.6 总结</span></h3>
-<p><code>rina::control</code> 是一个高度工程化的自动驾驶控制系统。它不是一个单一算法的简单实现，而是一个<strong>灵活的、可配置的、多策略的“算法容器”</strong>。</p>
-<p>它通过<strong>架构解耦</strong>（流水线）来保证软件质量和可维护性，通过<strong>算法抽象</strong>（控制器工厂）来保证可扩展性，并通过<strong>混合控制</strong>（前馈+反馈）和<strong>基于模型的设计</strong>（LQR/MPC/Simulink）来保证核心的控制性能、舒适性和鲁棒性。</p>
+<p><code>rina::control</code> 是一个高度工程化的自动驾驶控制系统。它不是一个单一算法的简单实现，而是一个**灵活的、可配置的、多策略的“算法容器”**。</p>
+<p>它通过**架构解耦**（流水线）来保证软件质量和可维护性，通过**算法抽象**（控制器工厂）来保证可扩展性，并通过**混合控制**（前馈+反馈）和**基于模型的设计**（LQR/MPC/Simulink）来保证核心的控制性能、舒适性和鲁棒性。</p>
 <hr>
 <hr>
 <h2><span id="10-%E5%85%B3%E9%94%AE%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E7%AD%94-qa">10. 关键问题与解答 (Q&amp;A)</span></h2>
 <h3><span id="q1-%E6%9E%B6%E6%9E%84%E5%B9%BF%E5%BA%A6%E8%AF%B7%E6%A2%B3%E7%90%86%E4%B8%80%E4%B8%8B%E8%BF%99%E4%BB%BD%E4%BB%A3%E7%A0%81%E7%9A%84%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">Q1 (架构广度)：请梳理一下这份代码的整体架构。</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
-<p>“这份代码实现了一个高度模块化、可配置的控制系统。它在顶层设计上支持<strong>两种执行架构</strong>，通过 <code>FLAGS_use_control_submodules</code> 标志切换。</p>
+<p>**[回答]**</p>
+<p>“这份代码实现了一个高度模块化、可配置的控制系统。它在顶层设计上支持**两种执行架构**，通过 <code>FLAGS\_use\_control\_submodules</code> 标志切换。</p>
 <ol>
-<li><strong>第一种是“整体式”架构</strong>。所有逻辑，从数据检查、算法调用到后处理（如力矩转换），都在 <code>ControlComponent</code> 的 <code>Proc()</code> 函数中执行。</li>
-<li><strong>第二种是“子模块流水线”架构</strong>。它将流程拆分为三个解耦的节点：
-<ul>
-<li><code>PreprocessorSubmodule</code> 负责数据验证。</li>
-<li><code>ControllerSubmodule</code> (如 <code>MpcControllerSubmodule</code> 或 <code>LatLonControllerSubmodule</code>) 负责核心算法计算。</li>
-<li><code>PostprocessorSubmodule</code> 负责最终的安全检查和指令发布，例如处理 <code>estop</code>。</li>
-</ul>
-</li>
+<li>**第一种是“整体式”架构**。所有逻辑，从数据检查、算法调用到后处理（如力矩转换），都在 <code>ControlComponent</code> 的 <code>Proc()</code> 函数中执行。</li>
+<li>**第二种是“子模块流水线”架构**。它将流程拆分为三个解耦的节点：
+* <code>PreprocessorSubmodule</code> 负责数据验证。
+* <code>ControllerSubmodule</code> (如 <code>MpcControllerSubmodule</code> 或 <code>LatLonControllerSubmodule</code>) 负责核心算法计算。
+* <code>PostprocessorSubmodule</code> 负责最终的安全检查和指令发布，例如处理 <code>estop</code>。</li>
 </ol>
-<p>在<strong>算法层</strong>，该框架通过 <code>ControllerAgent</code> 或 <code>ControllerSubmodule</code> 充当“算法容器”，可以<strong>灵活加载</strong>至少三种不同的控制策略：</p>
-<ul>
-<li><strong>策略 A</strong>：<code>mpc_controller</code> (横纵统一的 MPC 控制)。</li>
-<li><strong>策略 B</strong>：<code>lon_controller</code> (纵向 PID) + <code>lat_controller_lqr</code> (横向 LQR)。</li>
-<li><strong>策略 C</strong>：<code>lon_controller</code> (纵向 PID) + <code>lat_controller</code> (基于 Simulink Coder 生成的 PID)。</li>
-</ul>
+<p>在**算法层**，该框架通过 <code>ControllerAgent</code> 或 <code>ControllerSubmodule</code> 充当“算法容器”，可以**灵活加载**至少三种不同的控制策略：</p>
+<p>* **策略 A**：<code>mpc\_controller</code> (横纵统一的 MPC 控制)。
+* **策略 B**：<code>lon\_controller</code> (纵向 PID) + <code>lat\_controller\_lqr</code> (横向 LQR)。
+* **策略 C**：<code>lon\_controller</code> (纵向 PID) + <code>lat\_controller</code> (基于 Simulink Coder 生成的 PID)。</p>
 <p>这种设计在架构上实现了高解耦，在算法上实现了高灵活性。”</p>
 </blockquote>
-<h3><span id="q2-%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6---lonlon_controllercc-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BA%B5%E5%90%91%E6%8E%A7%E5%88%B6%E7%9A%84">Q2 (算法深度 - Lon)：<code>lon_controller.cc</code> 是如何实现纵向控制的？</span></h3>
+<h3><span id="q2-%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6---lonlon_controllercc-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BA%B5%E5%90%91%E6%8E%A7%E5%88%B6%E7%9A%84">Q2 (算法深度 - Lon)：<code>lon\_controller.cc</code> 是如何实现纵向控制的？</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
-<p>“<code>lon_controller</code> 实现了一个非常经典的**级联 PID（Cascade PID）**控制策略。它包含两个闭环：</p>
+<p>**[回答]**</p>
+<p>“<code>lon\_controller</code> 实现了一个非常经典的**级联 PID（Cascade PID）**控制策略。它包含两个闭环：</p>
 <ol>
-<li><strong>外环（位置环）</strong>：<code>station_pid_controller_</code>。它的输入是 <code>station_error</code>（即车辆在轨迹上的位置误差，是超前还是落后）。它的输出是一个<strong>补偿速度 <code>speed_offset</code></strong>。</li>
-<li><strong>内环（速度环）</strong>：<code>speed_pid_controller_</code>。它的输入是总的速度误差，即 <code>(目标速度 + 补偿速度) - 当前速度</code>。它的输出是<strong>期望的加速度 <code>acceleration_cmd_closeloop</code></strong>。</li>
+<li>**外环（位置环）**：<code>station\_pid\_controller\_</code>。它的输入是 <code>station\_error</code>（即车辆在轨迹上的位置误差，是超前还是落后）。它的输出是一个**补偿速度 <code>speed\_offset</code>**。</li>
+<li>**内环（速度环）**：<code>speed\_pid\_controller\_</code>。它的输入是总的速度误差，即 <code>(目标速度 + 补偿速度) - 当前速度</code>。它的输出是**期望的加速度 <code>acceleration\_cmd\_closeloop</code>**。</li>
 </ol>
-<p>最终的加速度指令还叠加了<strong>前馈项</strong>（<code>preview_acceleration_reference</code>，来自规划轨迹）和<strong>补偿项</strong>（<code>slope_offset_compensation</code>，坡度补偿）。</p>
-<p>最后，这个期望的物理加速度会通过一个 2D 标定表 <code>control_interpolation_</code>，转换为执行器能理解的油门（Throttle）和刹车（Brake）百分比指令。”</p>
+<p>最终的加速度指令还叠加了**前馈项**（<code>preview\_acceleration\_reference</code>，来自规划轨迹）和**补偿项**（<code>slope\_offset\_compensation</code>，坡度补偿）。</p>
+<p>最后，这个期望的物理加速度会通过一个 2D 标定表 <code>control\_interpolation\_</code>，转换为执行器能理解的油门（Throttle）和刹车（Brake）百分比指令。”</p>
 </blockquote>
-<h3><span id="q3-%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6---latlat_controller_lqrcc-%E5%92%8C-mpc_controllercc-%E5%9C%A8%E6%8E%A7%E5%88%B6%E8%BD%AC%E5%90%91%E6%97%B6%E6%9C%89%E4%BB%80%E4%B9%88%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB">Q3 (算法深度 - Lat)：<code>lat_controller_lqr.cc</code> 和 <code>mpc_controller.cc</code> 在控制转向时有什么核心区别？</span></h3>
+<h3><span id="q3-%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6---latlat_controller_lqrcc-%E5%92%8C-mpc_controllercc-%E5%9C%A8%E6%8E%A7%E5%88%B6%E8%BD%AC%E5%90%91%E6%97%B6%E6%9C%89%E4%BB%80%E4%B9%88%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB">Q3 (算法深度 - Lat)：<code>lat\_controller\_lqr.cc</code> 和 <code>mpc\_controller.cc</code> 在控制转向时有什么核心区别？</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
+<p>**[回答]**</p>
 <p>“它们代表了两种不同层次的控制思想。</p>
-<p><strong><code>lat_controller_lqr</code> (LQR)</strong> 是一种<strong>最优反馈控制</strong>。</p>
-<ul>
-<li>它将问题视为一个<strong>状态调节</strong>问题，目标是“在当前时刻，施加多大的控制量（转向），才能最快地消除当前的状态误差（如横向误差、朝向误差）”。</li>
-<li>它通过 <code>SolveLQRProblem</code> 实时求解代数黎卡提方程，得到一个<strong>最优增益矩阵 <code>K</code></strong>。</li>
-<li>它的核心公式是 <code>u = -Kx</code>，即<strong>反馈转向角 <code>steer_angle_feedback</code> = <code>-(matrix_k_ * matrix_state_)</code></strong>。它不“向前看”，只专注于最优地消除当前误差。</li>
-</ul>
-<p><strong><code>mpc_controller</code> (MPC)</strong> 是一种<strong>最优预测控制</strong>。</p>
-<ul>
-<li>它将问题视为一个<strong>轨迹跟踪</strong>问题，目标是“我应该执行<strong>一串什么样</strong>的控制序列（转向和加速），才能使我<strong>未来 N 秒</strong>的行驶轨迹与规划轨迹最吻合”。</li>
-<li>它使用车辆模型<strong>向前预测</strong>（<code>horizon_</code> 步长），并通过 <code>MpcOsqp</code> 求解器 找到这个<strong>最优控制序列</strong>。</li>
-<li>最重要的是，MPC 能在优化时<strong>显式地处理物理约束</strong>，比如 <code>upper_bound &lt;&lt; wheel_single_direction_max_degree_</code>，这是 LQR 难以做到的。</li>
-</ul>
-<p><strong>总结一下</strong>：LQR 是一种高性能的<strong>反馈调节器</strong>（Error Regulator），而 MPC 是一种更强大的<strong>预测跟踪器</strong>（Trajectory Tracker），它能提前处理未来的路径变化（如曲率）和物理约束。”</p>
+<p>**<code>lat\_controller\_lqr</code> (LQR)** 是一种**最优反馈控制**。</p>
+<p>* 它将问题视为一个**状态调节**问题，目标是“在当前时刻，施加多大的控制量（转向），才能最快地消除当前的状态误差（如横向误差、朝向误差）”。
+* 它通过 <code>SolveLQRProblem</code> 实时求解代数黎卡提方程，得到一个**最优增益矩阵 <code>K</code>**。
+* 它的核心公式是 <code>u = -Kx</code>，即**反馈转向角 <code>steer\_angle\_feedback</code> = <code>-(matrix\_k\_ \* matrix\_state\_)</code>**。它不“向前看”，只专注于最优地消除当前误差。</p>
+<p>**<code>mpc\_controller</code> (MPC)** 是一种**最优预测控制**。</p>
+<p>* 它将问题视为一个**轨迹跟踪**问题，目标是“我应该执行**一串什么样**的控制序列（转向和加速），才能使我**未来 N 秒**的行驶轨迹与规划轨迹最吻合”。
+* 它使用车辆模型**向前预测**（<code>horizon\_</code> 步长），并通过 <code>MpcOsqp</code> 求解器 找到这个**最优控制序列**。
+* 最重要的是，MPC 能在优化时**显式地处理物理约束**，比如 <code>upper\_bound &lt;&lt; wheel\_single\_direction\_max\_degree\_</code>，这是 LQR 难以做到的。</p>
+<p>**总结一下**：LQR 是一种高性能的**反馈调节器**（Error Regulator），而 MPC 是一种更强大的**预测跟踪器**（Trajectory Tracker），它能提前处理未来的路径变化（如曲率）和物理约束。”</p>
 </blockquote>
-<h3><span id="q4-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E5%9C%A8-control_componentcc-%E4%B8%AD%E9%A9%BB%E8%BD%A6standstill%E5%92%8C%E8%B5%B7%E6%AD%A5go_req%E9%80%BB%E8%BE%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84">Q4 (实现细节)：在 <code>control_component.cc</code> 中，驻车（Standstill）和起步（<code>go_req</code>）逻辑是如何实现的？</span></h3>
+<h3><span id="q4-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82%E5%9C%A8-control_componentcc-%E4%B8%AD%E9%A9%BB%E8%BD%A6standstill%E5%92%8C%E8%B5%B7%E6%AD%A5go_req%E9%80%BB%E8%BE%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84">Q4 (实现细节)：在 <code>control\_component.cc</code> 中，驻车（Standstill）和起步（<code>go\_req</code>）逻辑是如何实现的？</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
-<p>“这个模块 通过一个<strong>基于时间窗的状态机</strong>来管理驻车和起步，以确保平顺性。</p>
+<p>**[回答]**</p>
+<p>“这个模块 通过一个**基于时间窗的状态机**来管理驻车和起步，以确保平顺性。</p>
 <ol>
 <li>
-<p><strong>进入驻车 (Standstill)</strong>：</p>
-<ul>
-<li>条件是：如果车辆<strong>上一帧不是驻车状态</strong> (<code>Last_sandstill_req == 0</code>)，且<strong>车速低于阈值</strong>（如 <code>FLAGS_standstill_req_ego_speed_threshold</code>），并且<strong>目标加速度为负</strong>（即需要刹车）。</li>
-<li>系统会启动一个计时器 <code>standstill_timewindow</code>。当计时器超过阈值（<code>FLAGS_standstill_req_time_window_threshold</code>）后，系统才正式将 <code>standstill_req</code>（驻车请求）置为 1。</li>
-</ul>
+<p>**进入驻车 (Standstill)**：
+* 条件是：如果车辆**上一帧不是驻车状态** (<code>Last\_sandstill\_req == 0</code>)，且**车速低于阈值**（如 <code>FLAGS\_standstill\_req\_ego\_speed\_threshold</code>），并且**目标加速度为负**（即需要刹车）。
+* 系统会启动一个计时器 <code>standstill\_timewindow</code>。当计时器超过阈值（<code>FLAGS\_standstill\_req\_time\_window\_threshold</code>）后，系统才正式将 <code>standstill\_req</code>（驻车请求）置为 1。</p>
 </li>
 <li>
-<p><strong>请求起步 (Go Request)</strong>：</p>
-<ul>
-<li>条件是：如果车辆<strong>上一帧是驻车状态</strong> (<code>Last_sandstill_req == 1</code>)，并且<strong>目标加速度大于起步阈值</strong>（<code>FLAGS_go_req_final_acc_threshold</code>，即驾驶员或规划希望车辆启动）。</li>
-<li>系统会启动另一个计时器 <code>drive_off_timewindow</code>。当计时器超过阈值（<code>FLAGS_go_req_time_window_threshold</code>）后，系统会将 <code>standstill_req</code> 置为 0，此时 <code>go_req = !standstill_req</code> 将变为 1。</li>
-</ul>
+<p>**请求起步 (Go Request)**：
+* 条件是：如果车辆**上一帧是驻车状态** (<code>Last\_sandstill\_req == 1</code>)，并且**目标加速度大于起步阈值**（<code>FLAGS\_go\_req\_final\_acc\_threshold</code>，即驾驶员或规划希望车辆启动）。
+* 系统会启动另一个计时器 <code>drive\_off\_timewindow</code>。当计时器超过阈值（<code>FLAGS\_go\_req\_time\_window\_threshold</code>）后，系统会将 <code>standstill\_req</code> 置为 0，此时 <code>go\_req = !standstill\_req</code> 将变为 1。</p>
 </li>
 </ol>
 <p>这种基于时间窗的设计可以有效过滤掉高频的启停指令，防止车辆在“停未停”的临界状态下（例如堵车蠕动）产生顿挫。”</p>
 </blockquote>
 <h3><span id="q5-%E6%9E%B6%E6%9E%84%E6%9D%83%E8%A1%A1%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E6%94%AF%E6%8C%81%E6%95%B4%E4%BD%93%E5%BC%8F%E5%92%8C%E5%AD%90%E6%A8%A1%E5%9D%97%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%A4%E7%A7%8D%E6%9E%B6%E6%9E%84">Q5 (架构权衡)：为什么要同时支持“整体式”和“子模块流水线”两种架构？</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
-<p>“这体现了在不同工程阶段对<strong>性能</strong>和<strong>可维护性</strong>的权衡。</p>
-<ul>
-<li><strong>“整体式”架构</strong> 将所有逻辑放在一个组件（甚至一个 <code>Proc</code> 函数）中执行。它的<strong>优点是性能最高、延迟最低</strong>，因为所有数据都在内存中直接传递，没有消息通信的开销。这可能非常适合资源受限的嵌入式硬件或对延迟极其敏感的场景。</li>
-<li><strong>“子模块流水线”架构</strong> 遵循“职责分离”原则，将系统解耦。它的<strong>优点是可维护性、可测试性和团队协作效率最高</strong>。例如：
-<ul>
-<li>负责数据验证的团队可以独立开发 <code>preprocessor_submodule</code>。</li>
-<li>负责算法的团队可以独立开发 <code>lat_lon_controller_submodule</code>。</li>
-<li>负责安全的团队可以独立开发 <code>postprocessor_submodule</code>。</li>
-</ul>
-</li>
-</ul>
-<p>同时支持两种架构，使得团队可以在<strong>开发和调试阶段</strong>使用“流水线”架构以提高效率和鲁棒性，而在<strong>最终部署阶段</strong>可以（如果需要的话）切换到“整体式”架构以追求极致的性能。”</p>
+<p>**[回答]**</p>
+<p>“这体现了在不同工程阶段对**性能**和**可维护性**的权衡。</p>
+<p>* **“整体式”架构** 将所有逻辑放在一个组件（甚至一个 <code>Proc</code> 函数）中执行。它的**优点是性能最高、延迟最低**，因为所有数据都在内存中直接传递，没有消息通信的开销。这可能非常适合资源受限的嵌入式硬件或对延迟极其敏感的场景。
+* **“子模块流水线”架构** 遵循“职责分离”原则，将系统解耦。它的**优点是可维护性、可测试性和团队协作效率最高**。例如：
+* 负责数据验证的团队可以独立开发 <code>preprocessor\_submodule</code>。
+* 负责算法的团队可以独立开发 <code>lat\_lon\_controller\_submodule</code>。
+* 负责安全的团队可以独立开发 <code>postprocessor\_submodule</code>。</p>
+<p>同时支持两种架构，使得团队可以在**开发和调试阶段**使用“流水线”架构以提高效率和鲁棒性，而在**最终部署阶段**可以（如果需要的话）切换到“整体式”架构以追求极致的性能。”</p>
 </blockquote>
-<h3><span id="q6-%E6%A8%A1%E5%9E%8B%E7%BB%86%E8%8A%82control_componentcc-%E4%B8%AD%E7%9A%84%E5%8A%A0%E9%80%9F%E5%BA%A6%E5%88%B0%E6%89%AD%E7%9F%A9%E8%BD%AC%E6%8D%A2%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89">Q6 (模型细节)：<code>control_component.cc</code> 中的“加速度到扭矩”转换模型有什么意义？</span></h3>
+<h3><span id="q6-%E6%A8%A1%E5%9E%8B%E7%BB%86%E8%8A%82control_componentcc-%E4%B8%AD%E7%9A%84%E5%8A%A0%E9%80%9F%E5%BA%A6%E5%88%B0%E6%89%AD%E7%9F%A9%E8%BD%AC%E6%8D%A2%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89">Q6 (模型细节)：<code>control\_component.cc</code> 中的“加速度到扭矩”转换模型有什么意义？</span></h3>
 <blockquote>
-<p><strong>[回答]</strong></p>
-<p>“这个模型 是连接<strong>高层控制算法</strong>（输出物理量：加速度）和<strong>底层执行器</strong>（接收控制量：扭矩）的关键桥梁，它是一个<strong>基于物理模型的前馈 + 反馈</strong>系统。</p>
+<p>**[回答]**</p>
+<p>“这个模型 是连接**高层控制算法**（输出物理量：加速度）和**底层执行器**（接收控制量：扭矩）的关键桥梁，它是一个**基于物理模型的前馈 + 反馈**系统。</p>
 <ol>
 <li>
-<p><strong>为什么需要它？</strong></p>
-<ul>
-<li><code>lon_controller</code> 或 <code>mpc_controller</code> 输出的“期望加速度 $a_{\text{target}}$”是一个<strong>物理目标</strong>，而不是一个<strong>控制指令</strong>。</li>
-<li>车辆在不同工况下（如上坡、下坡、高速、低速）达到<strong>相同</strong>的加速度，所需的<strong>扭矩</strong>是截然不同的。</li>
-<li>如果没有这个模型，单纯用一个 PID 去跟踪加速度误差，会导致 PID 的积分项需要吸收所有（风阻、坡阻、滚阻）的非线性变化，导致调参困难且响应迟钝。</li>
-</ul>
+<p>**为什么需要它？**
+* <code>lon\_controller</code> 或 <code>mpc\_controller</code> 输出的“期望加速度 $a_{\text{target}}$”是一个**物理目标**，而不是一个**控制指令**。
+* 车辆在不同工况下（如上坡、下坡、高速、低速）达到**相同**的加速度，所需的**扭矩**是截然不同的。
+* 如果没有这个模型，单纯用一个 PID 去跟踪加速度误差，会导致 PID 的积分项需要吸收所有（风阻、坡阻、滚阻）的非线性变化，导致调参困难且响应迟钝。</p>
 </li>
 <li>
-<p><strong>它如何工作？</strong></p>
-<ul>
-<li><strong>前馈 (Feedforward)</strong>: 它首先基于物理模型（<code>Force_Air</code>, <code>Force_Rolling</code>, <code>Force_Slope</code>, <code>Force_Inertia</code>） 计算出一个<strong>理论上</strong>达到 $a_{\text{target}}$ 所需的“基础扭矩”。这解决了模型中所有<strong>已知</strong>的非线性问题。</li>
-<li><strong>反馈 (Feedback)</strong>: 然后，它使用一个 PI 控制器（基于 <code>Error_Ax</code> = $a_{\text{target}}$ - $a_{\text{actual}}$） 来补偿所有<strong>未知</strong>的扰动或模型的不精确性（例如，估算的坡度不准、风向突变等）。</li>
-</ul>
+<p>**它如何工作？**
+* **前馈 (Feedforward)**: 它首先基于物理模型（<code>Force\_Air</code>, <code>Force\_Rolling</code>, <code>Force\_Slope</code>, <code>Force\_Inertia</code>） 计算出一个**理论上**达到 $a_{\text{target}}$ 所需的“基础扭矩”。这解决了模型中所有**已知**的非线性问题。
+* **反馈 (Feedback)**: 然后，它使用一个 PI 控制器（基于 <code>Error\_Ax</code> = $a_{\text{target}}$ - $a_{\text{actual}}$） 来补偿所有<strong>未知</strong>的扰动或模型的不精确性（例如，估算的坡度不准、风向突变等）。</p>
 </li>
 </ol>
 <p>通过这种方式，它极大地简化了上层控制器的任务，使其只需专注于运动学规划，而无需关心底层的动力学细节。”</p>

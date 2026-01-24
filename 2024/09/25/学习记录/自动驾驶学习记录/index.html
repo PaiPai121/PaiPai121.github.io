@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -419,70 +404,43 @@
 <p>$$Jerk = \frac{da}{dt}$$
 其加速度的导数，其绝对值越小，则越舒适</p>
 <p>因此自动驾驶的优化目标是</p>
-<p>$$find \  f(t).\ \ s.t. \ min \int_0^T(\frac{d^3f}{dt^3})^2dt$$
+<p>$$find \ f(t).\ \ s.t. \ min \int_0^T(\frac{d^3f}{dt^3})^2dt$$
 $$subjecto\ to\ s(0)=s_0,\dot s(0)=v_0,\ddot s(0) = a_0$$
 $$s(T)=s_n,\dot s(T)=v_n,\ddot s(T) = a_n$$
 这是一个泛函，要求得一个最佳的f(t)，使积分最小。为了匹配六个边界条件，需要五次多项式。</p>
 <p>将f泰勒展开有
-$$s = f(t) = f(0) + f’(1)t + \frac{f’‘(0)}{2!}t^2 + \frac{f’‘’(0)}{3!}t^3+…
-$$
-$$= s_0+v_0t+a_0t/2+Jerk(0)\times t^3/6+…
-$$</p>
+$$s = f(t) = f(0) + f’(1)t + \frac{f’‘(0)}{2!}t^2 + \frac{f’‘’(0)}{3!}t^3+…$$
+$$= s_0+v_0t+a_0t/2+Jerk(0)\times t^3/6+…$$</p>
 <p>约束可以化为
-$$\begin{aligned}s(T)-s(0)=s_n-s_0 = \int _0^T\dot f(t)dt = C_0\\
-\dot s(T)-\dot s(0)=v_n-v_0 =\int _0^T\ddot f(t)dt = C_1\\
-\ddot s(T)-\ddot s(0)=a_n-a_0= \int _0^Tdddot f(t)dt = C_2\end{aligned}
-$$</p>
-<p>$$min\ \int _0^T dddot f^2+ \lambda_1(\dot f-C_0/T) + \lambda_2(\ddot f-C_1/T) + \lambda_3(dddot f-C_2/T)dt
-$$
+$$\begin{aligned}s(T)-s(0)=s_n-s_0 = \int _0^T\dot f(t)dt = C_0\\ \dot s(T)-\dot s(0)=v_n-v_0 =\int _0^T\ddot f(t)dt = C_1\\ \ddot s(T)-\ddot s(0)=a_n-a_0= \int _0^Tdddot f(t)dt = C_2\end{aligned}$$</p>
+<p>$$min\ \int _0^T dddot f^2+ \lambda_1(\dot f-C_0/T) + \lambda_2(\ddot f-C_1/T) + \lambda_3(dddot f-C_2/T)dt$$
 其应该满足 [EL方程 | ### 欧拉拉格朗日方程] ，应有
-$$\frac{d^3}{dt^3}(\lambda_3+2dddot f) = 0, f^{(6)}=0
-$$</p>
+$$\frac{d^3}{dt^3}(\lambda_3+2dddot f) = 0, f^{(6)}=0$$</p>
 <h3><span id="%E6%AC%A7%E6%8B%89%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%96%B9%E7%A8%8B">欧拉拉格朗日方程</span></h3>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/698294026">https://zhuanlan.zhihu.com/p/698294026</a>
-$$\int
-$$</p>
-<p>$$\frac{\partial L}{\partial g}-\frac{d}{dx}(\frac{\partial L}{\partial g’})=0
-$$</p>
+$$\int$$</p>
+<p>$$\frac{\partial L}{\partial g}-\frac{d}{dx}(\frac{\partial L}{\partial g’})=0$$</p>
 <p>广义EL
-$$\frac{\partial L}{\partial f} - \frac{d}{dt}\frac{\partial L}{\partial \dot f}+ \frac{d^2}{dt^2}\frac{\partial L}{\partial \ddot f} - \frac{d^3}{dt^3}\frac{\partial L}{\partial dddot f} = 0
-$$</p>
+$$\frac{\partial L}{\partial f} - \frac{d}{dt}\frac{\partial L}{\partial \dot f}+ \frac{d^2}{dt^2}\frac{\partial L}{\partial \ddot f} - \frac{d^3}{dt^3}\frac{\partial L}{\partial dddot f} = 0$$</p>
 <h2><span id="femsmoother">FEMSmoother</span></h2>
 <p>![20241024163936.png]</p>
 <p>![20241024163947.png]</p>
 <p>平滑算法代价的计算</p>
 <h3><span id="%E5%B9%B3%E6%BB%91%E4%BB%A3%E4%BB%B7">平滑代价</span></h3>
-<p>$$|P_1P_3| = |P_1P_2+P_1P_0| = |(x_2+x_0-2x_1,y_2+y_0-2y_1)|
-$$
+<p>$$|P_1P_3| = |P_1P_2+P_1P_0| = |(x_2+x_0-2x_1,y_2+y_0-2y_1)|$$
 设输入向量为
-$$[x] =\begin{bmatrix}x_0\\y_0\\x_1\\y_1\\x_2\\y_2\end{bmatrix}
-$$
+$$[x] =\begin{bmatrix}x_0\\y_0\\x_1\\y_1\\x_2\\y_2\end{bmatrix}$$
 则应有
-$$cost = \begin{bmatrix}1&amp;0&amp;-2&amp;0&amp;1&amp;0\\
-0&amp;1&amp;0&amp;-2&amp;0&amp;1
-\end{bmatrix} \begin{bmatrix}x_0\\y_0\\x_1\\y_1\\x_2\\y_2\end{bmatrix}=Ax
-$$</p>
+$$cost = \begin{bmatrix}1&amp;0&amp;-2&amp;0&amp;1&amp;0\\ 0&amp;1&amp;0&amp;-2&amp;0&amp;1 \end{bmatrix} \begin{bmatrix}x_0\\y_0\\x_1\\y_1\\x_2\\y_2\end{bmatrix}=Ax$$</p>
 <p>使用距离平方做代价则有
-$$|P_1P_3|^2 = x^TA^TAx
-$$</p>
+$$|P_1P_3|^2 = x^TA^TAx$$</p>
 <p>如果拓展到n个点，则有
-$$A =
-\begin{bmatrix}
-1&amp;0&amp;-2&amp;0&amp;1&amp;0\\
-0&amp;1&amp;0&amp;-2&amp;0&amp;1\\
-0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1&amp;0\\
-0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1\\
-0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1&amp;0\\
-0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1\\
-\end{bmatrix}
-$$
+$$A = \begin{bmatrix} 1&amp;0&amp;-2&amp;0&amp;1&amp;0\\ 0&amp;1&amp;0&amp;-2&amp;0&amp;1\\ 0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1&amp;0\\ 0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1\\ 0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1&amp;0\\ 0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;0&amp;-2&amp;0&amp;1\\ \end{bmatrix}$$
 变成一个上三角矩阵，其列数为2n，行数为2n-4</p>
 <h3><span id="%E7%B4%A7%E5%87%91%E4%BB%A3%E4%BB%B7">紧凑代价</span></h3>
-<p>$$|P_1P_2| + |P_2P_3|
-$$</p>
+<p>$$|P_1P_2| + |P_2P_3|$$</p>
 <h3><span id="%E5%87%A0%E4%BD%95%E7%9B%B8%E4%BC%BC%E4%BB%A3%E4%BB%B7">几何相似代价</span></h3>
-<p>$$|P_1P_{1r}|+|P_2P_{2r}|+|P_3P_{3r}|
-$$</p>
+<p>$$|P_1P_{1r}|+|P_2P_{2r}|+|P_3P_{3r}|$$</p>
 <p>推导过程类似，不赘述</p>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->

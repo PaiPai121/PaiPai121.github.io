@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -437,36 +422,30 @@
 <li><strong>基本思想：</strong> 在当前点 $x_k$ 附近，用函数的切线去逼近函数本身。切线与 $x$ 轴的交点 $x_{k+1}$ 就是下一个迭代点。</li>
 <li><strong>几何意义：</strong> 逼近 $f(x)$ 在 $x_k$ 处的线性近似。</li>
 </ul>
-<p>寻找 $f(x)=0$ 的根：
-$$x_{k+1} = x_k - \frac{f(x_k)}{f’(x_k)}
-$$</p>
+<p>寻找 $f(x)=0$ 的根：</p>
+<p>$$x_{k+1} = x_k - \frac{f(x_k)}{f’(x_k)}$$</p>
 <h3><span id="12-%E6%B1%82%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E5%B0%8F%E5%80%BC-%E5%A4%9A%E5%8F%98%E9%87%8F">1.2 求函数的极小值 (多变量)</span></h3>
 <ul>
 <li><strong>基本思想：</strong> 求解 $\nabla L(\mathbf{x}) = 0$ 的根（即寻找梯度为零的点，通常是极值点）。它通过在当前点使用函数的二次泰勒展开式来近似目标函数，并直接求出近似函数的最小值点作为下一个迭代点。
-寻找函数 $L(\mathbf{x})$ 的极小值：
-$$\mathbf{x}_{k+1} = \mathbf{x}_k - \mathbf{H}_k^{-1} \nabla L(\mathbf{x}_k)
-$$</li>
+寻找函数 $L(\mathbf{x})$ 的极小值：</li>
 </ul>
+<p>$$\mathbf{x}_{k+1} = \mathbf{x}_k - \mathbf{H}_k^{-1} \nabla L(\mathbf{x}_k)$$</p>
 <p>其中：</p>
 <ul>
 <li>$\nabla L(\mathbf{x}_k)$：目标函数 $L(\mathbf{x})$ 在 $\mathbf{x}_k$ 处的<strong>梯度向量</strong>（一阶导数）。</li>
 <li>$\mathbf{H}_k$：目标函数 $L(\mathbf{x})$ 在 $\mathbf{x}_k$ 处的 <strong>Hessian 矩阵</strong>（二阶导数矩阵）。</li>
 <li>$\mathbf{H}_k^{-1}$：Hessian 矩阵的逆。</li>
 </ul>
-<p><strong>加入步长（阻尼牛顿法）：</strong>
-$$\mathbf{x}_{k+1} = \mathbf{x}_k - \alpha_k \mathbf{H}_k^{-1} \nabla L(\mathbf{x}_k)
-$$
+<p><strong>加入步长（阻尼牛顿法）：</strong></p>
+<p>$$\mathbf{x}_{k+1} = \mathbf{x}_k - \alpha_k \mathbf{H}_k^{-1} \nabla L(\mathbf{x}_k)$$
 其中 $\alpha_k$ 是步长（或学习率），通常通过线搜索确定。</p>
-<p>简易来讲，求根是让目标函数为0，求极小值是让一阶导数为0
-$$0 = f(x) \approx f(x_k) + f’(x_k) (x_{k+1} - x_k)
-$$
-$$0 = f’(x) \approx f’(x_k) + f’'(x_k) (x_{k+1} - x_k)
-$$</p>
+<p>简易来讲，求根是让目标函数为0，求极小值是让一阶导数为0</p>
+<p>$$0 = f(x) \approx f(x_k) + f’(x_k) (x_{k+1} - x_k)$$
+$$0 = f’(x) \approx f’(x_k) + f’'(x_k) (x_{k+1} - x_k)$$</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">double</span> x)</span> </span>{<br>    <span class="hljs-comment">// 任意函数，假设有一个吧</span><br>    <span class="hljs-keyword">return</span> x*x + <span class="hljs-number">3</span>*x + <span class="hljs-built_in">exp</span>(x);<br>}<br><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getdiff</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> (*func)(<span class="hljs-type">double</span>))</span> </span>{<br>    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">func</span>(x + <span class="hljs-number">1e-6</span>) - <span class="hljs-built_in">func</span>(x)) / <span class="hljs-number">1e-6</span>;<br>}<br><br><br><br><span class="hljs-comment">// 求根</span><br><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">newton</span><span class="hljs-params">(<span class="hljs-type">double</span> x0, <span class="hljs-type">double</span> (*func)(<span class="hljs-type">double</span>), <span class="hljs-type">double</span> (*getdiff)(<span class="hljs-type">double</span>, <span class="hljs-type">double</span> (*func)(<span class="hljs-type">double</span>)))</span> </span>{<br>    <span class="hljs-type">double</span> func_val = <span class="hljs-built_in">func</span>(x0);<br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">abs</span>(func_val) &gt; <span class="hljs-number">1e-6</span>) { <span class="hljs-comment">// 检查 f(x) 是否接近 0</span><br>        <span class="hljs-type">double</span> diff = <span class="hljs-built_in">getdiff</span>(x0, func);<br>        <span class="hljs-comment">// 检查分母是否接近 0，防止除零错误</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(diff) &lt; <span class="hljs-number">1e-12</span>) {<br>            <span class="hljs-keyword">break</span>; <br>        }<br>        x0 -= func_val / diff; <span class="hljs-comment">// 牛顿迭代公式：x_k+1 = x_k - f(x_k) / f'(x_k)</span><br>        func_val = <span class="hljs-built_in">func</span>(x0);<br>    }<br>    <span class="hljs-keyword">return</span> x0;<br>}<br><br><span class="hljs-comment">// 求极值</span><br><span class="hljs-comment">// L_double_prime(x, func) 返回 L''(x) 的值。</span><br><span class="hljs-comment">// 它通过对 L'(x) 再次求数值差分来实现。</span><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">L_double_prime</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> (*func)(<span class="hljs-type">double</span>))</span> </span>{<br>    <span class="hljs-type">const</span> <span class="hljs-type">double</span> h = <span class="hljs-number">1e-6</span>; <span class="hljs-comment">// 步长</span><br><br>    <span class="hljs-comment">// L''(x) ≈ [ L'(x + h) - L'(x) ] / h</span><br>    <br>    <span class="hljs-comment">// 计算 L'(x + h)</span><br>    <span class="hljs-comment">// L_prime_value 的第一个参数是 x + h</span><br>    <span class="hljs-type">double</span> L_prime_at_x_plus_h = <span class="hljs-built_in">L_prime_value</span>(x + h, func);<br><br>    <span class="hljs-comment">// 计算 L'(x)</span><br>    <span class="hljs-comment">// L_prime_value 的第一个参数是 x</span><br>    <span class="hljs-type">double</span> L_prime_at_x = <span class="hljs-built_in">L_prime_value</span>(x, func);<br><br>    <span class="hljs-comment">// 计算二阶差分</span><br>    <span class="hljs-keyword">return</span> (L_prime_at_x_plus_h - L_prime_at_x) / h;<br>}<br><br><span class="hljs-comment">// L_prime_value 和 L_double_prime 必须在 newton 函数外部定义</span><br><br><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">newton_optimizer</span><span class="hljs-params">(<span class="hljs-type">double</span> x0, <span class="hljs-type">double</span> (*func)(<span class="hljs-type">double</span>))</span> </span>{<br>    <br>    <span class="hljs-comment">// 1. 计算 L'(x) 的值</span><br>    <span class="hljs-type">double</span> L_prime_val = <span class="hljs-built_in">L_prime_value</span>(x0, func);<br>    <span class="hljs-type">int</span> max_iter = <span class="hljs-number">100</span>;<br><br>    <span class="hljs-comment">// 2. 循环条件：L'(x) 接近 0 </span><br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">abs</span>(L_prime_val) &gt; <span class="hljs-number">1e-6</span> &amp;&amp; max_iter-- &gt; <span class="hljs-number">0</span>) {<br>        <br>        <span class="hljs-comment">// 3. 计算 L''(x) 的值</span><br>        <span class="hljs-type">double</span> L_double_prime_val = <span class="hljs-built_in">L_double_prime</span>(x0, func); <br><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(L_double_prime_val) &lt; <span class="hljs-number">1e-12</span>) {<br>            std::cerr &lt;&lt; <span class="hljs-string">"Warning: Second derivative close to zero, stopping."</span> &lt;&lt; std::endl;<br>            <span class="hljs-keyword">break</span>; <br>        }<br><br>        <span class="hljs-comment">// 4. 更新公式</span><br>        x0 -= L_prime_val / L_double_prime_val;<br>        <br>        <span class="hljs-comment">// 5. 更新 L'(x) 的值，用于下一次循环判断</span><br>        L_prime_val = <span class="hljs-built_in">L_prime_value</span>(x0, func); <br>    }<br>    <span class="hljs-keyword">return</span> x0;<br>}<br><br></code></pre></td></tr></tbody></table></figure>
 <h1><span id="%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95">梯度下降法</span></h1>
 <p>从当前位置开始，每一步都沿着负梯度方向（最快下降方向）走一小段距离
-$$\mathbf{x}_{k+1} = \mathbf{x}_k - \alpha \nabla L(\mathbf{x}_k)
-$$</p>
+$$\mathbf{x}_{k+1} = \mathbf{x}_k - \alpha \nabla L(\mathbf{x}_k)$$</p>
 <p>局限性：</p>
 <p>收敛速度： 梯度下降是线性收敛的，在某些地形（如狭长的“山谷”）中会走“锯齿”路线，效率低下。</p>
 <p>局部最优： 在非凸函数中，它可能陷入不是全局最优的局部最小值。</p>

@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -415,7 +400,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月22日</a>
-			<a><i class="kirafont icon-edit-fill"></i>612 字</a>
+			<a><i class="kirafont icon-edit-fill"></i>618 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<html><head></head><body><h1><span id="uniad">UniAD</span></h1>
@@ -484,8 +469,8 @@
 <p>这是解决“画不出图”问题的终极方案。学术代码通常对在线画图 (<code>--show-dir</code>) 支持不佳，推荐<strong>分离关注点</strong>。</p>
 <p><strong>Step 1: 只推理，存数据 (Inference &amp; Dump)</strong>
 快速跑完模型，只保存结果文件，不浪费显存去画图，避免 OOM。</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">PYTHONPATH=<span class="hljs-string">"."</span>:<span class="hljs-variable">$PYTHONPATH</span> bash tools/uniad_dist_eval.sh \<br>    projects/configs/stage2_e2e/base_e2e.py \<br>    ckpts/uniad_base_e2e.pth \<br>    1 \<br>    --out results.pkl<br></code></pre></td></tr></tbody></table></figure>
-<p><strong>Step 2: 只画图，不推理 (Plot &amp; Dump)</strong></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">PYTHONPATH=<span class="hljs-string">"."</span>:<span class="hljs-variable">$PYTHONPATH</span> bash tools/uniad\_dist\_eval.sh \<br>    projects/configs/stage2\_e2e/base\_e2e.py \<br>    ckpts/uniad\_base\_e2e.pth \<br>    1 \<br>    --out results.pkl<br></code></pre></td></tr></tbody></table></figure>
+<p>**Step 2: 只画图，不推理 (Plot &amp; Dump)**</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">PYTHONPATH=<span class="hljs-string">"."</span>:<span class="hljs-variable">$PYTHONPATH</span> python tools/analysis_tools/visualize/run.py \<br>    --predroot results.pkl \<br>    --out_folder vis_results \<br>    --demo_video test_demo.mp4 \<br>    --project_to_cam True<br></code></pre></td></tr></tbody></table></figure>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->

@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -422,13 +407,9 @@
 <h2><span id="%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F">行内公式</span></h2>
 <p>这是一些行内公式: $E = mc^2$</p>
 <h2><span id="%E5%9D%97%E7%BA%A7%E5%85%AC%E5%BC%8F">块级公式</span></h2>
-<p>$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-$$</p>
+<p>$$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$</p>
 <h2><span id="%E6%9B%B4%E5%A4%9Alatex%E7%A4%BA%E4%BE%8B">更多LaTeX示例</span></h2>
-<p>$$
-\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n
-$$</p>
+<p>$$\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n$$</p>
 <h1><span id="mermaid-%E6%B5%81%E7%A8%8B%E5%9B%BE%E6%B5%8B%E8%AF%95">Mermaid 流程图测试</span></h1>
 <pre class="mermaid">graph TD;
     A[开始] --&gt; B[学习LaTeX];

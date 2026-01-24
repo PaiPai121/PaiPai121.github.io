@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -428,68 +413,53 @@
 </ul>
 <h1><span id="%E5%9F%BA%E7%A1%80%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E8%A1%A5%E4%B9%A0">基础数学知识补习</span></h1>
 <h2><span id="%E5%90%91%E9%87%8F%E5%92%8C%E5%9D%90%E6%A0%87">向量和坐标</span></h2>
-<p>任意向量$\vec{a}$在基$(e_1,e_2,e_3)$的坐标为
-$$\vec{a} = [\vec{e_1},\vec{e_2},\vec{e_3}]\begin{bmatrix}a_1\\a_2\\a_3
-\end{bmatrix} = a_1\vec{e_1} + a_2\vec{e_2} + a_3\vec{e_3}
-$$
+<p>任意向量$\vec{a}$在基$(e_1,e_2,e_3)$的坐标为</p>
+<p>$$\vec{a} = [\vec{e_1},\vec{e_2},\vec{e_3}]\begin{bmatrix}a_1\\a_2\\a_3 \end{bmatrix} = a_1\vec{e_1} + a_2\vec{e_2} + a_3\vec{e_3}$$
 左手坐标系：
-通过矢量积$\vec{x}\times\vec{y}$ 的结果沿z方向
-$$\vec{x}\times\vec{y} = \begin{vmatrix}e_1 &amp; e_2 &amp;e_3\\a_1 &amp; a_2 &amp; a_3\\b_1&amp;b_2&amp;b_3\end{vmatrix}= \begin{bmatrix}a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{bmatrix} = \begin{bmatrix}0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;a_1\\a_2&amp;a_1&amp;0\end{bmatrix}b=a^\wedge b
-$$</p>
+通过矢量积$\vec{x}\times\vec{y}$ 的结果沿z方向</p>
+<p>$$\vec{x}\times\vec{y} = \begin{vmatrix}e_1 &amp; e_2 &amp;e_3\\a_1 &amp; a_2 &amp; a_3\\b_1&amp;b_2&amp;b_3\end{vmatrix}= \begin{bmatrix}a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{bmatrix} = \begin{bmatrix}0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;a_1\\a_2&amp;a_1&amp;0\end{bmatrix}b=a^\wedge b$$</p>
 <h2><span id="%E6%AC%A7%E5%BC%8F%E5%8F%98%E6%8D%A2">欧式变换</span></h2>
 <p>旋转加平移——刚体运动</p>
 <h3><span id="%E5%9F%BA%E6%9C%AC%E6%97%8B%E8%BD%AC%E4%B8%8E%E5%B9%B3%E7%A7%BB">基本旋转与平移</span></h3>
-<p>$$[e_1,e_2,e_3]\begin{bmatrix}a_1\\a_2\\a_3\end{bmatrix}=[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\\a_2’\\a_3’\end{bmatrix}
-$$
+<p>$$[e_1,e_2,e_3]\begin{bmatrix}a_1\\a_2\\a_3\end{bmatrix}=[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\\a_2’\\a_3’\end{bmatrix}$$
 刚体运动，坐标基矢与该坐标系下的矢量的内积是不变量。</p>
-<p><strong>旋转矩阵</strong>
-$$\begin{bmatrix}a_1\\a_2\\a_3\end{bmatrix}=[e_1,e_2,e_3]^T[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\\a_2’\\a_3’\end{bmatrix}=\begin{bmatrix}e_1^Te_1’&amp;e_1^Te_2’&amp;e_1^Te_3’\\e_2^Te_1’&amp;e_2^Te_2’&amp;e_2^Te_3’\\e_3^Te_1’&amp;e_3^Te_2’&amp;e_3^Te_3’\end{bmatrix}=Ra’
-$$</p>
-<p>两个坐标系的基的内积构成旋转矩阵，两个向量的积等于其夹角的余弦值也称为方向余弦矩阵。他是行列式为1的正交矩阵。n维旋转矩阵构成的集合为一个特殊正交群(Special Orthogonal Group)。转置矩阵为原矩阵的相反旋转。
-$$SO(n) = {R\in \mathbb{R}^{n\times n}|RR^T=I,det® = 1}
-$$
+<p><strong>旋转矩阵</strong></p>
+<p>$$\begin{bmatrix}a_1\\a_2\\a_3\end{bmatrix}=[e_1,e_2,e_3]^T[e_1’,e_2’,e_3’]\begin{bmatrix}a_1’\\a_2’\\a_3’\end{bmatrix}=\begin{bmatrix}e_1^Te_1’&amp;e_1^Te_2’&amp;e_1^Te_3’\\e_2^Te_1’&amp;e_2^Te_2’&amp;e_2^Te_3’\\e_3^Te_1’&amp;e_3^Te_2’&amp;e_3^Te_3’\end{bmatrix}=Ra’$$</p>
+<p>两个坐标系的基的内积构成旋转矩阵，两个向量的积等于其夹角的余弦值也称为方向余弦矩阵。他是行列式为1的正交矩阵。n维旋转矩阵构成的集合为一个特殊正交群(Special Orthogonal Group)。转置矩阵为原矩阵的相反旋转。</p>
+<p>$$SO(n) = {R\in \mathbb{R}^{n\times n}|RR^T=I,det® = 1}$$
 <strong>平移</strong>
 在原矢量上加上一个向量即可
-<strong>欧式坐标变换</strong>
-$$a’ = Ra+t
-$$
-坐标系的下表从右向左读，如下式中为从2到1的旋转矩阵
-$$a_1=R_{12}a_2+t_{12}
-$$</p>
+<strong>欧式坐标变换</strong></p>
+<p>$$a’ = Ra+t$$
+坐标系的下表从右向左读，如下式中为从2到1的旋转矩阵</p>
+<p>$$a_1=R_{12}a_2+t_{12}$$</p>
 <h3><span id="%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87">齐次坐标</span></h3>
-<p>$$\begin{bmatrix}a’\\1\end{bmatrix} = \begin{bmatrix}R&amp;t\\0^T&amp;1\end{bmatrix}\begin{bmatrix}a\\1\end{bmatrix} = T\begin{bmatrix}a\\1\end{bmatrix}
-$$</p>
-<p>在每一个三维向量的末尾添加1，就可以变成齐次坐标计算。T为变换矩阵。
-$$\widetilde{b} = T_1 \widetilde{a}, \widetilde{c} = T_2 \widetilde{b}, \widetilde{c} = T_1T_2 \widetilde{a}
-$$
+<p>$$\begin{bmatrix}a’\\1\end{bmatrix} = \begin{bmatrix}R&amp;t\\0^T&amp;1\end{bmatrix}\begin{bmatrix}a\\1\end{bmatrix} = T\begin{bmatrix}a\\1\end{bmatrix}$$</p>
+<p>在每一个三维向量的末尾添加1，就可以变成齐次坐标计算。T为变换矩阵。</p>
+<p>$$\widetilde{b} = T_1 \widetilde{a}, \widetilde{c} = T_2 \widetilde{b}, \widetilde{c} = T_1T_2 \widetilde{a}$$
 特殊欧式群SE()(Special Euclidean Group)
-该矩阵的逆为
-$$T^{-1} = \begin{bmatrix} R^T &amp; - R^Tt\\0^T &amp;1\end{bmatrix}
-$$</p>
+该矩阵的逆为</p>
+<p>$$T^{-1} = \begin{bmatrix} R^T &amp; - R^Tt\\0^T &amp;1\end{bmatrix}$$</p>
 <h3><span id="eigen">Eigen</span></h3>
 <p>安装eigen</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/eigenteam/eigen-git-mirror.git<br><span class="hljs-built_in">cd</span> eigen-git-mirror<br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>sudo make install<br></code></pre></td></tr></tbody></table></figure>
 <p>基本使用方法</p>
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 求解方程</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, MATRIX_SIZE&gt; matrix_NN = MatrixXd::<span class="hljs-built_in">Random</span> (MATRIX_SIZE, MATRIX_SIZE); <span class="hljs-comment">// 随机生成一个矩阵</span><br><br>matrix_NN = matrix_NN * matrix_NN.<span class="hljs-built_in">transpose</span>(); <span class="hljs-comment">// X= （AAT），此时X是半正定的。</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, <span class="hljs-number">1</span>&gt; matrix_b = MatrixXd::<span class="hljs-built_in">Random</span> (MATRIX_SIZE, <span class="hljs-number">1</span>);<br><br><span class="hljs-type">clock_t</span> time_start = <span class="hljs-built_in">clock</span>();<br><br><span class="hljs-comment">// 直接求逆</span><br><br>Matrix&lt;<span class="hljs-type">double</span>, MATRIX_SIZE, <span class="hljs-number">1</span>&gt; x = matrix_NN.<span class="hljs-built_in">inverse</span>()*matrix_b;<br><br>  <br><br>cout &lt;&lt; <span class="hljs-string">"time consumption of normal inverse is "</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">"ms"</span> &lt;&lt; endl;<br><br>  <br><br>cout&lt;&lt; <span class="hljs-string">"x = "</span> &lt;&lt; endl &lt;&lt; x &lt;&lt; endl;<br><br>  <br><br><span class="hljs-comment">// 矩阵分解</span><br><br>time_start = <span class="hljs-built_in">clock</span>();<br><br>x = matrix_NN.<span class="hljs-built_in">colPivHouseholderQr</span> ().<span class="hljs-built_in">solve</span>(matrix_b); <span class="hljs-comment">// 用matrix_NN和matrix_b进行解方程。</span><br><br>cout &lt;&lt; <span class="hljs-string">"time consumption of Qr decomposition is "</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">"ms"</span> &lt;&lt; endl;<br><br>  <br><br><span class="hljs-comment">// 正定矩阵 cholesky分解</span><br><br>time_start = <span class="hljs-built_in">clock</span>();<br><br>x = matrix_NN.<span class="hljs-built_in">ldlt</span>().<span class="hljs-built_in">solve</span>(matrix_b);<br><br>cout &lt;&lt; <span class="hljs-string">"time consumption of cholesky decomposition is "</span> &lt;&lt; <span class="hljs-number">1000</span>*(<span class="hljs-built_in">clock</span>()-time_start)/(<span class="hljs-type">double</span>)CLOCKS_PER_SEC &lt;&lt; <span class="hljs-string">"ms"</span> &lt;&lt; endl;<br><br>cout&lt;&lt;<span class="hljs-string">"x is "</span>&lt;&lt;endl&lt;&lt;x&lt;&lt;endl;<br></code></pre></td></tr></tbody></table></figure>
-<p>我记得一年级的时候老师反复强调求解线性方程组的时候，要解方程，不要求逆
-$$Fx = b
-$$
+<p>我记得一年级的时候老师反复强调求解线性方程组的时候，要解方程，不要求逆</p>
+<p>$$Fx = b$$
 一定不要通过$x = F^{-1}b$ 去计算而是要直接解方程。
 至于QR分解，cholesky分解我属实是忘记了。</p>
 <h3><span id="%E6%97%8B%E8%BD%AC%E7%9F%A2%E9%87%8F">旋转矢量</span></h3>
 <p>SO(3)有9个量，大于旋转的3个自由度。
 T有16个量，大于变换的6自由度。表达方式冗余。</p>
 <p><strong>旋转向量</strong>：一个轴+一个旋转角——向量方向与轴一致，大小等于旋转角。
-设旋转轴的单位向量为n，旋转角为$\theta$，则旋转向量为$n\theta$，其与旋转矩阵R的关系由罗德里格斯公式导出：
-$$R = \cos \theta I +(1-\cos \theta)n n^T +\sin\theta n^\wedge
-$$
+设旋转轴的单位向量为n，旋转角为$\theta$，则旋转向量为$n\theta$，其与旋转矩阵R的关系由罗德里格斯公式导出：</p>
+<p>$$R = \cos \theta I +(1-\cos \theta)n n^T +\sin\theta n^\wedge$$
 其中n^为向量到反对称矩阵的转换。</p>
-<p>转角有
-$$\theta = \arccos\frac{tr®-1}{2}
-$$</p>
-<p>对于旋转轴上的向量而言，其为R的特征向量。换句话讲，可以通过求解特征方程再归一化得到旋转轴。
-$$a = kn,Ra = a = kn
-$$</p>
+<p>转角有</p>
+<p>$$\theta = \arccos\frac{tr®-1}{2}$$</p>
+<p>对于旋转轴上的向量而言，其为R的特征向量。换句话讲，可以通过求解特征方程再归一化得到旋转轴。</p>
+<p>$$a = kn,Ra = a = kn$$</p>
 <h3><span id="%E6%AC%A7%E6%8B%89%E8%A7%92">欧拉角</span></h3>
 <p>把旋转分为三个绕不同的轴的旋转。如ZYX旋转：</p>
 <ul>
@@ -500,59 +470,35 @@ $$</p>
 <p>![20240624144310.png]
 俯仰角为±90度时，第一次和第三次旋转公用一个轴，丢失一个自由度。</p>
 <h2><span id="%E5%9B%9B%E5%85%83%E6%95%B0">四元数</span></h2>
-<p>（避免歧义性又不想带有冗余性）
-$$q = q_0+q_1i+q_2j+q_3k
-$$
-$$\begin{equation} \left{ \begin{array}{lr}
-i^2 =j^2 =k^2 = -1\\
-ij = k, ji = -k\\
-jk = i, kj = -i\\
-ki=j, ik = -j
-\end{array} \right. \end{equation}
-$$
-$$q = [s,v]^T,s=q_0,v = [q_1,q_2,q_3]^T
-$$</p>
+<p>（避免歧义性又不想带有冗余性）</p>
+<p>$$q = q_0+q_1i+q_2j+q_3k$$
+$$\begin{equation} \left\{ \begin{array}{lr} i^2 =j^2 =k^2 = -1\\ ij = k, ji = -k\\ jk = i, kj = -i\\ ki=j, ik = -j \end{array} \right. \end{equation}$$
+$$q = [s,v]^T,s=q_0,v = [q_1,q_2,q_3]^T$$</p>
 <p>单位四元数可以表示任意旋转。</p>
 <p>将三维空间的点用一个虚四元数表示，单位四元数q指定旋转。
-$$p = [0,x,y,z]^T
-$$
+$$p = [0,x,y,z]^T$$
 旋转后的p’可以表示为
-$$p’=qpq^{-1}
-$$
+$$p’=qpq^{-1}$$
 p’的虚部即为旋转之后的坐标。
-四元数乘法可以写成矩阵乘法。 $q=[s,v]^T$
-$$q^+=\begin{bmatrix} s&amp; -v^T\\v&amp; sI+v^\wedge\end{bmatrix},  q^\oplus = \begin{bmatrix} s&amp; -v^T\\v&amp; sI-v^\wedge\end{bmatrix}
-$$
-可证
-$$q_1q_2 = q_1^+q_2=q_2^\oplus q_1
-$$
-此时，
-$$p’=q^+p{q^{-1}}=q^+p^+q^{-1}=q^+{q^{-1}}^\oplus p
-$$
-代入有
-$$q^+{(q^{-1})}^\oplus = \begin{bmatrix}
-1 &amp; 0 \\ 0^T &amp;  vv^T+s^2I+2sv^\wedge+(v^\wedge)^2&amp;
-\end{bmatrix}
-$$
-其右下角的元给出了四元数到旋转矩阵的变换关系
-$$R = vv^T+s^2I+2sv^\wedge+(v^\wedge)^2
-$$
+四元数乘法可以写成矩阵乘法。 $q=[s,v]^T$</p>
+<p>$$q^+=\begin{bmatrix} s&amp; -v^T\\v&amp; sI+v^\wedge\end{bmatrix}, q^\oplus = \begin{bmatrix} s&amp; -v^T\\v&amp; sI-v^\wedge\end{bmatrix}$$
+可证</p>
+<p>$$q_1q_2 = q_1^+q_2=q_2^\oplus q_1$$
+此时，</p>
+<p>$$p’=q^+p{q^{-1}}=q^+p^+q^{-1}=q^+{q^{-1}}^\oplus p$$
+代入有</p>
+<p>$$q^+{(q^{-1})}^\oplus = \begin{bmatrix} 1 &amp; 0 \\ 0^T &amp; vv^T+s^2I+2sv^\wedge+(v^\wedge)^2&amp; \end{bmatrix}$$
+其右下角的元给出了四元数到旋转矩阵的变换关系</p>
+<p>$$R = vv^T+s^2I+2sv^\wedge+(v^\wedge)^2$$
 为什么呢？
-因为
-$$\begin{bmatrix}
-1 &amp; 0 \\ 0^T &amp;  vv^T+s^2I+2sv^\wedge+(v^\wedge)^2&amp;
-\end{bmatrix} [s_p,v_p]^T = \begin{bmatrix} s_p \\ Rv_p\end{bmatrix}
-$$
-其中v是原来的向量，R是旋转矩阵，对应可得。
-$$tr® = tr(vv^T) + 3s^2 + 2s\ tr(v^\wedge) + tr({v^\wedge}^2) = 4s^2-1
-$$
-$$\theta = \arccos(2s^2-1)
-$$
-$$\theta = 2\arccos s
-$$
-旋转轴:(如果$v_p=v$，得到该向量本身就不变，即为旋转轴，除以模长)
-$$[n_x,n_y,n_z]^T = [q_1,q_2,q_3]^T/\sin\frac{\theta}{2}
-$$</p>
+因为</p>
+<p>$$\begin{bmatrix} 1 &amp; 0 \\ 0^T &amp; vv^T+s^2I+2sv^\wedge+(v^\wedge)^2&amp; \end{bmatrix} [s_p,v_p]^T = \begin{bmatrix} s_p \\ Rv_p\end{bmatrix}$$
+其中v是原来的向量，R是旋转矩阵，对应可得。</p>
+<p>$$tr® = tr(vv^T) + 3s^2 + 2s\ tr(v^\wedge) + tr({v^\wedge}^2) = 4s^2-1$$
+$$\theta = \arccos(2s^2-1)$$
+$$\theta = 2\arccos s$$
+旋转轴:(如果$v_p=v$，得到该向量本身就不变，即为旋转轴，除以模长)</p>
+<p>$$[n_x,n_y,n_z]^T = [q_1,q_2,q_3]^T/\sin\frac{\theta}{2}$$</p>
 <h2><span id="eigen%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9D%97%E8%AE%A1%E7%AE%97">Eigen几何模块计算</span></h2>
 <p>四元数计算：使用前要归一化。
 Eigen的各种数据类型都有单精度和双精度，必须手动转换，否则会报错。

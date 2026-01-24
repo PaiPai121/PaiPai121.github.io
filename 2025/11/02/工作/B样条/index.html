@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -412,7 +397,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2025年11月02日</a>
-			<a><i class="kirafont icon-edit-fill"></i>8.3k 字</a>
+			<a><i class="kirafont icon-edit-fill"></i>8.4k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 38 分钟</a>
 		</div>
 		<!-- toc --><html><head></head><body><ul>
@@ -582,9 +567,11 @@
 <p><strong>这是B样条相对贝塞尔曲线（Bézier）的“杀手锏”功能。</strong></p>
 <ul>
 <li><strong>贝塞尔曲线的问题</strong>：在一条（单一的）贝塞尔曲线中，你移动 <em>任何一个</em> 控制点，<em>整条曲线</em>（从头到尾）都会发生变化。这叫“全局修改”。</li>
-<li><strong>B样条的优势</strong>：由于“节点向量”这本规则手册的存在，每个控制点
-$$C_i
-$$的“磁力”<strong>只在曲线的一小段上有效</strong>。</li>
+<li><strong>B样条的优势</strong>：由于“节点向量”这本规则手册的存在，每个控制点</li>
+</ul>
+<p>$$C_i$$
+的“磁力”<strong>只在曲线的一小段上有效</strong>。</p>
+<ul>
 <li><strong>结果</strong>：如果你有一条由100个控制点定义的曲线，你移动<strong>第50号</strong>控制点，只有它附近（比如48号到52号）那<strong>一小段</strong>曲线会跟着变形。曲线的开头和结尾（比如1号点和100号点）<strong>完全不会动</strong>。</li>
 </ul>
 <p>这对于精确调整一个复杂曲线的局部细节（比如在规划路径时躲避一个小障碍物）是至关重要的。</p>
@@ -636,49 +623,42 @@ $$的“磁力”<strong>只在曲线的一小段上有效</strong>。</li>
 <p>想象我们有两种方式来描述同一条平滑曲线：</p>
 <h4><span id="%E8%AF%AD%E8%A8%80-1b%E6%A0%B7%E6%9D%A1%E5%9F%BA%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%9A%84%E8%AF%AD%E8%A8%80%E7%94%A8%E6%8E%A7%E5%88%B6%E7%82%B9%E6%8F%8F%E8%BF%B0%E6%9B%B2%E7%BA%BF">语言 1：B样条基（设计师的语言：用控制点描述曲线）</span></h4>
 <ul>
-<li><strong>公式</strong>：
-$$P(t) = C_0 \cdot N_{0,k}(t) + C_1 \cdot N_{1,k}(t) + \dots + C_k \cdot N_{k,k}(t)
-$$</li>
+<li><strong>公式</strong>：</li>
+</ul>
+<p>$$P(t) = C_0 \cdot N_{0,k}(t) + C_1 \cdot N_{1,k}(t) + \dots + C_k \cdot N_{k,k}(t)$$</p>
+<ul>
 <li><strong>变量</strong>：</li>
 <li></li>
 </ul>
-<p>$$C
-$$ (一个包含<code>k+1</code>个<strong>控制点</strong>的向量)。</p>
+<p>$$C$$
+(一个包含<code>k+1</code>个<strong>控制点</strong>的向量)。</p>
 <ul>
 <li><strong>优点</strong>：非常直观，具有“局部控制性”。</li>
-<li><strong>缺点</strong>：计算
-$$N_{i,k}(t)
-$$
-（基函数）非常缓慢，因为它是一个复杂的递归函数。</li>
+<li><strong>缺点</strong>：计算</li>
 </ul>
+<p>$$N_{i,k}(t)$$
+（基函数）非常缓慢，因为它是一个复杂的递归函数。</p>
 <h4><span id="%E8%AF%AD%E8%A8%80-2%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9F%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80%E7%94%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%8F%E8%BF%B0%E6%9B%B2%E7%BA%BF">语言 2：多项式基（计算机的语言：用多项式描述曲线）</span></h4>
 <ul>
-<li><strong>公式</strong>：
-$$P(t) = A_0 + A_1 \cdot t + A_2 \cdot t^2 + \dots + A_k \cdot t^k
-$$</li>
-<li><strong>变量</strong>：
-$$A
-$$ (一个包含 $k+1$ 个<strong>多项式系数</strong>的向量)。</li>
+<li><strong>公式</strong>：</li>
+</ul>
+<p>$$P(t) = A_0 + A_1 \cdot t + A_2 \cdot t^2 + \dots + A_k \cdot t^k$$</p>
+<ul>
+<li><strong>变量</strong>：</li>
+</ul>
+<p>$$A$$
+(一个包含 $k+1$ 个<strong>多项式系数</strong>的向量)。</p>
+<ul>
 <li><strong>优点</strong>：计算<strong>极其快速</strong>，计算机硬件天生就擅长这个。</li>
 <li><strong>缺点</strong>：非常不直观，改一个系数 $A_2$，整条曲线都会变。</li>
 </ul>
 <hr>
 <h3><span id="m-%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AE%9A%E4%B9%89">M 矩阵的定义</span></h3>
 <p>$M$ 矩阵就是连接这两种语言的**“翻译矩阵”**。</p>
-<p>B样条理论证明，对于同一条曲线段，它的多项式系数 $A$ 和它的B样条控制点 $C$ 之间，存在一个固定的线性关系：
-$$A = M \cdot C
-$$</p>
-<p>或者用向量形式表示：
-$$\begin{bmatrix} A_0 \\ A_1 \\ \vdots \\ A_k \end{bmatrix} =
-\begin{bmatrix}
-M_{0,0} &amp; M_{0,1} &amp; \dots &amp; M_{0,k} \\
-M_{1,0} &amp; M_{1,1} &amp; \dots &amp; M_{1,k} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-M_{k,0} &amp; M_{k,1} &amp; \dots &amp; M_{k,k}
-\end{bmatrix}
-\cdot
-\begin{bmatrix} C_0 \\ C_1 \\ \vdots \\ C_k \end{bmatrix}
-$$</p>
+<p>B样条理论证明，对于同一条曲线段，它的多项式系数 $A$ 和它的B样条控制点 $C$ 之间，存在一个固定的线性关系：</p>
+<p>$$A = M \cdot C$$</p>
+<p>或者用向量形式表示：</p>
+<p>$$\begin{bmatrix} A_0 \\ A_1 \\ \vdots \\ A_k \end{bmatrix} = \begin{bmatrix} M_{0,0} &amp; M_{0,1} &amp; \dots &amp; M_{0,k} \\ M_{1,0} &amp; M_{1,1} &amp; \dots &amp; M_{1,k} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ M_{k,0} &amp; M_{k,1} &amp; \dots &amp; M_{k,k} \end{bmatrix} \cdot \begin{bmatrix} C_0 \\ C_1 \\ \vdots \\ C_k \end{bmatrix}$$</p>
 <p><strong>因此，$M$ 矩阵是一个常量矩阵，它将B样条控制点向量 $C$ 转换为等效的多项式系数向量 $A$。</strong></p>
 <p>在代码中，<code>M_pos_</code>、<code>this-&gt;M</code> 就是这个 $M$ 矩阵。<code>cal_M</code> 函数 就是用来在程序启动时，根据数学公式计算出这个矩阵。</p>
 <h2><span id="part-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BE%97%E5%88%B0-m-%E7%9F%A9%E9%98%B5">Part 2: 为什么要得到 M 矩阵？</span></h2>
@@ -690,9 +670,8 @@ $$</p>
 <li><strong>程序启动时</strong>：调用一次 <code>cal_M()</code>，计算这个“翻译官” $M$。</li>
 <li><strong>优化器运行时</strong>：当需要计算 $t=0.5$ 处的点时：</li>
 </ol>
-<p><strong>旧的慢方法</strong>：费力地计算
-$$N_{0,5}(0.5), N_{1,5}(0.5), \dots
-$$</p>
+<p><strong>旧的慢方法</strong>：费力地计算</p>
+<p>$$N_{0,5}(0.5), N_{1,5}(0.5), \dots$$</p>
 <p><strong>新的快方法</strong>（代码 <code>Get_line_position</code> 正是这么做的）：
 1.  <code>A = M * C</code> (一次矩阵乘法，得到多项式系数)
 2.  <code>P(0.5) = A_0 + A_1 \cdot 0.5 + A_2 \cdot (0.5)^2 + \dots</code> (几次乘法和加法)</p>
@@ -706,9 +685,8 @@ $$</p>
 </ol>
 <p>我们想找到 $M$ 使得 $A = M \cdot C$。
 将 $A$ 替换掉： $P(t) = T(t) \cdot (M \cdot C)$
-所以，我们必须找到一个 $M$ 满足：
-$$N(t) = T(t) \cdot M
-$$</p>
+所以，我们必须找到一个 $M$ 满足：</p>
+<p>$$N(t) = T(t) \cdot M$$</p>
 <hr>
 <h3><span id="%E6%8E%A8%E5%AF%BC%E6%96%B9%E6%B3%95%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80">推导方法：泰勒展开</span></h3>
 <p>我们可以通过在 $t=0$ 处对 $P(t)$ <strong>连续求导</strong>来“剥离”出多项式系数 $A_i$。</p>
@@ -747,10 +725,9 @@ $M_{\text{row } 2} = \frac{1}{2!} [N’‘_0(0), N’‘_1(0), N’‘_2(0), N�
 <p><strong>第4步：求 $A_k$ (M的第k+1行)</strong></p>
 <ul>
 <li><strong>通用公式（泰勒展开）</strong>：$A_k = \frac{P^{(k)}(0)}{k!}$</li>
-<li><strong>M 矩阵的通用定义</strong>： $M$ 矩阵第 $i$ 行、第 $j$ 列的元素 $M(i, j)$ 为：
-$$M(i, j) = \frac{N_{j,k}^{(i)}(0)}{i!}
-$$</li>
+<li><strong>M 矩阵的通用定义</strong>： $M$ 矩阵第 $i$ 行、第 $j$ 列的元素 $M(i, j)$ 为：</li>
 </ul>
+<p>$$M(i, j) = \frac{N_{j,k}^{(i)}(0)}{i!}$$</p>
 <p>(即：第 $j$ 个基函数的 $i$ 阶导数在 $t=0$ 处的值，再除以 $i$ 的阶乘)</p>
 <h3><span id="cal_m-%E5%87%BD%E6%95%B0%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88"><code>cal_M</code> 函数在做什么？</span></h3>
 <p><code>cal_M</code> 函数中的那个复杂的、带有组合数 <code>C_a_b</code> 和 <code>pow</code> 的公式，就是 $M(i, j) = \frac{N_{j,k}^{(i)}(0)}{i!}$ 这个公式的<strong>最终解析解</strong>（Analytic Solution）。</p>
@@ -850,7 +827,7 @@ $B = (M_{\text{Bézier}})^{-1} \cdot M_{\text{B-spline}} \cdot C$</p>
 我们的“愿望”是：<code>A_vertice * B_seg &lt;= c</code> (其中 $B_{seg}$ 是这一段的6个贝塞尔控制点)</p>
 </li>
 </ol>
-<p>我们的“翻译”是：$B_{seg} = \text{A_trans_temp} \cdot C_{seg}$ (其中 $C_{seg}$ 是这一段的6个B样条控制点)
+<p>我们的“翻译”是：$B_{seg} = \text{A\\_trans\\_temp} \cdot C_{seg}$ (其中 $C_{seg}$ 是这一段的6个B样条控制点)
 代码计算这个“翻译后”的约束矩阵：
 <code>Eigen::MatrixXd A_vertice_bound = A_vertice * A_trans;</code>
 （这里的 <code>A_trans</code> 就是 <code>A_trans_temp</code>）</p>
@@ -862,61 +839,33 @@ $B = (M_{\text{Bézier}})^{-1} \cdot M_{\text{B-spline}} \cdot C$</p>
 （例如 <code>A_matrix(row_index, k + i - 1) = A_vertice_bound(j, k);</code>）</p>
 <h1><span id="%E9%99%84%E5%BD%95">附录</span></h1>
 <h2><span id="%E8%BD%AC%E6%8D%A2%E7%9F%A9%E9%98%B5">转换矩阵</span></h2>
-<p>$$ A_{trans_temp} = (M_{\text{Bézier}})^{-1} * M_{bspline}
-$$</p>
-<p>$$
-(M_{\text{Bézier}})^{-1} =
-\begin{bmatrix}
-1.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\
-1.0 &amp; 0.2 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\
-1.0 &amp; 0.4 &amp; 0.1 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\
-1.0 &amp; 0.6 &amp; 0.3 &amp; 0.1 &amp; 0.0 &amp; 0.0 \\
-1.0 &amp; 0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2 &amp; 0.0 \\
-1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0
-\end{bmatrix}
-$$
-$$
-M_{\text{B-spline}} = \frac{1}{120}
-\begin{bmatrix}
-1 &amp; 26 &amp; 66 &amp; 26 &amp; 1 &amp; 0 \\
--5 &amp; -50 &amp; 0 &amp; 50 &amp; 5 &amp; 0 \\
-10 &amp; 20 &amp; -60 &amp; 20 &amp; 10 &amp; 0 \\
--10 &amp; 20 &amp; 60 &amp; -20 &amp; -10 &amp; 0 \\
-5 &amp; -20 &amp; 30 &amp; -20 &amp; 5 &amp; 0 \\
--1 &amp; 5 &amp; -10 &amp; 10 &amp; -5 &amp; 1
-\end{bmatrix}
-$$</p>
+<p>$$A_{trans\\_temp} = (M_{\text{Bézier}})^{-1} * M_{bspline}$$</p>
+<p>$$(M_{\text{Bézier}})^{-1} = \begin{bmatrix} 1.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\ 1.0 &amp; 0.2 &amp; 0.0 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\ 1.0 &amp; 0.4 &amp; 0.1 &amp; 0.0 &amp; 0.0 &amp; 0.0 \\ 1.0 &amp; 0.6 &amp; 0.3 &amp; 0.1 &amp; 0.0 &amp; 0.0 \\ 1.0 &amp; 0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2 &amp; 0.0 \\ 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 &amp; 1.0 \end{bmatrix}$$
+$$M_{\text{B-spline}} = \frac{1}{120} \begin{bmatrix} 1 &amp; 26 &amp; 66 &amp; 26 &amp; 1 &amp; 0 \\ -5 &amp; -50 &amp; 0 &amp; 50 &amp; 5 &amp; 0 \\ 10 &amp; 20 &amp; -60 &amp; 20 &amp; 10 &amp; 0 \\ -10 &amp; 20 &amp; 60 &amp; -20 &amp; -10 &amp; 0 \\ 5 &amp; -20 &amp; 30 &amp; -20 &amp; 5 &amp; 0 \\ -1 &amp; 5 &amp; -10 &amp; 10 &amp; -5 &amp; 1 \end{bmatrix}$$</p>
 <h1><span id="b%E6%A0%B7%E6%9D%A1%E6%A0%B8%E5%BF%83%E8%8A%82%E7%82%B9%E6%8E%A7%E5%88%B6%E7%82%B9%E6%9B%B2%E7%BA%BF%E6%AE%B5%E6%95%B0%E4%B8%8E%E6%AC%A1%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB">B样条核心：节点、控制点、曲线段数与次数的关系</span></h1>
 <p>在B样条的数学理论中，节点（Knots）、控制点（Control Points）、**曲线段数（Segments）**和次数（Degree）之间的关系是固定的。</p>
 <p>有两个核心公式：</p>
 <ol>
 <li><strong>经典教科书公式</strong>（关于节点向量<strong>总长度</strong>）：</li>
 </ol>
-<p>$$m = n + p
-$$
+<p>$$m = n + p$$
 或者</p>
-<p>$$m = n + k + 1
-$$
+<p>$$m = n + k + 1$$
 * $m$ = <strong>节点(Knots)的数量</strong>（即节点向量的总长度）
 * $n$ = <strong>控制点(Control Points)的数量</strong>
 * $p$ = <strong>阶数 (Order)</strong>
 * $k$ = <strong>次数 (Degree)</strong> (并且 $p = k + 1$)</p>
 <ol start="2">
-<li><strong>工程“黄金公式”</strong>（关于<strong>曲线段</strong>数量）：
-$$n = N_{\text{seg}} + k
-$$
-<ul>
-<li>$N_{\text{seg}}$ = <strong>曲线段(Segments)的数量</strong></li>
-<li>$n$ = <strong>控制点(Control Points)的数量</strong></li>
-<li>$k$ = <strong>次数 (Degree)</strong></li>
-</ul>
-</li>
+<li><strong>工程“黄金公式”</strong>（关于<strong>曲线段</strong>数量）：</li>
 </ol>
+<p>$$n = N_{\text{seg}} + k$$
+* $N_{\text{seg}}$ = <strong>曲线段(Segments)的数量</strong>
+* $n$ = <strong>控制点(Control Points)的数量</strong>
+* $k$ = <strong>次数 (Degree)</strong></p>
 <p><strong>换算关系：</strong>
 我们可以将这两个公式合并，得到所有四个量之间的关系：
-$m = (N_{\text{seg}} + k) + k + 1$
-$$m = N_{\text{seg}} + 2k + 1
-$$</p>
+$m = (N_{\text{seg}} + k) + k + 1$</p>
+<p>$$m = N_{\text{seg}} + 2k + 1$$</p>
 <p><strong>举个例子（$k=3$）</strong>：</p>
 <ul>
 <li>假设我们有 <strong>5段</strong> 曲线 ($N_{\text{seg}}=5$)。</li>
@@ -961,9 +910,8 @@ $$</p>
 <h4><span id="%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84">核心公式（代码中的）</span></h4>
 <p>在 <code>Update_refpoint_Bspline</code> 中，关键的赋值是：</p>
 <p><code>set_num_of_control_points(num_of_knots + spline_order_ - 1);</code></p>
-<p>我们来翻译一下这个公式：
-$$n = N_{\text{ref}} + k - 1
-$$</p>
+<p>我们来翻译一下这个公式：</p>
+<p>$$n = N_{\text{ref}} + k - 1$$</p>
 <ul>
 <li>$n$ = <code>num_of_control_points_</code></li>
 <li>$N_{\text{ref}}$ = <code>num_of_knots_</code> （参考点的数量）</li>
@@ -1075,34 +1023,22 @@ $M$ 矩阵（即位置基础矩阵，对应于 0 次导数）是通过一个复�
 </li>
 </ol>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; a; i++) {<br>    <span class="hljs-built_in">v_mat</span>(i, i) = <span class="hljs-number">-1</span>;<br>    <span class="hljs-built_in">v_mat</span>(i, i + <span class="hljs-number">1</span>) = <span class="hljs-number">1</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
-<p>$$v_{\text{mat}} =
-\begin{bmatrix}
--1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; -1 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1
-\end{bmatrix}
-$$
+<p>$$v_{\text{mat}} = \begin{bmatrix} -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1 \end{bmatrix}$$
 应用差分：将差分矩阵乘以原始的基础矩阵，即可得到下一阶的导数基础矩阵：this-&gt;M_diff_1 = this-&gt;M_diff_1 * v_mat;</p>
 <ol start="3">
-<li>链式应用（2, 3, 4 阶导数）对于更高的阶数（加速度 $M_{\text{diff_2}}$、Jerk $M_{\text{diff_3}}$、Snap $M_{\text{diff_4}}$），代码继续构造新的差分矩阵 (a_mat, jerk_mat, snap_mat)，并以链式法则的形式将它们连续应用到原始的基础矩阵上：
+<li>链式应用（2, 3, 4 阶导数）对于更高的阶数（加速度 $M_{\text{diff\\_2}}$、Jerk $M_{\text{diff\\_3}}$、Snap $M_{\text{diff\\_4}}$），代码继续构造新的差分矩阵 (a_mat, jerk_mat, snap_mat)，并以链式法则的形式将它们连续应用到原始的基础矩阵上：
 <strong>2阶导数：</strong> this-&gt;M_diff_2 = this-&gt;M_diff_2 * a_mat * v_mat;
 <strong>4阶导数：</strong> this-&gt;M_diff_4 = this-&gt;M_diff_4 * snap_mat * jerk_mat * a_mat * v_mat;</li>
 </ol>
 <h3><span id="b%E6%A0%B7%E6%9D%A1%E7%9A%84%E6%B1%82%E5%AF%BC%E5%92%8C%E5%B7%AE%E5%88%86">B样条的求导和差分</span></h3>
-<p>对于一个 $k$ 次B样条，它的第 $r$ 阶导数是一条 $k-r$ 次的B样条。第 $r$ 阶导数的第 $i$ 个控制点 $C^{®}<em>{i}$ 由以下公式给出：
-$$C^{®}</em>{i} = \frac{k - r + 1}{t_{i+k+1} - t_{i+r}} (C^{(r-1)}<em>{i+1} - C^{(r-1)}</em>{i})
-$$</p>
-<p>对于均匀B样条，即我们假设节点间距是恒定的（通常为1）。在这种情况下，上式中的系数项（被称为缩放因子）可以简化为一个常数：
-$$\frac{k - r + 1}{t_{i+k+1} - t_{i+r}} \quad \xrightarrow{\text{Uniform Knots}} \quad \frac{k - r + 1}{k - r + 1} = 1
-$$</p>
-<p>我们的目标是构造一个矩阵 $D$ (即 $v_{mat}$, $a_{mat}$, 等)，它能将 $N_{\text{in}}$ 个控制点（输入向量）转换为 $N_{\text{out}}$ 个控制点（输出向量）。假设我们要计算第 $r$ 阶导数，即从 degree $k-r+1$ 降到 $k-r$。
-$$D_{r}(i, j) = \begin{cases} -1 &amp; \text{if } j = i \\ +1 &amp; \text{if } j = i+1 \\ 0 &amp; \text{otherwise} \end{cases}
-$$</p>
-<p>要从原始的 $C_{\text{position}}$ 向量直接计算第 $r$ 阶导数 $C^{®}$，我们需要连续应用 $r$ 个差分矩阵。
-$$C^{®} = D_{\text{total}} \cdot C_{\text{position}}
-$$</p>
+<p>对于一个 $k$ 次B样条，它的第 $r$ 阶导数是一条 $k-r$ 次的B样条。第 $r$ 阶导数的第 $i$ 个控制点 $C^{®}_{i}$ 由以下公式给出：</p>
+<p>$$C^{®}_{i} = \frac{k - r + 1}{t_{i+k+1} - t_{i+r}} (C^{(r-1)}_{i+1} - C^{(r-1)}_{i})$$</p>
+<p>对于均匀B样条，即我们假设节点间距是恒定的（通常为1）。在这种情况下，上式中的系数项（被称为缩放因子）可以简化为一个常数：</p>
+<p>$$\frac{k - r + 1}{t_{i+k+1} - t_{i+r}} \quad \xrightarrow{\text{Uniform Knots}} \quad \frac{k - r + 1}{k - r + 1} = 1$$</p>
+<p>我们的目标是构造一个矩阵 $D$ (即 $v_{mat}$, $a_{mat}$, 等)，它能将 $N_{\text{in}}$ 个控制点（输入向量）转换为 $N_{\text{out}}$ 个控制点（输出向量）。假设我们要计算第 $r$ 阶导数，即从 degree $k-r+1$ 降到 $k-r$。</p>
+<p>$$D_{r}(i, j) = \begin{cases} -1 &amp; \text{if } j = i \\ +1 &amp; \text{if } j = i+1 \\ 0 &amp; \text{otherwise} \end{cases}$$</p>
+<p>要从原始的 $C_{\text{position}}$ 向量直接计算第 $r$ 阶导数 $C^{®}$，我们需要连续应用 $r$ 个差分矩阵。</p>
+<p>$$C^{®} = D_{\text{total}} \cdot C_{\text{position}}$$</p>
 <p>$D_1$ (即 $v_{\text{mat}}$)：作用于原始 $k$ 次控制点，生成 $k-1$ 次控制点。</p>
 <p>$D_2$ (即 $a_{\text{mat}}$)：作用于 $D_1$ 的结果，生成 $k-2$ 次控制点。</p>
 <p>$D_r$：作用于第 $r-1$ 阶导数的控制点，生成最终的 $r$ 阶导数控制点。</p>
@@ -1112,12 +1048,12 @@ $jerk_{\text{mat}}$ ($D_3$)：$3 \times 4$
 $snap_{\text{mat}}$ ($D_4$)：$2 \times 3$</p>
 <h3><span id="n%E7%9F%A9%E9%98%B5%E6%9E%84%E6%88%90">N矩阵构成</span></h3>
 <p>以Np为例
-对于位置（0次导数），局部构建块是 $1 \times 6$ 的 $row_0$ 向量：这个 $row_0$ 是从 $6 \times 6$ 的 $M$ 矩阵（位置基础矩阵）中提取出来的。它代表了 $k+1=6$ 个控制点对单个节点位置的影响权重。</p>
-<p>通过循环将 $row_0$ 堆叠到 $Np$ 中：</p>
+对于位置（0次导数），局部构建块是 $1 \times 6$ 的 $row\\_0$ 向量：这个 $row\\_0$ 是从 $6 \times 6$ 的 $M$ 矩阵（位置基础矩阵）中提取出来的。它代表了 $k+1=6$ 个控制点对单个节点位置的影响权重。</p>
+<p>通过循环将 $row\\_0$ 堆叠到 $Np$ 中：</p>
 <ol>
 <li>循环：代码遍历所有节点（for (int row_index = 0; …)），每一行对应曲线上一个要被约束的位置。</li>
-<li>稀疏性：由于局部控制性，每一行只在对应影响它的6个控制点（列）上包含非零值（即 $row_0$）。</li>
-<li>平移：代码计算出当前节点对应的 6个控制点的起始列索引（interval_index），然后将 $row_0$ 填充到 $Np$ 矩阵的相应位置。通过这种方式， $Np$ 矩阵被构建成一个带有稀疏对角块的结构，从而实现了全局映射。</li>
+<li>稀疏性：由于局部控制性，每一行只在对应影响它的6个控制点（列）上包含非零值（即 $row\\_0$）。</li>
+<li>平移：代码计算出当前节点对应的 6个控制点的起始列索引（interval_index），然后将 $row\\_0$ 填充到 $Np$ 矩阵的相应位置。通过这种方式， $Np$ 矩阵被构建成一个带有稀疏对角块的结构，从而实现了全局映射。</li>
 </ol>
 <h2><span id="%E7%BA%A6%E6%9D%9F%E6%9E%84%E5%BB%BA">约束构建</span></h2>
 <table>
@@ -1162,9 +1098,8 @@ $snap_{\text{mat}}$ ($D_4$)：$2 \times 3$</p>
 </tbody>
 </table>
 <h3><span id="%E4%BD%8D%E7%BD%AE%E7%BA%A6%E6%9D%9F">位置约束</span></h3>
-<p>我们将位置 $P(t_i)$ 表示为控制点 $C$ 的线性组合：
-$$P(t_i) = Np_i \cdot C
-$$</p>
+<p>我们将位置 $P(t_i)$ 表示为控制点 $C$ 的线性组合：</p>
+<p>$$P(t_i) = Np_i \cdot C$$</p>
 <table>
 <thead>
 <tr>
@@ -1228,15 +1163,12 @@ $$</p>
 <ol>
 <li><strong>分母：</strong> 在路径规划的局部优化中，车辆的切线速度（分母项 $V_x^2 + V_y^2$) 被假定为非零常数或已知值。</li>
 <li><strong>分子：</strong> 曲率约束被简化为约束分子中的法向加速度分量（即 $V_x A_y - V_y A_x$）。</li>
-<li><strong>近似航向：</strong> 为了得到 $V_x$ 和 $V_y$ 的系数，我们用已知的参考航向 $\theta_{\text{ref}}$ （或上一次迭代的航向）来近似 $V_x$ 和 $V_y$：
-$$V_x \approx \cos(\theta_{\text{ref}})
-$$
-$$V_y \approx \sin(\theta_{\text{ref}})
-$$</li>
+<li><strong>近似航向：</strong> 为了得到 $V_x$ 和 $V_y$ 的系数，我们用已知的参考航向 $\theta_{\text{ref}}$ （或上一次迭代的航向）来近似 $V_x$ 和 $V_y$：</li>
 </ol>
+<p>$$V_x \approx \cos(\theta_{\text{ref}})$$
+$$V_y \approx \sin(\theta_{\text{ref}})$$</p>
 <p>此时约束变为线性的
-$$\text{Lower} \le [-\sin(\theta_{\text{ref}}) \cdot A_x + \cos(\theta_{\text{ref}}) \cdot A_y] \le \text{Upper}
-$$</p>
+$$\text{Lower} \le [-\sin(\theta_{\text{ref}}) \cdot A_x + \cos(\theta_{\text{ref}}) \cdot A_y] \le \text{Upper}$$</p>
 <table>
 <thead>
 <tr>

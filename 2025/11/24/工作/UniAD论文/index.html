@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -441,9 +426,8 @@
     
     G -- 输出 --&gt; I["自车轨迹 (红线)"]</pre>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="image.png" alt="alt text" class="lazyload">
-<strong>数据流动：</strong>
-$$\text{Video} \rightarrow \text{BEV} \rightarrow \text{Track Queries} \rightarrow \text{Motion Queries} \rightarrow \text{Planning}
-$$</p>
+<strong>数据流动：</strong></p>
+<p>$$\text{Video} \rightarrow \text{BEV} \rightarrow \text{Track Queries} \rightarrow \text{Motion Queries} \rightarrow \text{Planning}$$</p>
 <p>包含4个基于 Transformer decoder的感知和预测模块，以及一个planner。</p>
 <p>先使用现成的BEVFormer将video图像转化为BEV特征。（这在UniAD中并不重要）</p>
 <p>接下来是TrackFormer和MapFormer</p>
@@ -453,9 +437,9 @@ $$</p>
 <p>在每个时间步，初始化一个detection queries，探测新生的agent。
 使用track queries 对之前建模出来的agent进行modeling。</p>
 <p>这两种queries都是从BEV Feature去查询的。</p>
-<p>在自车判断时，使用自注意力，
-$$\text{Interaction} = \text{Softmax}(Q_{agent} \cdot Q_{agent}^T) \cdot Q_{agent}
-$$，K，V都是Qagent，这样实际上就是在算路上的所有agent之间的交互，而不是和bev特征的交互。</p>
+<p>在自车判断时，使用自注意力，</p>
+<p>$$\text{Interaction} = \text{Softmax}(Q_{agent} \cdot Q_{agent}^T) \cdot Q_{agent}$$
+，K，V都是Qagent，这样实际上就是在算路上的所有agent之间的交互，而不是和bev特征的交互。</p>
 <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Step 1: 自注意力 (Self-Attention) —— 您说的 "交互"</span><br><span class="hljs-comment"># 作用：让车与车之间“通气”。</span><br><span class="hljs-comment"># 比如：Query A 发现 Query B 要插队，A 更新自己的状态，准备减速。</span><br><span class="hljs-comment"># 注意：这时候还没看地图，纯粹是 Query 之间的沟通。</span><br>Queries = SelfAttention(Q=Queries, K=Queries, V=Queries);<br><br><span class="hljs-comment"># Step 2: 交叉注意力 (Cross-Attention) —— 您说的 "从BEV查询"</span><br><span class="hljs-comment"># 作用：带着刚才沟通好的意图，去看地图确认位置。</span><br><span class="hljs-comment"># 比如：Query A 决定减速了，现在去 BEV 地图上看看，我现在的精确像素坐标在哪？</span><br>Queries = CrossAttention(Q=Queries, K=BEV_Feature, V=BEV_Feature);<br><br><span class="hljs-comment"># Step 3: 前馈网络 (FFN)</span><br><span class="hljs-comment"># 消化一下信息</span><br>Queries = FeedForward(Queries);<br></code></pre></td></tr></tbody></table></figure>
 <h2><span id="mapformer">MapFormer</span></h2>
 <p>与TrackFormer类似，只不过TrackFormer是交通参与者，而mapformer是静态信息。</p>
@@ -479,7 +463,7 @@ $$，K，V都是Qagent，这样实际上就是在算路上的所有agent之间�
 <strong>$Q_M$ (Static Map):</strong> 就是我们在 MapFormer 讲的 Map Queries（路）。
 <strong>Multimodal (多模态):</strong> 这就是我们之前说的，针对每一辆车，预测 Top-K 条轨迹（比如 K=6，分别代表直行、左转、右转、加速、减速等）。</p>
 <h3><span id="%E8%BE%93%E5%87%BA">输出：</span></h3>
-<p>${ \hat{x}_{i,k} \in \mathbb{R}^{T \times 2} | i = 1,…,N_a; k = 1, . . ., K }$</p>
+<p>$\{ \hat{x}_{i,k} \in \mathbb{R}^{T \times 2} | i = 1,…,N_a; k = 1, . . ., K \}$</p>
 <p>$N_a$ (i): Agent 的数量（比如 50 个障碍物）。
 $K$ (k): 模态的数量（比如每个障碍物预测 6 条轨迹）。
 $T$: 预测时长（比如未来 3 秒，每 0.5 秒一个点，T=6）。</p>

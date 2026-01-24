@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -528,10 +513,8 @@
 <h2><span id="2-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8Fdqn-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0">2. 核心公式：DQN 如何学习？</span></h2>
 <p>DQN 的学习目标是让它的“估算” $Q_{\theta}(s, a)$ 尽可能地接近“真实”的Q值 $Q^*(s, a)$。这个“真实”的Q值是由<strong>贝尔曼最优方程 (Bellman Optimality Equation)</strong> 定义的。</p>
 <h3><span id="a-%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8Bai-%E7%9A%84%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3">a. 贝尔曼最优方程（AI 的“指导思想”）</span></h3>
-<p>这个公式定义了一个“完美”的Q值应该是什么样的：
-$$
-Q^<em>(s, a) = \mathbb{E}<em>{s’ \sim \mathcal{E}} \left[ r + \gamma \max</em>{a’} Q^</em>(s’, a’) \mid s, a \right]
-$$</p>
+<p>这个公式定义了一个“完美”的Q值应该是什么样的：</p>
+<p>$$Q^*(s, a) = \mathbb{E}_{s’ \sim \mathcal{E}} \left[ r + \gamma \max_{a’} Q^*(s’, a’) \mid s, a \right]$$</p>
 <p>用大白话解释这个公式：</p>
 <blockquote>
 <p>“在状态 $s$ 执行动作 $a$ 的<strong>未来总分 (Q*)</strong>，等于：</p>
@@ -560,23 +543,17 @@ DQN 使用<strong>两个</strong>神经网络：</p>
 <h3><span id="c-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-the-loss-function">c. 核心公式：损失函数 (The Loss Function)</span></h3>
 <p>对于从“记忆库” $\mathcal{D}$ 中抽取的每一个经验 $(s, a, r, s’)$，我们定义：</p>
 <p><strong>1. “目标Q值” $y_i$ (The Target / “正确答案”)</strong>
-我们使用“目标网络” $Q_{\theta^-}$ 来计算贝尔曼方程的右侧：
-$$
-y_i = r + \gamma \max_{a’} Q_{\theta^-}(s’, a’)
-$$</p>
+我们使用“目标网络” $Q_{\theta^-}$ 来计算贝尔曼方程的右侧：</p>
+<p>$$y_i = r + \gamma \max_{a’} Q_{\theta^-}(s’, a’)$$</p>
 <ul>
 <li>（如果 $s’$ 是一个终止状态，则 $y_i = r$）</li>
 </ul>
 <p><strong>2. “预测Q值” (The Prediction)</strong>
-这是我们“主网络” $Q_{\theta}$ 对我们<em>当时</em>所做动作的估算：
-$$
-\text{Prediction} = Q_{\theta}(s, a)
-$$</p>
+这是我们“主网络” $Q_{\theta}$ 对我们<em>当时</em>所做动作的估算：</p>
+<p>$$\text{Prediction} = Q_{\theta}(s, a)$$</p>
 <p><strong>3. 损失函数 $L(\theta)$ (The “Error”)</strong>
-我们使用<strong>均方误差 (MSE)</strong> 来衡量“预测值”和“目标值”之间的差距。这就是我们要优化的目标：
-$$
-L(\theta) = \mathbb{E}<em>{(s, a, r, s’) \sim \mathcal{D}} \left[ \left( \underbrace{y_i}</em>{\text{目标}} - \underbrace{Q_{\theta}(s, a)}_{\text{预测}} \right)^2 \right]
-$$</p>
+我们使用<strong>均方误差 (MSE)</strong> 来衡量“预测值”和“目标值”之间的差距。这就是我们要优化的目标：</p>
+<p>$$L(\theta) = \mathbb{E}_{(s, a, r, s’) \sim \mathcal{D}} \left[ \left( \underbrace{y_i}_{\text{目标}} - \underbrace{Q_{\theta}(s, a)}_{\text{预测}} \right)^2 \right]$$</p>
 <p><strong>训练过程</strong>就是通过<strong>梯度下降 (Gradient Descent)</strong> 来调整“主网络”的权重 $\theta$，以最小化这个损失函数 $L(\theta)$。</p>
 <hr>
 <h2><span id="3-%E6%80%BB%E7%BB%93dqn-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">3. 总结：DQN 算法流程</span></h2>
@@ -822,12 +799,11 @@ DQN的“学习”就是不断调整神经网络的权重，让这个“差距�
 <li><code>x.size(0)</code> 保留了 <code>Batch</code> 维度，我们不对其操作。</li>
 <li><code>-1</code> 告诉 PyTorch 自动计算 $N = C \times H \times W$。</li>
 <li>在底层，计算机按照“行主序”（Row-Major Order）将 3D 张量展开。</li>
-<li>一个在 <code>T[c, h, w]</code> 的元素，会被映射到 1D 向量 $T’$ 中的第 $k$ 个位置：
-$$k = c \cdot (H \cdot W) + h \cdot W + w
-$$</li>
+<li>一个在 <code>T[c, h, w]</code> 的元素，会被映射到 1D 向量 $T’$ 中的第 $k$ 个位置：</li>
 </ol>
 </li>
 </ul>
+<p>$$k = c \cdot (H \cdot W) + h \cdot W + w$$</p>
 <h3><span id="24-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-fc-%E7%9A%84%E5%B0%BA%E5%AF%B8">2.4 深度解析：全连接层 (FC) 的尺寸</span></h3>
 <ul>
 <li><strong>问题：</strong> <code>self.fc = nn.Linear(self.feature_size, n_actions)</code> 的尺寸是如何决定的？</li>

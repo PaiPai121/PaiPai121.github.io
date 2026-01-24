@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -466,12 +451,10 @@
 - <strong>列索引（column indices）</strong>：存储非零元素所在的列索引，按照行的顺序排列，即 [0, 2, 1, 0, 2]。对应值数组中的元素，分别表示它们所在的列。</p>
 <h2><span id="b%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF">B样条曲线</span></h2>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144042470">https://zhuanlan.zhihu.com/p/144042470</a>
-贝塞尔
-$$\vec{P(t)} = \Sigma_{i=0}^{n-1}\vec{p_i}B_{i,n}(t), t\in [0,1]
-$$
-B样条
-$$\vec{P(t)} = \Sigma_{i=0}^{n-1}\vec{p_i}B_{i,d}(t), t\in [t_{min},t_{max}],2\le d \le n
-$$</p>
+贝塞尔</p>
+<p>$$\vec{P(t)} = \Sigma_{i=0}^{n-1}\vec{p_i}B_{i,n}(t), t\in [0,1]$$
+B样条</p>
+<p>$$\vec{P(t)} = \Sigma_{i=0}^{n-1}\vec{p_i}B_{i,d}(t), t\in [t_{min},t_{max}],2\le d \le n$$</p>
 <ul>
 <li>P(t)&nbsp;表示曲线上的点坐标向量。</li>
 <li>n&nbsp;为控制点&nbsp;pi&nbsp;数量。</li>
@@ -484,71 +467,37 @@ $$</p>
 <p>Cox-de Boor
 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/680031028">https://zhuanlan.zhihu.com/p/680031028</a></p>
 <p>均匀B样条的矩阵表达，对于5阶B样条，k=0,1,2,3,4，矩阵列数1,2,3,4,5
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/YMWM_/article/details/126903485">均匀B样条曲线的表达式</a>
-$$c(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^k\end{bmatrix}M_k\begin{bmatrix}P_{i-k}\\P_{i-k+1}\\.\\.\\.\\P_i\end{bmatrix},\ t\in [0,1], t = \frac{u-u_i}{u_{i+1}-u_i}\in [0,1]
-$$
-这是从$u_i~u_{i+1}$段曲线上关于参数t的曲线表达式，即第i段
-$$M_k = \begin{bmatrix}m_{0,0}&amp;m_{0,1}&amp;…&amp;m_{0,k}\\.\\.\\m_{k,0}&amp; m_{k,1}&amp;…&amp;m_{k,k}\end{bmatrix}
-$$
-Mk的size为k+1 * k+1
-$$m_{i,j} = \frac{1}{(k-1)!}c_{k}^{k-i}\Sigma_{s=j}^k (-1)^{s-j}C_{k+1}^{s-j}(k-s)^{k-i}
-$$
-b样条在第i-1~i个knots上时，在order = 5 的b样条上
-$$c_i(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^5\end{bmatrix}M_5\begin{bmatrix}P_{i}\\P_{i+1}\\…\\P_{i+5}\end{bmatrix}
-$$
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/YMWM_/article/details/126903485">均匀B样条曲线的表达式</a></p>
+<p>$$c(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^k\end{bmatrix}M_k\begin{bmatrix}P_{i-k}\\P_{i-k+1}\\.\\.\\.\\P_i\end{bmatrix},\ t\in [0,1], t = \frac{u-u_i}{u_{i+1}-u_i}\in [0,1]$$
+这是从$u_i~u_{i+1}$段曲线上关于参数t的曲线表达式，即第i段</p>
+<p>$$M_k = \begin{bmatrix}m_{0,0}&amp;m_{0,1}&amp;…&amp;m_{0,k}\\.\\.\\m_{k,0}&amp; m_{k,1}&amp;…&amp;m_{k,k}\end{bmatrix}$$
+Mk的size为k+1 * k+1</p>
+<p>$$m_{i,j} = \frac{1}{(k-1)!}c_{k}^{k-i}\Sigma_{s=j}^k (-1)^{s-j}C_{k+1}^{s-j}(k-s)^{k-i}$$
+b样条在第i-1~i个knots上时，在order = 5 的b样条上</p>
+<p>$$c_i(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^5\end{bmatrix}M_5\begin{bmatrix}P_{i}\\P_{i+1}\\…\\P_{i+5}\end{bmatrix}$$
 当 B 样条曲线的一个节点重复度为k次，且该节点的两侧各有&nbsp;k个不同的节点时，对应的 B 样条曲线段可以被看作是一个&nbsp;k次贝塞尔曲线。</p>
-<p>贝塞尔曲线在该段内
-$$b(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^5\end{bmatrix}A\begin{bmatrix}Q_{0}\\Q_{1}\\…\\Q_{5}\end{bmatrix}
-$$</p>
-<p>此时我想要求的贝塞尔曲线的6个控制点，应有
-$$\begin{bmatrix}Q_{0}\\Q_{1}\\…\\Q_{5}\end{bmatrix} = A^{-1}M_5\begin{bmatrix}P_{i}\\P_{i+1}\\…\\P_{i+5}\end{bmatrix}
-$$</p>
+<p>贝塞尔曲线在该段内</p>
+<p>$$b(t) = \begin{bmatrix}1&amp;t&amp;…&amp;t^5\end{bmatrix}A\begin{bmatrix}Q_{0}\\Q_{1}\\…\\Q_{5}\end{bmatrix}$$</p>
+<p>此时我想要求的贝塞尔曲线的6个控制点，应有</p>
+<p>$$\begin{bmatrix}Q_{0}\\Q_{1}\\…\\Q_{5}\end{bmatrix} = A^{-1}M_5\begin{bmatrix}P_{i}\\P_{i+1}\\…\\P_{i+5}\end{bmatrix}$$</p>
 <h2><span id="%E5%A2%9E%E5%B9%BF%E5%8A%A0%E8%BD%AF%E7%BA%A6%E6%9D%9F%E5%88%9D%E6%AC%A1%E5%B0%9D%E8%AF%95">增广加软约束初次尝试</span></h2>
-<p>$$min \ \begin{bmatrix}X\\ Y\end{bmatrix}^T\begin{bmatrix}H&amp;0\\0&amp;D\end{bmatrix}\begin{bmatrix}X\\ Y\end{bmatrix}
-$$</p>
-<p>$$Y = \begin{bmatrix}x_0\\x_1\\…\\x_n\\y_0\\y_1\\…\\y_n\end{bmatrix}
-$$
+<p>$$min \ \begin{bmatrix}X\\ Y\end{bmatrix}^T\begin{bmatrix}H&amp;0\\0&amp;D\end{bmatrix}\begin{bmatrix}X\\ Y\end{bmatrix}$$</p>
+<p>$$Y = \begin{bmatrix}x_0\\x_1\\…\\x_n\\y_0\\y_1\\…\\y_n\end{bmatrix}$$
 再来一遍xy，然后
-$$P = \begin{bmatrix}A&amp;0&amp;0&amp;…&amp;0&amp;1&amp;0&amp;0&amp;…&amp;0\\
-0&amp;A&amp;0&amp;…&amp;0&amp;0&amp;1&amp;0&amp;…&amp;0\\
-0&amp;0&amp;A&amp;…&amp;0&amp;0&amp;0&amp;1&amp;…&amp;0
-\end{bmatrix}
-$$
+$$P = \begin{bmatrix}A&amp;0&amp;0&amp;…&amp;0&amp;1&amp;0&amp;0&amp;…&amp;0\\ 0&amp;A&amp;0&amp;…&amp;0&amp;0&amp;1&amp;0&amp;…&amp;0\\ 0&amp;0&amp;A&amp;…&amp;0&amp;0&amp;0&amp;1&amp;…&amp;0 \end{bmatrix}$$
 有n行，2n列
-$$(PY)^T(PY) = Y^TP^TPY= Y^TDY
-$$
+$$(PY)^T(PY) = Y^TP^TPY= Y^TDY$$
 调整primal_warm_start为原来的两倍长度，将x和y复制一遍</p>
 <p>调整osqp的kernel dim 为 4 * num_of_control_points_</p>
 <p>如何使X与Y保持一致？
 调整约束限制Y的x0和X的x0相等
-$$A\begin{bmatrix}X\\Y\end{bmatrix}\le b
-$$</p>
-<p>$$  \begin{bmatrix} A_{0,0}&amp;…&amp;…&amp;A_{0,n}&amp; 0&amp;…&amp;…&amp;0\\
-…&amp;…\\
-A_{n,0} &amp;…&amp; …&amp;A_{n,n} &amp; 0&amp;…&amp;…&amp;0\\
-1 &amp; 0&amp; …&amp;0&amp;-1&amp;0&amp;…&amp;0\\
--1 &amp; 0&amp;…&amp;0&amp;1&amp;0&amp;…&amp;0\\
-0 &amp; 1&amp;…&amp;0&amp;0&amp;-1&amp;…&amp;0\\
-\end{bmatrix}  \begin{bmatrix}x_{x0}\\
-…\\
-x_{xn}\\
-y_{x0}\\…\\
-y_{xn}\\
-x_{y0}\\…\\x_{yn}\\y_{y0}\\…\\y_{yn}
-\end{bmatrix}\le b
-$$</p>
+$$A\begin{bmatrix}X\\Y\end{bmatrix}\le b$$</p>
+<p>$$\begin{bmatrix} A_{0,0}&amp;…&amp;…&amp;A_{0,n}&amp; 0&amp;…&amp;…&amp;0\\ …&amp;…\\ A_{n,0} &amp;…&amp; …&amp;A_{n,n} &amp; 0&amp;…&amp;…&amp;0\\ 1 &amp; 0&amp; …&amp;0&amp;-1&amp;0&amp;…&amp;0\\ -1 &amp; 0&amp;…&amp;0&amp;1&amp;0&amp;…&amp;0\\ 0 &amp; 1&amp;…&amp;0&amp;0&amp;-1&amp;…&amp;0\\ \end{bmatrix} \begin{bmatrix}x_{x0}\\ …\\ x_{xn}\\ y_{x0}\\…\\ y_{xn}\\ x_{y0}\\…\\x_{yn}\\y_{y0}\\…\\y_{yn} \end{bmatrix}\le b$$</p>
 <p>约束矩阵的增广——列数增加num_of_variables，行数增加num_of_variables，同时使用upper bound和lower bound的话下面两个矩阵可以缩小
-$$\begin{bmatrix}A &amp; 0 \\ M&amp;N\end{bmatrix}
-$$
-$$M = \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; … &amp;0\\
-0&amp;1&amp;0&amp;…&amp;0\\
-…
-\\
-…&amp;0&amp;0&amp;0&amp;1\end{bmatrix}
-$$
+$$\begin{bmatrix}A &amp; 0 \\ M&amp;N\end{bmatrix}$$
+$$M = \begin{bmatrix}1 &amp; 0 &amp; 0 &amp; … &amp;0\\ 0&amp;1&amp;0&amp;…&amp;0\\ … \\ …&amp;0&amp;0&amp;0&amp;1\end{bmatrix}$$
 对角阵
-$$N = -M
-$$
+$$N = -M$$
 填充新矩阵时，稀疏矩阵，0就不必填了，主要填写后面的两个对角阵。</p>
 <p>![[Pasted image 20241029105829.png]]</p>
 <p>如果添加散点约束该如何实现？
@@ -556,52 +505,32 @@ $$
 <h2><span id="%E5%A2%9E%E5%B9%BF%E6%B7%BB%E5%8A%A0%E8%BD%AF%E7%BA%A6%E6%9D%9F">增广添加软约束</span></h2>
 <p>重新来考虑一个问题，假设我们在规划路径时，要让每个路径点都在一个直线的左侧
 设给出直线上的两个点为
-$$A:x_0,y_0,B:x_1,y_1
-$$
+$$A:x_0,y_0,B:x_1,y_1$$
 曲线上的某个散点为
-$$P:px_{i},py_{i}
-$$</p>
+$$P:px_{i},py_{i}$$</p>
 <p>可以使用叉乘来判断
-$$\vec{AB}\times\vec{AP} &lt; 0
-$$
-$$(x_1-x_0)(py_i-y_0)-(px_i-x_0)(y_1-y_0)&lt;0
-$$
+$$\vec{AB}\times\vec{AP} &lt; 0$$
+$$(x_1-x_0)(py_i-y_0)-(px_i-x_0)(y_1-y_0)&lt;0$$
 等价于约束
-$$(x_1-x_0)py_i - (y_1-y_0) px_i&lt;y_0(x_1-x_0) - x_0(y_1-y_0)
-$$
+$$(x_1-x_0)py_i - (y_1-y_0) px_i&lt;y_0(x_1-x_0) - x_0(y_1-y_0)$$
 写为向量形式则为
-$$\begin{bmatrix}  y_0-y_1 &amp;x_1-x_0 \end{bmatrix}\begin{bmatrix} px_i \\ py_i\end{bmatrix} &lt; \begin{bmatrix}  y_0(x_1-x_0) - x_0(y_1-y_0)\end{bmatrix}
-$$
+$$\begin{bmatrix} y_0-y_1 &amp;x_1-x_0 \end{bmatrix}\begin{bmatrix} px_i \\ py_i\end{bmatrix} &lt; \begin{bmatrix} y_0(x_1-x_0) - x_0(y_1-y_0)\end{bmatrix}$$
 对于原数据
-$$\begin{bmatrix} px_0 \\px_1\\px_2\\px_3\\…\\px_n \\ py_0\\py_1\\py_2\\…\\py_n\end{bmatrix}
-$$
+$$\begin{bmatrix} px_0 \\px_1\\px_2\\px_3\\…\\px_n \\ py_0\\py_1\\py_2\\…\\py_n\end{bmatrix}$$
 而言，约束所有点的表达式应该为
-$$
-\begin{bmatrix} y_0-y_1 &amp; 0&amp;0&amp;…&amp;0 &amp;x_1-x_0 &amp; 0&amp;0&amp;…&amp;0 \\
-0&amp;y_0-y_1 &amp; 0&amp;…&amp;0 &amp;0 &amp;x_1-x_0 &amp; 0&amp;…&amp;0 \\
-0&amp;0&amp;y_0-y_1 &amp; …&amp;0 &amp;0 &amp;0&amp;x_1-x_0 &amp; …&amp;0 \\
-… &amp; …&amp;…&amp; …&amp;…&amp;…&amp;…&amp;…&amp;…&amp;…\\
-0 &amp; 0&amp;…&amp; …&amp;y_0-y_1&amp;0&amp;0&amp;…&amp;…&amp;x_1-x_0
-\end{bmatrix}\begin{bmatrix} px_0 \\px_1\\px_2\\…\\px_n \\ py_0\\py_1\\py_2\\…\\py_n\end{bmatrix} &lt; \begin{bmatrix} y_0(x_1-x_0) - x_0(y_1-y_0)\\ y_0(x_1-x_0) - x_0(y_1-y_0)\\ y_0(x_1-x_0) - x_0(y_1-y_0)
-\\…\\ y_0(x_1-x_0) - x_0(y_1-y_0)\end{bmatrix}
-$$
+$$\begin{bmatrix} y_0-y_1 &amp; 0&amp;0&amp;…&amp;0 &amp;x_1-x_0 &amp; 0&amp;0&amp;…&amp;0 \\ 0&amp;y_0-y_1 &amp; 0&amp;…&amp;0 &amp;0 &amp;x_1-x_0 &amp; 0&amp;…&amp;0 \\ 0&amp;0&amp;y_0-y_1 &amp; …&amp;0 &amp;0 &amp;0&amp;x_1-x_0 &amp; …&amp;0 \\ … &amp; …&amp;…&amp; …&amp;…&amp;…&amp;…&amp;…&amp;…&amp;…\\ 0 &amp; 0&amp;…&amp; …&amp;y_0-y_1&amp;0&amp;0&amp;…&amp;…&amp;x_1-x_0 \end{bmatrix}\begin{bmatrix} px_0 \\px_1\\px_2\\…\\px_n \\ py_0\\py_1\\py_2\\…\\py_n\end{bmatrix} &lt; \begin{bmatrix} y_0(x_1-x_0) - x_0(y_1-y_0)\\ y_0(x_1-x_0) - x_0(y_1-y_0)\\ y_0(x_1-x_0) - x_0(y_1-y_0) \\…\\ y_0(x_1-x_0) - x_0(y_1-y_0)\end{bmatrix}$$
 即为
-$$A_{new}X&lt;b_{new}
-$$
+$$A_{new}X&lt;b_{new}$$
 其中$A_{new}$的行数等于点数，列数等于点数的二倍（因为有x和y两个坐标）</p>
 <p>接下来调整一下原问题
-原问题为
-$$min\ \ \ \ \ \ X^THX,\ \ \ \ \ \ st \ \ \ \ \ \ A_0X&lt;b_0
-$$
-现在将目标函数增广为
-$$\begin{bmatrix}X\\Y \end{bmatrix}^T \begin{bmatrix}H&amp;0\\0 &amp;I\end{bmatrix} \begin{bmatrix}X\\Y \end{bmatrix} = X^THX+Y^TY
-$$</p>
-<p>约束条件增广为
-$$\begin{bmatrix}A_0&amp;0\\A_{new} &amp;I\end{bmatrix} \begin{bmatrix}X\\Y \end{bmatrix} &lt; \begin{bmatrix}b_0\\b_{new} \end{bmatrix}
-$$
-即
-$$A_0X&lt;b_0,A_{new}X+Y&lt;b_{new}
-$$
+原问题为</p>
+<p>$$min\ \ \ \ \ \ X^THX,\ \ \ \ \ \ st \ \ \ \ \ \ A_0X&lt;b_0$$
+现在将目标函数增广为</p>
+<p>$$\begin{bmatrix}X\\Y \end{bmatrix}^T \begin{bmatrix}H&amp;0\\0 &amp;I\end{bmatrix} \begin{bmatrix}X\\Y \end{bmatrix} = X^THX+Y^TY$$</p>
+<p>约束条件增广为</p>
+<p>$$\begin{bmatrix}A_0&amp;0\\A_{new} &amp;I\end{bmatrix} \begin{bmatrix}X\\Y \end{bmatrix} &lt; \begin{bmatrix}b_0\\b_{new} \end{bmatrix}$$
+即</p>
+<p>$$A_0X&lt;b_0,A_{new}X+Y&lt;b_{new}$$
 一般情况下，目标函数最小时，Y=0
 此时约束条件等效于新约束为硬约束。
 当新约束无法满足时，目标函数被惩罚，Y值不为零，使得新约束被满足。</p>

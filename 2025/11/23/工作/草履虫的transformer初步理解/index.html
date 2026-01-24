@@ -52,32 +52,17 @@
 <script src="/deps/js/Meting.min.js"></script>
 
 	<!-- hexo injector head_end start -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']],
-        processEscapes: true,
-        tags: 'ams' // 开启公式自动编号
-      },
-      options: {
-        enableMenu: false
-      },
-      chtml: {
-        scale: 1.05 // 整体放大一点，看着更舒服
-      }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-  <style>
-    /* 解决大行列式横向滚动 */
-    mjx-container {
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      padding: 1em 0;
-    }
-  </style>
-  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -482,27 +467,24 @@
 <p>模型首先接收输入（Inputs），将文字转换为计算机能理解的向量（Embedding）。这里应该有一个网络，训练之后便能实现嵌入</p>
 <h2><span id="positional-encoding%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81">Positional Encoding（位置编码）：</span></h2>
 <p>《Attention Is All You Need》使用了一套基于正弦和余弦函数的数学公式来生成位置信息。</p>
-<p>**
-$$\text{最终输入} = \text{词嵌入 (Input Embedding)} + \text{位置编码 (Positional Encoding)}
-$$**</p>
+<p>**</p>
+<p>$$\text{最终输入} = \text{词嵌入 (Input Embedding)} + \text{位置编码 (Positional Encoding)}$$
+**</p>
 <p><strong>位置编码</strong>是一个向量，它的维度（Dimension）和词嵌入的维度（$d_{model}$）是一模一样的（通常是 512）。模型把这两个向量对应位置相加。</p>
 <p>**Transformer <strong>使用不同频率的</strong>正弦（Sine）<strong>和</strong>余弦（Cosine）**函数来生成这些向量。</p>
 <p>**$pos$ **是词在句子中的位置（比如第 1 个词，第 2 个词…）。 $i$ 是向量维度的索引（比如第 $0, 1, 2, …, 511$ 维）。 $d_{model}$ 是模型的维度（比如 512）。</p>
-<p><strong>偶数维度（$2i$）使用正弦函数：</strong>
-$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-$$</p>
-<p><strong>奇数维度（$2i+1$）使用余弦函数：</strong>
-$$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-$$</p>
+<p><strong>偶数维度（$2i$）使用正弦函数：</strong></p>
+<p>$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$</p>
+<p><strong>奇数维度（$2i+1$）使用余弦函数：</strong></p>
+<p>$$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$</p>
 <p>对于每一个位置 $pos$，这 512 个维度的正弦/余弦值组合起来，是独一无二的。模型只要看一眼这个向量的波形，就知道它在句子的哪个位置。</p>
 <h3><span id="%E7%8E%B0%E4%BB%A3%E6%BC%94%E8%BF%9B">现代演进</span></h3>
 <p>BERT / GPT-2： 使用了<strong>可学习的位置编码（Learnable Positional Embedding）</strong>。简单说就是不给公式，直接初始化一个矩阵，让模型在训练中自己去学每个位置最好的表示向量。</p>
 <p>LLaMA / ChatGLM / PaLM： 使用了<strong>旋转位置编码（RoPE - Rotary Positional Embedding）</strong>。这是目前的业界主流。它不是通过“加法”把位置信息加进去，而是通过“旋转”向量的角度来注入位置信息，数学性质更好，对长文本的支持更强。</p>
 <h3><span id="bev%E7%89%B9%E5%BE%81%E7%9A%84%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81">BEV特征的位置编码</span></h3>
 <h4><span id="%E6%AD%A3%E5%BC%A6%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E7%9A%842d%E6%89%A9%E5%B1%95">正弦位置编码的2D扩展</span></h4>
-<p>原理：假设我们有一个 $H \times W$ 的 BEV 网格。我们把嵌入向量的维度（比如 256 维）一分为二：前 128 维：用来对 X 轴坐标 进行标准的正弦/余弦编码。后 128 维：用来对 Y 轴坐标 进行标准的正弦/余弦编码。
-$$PE_{(x, y)} = \text{Concat}(\text{PE}(x), \text{PE}(y))
-$$</p>
+<p>原理：假设我们有一个 $H \times W$ 的 BEV 网格。我们把嵌入向量的维度（比如 256 维）一分为二：前 128 维：用来对 X 轴坐标 进行标准的正弦/余弦编码。后 128 维：用来对 Y 轴坐标 进行标准的正弦/余弦编码。</p>
+<p>$$PE_{(x, y)} = \text{Concat}(\text{PE}(x), \text{PE}(y))$$</p>
 <p>BEVFormer，它在初始化那层 $200 \times 200$ 的格子时，就给每个格子加上了这种 xy 坐标编码，让每个格子知道自己在车身周围的物理位置。</p>
 <h4><span id="%E5%8F%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81">可学习的位置编码</span></h4>
 <p>初始化一个大小为 $(H, W, D)$ 的矩阵（参数），让神经网络在训练过程中**自己去“学”**每个格子应该长什么样。</p>
@@ -518,9 +500,8 @@ $$</p>
 <strong>注入：</strong> 把这个包含了 3D 信息的编码直接加到 2D 图片特征上。</p>
 <h2><span id="%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B">多头注意力</span></h2>
 <h3><span id="%E7%BC%A9%E6%94%BE%E7%82%B9%E7%A7%AF%E6%B3%A8%E6%84%8F%E5%8A%9B">缩放点积注意力</span></h3>
-<p>与临时抱佛脚中提到的QKV相同
-$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-$$
+<p>与临时抱佛脚中提到的QKV相同</p>
+<p>$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 Scaled Dot-Product Attention（缩放点积注意力），它是每个“头”内部的计算方式。</p>
 <p>为什么要除以 $\sqrt{d_k}$ ？ ：</p>
 <blockquote>
@@ -531,25 +512,23 @@ Scaled Dot-Product Attention（缩放点积注意力），它是每个“头”�
 <ol>
 <li>拆分 (Split)：假设模型维度 $d_{model} = 512$，你有 $P=8$ 个头。我们把输入的 512 维向量切成 8 份，每份 64 维。每个头只处理属于自己的那 64 维信息。</li>
 <li>独立计算 (Parallel Attention)：这 8 个头并行工作。头 1 计算出它的结果 $Z_1$（维度 64）。…头 8 计算出它的结果 $Z_8$（维度 64）。这里确实产生了 P 个向量（或者说是 P 组结果）。</li>
-<li>拼接 (Concatenate) —— 关键一步：模型把这 8 个结果拼起来：
-$$\text{MultiHead} = \text{Concat}(Z_1, Z_2, …, Z_8)
-$$拼完之后，维度又变回了 $64 \times 8 = 512$ 。</li>
-<li>线性变换 (Linear Projection)：最后，再通过一个由权重矩阵 $W^O$ 控制的线性层（Linear Layer），把拼好的信息混合一下。
-$$\text{Final Output} = \text{Concat}(Z_1, …, Z_P) \cdot W^O
-$$</li>
+<li>拼接 (Concatenate) —— 关键一步：模型把这 8 个结果拼起来：</li>
 </ol>
+<p>$$\text{MultiHead} = \text{Concat}(Z_1, Z_2, …, Z_8)$$
+拼完之后，维度又变回了 $64 \times 8 = 512$ 。
+4. 线性变换 (Linear Projection)：最后，再通过一个由权重矩阵 $W^O$ 控制的线性层（Linear Layer），把拼好的信息混合一下。</p>
+<p>$$\text{Final Output} = \text{Concat}(Z_1, …, Z_P) \cdot W^O$$</p>
 <h2><span id="add--norm%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%B1%82%E5%BD%92%E4%B8%80%E5%8C%96">Add &amp; Norm（残差连接与层归一化）</span></h2>
-<p>$$\text{Output} = \text{LayerNorm}(x + \text{Sublayer}(x))
-$$</p>
+<p>$$\text{Output} = \text{LayerNorm}(x + \text{Sublayer}(x))$$</p>
 <h3><span id="add-%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5--residual-connection">Add (残差连接 / Residual Connection)</span></h3>
 <p><strong>把输入 $x$ 直接加到输出上。</strong></p>
 <p><strong>作用：</strong> 解决了“梯度消失”</p>
-<p>在深层网络中，计算梯度需要运用链式法则（Chain Rule），也就是无数个导数连乘。
-$$\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial y} \cdot \frac{\partial y}{\partial x} \cdot \dots
-$$如果中间的导数（$\frac{\partial y}{\partial x}$）都小于 1（通常如此），乘着乘着，梯度就变成 0 了————梯度消失。</p>
-<p>有了 Add 的时候：正向公式是：$y = x + F(x)$我们对 $x$ 求导，结果是：
-$$\frac{\partial y}{\partial x} = 1 + \frac{\partial F(x)}{\partial x}
-$$ 不会使梯度为0</p>
+<p>在深层网络中，计算梯度需要运用链式法则（Chain Rule），也就是无数个导数连乘。</p>
+<p>$$\frac{\partial Loss}{\partial x} = \frac{\partial Loss}{\partial y} \cdot \frac{\partial y}{\partial x} \cdot \dots$$
+如果中间的导数（$\frac{\partial y}{\partial x}$）都小于 1（通常如此），乘着乘着，梯度就变成 0 了————梯度消失。</p>
+<p>有了 Add 的时候：正向公式是：$y = x + F(x)$我们对 $x$ 求导，结果是：</p>
+<p>$$\frac{\partial y}{\partial x} = 1 + \frac{\partial F(x)}{\partial x}$$
+不会使梯度为0</p>
 <h1><span id="%E5%8F%B3%E4%BE%A7%E8%A7%A3%E7%A0%81%E5%99%A8decoder-%E7%94%9F%E6%88%90%E8%BE%93%E5%87%BA">右侧：解码器（Decoder）—— “生成输出”</span></h1>
 <h2><span id="%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E8%BE%93%E5%85%A5%E6%98%AF%E4%BB%80%E4%B9%88">解码器的输入是什么？</span></h2>
 <p>在翻译模型中：截至目前为止，已经翻译出来的词
