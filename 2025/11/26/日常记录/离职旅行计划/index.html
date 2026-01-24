@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 离职旅行计划 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="离职旅行计划"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>离职旅行计划</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月26日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E6%96%B0%E5%8A%A0%E5%9D%A1">新加坡</span></h1>
+<h2><span id="%E5%87%BA%E8%A1%8C%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87">出行前的准备</span></h2>
+<p>提前 3 天填写 SG Arrival Card (电子入境卡)
+<a target="_blank" rel="noopener" href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card">https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card</a>
+护照、打印的往返机票、转换插头
+Grab打车app</p>
+<h2><span id="%E4%BD%8F%E5%AE%BF%E6%96%B0%E5%8A%A0%E5%9D%A1%E6%BB%A8%E6%B5%B7%E6%B9%BE%E5%AE%BE%E4%B9%90%E9%9B%85%E8%87%BB%E9%80%89%E9%85%92%E5%BA%97">住宿：新加坡滨海湾宾乐雅臻选酒店</span></h2>
+<p>PARKROYAL COLLECTION Marina Bay Singapore</p>
+<h2><span id="%E6%9C%BA%E7%A5%A8">机票</span></h2>
+<p>前往新加坡：12月7日 9:45 ~ 16:15</p>
+<p>离开新加坡：12月9日 17:10 ~ 18:30</p>
+<h2><span id="127-sunday">12.7 Sunday</span></h2>
+<p><strong>16:15</strong> 抵达新加坡樟宜机场，领取飞猪订购的新加坡电话卡。这里有世界最高的室内瀑布。
+<strong>17:30</strong> Grab 叫车，定位到 PARKROYAL COLLECTION Marina Bay Singapore。
+<strong>19:00</strong> 晚餐：津津茶餐厅，鸡饭、麦片虾、芥兰牛肉。排队人不少不过翻台快。不过老板娘要收现金，直接把我们带来的100新币干到只剩一半。
+<strong>20:00</strong> 滨海湾夜游，Esplanade (大榴莲)与鱼尾狮公园 (Merlion Park)，远眺看看来福士，绕到了圣安德列教堂、美术馆和政府建筑，感觉新加坡是个巨大的天津痛城，天津之眼、津湾广场、大铁桥。
+<strong>21:00</strong> suntec city这个商场好日式，各种日本的小商品。哦对，新加坡人好喜欢宝可梦，到处都是宝可梦。</p>
+<h2><span id="128-monday">12.8 Monday</span></h2>
+<p><strong>9:30</strong> 亚坤，就在酒店楼下，店员大姨非常热情。
+<strong>10:00</strong> 来到牛车水。周围绕一绕，这里相比滨海中心，脏一些，市井味浓一些
+附近有一个印度风格极强的马里安曼兴都庙（Sri Mariamman Temple），从墙头爬的都是牛的雕像，就能猜到是印度教的，不过我和我老婆都没敢进去。然后还有詹美回教堂、龙牙寺，不过宗教相关地点我们都没有入内
+<strong>11:30</strong> 牛车水地铁站拿泡泡玛特，地铁要20分钟，需要提前去
+<strong>12:00</strong> 午饭：叻沙、还有个鱼丸啥的的干拌面。买了个大椰子</p>
+<p><strong>12:30</strong> 新加坡河和克拉码头非常的boring。旧禧街警察局南洋风很浓厚但是不让入内。旁边就是消防局，旁边瞄一眼和小时候玩罪恶都市去消防局偷消防车差不多。</p>
+<p><strong>13:00</strong> 继续去国家博物馆的路上路过福康宁公园。随后stamford rd上风格就很西式了。儿童博物馆不开，然后有个婚姻的注册地，还有国家博物馆。</p>
+<p><strong>13:30</strong> 路上有一个峇峇娘惹博物馆Peranakan。</p>
+<p><strong>14:00</strong> 国家博物馆，很小，只有两个展厅。第一个展厅有大量的海图。第二个展厅用炫酷的科技展示新加坡的变迁。</p>
+<p><strong>18:00</strong> 酒店探秘，宾乐雅酒店的泳池、高空视野</p>
+<p><strong>19:00</strong> marina square商场、松发肉骨茶，很好吃</p>
+<p><strong>20:00</strong> 宝可梦的儿童XR</p>
+<p><strong>21:00</strong> 回酒店</p>
+<h2><span id="129-tuesday">12.9 Tuesday</span></h2>
+<p><strong>09:00</strong> 早餐 &amp; 退房
+<strong>10:00</strong> 详细逛逛圣安德烈教堂
+<strong>11:00</strong> 赞美广场
+<strong>11:30</strong> <a target="_blank" rel="noopener" href="https://www.visitsingapore.com.cn/see-do-singapore/history/history-museums/mint-museum-of-toys/">玩具博物馆</a>
+<strong>13:00</strong> 去机场，午饭
+<strong>15:00</strong> 干等着，被骂</p>
+<h1><span id="%E6%99%AE%E5%90%89%E5%B2%9B">普吉岛</span></h1>
+<p>泰国入境卡
+<a target="_blank" rel="noopener" href="https://tdac.immigration.go.th/">https://tdac.immigration.go.th/</a></p>
+<p>住Paradox Resort Phuket和The SIS Kata Resort</p>
+<h2><span id="129-tuesday">12.9 Tuesday</span></h2>
+<p><strong>19:00</strong> 落地，出海关，400泰铢小费走快速通道
+<strong>21:00</strong> 经过长久的等车和堵车终于到酒店了Paradox Resort Phuket
+<strong>21:30</strong> 附近吃的小泰餐海鲜</p>
+<h2><span id="1210-wednesday">12.10 Wednesday</span></h2>
+<p><strong>10:00</strong> 卡伦海滩沙滩椅开躺</p>
+<p><strong>11:00</strong> 吃</p>
+<p><strong>13:00</strong> 睡</p>
+<p><strong>15:00</strong> 下海！</p>
+<p><strong>18:00</strong> 吃</p>
+<p><strong>20:00</strong> 马杀鸡</p>
+<h2><span id="1211-thursday">12.11 Thursday</span></h2>
+<p><strong>斯米兰浮潜</strong></p>
+<blockquote>
+<p>斯米兰离普吉岛本岛很远，码头在北面的攀牙府，从卡伦海滩坐车过去要接近 2 小时。</p>
+</blockquote>
+<p><strong>6:00</strong> 上车
+<strong>8:00</strong> 抵达码头，早饭，上船</p>
+<p><strong>11:00</strong> 8号岛开逛，风帆石</p>
+<p><strong>12:00</strong> 船上午饭</p>
+<p><strong>13:00</strong> 浮潜</p>
+<p><strong>14:00</strong> 第二次浮潜</p>
+<p><strong>15:00</strong> 回程</p>
+<p><strong>17:00</strong> 晚饭，返回住所</p>
+<p><strong>21:00</strong> 酒店外卖（下雨了）</p>
+<h2><span id="1212-friday">12.12 Friday</span></h2>
+<p>更换酒店到卡塔海滩附近山尖上的The SIS Kata Resort</p>
+<p>中午去吃饭，然后马杀鸡</p>
+<p>和hr聊offer</p>
+<p>泰国麦当劳</p>
+<p>晚上小夜市，水果摊</p>
+<h2><span id="1213-saturday">12.13 Saturday</span></h2>
+<p>早上对海吃早饭</p>
+<p>中午去的普吉镇，牛逼面条</p>
+<p>意大利大披萨</p>
+<h2><span id="1214-sunday">12.14 Sunday</span></h2>
+<p>对海吃早饭</p>
+<p>马杀鸡</p>
+<p>悬崖咖啡厅</p>
+<p>搬到奈阳海滩，贝拉那拉奈阳海滩酒店</p>
+<p>晚上吃了冬阴功泡西伯利亚饺子</p>
+<h2><span id="1215-monday">12.15 Monday</span></h2>
+<p>上午停电</p>
+<p>中午吃饭，然后马杀鸡</p>
+<p>海滩躺到3点，去机场</p>
+<p>没事干，继续马杀鸡</p>
+<p>飞回北京</p>
+<h1><span id="%E9%A6%99%E6%B8%AF">香港</span></h1>
+<h2><span id="1218">12.18</span></h2>
+<p>飞往香港，雾霾晚点</p>
+<p>17:00 到香港酒店
+19:00 尖沙咀吃饭
+19:30 买小米音箱
+20:00 维多利亚港
+21:00 坐地铁去香港岛，紫金广场</p>
+<h2><span id="1219">12.19</span></h2>
+<p>（我没起床，爸妈去的）
+8:30 星光大道
+9:00 维多利亚港白日
+9:30 华嫂茶室吃早饭
+（我起来了）
+10:30 酒店楼顶
+12:00 中行香港</p>
+<p>13:00 天星小轮跨海前往港岛
+14:00 太平山顶
+15:30 山顶缆车下山、中环
+16:00 地铁回酒店，取行李去高铁站
+17:00 高铁没坐上，去坐大巴到口岸
+19:00 抵达深圳</p>
+<h2><span id="1220">12.20</span></h2>
+<p>10:30 点都德早茶
+14:00 蛇口港坐船
+16:00 九洲港，打车到珠海酒店
+18:00 出去吃饭</p>
+<h2><span id="1221">12.21</span></h2>
+<p>9:00 前往澳门
+10:00 大三巴（途径议事厅、玫瑰圣母堂）
+12:00 新葡京、葡京、美高美，永利澳门几个大赌场
+14:00 威尼斯人、巴黎人、伦敦人、永利皇宫
+17:00 官也街
+19:00 横琴口岸离奥</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/26/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/%E7%A6%BB%E8%81%8C%E6%97%85%E8%A1%8C%E8%AE%A1%E5%88%92/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;26&#x2F;日常记录&#x2F;离职旅行计划&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;26&#x2F;日常记录&#x2F;离职旅行计划&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

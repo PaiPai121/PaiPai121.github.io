@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> c++基本知识记录 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/deliciousindungeon.webp"
+				data-sizes="auto"
+				alt="c++基本知识记录"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>c++基本知识记录</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年09月10日</a>
+			<a><i class="kirafont icon-edit-fill"></i>9.1k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 41 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><pre><code>+ [标准库函数std::move()](#%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0stdmove)
+</code></pre>
+<ul>
+<li><a href="#%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0stdstoll">标准库函数<code>std::stoll</code></a></li>
+<li><a href="#%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8">成员初始化列表</a></li>
+<li><a href="#emplace_back">emplace_back</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84const%E5%85%B3%E9%94%AE%E5%AD%97">函数的const关键字</a></li>
+<li><a href="#this%E6%8C%87%E9%92%88">this指针</a></li>
+<li><a href="#lambda%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">lambda函数的作用域</a></li>
+<li><a href="#%E5%85%B1%E4%BA%AB%E6%8C%87%E9%92%88">共享指针</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9E%8Bopenmp-%E4%B8%8E-%E7%BA%BF%E7%A8%8B%E6%B1%A0">多线程实现的两种主要模型：OpenMP 与 线程池</a>
+<ul>
+<li><a href="#1-fork-join-%E6%A8%A1%E5%9E%8B-%E4%BB%A5-openmp-%E4%B8%BA%E4%BE%8B">1. Fork-Join 模型 (以 OpenMP 为例)</a>
+<ul>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81">核心特征</a></li>
+<li><a href="#c-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-openmp">C++ 示例代码 (OpenMP)</a></li>
+</ul>
+</li>
+<li><a href="#2-worker-queue-%E6%A8%A1%E5%9E%8B-%E4%BB%A5%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%BA%E4%BE%8B">2. Worker-Queue 模型 (以线程池为例)</a>
+<ul>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-1">核心思想</a></li>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-1">工作流程</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81-1">核心特征</a></li>
+<li><a href="#c-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-%E7%AE%80%E6%98%93%E7%BA%BF%E7%A8%8B%E6%B1%A0">C++ 示例代码 (简易线程池)</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94">总结对比</a></li>
+</ul>
+</li>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+<li><a href="#c-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88-shared_ptr-%E4%B8%8E-weak_ptr-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90">C++ 智能指针: <code>shared_ptr</code> 与 <code>weak_ptr</code> 深度解析</a>
+<ul>
+<li><a href="#1-stdshared_ptr-%E5%85%B1%E4%BA%AB%E6%8C%87%E9%92%88">1. <code>std::shared_ptr</code> (共享指针)</a>
+<ul>
+<li><a href="#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0">它是如何工作的？(引用计数)</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAstdmake_shared">如何创建？(<code>std::make_shared</code>)</a></li>
+</ul>
+</li>
+<li><a href="#2-shared_ptr-%E7%9A%84%E9%98%BF%E5%96%80%E7%90%89%E6%96%AF%E4%B9%8B%E8%B8%B5%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8">2. <code>shared_ptr</code> 的“阿喀琉斯之踵”：循环引用</a>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89">问题定义</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%99%B7%E9%98%B1-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%A4%BA%E4%BE%8B">代码陷阱 (内存泄漏示例)</a></li>
+</ul>
+</li>
+<li><a href="#3-stdweak_ptr-%E5%BC%B1%E6%8C%87%E9%92%88---%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">3. <code>std::weak_ptr</code> (弱指针) - 解决方案</a>
+<ul>
+<li><a href="#%E6%98%AF%E4%BB%80%E4%B9%88">是什么？</a></li>
+<li><a href="#weak_ptr-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%94%A8%E6%B3%95lock"><code>weak_ptr</code> 的核心用法：<code>lock()</code></a></li>
+</ul>
+</li>
+<li><a href="#4-%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94">4. 总结对比</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8weak-ptr">如何使用weak ptr</a>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88lock-%E6%96%B9%E6%B3%95">解决方案：<code>lock()</code> 方法</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5-%E5%B9%B6-%E4%BD%BF%E7%94%A8%E7%9A%84%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F">“检查-并-使用”的标准模式</a></li>
+</ul>
+</li>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7%E7%8B%AC%E5%8D%A0%E8%BD%BB%E9%87%8F%E5%8F%AF%E7%A7%BB%E5%8A%A8">1. 核心特性：独占、轻量、可移动</a>
+<ul>
+<li><a href="#1-%E7%8B%AC%E5%8D%A0%E6%89%80%E6%9C%89%E6%9D%83-exclusive-ownership">1. 独占所有权 (Exclusive Ownership)</a></li>
+<li><a href="#2-%E8%BD%BB%E9%87%8F%E7%BA%A7-lightweight">2. 轻量级 (Lightweight)</a></li>
+<li><a href="#3-%E4%B8%8D%E5%8F%AF%E5%A4%8D%E5%88%B6%E4%BD%86%E5%8F%AF%E7%A7%BB%E5%8A%A8-non-copyable-movable">3. 不可复制，但可移动 (Non-Copyable, Movable)</a></li>
+</ul>
+</li>
+<li><a href="#2-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8">2. 如何创建与使用</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAstdmake_unique">如何创建？(<code>std::make_unique</code>)</a></li>
+</ul>
+</li>
+<li><a href="#4-unique_ptr-vs-shared_ptr">4. <code>unique_ptr</code> vs <code>shared_ptr</code></a></li>
+<li><a href="#5-%E6%80%BB%E7%BB%93%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8">5. 总结：何时使用？</a></li>
+</ul>
+</li>
+<li><a href="#%E9%99%84%E5%BD%95c-%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E7%BC%96%E5%86%99%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">附录：C++ 何时需要手动编写拷贝构造函数？</a>
+<ul>
+<li><a href="#%E6%A0%B8%E5%BF%83%E7%AD%94%E6%A1%88%E5%BD%93%E7%B1%BB%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E6%97%B6">核心答案：当类需要手动管理资源时</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%BB%98%E8%AE%A4%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8D%E8%A1%8C">为什么默认拷贝构造函数不行？</a>
+<ul>
+<li><a href="#1-%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E6%B5%85%E6%8B%B7%E8%B4%9D-shallow-copy">1. 默认行为：“浅拷贝” (Shallow Copy)</a></li>
+<li><a href="#2-%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98">2. “浅拷贝”引发的问题</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%B7%B1%E6%8B%B7%E8%B4%9D-deep-copy">解决方案：“深拷贝” (Deep Copy)</a></li>
+<li><a href="#%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E4%B8%89%E4%BA%94%E6%B3%95%E5%88%99-the-rule-of-threefive">关键概念：“三/五法则” (The Rule of Three/Five)</a></li>
+<li><a href="#%E7%8E%B0%E4%BB%A3c%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E9%9B%B6%E6%B3%95%E5%88%99-the-rule-of-zero">现代C++最佳实践：“零法则” (The Rule of Zero)</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h3><span id="%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0stdmove">标准库函数std::move()</span></h3>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::<span class="hljs-built_in">move</span>()<br><br><br><span class="hljs-comment">// 头文件定义为</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">typename</span> std::remove_reference&lt;T&gt;::<span class="hljs-function">type&amp;&amp; <span class="hljs-title">move</span><span class="hljs-params">(T&amp;&amp; t)</span> <span class="hljs-keyword">noexcept</span></span>;<br><br></code></pre></td></tr></tbody></table></figure>
+<p><code>std::move</code>&nbsp;接受一个参数，并将其转换为右值引用。右值引用是绑定到临时对象的引用，它们可以用来指示资源的移动而不是复制。</p>
+<ol>
+<li><strong>返回局部对象</strong>：‌当函数需要返回一个局部对象时，‌使用std::move可以避免拷贝操作，‌直接返回对象的资源，‌从而提高性能。‌</li>
+<li><strong>传递临时对象</strong>：‌当需要将一个临时对象传递给另一个作用域时，‌使用std::move可以优化资源的转移，‌避免不必要的拷贝。‌</li>
+<li><strong>容器操作</strong>：‌在STL容器中操作时，‌使用std::move可以避免在插入或移动元素时发生的大量拷贝操作，‌从而提高容器操作的效率。‌
+例如</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> path = <span class="hljs-built_in">Path</span>(std::<span class="hljs-built_in">move</span>(LaneSemgent), <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">120</span>, ego_pose);<br></code></pre></td></tr></tbody></table></figure>
+<p>可以将LaneSemgent临时实现Path的实例化，减少资源开销。</p>
+<h2><span id="%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0stdstoll">标准库函数<code>std::stoll</code></span></h2>
+<p>C++ 标准库中的一个函数，用于将字符串转换为&nbsp;<code>long long</code>&nbsp;类型的整数。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ std::string str = <span class="hljs-string">"123456789012345"</span>; <br>			 <span class="hljs-type">long</span> <span class="hljs-type">long</span> num = std::<span class="hljs-built_in">stoll</span>(str); std::cout &lt;&lt; <span class="hljs-string">"转换后的数字是: "</span> &lt;&lt; num &lt;&lt; std::endl; <br>			 <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8">成员初始化列表</span></h2>
+<p>在C++中，构造函数名称后面跟着的冒号 (<code>:</code>) 是用来引入成员初始化列表（Member Initialization List）的。成员初始化列表是用来初始化类中的成员变量的一种方式，特别是当这些成员变量是引用或常量时，或者是其他需要通过构造函数来初始化的类对象时。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BezierCurve</span> {<br>	<br>	<span class="hljs-keyword">public</span>:<br>	<br>		<span class="hljs-built_in">BezierCurve</span>(<span class="hljs-type">const</span> std::vector&lt;Vec2d&gt;&amp; control_points)<br>		<br>		: <span class="hljs-built_in">control_points_</span>(control_points) {<br>		<br>			<span class="hljs-keyword">if</span> (control_points_.<span class="hljs-built_in">size</span>() &lt; <span class="hljs-number">2</span>) {<br>			<br>				<span class="hljs-keyword">return</span>;<br>			<br>			}<br>			<br>			<span class="hljs-type">double</span> delta_x = control_points_.<span class="hljs-built_in">back</span>().<span class="hljs-built_in">x</span>() - control_points_.<span class="hljs-built_in">front</span>().<span class="hljs-built_in">x</span>();<br>			<br>			<span class="hljs-type">double</span> delta_y = control_points_.<span class="hljs-built_in">back</span>().<span class="hljs-built_in">y</span>() - control_points_.<span class="hljs-built_in">front</span>().<span class="hljs-built_in">y</span>();<br>			<br>			distance_ =<br>			<br>			std::<span class="hljs-built_in">sqrt</span>(delta_x * delta_x + delta_y * delta_y); <span class="hljs-comment">// 起点和终点的距离</span><br>		<br>		}<br>......<br></code></pre></td></tr></tbody></table></figure>
+<p>这里的&nbsp;<code>: control_points_(control_points)</code>&nbsp;表示使用传入的&nbsp;<code>control_points</code>&nbsp;参数来直接初始化成员变量&nbsp;<code>control_points_</code>。冒号后面的部分是在构造函数执行之前发生的成员变量的直接初始化。</p>
+<h2><span id="emplace_back">emplace_back</span></h2>
+<p><code>emplace_back</code>&nbsp;是 C++11 中引入的一个&nbsp;<code>std::vector</code>&nbsp;容器的成员函数，它用于在容器的末尾直接构造一个元素。与&nbsp;<code>push_back</code>&nbsp;不同，<code>emplace_back</code>&nbsp;允许你直接在容器内存中构造对象，而不需要创建一个临时对象然后再复制或移动它到容器中。</p>
+<ol>
+<li>
+<p><strong>直接构造</strong>：<code>emplace_back</code>&nbsp;使用提供的参数直接在容器末尾构造元素，这通常通过调用元素的构造函数来实现。</p>
+</li>
+<li>
+<p><strong>性能优势</strong>：由于避免了临时对象的创建、复制或移动，<code>emplace_back</code>&nbsp;可以在某些情况下提供更好的性能，尤其是当构造的对象类型不支持移动操作，或者移动操作的开销较大时。</p>
+</li>
+<li>
+<p><strong>参数转发</strong>：<code>emplace_back</code>&nbsp;支持完美转发，这意味着它可以接受任意类型的参数，并将其正确地转发给元素的构造函数。</p>
+</li>
+<li>
+<p><strong>用法</strong>：<code>emplace_back</code>&nbsp;的用法与&nbsp;<code>push_back</code>&nbsp;类似，但是它使用构造函数参数而不是一个已经存在的对象。</p>
+</li>
+</ol>
+<h2><span id="%E5%87%BD%E6%95%B0%E7%9A%84const%E5%85%B3%E9%94%AE%E5%AD%97">函数的const关键字</span></h2>
+<p>在C++中，函数定义中的<code>const</code>关键字放在参数列表之后，表示该函数承诺不会修改类的成员变量（也称为成员属性）。在您提供的函数签名<code>bool Path::GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const</code>中，<code>const</code>关键字的具体含义如下：</p>
+<ul>
+<li>
+<p><code>const Vec2d&amp; point</code>：表示<code>point</code>参数是一个对常量的引用，这意味着函数内部不能修改<code>point</code>引用的值。</p>
+</li>
+<li>
+<p><code>double* accumulate_s</code>：表示<code>accumulate_s</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>double* lateral</code>：表示<code>lateral</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>double* min_distance</code>：表示<code>min_distance</code>是一个指向<code>double</code>类型的指针，函数可以修改通过这个指针所指向的值。</p>
+</li>
+<li>
+<p><code>const</code>：位于参数列表之后，表示<code>GetProjection</code>是一个常成员函数（也称为“不变成员函数”），意味着在执行过程中，该函数不会修改任何类的成员变量。</p>
+</li>
+</ul>
+<p>简而言之，<code>const</code>关键字在函数参数列表之后的使用，是为了保证调用该函数不会对对象的状态（成员变量）造成任何改变。这是面向对象编程中封装性和不变性的一个重要方面。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// GetProjection是一个常成员函数，它不会修改Path对象的任何成员变量 bool GetProjection(const Vec2d&amp; point, double* accumulate_s, double* lateral, double* min_distance) const { // 函数体，可以读取成员变量，但不能修改它们 // ... }</span><br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="this%E6%8C%87%E9%92%88">this指针</span></h2>
+<p>在C++中，<code>this</code>指针是一个隐式的指针，它指向当前对象的实例。当你调用一个类的成员函数时，<code>this</code>指针指向当前对象的实例。这个指针在类的方法和构造函数中都是可用的，并且是唯一的，因为它是当前对象的指针。</p>
+<p><code>this</code>指针的类型是<code>const T*</code>，其中<code>T</code>是当前类的类型。这意味着你可以通过<code>this</code>指针来访问类的成员变量和方法。
+（类似于python中的self）</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-type">int</span> member;<br><br>  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMember</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>{<br>    <span class="hljs-keyword">this</span>-&gt;member = value;<br>  }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="lambda%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">lambda函数的作用域</span></h2>
+<p>Lambda函数的作用域是指在lambda表达式中可以访问的变量和函数的范围。Lambda函数的作用域可以分为以下几种：</p>
+<ol>
+<li>
+<p><strong>全局作用域</strong>：</p>
+<ul>
+<li>在lambda表达式中，可以访问全局作用域中的变量和函数。</li>
+<li>全局作用域是指在lambda表达式定义的外部作用域。</li>
+</ul>
+</li>
+<li>
+<p><strong>局部作用域</strong>：</p>
+<ul>
+<li>在lambda表达式中，可以访问局部作用域中的变量和函数。</li>
+<li>局部作用域是指在lambda表达式定义的内部作用域。</li>
+</ul>
+</li>
+<li>
+<p><strong>捕获作用域</strong>：</p>
+<ul>
+<li>在lambda表达式中，可以使用捕获列表捕获局部作用域中的变量。</li>
+<li>捕获作用域是指在lambda表达式定义时，通过捕获列表捕获的变量和函数的作用域。</li>
+</ul>
+</li>
+</ol>
+<p>捕获列表用于指定lambda表达式中可以访问的变量和函数。捕获列表可以包含三种捕获方式：</p>
+<ol>
+<li>
+<p><strong>值捕获（By Value）</strong>：</p>
+<ul>
+<li>将局部变量的值复制到lambda表达式内部。</li>
+<li>例如：<code>[x](int y) { return x + y; }</code></li>
+</ul>
+</li>
+<li>
+<p><strong>引用捕获（By Reference）</strong>：</p>
+<ul>
+<li>将局部变量的引用传递到lambda表达式内部。</li>
+<li>例如：<code>[&amp;x](int y) { return x + y; }</code></li>
+</ul>
+</li>
+<li>
+<p><strong>捕获列表（Capture List）</strong>：</p>
+<ul>
+<li>指定要捕获的变量和它们的捕获方式。</li>
+<li>例如：<code>[x, &amp;y](int z) { return x + y + z; }</code></li>
+</ul>
+</li>
+</ol>
+<p>在lambda表达式内部，可以按照捕获列表中的指定方式访问捕获的变量。如果捕获列表中没有指定要捕获的变量，那么lambda表达式内部不能访问局部作用域中的变量。</p>
+<p>如果你在lambda表达式中捕获了<code>this</code>指针，那么你就可以直接访问对象的各个成员。<code>this</code>指针是一个隐式的指针，它指向当前对象的实例。在lambda表达式中捕获<code>this</code>指针意味着你可以在lambda内部访问和修改当前对象的成员变量和方法。</p>
+<h2><span id="%E5%85%B1%E4%BA%AB%E6%8C%87%E9%92%88">共享指针</span></h2>
+<p>共享指针（Shared Pointer）是C++11标准库中引入的一种智能指针，用于实现共享所有权的概念。在C++中，共享指针是通过<code>&lt;memory&gt;</code>头文件中的<code>std::shared_ptr</code>类模板实现的。共享指针的主要特点是多个共享指针可以指向同一个对象，并且这个对象会在最后一个共享指针被销毁或重置时自动销毁。</p>
+<p>以下是共享指针的详细介绍：</p>
+<h3><span id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</span></h3>
+<ul>
+<li><strong>所有权共享</strong>：多个<code>shared_ptr</code>实例可以共享对同一个对象的引用。每个<code>shared_ptr</code>都有一个关联的引用计数器，用于跟踪有多少个<code>shared_ptr</code>实例指向同一个对象。</li>
+<li><strong>自动内存管理</strong>：当最后一个指向对象的<code>shared_ptr</code>被销毁或重置时，对象也会被自动销毁，通常是调用对象的析构函数。</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><br><span class="hljs-comment">// 使用默认构造函数</span><br>std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; ptr1;<br><br><span class="hljs-comment">// 使用new表达式</span><br><span class="hljs-function">std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>(<span class="hljs-number">10</span>))</span></span>;<br><br><span class="hljs-comment">// 使用make_shared函数，这是更推荐的方式，因为它可以减少内存分配的次数</span><br>std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; ptr3 = std::<span class="hljs-built_in">make_shared</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">20</span>);<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++">ptr3.<span class="hljs-built_in">reset</span>(); <span class="hljs-comment">// 重置指针，对象将被销毁（如果这是最后一个指向它的指针）</span><br>ptr3.<span class="hljs-built_in">reset</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">40</span>)); <span class="hljs-comment">// 重置指针，指向新的对象</span><br><br><span class="hljs-type">size_t</span> count = ptr2.<span class="hljs-built_in">use_count</span>(); <span class="hljs-comment">// 获取引用计数</span><br><span class="hljs-type">bool</span> isUnique = ptr2.<span class="hljs-built_in">unique</span>(); <span class="hljs-comment">// 检查是否是唯一指针</span><br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">注意事项</span></h3>
+<ul>
+<li><strong>循环引用</strong>：当两个或多个对象通过共享指针相互引用时，可能会发生循环引用，导致内存泄漏。为了解决这个问题，可以使用弱共享指针（<code>std::weak_ptr</code>）。</li>
+<li><strong>性能开销</strong>：共享指针比原始指针更大，因为它们需要额外的空间来存储引用计数和控制块。此外，引用计数的增加和减少可能会引入性能开销。</li>
+</ul>
+<h1><span id="%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9E%8Bopenmp-%E4%B8%8E-%E7%BA%BF%E7%A8%8B%E6%B1%A0">多线程实现的两种主要模型：OpenMP 与 线程池</span></h1>
+<p>在并发编程中，"多线程"是一个宽泛的概念。如何管理和调度这些线程，决定了你的程序性能和架构。我们主要讨论两种最常见的模型：</p>
+<ol>
+<li><strong>Fork-Join (分叉-汇合) 模型</strong>：以 <strong>OpenMP</strong> 为典型代表。</li>
+<li><strong>Worker-Queue (工作者-队列) 模型</strong>：以<strong>线程池 (Thread Pool)</strong> 为典型代表。</li>
+</ol>
+<hr>
+<h2><span id="1-fork-join-%E6%A8%A1%E5%9E%8B-%E4%BB%A5-openmp-%E4%B8%BA%E4%BE%8B">1. Fork-Join 模型 (以 OpenMP 为例)</span></h2>
+<p>这种模型可以被比喻为一个**“临时项目组”**。</p>
+<h3><span id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</span></h3>
+<p>当程序运行到一个需要并行的繁重任务（如一个大循环）时，主线程会“分叉”(Fork)，<strong>临时创建或唤醒</strong>一个线程团队来分担工作。当任务完成后，所有线程“汇合”(Join)，临时线程被销毁或休眠，只留下主线程继续执行。</p>
+<h3><span id="%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程</span></h3>
+<ol>
+<li><strong>分叉 (Fork)</strong>：主线程遇到 <code>#pragma omp parallel</code> 指令。</li>
+<li><strong>并行工作 (Work)</strong>：一个线程团队（包括主线程）被创建，并共同执行 <code>parallel</code> 区域内的代码。<code>#pragma omp for</code> 会自动将循环任务分配给团队成员。</li>
+<li><strong>汇合 (Join)</strong>：所有线程完成工作后，在并行区域的末尾同步。</li>
+<li><strong>销毁 (Destroy)</strong>：临时线程被销毁或挂起，主线程继续执行后续代码。</li>
+</ol>
+<h3><span id="%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81">核心特征</span></h3>
+<ul>
+<li><strong>高层抽象</strong>：使用简单，开发者无需手动管理线程的创建、同步和销毁，只需通过 <code>#pragma</code> 指令告诉编译器“哪里需要并行”。</li>
+<li><strong>线程生命周期短</strong>：线程的生命周期与并行区域绑定，开销相对较高（尽管现代 OpenMP 运行时会尝试复用线程以降低开销）。</li>
+<li><strong>适用场景</strong>：<strong>数据并行 (Data Parallelism)</strong>。非常适合对数组、循环等数据结构进行密集的、可预测的计算。例如：科学计算、图像处理、矩阵运算。</li>
+<li><strong>开销</strong>：每次进入和退出并行区域都有一定的调度开销。</li>
+</ul>
+<h3><span id="c-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-openmp">C++ 示例代码 (OpenMP)</span></h3>
+<p>这个例子展示了如何使用 OpenMP 并行化一个 <code>for</code> 循环来计算数组中所有元素的平方和。</p>
+<blockquote>
+<p><strong>注意</strong>：编译时需要开启 OpenMP 支持。</p>
+<ul>
+<li><strong>GCC/Clang</strong>: <code>g++ -fopenmp your_file.cpp</code></li>
+<li><strong>MSVC (Visual Studio)</strong>: <code>/openmp</code></li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;omp.h&gt;</span> <span class="hljs-comment">// 引入 OpenMP 头文件</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;numeric&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">// 设置使用 4 个线程</span><br>    <span class="hljs-built_in">omp_set_num_threads</span>(<span class="hljs-number">4</span>);<br><br>    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">data</span><span class="hljs-params">(<span class="hljs-number">1000000</span>)</span></span>;<br>    <span class="hljs-comment">// 初始化数据</span><br>    std::<span class="hljs-built_in">iota</span>(data.<span class="hljs-built_in">begin</span>(), data.<span class="hljs-built_in">end</span>(), <span class="hljs-number">1</span>); <br>    <br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> total_sum = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-type">double</span> start_time = <span class="hljs-built_in">omp_get_wtime</span>();<br><br>    <span class="hljs-comment">// Fork-Join 模型的开始</span><br>    <span class="hljs-comment">// #pragma omp parallel: 启动一个临时线程团队</span><br>    <span class="hljs-comment">// #pragma omp for: 将下面的 for 循环自动分配给团队中的线程</span><br>    <span class="hljs-comment">// reduction(+:total_sum): </span><br>    <span class="hljs-comment">//   每个线程会计算一个局部的 sum，</span><br>    <span class="hljs-comment">//   在汇合(Join)时，OpenMP 会自动将所有局部 sum 安全地相加到 total_sum</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">pragma</span> omp parallel for reduction(+:total_sum)</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; data.<span class="hljs-built_in">size</span>(); ++i) {<br>        <span class="hljs-comment">// 每个线程计算一部分数据的平方</span><br>        total_sum += (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)data[i] * data[i];<br>    }<br>    <span class="hljs-comment">// Fork-Join 模型的结束 (隐含的 Join)</span><br><br>    <span class="hljs-type">double</span> end_time = <span class="hljs-built_in">omp_get_wtime</span>();<br><br>    std::cout &lt;&lt; <span class="hljs-string">"OpenMP (Fork-Join) 模式"</span> &lt;&lt; std::endl;<br>    std::cout &lt;&lt; <span class="hljs-string">"计算完成，总和: "</span> &lt;&lt; total_sum &lt;&lt; std::endl;<br>    std::cout &lt;&lt; <span class="hljs-string">"耗时: "</span> &lt;&lt; (end_time - start_time) * <span class="hljs-number">1000</span> &lt;&lt; <span class="hljs-string">" ms"</span> &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>其他案例</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-1.png" alt="alt text" class="lazyload"></p>
+<h2><span id="2-worker-queue-%E6%A8%A1%E5%9E%8B-%E4%BB%A5%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%BA%E4%BE%8B">2. Worker-Queue 模型 (以线程池为例)</span></h2>
+<p>这种模型可以被比喻为一支**“常驻服务团队”**。</p>
+<h3><span id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</span></h3>
+<p>程序启动时，<strong>一次性创建</strong>固定数量的“工作者”线程，让它们“常驻”并进入休眠。当有新任务时，主线程（或任何线程）将任务（一个函数或闭包）提交到一个<strong>公共的“任务队列”<strong>中。工作者线程被唤醒，从队列中取出任务并执行。执行完毕后，它们</strong>不会被销毁</strong>，而是返回队列旁继续等待下一个任务。</p>
+<h3><span id="%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程</span></h3>
+<ol>
+<li><strong>初始化 (Initialize)</strong>：程序启动时，创建固定数量的线程。</li>
+<li><strong>等待 (Wait)</strong>：所有线程阻塞，等待“任务队列”中出现新任务。</li>
+<li><strong>提交 (Submit)</strong>：主线程将一个“任务”打包（如 <code>std::function</code>）并放入队列。</li>
+<li><strong>执行 (Execute)</strong>：一个空闲的工作者线程被唤醒，从队列中取出任务并执行。</li>
+<li><strong>复用 (Reuse)</strong>：任务执行完毕后，线程<strong>不会销毁</strong>，而是返回第 2 步，继续等待新任务。</li>
+</ol>
+<h3><span id="%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81">核心特征</span></h3>
+<ul>
+<li><strong>低层抽象</strong>：通常需要自己实现（或使用库），必须手动处理任务队列、线程同步（互斥锁、条件变量）等细节。</li>
+<li><strong>线程生命周期长</strong>：线程在程序生命周期内<strong>持久存在</strong>，被反复利用。</li>
+<li><strong>适用场景</strong>：<strong>任务并行 (Task Parallelism)</strong>。非常适合处理大量、零散、并发的“小任务”，特别是 I/O 密集型操作。例如：Web 服务器处理 HTTP 请求、异步日志记录、文件批量处理。</li>
+<li><strong>开销</strong>：<strong>任务提交开销极低</strong>。避免了反复创建和销毁线程的系统开销，响应速度非常快。</li>
+</ul>
+<h3><span id="c-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-%E7%AE%80%E6%98%93%E7%BA%BF%E7%A8%8B%E6%B1%A0">C++ 示例代码 (简易线程池)</span></h3>
+<p>这是一个使用 C++11/14/17 特性（<code>std::thread</code>, <code>std::mutex</code>, <code>std::condition_variable</code>）实现的<strong>最小化</strong>线程池。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;queue&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;thread&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;condition_variable&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;functional&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;chrono&gt;</span></span><br><br><span class="hljs-comment">// 一个极简的线程池实现</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadPool</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 构造函数：创建指定数量的线程</span><br>    <span class="hljs-built_in">ThreadPool</span>(<span class="hljs-type">size_t</span> numThreads) : <span class="hljs-built_in">stop</span>(<span class="hljs-literal">false</span>) {<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; numThreads; ++i) {<br>            <span class="hljs-comment">// 创建工作者线程</span><br>            workers.<span class="hljs-built_in">emplace_back</span>([<span class="hljs-keyword">this</span>] {<br>                <span class="hljs-comment">// 线程的循环</span><br>                <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {<br>                    std::function&lt;<span class="hljs-built_in">void</span>()&gt; task;<br>                    {<br>                        <span class="hljs-comment">// 1. 等待任务</span><br>                        std::unique_lock&lt;std::mutex&gt; <span class="hljs-built_in">lock</span>(<span class="hljs-keyword">this</span>-&gt;queue_mutex);<br>                        <span class="hljs-comment">// 当队列为空且线程池未停止时，线程在此阻塞</span><br>                        <span class="hljs-keyword">this</span>-&gt;condition.<span class="hljs-built_in">wait</span>(lock, [<span class="hljs-keyword">this</span>] {<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;stop || !<span class="hljs-keyword">this</span>-&gt;tasks.<span class="hljs-built_in">empty</span>();<br>                        });<br><br>                        <span class="hljs-comment">// 如果线程池停止且队列为空，则退出线程</span><br>                        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;stop &amp;&amp; <span class="hljs-keyword">this</span>-&gt;tasks.<span class="hljs-built_in">empty</span>()) {<br>                            <span class="hljs-keyword">return</span>;<br>                        }<br><br>                        <span class="hljs-comment">// 2. 取出任务</span><br>                        task = std::<span class="hljs-built_in">move</span>(<span class="hljs-keyword">this</span>-&gt;tasks.<span class="hljs-built_in">front</span>());<br>                        <span class="hljs-keyword">this</span>-&gt;tasks.<span class="hljs-built_in">pop</span>();<br>                    }<br>                    <span class="hljs-comment">// 3. 执行任务 (锁已释放)</span><br>                    <span class="hljs-built_in">task</span>();<br>                }<br>            });<br>        }<br>    }<br><br>    <span class="hljs-comment">// 析构函数：停止并加入所有线程</span><br>    ~<span class="hljs-built_in">ThreadPool</span>() {<br>        {<br>            <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(queue_mutex)</span></span>;<br>            stop = <span class="hljs-literal">true</span>;<br>        }<br>        <span class="hljs-comment">// 唤醒所有正在等待的线程</span><br>        condition.<span class="hljs-built_in">notify_all</span>();<br>        <span class="hljs-comment">// 等待所有线程执行完毕后退出</span><br>        <span class="hljs-keyword">for</span> (std::thread &amp;worker : workers) {<br>            worker.<span class="hljs-built_in">join</span>();<br>        }<br>    }<br><br>    <span class="hljs-comment">// 提交任务到队列</span><br>    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> F&gt;</span><br><span class="hljs-function">    <span class="hljs-type">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(F&amp;&amp; f)</span> </span>{<br>        {<br>            <span class="hljs-function">std::unique_lock&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(queue_mutex)</span></span>;<br>            <span class="hljs-comment">// 不要在停止后添加任务</span><br>            <span class="hljs-keyword">if</span> (stop) {<br>                <span class="hljs-keyword">throw</span> std::<span class="hljs-built_in">runtime_error</span>(<span class="hljs-string">"enqueue on stopped ThreadPool"</span>);<br>            }<br>            tasks.<span class="hljs-built_in">emplace</span>(std::forward&lt;F&gt;(f));<br>        }<br>        <span class="hljs-comment">// 唤醒一个正在等待的线程</span><br>        condition.<span class="hljs-built_in">notify_one</span>();<br>    }<br><br><span class="hljs-keyword">private</span>:<br>    std::vector&lt;std::thread&gt; workers;         <span class="hljs-comment">// 常驻的线程</span><br>    std::queue&lt;std::function&lt;<span class="hljs-type">void</span>()&gt;&gt; tasks; <span class="hljs-comment">// 任务队列</span><br><br>    std::mutex queue_mutex;<br>    std::condition_variable condition;<br>    <span class="hljs-type">bool</span> stop; <span class="hljs-comment">// 停止标志</span><br>};<br><br><span class="hljs-comment">// --- 使用线程池 ---</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-comment">// 1. 初始化：一次性创建 4 个常驻线程</span><br>    <span class="hljs-function">ThreadPool <span class="hljs-title">pool</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span></span>;<br><br>    std::cout &lt;&lt; <span class="hljs-string">"ThreadPool (Worker-Queue) 模式"</span> &lt;&lt; std::endl;<br>    std::cout &lt;&lt; <span class="hljs-string">"提交 10 个任务到线程池..."</span> &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i) {<br>        <span class="hljs-comment">// 2. 提交任务：开销极低</span><br>        pool.<span class="hljs-built_in">enqueue</span>([i] {<br>            std::cout &lt;&lt; <span class="hljs-string">"  任务 "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" 开始 (线程 "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">")"</span> &lt;&lt; std::endl;<br>            <span class="hljs-comment">// 模拟耗时工作</span><br>            std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">500</span>));<br>            std::cout &lt;&lt; <span class="hljs-string">"  任务 "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" 完成 (线程 "</span> &lt;&lt; std::this_thread::<span class="hljs-built_in">get_id</span>() &lt;&lt; <span class="hljs-string">")"</span> &lt;&lt; std::endl;<br>        });<br>    }<br><br>    <span class="hljs-comment">// 主线程可以做其他事情...</span><br>    std::cout &lt;&lt; <span class="hljs-string">"主线程等待 3 秒后退出..."</span> &lt;&lt; std::endl;<br>    std::this_thread::<span class="hljs-built_in">sleep_for</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">3</span>));<br><br>    <span class="hljs-comment">// 3. 销毁：当 pool 离开作用域时，析构函数会自动调用</span><br>    <span class="hljs-comment">// 它会等待所有已提交的任务执行完毕</span><br>    std::cout &lt;&lt; <span class="hljs-string">"程序退出，线程池销毁。"</span> &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<hr>
+<h2><span id="%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94">总结对比</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">Fork-Join (以 OpenMP 为例)</th>
+<th style="text-align:left">Worker-Queue (以线程池为例)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>线程生命周期</strong></td>
+<td style="text-align:left"><strong>临时的</strong> (与并行区域绑定)</td>
+<td style="text-align:left"><strong>持久的</strong> (在程序生命周期内复用)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核心思想</strong></td>
+<td style="text-align:left">“这段<strong>代码</strong>给我用多线程跑。”</td>
+<td style="text-align:left">“我有一堆<strong>任务</strong>，帮我找空闲线程跑。”</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>任务开销</strong></td>
+<td style="text-align:left"><strong>较高</strong> (线程创建/唤醒/销毁开销)</td>
+<td style="text-align:left"><strong>极低</strong> (仅入队和同步开销)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>适用场景</strong></td>
+<td style="text-align:left"><strong>数据并行</strong> (计算密集型) <br> (如：大循环, 科学计算)</td>
+<td style="text-align:left"><strong>任务并行</strong> (I/O密集型或异步) <br> (如：Web服务器, 处理并发请求)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>使用复杂度</strong></td>
+<td style="text-align:left"><strong>非常简单</strong> (编译器指令 <code>#pragma</code>)</td>
+<td style="text-align:left"><strong>相对复杂</strong> (需手动管理队列和同步)</td>
+</tr>
+</tbody>
+</table>
+<h1><span id="%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</span></h1>
+<p>好的，这是一份为你准备的关于 <code>std::shared_ptr</code> 和 <code>std::weak_ptr</code> 的深度解析 Markdown 文档。这份文档非常适合用于面试准备和技术复习。</p>
+<hr>
+<h1><span id="c-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88-shared_ptr-%E4%B8%8E-weak_ptr-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90">C++ 智能指针: <code>shared_ptr</code> 与 <code>weak_ptr</code> 深度解析</span></h1>
+<p>在 C++11 中，智能指针的引入是现代 C++ 内存管理的核心。<code>std::shared_ptr</code> 和 <code>std::weak_ptr</code> 旨在解决复杂的对象所有权和生命周期问题。本文将深度解析这两者的工作原理、核心用途以及它们如何协同解决 C++ 中最棘手的内存泄漏问题之一：<strong>循环引用</strong>。</p>
+<hr>
+<h2><span id="1-stdshared_ptr-%E5%85%B1%E4%BA%AB%E6%8C%87%E9%92%88">1. <code>std::shared_ptr</code> (共享指针)</span></h2>
+<p><code>shared_ptr</code> 是一种**“共享所有权”**的智能指针。它允许多个 <code>shared_ptr</code> 实例指向同一个内存对象。</p>
+<h3><span id="%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0">它是如何工作的？(引用计数)</span></h3>
+<p><code>shared_ptr</code> 的核心机制是<strong>引用计数 (Reference Counting)</strong>。</p>
+<ol>
+<li><strong>控制块 (Control Block):</strong> 当第一个 <code>shared_ptr</code> 被创建时（或通过 <code>std::make_shared</code>），它会在堆上额外分配一小块内存，称为“控制块”。这个控制块独立于被管理的对象。</li>
+<li><strong>强引用计数 (Strong Reference Count):</strong> 这是控制块中的一个整数，<code>use_count()</code> 返回的就是它。
+<ul>
+<li>当一个新的 <code>shared_ptr</code> 拷贝或赋值给另一个 <code>shared_ptr</code> 时，这个计数 <strong>+1</strong>。</li>
+<li>当一个 <code>shared_ptr</code> 被销毁（例如离开作用域）或指向其他对象时，这个计数 <strong>-1</strong>。</li>
+</ul>
+</li>
+<li><strong>自动销毁:</strong> 当强引用计数<strong>降至 0</strong> 时，意味着没有任何 <code>shared_ptr</code> 再指向该对象。此时，<code>shared_ptr</code> 会<strong>自动删除（<code>delete</code>）它所管理的对象</strong>，并随后释放控制块。</li>
+</ol>
+<h3><span id="%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAstdmake_shared">如何创建？(<code>std::make_shared</code>)</span></h3>
+<p>永远<strong>优先使用 <code>std::make_shared</code></strong> 来创建 <code>shared_ptr</code>，而不是 <code>new</code>。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 最佳实践：使用 std::make_shared</span><br>std::shared_ptr&lt;MyClass&gt; ptr1 = std::<span class="hljs-built_in">make_shared</span>&lt;MyClass&gt;();<br><br><span class="hljs-comment">// 不推荐：使用 new (性能较低且有异常安全风险)</span><br><span class="hljs-function">std::shared_ptr&lt;MyClass&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> MyClass())</span></span>;<br></code></pre></td></tr></tbody></table></figure>
+<p>为什么？ std::make_shared 只需要一次堆内存分配（同时为对象和控制块分配）。而 new 的方式需要两次堆内存分配（一次为 new MyClass()，一次为 shared_ptr 的控制块），这会带来性能开销和潜在的异常安全问题。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span> <span class="hljs-comment">// 包含智能指针头文件</span></span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Widget</span> {<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Widget</span>() { std::cout &lt;&lt; <span class="hljs-string">"[+] Widget 构造"</span> &lt;&lt; std::endl; }<br>    ~<span class="hljs-built_in">Widget</span>() { std::cout &lt;&lt; <span class="hljs-string">"[-] Widget 析构"</span> &lt;&lt; std::endl; }<br>};<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    std::shared_ptr&lt;Widget&gt; sp1; <span class="hljs-comment">// 空指针</span><br>    <br>    std::cout &lt;&lt; <span class="hljs-string">"--- 进入作用域 A ---"</span> &lt;&lt; std::endl;<br>    {<br>        std::shared_ptr&lt;Widget&gt; sp2 = std::<span class="hljs-built_in">make_shared</span>&lt;Widget&gt;();<br>        std::cout &lt;&lt; <span class="hljs-string">"sp2 引用计数: "</span> &lt;&lt; sp2.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 1</span><br><br>        sp1 = sp2; <span class="hljs-comment">// 拷贝赋值</span><br>        std::cout &lt;&lt; <span class="hljs-string">"sp1 引用计数: "</span> &lt;&lt; sp1.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 2</span><br>        std::cout &lt;&lt; <span class="hljs-string">"sp2 引用计数: "</span> &lt;&lt; sp2.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 2</span><br>    }<br>    std::cout &lt;&lt; <span class="hljs-string">"--- 离开作用域 A ---"</span> &lt;&lt; std::endl;<br>    <span class="hljs-comment">// sp2 离开作用域, 引用计数 -1</span><br><br>    std::cout &lt;&lt; <span class="hljs-string">"sp1 引用计数: "</span> &lt;&lt; sp1.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 1</span><br>    <br>    std::cout &lt;&lt; <span class="hljs-string">"--- main 即将结束 ---"</span> &lt;&lt; std::endl;<br>} <span class="hljs-comment">// sp1 离开作用域, 引用计数变为 0, Widget 对象在此处被析构</span><br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="2-shared_ptr-%E7%9A%84%E9%98%BF%E5%96%80%E7%90%89%E6%96%AF%E4%B9%8B%E8%B8%B5%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8">2. <code>shared_ptr</code> 的“阿喀琉斯之踵”：循环引用</span></h2>
+<p><code>shared_ptr</code> 如此强大，但它有一个致命缺陷：<strong>循环引用 (Circular Reference)</strong>。</p>
+<h3><span id="%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89">问题定义</span></h3>
+<p>当两个（或多个）对象通过 <code>shared_ptr</code> 相互指向对方，形成一个“引用闭环”时，它们的强引用计数将<strong>永远无法归零</strong>。</p>
+<ul>
+<li>对象 A 持有指向 B 的 <code>shared_ptr</code>。</li>
+<li>对象 B 持有指向 A 的 <code>shared_ptr</code>。</li>
+</ul>
+<p>A 的析构依赖 B 的析构（因为 A 持有 B），B 的析构也依赖 A 的析构（因为 B 持有 A）。这导致了一个死锁，两个对象的析构函数都永远不会被调用，造成<strong>内存泄漏</strong>。</p>
+<h3><span id="%E4%BB%A3%E7%A0%81%E9%99%B7%E9%98%B1-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%A4%BA%E4%BE%8B">代码陷阱 (内存泄漏示例)</span></h3>
+<p>让我们定义 <code>Person</code> 和 <code>Pet</code>，它们互相持有对方。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Pet</span>; <span class="hljs-comment">// 前向声明</span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> {<br>    std::string name;<br>    std::shared_ptr&lt;Pet&gt; pet; <span class="hljs-comment">// 持有 Pet</span><br><br>    <span class="hljs-built_in">Person</span>(<span class="hljs-type">const</span> std::string&amp; n) : <span class="hljs-built_in">name</span>(n) { std::cout &lt;&lt; <span class="hljs-string">"[+] Person 构造: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>    ~<span class="hljs-built_in">Person</span>() { std::cout &lt;&lt; <span class="hljs-string">"[-] Person 析构: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>};<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Pet</span> {<br>    std::string name;<br>    <br>    <span class="hljs-comment">// 【!! 陷阱 !!】: Pet 也强引用了 Person</span><br>    std::shared_ptr&lt;Person&gt; owner; <br><br>    <span class="hljs-built_in">Pet</span>(<span class="hljs-type">const</span> std::string&amp; n) : <span class="hljs-built_in">name</span>(n) { std::cout &lt;&lt; <span class="hljs-string">"  [+] Pet 构造: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>    ~<span class="hljs-built_in">Pet</span>() { std::cout &lt;&lt; <span class="hljs-string">"  [-] Pet 析构: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>};<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    std::cout &lt;&lt; <span class="hljs-string">"--- 循环引用演示 ---"</span> &lt;&lt; std::endl;<br>    { <span class="hljs-comment">// 创建新作用域</span><br>        <span class="hljs-keyword">auto</span> alice = std::<span class="hljs-built_in">make_shared</span>&lt;Person&gt;(<span class="hljs-string">"Alice"</span>);<br>        <span class="hljs-keyword">auto</span> doggy = std::<span class="hljs-built_in">make_shared</span>&lt;Pet&gt;(<span class="hljs-string">"Doggy"</span>);<br><br>        <span class="hljs-comment">// 建立双向强引用 (循环引用)</span><br>        alice-&gt;pet = doggy;<br>        doggy-&gt;owner = alice;<br><br>        std::cout &lt;&lt; <span class="hljs-string">"Alice 引用计数: "</span> &lt;&lt; alice.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 2 (alice, doggy-&gt;owner)</span><br>        std::cout &lt;&lt; <span class="hljs-string">"Doggy 引用计数: "</span> &lt;&lt; doggy.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 2 (doggy, alice-&gt;pet)</span><br>    <br>    } <span class="hljs-comment">// 局部指针 alice 和 doggy 离开作用域, 析构</span><br><br>    std::cout &lt;&lt; <span class="hljs-string">"--- 演示结束 ---"</span> &lt;&lt; std::endl;<br>    <span class="hljs-comment">// 【!! 严重问题 !!】: </span><br>    <span class="hljs-comment">// 你会发现 Alice 和 Doggy 的析构函数根本没有被调用!</span><br>    <span class="hljs-comment">// 它们的内存泄漏了！</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>为什么会泄漏？</strong></p>
+<ol>
+<li>离开作用域时，<code>alice</code> (shared_ptr) 被销毁，<code>Person("Alice")</code> 对象的强引用计数从 2 减为 1。<strong>不为 0</strong>。</li>
+<li><code>doggy</code> (shared_ptr) 被销毁，<code>Pet("Doggy")</code> 对象的强引用计数从 2 减为 1。<strong>不为 0</strong>。</li>
+<li>由于两个对象的计数都不为 0，它们都不会被删除。它们持有的对方的 <code>shared_ptr</code> 也不会被销毁。内存泄漏发生。</li>
+</ol>
+<hr>
+<h2><span id="3-stdweak_ptr-%E5%BC%B1%E6%8C%87%E9%92%88---%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">3. <code>std::weak_ptr</code> (弱指针) - 解决方案</span></h2>
+<p><code>weak_ptr</code> 被设计出来<strong>专门</strong>解决 <code>shared_ptr</code> 的循环引用问题。</p>
+<h3><span id="%E6%98%AF%E4%BB%80%E4%B9%88">是什么？</span></h3>
+<p><code>weak_ptr</code> 是一种**“非拥有型”<strong>或</strong>“观察型”**智能指针。</p>
+<ol>
+<li>它必须从一个 <code>shared_ptr</code> 或另一个 <code>weak_ptr</code> 构造。</li>
+<li>它<strong>不会</strong>增加或减少强引用计数（<code>use_count</code>）。它只增加“弱引用计数”。</li>
+<li>它“观察” <code>shared_ptr</code> 所管理的对象，但<strong>不控制</strong>该对象的生命周期。</li>
+<li>它<strong>不能被直接解引用</strong>（即不能使用 <code>*</code> 或 <code>-&gt;</code>），因为它不保证所观察的对象一定还存活。</li>
+</ol>
+<h3><span id="weak_ptr-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%94%A8%E6%B3%95lock"><code>weak_ptr</code> 的核心用法：<code>lock()</code></span></h3>
+<p>既然 <code>weak_ptr</code> 不保证对象存活，我们如何安全地使用它？
+答案是：<strong><code>lock()</code></strong> 方法。</p>
+<p><code>lock()</code> 是 <code>weak_ptr</code> 最核心的函数。它是一个**“检查并获取”**的操作：</p>
+<ol>
+<li><strong>检查:</strong> <code>lock()</code> 会（原子地）检查它所观察的对象是否还存活。</li>
+<li><strong>获取:</strong>
+<ul>
+<li>如果对象<strong>已销毁</strong>（强引用计数为 0），<code>lock()</code> 返回一个<strong>空的 <code>shared_ptr</code></strong>（即 <code>nullptr</code>）。</li>
+<li>如果对象<strong>还活着</strong>，<code>lock()</code> 返回一个<strong>有效的 <code>shared_ptr</code></strong>，并且这个返回的 <code>shared_ptr</code> 会使强引用计数 <strong>+1</strong>。</li>
+</ul>
+</li>
+</ol>
+<p>这个机制保证了，只要你持有 <code>lock()</code> 返回的那个 <code>shared_ptr</code>，你就可以<strong>绝对安全</strong>地访问该对象，不用担心它在你使用过程中被销毁。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::weak_ptr&lt;Widget&gt; wp = ...;<br><br><span class="hljs-comment">// ... 稍后 ...</span><br><br><span class="hljs-comment">// 必须使用 lock() 来安全地访问</span><br><span class="hljs-keyword">if</span> (std::shared_ptr&lt;Widget&gt; sp_safe = wp.<span class="hljs-built_in">lock</span>()) {<br>    <span class="hljs-comment">// 【安全区】: </span><br>    <span class="hljs-comment">// 进到这个 if 意味着对象还活着。</span><br>    <span class="hljs-comment">// 'sp_safe' 是一个有效的 shared_ptr, 强引用计数 +1。</span><br>    sp_safe-&gt;<span class="hljs-built_in">doSomething</span>();<br>    <br>} <span class="hljs-keyword">else</span> {<br>    <span class="hljs-comment">// 【失败区】:</span><br>    <span class="hljs-comment">// 对象已经被销毁了。</span><br>    <span class="hljs-comment">// 'sp_safe' 是 nullptr。</span><br>}<br><br>代码示例 (修复循环引用)<br>我们只需将 Pet 对 Person 的引用从“强”改为“弱”即可打破循环。<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">struct</span> Person; <span class="hljs-comment">// 前向声明</span><br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Pet</span> {<br>    std::string name;<br>    <br>    <span class="hljs-comment">// 【!! 修复 !!】:</span><br>    <span class="hljs-comment">// Pet 对主人的引用是 "弱" 的, 不计入引用计数</span><br>    std::weak_ptr&lt;Person&gt; owner; <br><br>    <span class="hljs-built_in">Pet</span>(<span class="hljs-type">const</span> std::string&amp; n) : <span class="hljs-built_in">name</span>(n) { std::cout &lt;&lt; <span class="hljs-string">"  [+] Pet 构造: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>    ~<span class="hljs-built_in">Pet</span>() { std::cout &lt;&lt; <span class="hljs-string">"  [-] Pet 析构: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>};<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Person</span> {<br>    std::string name;<br>    std::shared_ptr&lt;Pet&gt; pet; <span class="hljs-comment">// Person "拥有" Pet (强引用)</span><br><br>    <span class="hljs-built_in">Person</span>(<span class="hljs-type">const</span> std::string&amp; n) : <span class="hljs-built_in">name</span>(n) { std::cout &lt;&lt; <span class="hljs-string">"[+] Person 构造: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>    ~<span class="hljs-built_in">Person</span>() { std::cout &lt;&lt; <span class="hljs-string">"[-] Person 析构: "</span> &lt;&lt; name &lt;&lt; std::endl; }<br>};<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    std::cout &lt;&lt; <span class="hljs-string">"--- weak_ptr 修复演示 ---"</span> &lt;&lt; std::endl;<br>    { <br>        <span class="hljs-keyword">auto</span> alice = std::<span class="hljs-built_in">make_shared</span>&lt;Person&gt;(<span class="hljs-string">"Alice"</span>);<br>        <span class="hljs-keyword">auto</span> doggy = std::<span class="hljs-built_in">make_shared</span>&lt;Pet&gt;(<span class="hljs-string">"Doggy"</span>);<br><br>        <span class="hljs-comment">// 建立 "强-弱" 链接</span><br>        alice-&gt;pet = doggy;   <span class="hljs-comment">// 强引用 (Person -&gt; Pet)</span><br>        doggy-&gt;owner = alice; <span class="hljs-comment">// 弱引用 (Pet -&gt; Person)</span><br><br>        std::cout &lt;&lt; <span class="hljs-string">"Alice 引用计数: "</span> &lt;&lt; alice.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 1 (只有 alice)</span><br>        std::cout &lt;&lt; <span class="hljs-string">"Doggy 引用计数: "</span> &lt;&lt; doggy.<span class="hljs-built_in">use_count</span>() &lt;&lt; std::endl; <span class="hljs-comment">// 输出: 2 (doggy, alice-&gt;pet)</span><br>    <br>    } <span class="hljs-comment">// 局部指针 alice 和 doggy 离开作用域</span><br><br>    std::cout &lt;&lt; <span class="hljs-string">"--- 演示结束 ---"</span> &lt;&lt; std::endl;<br>    <span class="hljs-comment">// 输出会显示两个析构函数都被正确调用了！</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>为什么这次成功了？</strong></p>
+<ol>
+<li>离开作用域时，<code>alice</code> (shared_ptr) 被销毁。<code>Person("Alice")</code> 对象的强引用计数从 1 减为 0。<strong>（<code>doggy-&gt;owner</code> 是 <code>weak_ptr</code>，不计入计数！）</strong></li>
+<li><code>Person("Alice")</code> 计数为 0，被<strong>立即析构</strong>。</li>
+<li>在 <code>~Person()</code> 中，<code>alice-&gt;pet</code> (一个 <code>shared_ptr</code>) 被销毁。</li>
+<li>这导致 <code>Pet("Doggy")</code> 对象的强引用计数从 2 减为 1。</li>
+<li>同时，<code>doggy</code> (shared_ptr) 也被销毁，<code>Pet("Doggy")</code> 对象的强引用计数从 1 减为 0。</li>
+<li><code>Pet("Doggy")</code> 计数为 0，被<strong>立即析构</strong>。</li>
+<li><strong>内存泄漏被完美解决。</strong></li>
+</ol>
+<hr>
+<h2><span id="4-%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94">4. 总结对比</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性 (Feature)</th>
+<th style="text-align:left"><code>std::shared_ptr</code></th>
+<th style="text-align:left"><code>std::weak_ptr</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>拥有所有权?</strong></td>
+<td style="text-align:left"><strong>是</strong> (共享所有权)</td>
+<td style="text-align:left"><strong>否</strong> (观察者)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>引用计数</strong></td>
+<td style="text-align:left"><strong>增加</strong> (强引用, <code>use_count</code>)</td>
+<td style="text-align:left"><strong>不增加</strong> (只增加弱引用计数)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>直接解引用 (<code>*</code>, <code>-&gt;</code>)</strong></td>
+<td style="text-align:left"><strong>可以</strong></td>
+<td style="text-align:left"><strong>不可以</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>如何安全使用</strong></td>
+<td style="text-align:left">直接使用</td>
+<td style="text-align:left">必须调用 <code>lock()</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>主要目的</strong></td>
+<td style="text-align:left">自动管理对象生命周期</td>
+<td style="text-align:left">解决 <code>shared_ptr</code> 循环引用</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>是否可为空</strong></td>
+<td style="text-align:left">可以</td>
+<td style="text-align:left">可以</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8weak-ptr">如何使用weak ptr</span></h2>
+<h3><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88lock-%E6%96%B9%E6%B3%95">解决方案：<code>lock()</code> 方法</span></h3>
+<p>为了安全地访问 <code>weak_ptr</code> 指向的对象，C++ 提供了一个<strong>唯一的、标准的方法</strong>：<code>lock()</code>。</p>
+<p><code>lock()</code> 方法是 <code>weak_ptr</code> 的灵魂，它做两件事：</p>
+<ol>
+<li><strong>检查：</strong> 它原子地（线程安全地）检查它所观察的对象是否还存活（即强引用计数是否大于0）。</li>
+<li><strong>获取：</strong>
+<ul>
+<li><strong>如果对象还活着：</strong> <code>lock()</code> 会返回一个<strong>有效的 <code>std::shared_ptr</code></strong>，这个 <code>shared_ptr</code> 会共享该对象的所有权，并使其强引用计数 +1。</li>
+<li><strong>如果对象已经死了：</strong> <code>lock()</code> 会返回一个<strong>空的 <code>std::shared_ptr</code></strong>（等同于 <code>nullptr</code>）。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E6%A3%80%E6%9F%A5-%E5%B9%B6-%E4%BD%BF%E7%94%A8%E7%9A%84%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F">“检查-并-使用”的标准模式</span></h3>
+<p>因此，你永远不应该“尝试”解引用 <code>weak_ptr</code>。你必须**“先 <code>lock()</code>，再检查，最后使用”**。</p>
+<p>这是在 C++ 中使用 <code>weak_ptr</code> 的标准““圣经””式代码：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br>    std::weak_ptr&lt;<span class="hljs-type">int</span>&gt; wp;<br>    <br>    { <span class="hljs-comment">// 创建一个新作用域</span><br>        <span class="hljs-keyword">auto</span> sp = std::<span class="hljs-built_in">make_shared</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">42</span>);<br>        wp = sp; <span class="hljs-comment">// weak_ptr 观察 shared_ptr</span><br><br>        <span class="hljs-comment">// --- 模式 1: 在对象存活时 ---</span><br>        <span class="hljs-comment">// 尝试 "锁定" weak_ptr 来获取一个 shared_ptr</span><br>        <span class="hljs-keyword">if</span> (std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; safe_sp = wp.<span class="hljs-built_in">lock</span>()) {<br>            <br>            <span class="hljs-comment">// 成功! 'safe_sp' 是一个有效的 shared_ptr</span><br>            <span class="hljs-comment">// 在这个 if 作用域内, 我们可以安全地使用它</span><br>            std::cout &lt;&lt; <span class="hljs-string">"对象还活着, 值为: "</span> &lt;&lt; *safe_sp &lt;&lt; std::endl;<br>            <br>        } <span class="hljs-keyword">else</span> {<br>            std::cout &lt;&lt; <span class="hljs-string">"对象已销毁"</span> &lt;&lt; std::endl;<br>        }<br><br>    } <span class="hljs-comment">// 'sp' 在此离开作用域, 引用计数归零, 对象被销毁</span><br><br>    <span class="hljs-comment">// --- 模式 2: 在对象销毁后 ---</span><br>    <span class="hljs-comment">// 再次尝试 "锁定"</span><br>    <span class="hljs-keyword">if</span> (std::shared_ptr&lt;<span class="hljs-type">int</span>&gt; safe_sp = wp.<span class="hljs-built_in">lock</span>()) {<br>        <br>        <span class="hljs-comment">// 这次不会进来了</span><br>        std::cout &lt;&lt; <span class="hljs-string">"对象还活着, 值为: "</span> &lt;&lt; *safe_sp &lt;&lt; std::endl;<br>        <br>    } <span class="hljs-keyword">else</span> {<br>        <span class="hljs-comment">// lock() 返回了一个 nullptr, if 判断为 false</span><br>        std::cout &lt;&lt; <span class="hljs-string">"对象已销毁, 无法访问。"</span> &lt;&lt; std::endl;<br>    }<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>“weak_ptr 不能直接解引用，因为它不保证对象存活。必须调用它的 lock() 方法，该方法会尝试返回一个 shared_ptr。如果对象还存活，lock() 返回一个有效的 shared_ptr；如果对象已死，lock() 返回 nullptr。因此，标准用法总是在 if 语句中调用 lock()，在 if 块内部安全地使用返回的 shared_ptr。”</p>
+<h2><span id="1-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7%E7%8B%AC%E5%8D%A0%E8%BD%BB%E9%87%8F%E5%8F%AF%E7%A7%BB%E5%8A%A8">1. 核心特性：独占、轻量、可移动</span></h2>
+<h3><span id="1-%E7%8B%AC%E5%8D%A0%E6%89%80%E6%9C%89%E6%9D%83-exclusive-ownership">1. 独占所有权 (Exclusive Ownership)</span></h3>
+<p>这是 <code>unique_ptr</code> 的核心。在任何时刻，内存中的一个对象<strong>只能被一个 <code>unique_ptr</code> 所拥有</strong>。</p>
+<p>当 <code>unique_ptr</code> 被销毁时（例如离开作用域），它所拥有的对象也会被<strong>自动 <code>delete</code></strong>。</p>
+<h3><span id="2-%E8%BD%BB%E9%87%8F%E7%BA%A7-lightweight">2. 轻量级 (Lightweight)</span></h3>
+<p><code>unique_ptr</code> 是“零成本抽象”的典范。</p>
+<ul>
+<li>它<strong>没有引用计数</strong>。</li>
+<li>它<strong>没有控制块</strong>（与 <code>shared_ptr</code> 不同）。</li>
+</ul>
+<p>在大多数情况下，一个 <code>unique_ptr</code> 的大小与一个原始指针完全相同（例如，64位系统上为8字节）。它几乎和使用裸指针（raw pointer）一样高效，但却提供了 RAII 带来的绝对内存安全。</p>
+<h3><span id="3-%E4%B8%8D%E5%8F%AF%E5%A4%8D%E5%88%B6%E4%BD%86%E5%8F%AF%E7%A7%BB%E5%8A%A8-non-copyable-movable">3. 不可复制，但可移动 (Non-Copyable, Movable)</span></h3>
+<p><code>unique_ptr</code> 的独占性在 C++ 语法层面上被严格执行。</p>
+<ul>
+<li>
+<p><strong>不可复制 (Non-Copyable):</strong> 它的拷贝构造函数和拷贝赋值运算符都被<strong>删除 (deleted)</strong>。你不能“复制”一个 <code>unique_ptr</code>，因为这会违反“独占”所有权。</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::unique_ptr&lt;Widget&gt; ptr1 = std::<span class="hljs-built_in">make_unique</span>&lt;Widget&gt;();<br><span class="hljs-comment">// std::unique_ptr&lt;Widget&gt; ptr2 = ptr1; // 编译错误! (Cannot copy)</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>可移动 (Movable):</strong> 独占所有权可以被**“转移” (Transfer)<strong>。这是通过</strong>移动语义 (Move Semantics)** 实现的。当你“移动”一个 <code>unique_ptr</code> 时，原指针会放弃所有权（变为空指针），新指针会接管所有权。</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::unique_ptr&lt;Widget&gt; ptr1 = std::<span class="hljs-built_in">make_unique</span>&lt;Widget&gt;();<br><br><span class="hljs-comment">// 使用 std::move 显式转移所有权</span><br>std::unique_ptr&lt;Widget&gt; ptr2 = std::<span class="hljs-built_in">move</span>(ptr1); <br><br><span class="hljs-comment">// 此时:</span><br><span class="hljs-comment">// ptr2 拥有 Widget 对象</span><br><span class="hljs-comment">// ptr1 变为了 nullptr，不再拥有任何东西</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<hr>
+<h2><span id="2-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8">2. 如何创建与使用</span></h2>
+<h3><span id="%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAstdmake_unique">如何创建？(<code>std::make_unique</code>)</span></h3>
+<p>与 <code>shared_ptr</code> 对应，C++14 引入了 <code>std::make_unique</code>。这是创建 <code>unique_ptr</code> 的<strong>首选方式</strong>。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 最佳实践 (C++14及以后)</span><br>std::unique_ptr&lt;Widget&gt; ptr1 = std::<span class="hljs-built_in">make_unique</span>&lt;Widget&gt;();<br><br><span class="hljs-comment">// 在 C++11 中, 你必须使用 new (不推荐, 且有异常安全风险)</span><br><span class="hljs-function">std::unique_ptr&lt;Widget&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> Widget())</span></span>;<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="4-unique_ptr-vs-shared_ptr">4. <code>unique_ptr</code> vs <code>shared_ptr</code></span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性 (Feature)</th>
+<th style="text-align:left"><code>std::unique_ptr</code></th>
+<th style="text-align:left"><code>std::shared_ptr</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>所有权 (Ownership)</strong></td>
+<td style="text-align:left"><strong>独占的 (Exclusive)</strong></td>
+<td style="text-align:left"><strong>共享的 (Shared)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>性能开销 (Overhead)</strong></td>
+<td style="text-align:left"><strong>无</strong> (等同于裸指针)</td>
+<td style="text-align:left"><strong>有</strong> (控制块 + 引用计数)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>复制 (Copy)</strong></td>
+<td style="text-align:left"><strong>禁止 (Deleted)</strong></td>
+<td style="text-align:left"><strong>允许</strong> (引用计数+1)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>移动 (Move)</strong></td>
+<td style="text-align:left"><strong>允许</strong> (转移所有权)</td>
+<td style="text-align:left">允许</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>主要用途</strong></td>
+<td style="text-align:left">对象的<strong>默认</strong>内存管理</td>
+<td style="text-align:left">必须共享所有权的罕见情况</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="5-%E6%80%BB%E7%BB%93%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8">5. 总结：何时使用？</span></h2>
+<ol>
+<li>
+<p><strong>默认使用 <code>std::unique_ptr</code></strong>:
+当你需要一个在堆上分配、有明确生命周期、且不需要被共享的对象时（即 99% 的情况），<strong><code>unique_ptr</code> 都是你的第一且唯一的选择</strong>。</p>
+</li>
+<li>
+<p><strong>只在必要时使用 <code>std::shared_ptr</code></strong>:
+当你<strong>无法</strong>确定对象的“最后拥有者”时（例如，在图结构、回调、多线程数据共享中），才被迫使用 <code>shared_ptr</code>。</p>
+</li>
+<li>
+<p><strong>只在打破 <code>shared_ptr</code> 循环时使用 <code>std::weak_ptr</code></strong>:
+它的存在只是为了辅助 <code>shared_ptr</code>。</p>
+</li>
+</ol>
+<h1><span id="%E9%99%84%E5%BD%95c-%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E7%BC%96%E5%86%99%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">附录：C++ 何时需要手动编写拷贝构造函数？</span></h1>
+<h2><span id="%E6%A0%B8%E5%BF%83%E7%AD%94%E6%A1%88%E5%BD%93%E7%B1%BB%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E6%97%B6">核心答案：当类需要手动管理资源时</span></h2>
+<p>最常见的情况就是：<strong>类中包含了裸指针（raw pointer），并且这个类负责管理该指针所指向的内存</strong>（例如，在构造函数中 <code>new</code> 分配内存，在析构函数中 <code>delete</code> 释放内存）。</p>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%BB%98%E8%AE%A4%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8D%E8%A1%8C">为什么默认拷贝构造函数不行？</span></h2>
+<h3><span id="1-%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E6%B5%85%E6%8B%B7%E8%B4%9D-shallow-copy">1. 默认行为：“浅拷贝” (Shallow Copy)</span></h3>
+<ul>
+<li>如果你不写，C++编译器会为你生成一个默认的拷贝构造函数。</li>
+<li>它的工作是<strong>逐个复制成员变量</strong>。</li>
+<li>当成员变量是指针时，它<strong>只会复制指针的地址</strong>，而不会复制指针所指向的数据内容。</li>
+</ul>
+<h3><span id="2-%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%BC%95%E5%8F%91%E7%9A%84%E9%97%AE%E9%A2%98">2. “浅拷贝”引发的问题</span></h3>
+<p>浅拷贝导致两个对象（原对象和新拷贝的对象）内部的指针指向<strong>同一块内存</strong>，这会引发严重错误：</p>
+<ul>
+<li><strong>重复释放 (Double Free):</strong>
+<ul>
+<li>当第一个对象被销毁时，其析构函数会 <code>delete</code> 掉这块内存。</li>
+<li>当第二个对象被销毁时，它会尝试 <code>delete</code> <strong>同一块已经被释放的内存</strong>，导致程序崩溃。</li>
+</ul>
+</li>
+<li><strong>数据污染:</strong>
+<ul>
+<li>两个对象共享同一份数据。</li>
+<li>通过一个对象修改数据，会“意外地”影响到另一个对象，破坏了对象的独立性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%B7%B1%E6%8B%B7%E8%B4%9D-deep-copy">解决方案：“深拷贝” (Deep Copy)</span></h2>
+<p>为了解决这个问题，我们必须<strong>手动编写拷贝构造函数</strong>，在其中执行“深拷贝”：</p>
+<ol>
+<li><strong>分配新资源：</strong> 在新对象的构造函数中，为新对象的指针 <code>new</code> 一块<strong>新的</strong>内存空间。</li>
+<li><strong>复制内容：</strong> 将原对象指针所指向内存中的<strong>数据内容</strong>，完整地复制到这块新内存中。</li>
+</ol>
+<p>这样，两个对象就各自拥有了独立的内存资源，可以安全地各自释放，互不干扰。</p>
+<hr>
+<h2><span id="%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E4%B8%89%E4%BA%94%E6%B3%95%E5%88%99-the-rule-of-threefive">关键概念：“三/五法则” (The Rule of Three/Five)</span></h2>
+<p>这个问题的背后是C++著名的“三/五法则”：</p>
+<ul>
+<li><strong>三法则 (Rule of Three):</strong>
+如果你需要手动实现<strong>析构函数</strong>、<strong>拷贝构造函数</strong>、<strong>拷贝赋值运算符</strong>中的任意一个，那么你很可能需要实现所有这三个。</li>
+<li><strong>五法则 (Rule of Five):</strong>
+在C++11及以后，这套法则扩展到了五个，增加了<strong>移动构造函数</strong>和<strong>移动赋值运算符</strong>。</li>
+</ul>
+<p>根本原因都是一样的：这个类在<strong>手动管理资源</strong>。</p>
+<hr>
+<h2><span id="%E7%8E%B0%E4%BB%A3c%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E9%9B%B6%E6%B3%95%E5%88%99-the-rule-of-zero">现代C++最佳实践：“零法则” (The Rule of Zero)</span></h2>
+<p>在现代C++（C++11及以后）中，我们应该<strong>尽量避免</strong>这种情况，遵循“零法则” (The Rule of Zero)。</p>
+<ul>
+<li><strong>核心思想：</strong> 使用 <strong>RAII</strong>（资源获取即初始化）原则。</li>
+<li><strong>具体实践：</strong>
+<ul>
+<li>不直接使用裸指针管理内存。</li>
+<li>优先使用<strong>智能指针</strong>（如 <code>std::unique_ptr</code>, <code>std::shared_ptr</code>）来管理动态内存。</li>
+<li>使用标准库容器（如 <code>std::vector</code>, <code>std::string</code>）来管理数据集合。</li>
+</ul>
+</li>
+<li><strong>好处：</strong>
+这些智能指针和容器类<strong>本身已经正确地实现了深拷贝、移动或禁止拷贝</strong>的逻辑。当它们作为成员变量时，编译器自动生成的默认拷贝（或移动）构造函数会调用这些成员的对应函数，自动就能完成正确的资源管理，你<strong>无需手动编写</strong>任何资源管理函数。</li>
+</ul>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/09/10/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/c++%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;09&#x2F;10&#x2F;学习记录&#x2F;c++基本知识记录&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;09&#x2F;10&#x2F;学习记录&#x2F;c++基本知识记录&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" rel="tag">编程基本知识</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

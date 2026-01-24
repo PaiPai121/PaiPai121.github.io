@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 凸优化学习笔记：Inner-point methods 内点法 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/Melina2.jpeg"
+				data-sizes="auto"
+				alt="凸优化学习笔记：Inner-point methods 内点法"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>凸优化学习笔记：Inner-point methods 内点法</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年07月29日</a>
+			<a><i class="kirafont icon-edit-fill"></i>2.9k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 14 分钟</a>
+		</div>
+		<html><head></head><body><p><strong>参考书目 convex optimization</strong>
+$$\begin{align}minimize \ \ &amp;f_0(x)\\
+subject\ to\ \ &amp;f_i(x)\le 0
+\\
+&amp;Ax = b\end{align}
+$$
+其中$f_i:R^n\to R$是凸的且二次可微，$A\in R^{p\times n}, \textbf{rand}\ A=p&lt;n$，假设问题可解，最优点为$x^<em>$，最优值$p^</em>=f_0(x^*)$。</p>
+<p>内点法通过将牛顿法应用在一系列等式约束上来解最优化问题</p>
+<p>首先应将不等式约束化为等式约束
+$$\begin{align}
+minimize\ \ \ &amp;f_0(x)+\Sigma_{i=1}^m I_-(f_i(x))\\
+subject\ to\ &amp;Ax=b
+\end{align}
+$$
+$$I_-(u)=\begin{cases}0,u\le 0\\ \infty,u&gt;0
+\end{cases}
+$$
+当不等式不被满足时，目标函数会变的无穷大，因此当解该最优化问题时自然会满足不等式约束。此时虽然化为了等式约束，但是目标函数不可微。</p>
+<h2><span id="%E7%89%9B%E9%A1%BF%E6%B3%95">牛顿法</span></h2>
+<h3><span id="%E7%89%9B%E9%A1%BF%E6%AD%A5">牛顿步</span></h3>
+<p>二阶泰勒展开
+$$f(x+\Delta x)\approx f(x)+\nabla f(x)^T\Delta x+\frac{1}{2}\Delta x^T\nabla^2 f(x)\Delta x
+$$
+是关于$\Delta x$的凸二次函数（默认$\nabla f(x)$是正定的）。为了找到极小值点，应使该函数对$\Delta x$的导数为0，可得当$\Delta x=-\nabla^2 f(x)^{-1}\nabla f(x)^T$时该式取极小值，是下降的方向。</p>
+<p>我们将其称为牛顿步
+$$\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x)
+$$</p>
+<p>此处详细解释一下，我们每次走一步牛顿步，都是将当前的二阶泰勒展开公式最小化，这是一个近似，但是每次都会使函数的数值变得越来越小。
+![Pasted_image_20240801144827.png](Pasted_image_Pasted image 20240801144827.png)</p>
+<h3><span id="%E7%89%9B%E9%A1%BF%E4%B8%8B%E9%99%8D%E9%87%8F">牛顿下降量</span></h3>
+<p>$$\lambda(x) = (\nabla f(x)^T\nabla^2f(x)^{-1}\nabla f(x))^{1/2}
+$$
+被称为牛顿下降量。
+假设$\hat f$为f在x处的二阶近似
+$$f(x) -\inf_y\ \hat f(y)=f(x)-\hat f(x+\Delta x_{nt})=\frac{1}{2}\nabla f(x)^T\nabla^2f(x)^{-1}\nabla f(x)=\frac{1}{2}\lambda(x)^2
+$$
+也就是说，每次牛顿迭代后，二阶估计和目标函数的差值是$\frac{1}{2}\lambda(x)^2$
+将牛顿步代入
+$$\lambda = (\nabla x_{nt}^T\nabla^2 f(x)\Delta x_{nt})^{1/2}
+$$
+换言之，$\lambda$是$\Delta x_{nt}$的Hessian范数</p>
+<p>下降法搜索还需要确定步长，来实现$x = x+t\Delta x$的迭代，有以下方式实现步长的确定。</p>
+<h3><span id="exact-line-search">Exact line search</span></h3>
+<p>精确线搜索（Exact Line Search），在这种方法中，选择&nbsp;tt&nbsp;来最小化沿着射线${x+tΔx∣t≥0}$的函数&nbsp;f&nbsp;的值：
+$$t=arg⁡min⁡s_{s≥0}f(x+sΔx)
+$$
+换言之，$\Delta x$决定了搜索的方向，而t则是寻找在这条射线上使函数值最小的自变量的数值。
+精确线搜索通常用于牛顿法（Newton’s Method）中，特别是在计算搜索方向&nbsp;Δx的成本较高时。在这种情况下，精确线搜索可以提供比直接计算搜索方向更低的成本。</p>
+<h3><span id="backtracking-line-search">backtracking line search</span></h3>
+<p>大多数的搜索都是不精确的。已经提出了许多不精确线搜索方法。其中一个非常简单且相当有效的方法被称为回溯线搜索（Backtracking Line Search）。它依赖于两个常数&nbsp;α&nbsp;和&nbsp;β，其中&nbsp;0&lt;α&lt;0.5&nbsp;和&nbsp;0&lt;β&lt;1。
+其算法流程为</p>
+<blockquote>
+<p><strong>given</strong> a descent direction ∆x for f at x ∈ dom f, α ∈ (0,0.5), β ∈ (0,1).t := 1.
+<strong>while</strong> $f(x + t∆x) &gt; f(x) + αt∇f(x)^T∆x$, t := βt.</p>
+</blockquote>
+<p>也就是说，给定下降方向以及$\alpha,\beta$后，设置t的初始值为1。
+每次遍历时判断$f(x + t∆x) &gt; f(x) + αt∇f(x)^T∆x$是否成立，成立就更新 t := βt</p>
+<h2><span id="%E7%89%9B%E9%A1%BF%E6%B3%95">牛顿法</span></h2>
+<p>![Pasted_image_20240801150834.png](Pasted_image_Pasted image 20240801150834.png)
+给出起点$x\in \textbf{dom}\ f,\epsilon &gt;0$
+每次迭代牛顿步和牛顿下降量
+$$\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x);\lambda^2=\nabla f(x)^T\nabla^2f(x)^{-1}\nabla f(x)
+$$
+判断$\lambda^2/2\le \epsilon$，决定是否停止
+根据backtracking line search选择step size $t$
+更新$x = x+ t\Delta x_nt$。</p>
+<h2><span id="logarithmic-barriers">Logarithmic barriers</span></h2>
+<p>为了解决不可微的问题，可以将分段函数转化为对数函数
+$$\hat I_-(u)=-(1/t)\log(-u),\textbf{dom}\ {\hat{I}}<em>-=-R</em>{++},t &gt; 0
+$$
+该函数为凸增函数，可微，调节t的值可以调整曲线形状。
+![Pasted_image_20240729113613.png](Pasted_image_Pasted image 20240729113613.png)
+此时目标函数可以化为
+$$f_0(x)+\Sigma_{i=1}^m  -(1/t)\log(-f_i(x))
+$$
+其中$\phi(x) = - \Sigma_{i=1}^m  \log(-f_i(x))$即为Logarithmic barrier。
+越大的t会使的函数模拟的质量更好，但是使用牛顿法求解$f_0+(1/t)\phi$的难度也会增大（Hessian阵在可行域边界处快速变化）。在目标函数处乘正数t，目标函数可化为
+$$tf_0(x)+\phi(x)
+$$
+logarithmic barrier函数的Hessian为：
+$$\begin{align}\nabla \phi(x) =\Sigma_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2\phi(x)=\Sigma_{i=1}^m\frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\Sigma_{i=1}^m\frac{1}{-f_i(x)}\nabla^2f_i(x)
+\end{align}
+$$</p>
+<h3><span id="central-points">central points</span></h3>
+<p>对于不同的t取值，能找到不同的点$x^<em>(t)$，即为中心点，其集合为中心线。
+其满足条件
+$Ax^</em>(t)=b,f_i(x^<em>(t))&lt;0,i=1,…,m$
+且存在$\hat{v}\in R^p$
+$$0 = t\nabla f_0(x^</em>(t))+\nabla \phi(x^*(t))+A^T\hat{v}
+$$
+其中$\hat{v}$为拉格朗日乘子向量，这一项&nbsp;$A^Tv$&nbsp;的存在是为了满足等式约束&nbsp;$Ax=b$ 在优化过程中的KKT（Karush-Kuhn-Tucker）条件。</p>
+<h4><span id="%E4%BE%8B1">例1:</span></h4>
+<p>将log barrier应用到LP问题中
+$$\begin{align}minimize\ &amp;c^Tx\\
+subject\ to \ &amp;Ax\preceq b\end{align}
+$$
+$\phi(x)=-\Sigma_{i=1}^m\log(b_i-a_i^T x),dom\ \phi = {x|Ax\prec b}$
+其中$a_i^T$为A的行。可得对应梯度和的Hessian为
+$$\nabla \phi(x)=\Sigma_{i=1}^m \frac{1}{b_i-a_i^Tx}a_i=A^Td,\nabla^2\phi(x)=\Sigma_{i=1}^m\frac{1}{(b_i-a_i^Tx)^2}a_ia_i^T=A^Tdiag(d)^2A
+$$
+$d = 1/(b_i-a_i^Tx)$
+中心点条件为
+$$tc+A^Td=0
+$$</p>
+<p>![Pasted_image_20240729140838.png](Pasted_image_Pasted image 20240729140838.png)</p>
+<h3><span id="dual-points-from-central-path">Dual points from central path</span></h3>
+<p>每个中心点都有一个dual feasible point(相关知识见<a href="https://paipai121.github.io/2024/07/29/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ADuality%20%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98/">dual部分内容</a>)，因此可一确定最优值$p^*$的下界。</p>
+<p>定义
+$$\lambda_i^<em>(t)=-\frac{1}{tf_i(x^</em>(t))},\nu^<em>(t)=\hat\nu /t
+$$
+$λ_i^∗​(t)$的值与目标函数&nbsp;$f_i(x)$&nbsp;在当前迭代点&nbsp;$x^∗(t)$处的负倒数成正比。随着迭代进行，$λi∗(t)$ 的值会逐渐减小，直到满足互补松弛性条件。$ν^</em>$&nbsp;是问题的界限，而&nbsp;t&nbsp;是迭代参数，通常初始值设为 1。随着迭代进行，t&nbsp;的值会逐渐减小，以引导算法逐渐逼近问题的最优解。
+这些参数的定义是内点法能够有效解决线性规划问题的关键。通过迭代更新这些参数，内点法能够确保算法在每一步都满足KKT条件，从而确保算法能够找到问题的最优解。</p>
+<p>此时，将其带入到之前所述的
+$$0 = t\nabla f_0(x^<em>(t))+\nabla \phi(x^</em>(t))+A^T\hat{v}
+$$
+，可以得到KKT条件中的
+$$\nabla f_0(x^<em>(t))+\Sigma_{i=1}^m\lambda_i^</em>(t)\nabla f_i(x^<em>(t))+A^Tv^</em>(t)=0
+$$
+对偶函数是有界的，有
+$$g(\lambda^<em>(t),\nu^</em>(t))=f_0(x^<em>(t))+\Sigma_{i=1}^m\lambda_i^</em>(t)f_i(x^<em>(t))+\nu^T(Ax-b)=f_0(x^</em>(t))-m/t
+$$
+可以得到duality gap是m/t，有
+$$f_0(x^<em>(t))-p^</em>\le m/t
+$$</p>
+<h4><span id="%E4%BE%8B2">例2：</span></h4>
+<p>求例1的对偶问题
+$$L(x,\lambda,\nu)=c^Tx+\lambda^T(Ax-b)
+$$
+因此其下界为
+$$g(\lambda,\nu)=\begin{cases}-b\lambda,A^T\lambda+c =0\\
+-\infty,A^T\lambda+c \not=0\end{cases}
+$$
+因此该对偶问题为
+$$\begin{align}maximize\ &amp;-b^T\lambda\\
+subject\ to\ &amp;A^T\lambda+c=0\end{align}
+$$
+定义
+$$\begin{align}
+\lambda_i^<em>(t)&amp;=-\frac{1}{tf_i(x^</em>(t))},\\
+&amp;=-\frac{1}{t(a_i^{T}x-b_i)}
+\\\nu^<em>(t)&amp;=\hat\nu /t
+\end{align}
+$$
+dual目标值为
+$$-b^T\lambda^</em>=c^Tx^<em>(t)+1/t\Sigma_{i=1}^m 1+(Ax^</em>(t)-b)^T\lambda^<em>(t)=c^Tx^</em>(t)-m/t
+$$
+这是因为目标x<em>应该满足$(Ax^</em>(t)-b)=0$，而前一项因为是倒数相乘变成了1，再求和就是m/t
+所以应有
+$$f_0(x^<em>(t))-p^</em>\le m/t
+$$</p>
+<p>再次说明的是，$p^<em>$是$f(x^</em>)$的下界，因此不等式左侧大于0，如果我们的算法迭代时能够不断缩小m/t直到小于允许误差$\epsilon$时，就可以近似认为两数值相等。</p>
+<h3><span id="barrier-method-%E9%9A%9C%E7%A2%8D%E6%B3%95">barrier method 障碍法</span></h3>
+<p>设精度为$\epsilon$，我们使$t = m/\epsilon$，然后使用牛顿法求解问题
+$$\begin{align}minimize\ \ &amp;tf_0(x)+\phi(x)\\
+subject\ to\ \ &amp;Ax=b
+\end{align}
+$$
+即为[Logarithmic barriers](## Logarithmic barriers)部分所转化出的问题。
+这种方法可以称为无约束最小化方法，因为它允许我们通过解决无约束或线性约束的问题来以保证的准确性解决不等式约束问题。虽然这种方法适用于小问题、良好的起点和中等精度（即ε不太小），但在其他情况下效果不佳。因此，它很少被使用。</p>
+<p>实际算法不会直接使t满足精度要求，而是从一个值开始逐步增大。
+其算法流程为</p>
+<blockquote>
+<p><strong>given</strong> strictly feasible x, t := t(0) &gt; 0, μ &gt; 1, tolerance ε &gt; 0.
+<strong>repeat</strong></p>
+<ol>
+<li>Centering step.<br>
+Compute $x^*(t)$ by minimizing tf(0) + φ, subject to Ax = b, starting at x.</li>
+<li>Update. x := $x^⋆(t)$.</li>
+<li>Stopping criterion. quit if m/t &lt; ε. 4. Increase t. t := μt.</li>
+</ol>
+</blockquote>
+<p>即在每次迭代时，我们计算新的$x^*$，然后以因子$\mu&gt;0$放大t，直到满足精度要求。
+在这种求解方式中，我们有两重迭代，外部的centering step迭代和内部的牛顿求解迭代。</p>
+<h4><span id="mu%E7%9A%84%E9%80%89%E6%8B%A9">$\mu$的选择</span></h4>
+<p>当 μ 较小（即接近 1）时，每次外迭代 t 只增加一个小的因子，这意味着初始点（即前一个迭代点 x）对于牛顿过程来说是一个非常良好的起点，因此计算下一个迭代点所需的牛顿步数较少。因此，对于较小的 μ，我们期望每个外迭代只需要少量的牛顿步，但相应地需要大量的外迭代，因为每次外迭代只减少了少量的间隙。在这种情况下，迭代点（实际上，内迭代的迭代点也是）紧密跟随中心路径，这也解释了另一个名称“路径跟随法”。μ 值较大时，外层迭代次数少，内层迭代次数多，迭代点在中心路径上相隔较远；内迭代点会远离中心路径。大约从 3 到 100 左右，两种效果几乎相互抵消，因此牛顿步的总数保持大致恒定。这意味着 μ 的选择并不是特别关键。</p>
+<h4><span id="t0%E7%9A%84%E9%80%89%E6%8B%A9">$t^{(0)}$的选择</span></h4>
+<p>最好能使m/t和$f_0(x^{(0)})-p^*$的量级差不多。</p>
+<p>![Pasted_image_20240801101150.png](Pasted_image_Pasted image 20240801101150.png)</p>
+<h2><span id="%E7%A4%BA%E4%BE%8B">示例</span></h2>
+<p>$$\begin{align}
+minimize\ \ &amp;c^Tx\\
+subject\ to\ &amp;Ax\preceq b
+\end{align}
+$$
+$A\in R^{100\times 50}$，可以用一个随机矩阵来进行实验。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Eigen/Dense&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Eigen/Sparse&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;Eigen/SparseCholesky&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br>  <br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> Eigen;<br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>  <br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br><br><span class="hljs-comment">// 假设我们有以下线性规划问题</span><br><br><span class="hljs-comment">// min c^Tx</span><br><br><span class="hljs-comment">// s.t. Ax &lt;= b</span><br><br><span class="hljs-comment">// 其中 A 是 5x3 的稀疏矩阵，b 是 5x1 的向量，c 是 3x1 的向量</span><br><br><span class="hljs-function">SparseMatrix&lt;<span class="hljs-type">double</span>&gt; <span class="hljs-title">A</span><span class="hljs-params">(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>)</span></span>;<br><br><span class="hljs-function">VectorXd <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;<br><br><span class="hljs-function">VectorXd <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;<br><br>  <br><br><span class="hljs-comment">// 这里你需要填充 A, b, c 的具体值</span><br><br><span class="hljs-comment">// 例如，可以随机生成它们</span><br><br>A.<span class="hljs-built_in">resize</span>(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>);<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>) = <span class="hljs-number">1</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>) = <span class="hljs-number">2</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>) = <span class="hljs-number">3</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>) = <span class="hljs-number">4</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>) = <span class="hljs-number">5</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) = <span class="hljs-number">6</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>) = <span class="hljs-number">7</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) = <span class="hljs-number">8</span>;<br><br>A.<span class="hljs-built_in">coeffRef</span>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) = <span class="hljs-number">9</span>;<br><br>  <br>  <br>  <br><br>b &lt;&lt; <span class="hljs-number">10</span>, <span class="hljs-number">25</span>, <span class="hljs-number">30</span>;<br><br>c &lt;&lt; <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>;<br><br>  <br><br><span class="hljs-comment">// 创建一个SimplicialLDLT对象</span><br><br>SimplicialLDLT&lt;SparseMatrix&lt;<span class="hljs-type">double</span>&gt;&gt; <span class="hljs-built_in">solver</span>(A);<br><br>  <br><br><span class="hljs-comment">// 求解问题</span><br><br>VectorXd x = solver.<span class="hljs-built_in">solve</span>(c);<br><br>  <br><br><span class="hljs-comment">// 输出结果</span><br><br>cout &lt;&lt; <span class="hljs-string">"Optimal solution: "</span> &lt;&lt; x.<span class="hljs-built_in">transpose</span>() &lt;&lt; endl;<br><br>  <br><br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>}<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/07/29/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AInner-point%20methods%20%E5%86%85%E7%82%B9%E6%B3%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;07&#x2F;29&#x2F;学习记录&#x2F;凸优化学习笔记：Inner-point methods 内点法&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;07&#x2F;29&#x2F;学习记录&#x2F;凸优化学习笔记：Inner-point methods 内点法&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" rel="tag">凸优化</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

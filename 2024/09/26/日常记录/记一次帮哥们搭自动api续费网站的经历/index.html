@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 记一次帮哥们搭自动api续费网站的经历 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/edward.jpg"
+				data-sizes="auto"
+				alt="记一次帮哥们搭自动api续费网站的经历"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>记一次帮哥们搭自动api续费网站的经历</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年09月26日</a>
+			<a><i class="kirafont icon-edit-fill"></i>995 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+		</div>
+		<html><head></head><body><p>先贴仓库
+<a target="_blank" rel="noopener" href="https://github.com/PaiPai121/jiujiu_server">github: jiujiu_server</a>
+还是哥们有生意头脑，能想到转卖海外的一些工具，打一个信息差。但是人工处理大量订单很累，就琢磨我能不能搞一个自动化的东西出来。</p>
+<h2><span id="zfb%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98%E6%9D%83%E9%99%90">zfb开通支付权限</span></h2>
+<p><a target="_blank" rel="noopener" href="https://b.alipay.com/page/product-workspace/all-product">产品中心</a>
+如<a target="_blank" rel="noopener" href="https://b.alipay.com/page/product-workspace/solution-detail?solutionCode=SP000001000000007155&amp;sceneCode=ALL">互联网平台直付通</a>
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240926000747.png" alt="a" class="lazyload">
+这个需要商户权限，好麻烦，交给哥们去注册资质了</p>
+<h2><span id="wordpress%E6%89%80%E9%9C%80%E6%8F%92%E4%BB%B6">wordpress所需插件</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240926001357.png" alt="Pasted_image_20240926001357.png" class="lazyload"></p>
+<p>使用<strong>WooCommerce</strong>插件启用商场功能</p>
+<p>使用<strong>Wenprise Alipay Payment Gateway For WooCommerce</strong>插件启用支付宝</p>
+<p>为了避免购物车，使用插件<strong>WooCommerce Direct Checkout</strong>跳过购物车功能
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240926002512.png" alt="Pasted_image_20240926002512.png" class="lazyload"></p>
+<p>为了实现页面处输入key的功能，使用插件<strong>Checkout Field Editor for WooCommerce</strong></p>
+<p>要让用户在 WooCommerce 购买商品时输入 Key 码，并在交易完成后将 Key 码传递给后端 Flask 服务器完成续费，您可以按以下步骤操作。</p>
+<h3><span id="%E6%AD%A5%E9%AA%A4-1%E6%B7%BB%E5%8A%A0-key-%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86%E5%88%B0%E7%BB%93%E8%B4%A6%E9%A1%B5%E9%9D%A2">步骤 1：添加 Key 码输入框到结账页面</span></h3>
+<p>首先，需要在 WooCommerce 结账页面添加一个自定义的输入字段用于输入 Key 码。通过修改 WordPress 的 <code>functions.php</code> 文件来实现这个输入框。</p>
+<h4><span id="%E4%BB%A3%E7%A0%81%E6%AD%A5%E9%AA%A4">代码步骤：</span></h4>
+<ol>
+<li>在 WordPress 后台，进入 <strong>外观 -&gt; 主题文件编辑器</strong>。</li>
+<li>打开 <code>functions.php</code> 文件。</li>
+<li>添加</li>
+</ol>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 在 WooCommerce 结账页面添加 Key 码输入框</span><br><span class="hljs-title function_ invoke__">add_action</span>( <span class="hljs-string">'woocommerce_after_order_notes'</span>, <span class="hljs-string">'add_key_code_field_to_checkout'</span> );<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add_key_code_field_to_checkout</span>(<span class="hljs-params"> <span class="hljs-variable">$checkout</span> </span>) </span>{<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;div id="key_code_field"&gt;&lt;h3&gt;'</span> . <span class="hljs-title function_ invoke__">__</span>(<span class="hljs-string">'请输入您的 Key 码'</span>) . <span class="hljs-string">'&lt;/h3&gt;'</span>;<br>    <span class="hljs-title function_ invoke__">woocommerce_form_field</span>( <span class="hljs-string">'key_code'</span>, <span class="hljs-keyword">array</span>(<br>        <span class="hljs-string">'type'</span>        =&gt; <span class="hljs-string">'text'</span>,<br>        <span class="hljs-string">'class'</span>       =&gt; <span class="hljs-keyword">array</span>(<span class="hljs-string">'key-code form-row-wide'</span>),<br>        <span class="hljs-string">'label'</span>       =&gt; <span class="hljs-title function_ invoke__">__</span>(<span class="hljs-string">'Key 码'</span>),<br>        <span class="hljs-string">'placeholder'</span> =&gt; <span class="hljs-title function_ invoke__">__</span>(<span class="hljs-string">'请输入您的 Key 码'</span>),<br>        <span class="hljs-string">'required'</span>    =&gt; <span class="hljs-literal">true</span>,<br>    ), <span class="hljs-variable">$checkout</span>-&gt;<span class="hljs-title function_ invoke__">get_value</span>( <span class="hljs-string">'key_code'</span> ));<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;/div&gt;'</span>;<br>}<br><br><span class="hljs-comment">// 验证 Key 码字段是否为空</span><br><span class="hljs-title function_ invoke__">add_action</span>( <span class="hljs-string">'woocommerce_checkout_process'</span>, <span class="hljs-string">'validate_key_code'</span> );<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate_key_code</span>(<span class="hljs-params"></span>) </span>{<br>    <span class="hljs-keyword">if</span> ( ! <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'key_code'</span>] ) {<br>        <span class="hljs-title function_ invoke__">wc_add_notice</span>( <span class="hljs-title function_ invoke__">__</span>( <span class="hljs-string">'请填写 Key 码以完成购买.'</span> ), <span class="hljs-string">'error'</span> );<br>    }<br>}<br><br><span class="hljs-comment">// 保存 Key 码到订单元数据</span><br><span class="hljs-title function_ invoke__">add_action</span>( <span class="hljs-string">'woocommerce_checkout_update_order_meta'</span>, <span class="hljs-string">'save_key_code_to_order_meta'</span> );<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">save_key_code_to_order_meta</span>(<span class="hljs-params"> <span class="hljs-variable">$order_id</span> </span>) </span>{<br>    <span class="hljs-keyword">if</span> ( ! <span class="hljs-keyword">empty</span>( <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'key_code'</span>] ) ) {<br>        <span class="hljs-title function_ invoke__">update_post_meta</span>( <span class="hljs-variable">$order_id</span>, <span class="hljs-string">'key_code'</span>, <span class="hljs-title function_ invoke__">sanitize_text_field</span>( <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'key_code'</span>] ) );<br>    }<br>}<br><br><span class="hljs-comment">// 在后台订单页面显示 Key 码</span><br><span class="hljs-title function_ invoke__">add_action</span>( <span class="hljs-string">'woocommerce_admin_order_data_after_billing_address'</span>, <span class="hljs-string">'display_key_code_in_admin_order_meta'</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span> );<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">display_key_code_in_admin_order_meta</span>(<span class="hljs-params"> <span class="hljs-variable">$order</span> </span>) </span>{<br>    <span class="hljs-variable">$key_code</span> = <span class="hljs-title function_ invoke__">get_post_meta</span>( <span class="hljs-variable">$order</span>-&gt;<span class="hljs-title function_ invoke__">get_id</span>(), <span class="hljs-string">'key_code'</span>, <span class="hljs-literal">true</span> );<br>    <span class="hljs-keyword">if</span> ( <span class="hljs-variable">$key_code</span> ) {<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;p&gt;&lt;strong&gt;'</span> . <span class="hljs-title function_ invoke__">__</span>(<span class="hljs-string">'Key 码'</span>) . <span class="hljs-string">':&lt;/strong&gt; '</span> . <span class="hljs-variable">$key_code</span> . <span class="hljs-string">'&lt;/p&gt;'</span>;<br>    }<br>}<br><br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E5%8E%BB%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%8C%89%E9%94%AE">去除不必要的按键</span></h3>
+<p>外观-&gt; 自定义 -&gt; 额外CSS</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.ct-woo-card-actions</span> {<br>    <span class="hljs-attribute">display</span>: none <span class="hljs-meta">!important</span>;<br>}<br><br><span class="hljs-selector-class">.single_add_to_cart_button</span><span class="hljs-selector-attr">[name=<span class="hljs-string">"add-to-cart"</span>]</span> {<br>    <span class="hljs-attribute">display</span>: none <span class="hljs-meta">!important</span>;<br>}<br><span class="hljs-selector-class">.quantity</span><span class="hljs-selector-attr">[data-type=<span class="hljs-string">"type-2"</span>]</span> {<br>    <span class="hljs-attribute">display</span>: none; <span class="hljs-comment">/* 隐藏这个 div */</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E8%AE%A2%E5%8D%95%E5%AE%8C%E6%88%90%E5%90%8E%E5%90%91%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82%E6%89%A7%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%87%AA%E5%8A%A8%E5%8C%96%E6%93%8D%E4%BD%9C">订单完成后向后端服务器发起请求，执行一些自动化操作</span></h3>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs js"><br><span class="hljs-comment">// 订单完成后将 Key 码发送到 Flask API</span><br><span class="hljs-title function_">add_action</span>( <span class="hljs-string">'woocommerce_order_status_completed'</span>, <span class="hljs-string">'send_api_key_to_flask'</span> );<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">send_api_key_to_flask</span>(<span class="hljs-params"> $order_id </span>) {<br>    $order = <span class="hljs-title function_">wc_get_order</span>( $order_id );<br><br>    <span class="hljs-comment">// 从订单元数据中获取 API key（假设使用插件存储在订单元数据中）</span><br>    $api_key = <span class="hljs-title function_">get_post_meta</span>( $order_id, <span class="hljs-string">'api_key'</span>, <span class="hljs-literal">true</span> ); <span class="hljs-comment">// 替换为实际的 API key 存储的 meta key</span><br><br>    <span class="hljs-keyword">if</span> ( $api_key ) {<br>        <span class="hljs-comment">// Flask API 的 URL</span><br>        $api_url = <span class="hljs-string">'http://1.94.120.213/api/query'</span>;  <span class="hljs-comment">// 替换为 Flask 服务器的实际地址</span><br>        <br>        <span class="hljs-comment">// 设置 POST 请求参数</span><br>        $body = <span class="hljs-title function_">json_encode</span>(<span class="hljs-title function_">array</span>(<br>            <span class="hljs-string">'key'</span>      =&gt; $api_key,<br>            <span class="hljs-string">'order_id'</span> =&gt; $order_id,<br>        ));<br><br>        <span class="hljs-comment">// 发送 POST 请求到 Flask API</span><br>        $response = <span class="hljs-title function_">wp_remote_post</span>( $api_url, <span class="hljs-title function_">array</span>(<br>            <span class="hljs-string">'method'</span>    =&gt; <span class="hljs-string">'POST'</span>,<br>            <span class="hljs-string">'body'</span>      =&gt; $body,<br>            <span class="hljs-string">'headers'</span>   =&gt; <span class="hljs-title function_">array</span>(<br>                <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>,<br>            ),<br>        ));<br><br>        <span class="hljs-comment">// 检查请求是否成功</span><br>        <span class="hljs-keyword">if</span> ( <span class="hljs-title function_">is_wp_error</span>( $response ) ) {<br>            <span class="hljs-title function_">error_log</span>( <span class="hljs-string">'Flask API 请求失败: '</span> . $response-&gt;<span class="hljs-title function_">get_error_message</span>() );<br>        } <span class="hljs-keyword">else</span> {<br>            $response_code = <span class="hljs-title function_">wp_remote_retrieve_response_code</span>( $response );<br>            $response_body = <span class="hljs-title function_">wp_remote_retrieve_body</span>( $response );<br>            <br>            <span class="hljs-keyword">if</span> ( $response_code == <span class="hljs-number">200</span> ) {<br>                <span class="hljs-title function_">error_log</span>( <span class="hljs-string">'API key 续费成功: '</span> . $api_key );<br>            } <span class="hljs-keyword">else</span> {<br>                <span class="hljs-title function_">error_log</span>( <span class="hljs-string">'Flask API 响应错误: '</span> . $response_body );<br>            }<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E7%99%BD%E5%90%8D%E5%8D%95%E8%AE%BE%E7%BD%AE">白名单设置</span></h3>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义白名单，包含允许访问的 IP 地址 </span><br>WHITELIST_IPS = [<span class="hljs-string">'192.168.1.100'</span>, <span class="hljs-string">'203.0.113.1'</span>] <br><span class="hljs-comment"># 替换为你允许的 IP 地址 </span><br><span class="hljs-meta">@app.before_request </span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">limit_remote_addr</span>(): <br>	client_ip = request.remote_addr <br>		<span class="hljs-keyword">if</span> client_ip <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> WHITELIST_IPS: <span class="hljs-comment"># 如果 IP 不在白名单中，则返回 403 Forbidden </span><br>			abort(<span class="hljs-number">403</span>)<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="%E5%90%8E%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%93%8D%E4%BD%9C">后端自动化操作</span></h2>
+<p>因为我完全没写过网络相关的东西，只是简单用python flask做了一个简易后端，详见<a target="_blank" rel="noopener" href="https://github.com/PaiPai121/jiujiu_server">github: jiujiu_server</a>
+然后用无头chrome通过selenium自动化操作去目标网站点点点，实现自动化操作。</p>
+<h2><span id="%E6%9C%80%E5%90%8E">最后</span></h2>
+<p>其实大部分代码可能都不是我写的，而是我告诉AI需求，让他给我实现
+虽然经常不work，但是只需凭借最基本的编程知识就可以定位和debug，然后交给AI修改。
+虽然总的还是搞了累计可能得有10个小时
+但是如果没有AI的话我大概一开始就会放弃吧哈哈哈哈哈哈</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/09/26/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%B8%AE%E5%93%A5%E4%BB%AC%E6%90%AD%E8%87%AA%E5%8A%A8api%E7%BB%AD%E8%B4%B9%E7%BD%91%E7%AB%99%E7%9A%84%E7%BB%8F%E5%8E%86/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;09&#x2F;26&#x2F;日常记录&#x2F;记一次帮哥们搭自动api续费网站的经历&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;09&#x2F;26&#x2F;日常记录&#x2F;记一次帮哥们搭自动api续费网站的经历&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

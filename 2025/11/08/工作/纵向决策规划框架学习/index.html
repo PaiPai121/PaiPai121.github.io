@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 纵向决策规划框架学习 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/mlai4.png"
+				data-sizes="auto"
+				alt="纵向决策规划框架学习"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>纵向决策规划框架学习</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月08日</a>
+			<a><i class="kirafont icon-edit-fill"></i>6.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 27 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-16-speedbonddecider---%E5%88%9D%E5%A7%8B-st-%E5%9B%BE%E7%94%9F%E6%88%90">纵向规划流水线详解 (1/6): <code>SpeedBondDecider</code> - 初始 ST 图生成</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E4%B8%80speedbonddecider-%E7%AC%AC%E4%B8%80%E9%81%8D%E8%BF%90%E8%A1%8C">模块一：<code>SpeedBondDecider</code> (第一遍运行)</span></h2>
+<p>这是纵向规划流水线的<strong>第一个执行单元</strong>。它的核心任务是构建一个客观、物理的“时空地图”（ST 图），为后续的“规划脑”（DP）提供决策依据。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>生成一个**“空的”ST 图**。</p>
+<p>“空的” (Empty) 是一个关键概念，它意味着这张 ST 图仅包含障碍物的<strong>物理时空边界</strong>（它在什么时间、会出现在什么位置），但<strong>不包含任何驾驶意图或决策属性</strong>（例如，我们是<code>Follow</code>跟车还是<code>Overtake</code>超车）。</p>
+<h3><span id="2-%E4%B8%BB%E8%A6%81%E8%BE%93%E5%85%A5">2. 主要输入</span></h3>
+<p><code>SpeedBondDecider</code> 模块为了构建 ST 图，需要两个关键的初始数据：</p>
+<ol>
+<li>
+<p><strong>本车规划路径 (<code>Path</code>)</strong>:</p>
+<ul>
+<li>这不是笛卡尔坐标系，而是由横向模块（或上游）提供的一条<strong>一维曲线</strong>。</li>
+<li>该路径的<strong>S 轴</strong>（S-axis，即弧长）将成为 ST 图的纵坐标。<code>S=0</code> 代表本车当前位置，<code>S=50</code> 代表沿该路径前方 50 米处。</li>
+</ul>
+</li>
+<li>
+<p><strong>障碍物预测轨迹 (<code>Trajectory</code>)</strong>:</p>
+<ul>
+<li>来自感知和预测模块的数据。</li>
+<li>包含在未来 $T$ 秒内（例如 8 秒）所有障碍物的<strong>高频预测位置</strong>（3D 包围盒）。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="3-%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B3dt---1dt-%E9%99%8D%E7%BB%B4">3. 核心处理流程：“3D+T -&gt; 1D+T” 降维</span></h3>
+<p>ST 图的构建是一个精密的**“降维”**过程。<code>SpeedBondDecider</code> 必须将复杂的 3D 物理世界投影到一个 1D 的 S 轴上：</p>
+<ol>
+<li><strong>初始化 ST 图</strong>: 创建一个以 $T$（时间）为横轴，$S$（路径距离）为纵轴的二维网格。</li>
+<li><strong>遍历时间 $T$</strong>: 以 $dT$（例如 0.1 秒）为步长，遍历规划时域内的所有时间切片。</li>
+<li><strong>遍历障碍物</strong>: 在<strong>每一个时间切片 $t$</strong> 上，获取该时刻<strong>所有</strong>障碍物的 3D 预测包围盒。</li>
+<li><strong>投影计算 (核心)</strong>:
+<ul>
+<li>对于 $t$ 时刻的某个障碍物（例如“前车A”），模块会沿着<strong>S 轴</strong>（本车路径）进行扫描。</li>
+<li>它会计算“前车A”的 3D 盒子在本车 S 轴上的<strong>投影范围</strong>。</li>
+<li><strong>例如</strong>：在 $t = 2.0$ 秒时，系统计算发现“前车A”占据了本车 S 轴上 $S=30$ 米到 $S=35$ 米的这段空间。</li>
+<li>此时，系统就得到了一个关键坐标点：在 $T=2.0$ 秒时，障碍物 A 对应的 $s_{\text{min}} = 30$ 和 $s_{\text{max}} = 35$。</li>
+</ul>
+</li>
+<li><strong>绘制边界</strong>: 重复步骤 4，计算出障碍物 A 在所有时间切片 $T$ 上的 $[s_{\text{min}}, s_{\text{max}}]$ 范围。将这些点连接起来，就构成了该障碍物在 ST 图上的<strong>时空边界（ST Boundary）</strong>。</li>
+</ol>
+<h3><span id="4-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">4. 模块输出</span></h3>
+<ul>
+<li><strong>一个“空的” ST 图</strong>:
+<ul>
+<li>这是一个数据结构，包含了一系列障碍物的 ST 边界。</li>
+<li><strong>它只回答一个问题：“障碍物在哪里？”</strong></li>
+<li>它<strong>不</strong>回答：“我该怎么办？”</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>小结</strong>:
+在第一步中，<code>SpeedBondDecId</code> 模块完成了一次纯粹的“环境建模”。它将 3D 物理世界成功降维，转换成了 DP 算法可以理解的 2D 时空地图。</p>
+<h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-26-heuristicoptimizer---dp-%E5%AF%BB%E8%B7%AF">纵向规划流水线详解 (2/6): <code>HeuristicOptimizer</code> - DP 寻路</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E4%BA%8Cheuristicoptimizer-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">模块二：<code>HeuristicOptimizer</code> (动态规划)</span></h2>
+<p>这是流水线的<strong>第二个执行单元</strong>。它扮演着“战略家”的角色，负责在模块一 (<code>SpeedBondDecider</code>) 构建的“时空地图”上进行智能搜索。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>此模块的目标<strong>不是</strong>生成一条平滑的轨迹，而是要解决一个<strong>组合优化</strong>问题。</p>
+<ul>
+<li><strong>输入</strong>: 模块一 (<code>SpeedBondDecider</code>) 生成的“空的” ST 图（即 ST 边界）。</li>
+<li><strong>核心任务</strong>: 在这张充满“障碍物” (ST Boundaries) 的 2D 地图上，从起点 <code>(T=0, S=0)</code> 出发，找到一条<strong>累积代价最小</strong>的、<strong>粗略的 S-T 轨迹</strong>。</li>
+<li><strong>隐式决策</strong>: 这条轨迹的“形态”（例如是从障碍物上方还是下方绕过），就<strong>隐式地决定了</strong>后续的驾驶策略，即“跟车” (<code>Follow</code>) 还是“超车” (<code>Overtake</code>)。</li>
+</ul>
+<h3><span id="2-%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8E%E7%BD%91%E6%A0%BC%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">2. 工程实现：基于网格的动态规划</span></h3>
+<p>为了让计算机能够求解，连续的 ST 空间必须被“离散化”为一个网格。</p>
+<h4><span id="21-%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89dpts">2.1 状态定义：<code>dp[t][s]</code></span></h4>
+<ul>
+<li><strong>网格 (Grid)</strong>: ST 图被划分为一个 $M \times N$ 的网格。
+<ul>
+<li><strong>T 轴 (横向)</strong>: 被切分为 $M$ 个时间步长 $dT$ (例如 $T=8$秒, $dT=0.1$秒, $M=80$ 步)。</li>
+<li><strong>S 轴 (纵向)</strong>: 被切分为 $N$ 个距离步长 $dS$ (例如 $S=120$米, $dS=0.5$米, $N=240$ 步)。</li>
+</ul>
+</li>
+<li><strong>状态 <code>dp[t][s]</code></strong>: 数组 <code>dp[t][s]</code> 存储一个<strong>代价值 (Cost)</strong>。
+<ul>
+<li><strong>物理含义</strong>: 它代表车辆从起点 <code>(0, 0)</code> 出发，按规则行驶，最终到达<strong>时间步 <code>t</code>、距离格 <code>s</code></strong> 这个状态时，所需要付出的<strong>最小累积代价</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="22-%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%89%8D%E5%90%91%E8%BF%AD%E4%BB%A3">2.2 状态转移：前向迭代</span></h4>
+<p>DP 算法是一个“填表”的过程。它从 $T=0$ 时刻开始，按时间步<strong>前向迭代</strong> (Forward Pass)，计算并填满整个 $dp$ 表格。</p>
+<p>在计算 $dp[t][s]$（当前状态）时，它会回看<strong>上一个时间步</strong> $t-1$ 的所有可能状态 $dp[t-1][s_p]$（$s_p$ 代表 $s_{\text{previous}}$）。</p>
+<p>状态转移方程的核心思想如下：
+<code>dp[t][s] = StateCost(t, s) + min( dp[t-1][s_p] + TransitionCost(t-1, s_p -&gt; t, s) )</code>
+<em>(遍历所有合法的 $s_p$)</em></p>
+<ul>
+<li><strong>$StateCost(t, s)$</strong>: 状态代价。代表“仅仅<strong>存在</strong>于 <code>(t, s)</code> 这个格子”所要付出的代价（例如，这个格子是不是在障碍物里）。</li>
+<li><strong>$TransitionCost(\dots)$</strong>: 转移代价。代表“从 <code>(t-1, s_p)</code> <strong>移动</strong>到 <code>(t, s)</code>”这个动作所付出的代价（例如，这个动作的加/减速是否过猛）。</li>
+<li><strong>$min(\dots)$</strong>: DP 的核心，确保只保留累积代价最小的转移路径。</li>
+</ul>
+<h3><span id="3-dp-%E7%9A%84%E5%A4%A7%E8%84%91%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0-cost-function">3. DP 的“大脑”：代价函数 (Cost Function)</span></h3>
+<p>DP 的所有“智能”都体现在代价函数的设计上。它必须平衡<strong>安全、效率、舒适</strong>三个方面。</p>
+<h4><span id="31-%E7%8A%B6%E6%80%81%E4%BB%A3%E4%BB%B7-statecost---%E5%86%B3%E5%AE%9A%E5%AE%89%E5%85%A8">3.1 状态代价 (StateCost) - 决定安全</span></h4>
+<p>这是 DP 寻路的<strong>硬约束</strong>来源。</p>
+<ul>
+<li><strong>障碍物代价 (Obstacle Cost)</strong>:
+<ul>
+<li><strong>硬约束</strong>: 如果网格点 <code>(t, s)</code> <strong>位于</strong>模块一生成的 ST 障碍物边界<strong>内部</strong>，则 $StateCost = \infty$ (无穷大)。</li>
+<li><strong>效果</strong>: DP 在计算 $min(\dots)$ 时，会自动抛弃任何试图穿过障碍物的路径。<strong>这是强制 DP 绕行的核心机制</strong>。</li>
+<li><strong>软约束 (Buffer Cost)</strong>: 如果 <code>(t, s)</code> 只是<strong>靠近</strong>（但未进入）障碍物边界，则 $StateCost = \text{High_Cost}$。</li>
+<li><strong>效果</strong>: 这会鼓励 DP 轨迹尽量在“安全通道”的中央行驶，而不是“贴着”障碍物走，为后续 QP 优化留出裕度。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="32-%E8%BD%AC%E7%A7%BB%E4%BB%A3%E4%BB%B7-transitioncost---%E5%86%B3%E5%AE%9A%E6%95%88%E7%8E%87%E4%B8%8E%E8%88%92%E9%80%82">3.2 转移代价 (TransitionCost) - 决定效率与舒适</span></h4>
+<p>这是评估“驾驶动作”好坏的代价。这个“动作”是从 <code>(t-1, s_p)</code> 移动到 <code>(t, s)</code>。</p>
+<ol>
+<li>
+<p><strong>速度代价 (Speed Cost)</strong>:</p>
+<ul>
+<li><strong>动作的隐含速度</strong>: $V = (s - s_p) \times dS / dT$。</li>
+<li><strong>代价计算</strong>: $Cost_V = w_v \times (V - V_{\text{ref}})^2$。</li>
+<li><strong>目的</strong>: 惩罚“实际速度 $V$”与“期望参考速度 $V_{\text{ref}}$”（例如道路限速）之间的差异，鼓励车辆保持高效巡航。</li>
+</ul>
+</li>
+<li>
+<p><strong>加速度代价 (Acceleration Cost)</strong>:</p>
+<ul>
+<li><strong>动作的隐含加速度</strong>: $A = (V - V_{\text{prev}}) / dT$。</li>
+<li><strong>代价计算</strong>: $Cost_A = w_a \times A^2$。</li>
+<li><strong>目的</strong>: 惩罚过大的加减速（$A$ 的绝对值），这是保证<strong>平顺性 (Smoothness)</strong> 的关键。</li>
+</ul>
+</li>
+<li>
+<p><strong>加加速度代价 (Jerk Cost)</strong>:</p>
+<ul>
+<li><strong>动作的隐含Jerk</strong>: $Jerk = (A - A_{\text{prev}}) / dT$。</li>
+<li><strong>代价计算</strong>: $Cost_J = w_j \times Jerk^2$。</li>
+<li><strong>目的</strong>: G-Jerk（加速度的变化），例如从“刹车”猛地切换到“油门”。这是保证<strong>舒适性 (Comfort)</strong> 的关键。</li>
+</ul>
+</li>
+</ol>
+<p><em>(注: $w_v, w_a, w_j$ 是权重系数，用于平衡效率与舒适性)</em></p>
+<h3><span id="4-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">4. 模块输出</span></h3>
+<p>当 DP 填完整个表格后：</p>
+<ol>
+<li><strong>回溯 (Backtracking)</strong>:
+<ul>
+<li>算法会查看最后一行 $dp[T_{\text{max}}][\dots]$，找到<strong>总代价最低</strong>的那个 $s_{\text{final}}$。</li>
+<li>然后，它会利用在计算过程中保存的路径信息（例如一个 <code>path[t][s]</code> 数组，记录了它是从哪个 $s_p$ 转移来的），从 $s_{\text{final}}$ 开始<strong>反向回溯</strong>，直到 $T=0$。</li>
+</ul>
+</li>
+<li><strong>最终输出</strong>:
+<ul>
+<li><strong>一条粗略的 S-T 轨迹</strong>: 这是一个由 <code>(t, s)</code> 坐标点组成的<strong>折线</strong>。</li>
+<li><strong>轨迹特点</strong>:
+<ul>
+<li><strong>可行性</strong>: 保证<strong>不碰撞</strong>（已绕开所有 ST 障碍物）。</li>
+<li><strong>粗糙性</strong>: 轨迹是离散的、有棱角的（折线），不平滑。</li>
+<li><strong>全局最优</strong>: 它是 DP 代价函数下的“战略最优解”。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>小结</strong>:
+在第二步中，<code>HeuristicOptimizer</code> (DP) 充当了“战略家”。它通过在 ST 网格上搜索，找到了一条<strong>不碰撞、代价最小</strong>的粗略 S-T 轨迹。</p>
+<h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-36-speeddecider---%E5%86%B3%E7%AD%96%E7%BF%BB%E8%AF%91">纵向规划流水线详解 (3/6): <code>SpeedDecider</code> - 决策“翻译”</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E4%B8%89speeddecider-%E5%86%B3%E7%AD%96%E5%88%86%E9%85%8D%E5%99%A8">模块三：<code>SpeedDecider</code> (决策分配器)</span></h2>
+<p>这是流水线的<strong>第三个执行单元</strong>，也是“第一遍规划”(Pass 1)的收尾工作。它扮演着“翻译官”的角色，负责<strong>解读</strong>DP轨迹的战略意图。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>将 <code>HeuristicOptimizer</code> (DP) 产生的<strong>隐式路径</strong>（一条粗糙的S-T折线），“翻译”并<strong>显式地</strong>赋予 ST 图中每个障碍物一个<strong>纵向决策属性</strong>（如 <code>Follow</code>, <code>Overtake</code>）。</p>
+<h3><span id="2-%E4%B8%BB%E8%A6%81%E8%BE%93%E5%85%A5">2. 主要输入</span></h3>
+<ol>
+<li><strong>“空的” ST 图</strong>: (来自模块一) 包含所有障碍物的物理边界。</li>
+<li><strong>DP 粗略轨迹</strong>: (来自模块二) 一条S-T折线，代表DP找到的代价最低的路径。</li>
+</ol>
+<h3><span id="3-%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E8%BD%A8%E8%BF%B9%E8%A7%A3%E8%AF%BB">3. 核心处理流程：“轨迹解读”</span></h3>
+<p><code>SpeedDecider</code> 会遍历 ST 图上的<strong>每一个障碍物</strong>，并将其边界与 DP 轨迹进行对比：</p>
+<ol>
+<li><strong>获取障碍物 A</strong>：例如，一个在 $T=[2, 5]$ 秒， $S=[30, 40]$ 米的“障碍物矩形”。</li>
+<li><strong>对比 DP 轨迹</strong>：查看 DP 轨迹在 $T=[2, 5]$ 秒这个时间段内，是在该“障碍物矩形”的<strong>上方</strong>还是<strong>下方</strong>通过的。</li>
+<li><strong>决策推导规则</strong>：
+<ul>
+<li><strong><code>Overtake</code> (超车)</strong>：如果 DP 轨迹的 $S$ 值<strong>高于</strong>障碍物的 $s_{\text{min}}$（即在 ST 图上，DP 路径从障碍物“上方”绕过），系统判定 DP 的“意图”是超车。
+<ul>
+<li><strong>赋值</strong>：<code>Obstacle_A.decision = Overtake</code></li>
+</ul>
+</li>
+<li><strong><code>Follow</code> (跟车)</strong>：如果 DP 轨迹的 $S$ 值<strong>低于</strong>障碍物的 $s_{\text{max}}$（即在 ST 图上，DP 路径从障碍物“下方”绕过），系统判定 DP 的“意图”是减速跟车。
+<ul>
+<li><strong>赋值</strong>：<code>Obstacle_A.decision = Follow</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3><span id="4-%E7%89%B9%E6%AE%8A%E5%86%B3%E7%AD%96%E5%A4%84%E7%90%86">4. 特殊决策处理</span></h3>
+<p>除了上述二选一，<code>SpeedDecider</code> 还需要处理更复杂的边缘情况，以确保决策的鲁棒性：</p>
+<ul>
+<li><strong><code>Stop</code> (停止)</strong>：
+<ul>
+<li><strong>触发</strong>: 通常用于<strong>静态车辆</strong>（其预测轨迹为空，导致 ST 边界是一个水平长条）或高风险目标。</li>
+<li><strong>处理</strong>: 直接赋值 <code>Obstacle_Static.decision = Stop</code>。这个决策会跳过后续的常规优化，直接在 QP 中生成一个到 $s_{\text{stop}}$ 位置的停车指令。</li>
+</ul>
+</li>
+<li><strong><code>Yield</code> (避让)</strong>：
+<ul>
+<li><strong>触发</strong>: <code>Yield</code> 是 <code>Follow</code> 决策的一种<strong>演变或升级</strong>。</li>
+<li><strong>处理</strong>: 当 <code>Follow</code> 决策被赋予后，模块会进一步检查。如果发现跟车时间过长（例如超过了预设的 <code>MaxT</code> 阈值，如2秒），或者跟车距离过近，系统会将决策从 <code>Follow</code> 升级为 <code>Yield</code>。</li>
+<li><strong>含义</strong>: <code>Yield</code> 通常意味着需要采取更保守的减速策略，或者为可能的停车做准备。</li>
+</ul>
+</li>
+<li><strong><code>Ignore</code> (忽略)</strong>：
+<ul>
+<li><strong>触发</strong>: 对于那些虽然在 ST 图上，但距离本车极远（例如 S &gt; 100米），或者横向距离很远（D &gt; 5米）的障碍物。</li>
+<li><strong>处理</strong>: 赋予 <code>Ignore</code> 决策。这些障碍物将<strong>不会</strong>在后续的 QP 优化中产生任何约束。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="5-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">5. 模块输出</span></h3>
+<ul>
+<li><strong>一个“带决策属性”的 ST 图</strong>:
+<ul>
+<li>这<strong>不是</strong>一张新图，而是对模块一 ST 图的**“原地修改” (In-place Modification)**。</li>
+<li>现在，ST 图数据结构中的每一个障碍物，除了有 $[s_{\text{min}}, s_{\text{max}}]$ 边界信息，还多了一个**<code>Decision</code> 标签**（<code>Follow</code>, <code>Overtake</code>, <code>Stop</code> 等）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>小结</strong>:
+在第三步中，“翻译官” (<code>SpeedDecider</code>) 成功地将 DP 的数学最优路径，转化为了人类可以理解的、明确的驾驶意图。</p>
+<p><strong>流水线状态</strong>:
+至此，<strong>“第一遍规划” (Pass 1) 已全部完成</strong>。我们有了一张带决策的 ST 图。</p>
+<h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-46-speedfinaldecider---%E5%86%B3%E7%AD%96%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%BA%A6%E6%9D%9F%E7%B2%BE%E5%8C%96">纵向规划流水线详解 (4/6): <code>SpeedFinalDecider</code> - 决策驱动的约束精化</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E5%9B%9Bspeedfinaldecider-%E7%BA%A6%E6%9D%9F%E7%B2%BE%E5%8C%96%E5%99%A8">模块四：<code>SpeedFinalDecider</code> (约束精化器)</span></h2>
+<p>这是流水线的<strong>第四个执行单元</strong>，也是“第二遍规划”(Pass 2)的<strong>起点</strong>。它扮演着“安全工程师”的角色，负责利用 Pass 1 的决策，生成 QP 优化器最终必须严格遵守的<strong>硬约束</strong>。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>将 <code>SpeedDecider</code> (模块三) 产生的<strong>驾驶意图</strong>（<code>Follow</code>, <code>Overtake</code> 等决策），转化为<strong>数学上严格、且带有安全裕度</strong>的 S-T 边界，供 QP 求解器使用。</p>
+<h3><span id="2-%E4%B8%BB%E8%A6%81%E8%BE%93%E5%85%A5">2. 主要输入</span></h3>
+<ol>
+<li><strong>“带决策属性”的 ST 图</strong>: (来自模块三) ST 图中每个障碍物都已被标记了 <code>Follow</code>, <code>Overtake</code>, <code>Stop</code> 或 <code>Ignore</code>。</li>
+<li><strong>本车状态与安全参数</strong>: 例如本车车长、配置的安全跟车模型（如 C-HW, Constant Headway time-based following）、期望的超车裕度等。</li>
+</ol>
+<h3><span id="3-%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%86%B3%E7%AD%96%E9%A9%B1%E5%8A%A8%E7%9A%84%E6%89%A9%E5%9B%BE-expansion">3. 核心处理流程：“决策驱动的扩图 (Expansion)”</span></h3>
+<p><code>SpeedFinalDecider</code> 会<strong>重新遍历</strong> ST 图上的每一个障碍物，并根据其<strong>决策标签</strong>，对其 ST 边界 (来自模块一) 进行“精修”和“扩图”：</p>
+<h4><span id="31-follow-%E8%B7%9F%E8%BD%A6-%E5%86%B3%E7%AD%96%E5%A4%84%E7%90%86">3.1 <code>Follow</code> (跟车) 决策处理</span></h4>
+<ul>
+<li><strong>原始边界</strong>: 模块一生成的 ST 边界是一个“硬壳”，代表障碍物的物理位置 $[s_{\text{min}}, s_{\text{max}}]$。</li>
+<li><strong>决策含义</strong>: 既然我们要 <code>Follow</code>（在它上方通过），QP 优化器只需要关心它的<strong>下边界 $s_{\text{min}}$</strong>（即障碍物在 S 轴上的“尾部”）。</li>
+<li><strong>扩图 (Expansion)</strong>: 我们不能让 QP 规划一条“贴着”前车 $s_{\text{min}}$ 的轨迹。
+<ul>
+<li><strong>精修</strong>: 模块会<strong>丢弃</strong>上边界 $s_{\text{max}}$（因为我们不关心它的车头），只保留下边界 $s_{\text{min}}$。</li>
+<li><strong>扩图</strong>: 在 $s_{\text{min}}$ 的基础上<strong>减去</strong>一个“安全跟车距离”（例如，根据安全车头时距 <code>C-HW</code> 计算出的 10 米）。</li>
+</ul>
+</li>
+<li><strong>最终约束</strong>: 生成一个新的、QP 必须遵守的<strong>下边界硬约束</strong>：$S_t \ge (s_{\text{min}, t} - \text{SafeFollowDistance})$。</li>
+</ul>
+<h4><span id="32-overtake-%E8%B6%85%E8%BD%A6-%E5%86%B3%E7%AD%96%E5%A4%84%E7%90%86">3.2 <code>Overtake</code> (超车) 决策处理</span></h4>
+<ul>
+<li><strong>原始边界</strong>: $[s_{\text{min}}, s_{\text{max}}]$。</li>
+<li><strong>决策含义</strong>: 既然我们要 <code>Overtake</code>（在它下方通过），QP 优化器只需要关心它的<strong>上边界 $s_{\text{max}}$</strong>（即障碍物在 S 轴上的“头部”）。</li>
+<li><strong>扩图 (Expansion)</strong>:
+<ul>
+<li><strong>精修</strong>: 模块会<strong>丢弃</strong>下边界 $s_{\text{min}}$，只保留上边界 $s_{\text{max}}$。</li>
+<li><strong>扩图</strong>: 在 $s_{\text{max}}$ 的基础上<strong>加上</strong>一个“安全超车裕度”（例如 1 米），确保我们不会“擦着”车头过去。</li>
+</ul>
+</li>
+<li><strong>最终约束</strong>: 生成一个新的、QP 必须遵守的<strong>上边界硬约束</strong>：$S_t \le (s_{\text{max}, t} + \text{SafeOvertakeMargin})$。</li>
+</ul>
+<h4><span id="33-stop-%E5%81%9C%E6%AD%A2-%E5%86%B3%E7%AD%96%E5%A4%84%E7%90%86">3.3 <code>Stop</code> (停止) 决策处理</span></h4>
+<ul>
+<li><strong>处理</strong>: <code>Stop</code> 决策会生成一个<strong>静态的</strong>、<strong>上边界</strong>约束。</li>
+<li><strong>例如</strong>: 如果静态障碍物在 $S=50$ 米处，约束将是 $S_t \le (50 - \text{SafeStopDistance})$。</li>
+</ul>
+<h4><span id="34-ignore-%E5%BF%BD%E7%95%A5-%E5%86%B3%E7%AD%96%E5%A4%84%E7%90%86">3.4 <code>Ignore</code> (忽略) 决策处理</span></h4>
+<ul>
+<li><strong>处理</strong>: 被标记为 <code>Ignore</code> 的障碍物，<strong>不会</strong>在此模块中生成任何 S-T 约束。它将被 QP 求解器<strong>完全无视</strong>。</li>
+</ul>
+<h4><span id="35-%E7%89%B9%E6%AE%8A%E7%BA%A6%E6%9D%9F%E6%B3%A8%E5%85%A5-%E4%BE%8B%E5%A6%82%E6%8D%A2%E9%81%93%E8%B0%83%E9%80%9F">3.5 特殊约束注入 (例如：换道调速)</span></h4>
+<ul>
+<li><strong>场景</strong>: 正如会议中所讨论，如果车辆正在<strong>换道</strong>，此模块还负责注入“换道调速”约束。</li>
+<li><strong>处理</strong>: 它会“观察”目标车道上的车辆，并可能将其投影到本车的 ST 图中，生成一个（通常是 <code>Follow</code>）约束，以确保本车在汇入时与目标车道的车流速度相匹配。</li>
+</ul>
+<h3><span id="4-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">4. 模块输出</span></h3>
+<ul>
+<li><strong>最终的 QP 约束集</strong>:
+<ul>
+<li>这是一个<strong>精简且安全</strong>的 S-T 边界列表。</li>
+<li>它不再是“硬壳”矩形，而是 QP 优化器需要遵守的<strong>一系列 S 上边界 ($S \le \dots$) 和 S 下边界 ($S \ge \dots$)</strong>。</li>
+<li>这就是 QP 求解器 (<code>QP Optimizer</code>) 的<strong>核心硬约束</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>小结</strong>:
+在第四步中，<code>SpeedFinalDecider</code> 充当了“安全工程师”。它将“战略家”(DP) 的意图，转化为了“专业车手”(QP) 必须严格遵守的、带有安全裕度的<strong>最终赛道边界</strong>。</p>
+<h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-56-qp-optimizer---%E8%BD%A8%E8%BF%B9%E5%B9%B3%E6%BB%91%E4%B8%8E%E6%B1%82%E8%A7%A3">纵向规划流水线详解 (5/6): <code>QP Optimizer</code> - 轨迹平滑与求解</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E4%BA%94qp-optimizer-%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E4%BC%98%E5%8C%96%E5%99%A8">模块五：<code>QP Optimizer</code> (二次规划优化器)</span></h2>
+<p>这是流水线的<strong>第五个执行单元</strong>，也是“第二遍规划”(Pass 2)的<strong>核心</strong>。它扮演着“专业车手”的角色，负责在“硬约束”下求解出“最平滑”的轨迹。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>在满足<strong>所有安全和动力学硬约束</strong>的前提下，求解一个<strong>连续优化</strong>问题，生成一条在数学上<strong>最平滑、最舒适</strong>的 S-T 轨迹。</p>
+<ul>
+<li><strong>对比 DP (模块二)</strong>: DP 解决的是“走哪条路”（组合问题）；QP 解决的是“怎么把这条路走得最好”（连续问题）。</li>
+</ul>
+<h3><span id="2-%E4%B8%BB%E8%A6%81%E8%BE%93%E5%85%A5">2. 主要输入</span></h3>
+<p>QP 优化器接收两类输入：<strong>硬约束</strong>（必须遵守）和<strong>软约束</strong>（尽量满足）。</p>
+<ol>
+<li>
+<p><strong>硬约束 (Hard Constraints) - 必须遵守</strong></p>
+<ul>
+<li><strong>ST 边界约束</strong>: (来自模块四)
+<ul>
+<li>$S_t \le S_{\text{upper_bound}, t}$ (例如，不能超过前方障碍物的尾部减去安全距离)</li>
+<li>$S_t \ge S_{\text{lower_bound}, t}$ (例如，不能低于后方障碍物的头部加上安全裕度)</li>
+</ul>
+</li>
+<li><strong>速度约束 (V)</strong>: (来自地图和车辆)
+<ul>
+<li>$V_t \le V_{\text{speed_limit}}$ (道路限速)</li>
+<li>$V_t \ge 0$ (不能倒车)</li>
+</ul>
+</li>
+<li><strong>加速度约束 (A)</strong>: (来自车辆动力学)
+<ul>
+<li>$A_{\text{min}} \le A_t \le A_{\text{max}}$ (例如，最大刹车 $-5.0 \text{m/s}^2$，最大油门 $2.0 \text{m/s}^2$)</li>
+</ul>
+</li>
+<li><strong>加加速度约束 (Jerk)</strong>: (来自舒适性要求)
+<ul>
+<li>$Jerk_{\text{min}} \le Jerk_t \le Jerk_{\text{max}}$ (例如，Jerk 变化率不能过大，防止顿挫)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>软约束 / 参考线 (Soft Constraints / Reference Line) - 尽量满足</strong></p>
+<ul>
+<li><strong>DP 粗略轨迹</strong>: (来自模块二)
+<ul>
+<li>$S_{\text{ref}, t}$ (DP 规划的 S 轨迹)</li>
+<li>$V_{\text{ref}, t}$ (DP 规划的 V 轨迹)</li>
+</ul>
+</li>
+<li><strong>作用</strong>: 这条 DP 轨迹是 QP 的“引导线”。QP 会努力“贴近”这条轨迹，但如果为了贴近它而会导致不平滑（Jerk过大），QP 会优先选择平滑。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="3-%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E6%B1%82%E8%A7%A3%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98">3. 核心处理流程：求解二次规划问题</span></h3>
+<p>QP 优化的本质是求解一个<strong>带约束的最小二乘问题</strong>。</p>
+<h4><span id="31-%E4%BC%98%E5%8C%96%E5%8F%98%E9%87%8F">3.1 优化变量</span></h4>
+<p>求解器需要求解的未知数是未来一段时间内（例如 $T=8$秒, $dT=0.1$秒）所有 $M=80$ 个时间点上的状态序列：
+$X = [S_0, S_1, \dots, S_M, V_0, V_1, \dots, V_M, A_0, A_1, \dots, A_M]$
+(注：实际求解中，S, V, A 之间通过运动学公式 $S_t = S_{t-1} + V_{t-1}dT + \dots$ 相互关联)</p>
+<h4><span id="32-%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0-cost-function---%E8%BD%AF%E7%BA%A6%E6%9D%9F">3.2 目标函数 (Cost Function) - 软约束</span></h4>
+<p>QP 求解器的<strong>目标</strong>是找到一组 $X$，使得这个<strong>总代价函数 $J$ 最小</strong>。
+正如会议中提到的，这个函数是各项代价的<strong>平方和</strong>（这就是“二次”规划的来源）：
+$$
+J = \min \sum_{t=0}^{M} \left( w_s(S_t - S_{\text{ref}, t})^2 + w_v(V_t - V_{\text{ref}, t})^2 + w_a(A_t)^2 + w_j(Jerk_t)^2 \right)
+$$</p>
+<ul>
+<li><strong>$w_s(S_t - S_{\text{ref}, t})^2$</strong>: <strong>S 路径代价</strong>。惩罚轨迹偏离 DP 参考线的距离。</li>
+<li><strong>$w_v(V_t - V_{\text{ref}, t})^2$</strong>: <strong>V 速度代价</strong>。惩罚速度偏离 DP 参考速度。</li>
+<li><strong>$w_a(A_t)^2$</strong>: <strong>加速度代价</strong>。一个<strong>关键的平滑项</strong>，迫使求解器找到 $A$ 尽量接近 0 的解，避免不必要的加减速。</li>
+<li><strong>$w_j(Jerk_t)^2$</strong>: <strong>Jerk 代价</strong>。<strong>最关键的舒适性项</strong>，迫使求解器找到 $A$ 变化率尽量为 0 的解，消除顿挫感。</li>
+</ul>
+<p><em>(注: $w_s, w_v, w_a, w_j$ 是权重系数，用于平衡“跟随参考”与“保持平滑”之间的关系)</em></p>
+<h4><span id="33-%E6%B1%82%E8%A7%A3">3.3 求解</span></h4>
+<p>求解器（如 OSQP, qpOASES）会接收上述的“目标函数”和“硬约束”，在毫秒级时间内计算出一个<strong>唯一的最优解</strong> $X^*$。</p>
+<h4><span id="34-%E5%81%A5%E5%A3%AE%E6%80%A7%E5%A4%84%E7%90%86-failsafe">3.4 健壮性处理 (Failsafe)</span></h4>
+<ul>
+<li><strong>如果无解?</strong>: 理论上，如果“硬约束”设置得过于严苛（例如，<code>SpeedFinalDecider</code> 给出的 $S_{upper}$ 和 $S_{lower}$ 边界在某一刻重叠了），QP 可能会求解失败 (Infeasible)。</li>
+<li><strong>处理</strong>: 如会议中所述，系统会有一个 Failsafe 机制。
+<ol>
+<li><strong>尝试放宽 (Expand)</strong>: 第一次无解时，系统可能会尝试略微放宽硬约束（例如，将安全裕度缩小 10%），然后<strong>再次求解</strong>。</li>
+<li><strong>使用 DP 降级</strong>: 如果再次求解失败，系统将放弃 QP，转而使用（不平滑但安全的）<strong>DP 轨迹 (模块二)</strong> 作为本帧的输出，并触发紧急减速。</li>
+</ol>
+</li>
+</ul>
+<h3><span id="4-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">4. 模块输出</span></h3>
+<ul>
+<li><strong>最终 S-T 轨迹 (Optimal Trajectory)</strong>:
+<ul>
+<li>这是一个<strong>平滑、连续、舒适</strong>且<strong>绝对安全</strong>（严格遵守所有硬约束）的 S-T 轨迹。</li>
+<li>它以一系列高频 <code>(t, s, v, a, jerk)</code> 坐标点的形式存储。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>小结</strong>:
+在第五步中，“专业车手”(<code>QP Optimizer</code>) 登场。它在“安全工程师”(<code>SpeedFinalDecider</code>) 划定的“最终赛道”上，以“战略家”(<code>HeuristicOptimizer</code>) 的粗略轨迹为“引导线”，跑出了那条最平滑、最舒适的“冠军路线”。</p>
+<h1><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AF%A6%E8%A7%A3-66-%E8%BD%A8%E8%BF%B9%E8%BE%93%E5%87%BA%E4%B8%8E-mpc-%E9%97%AD%E7%8E%AF">纵向规划流水线详解 (6/6): 轨迹输出与 MPC 闭环</span></h1>
+<h2><span id="%E6%A8%A1%E5%9D%97%E5%85%AD%E8%BD%A8%E8%BF%B9%E5%8F%91%E5%B8%83%E5%99%A8-trajectory-publisher">模块六：轨迹发布器 (Trajectory Publisher)</span></h2>
+<p>这是流水线的<strong>第六个、也是最后一个执行单元</strong>。它不进行复杂的计算，而是充当“规划大脑”和“车辆神经系统”（控制模块）之间的<strong>信使</strong>。</p>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87">1. 核心目标</span></h3>
+<p>将 <code>QP Optimizer</code> (模块五) 生成的<strong>完整轨迹</strong>，以<strong>正确的格式</strong>、在<strong>正确的时间</strong>，发送给<strong>车辆控制模块</strong>（<code>Control</code>）。</p>
+<h3><span id="2-%E4%B8%BB%E8%A6%81%E8%BE%93%E5%85%A5">2. 主要输入</span></h3>
+<ul>
+<li><strong>最优 S-T 轨迹</strong>: (来自模块五)
+<ul>
+<li>这是一个<strong>轨迹点序列 (List)</strong>，包含了未来 $T$ 秒（例如 $T=8$ 秒）的完整规划。</li>
+<li><strong>数据结构</strong>: <code>List&lt;TrajectoryPoint&gt;</code></li>
+<li><strong>每个 <code>TrajectoryPoint</code> 包含</strong>:
+<ul>
+<li>$t$: 时间戳 (e.g., 0.1s, 0.2s, …)</li>
+<li>$s$: 路径距离</li>
+<li>$v$: 速度</li>
+<li>$a$: 加速度</li>
+<li>$jerk$: 加加速度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E6%8E%A7%E5%88%B6-mpc-%E6%80%9D%E6%83%B3">3. 核心处理流程：“模型预测控制” (MPC) 思想</span></h3>
+<p>这是一个<strong>极其关键</strong>的概念，也是自动驾驶规划的核心思想。</p>
+<p><strong>一个问题：</strong> 既然我们辛辛苦苦算出了未来 8 秒的完美轨迹，我们会把这 8 秒的轨迹<strong>全部</strong>发给控制模块去执行吗？</p>
+<p><strong>答案是：绝对不会。</strong> 我们<strong>只发送这个轨迹的第一个点</strong>。</p>
+<p>这就是“模型预测控制”（Model Predictive Control, MPC）的“滚动优化” (Receding Horizon) 思想，也是整个流水线<strong>闭环运行</strong>的关键：</p>
+<ol>
+<li>
+<p><strong>规划 (Plan)</strong>: 在 $T=0$ 时刻，我们运行模块一到五，生成了一条 <strong>8 秒</strong>的完整轨迹（<code>Optimal Trajectory</code>）。</p>
+<ul>
+<li><em>为什么需要 8 秒？</em> 因为我们必须看得足够远（例如看到 5 秒后的红灯），才能做出<strong>当前</strong>（$T=0$ 时刻）正确的决策（例如开始轻微减速）。</li>
+</ul>
+</li>
+<li>
+<p><strong>执行 (Execute)</strong>:</p>
+<ul>
+<li>系统从这条 8 秒轨迹中，<strong>只提取第一个时间步</strong>（例如 $T=0.1$ 秒）的规划点：<code>TrajectoryPoint(t=0.1, s=..., v=..., a=..., jerk=...)</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>发布 (Publish)</strong>:</p>
+<ul>
+<li>系统将这个<strong>单独的</strong> <code>TrajectoryPoint</code> 打包成一个 <code>SpeedData</code> 或 <code>ControlCommand</code> 消息。</li>
+<li><strong>发送</strong>：这个消息被发送给 <code>Control</code> 模块（车辆的底层执行器）。</li>
+<li><code>Control</code> 模块的<strong>唯一任务</strong>就是：“在接下来的 0.1 秒内，努力让车辆的实际状态（$v, a$）与这个目标点一致。”</li>
+</ul>
+</li>
+<li>
+<p><strong>丢弃 (Discard)</strong>:</p>
+<ul>
+<li>刚才那条 8 秒轨迹的<strong>剩余 7.9 秒</strong>，被<strong>立即丢弃</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>循环 (Loop)</strong>:</p>
+<ul>
+<li>0.1 秒后，车辆到达了新的位置，传感器（雷达、摄像头）<strong>重新扫描</strong>了整个世界。</li>
+<li>此时，<code>T=0</code> 时刻的“前车A”可能已经加速了，“前车B”可能突然刹车了。</li>
+<li><strong>整个纵向规划流水线从模块一 (<code>SpeedBondDecider</code>) 开始，全部重新运行一次</strong>。</li>
+<li>它会基于这个<strong>全新的世界状态</strong>，再次计算出一条<strong>全新的</strong> 8 秒轨迹，然后重复步骤 2、3、4。</li>
+</ul>
+</li>
+</ol>
+<p>这个“规划 -&gt; 执行第一步 -&gt; 丢弃 -&gt; 重新规划”的循环，以每秒 10 次（10Hz）的频率不断重复，确保了车辆既有长远的战略眼光（DP/QP），又能对瞬息万变的环境做出<strong>毫秒级</strong>的快速反应。</p>
+<h3><span id="4-%E6%A8%A1%E5%9D%97%E8%BE%93%E5%87%BA">4. 模块输出</span></h3>
+<ul>
+<li><strong><code>SpeedData</code> (控制指令)</strong>:
+<ul>
+<li><strong>内容</strong>: 包含 <code>(v, a, jerk)</code> 的<strong>单点</strong>目标。</li>
+<li><strong>目标</strong>: 车辆 <code>Control</code> 模块（最终通向 CAN 总线，控制油门和刹车）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="%E7%BA%B5%E5%90%91%E8%A7%84%E5%88%92%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%80%BB%E7%BB%93">纵向规划流水线总结</span></h2>
+<p>至此，我们完整地走完了纵向规划的全部 6 个模块：</p>
+<ol>
+<li>
+<p><strong><code>SpeedBondDecider</code> (环境建模)</strong></p>
+<ul>
+<li><strong>工作</strong>: 将 3D 物理世界“降维”到 2D 的“时空地图”(ST图)。</li>
+<li><strong>输出</strong>: “空的” ST 边界。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>HeuristicOptimizer</code> (DP 战略)</strong></p>
+<ul>
+<li><strong>工作</strong>: 在 ST 地图上，通过“填表”找到一条<strong>代价最低</strong>的<strong>粗略</strong>S-T 轨迹。</li>
+<li><strong>输出</strong>: 一条S-T折线 (DP 轨迹)。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>SpeedDecider</code> (决策翻译)</strong></p>
+<ul>
+<li><strong>工作</strong>: “读取” DP 轨迹，将其“翻译”为 <code>Follow</code>, <code>Overtake</code>, <code>Stop</code> 等<strong>明确决策</strong>。</li>
+<li><strong>输出</strong>: “带决策”的 ST 图。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>SpeedFinalDecider</code> (安全精修)</strong></p>
+<ul>
+<li><strong>工作</strong>: “画第二遍图”。利用“决策”，对 ST 边界进行<strong>安全裕度扩图</strong>。</li>
+<li><strong>输出</strong>: 最终的 QP 硬约束（S上/下边界）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>QP Optimizer</code> (平滑执行)</strong></p>
+<ul>
+<li><strong>工作</strong>: 在“硬约束”下，以 DP 轨迹为“软约束”参考，求解<strong>最平滑、最舒适</strong>的 8 秒 S-T 轨迹。</li>
+<li><strong>输出</strong>: 最终的最优 S-T 轨迹序列。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Publisher</code> (闭环控制)</strong></p>
+<ul>
+<li><strong>工作</strong>: 提取最优轨迹的<strong>第一个点</strong>，发送给控制模块。</li>
+<li><strong>输出</strong>: <code>SpeedData</code> 控制指令。</li>
+</ul>
+</li>
+</ol>
+<p>这个“建模 -&gt; 战略 -&gt; 翻译 -&gt; 安全 -&gt; 执行 -&gt; 控制”的流水线，在每个 100 毫秒的周期内不断循环，构成了自动驾驶纵向控制的坚实基础。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/08/%E5%B7%A5%E4%BD%9C/%E7%BA%B5%E5%90%91%E5%86%B3%E7%AD%96%E8%A7%84%E5%88%92%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;08&#x2F;工作&#x2F;纵向决策规划框架学习&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;08&#x2F;工作&#x2F;纵向决策规划框架学习&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/gaea%E6%A1%86%E6%9E%B6/" rel="tag">gaea框架</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

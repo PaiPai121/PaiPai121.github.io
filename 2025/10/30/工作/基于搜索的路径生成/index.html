@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 基于搜索的路径生成 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/mleva3.jpg"
+				data-sizes="auto"
+				alt="基于搜索的路径生成"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>基于搜索的路径生成</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年10月30日</a>
+			<a><i class="kirafont icon-edit-fill"></i>10.9k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 47 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><ul>
+<li><a href="#bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">BFS (广度优先搜索)</a>
+<ul>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E9%80%90%E5%B1%82%E6%89%A9%E6%95%A3">1. 核心思想：逐层扩散</a></li>
+<li><a href="#2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">2. 核心保证：最短路径</a></li>
+<li><a href="#3-bfs-%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B3%95%E5%AE%9D%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. BFS 的三大法宝（核心数据结构）</a></li>
+<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81">4. 算法执行伪代码</a></li>
+<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</a></li>
+<li><a href="#6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</a></li>
+</ul>
+</li>
+<li><a href="#dijkstra-%E7%AE%97%E6%B3%95-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Dijkstra 算法 学习笔记</a>
+<ul>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%88%90%E6%9C%AC%E4%BC%98%E5%85%88">1. 核心思想：成本优先</a></li>
+<li><a href="#2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%88%90%E6%9C%AC%E6%9C%80%E4%BC%98">2. 核心保证：成本最优</a></li>
+<li><a href="#3-dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7-upgraded-tools">3. Dijkstra 的“升级工具” (Upgraded Tools)</a></li>
+<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</a></li>
+</ul>
+<ul>
+<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93-1">5. 算法特性总结</a></li>
+<li><a href="#6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7-1">6. 算法缺陷</a>
+<ul>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B4%9F%E6%9D%83%E9%87%8D%E8%BE%B9%E4%BC%9A%E7%A0%B4%E5%9D%8F-break-dijkstra">为什么负权重边会““破坏” (Break) Dijkstra？</a>
+<ul>
+<li><a href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E">举例说明：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#a-a-star">A* (A-Star)</a>
+<ul>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3dijkstra--%E6%96%B9%E5%90%91%E6%84%9F">1. 核心思想：Dijkstra + “方向感”</a></li>
+<li><a href="#2-a-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F">2. A* 的核心公式</a></li>
+<li><a href="#3-a-%E7%9A%84%E6%B3%95%E5%AE%9D-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. A* 的“法宝” (数据结构)</a></li>
+<li><a href="#4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88-1">4. 算法执行伪代码 (专业版)</a></li>
+<li><a href="#5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93-2">5. 算法特性总结</a></li>
+<li><a href="#6-a-%E7%9A%84%E7%BC%BA%E9%99%B7%E4%B8%8E%E5%B1%80%E9%99%90">6. A* 的缺陷与局限</a></li>
+</ul>
+</li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94bfs-vs-dijkstra-vs-a">搜索算法对比：BFS vs Dijkstra vs A*</a>
+<ul>
+<li><a href="#1-%E7%AE%97%E6%B3%95%E7%9A%84%E5%8D%87%E7%BA%A7%E4%B8%8E%E9%99%8D%E7%BA%A7%E5%85%B3%E7%B3%BB">1. 算法的““升级””与““降级””关系</a>
+<ul>
+<li><a href="#1-bfs---dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7">1. BFS -&gt; Dijkstra 的“升级”</a></li>
+<li><a href="#2-dijkstra---a-%E7%9A%84%E5%8D%87%E7%BA%A7">2. Dijkstra -&gt; A* 的“升级”</a></li>
+</ul>
+</li>
+<li><a href="#2-%E4%B8%89%E7%A7%8D%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9%E5%AF%B9%E6%AF%94">2. 三种算法优缺点对比</a></li>
+</ul>
+</li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90">搜索代码分析</a>
+<ul>
+<li><a href="#1%E5%AE%89%E5%85%A8%E8%B5%B0%E5%BB%8A%E6%9E%84%E5%BB%BA">1.安全走廊构建</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E6%9E%84%E5%BB%BA%E9%BE%99%E9%AA%A8---%E5%B9%B3%E6%BB%91%E7%9A%84%E4%B8%AD%E5%BF%83%E5%8F%82%E8%80%83%E7%BA%BF">步骤一：构建“龙骨” - 平滑的中心参考线</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E6%9E%84%E5%BB%BA%E5%A2%99%E5%A3%81---%E7%AD%9B%E9%80%89%E5%8F%AF%E8%A7%81%E7%9A%84%E8%B7%AF%E6%B2%BF">步骤二：构建“墙壁” - 筛选可见的路沿</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E6%88%90%E5%BB%8A---%E5%BD%A2%E6%88%90%E6%9C%80%E7%BB%88%E8%BE%B9%E7%95%8C">连接成廊 - 形成最终边界</a>
+<ul>
+<li><a href="#%E6%80%BB%E7%BB%93%E8%BE%93%E5%87%BA">总结：输出</a></li>
+</ul>
+</li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E4%BB%BB%E5%8A%A1%E5%87%86%E5%A4%87%E4%B8%8E%E5%B9%B6%E8%A1%8C%E5%8C%96">搜索任务准备与并行化</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0">1. 概述</a></li>
+<li><a href="#2-%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E7%9A%84%E8%B5%B7%E7%82%B9%E5%92%8C%E7%BB%88%E7%82%B9">2. 步骤一：定义搜索的起点和终点</a></li>
+<li><a href="#3-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%8A%A0%E8%BD%BD%E9%9A%9C%E7%A2%8D%E7%89%A9%E4%B8%8E%E8%BE%B9%E7%95%8C">3. 步骤二：加载障碍物与边界</a></li>
+<li><a href="#4-%E6%AD%A5%E9%AA%A4%E4%B8%89%E5%88%9B%E5%BB%BA%E5%B9%B6%E8%A1%8C%E6%90%9C%E7%B4%A2%E4%BB%BB%E5%8A%A1-%E5%A4%9A%E8%BD%A6%E9%81%93%E6%90%9C%E7%B4%A2">4. 步骤三：创建并行搜索任务 (多车道搜索)</a></li>
+<li><a href="#5-part-2-%E6%80%BB%E7%BB%93%E8%BE%93%E5%87%BA">5. Part 2 总结：输出</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B7%B7%E5%90%88a%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95">混合A*搜索算法</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0-1">1. 概述</a></li>
+<li><a href="#2-%E7%8A%B6%E6%80%81%E6%A0%85%E6%A0%BC%E5%8C%96-gridding-%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%88%97%E8%A1%A8">2. 状态、栅格化 (Gridding) 与搜索列表</a></li>
+<li><a href="#3-a-%E6%90%9C%E7%B4%A2%E5%BE%AA%E7%8E%AF">3. A* 搜索循环</a></li>
+<li><a href="#4-%E6%AD%A5%E9%AA%A4%E4%B8%80%E8%8A%82%E7%82%B9%E6%89%A9%E5%B1%95-node-expansion---hybrid%E7%9A%84%E6%A0%B8%E5%BF%83">4. 步骤一：节点扩展 (Node Expansion) - “Hybrid”的核心</a></li>
+<li><a href="#5-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B-collision-checking">5. 步骤二：碰撞检测 (Collision Checking)</a></li>
+<li><a href="#6-%E6%AD%A5%E9%AA%A4%E4%B8%89%E4%BB%A3%E4%BB%B7%E8%AE%A1%E7%AE%97-g-%E5%92%8C-h">6. 步骤三：代价计算 ($g$ 和 $h$)</a>
+<ul>
+<li><a href="#gn---%E7%9C%9F%E5%AE%9E%E8%B7%AF%E5%BE%84%E4%BB%A3%E4%BB%B7">$g(n)$ - 真实路径代价</a></li>
+<li><a href="#hn---%E5%90%AF%E5%8F%91%E5%BC%8F%E5%87%BD%E6%95%B0-holoobstacleheuristic">$h(n)$ - 启发式函数: <code>HoloObstacleHeuristic</code></a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%87%BA">输出</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BD%A8%E8%BF%B9%E5%B9%B3%E6%BB%91%E4%B8%8E%E4%BC%98%E5%8C%96">轨迹平滑与优化</a>
+<ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0-2">1. 概述</a></li>
+<li><a href="#2-%E6%AD%A5%E9%AA%A4%E4%B8%80%E8%B7%AF%E5%BE%84%E5%8A%A0%E5%AF%86-densification">2. 步骤一：路径加密 (Densification)</a></li>
+<li><a href="#3-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%A1%AB%E5%85%85%E4%BC%98%E5%8C%96%E7%BA%A6%E6%9D%9F-constraint-filling">3. 步骤二：填充优化约束 (Constraint Filling)</a></li>
+<li><a href="#4-%E6%AD%A5%E9%AA%A4%E4%B8%89b%E6%A0%B7%E6%9D%A1%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92-b-spline-qp-%E5%B9%B3%E6%BB%91">4. 步骤三：B样条二次规划 (B-Spline QP) 平滑</a></li>
+<li><a href="#5-%E6%AD%A5%E9%AA%A4%E5%9B%9B%E8%BD%A8%E8%BF%B9%E9%80%89%E6%8B%A9%E4%B8%8E%E6%9C%80%E7%BB%88%E8%BE%93%E5%87%BA">5. 步骤四：轨迹选择与最终输出</a></li>
+<li><a href="#6-part-4-%E6%80%BB%E7%BB%93%E6%9C%80%E7%BB%88%E8%BD%A8%E8%BF%B9">6. Part 4 总结：最终轨迹</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%99%84%E5%BD%95%E5%85%B3%E9%94%AE%E8%BD%A6%E8%BE%86%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3">附录：关键车辆模型详解</a>
+<ul>
+<li><a href="#1-%E9%98%BF%E5%85%8B%E6%9B%BC%E8%BD%AC%E5%90%91-ackermann-steering---%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%A8%A1%E5%9E%8B">1. 阿克曼转向 (Ackermann Steering) - “为什么需要模型”</a>
+<ul>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</a></li>
+</ul>
+</li>
+<li><a href="#2-%E8%87%AA%E8%A1%8C%E8%BD%A6%E6%A8%A1%E5%9E%8B-bicycle-model---%E5%A6%82%E4%BD%95%E6%A8%A1%E6%8B%9F%E8%BD%AC%E5%90%91">2. 自行车模型 (Bicycle Model) - “如何模拟转向”</a>
+<ul>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-1">核心思想</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8-next_node_generator">如何在代码中使用 (<code>Next_node_generator</code>)</a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%BA%B5%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6-longitudinal-dynamics---%E5%A6%82%E4%BD%95%E8%A7%84%E5%88%92%E9%80%9F%E5%BA%A6">3. 纵向动力学 (Longitudinal Dynamics) - “如何规划速度”</a>
+<ul>
+<li><a href="#%E7%BA%B5%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C">纵向动力学模型如何工作</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB">总结：三者关系</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p>本文先从 BFS 算法开始，介绍基于搜索的路径生成。然后再引导至当前实际工程中的搜索方法。</p>
+<h1><span id="bfs-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">BFS (广度优先搜索)</span></h1>
+<h2><span id="1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E9%80%90%E5%B1%82%E6%89%A9%E6%95%A3">1. 核心思想：逐层扩散</span></h2>
+<p>BFS 的核心思想可以比喻为“水波纹”：</p>
+<ul>
+<li>它从一个 <code>start</code> (起点) 开始。</li>
+<li>像波纹一样，<strong>一层一层</strong>地、<strong>均匀地</strong>向外探索。</li>
+<li>它会先访问所有距离起点为1的节点（第1层），然后才访问所有距离为2的节点（第2层），以此类推。</li>
+</ul>
+<h2><span id="2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">2. 核心保证：最短路径</span></h2>
+<ul>
+<li><strong>最优性</strong>：在<strong>无权重图</strong>（或所有边权重都为1）中，BFS <strong>保证</strong>能找到<strong>步数最短</strong>的路径。</li>
+<li><strong>原因</strong>：由于它是逐层探索的，当它<strong>第一次</strong>到达 <code>goal</code> (终点) 时，所经过的“层数”必然是最少的。</li>
+</ul>
+<h2><span id="3-bfs-%E7%9A%84%E4%B8%89%E5%A4%A7%E6%B3%95%E5%AE%9D%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. BFS 的三大法宝（核心数据结构）</span></h2>
+<p>BFS 的实现依赖三个关键工具：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">工具</th>
+<th style="text-align:left">数据结构</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>1. 待办列表</strong></td>
+<td style="text-align:left"><code>Queue</code> (队列)</td>
+<td style="text-align:left"><strong>(先进先出 - FIFO)</strong>。保证算法“逐层”按顺序探索。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. 足迹记录</strong></td>
+<td style="text-align:left"><code>Set</code> (集合)</td>
+<td style="text-align:left"><strong>( <code>visited</code> )</strong>。防止算法重复访问节点或陷入死循环。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. 面包屑</strong></td>
+<td style="text-align:left"><code>Dictionary</code> (字典)</td>
+<td style="text-align:left"><strong>( <code>parent</code> )</strong>。记录每个节点“从哪来”，用于在最后<strong>回溯路径</strong>。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81">4. 算法执行伪代码</span></h2>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function BFS(start, goal):<br>  # 1. 初始化三大法宝<br>  queue = new Queue()     // 放入起点<br>  queue.add(start)<br>  <br>  visited = new Set()     // 标记起点<br>  visited.add(start)<br>  <br>  parent = new Map()      // 记录起点<br>  parent.set(start, null) <br><br>  # 2. 循环，直到队列为空<br>  while queue.is_not_empty():<br>    <br>    current_node = queue.pop_front() # 从队列头部取出<br><br>    # 3. 检查是否到达终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br><br>    # 4. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 5. 关键检查：是否是“新”节点<br>      if neighbor not in visited:<br>        <br>        # 6. 标记、入队、记录<br>        visited.add(neighbor)         # 标记为已访问<br>        parent.set(neighbor, current_node)  # 记录父节点<br>        queue.add_back(neighbor)      # 放入队尾，等待探索<br>        <br>  # 7. 队列为空，仍未找到<br>  return "No Path Found"<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</span></h2>
+<p>完备性 (Completeness): 是。只要路径存在，BFS 一定能找到。
+最优性 (Optimality): 是 (仅限无权重图)。
+时间复杂度 (Time): $O(V + E)
+$$V$ = 节点 (Vertex) 数量。$E$ = 边 (Edge) 数量。(每个节点和每条边最多被访问一次)。
+空间复杂度 (Space): $O(V)$(在最坏情况下，Queue 和 visited 集合可能需要存储所有 $V$ 个节点)。</p>
+<h2><span id="6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</span></h2>
+<p>不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。</p>
+<p>搜索盲目： 像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。</p>
+<p>反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。</p>
+<h1><span id="dijkstra-%E7%AE%97%E6%B3%95-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Dijkstra 算法 学习笔记</span></h1>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%88%90%E6%9C%AC%E4%BC%98%E5%85%88">1. 核心思想：成本优先</span></h3>
+<p>Dijkstra (迪杰斯特拉) 算法是 BFS 的“<strong>升级版</strong>”。</p>
+<ul>
+<li><strong>BFS 的目标</strong>：找到<strong>步数最少</strong>的路径。</li>
+<li><strong>Dijkstra 的目标</strong>：在<strong>带权重</strong>的图中，找到<strong>累计成本最低</strong>的路径。</li>
+</ul>
+<p>它的核心规则是：<strong>永远优先探索从起点出发，累计成本最低的那个““前沿” (frontier) 节点</strong>。</p>
+<h3><span id="2-%E6%A0%B8%E5%BF%83%E4%BF%9D%E8%AF%81%E6%88%90%E6%9C%AC%E6%9C%80%E4%BC%98">2. 核心保证：成本最优</span></h3>
+<ul>
+<li><strong>最优性</strong>：<strong>是</strong>。只要图中没有<strong>负权重</strong>的边，Dijkstra <strong>保证</strong>能找到从起点到<strong>所有</strong>其他节点的<strong>最低成本路径</strong>。</li>
+<li><strong>原因</strong>：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出 <code>goal</code> (终点) 时，它所记录的成本<strong>必然</strong>是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。</li>
+</ul>
+<h3><span id="3-dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7%E5%B7%A5%E5%85%B7-upgraded-tools">3. Dijkstra 的“升级工具” (Upgraded Tools)</span></h3>
+<p>Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">目的</th>
+<th style="text-align:left">BFS (步数最少)</th>
+<th style="text-align:left">Dijkstra (成本最低)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>1. 待办列表</strong></td>
+<td style="text-align:left"><code>Queue</code> (先进先出)</td>
+<td style="text-align:left"><strong><code>PriorityQueue</code> (最小堆)</strong><br> (用 <code>heapq</code> 实现) <br> 自动将<strong>成本最低</strong>的节点排到最前。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. 足迹记录</strong></td>
+<td style="text-align:left"><code>visited</code> (Set) <br> (只关心“去过没”)</td>
+<td style="text-align:left"><strong><code>cost_so_far</code> (Dictionary)</strong> <br> (关心“花销多少”)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. 面包屑</strong></td>
+<td style="text-align:left"><code>parent</code> (Dictionary)</td>
+<td style="text-align:left"><strong><code>parent</code> (Dictionary)</strong> <br> (工作方式相同，但只在找到<strong>更便宜</strong>路径时才更新)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3><span id="4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</span></h3>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function Dijkstra(start, goal):<br>  # 1. 初始化<br>  pq = new PriorityQueue()<br>  heapq.heappush(pq, (0, start)) # (cost, node)<br>  <br>  cost_so_far = {start: 0}<br>  parent = {start: None}<br><br>  # 2. 循环，直到队列为空<br>  while pq.is_not_empty():<br>    <br>    current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的<br><br>    # 3. (关键优化) 处理“过时”节点<br>    if current_cost &gt; cost_so_far[current_node]:<br>      continue # 这是一条旧的、更贵的路径，跳过<br><br>    # 4. 检查终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br><br>    # 5. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 6. 计算新路径的 *累计成本*<br>      new_cost = current_cost + get_cost(neighbor)<br>      <br>      # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径<br>      if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]:<br>        <br>        # 8. 是！更新所有记录<br>        cost_so_far[neighbor] = new_cost<br>        parent[neighbor] = current_node<br>        heapq.heappush(pq, (new_cost, neighbor))<br>        <br>  # 9. 队列为空，仍未找到<br>  return "No Path Found"<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</span></h2>
+<p>完备性 (Completeness): 是。只要路径存在，一定能找到。
+最优性 (Optimality): 是 (前提：图中没有负权重的边)。
+时间复杂度 (Time): $O((E+V) \log V)$ 或 $O(E \log V)
+$$V$ = 节点数, $E$ = 边数。复杂度主要取决于优先队列 (heapq) 的性能。
+空间复杂度 (Space): $O(V)$cost_so_far 和 parent 最多存储 $V$ 个节点。pq 在最坏情况下也可能存储 $O(V)$ 个节点。</p>
+<h2><span id="6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</span></h2>
+<p>Dijkstra 最大的缺陷是<strong>效率</strong>，而不是<strong>正确性</strong>（在无负权边的情况下）。</p>
+<p><strong>它是一个“盲目搜索” (Blind Search) 算法</strong>。</p>
+<ul>
+<li><strong>缺陷描述</strong>：Dijkstra 算法虽然很“聪明”，会优先探索<strong>累计成本低</strong>的路径，但它没有**“方向感” (direction)**。</li>
+<li><strong>具体表现</strong>：如果您的终点 <code>G</code> 在地图的<strong>东边</strong>，Dijkstra 算法在向东探索的同时，也会<strong>花费同样多的精力</strong>去探索<strong>西边</strong>、<strong>南边</strong>和<strong>北边</strong>的所有路径（只要它们的成本也很低）。</li>
+<li><strong>后果</strong>：它会探索大量“不相关” (irrelevant) 的区域，导致在大地图上效率低下。</li>
+</ul>
+<p><strong>一句话总结缺陷：</strong> Dijkstra 找到了<strong>最优</strong>的路径，但代价是<strong>盲目</strong>地探索了太多的区域，效率不高。</p>
+<p>(这正是我们下一个要学的 <strong>A* 算法</strong> 所要解决的问题，A* 通过引入“启发函数” (heuristic) 解决了“盲目” (blindness) 问题。)</p>
+<hr>
+<h3><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B4%9F%E6%9D%83%E9%87%8D%E8%BE%B9%E4%BC%9A%E7%A0%B4%E5%9D%8F-break-dijkstra">为什么负权重边会““破坏” (Break) Dijkstra？</span></h3>
+<p>因为负权重边<strong>打破了 Dijkstra 算法的根本前提</strong>。</p>
+<ul>
+<li>
+<p><strong>Dijkstra 的根本前提（假设）</strong>：
+“一条路径的成本只会随着它的变长而增加（或保持不变）。它<em>永远</em>不会减少。
+一旦我找到了一个到 <code>A</code> 节点成本为 <code>10</code> 的路径，我就<strong>最终确定</strong>了 <code>cost_so_far[A] = 10</code>。我永远不需要再回头看 <code>A</code>，因为任何未来能到达 <code>A</code> 的新路径，都必然是绕了更远的路，成本必定 <code>&gt; 10</code>。”</p>
+</li>
+<li>
+<p><strong>负权重边如何打破这个前提</strong>：
+负权重边意味着“捷径” (shortcuts) 或“回扣” (rebates)，它允许你“时间倒流”，在未来找到一条更短的路径。</p>
+</li>
+</ul>
+<h4><span id="%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E">举例说明：</span></h4>
+<p>想象一个简单的地图，有三个节点：<code>S</code> (起点), <code>A</code>, <code>B</code>。</p>
+<p><strong>路径 1：</strong> <code>S -&gt; A</code></p>
+<ul>
+<li>成本 = <strong>2</strong></li>
+</ul>
+<p><strong>路径 2：</strong> <code>S -&gt; B</code></p>
+<ul>
+<li>成本 = <strong>5</strong></li>
+</ul>
+<p><strong>路径 3：</strong> <code>B -&gt; A</code></p>
+<ul>
+<li>成本 = <strong>-4</strong> (一个强大的““漩涡”)</li>
+</ul>
+<hr>
+<p><strong>Dijkstra 的执行过程：</strong></p>
+<ol>
+<li>
+<p><strong>初始化</strong>：</p>
+<ul>
+<li><code>pq</code> = <code>[ (0, S) ]</code></li>
+<li><code>cost_so_far</code> = <code>{ S: 0 }</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Step 1</strong>：</p>
+<ul>
+<li>弹出 <code>(0, S)</code>。</li>
+<li>探索 <code>S</code> 的邻居 <code>A</code> 和 <code>B</code>。</li>
+<li><strong>找到 <code>A</code></strong>：新成本是 <code>0 + 2 = 2</code>。</li>
+<li><strong>找到 <code>B</code></strong>：新成本是 <code>0 + 5 = 5</code>。</li>
+<li>更新法宝：
+<ul>
+<li><code>pq</code> = <code>[ (2, A), (5, B) ]</code> (A 在前，成本更低)</li>
+<li><code>cost_so_far</code> = <code>{ S: 0, A: 2, B: 5 }</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Step 2</strong>：</p>
+<ul>
+<li>弹出成本最低的 <code>(2, A)</code>。</li>
+<li><strong>Dijkstra 在此刻““敲定” (finalizes)</strong>：“<code>A</code> 的最低成本<strong>绝对</strong>是 <code>2</code>。”</li>
+<li>(假设 <code>A</code> 没有邻居，探索结束)</li>
+</ul>
+</li>
+<li>
+<p><strong>Step 3</strong>：</p>
+<ul>
+<li>弹出 <code>(5, B)</code>。</li>
+<li>探索 <code>B</code> 的邻居 <code>A</code>。</li>
+<li><strong>找到 <code>A</code></strong>：新成本是 <code>current_cost (5)</code> + <code>cost(B-&gt;A) (-4)</code> = <strong>1</strong>。</li>
+<li><strong>发现矛盾！</strong> 算法发现了一条到 <code>A</code> 成本为 <code>1</code> 的新路径。</li>
+</ul>
+</li>
+</ol>
+<p><strong>问题所在：</strong>
+Dijkstra 算法在 <strong>Step 2</strong> 时，已经<strong>错误地</strong>““承诺” (finalized) <code>A</code> 的成本是 <code>2</code>。它（在简单实现中）不会再回头去更新 <code>A</code> 和 <code>A</code> 的所有邻居。它已经基于一个<strong>错误的前提</strong>（<code>A</code>=2）继续工作了。</p>
+<p><strong>一句话总结：</strong> 负权重边允许““未来” (later) 路径推翻““早期” (earlier) 的最优解，这违背了 Dijkstra 算法的贪心（Greedy）假设。</p>
+<p>(注：专门用于处理负权重边的算法叫 <strong>Bellman-Ford</strong>，但它比 Dijkstra 慢得多。)</p>
+<p>如果有负边会在那里来回走</p>
+<h1><span id="a-a-star">A* (A-Star)</span></h1>
+<h3><span id="1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3dijkstra--%E6%96%B9%E5%90%91%E6%84%9F">1. 核心思想：Dijkstra + “方向感”</span></h3>
+<p>A* 算法是 Dijkstra 算法的“智能”升级版。</p>
+<ul>
+<li><strong>Dijkstra 的问题</strong>：它很“聪明”，总能找到成本最低的路径，但它很“盲目”。它会向所有方向探索“廉价”的路径，即使那个方向离终点十万八千里。</li>
+<li><strong>A* 的解决方案</strong>：A* 在 Dijkstra 的“成本意识” (Cost) 基础上，增加了一个“指南针” (Compass)，这个指南针永远指向终点。</li>
+</ul>
+<p>这个“指南针”就是 <strong>启发函数 (Heuristic)</strong>。</p>
+<h3><span id="2-a-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F">2. A* 的核心公式</span></h3>
+<p>A* 通过一个新公式 $f(n)$ 来决定优先队列的顺序：
+$$f(n) = g(n) + h(n)
+$$</p>
+<ul>
+<li>
+<p><strong>$g(n)$ (G-Cost)</strong>：从<strong>起点</strong> <code>S</code> 走到节点 <code>n</code> 的**“实际累计成本”**。</p>
+<ul>
+<li><strong>作用</strong>：与 Dijkstra 一样，这是我们<strong>永久记录</strong>在 <code>cost_so_far</code> 字典中的“真实花费”。</li>
+<li><strong>地位</strong>：算法的**“事实依据”**。</li>
+</ul>
+</li>
+<li>
+<p><strong>$h(n)$ (H-Cost)</strong>：从节点 <code>n</code> 走到<strong>终点</strong> <code>G</code> 的**“估计成本”** (Heuristic)。</p>
+<ul>
+<li><strong>作用</strong>：这就是“指南针”。它为算法提供了“方向感”。</li>
+<li><strong>最常用的</strong>：<strong>曼哈顿距离</strong> ( <code>abs(n.x - G.x) + abs(n.y - G.y)</code> )。</li>
+<li><strong>地位</strong>：算法的**“最佳猜测”**。</li>
+</ul>
+</li>
+<li>
+<p><strong>$f(n)$ (F-Cost)</strong>：从起点经过 <code>n</code> 到达终点的**“估计总成本”**。</p>
+<ul>
+<li><strong>作用</strong>：它的<strong>唯一</strong>作用，就是作为 <code>heapq</code> 优先队列的**“排序标签”**。</li>
+<li><strong>地位</strong>：算法的**“决策依据”**。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-a-%E7%9A%84%E6%B3%95%E5%AE%9D-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">3. A* 的“法宝” (数据结构)</span></h3>
+<p>A* 的法宝与 Dijkstra 几乎一样，但用途被严格分开了：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">目的</th>
+<th style="text-align:left">Dijkstra</th>
+<th style="text-align:left">A* (A-Star)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>1. 待办列表</strong></td>
+<td style="text-align:left"><code>PriorityQueue (heapq)</code><br> (存储 <strong>$g(n)$</strong> 用于排序)</td>
+<td style="text-align:left"><code>PriorityQueue (heapq)</code><br> (存储 <strong>$f(n)$</strong> 用于排序)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. 成本记录</strong></td>
+<td style="text-align:left"><code>cost_so_far</code> (dict)<br> (存储 $g(n)$)</td>
+<td style="text-align:left"><code>g_cost_so_far</code> (dict)<br> (<strong>仍然</strong>只存储 $g(n)$)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. 面包屑</strong></td>
+<td style="text-align:left"><code>parent</code> (dict)</td>
+<td style="text-align:left"><code>parent</code> (dict) <br> (完全不变)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A* 最关键的原则</strong>：<strong>G-Cost ($g$) 用于永久记录，F-Cost ($f$) 用于队列排序。</strong></p>
+<hr>
+<h3><span id="4-%E7%AE%97%E6%B3%95%E6%89%A7%E8%A1%8C%E4%BC%AA%E4%BB%A3%E7%A0%81-%E4%B8%93%E4%B8%9A%E7%89%88">4. 算法执行伪代码 (专业版)</span></h3>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs pseudocode">function A_Star(start, goal):<br>  # 1. 初始化<br>  # g_cost_so_far 只记录 G-Cost<br>  g_cost_so_far = {start: 0}<br>  parent = {start: None}<br>  <br>  # pq (优先队列) 只记录 F-Cost<br>  pq = new PriorityQueue()<br>  h_start = heuristic(start, goal)<br>  f_start = g_cost_so_far[start] + h_start<br>  heapq.heappush(pq, (f_start, start)) # (F-Cost, node)<br><br>  # 2. 循环<br>  while pq.is_not_empty():<br>    <br>    current_f_cost, current_node = heapq.heappop(pq)<br>    <br>    # 3. 检查终点<br>    if current_node == goal:<br>      return reconstruct_path(parent, start, goal) # 成功！<br>      <br>    # (专业优化：可以在这里检查弹出的节点是否“过时”)<br>    # if current_f_cost &gt; g_cost_so_far[current_node] + heuristic(current_node, goal):<br>    #   continue<br>      <br>    # 4. 遍历邻居<br>    for neighbor in get_neighbors(current_node):<br>      <br>      # 5. 计算 *新* 的 G-Cost<br>      # g(n) = g(current) + step_cost<br>      step_cost = get_cost(neighbor) # (+ wall_penalty, etc.)<br>      new_g_cost = g_cost_so_far[current_node] + step_cost<br>      <br>      # 6. (A* 的灵魂) 检查 G-Cost 记录<br>      if neighbor not in g_cost_so_far or new_g_cost &lt; g_cost_so_far[neighbor]:<br>        <br>        # 7. 更新 G-Cost 记录 (永久记录)<br>        g_cost_so_far[neighbor] = new_g_cost<br>        <br>        # 8. 计算 F-Cost (用于排序)<br>        h_cost = heuristic(neighbor, goal)<br>        f_cost = new_g_cost + h_cost<br>        <br>        # 9. 推入队列<br>        heapq.heappush(pq, (f_cost, neighbor))<br>        parent[neighbor] = current_node<br>        <br>  # 10. 队列为空<br>  return "No Path Found"<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="5-%E7%AE%97%E6%B3%95%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93">5. 算法特性总结</span></h3>
+<ul>
+<li><strong>完备性 (Completeness):</strong> <strong>是</strong>。只要路径存在，一定能找到。</li>
+<li><strong>最优性 (Optimality):</strong> <strong>是</strong>，<strong>当且仅当</strong>启发函数 $h(n)$ 是“<strong>可接受的</strong>” (Admissible)，即它<strong>永远不会高估</strong>到终点的实际成本。</li>
+<li><strong>时间复杂度 (Time):</strong> $O((E+V) \log V)$。在实践中，由于 $h(n)$ 的引导，它<strong>远远快于</strong> Dijkstra。</li>
+<li><strong>空间复杂度 (Space):</strong> $O(V)$。</li>
+</ul>
+<hr>
+<h3><span id="6-a-%E7%9A%84%E7%BC%BA%E9%99%B7%E4%B8%8E%E5%B1%80%E9%99%90">6. A* 的缺陷与局限</span></h3>
+<p>A* 已经非常接近“完美”的网格搜索算法，但它仍有局限：</p>
+<ol>
+<li><strong>静态算法</strong>：和 BFS/Dijkstra 一样，它假设地图是<strong>固定不变</strong>的。如果路径中途突然出现障碍物（如行人），它必须<strong>从头重新规划</strong>。 (注：D* Lite 等算法专门解决这个问题)。</li>
+<li><strong>路径“质量”问题</strong>：
+<ul>
+<li>A* 找到的路径是“成本最低”的，但不一定是“最平滑”或“最安全”的。</li>
+<li>如您所见，它会紧贴墙壁拐弯。我们必须<strong>手动修改成本函数</strong>（如增加 <code>WALL_PENALTY</code>）来“诱导”它走得更平滑，这不是算法自带的功能。</li>
+</ul>
+</li>
+<li><strong>网格的诅咒</strong>：
+<ul>
+<li>它找到的路径是由网格点组成的，充满了 90 度的“锯齿”转弯。</li>
+<li>在自动驾驶中，还需要一个“后处理”步骤（如路径平滑）才能将这些点变成车辆可以实际执行的平滑曲线。</li>
+</ul>
+</li>
+<li><strong>启发函数的依赖</strong>：
+<ul>
+<li>如果 $h(n) = 0$，A* <strong>退化</strong>为 Dijkstra（聪明但盲目）。</li>
+<li>如果 $h(n)$ <strong>高估</strong>了成本（“不可接受”），A* 会变得很快，但<strong>不再保证</strong>找到最优路径。</li>
+</ul>
+</li>
+</ol>
+<h1><span id="%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94bfs-vs-dijkstra-vs-a">搜索算法对比：BFS vs Dijkstra vs A*</span></h1>
+<p>这三种算法是“基于搜索”的路径规划的基石，它们之间有着清晰的““升级””关系。</p>
+<h2><span id="1-%E7%AE%97%E6%B3%95%E7%9A%84%E5%8D%87%E7%BA%A7%E4%B8%8E%E9%99%8D%E7%BA%A7%E5%85%B3%E7%B3%BB">1. 算法的““升级””与““降级””关系</span></h2>
+<p>您可以将这三者视为一个不断进化的工具：</p>
+<p><strong>BFS (广度优先搜索) -&gt; (升级) -&gt; Dijkstra -&gt; (升级) -&gt; A*</strong></p>
+<hr>
+<h3><span id="1-bfs---dijkstra-%E7%9A%84%E5%8D%87%E7%BA%A7">1. BFS -&gt; Dijkstra 的“升级”</span></h3>
+<ul>
+<li><strong>BFS 的缺陷</strong>：
+它只懂““步数””，不懂““成本””。在它看来，走 1 公里的高速公路（1步）和走 1 公里的沼泽（1步）代价相同。</li>
+<li><strong>Dijkstra 如何“升级”</strong>：
+<ol>
+<li><strong>引入 $g(n)$ (G-Cost)</strong>：Dijkstra 引入了**““累计实际成本””<strong>的概念。它不再关心走了几步，只关心</strong>““到这里一共花了多少钱””**。</li>
+<li><strong>升级数据结构</strong>：它将 BFS 的 <code>Queue</code> (先进先出队列) 升级为 <code>PriorityQueue</code> (最小堆)，使其总是优先探索当前 <code>g(n)</code> 最低的节点。</li>
+</ol>
+</li>
+</ul>
+<p><strong>结论</strong>：Dijkstra 就是““一个能处理带权重图（成本）的 BFS””。</p>
+<p><strong>““降级””</strong>：如果在一个 Dijkstra 算法中，你把<strong>所有</strong>的““成本”” (cost) 都设为 <code>1</code>，那么 Dijkstra 的行为将和 BFS <strong>完全一致</strong>。</p>
+<hr>
+<h3><span id="2-dijkstra---a-%E7%9A%84%E5%8D%87%E7%BA%A7">2. Dijkstra -&gt; A* 的“升级”</span></h3>
+<ul>
+<li><strong>Dijkstra 的缺陷</strong>：
+它虽然““聪明””（懂成本），但依旧““盲目””。它没有方向感。如果终点在东边，它会同时向西边探索，只要西边的路也足够便宜。</li>
+<li><strong>A* 如何“升级”</strong>：
+<ol>
+<li><strong>引入 $h(n)$ (H-Cost)</strong>：A* 引入了**““启发函数””<strong>（Heuristic），即一个指向终点的““指南针””。这是一个对““未来””成本的</strong>““最佳猜测””**。</li>
+<li><strong>升级决策公式</strong>：它不再像 Dijkstra 那样只根据 $g(n)$ 来排优先级，而是根据一个新的公式 $f(n) = g(n) + h(n)$ 来决定优先级。这使得它会<strong>有方向地</strong>、<strong>优先</strong>探索那些““看起来离终点更近””的节点。</li>
+</ol>
+</li>
+</ul>
+<p><strong>结论</strong>：A* 就是““一个带有‘方向感’（启发函数）的 Dijkstra 算法””。</p>
+<p><strong>““降级””</strong>：如果在一个 A* 算法中，你把““启发函数”” $h(n)$ <strong>恒定设为 <code>0</code></strong>，那么 $f(n) = g(n) + 0$，A* 算法就<strong>完全退化</strong>成了 Dijkstra 算法。</p>
+<hr>
+<h2><span id="2-%E4%B8%89%E7%A7%8D%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9%E5%AF%B9%E6%AF%94">2. 三种算法优缺点对比</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">算法</th>
+<th style="text-align:left">核心思想 (优先级)</th>
+<th style="text-align:left">优点 (Pros)</th>
+<th style="text-align:left">缺点 (Cons)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>BFS</strong> (广度优先)</td>
+<td style="text-align:left"><strong>先进先出</strong> (FIFO)</td>
+<td style="text-align:left">1. 简单，易于实现。<br> 2. <strong>保证</strong>找到<strong>步数最少</strong>的路径。</td>
+<td style="text-align:left">1. <strong>致命缺陷</strong>：无法处理““权重””或““成本””。<br> 2. 盲目搜索，效率低下。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Dijkstra</strong> (迪杰斯特拉)</td>
+<td style="text-align:left"><strong>$g(n)$ (G-Cost)</strong><br> (到起点的累计成本)</td>
+<td style="text-align:left">1. <strong>保证</strong>找到<strong>成本最低</strong>的路径。<br> 2. 适用于绝大多数““最优路径””问题（只要没有负权边）。</td>
+<td style="text-align:left">1. <strong>盲目搜索</strong>：没有方向感，会探索大量无关区域。<br> 2. 效率低于 A*。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>A*</strong> (A-Star)</td>
+<td style="text-align:left"><strong>$f(n) = g(n) + h(n)$</strong><br> (G-Cost + H-Cost)</td>
+<td style="text-align:left">1. <strong>Dijkstra 的所有优点</strong>：保证找到成本最低的路径（需 $h(n)$““可接受””）。<br> 2. <strong>效率极高</strong>：受 $h(n)$ 引导，只探索““有希望””的区域。</td>
+<td style="text-align:left">1. 算法性能依赖 $h(n)$ 的好坏。<br> 2. 与前两者一样，是<strong>静态算法</strong>，无法直接处理动态障碍物。</td>
+</tr>
+</tbody>
+</table>
+<h1><span id="%E6%90%9C%E7%B4%A2%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90">搜索代码分析</span></h1>
+<h2><span id="1%E5%AE%89%E5%85%A8%E8%B5%B0%E5%BB%8A%E6%9E%84%E5%BB%BA">1.安全走廊构建</span></h2>
+<h3><span id="%E6%A6%82%E8%BF%B0">概述</span></h3>
+<p>在混合A* (Hybrid A*) 算法开始搜索之前，系统必须首先理解其运行的“世界模型”。这个世界模型就是“安全走廊”。</p>
+<p>安全走廊的构建是 <code>SafetyCorridorGenerator</code> 类的核心职责。它的目标是利用来自地图和传感器的原始数据（如路沿、车道线），处理成一个清晰的、可供A*算法使用的“硬边界”（路沿）和“软边界”（车道线）。</p>
+<p>此过程在 <code>SafetyCorridorGenerator::process</code> 函数中被调用。</p>
+<hr>
+<h3><span id="%E6%AD%A5%E9%AA%A4%E4%B8%80%E6%9E%84%E5%BB%BA%E9%BE%99%E9%AA%A8---%E5%B9%B3%E6%BB%91%E7%9A%84%E4%B8%AD%E5%BF%83%E5%8F%82%E8%80%83%E7%BA%BF">步骤一：构建“龙骨” - 平滑的中心参考线</span></h3>
+<p>算法的第一步不是找边界，而是先确定一条平滑的中心“龙骨”，后续所有的边界都将相对这条“龙骨”来定义。</p>
+<p>此步骤在 <code>pre_process</code> 函数中通过调用 <code>setDiscreteReferencePoints</code> 完成。</p>
+<ol>
+<li><strong>输入</strong>：函数接收一个包含多条原始参考折线的数据 <code>ref_polylinesylines</code>。</li>
+<li><strong>定位车辆</strong>：计算自车 (<code>ego_state_</code>) 在这些原始折线上的投影位置 (<code>ego_proj_len</code>)，以确定车辆的当前进度。</li>
+<li><strong>截取与采样</strong>：根据车辆的投影位置，在车辆前后截取一定范围（例如 <code>corridor_re_Min_dist_</code> 到 <code>corridor_re_Max_dist_</code>）的参考线段，并以5米的间隔进行粗略采样 (<code>samplePtsBetween</code>)。</li>
+<li><strong>B样条平滑</strong>：
+<ul>
+<li>A*搜索不能使用粗糙的折线，因此系统必须对其进行平滑。</li>
+<li>它调用 <code>shape_point_smoother_new_-&gt;Solve</code>。</li>
+<li>这个 <code>ShapePointSmoother</code> (来自 <code>shape_point_smoother.cpp</code>) 是一个基于 <strong>B样条的OSQP（二次规划）优化器</strong>。</li>
+<li>优化器的目标是找到一条B样条曲线，该曲线在尽可能贴近粗采样点的同时，保持自身的高度平滑（最小化曲率、加加速度等）。</li>
+</ul>
+</li>
+<li><strong>输出 (龙骨)</strong>：平滑后的结果被存储在 <code>disref_polyline_</code> 和 <code>disref_polyline_pwg_</code> (PiecewiseGeo 格式) 中。这条线就是后续所有计算的基准。</li>
+</ol>
+<hr>
+<h3><span id="%E6%AD%A5%E9%AA%A4%E4%BA%8C%E6%9E%84%E5%BB%BA%E5%A2%99%E5%A3%81---%E7%AD%9B%E9%80%89%E5%8F%AF%E8%A7%81%E7%9A%84%E8%B7%AF%E6%B2%BF">步骤二：构建“墙壁” - 筛选可见的路沿</span></h3>
+<p>有了中心“龙骨”后，系统开始构建走廊的“硬墙壁”，即路沿 (Road Edges)。系统不会使用所有路沿，而是通过一个精妙的“可见性”算法来筛选出最内侧的边界。</p>
+<p>此步骤在 <code>computeVisiblePoints</code> 函数中执行。</p>
+<ol>
+<li><strong>遍历所有路沿</strong>：函数遍历从上游获取的 <code>roadedge_table_</code> 中的每一条路沿线。</li>
+<li><strong>判断左/右</strong>：
+<ul>
+<li>对于每条路沿线，<code>LineDirectionjudge</code> 函数被调用。</li>
+<li>此函数判断这条路沿线整体位于“龙骨” (<code>disref_polyline_pwg_</code>) 的左侧还是右侧。</li>
+</ul>
+</li>
+<li><strong>“视线”可见性检查</strong>：
+<ul>
+<li>这是最核心的逻辑。系统遍历路沿上的每<strong>一个点</strong>。</li>
+<li>调用 <code>checkpointIsVisible</code> 函数。</li>
+<li>此函数会从当前路沿点 <code>point</code> 向它在“龙骨”上的投影点 <code>disref_polyline_pwg_.project(point).proj</code> 画一条<strong>虚拟“视线”</strong>。</li>
+<li>它会检查这条“视线”<strong>是否与 <code>polylines_table</code> 中的任何其他路沿线段相交</strong>。</li>
+</ul>
+</li>
+<li><strong>筛选</strong>：
+<ul>
+<li>如果“视线”被遮挡（即相交），意味着这个点<code>point</code>不是最内侧的边界（例如，它是外侧车道或匝道口的边界），该点被丢弃。</li>
+<li>只有“可见”的点（即未被遮挡的点）才被认为是构成安全走廊的有效点。</li>
+</ul>
+</li>
+<li><strong>存储</strong>：所有可见的左侧点被添加到 <code>ref_to_vis_points_table_Left_</code>，右侧点添加到 <code>ref_to_vis_points_table_Right_</code>。</li>
+</ol>
+<hr>
+<h2><span id="%E8%BF%9E%E6%8E%A5%E6%88%90%E5%BB%8A---%E5%BD%A2%E6%88%90%E6%9C%80%E7%BB%88%E8%BE%B9%E7%95%8C">连接成廊 - 形成最终边界</span></h2>
+<p>最后一步是将筛选出的离散的“可见点”连接成连续的走廊边界。</p>
+<p>此步骤在 <code>connectPointsToPolygon</code> 函数中执行。</p>
+<ol>
+<li><strong>排序</strong>：
+<ul>
+<li>系统获取所有可见的左侧点 (<code>sortedVec_left</code>) 和右侧点 (<code>sortedVec_right</code>)。</li>
+<li>它根据点在“龙骨”上的投影距离 (<code>dis_s</code>) 对这些点进行排序。</li>
+</ul>
+</li>
+<li><strong>连接</strong>：
+<ul>
+<li>系统按排序顺序，将所有左侧可见点连接起来，形成连续的折线 <code>corridor_polyline_left_</code>。</li>
+<li>系统按排序顺序（通常是逆序），将所有右侧可见点连接起来，形成 <code>corridor_polyline_right_</code>。</li>
+<li>为了防止点过于稀疏，如果相邻点之间距离大于1.5米，还会进行插值 (<code>samplePtsBetween</code>)。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E6%80%BB%E7%BB%93%E8%BE%93%E5%87%BA">总结：输出</span></h3>
+<p>经过以上步骤，安全走廊的“硬边界”构建完成。系统生成了两个关键的成员变量：</p>
+<ul>
+<li><code>corridor_polyline_left_</code>：安全走廊的左侧“墙壁”（硬边界）。</li>
+<li><code>corridor_polyline_right_</code>：安全走廊的右侧“墙壁”（硬边界）。</li>
+</ul>
+<p>这两个变量将作为<strong>不可穿越的障碍物</strong>，在下一阶段被送入混合A*搜索器中。</p>
+<h2><span id="%E6%90%9C%E7%B4%A2%E4%BB%BB%E5%8A%A1%E5%87%86%E5%A4%87%E4%B8%8E%E5%B9%B6%E8%A1%8C%E5%8C%96">搜索任务准备与并行化</span></h2>
+<h3><span id="1-%E6%A6%82%E8%BF%B0">1. 概述</span></h3>
+<p>在安全走廊（硬边界）构建完毕后，系统并不会立即开始搜索。它首先需要定义A*搜索的具体任务，包括：<strong>起点</strong>、<strong>终点</strong>、<strong>障碍物</strong>，以及最重要的——<strong>并行搜索的目标</strong>。</p>
+<p>此过程主要在 <code>SafetyCorridorGenerator::setSearchInputdata</code> 函数中完成。</p>
+<hr>
+<h3><span id="2-%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E7%9A%84%E8%B5%B7%E7%82%B9%E5%92%8C%E7%BB%88%E7%82%B9">2. 步骤一：定义搜索的起点和终点</span></h3>
+<p>A*搜索需要一个明确的起点 (<code>start_point</code>) 和终点 (<code>end_point</code>)。</p>
+<ol>
+<li>
+<p><strong>起点 (Start Point)</strong>：</p>
+<ul>
+<li><strong>冷启动</strong>：如果这是第一次运行，或者上一帧的轨迹无效 (<code>stitch_info_.last_refline_valid == false</code>)，起点被设置为车辆的当前局部坐标，即 <code>(0, 0, 0)</code>。</li>
+<li><strong>热启动 (轨迹缝合)</strong>：在连续运行时，为了保证轨迹的平滑过渡，起点被设置为<strong>上一帧计算结果的最后一个点</strong>。这个点从 <code>stitch_info_.points.back()</code> 中获取。</li>
+</ul>
+</li>
+<li>
+<p><strong>终点 (End Point)</strong>：</p>
+<ul>
+<li>终点是<strong>动态计算</strong>的，而不是一个固定目标。</li>
+<li>系统使用在 Part 1 中生成的平滑中心参考线 (<code>disref_polyline_pwg_</code>)。</li>
+<li>它沿着这条参考线，从自车当前投影点 (<code>ego_rel_s_</code>) 向前推进一个固定的目标距离 (<code>search_point_end_dist_</code>)。</li>
+<li>终点 <code>ep</code> 就是这个推进距离在参考线上的对应点，其朝向也由参考线的切线方向决定。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="3-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%8A%A0%E8%BD%BD%E9%9A%9C%E7%A2%8D%E7%89%A9%E4%B8%8E%E8%BE%B9%E7%95%8C">3. 步骤二：加载障碍物与边界</span></h3>
+<p>系统需要将 Part 1 构建的安全走廊和所有其他感知信息转换为A*算法可以理解的格式。</p>
+<ol>
+<li>
+<p><strong>加载硬边界 (路沿)</strong>：</p>
+<ul>
+<li>Part 1 中生成的 <code>corridor_polyline_left_</code> 和 <code>corridor_polyline_right_</code> 被加载。</li>
+<li>它们被转换并存储在 <code>search_data_current.obstacles</code> 中。在A*搜索期间，这些是<strong>不可穿越</strong>的（在 <code>ValidityCheck</code> 中检查）。</li>
+</ul>
+</li>
+<li>
+<p><strong>加载软边界 (车道线)</strong>：</p>
+<ul>
+<li>系统遍历所有的车道线 (<code>laneline_table_</code>)。</li>
+<li>车道线被加载到 <code>search_data_current.soft_boundary</code> 中。</li>
+<li>这些边界在A<em>搜索中被视为“软”障碍物。A</em>算法<strong>可以穿越</strong>它们，但在穿越时会受到巨大的代价惩罚 (<code>soft_boundary_penalty_</code>)，使其倾向于不压线行驶。</li>
+</ul>
+</li>
+<li>
+<p><strong>加载粗参考线</strong>：</p>
+<ul>
+<li>Part 1 中生成的 <code>disref_polyline_</code> 被加载到 <code>search_data_current.coarse_refline</code>。</li>
+<li>这条线将用于在A<em>搜索期间计算<strong>启发式函数 (Heuristic)</strong>，引导A</em>算法沿着“正确的”方向前进。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="4-%E6%AD%A5%E9%AA%A4%E4%B8%89%E5%88%9B%E5%BB%BA%E5%B9%B6%E8%A1%8C%E6%90%9C%E7%B4%A2%E4%BB%BB%E5%8A%A1-%E5%A4%9A%E8%BD%A6%E9%81%93%E6%90%9C%E7%B4%A2">4. 步骤三：创建并行搜索任务 (多车道搜索)</span></h3>
+<p>这是本系统的一个高级特性。为了应对变道或大型障碍物，系统不会只在当前车道搜索一条路径，而是会<strong>同时创建并评估三条可能的路径</strong>。</p>
+<ol>
+<li>
+<p><strong>创建三个数据副本</strong>：</p>
+<ul>
+<li><code>search_data_current</code>：用于搜索当前车道的轨迹。</li>
+<li><code>search_data_left</code>：用于搜索向左变道后的轨迹。</li>
+<li><code>search_data_right</code>：用于搜索向右变道后的轨迹。
+它们都继承了相同的终点和障碍物信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>检查变道可行性</strong>：</p>
+<ul>
+<li>对于左/右变道任务，系统需要检查“立即变道”是否可行（例如，是否会立即撞上隔离带或另一条车道线）。</li>
+<li><code>startpointcheck_inglobal</code> 函数被调用。</li>
+<li>此函数会从当前起点向左/右侧（偏移一个车道宽度 <code>shift_lane_width</code>）画一条虚拟的线，检查这条线是否会立即与路沿 (<code>corridor_polyline_left_</code>) 或车道线 (<code>laneline_table_</code>) 相交。</li>
+</ul>
+</li>
+<li>
+<p><strong>设置变道起点</strong>：</p>
+<ul>
+<li><strong>如果可行</strong> (<code>startpointcheck_inglobal</code> 返回 <code>true</code>)：左/右搜索任务的<strong>起点</strong>会被立即设置为偏移一个车道宽度的位置 (<code>search_data_left.start_point.y() = -shift_offset_left</code>)。</li>
+<li><strong>如果不可行</strong>：<code>is_valid</code> 标志被设为 <code>false</code>，该搜索任务后续将被跳过。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="5-part-2-%E6%80%BB%E7%BB%93%E8%BE%93%E5%87%BA">5. Part 2 总结：输出</span></h3>
+<p>此过程完成后，系统生成了 <code>search_data_vec_</code>，这是一个包含三个搜索任务（<code>Astar_Search_data</code>）的向量。</p>
+<ul>
+<li><strong>任务1 (左)</strong>：<code>is_valid = true/false</code>，起点可能已偏移。</li>
+<li><strong>任务2 (中)</strong>：<code>is_valid = true</code>，起点为当前位置。</li>
+<li><strong>任务3 (右)</strong>：<code>is_valid = true/false</code>，起点可能已偏移。</li>
+</ul>
+<p>这三个任务将被提交到线程池 (<code>search_ThreadPool</code>)，在下一阶段被<strong>并行执行</strong>。</p>
+<h2><span id="%E6%B7%B7%E5%90%88a%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95">混合A*搜索算法</span></h2>
+<h3><span id="1-%E6%A6%82%E8%BF%B0">1. 概述</span></h3>
+<p><code>HybridAStar::performAstarSearch</code> 函数 是混合A*算法的具体实现。它在 Part 1 构建的安全走廊内，根据 Part 2 定义的起止点，搜索一条<strong>运动学可行</strong>（Kinematically Feasible）的粗糙路径。</p>
+<p>它严格遵循A*算法 $f = g + h$ 的框架，但对其所有关键组件进行了“混合”定制。</p>
+<hr>
+<h3><span id="2-%E7%8A%B6%E6%80%81%E6%A0%85%E6%A0%BC%E5%8C%96-gridding-%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%88%97%E8%A1%A8">2. 状态、栅格化 (Gridding) 与搜索列表</span></h3>
+<p>混合A*的“混合”特性体现在它如何在连续空间中搜索，同时又用离散栅格来管理搜索进度。</p>
+<ol>
+<li>
+<p><strong>连续状态</strong>：</p>
+<ul>
+<li>搜索的<strong>真实状态</strong>是连续的 $(x, y, \theta)$ 位姿。</li>
+<li>节点 (<code>Node3d</code>) 存储的是高精度的 <code>double</code> 型 $x, y, \phi$ 值。</li>
+</ul>
+</li>
+<li>
+<p><strong>离散栅格化 (Gridding)</strong>：</p>
+<ul>
+<li>为了管理“已访问”列表（<code>open_set_</code> 和 <code>close_set_</code>），A*算法必须知道两个节点是否“几乎在同一位置”。</li>
+<li>系统使用 <code>xy_grid_resolution_</code>（例如0.5米）和 <code>phi_grid_resolution_</code>（例如0.05弧度）作为分辨率。</li>
+<li>当一个 <code>Node3d</code> 被创建时，它的连续 $(x, y, \theta)$ 状态会被<strong>栅格化</strong>（类似于“四舍五入”），以生成一个<strong>唯一的离散索引ID</strong>（<code>Node3d::GetIndex()</code>）。</li>
+<li><strong>例如</strong>：$(1.2, 0.6, 0.1)$ 和 $(1.3, 0.7, 0.12)$ 这两个连续状态，在栅格化后可能共享同一个索引ID：“X_1_Y_0_Phi_2”。</li>
+</ul>
+</li>
+<li>
+<p><strong>搜索列表 (Open/Close Sets)</strong>：</p>
+<ul>
+<li><code>open_pq_</code>：一个<strong>优先队列</strong>，存储<strong>连续的</strong> <code>Node3d</code> 对象。它根据 $f$ 代价（$f=g+h$）自动排序，保证A*总是先探索 $f$ 代价最低的节点。</li>
+<li><code>open_set_</code> 和 <code>close_set_</code>：两个<strong>哈希表 (unordered_map)</strong>，它们存储的是<strong>离散的索引ID</strong>。它们用于快速检查“这个<strong>栅格</strong>我们是否已经访问过？”。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="3-a-%E6%90%9C%E7%B4%A2%E5%BE%AA%E7%8E%AF">3. A* 搜索循环</span></h3>
+<p><code>performAstarSearch</code> 函数的主体是一个 <code>while</code> 循环。</p>
+<ol>
+<li><strong>初始化</strong>：将 <code>start_node_</code> 放入 <code>open_pq_</code> 和 <code>open_set_</code>。</li>
+<li><strong>循环条件</strong>：<code>while (!open_pq_.empty())</code>。
+<ul>
+<li>循环会一直运行，直到找到路径，或者 <code>open_pq_</code> 变空（搜索失败），或者达到了最大探索节点数 (<code>max_explored_num</code>)。</li>
+</ul>
+</li>
+<li><strong>弹出最优节点</strong>：
+<ul>
+<li><code>current_node = open_pq_.top().first</code>：从优先队列中取出 $f$ 代价最低的节点。</li>
+<li><code>open_pq_.pop()</code>。</li>
+</ul>
+</li>
+<li><strong>加入关闭列表</strong>：将 <code>current_node</code> 的<strong>索引ID</strong>加入 <code>close_set_</code>，表示“这个栅格我们已经处理过了”。</li>
+<li><strong>检查终点</strong>：调用 <code>ChecknodeIsFinal</code>。在您的代码中，这不仅是检查是否到达 $(x,y)$，而是检查车辆的<strong>纵向投影</strong> (<code>GetProjLength()</code>) 是否已经超过了终点的投影 (<code>endp_proj_len_</code>) 且航向角接近。如果满足，则 <code>final_node_</code> 被设置，搜索趋于结束。</li>
+<li><strong>扩展节点</strong>：对 <code>current_node</code> 进行节点扩展（见下文）。</li>
+</ol>
+<hr>
+<h3><span id="4-%E6%AD%A5%E9%AA%A4%E4%B8%80%E8%8A%82%E7%82%B9%E6%89%A9%E5%B1%95-node-expansion---hybrid%E7%9A%84%E6%A0%B8%E5%BF%83">4. 步骤一：节点扩展 (Node Expansion) - “Hybrid”的核心</span></h3>
+<p>这是混合A<em>与传统A</em>的<strong>根本区别</strong>。它不探索 $(x, y)$ 栅格的8个邻居，而是模拟车辆的驾驶动作。</p>
+<p>此步骤在 <code>Next_node_generator</code> 函数中实现。</p>
+<ol>
+<li><strong>生成离散动作</strong>：
+<ul>
+<li>循环 <code>next_node_num_</code> 次（例如9次）。</li>
+<li>生成一组离散的转向角，例如 <code>steering = {-20°, -10°, 0°, 10°, 20°...}</code>。</li>
+<li>同时生成前进（<code>traveled_distance = step_size_</code>）和后退（<code>traveled_distance = -step_size_</code>）两种动作。</li>
+</ul>
+</li>
+<li><strong>运动学模拟</strong>：
+<ul>
+<li>对于每一个动作（如“前进，转向10度”），函数会根据<strong>自行车运动学模型</strong>计算出新的连续位姿 $(x’, y’, \theta’)$。</li>
+<li><code>next_phi = last_phi + traveled_distance / wheel_base * tan(steering)</code>。</li>
+<li><code>next_x = last_x + traveled_distance * cos(next_phi)</code>。</li>
+<li><code>next_y = last_y + traveled_distance * sin(next_phi)</code>。</li>
+</ul>
+</li>
+<li><strong>创建新节点</strong>：用 $(x’, y’, \theta’)$ 创建一个新的 <code>Node3d</code> 对象 (<code>next_node</code>)。</li>
+</ol>
+<hr>
+<h3><span id="5-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B-collision-checking">5. 步骤二：碰撞检测 (Collision Checking)</span></h3>
+<p>对于 <code>Next_node_generator</code> 生成的<strong>每一个</strong> <code>next_node</code>，系统都会进行严格的碰撞检测。</p>
+<p>此步骤在 <code>ValidityCheck</code> 函数中实现。</p>
+<ol>
+<li><strong>获取包围盒 (Bounding Box)</strong>：<code>Node3d::GetBoundingBox</code> 函数根据车辆的 <code>vehicle_param_</code>（车长、车宽）和 <code>next_node</code> 的 $(x, y, \theta)$ 位姿，计算出车辆的2D矩形包围盒。</li>
+<li><strong>检查重叠</strong>：
+<ul>
+<li><code>ValidityCheck</code> 遍历 Part 1 中构建的所有硬边界线段 (<code>obstacles_linesegments_vec_</code>)，这包括了 <code>corridor_polyline_left_</code> 和 <code>corridor_polyline_right_</code>。</li>
+<li>它检查车辆包围盒是否与<strong>任何一条</strong>硬边界线段发生重叠 (<code>bounding_box.HasOverlap(linesegment)</code>)。</li>
+</ul>
+</li>
+<li><strong>丢弃节点</strong>：如果发生重叠（碰撞），<code>ValidityCheck</code> 返回 <code>false</code>，A*搜索循环会立即丢弃这个 <code>next_node</code>，不再对其进行代价计算。</li>
+</ol>
+<hr>
+<h3><span id="6-%E6%AD%A5%E9%AA%A4%E4%B8%89%E4%BB%A3%E4%BB%B7%E8%AE%A1%E7%AE%97-g-%E5%92%8C-h">6. 步骤三：代价计算 ($g$ 和 $h$)</span></h3>
+<p>如果 <code>next_node</code> 通过了碰撞检测，并且其<strong>栅格索引</strong>不在 <code>close_set_</code> 中，系统就会调用 <code>CalculateNodeCost</code> 来计算其 $f$ 代价。</p>
+<h4><span id="gn---%E7%9C%9F%E5%AE%9E%E8%B7%AF%E5%BE%84%E4%BB%A3%E4%BB%B7">$g(n)$ - 真实路径代价</span></h4>
+<p>$g(n)$ 是从起点到当前节点<strong>实际付出的代价</strong>。它由两部分组成：</p>
+<ol>
+<li>
+<p><strong>运动代价 (<code>TrajCost</code>)</strong>：</p>
+<ul>
+<li><strong>方向惩罚</strong>：后退的代价远高于前进（<code>traj_back_penalty_</code> &gt; <code>traj_forward_penalty_</code>）。</li>
+<li><strong>换挡惩罚</strong>：如果动作从前进变为后退（或反之），施加 <code>traj_gear_switch_penalty_</code>。</li>
+<li><strong>转向惩罚</strong>：惩罚大幅度转向（<code>traj_steer_penalty_ * steer^2</code>）。</li>
+<li><strong>转向变化惩罚</strong>：惩罚方向盘的快速变化（<code>traj_steer_change_penalty_ * (steer - last_steer)^2</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>软边界代价 (<code>LineCrossCost</code>)</strong>：</p>
+<ul>
+<li>此函数检查从 <code>current_node</code> 到 <code>next_node</code> 的连线是否<strong>穿越</strong>了任何软边界（车道线 <code>soft_laneline_linesegments_vec_</code>）。</li>
+<li>如果穿越，施加一个<strong>巨大的代价</strong> (<code>soft_boundary_penalty_ * 100</code>)。</li>
+<li>这使得A*算法会“极不情愿”地压线，但如果这是唯一的路径，它仍然会选择压线（与硬边界的“不可穿越”形成对比）。</li>
+</ul>
+</li>
+</ol>
+<h4><span id="hn---%E5%90%AF%E5%8F%91%E5%BC%8F%E5%87%BD%E6%95%B0-holoobstacleheuristic">$h(n)$ - 启发式函数: <code>HoloObstacleHeuristic</code></span></h4>
+<p>$h(n)$ 是对未来代价的<strong>估计</strong>，用于“引导”A*算法朝终点前进。<code>Holo</code> 是 “Holonomic”（全向的）的缩写，意为在预估代价时，<strong>暂时假装车辆是一个可以360°全向移动的“点”</strong>，从而忽略非全向的运动约束（如转向、朝向）。这保证了 $h(n)$ 永远不会高估实际代价。</p>
+<p>您的代码中 包含了两种实现：</p>
+<p><strong>1. 实现方式一 (被注释掉): 2D栅格搜索 (真正的“全向-障碍物”启发)</strong>
+这是最经典、最智能的启发函数，通过 <code>grid_a_star_heuristic_generator_</code> 和 <code>grid_search.cpp</code> 实现。</p>
+<ul>
+<li><strong>预计算</strong>: 在混合A<em>开始前，先运行一个2D栅格A</em> (<code>GenerateDpMap</code>)。</li>
+<li><strong>反向搜索</strong>: 这个2D A*从<strong>终点</strong>开始，<strong>反向</strong>搜索并绕过所有硬障碍物（路沿）。</li>
+<li><strong>生成DP Map</strong>: 它生成一个代价地图 (<code>dp_map_</code>)，图中每个单元格的值是“从该点到终点的最短无障碍距离”。</li>
+<li><strong>查询</strong>: 混合A*在运行时，通过 <code>CheckDpMap</code> 查询 <code>dp_map_</code> 即可得到 $h$ 值。</li>
+<li><strong>优点</strong>: 完美考虑了障碍物，引导性最强。</li>
+</ul>
+<p><strong>2. 实现方式二 (代码中实际使用): 基于粗轨迹 (“全向-无障碍物”启发)</strong>
+您的代码实际运行的是一个更简单、针对车道环境高度优化的版本。它<strong>完全忽略障碍物</strong>，仅依赖 Part 1 中生成的<strong>平滑中心参考线 (<code>rough_line_pwg_</code>)</strong>。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">HybridAStar::HoloObstacleHeuristic</span><span class="hljs-params">(std::shared_ptr&lt;Node3d&gt; next_node)</span> </span>{<br>  <span class="hljs-comment">// ... (2D Grid Search被注释掉了)</span><br><br>  <span class="hljs-comment">// 1. 获取纵向距离</span><br>  <span class="hljs-type">double</span> dist_long = endp_proj_len_ - next_node-&gt;<span class="hljs-built_in">GetProjLength</span>();<br><br>  <span class="hljs-comment">// 2. 获取横向距离</span><br>  <span class="hljs-type">double</span> dist_lat = next_node-&gt;<span class="hljs-built_in">GetProjDis</span>();<br>  <br>  <span class="hljs-comment">// 3. 计算最终代价</span><br>  res = heuristic_lat_w1_ * (cost_from_lat) + heuristic_long_w2_ * dist_long;<br><br>  <span class="hljs-keyword">return</span> res;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<ul>
+<li><strong>工作原理</strong>：它将“全向”代价分解为：
+<ol>
+<li><strong>横向代价</strong>：车辆“横移”到参考线上的代价，基于 <code>dist_lat</code>。</li>
+<li><strong>纵向代价</strong>：车辆沿参考线行驶到终点的代价，即 <code>dist_long</code>。</li>
+</ol>
+</li>
+<li><strong>最终 $h$ = $w_1 \times (\text{横向代价}) + w_2 \times (\text{纵向代价})$</strong>。</li>
+<li><strong>优点</strong>: 计算极快（一次投影）。在有清晰参考线的道路上，会<strong>强烈引导A*算法贴着参考线前进</strong>。</li>
+<li><strong>缺点</strong>: 完全无视障碍物，在复杂路口或障碍物遮挡参考线时，引导性会下降。</li>
+</ul>
+<hr>
+<h3><span id="%E8%BE%93%E5%87%BA">输出</span></h3>
+<p>当 <code>while</code> 循环结束（因为找到了 <code>final_node_</code>），<code>GetNodeResult</code> 函数会被调用。</p>
+<ol>
+<li><strong>路径回溯</strong>：<code>GetNodeResult</code> 从 <code>final_node_</code> 开始，通过 <code>GetPreNode()</code> 指针链条反向回溯到 <code>start_node_</code>。</li>
+<li><strong>输出</strong>：它将回溯路径上的所有 $(x, y, \phi)$ 坐标点收集起来，存储在 <code>result-&gt;x</code>, <code>result-&gt;y</code>, <code>result-&gt;phi</code> 中。</li>
+</ol>
+<p><strong>此阶段的输出是一条粗糙的、由短线段和圆弧组成的路径。</strong></p>
+<ul>
+<li><strong>优点</strong>：它100%保证了运动学可行性（车能开），并且100%避开了硬边界（路沿）。</li>
+<li><strong>缺点</strong>：它在转向连接处是不平滑的（曲率不连续），不能直接用于车辆控制。</li>
+</ul>
+<p>这条粗糙路径将作为“强参考”，在 Part 4 中被送入B样条优化器进行最终的平滑处理。</p>
+<h2><span id="%E8%BD%A8%E8%BF%B9%E5%B9%B3%E6%BB%91%E4%B8%8E%E4%BC%98%E5%8C%96">轨迹平滑与优化</span></h2>
+<h3><span id="1-%E6%A6%82%E8%BF%B0">1. 概述</span></h3>
+<p>混合A*搜索（Part 3）的输出 <code>result-&gt;x, result-&gt;y</code> 是一条由圆弧和直线段组成的粗糙路径。它虽然避开了所有硬障碍，但驾驶体验会非常糟糕。</p>
+<p>本阶段的目标是利用这条A*路径作为“强参考”，通过<strong>B样条二次规划 (QP) 优化</strong>，生成一条最终的、平滑的、可执行的轨迹。</p>
+<p>此过程在 <code>HybridAStar::performAstarSearch</code> 函数的后半部分 和 <code>SafetyCorridorGenerator::performSearch</code> 的末尾执行。</p>
+<hr>
+<h3><span id="2-%E6%AD%A5%E9%AA%A4%E4%B8%80%E8%B7%AF%E5%BE%84%E5%8A%A0%E5%AF%86-densification">2. 步骤一：路径加密 (Densification)</span></h3>
+<p>A*算法输出的节点是稀疏的（例如每1米一个点）。为了给优化器提供更丰富的参考信息，系统首先对其进行加密。</p>
+<ul>
+<li><strong>函数</strong>: <code>HybridAStar::Densification_result</code>。</li>
+<li><strong>操作</strong>: 它沿着A*的粗糙路径进行插值，生成一个点更密集的路径（例如，每0.5米一个点）。</li>
+</ul>
+<hr>
+<h3><span id="3-%E6%AD%A5%E9%AA%A4%E4%BA%8C%E5%A1%AB%E5%85%85%E4%BC%98%E5%8C%96%E7%BA%A6%E6%9D%9F-constraint-filling">3. 步骤二：填充优化约束 (Constraint Filling)</span></h3>
+<p>这是将“物理世界”转译为“数学问题”的关键一步。系统需要告诉优化器，这条轨迹必须在哪些边界内。</p>
+<ol>
+<li><strong>函数</strong>: <code>HybridAStar::FillSearchResultToOptimizer</code>。</li>
+<li><strong>约束池</strong>: 此函数使用 <code>constraint_pool_</code> (来自 <code>constraint_pool.cpp</code>)。</li>
+<li><strong>查询边界</strong>:
+<ul>
+<li>它遍历加密后的A*路径上的<strong>每一个点</strong>。</li>
+<li>对于每个点，它调用 <code>constraint_pool_.queryConstraineLineSeg</code>。</li>
+<li><code>constraint_pool_</code> 会在 Part 1 构建的安全走廊（<code>corridor_polyline_left_</code> 和 <code>corridor_polyline_right_</code>）以及软边界（车道线）中，为这个点<strong>动态查询</strong>出离它最近的左、右边界线段。</li>
+</ul>
+</li>
+<li><strong>输出</strong>: 生成一个完整的约束集，其中A*路径上的每个点都“绑定”了它必须遵守的局部边界。</li>
+</ol>
+<hr>
+<h3><span id="4-%E6%AD%A5%E9%AA%A4%E4%B8%89b%E6%A0%B7%E6%9D%A1%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92-b-spline-qp-%E5%B9%B3%E6%BB%91">4. 步骤三：B样条二次规划 (B-Spline QP) 平滑</span></h3>
+<p>这是轨迹生成的最后一步，也是计算量最大的一步。</p>
+<ol>
+<li><strong>调用求解器</strong>: 系统调用 <code>search_result_smoother_-&gt;Solve()</code>。</li>
+<li><strong>求解器身份</strong>: <code>search_result_smoother_</code> (来自 <code>shape_point_smoother.cpp</code>) 实际上是一个OSQP（二次规划）求解器的接口 (<code>newOsqpInterface</code>)。这与 Part 1 中用于平滑参考线的优化器是同一类。</li>
+</ol>
+<p><strong>OSQP求解器会解一个复杂的数学优化问题：</strong></p>
+<ul>
+<li>
+<p><strong>目标函数 (Cost Function)</strong> - <code>CalculateKernel</code></p>
+<ul>
+<li>“找到一条B样条曲线，使其<strong>总代价</strong>最小”。</li>
+<li>总代价 =
+<ul>
+<li>$w_1 \times$ (平滑后轨迹<strong>偏离A*参考路径</strong>的距离) (<code>weight_p_</code>)</li>
+<li>
+<ul>
+<li>$w_2 \times$ (曲线的速度/一阶导数) (<code>weight_v_</code>)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>$w_3 \times$ (曲线的加速度/二阶导数) (<code>weight_a_</code>)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>$w_4 \times$ (曲线的加加速度Jerk/三阶导数) (<code>weight_j_</code>)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>$w_5 \times$ (曲线的加加加速度Snap/四阶导数) (<code>weight_s_</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>核心思想</strong>: 权重 $w_1$ (位置权重 <code>weight_p_</code>) 保证了轨迹不会偏离A*找到的安全路径。其他权重 $w_2$ 到 $w_5$ 保证了轨迹本身是极其平滑、舒适、易于控制的。</li>
+</ul>
+</li>
+<li>
+<p><strong>约束条件 (Constraints)</strong> - <code>CalculateAffineConstraint</code></p>
+<ul>
+<li>“在满足以下<strong>硬约束</strong>的前提下，最小化上述总代价”：</li>
+<li><strong>边界约束</strong>: B样条曲线上的所有点，<strong>必须</strong>位于 <code>FillSearchResultToOptimizer</code> (步骤二) 提供的左、右硬边界（路沿）和软边界（车道线）之间。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="5-%E6%AD%A5%E9%AA%A4%E5%9B%9B%E8%BD%A8%E8%BF%B9%E9%80%89%E6%8B%A9%E4%B8%8E%E6%9C%80%E7%BB%88%E8%BE%93%E5%87%BA">5. 步骤四：轨迹选择与最终输出</span></h3>
+<p>至此，Part 2 中提交的三个并行搜索任务（左、中、右）均已完成（或因无效而被跳过）。</p>
+<p>此步骤在 <code>SafetyCorridorGenerator::performSearch</code> 的末尾执行。</p>
+<ol>
+<li><strong>收集结果</strong>: 系统现在手握最多三个<strong>平滑且可行</strong>的轨迹方案（存储在 <code>search_thread_map</code> 中）。</li>
+<li><strong>选择最优轨迹</strong>:
+<ul>
+<li>系统需要从这三个方案中选出一个“最佳”方案。</li>
+<li>它使用一个简单的“最近”逻辑：遍历所有有效轨迹上的所有点，找出离车辆<strong>当前位置</strong> (<code>car_current_pos</code>) 最近的那个点。</li>
+<li>包含这个“最近点”的整条轨迹，被选为最终轨迹 (<code>nearst_road_id</code>)。</li>
+</ul>
+</li>
+<li><strong>最终组装 (Output)</strong>:
+<ul>
+<li>系统将上一帧的缝合轨迹 (<code>stitch_info_</code>) 与新选出的这条最优轨迹 (<code>result.optimized_x</code>, <code>result.optimized_y</code> 等) 拼接在一起。</li>
+<li>最终结果被存储在 <code>disref_positon_</code>, <code>disref_heading_</code>, <code>disref_curvature_</code> 中，作为最终的执行轨迹被发送给控制模块。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="6-part-4-%E6%80%BB%E7%BB%93%E6%9C%80%E7%BB%88%E8%BD%A8%E8%BF%B9">6. Part 4 总结：最终轨迹</span></h3>
+<p>整个流程的最终输出是一条：</p>
+<ul>
+<li><strong>连续且平滑</strong> (B样条优化)</li>
+<li><strong>严格遵守硬边界</strong> (A*碰撞检测 + QP约束)</li>
+<li><strong>运动学可行</strong> (A*运动学扩展)</li>
+<li><strong>高可用</strong> (并行多车道搜索)</li>
+</ul>
+<p>的轨迹，完美地结合了混合A*的路径查找能力和二次规划的平滑优化能力。</p>
+<h1><span id="%E9%99%84%E5%BD%95%E5%85%B3%E9%94%AE%E8%BD%A6%E8%BE%86%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3">附录：关键车辆模型详解</span></h1>
+<p>在整个轨迹生成流程中，车辆的物理特性通过几个关键模型被抽象和应用。理解这些模型是理解混合A*和后续优化的基础。</p>
+<hr>
+<h2><span id="1-%E9%98%BF%E5%85%8B%E6%9B%BC%E8%BD%AC%E5%90%91-ackermann-steering---%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%A8%A1%E5%9E%8B">1. 阿克曼转向 (Ackermann Steering) - “为什么需要模型”</span></h2>
+<p>这个概念是<strong>现实世界中的物理原理</strong>。它描述了汽车在转弯时，为了<strong>防止轮胎侧滑</strong>（想象一下车轮在地上横着“搓”），四个轮子必须满足的几何条件。</p>
+<h3><span id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</span></h3>
+<p>当汽车转弯时，所有四个车轮都必须围绕一个<strong>共同的圆心</strong>旋转。这个点我们称之为<strong>瞬时旋转中心 (Instantaneous Center of Rotation, ICR)</strong>。</p>
+<ul>
+<li><strong>看内侧和外侧</strong>：想象一下，在转弯时，内侧前轮走的圆圈半径 <em>R_inner</em> 总是小于外侧前轮走的圆圈半径 <em>R_outer</em>。</li>
+<li><strong>关键结论</strong>：为了让它们都指向同一个ICR，<strong>内侧前轮的转向角度（$\delta_{inner}$）必须大于外侧前轮的转向角度（$\delta_{outer}$）</strong>。</li>
+<li><strong>实现</strong>：在您的真实汽车上，这是通过一个精巧的机械结构（称为“转向梯形”）来实现的。</li>
+</ul>
+<p>（这个我们玩乐高和besiege的时候都很熟悉了hhh）</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/668474109">阿克曼转向几何</a></p>
+<hr>
+<h2><span id="2-%E8%87%AA%E8%A1%8C%E8%BD%A6%E6%A8%A1%E5%9E%8B-bicycle-model---%E5%A6%82%E4%BD%95%E6%A8%A1%E6%8B%9F%E8%BD%AC%E5%90%91">2. 自行车模型 (Bicycle Model) - “如何模拟转向”</span></h2>
+<p>自行车模型是<strong>对阿克曼转向原理的数学简化</strong>。它是您代码中混合A*算法的核心运动学模型。</p>
+<h3><span id="%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3">核心思想</span></h3>
+<p>我们不模拟四个轮子，太复杂了。我们把车简化成一辆自行车：</p>
+<ol>
+<li>把两个后轮合并成一个“虚拟后轮”。</li>
+<li>把两个前轮合并成一个“虚拟前轮”。</li>
+</ol>
+<p>这辆“自行车”的状态（位姿）可以用三个变量来描述：</p>
+<ul>
+<li>$(x, y)$：虚拟后轮中心的位置。</li>
+<li>$\theta$ (theta)：自行车的朝向（航向角）。</li>
+</ul>
+<h3><span id="%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8-next_node_generator">如何在代码中使用 (<code>Next_node_generator</code>)</span></h3>
+<p>A*搜索不是基于时间 $t$ 和速度 $v$ 的，而是基于一个固定的<strong>步长 $s_{\text{step}}$</strong>（即 <code>traveled_distance</code>）。</p>
+<p>代码将描述自行车运动的微分公式改写为“离散”的差分公式，用于计算A*的下一个节点：</p>
+<ol>
+<li>
+<p><strong>关键参数</strong>：</p>
+<ul>
+<li>$L$：车辆轴距（前后轮之间的距离）。在您的代码中是 <code>vehicle_param_.wheel_base()</code>。</li>
+<li>$\delta$ (delta)：虚拟前轮的转向角。在您的代码中是 <code>steering</code>。</li>
+<li>$(x_k, y_k, \phi_k)$：当前节点（<code>current_node</code>）的位姿。</li>
+</ul>
+</li>
+<li>
+<p><strong>计算新朝向 $\phi_{k+1}$</strong>：</p>
+<ul>
+<li>新朝向角的变化 $\Delta\phi \approx (s_{\text{step}} / L) \times \tan(\delta)$</li>
+<li><strong>计算公式</strong>：
+$$\phi_{k+1} = \phi_k + \frac{s_{\text{step}}}{L} \tan(\delta)
+$$</li>
+</ul>
+</li>
+<li>
+<p><strong>计算新位置 $(x_{k+1}, y_{k+1})$</strong>：</p>
+<ul>
+<li>新位置的变化 $\Delta x \approx s_{\text{step}} \times \cos(\phi)$</li>
+<li>新位置的变化 $\Delta y \approx s_{\text{step}} \times \sin(\phi)$</li>
+<li><strong>计算公式</strong>（您的代码中使用 $\phi_{k+1}$ 进行积分，这是一种欧拉积分法）：
+$$x_{k+1} = x_k + s_{\text{step}} \cos(\phi_{k+1})
+$$</li>
+</ul>
+</li>
+</ol>
+<p>$$y_{k+1} = y_k + s_{\text{step}} \sin(\phi_{k+1})
+$$</p>
+<p><strong>总结</strong>：自行车模型是一个数学公式，它能精确地告诉A*算法：“如果我在 $(x_k, y_k, \phi_k)$，打 $\delta$ 这么多方向，前进 $s_{\text{step}}$ 这么远，我会到达哪个新位姿 $(x_{k+1}, y_{k+1}, \phi_{k+1})$”。这就是混合A*实现“运动学可行”的根本。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/700681612">自行车运动学模型</a></p>
+<hr>
+<h2><span id="3-%E7%BA%B5%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6-longitudinal-dynamics---%E5%A6%82%E4%BD%95%E8%A7%84%E5%88%92%E9%80%9F%E5%BA%A6">3. 纵向动力学 (Longitudinal Dynamics) - “如何规划速度”</span></h2>
+<p>这个概念与“转向”（横向）无关，它只关心<strong>沿路径前进和后退</strong>（纵向）。</p>
+<p>在自动驾驶规划中，一个非常聪明且常见的技巧是**“解耦”**（Decoupled）规划：</p>
+<ol>
+<li>
+<p><strong>Step 1. 路径规划 (Path Planning)</strong>：</p>
+<ul>
+<li><strong>任务</strong>：先不管速度，只用<strong>自行车模型</strong>（运动学）找到一条几何上可行的 $(x, y, \theta)$ 路径。</li>
+<li><strong>执行者</strong>：<code>HybridAStar::performAstarSearch</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>Step 2. 速度规划 (Speed Profile)</strong>：</p>
+<ul>
+<li><strong>任务</strong>：把Step 1找到的路径当成一条固定的“1D轨道”。现在，只在这条轨道上规划 $(v, a, j)$（速度, 加速度, 加加速度）。</li>
+<li><strong>执行者</strong>：<code>HybridAStar::GenerateSCurveSpeedAcceleration</code>。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E7%BA%B5%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C">纵向动力学模型如何工作</span></h3>
+<p>您的代码没有使用复杂的发动机、刹车或轮胎力模型。它使用了一个更简单、更强大的<strong>基于约束的优化模型</strong>。</p>
+<p><code>GenerateSCurveSpeedAcceleration</code> 所做的事情是，调用 <code>PiecewiseJerkSpeedProblem</code> 求解器，并给它一组<strong>规则（动力学约束）</strong>：</p>
+<ul>
+<li><strong>规则1 (速度限制)</strong>：你的速度 $v$ 永远不能超过 <code>max_forward_v_</code> 或 <code>max_reverse_v_</code>。</li>
+<li><strong>规则2 (加速度限制)</strong>：你的加速度 $a$ 永远不能超过 <code>max_forward_acc_</code> 或 <code>max_reverse_acc_</code>。这代表了车辆“油门踩到底”或“刹车踩到底”的能力。</li>
+<li><strong>规则3 (Jerk限制)</strong>：你的加加速度 $j$ (Jerk) 永远不能超过 <code>max_acc_jerk_</code>。Jerk代表了你踩油门/刹车的“快慢”。限制Jerk是为了<strong>防止顿挫</strong>，保证乘客舒适性。</li>
+</ul>
+<p><strong>优化目标</strong>：求解器 <code>PiecewiseJerkSpeedProblem</code> 的目标是，在<strong>严格遵守</strong>上述所有动力学规则的前提下，找到一条从 $v=0$ 到 $v=0$ 的速度曲线，使其<strong>总Jerk最小</strong>（即最平滑、最舒适）。</p>
+<hr>
+<h2><span id="%E6%80%BB%E7%BB%93%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB">总结：三者关系</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">概念</th>
+<th style="text-align:left">类别</th>
+<th style="text-align:left">解决的问题</th>
+<th style="text-align:left">在代码中的体现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>阿克曼转向</strong></td>
+<td style="text-align:left">物理原理</td>
+<td style="text-align:left"><strong>“为什么”</strong>：为什么车轮需要差速转向？</td>
+<td style="text-align:left">(无代码) 它是自行车模型的理论基础。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>自行车模型</strong></td>
+<td style="text-align:left"><strong>运动学</strong> (Kinematics)</td>
+<td style="text-align:left"><strong>“怎么转弯”</strong>：给定转向和距离，计算新的 $(x, y, \theta)$。</td>
+<td style="text-align:left"><code>HybridAStar::Next_node_generator</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>纵向动力学</strong></td>
+<td style="text-align:left"><strong>动力学</strong> (Dynamics)</td>
+<td style="text-align:left"><strong>“怎么加减速”</strong>：给定 $(x, y)$ 路径，计算可行的 $(v, a, j)$。</td>
+<td style="text-align:left"><code>HybridAStar::GenerateSCurveSpeedAcceleration</code></td>
+</tr>
+</tbody>
+</table>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/10/30/%E5%B7%A5%E4%BD%9C/%E5%9F%BA%E4%BA%8E%E6%90%9C%E7%B4%A2%E7%9A%84%E8%B7%AF%E5%BE%84%E7%94%9F%E6%88%90/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;30&#x2F;工作&#x2F;基于搜索的路径生成&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;30&#x2F;工作&#x2F;基于搜索的路径生成&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/gaea%E6%A1%86%E6%9E%B6/" rel="tag">gaea框架</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

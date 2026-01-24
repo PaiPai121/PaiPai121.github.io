@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 恒润宫斗记录 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="恒润宫斗记录"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>恒润宫斗记录</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年08月18日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.8k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 15 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><ul>
+<li><a href="#1208">1208</a></li>
+<li><a href="#1128">1128</a></li>
+<li><a href="#1119">1119</a></li>
+<li><a href="#1029">1029</a></li>
+<li><a href="#1025">1025</a></li>
+<li><a href="#%E4%B8%80%E5%A4%A7%E5%9D%A8">一大坨</a></li>
+<li><a href="#l2%E4%B9%8B%E4%BA%89%E6%96%97">L2之争斗</a></li>
+<li><a href="#%E6%96%B9%E5%8D%9A%E5%92%8C%E4%B8%87%E5%8D%9A">方博和万博</a></li>
+<li><a href="#0819">0819</a></li>
+<li><a href="#0820-%E8%AE%B0%E5%BD%95">0820 记录</a></li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1208">1208</span></h2>
+<p>听说老吉用手抓饺子喂高管，然后说不干不净吃了没病。属实是职场pua了</p>
+<h2><span id="1128">1128</span></h2>
+<p>今天终于离职了！
+顺便吐槽一下最近的状况
+大伙基本上明目张胆的开始刷题了
+上周帅哥被排挤走了以后，这周爽博来找X哥聊天，X哥直接反问是不是你把帅哥搞走的
+现在爽博疯狂自证不是自己</p>
+<p>上午老吉和我私聊的时候我就想说，帅哥走了我也不想干了！不过没有那个胆子喷出来。</p>
+<h2><span id="1119">1119</span></h2>
+<p>上个月所说之大变革终于来了，大抵就是这项目一团乱麻，有人想表现，想往里冲拿下功劳，有人想借机夺权，斗下竞争对手
+真是吉列的豆蒸啊。
+我们所做的，唯有多学习。</p>
+<h2><span id="1029">1029</span></h2>
+<p>部门里除了敌对阵营的三个人，大家都众志成城的想好好摆一下。
+没人会信他们什么封版啊、轻松啊、冻结之类的屁话
+听说公司可能要寄了，adas的一体机无以为继。ME切爱芯和MAXIEYE的方案也许不顺利，然后大批的人出走。
+没人知道公司后面会怎么样。
+甚至大家都盼着早死。
+毕竟就这个项目管理的混乱程度，管理层的弱智之处，存续大概也没什么意义。</p>
+<h2><span id="1025">1025</span></h2>
+<p>听说11月初要有一个大事，大抵是我们部门要解散了。
+祥哥他们说方博把HNOA、LCC这些低垂的果实让了出去，梭哈CNOA但是现在看结果怕是不会好。
+反而接了HNOA、LCC的爽博收获了天大的果实。
+我也不知道高层怎么争斗吧
+反正感觉自己待不下去了。</p>
+<h2><span id="%E4%B8%80%E5%A4%A7%E5%9D%A8">一大坨</span></h2>
+<p>公司名唤经纬恒润，虽然庞大却臃肿落后，像是垂垂老矣的腐朽帝国。为了打入杀成一片红海的自动驾驶赛道，公司把资金人力都投入到了cx835项目上，以维持自己的股价（高管说公司一半的股价是掉在这个项目上。）</p>
+<p>公司既有外敌，即项目甲方江铃集团，也有内部斗争。公司的甲方江铃集团会经常抽查我们的软件进行试驾，并且吹毛求疵的提各种问题。然后向公司提各种的要求，而据我所知本身这个项目的拿下以及公司在江西开设分公司的都和江铃集团有着深刻的内部利益输送。而在公司内部仅仅负责自动驾驶算法的就有两个部门。按照神出鬼没的董事长的想法，大家要合成一个team，共克时艰，实际上大家各有各的分工，后来分别在做noa和l2，也并没有真的融合起来，大家还是利益不同。而负责数据回流测试部的同学也并不想继续的把所有精力都支持在这个项目上，因此他们中途撤出了支持，需要大家自己来完成这个。像是嘉靖希望下面协调了一派祥和，但实际上并没有。公司领导人的想法可能是把项目做好，但是这就需要压榨底层的员工就像是改到为桑，其实苦的就是下面的百姓。基层的算法工程师们被安排在驻地没日没夜的工作。</p>
+<p>我来介绍一下我身边的几个同事吧，一个是我入职的导师，鞠，他是有着三四年工作经验，然后还有能力，我们部门的高层也很看重他本人也非常卷，经常会干到凌晨一两点，对整套规控算法的框架是最熟悉的然后也带我一起熟悉了很多相关的代码。下一个同事和他差不多可能比他经历更老一点相对而言，在我看来城府更深一些，然后现在可能主要更多的任务在管理和协调资源上，他们两个都是小管理层，然后就是和我同时入职的两个同事，一个同事周祥也非常的卷，经常自己凌晨加班凌晨2:00以后回去可能还要看代码看到四五点。人还比较好，也比较乖，另一个同事也是新入职的，得意，但是他年轻一点，讨厌卷。基本上能再加班的时候开溜就会开溜了，能见缝插针的找自己的时间。比我早入职一年的师姐徐博，当然我们并不是一个课题组的，只是一个学校的，她讨厌卷，家里养了猫，然后但是能力非常的强，我最初期的很多代码不外的地方，她指导了我很多，然后非常不满意公司长期的加班和出差，然后其实现在这个项目像改稻为桑的摧残我们的时候。还有一个同事也是早一年入职的博士和那个师姐是一个系的哥们，张博，当然也很讨厌卷，现在他主要在负责自动驾驶中的纵向规划的算法，非常厌恶部门与公司的加班值班安排以及从来不订好，到底什么时候才能让出差的大家回去。他和得意关系很好，经常一起找机会开溜掉，但是即使这种只是说相比于加班到凌晨外，晚上12:00走这样。</p>
+<p>然后介绍一下我们的直属高管吧他表面上是很的，然后也会整体的跟我聊一下我们算法的整个框架方法论有的时候感觉像高校导师一样，但是至少就从加班的角度上来讲，经常会有大量的需求和任务，但是又会和大家说不要加班太晚，但根本实现不了大家还是会加班，下次开的空头支票本来说这个周末可以让连续出差，大家休息，但实际上并没有给大家实现。一些事情说话模棱两可，我不知道该让他比作嘉靖还是严嵩。</p>
+<p>我来继续介绍背景和现实中发生的事情。最近我们因为连着加班了两个月都没有任何休息，于是我们部门的高管昨天在群里说大家最近很辛苦，冲刺可以暂时结束了，然后周日可以休息一下，也可以回北京放松休息，可是仅仅到了今天上午就开始发消息说下午要接着对case，并没有任何让我们休息的机会。大家是觉得他的指令捉摸不定很难想象到到底会进行什么样的决策另外说的那位小领导他直接又续住了五天的出差，看来这一周他是就决心继续加班了。</p>
+<p>然后今天公司的高层讨论群里面发生了争吵，大抵意思是说我们这个项目到了最后交付钱的关键节点，但是感觉这个项目一团乱麻快要失败了。最初这个大项目有两位主扣分别是我部门的高管和另外一个高管，我们部门的高管方博另一个部门的高管就叫万亮，其实该叫主控。最初应该是有一些拍戏不合，所以他们两个并不太合得来，所以初期和中期的时候实际的主控一直只有方博一个人，但是随着现在项目完蛋了，公司的董事长老吉让老万也参与到这个项目了。然后就在今天上午老万和底软部门的老大发生了冲突，老万说要让软件切换vulkan，而底软部门的老大觉得这不是个小事儿，肯定量产节点前赶不上，而老万则说，这是一个多月前决策的事情，而一直没有执行而抵软的老大刚哥则扩大火力说，既然这样建议行车微控也全部重构，然后他们就在这里说扯淡啊，必须的，你行你上，然后开始吵架。刚才提到了行车，所以此时L2的主要负责人爽博则跳出来说代码方案你们都可以随便看，并且阴阳一下，这些人说欢迎你们也常驻南昌，半夜都要跟车体验，不要动不动就回去休息，总之就是这些高管们火药味贼大。这几位都是高管，不会在一线直接搞代码的，所以这个场景其实不太符合实际。</p>
+<p>另外，我觉得我们故事背景设计还可以参考另一个事情,就是肖申克的救赎。今天同事们说我们被关在这个驻地这里每天没日没人的工作，然后吃饭的时候忙里偷闲喝个饮料就像是肖申克的救赎里男主和公有友们一起喝酒的感觉，而我们这些肮脏的高管则是那邪恶的典狱长。</p>
+<p>我刚入职的时候其实没有什么想法，当时出生的牛犊不怕虎也不怕这些弯弯绕觉得公司还挺好的，到了晚上的7:00我就自己下班了，不好意思哦，都没走就走了。最开始，其实因为相比在学校还多利比工资还挺开心的，然后这些斗争也接触不到，还能在没接触的领域学习习知识，所以当时还是比较意气风发的。</p>
+<p>最开始的一个月大概都没有上手太多的业务，然后主要是在补习这个领域，没有学过的知识之后就开始上手，也比较顺利，自己学习能力也算还可以。开始从八月开始日子开始变得不对劲，我们每隔一周就会出差一周到客户的住地去回家的日子突然就变得少了很多，很难见到家人，而且在出差的时候公司会让我们疯狂的加班，我可能会熬到半夜12:00才能下班，而且周末也不给休息。</p>
+<p>鞠其实是一直很发愁，这个项目该怎么做，毕竟自动驾驶很困难，而他则是攻坚问题的主力军。相比而言，方博倒是比较有信心，他一直说我们国内现在华为，momenta的智驾已经有了很小量的名声，但是其实有缺陷，而想在这残余的市场出分下一杯羹，我们就必须把这个项目做好做成，即使亏本，也要用这个项目在自动驾驶这个领域中站稳脚跟。</p>
+<p>周一的下午，我们晚上能顺利回家，是因为下午张博起义了。当方博说什么周四老吉来，回去的同学要周四～周六回来的时候，张博怒而拍桌。
+我当时在测试车上，只听得帅哥接到方博电话，然后回答说什么在南昌大家精神状态都不是很好之类的，回去才知道是因为张博的拍桌，才有晚上让我们可以回北京喘息。</p>
+<p>不过刚回两天，周四下午方博就开始“周五晚上老吉请吃饭，大家可以晚上之前来，周末可以接着休息。”可是大家谁都知道去了就由不得你了，只能说像是在骗小孩一样想把大家骗过去。</p>
+<h2><span id="l2%E4%B9%8B%E4%BA%89%E6%96%97">L2之争斗</span></h2>
+<p>功能分NOA和LCC
+我们部门做NOA，ADS做LCC
+今天川队找到帅哥说是想要接入我们做的lidar curb，做立刻接管或减速的报警。
+今天早些时候晚上屈博和我说过LCC那边有这个想法，然后说不要让他们用，有问题就报感知问题。
+为什么呢，因为如果接了的话，以后出现问题就会推到我们部门的头上。
+我们几个都是这个意思。</p>
+<p>晚上的时候帅哥打电话说到这个事情，我们私下就说不能这么用。
+老鞠就diss老帅，说他屁股很歪啊，怎么能答应这个事情？而且他决策也没和内部通气，就去做决策了。
+方博都不关心p2问题，帅哥来了开始对p2和lcc的问题，大抵有些怪异。
+不过相比而言明天和感知大概要有一波大战吧。</p>
+<p>哦对，听说lcc那边总是diss说猛打是因为cnoa这边参考线做的不好👎。现在大抵是少做少错，多做多错。</p>
+<h2><span id="%E6%96%B9%E5%8D%9A%E5%92%8C%E4%B8%87%E5%8D%9A">方博和万博</span></h2>
+<p>方：过两天万国强要来，我是今天走还是明天走呢？
+方：要不然等他来了走？
+方：算了我干嘛非要管他。
+这涉及到一个遥远的传闻
+当年他们两个同在ADS，万博是名义上的老大，但是方博却掌握了人事上的任免权，加薪和找人都方博说了算。
+一段时间后万博直接在会上ppt细数方博罪状，将方博排挤出了ads。</p>
+<h2><span id=""></span></h2>
+<p>范博在群里一说话，很多人就会像跳梁小丑一样跳出来。邀功、阴阳怪气什么的。</p>
+<h2><span id=""></span></h2>
+<p>**说方博最近大抵心里也不爽，不爽于为什么他拍的方案为什么大家都不太爱执行。
+有人认为老方拍的方案很多时候还是欠考虑，解决一个问题带来很多问题，执行完了出问题又会说领会错了意思。大抵有点嘉靖的意思了。
+不过我觉得主要还是现在这个节点，大家都是强弩之末了，什么都不想做了吧</p>
+<h2><span id="0819">0819</span></h2>
+<p>不想工作的自然不只我一个，晚上大家早早去东北菜干饭。
+然后回来以后和鞠哥冬岗去打台球，鞠打台球还挺猛的。
+电话一回一个，没有人想工作。</p>
+<h2><span id="0820-%E8%AE%B0%E5%BD%95">0820 记录</span></h2>
+<p>孙博&amp;李博的故事</p>
+<p>孙博不戴眼镜，一直以为是她视力好，原来是做手术了。全飞秒，但是对角膜有要求，半飞秒对角膜要求略低，但是不那么安全。
+她说她角膜厚，能再做次半飞秒。本想帮我老婆问问有没有什么注意事项，不过我老婆做不了，算了。</p>
+<p>以前一直以为李博是孙博1000卖过来的。江西妙瓦底。结果两人是各自投过来的，没有人拿到1000。
+李博毁了一个offer来的，我问他是哪里，他说是启元实验室。那我感觉没毁错。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/08/18/%E5%B7%A5%E4%BD%9C/%E6%81%92%E6%B6%A6%E5%AE%AB%E6%96%97%E8%AE%B0%E5%BD%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;08&#x2F;18&#x2F;工作&#x2F;恒润宫斗记录&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;08&#x2F;18&#x2F;工作&#x2F;恒润宫斗记录&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" rel="tag">妙瓦底</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

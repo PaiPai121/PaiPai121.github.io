@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> MLC的实现 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/mleva2.jpg"
+				data-sizes="auto"
+				alt="MLC的实现"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>MLC的实现</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月07日</a>
+			<a><i class="kirafont icon-edit-fill"></i>10.7k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 45 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="mlc-%E6%A8%A1%E5%9D%97">MLC 模块</span></h1>
+<h2><span id="1-%E6%A6%82%E8%BF%B0-overview">1. 概述 (Overview)</span></h2>
+<p><code>MLC.cpp</code> 是一个用于自动驾驶强制换道 场景的决策与轨迹规划模块。其核心入口函数是 <code>RunLaneChangeSlotSelectionLattice</code> (及其并行版本 <code>RunLaneChangeSlotSelectionLattice_Parallel</code>)。</p>
+<p>该模块的<strong>核心思想</strong>是：基于 <code>Lattice</code> (栅格) 规划方法，通过对<strong>时间、速度、跟车目标、让行模式</strong>等多个维度进行参数采样，生成海量的候选轨迹。随后，每一条轨迹都会经过严格的<strong>约束检查 (ConstraintCheck)</strong> 和<strong>成本计算 (Cost)</strong>。最后，系统会从所有通过检查的轨迹（包括上一帧的历史轨迹）中，选出总成本最低的一条作为本帧的决策结果。</p>
+<p>该模块具备高度的：</p>
+<ul>
+<li><strong>安全性</strong>：通过 <code>RelativeStatusCheck</code> 对TTC、Headway进行严格检查，并包含 <code>MultimodalTraj</code> (多模态风险) 评估。</li>
+<li><strong>平顺性</strong>：横向轨迹主要使用 <code>QuinticPolynomialCurve1d</code> (五次多项式) 生成，并对曲率 (<code>HeadingAndLddCalc</code>) 进行约束。</li>
+<li><strong>稳定性</strong>：引入 <code>UpdateHistoryTrajectory</code> (历史轨迹连接) 和<strong>历史轨迹复用</strong>机制，避免决策高频抖动。</li>
+<li><strong>鲁棒性</strong>：提供了 <code>purepursuit_sampler</code> (Pure Pursuit 采样器) 作为五次多项式方案失败时的备选方案。</li>
+<li><strong>可追溯性</strong>：拥有强大的日志 (<code>SaveDecisionResultsToCSV</code>) 和可视化 (<code>saveTrajectoriesForVisualization</code>) 功能。</li>
+</ul>
+<hr>
+<h2><span id="2-%E6%A0%B8%E5%BF%83%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B-core-execution-flow">2. 核心执行流程 (Core Execution Flow)</span></h2>
+<p>模块的执行流程可分解为以下八个关键步骤：</p>
+<h3><span id="1-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E7%8E%AF%E5%A2%83%E5%88%86%E6%9E%90-initialization-and-environmental-analysis">1. 初始化与环境分析 (Initialization and Environmental Analysis)</span></h3>
+<p>在每个计算周期开始时，模块首先需要“理解”当前的驾驶环境。这个步骤会调用一系列辅助函数来“预处理”感知数据，为后续的轨迹采样做准备：</p>
+<ul>
+<li>
+<p><strong>重置变量</strong>: 重置上一帧的决策结果和临时变量。</p>
+</li>
+<li>
+<p><strong>分析障碍物车道 (<code>objLaneDecider</code>)</strong>:</p>
+<ul>
+<li><strong>功能 (Purpose)</strong>: (来自 image 14) 为每一个感知到的目标物体，判定其<strong>当前车道 (<code>currentLane</code>)</strong> 和<strong>未来车道 (<code>FutureLane</code>)</strong> 的归属。</li>
+<li><strong>原理 (Principle)</strong>: (来自 image 14) 通过分析该物体（上一帧）轨迹的横向左右边界，与本地地图中存储的<strong>所有车道中心线</strong>进行比较，来判断它归属于哪条车道。</li>
+<li><strong>用途 (Usage)</strong>: 这是环境分析的基础。后续的“跟车目标选择”（步骤3）和“碰撞检查”（步骤5）都强依赖这个函数分配的车道信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>确定路径最近前车 (<code>CIPVDecider_simple</code>)</strong>:</p>
+<ul>
+<li><strong>功能 (Purpose)</strong>: (来自 image 14) 寻找“路径内最近前车 (Closest In-Path Vehicle, CIPV)”。</li>
+<li><strong>原理 (Principle)</strong>: (来自 image 14) 遍历所有<strong>未被忽略</strong>的、且<code>objLaneDecider</code>判定为在“自车主车道”或“未来车道”上的目标，从中选取<strong>纵向距离(s)最近</strong>且在自车<strong>前方</strong>的那个目标。</li>
+<li><strong>用途 (Usage)</strong>: 确定纵向控制（<code>gap_controller</code>）的<strong>主要跟车对象</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>过滤无效目标 (<code>IgnoreObjDecision</code>)</strong>:</p>
+<ul>
+<li><strong>功能 (Purpose)</strong>: (来自 image 14) 这是一个性能优化函数。它会遍历所有物体，给那些<strong>无需参与</strong>后续复杂计算的物体打上“忽略” (<code>isIgnored</code>) 标记。</li>
+<li><strong>原理 (Principle)</strong>: (来自 image 14) 根据一系列规则进行过滤，例如：该目标是否有效、纵向距离是否<strong>过远</strong>（例如 &gt; 200米）、横向距离是否过远、是否是“无效或跑飞”的目标等。</li>
+<li><strong>用途 (Usage)</strong>: 大幅减少后续最耗时的<code>RelativeStatusCheck</code>（步骤5）需要检查的目标数量，提高算法运行效率。</li>
+</ul>
+</li>
+<li>
+<p><strong>计算车流密度 (<code>TgtLaneTrafficFlowDensityCalc</code>)</strong>:</p>
+<ul>
+<li><strong>功能 (Purpose)</strong>: (来自 image 24) 估算“目标车道”的交通拥堵程度，即车流密度。</li>
+<li><strong>原理 (Principle)</strong>: (来自 image 24)
+<ol>
+<li>首先，检查目标车道上的车辆对象，如果<strong>少于4辆</strong>，则认为数据不足以计算密度，直接返回一个<strong>极大值</strong>（表示稀疏）。</li>
+<li>如果车辆足够，则计算所有<strong>相邻车辆之间的纵向间距</strong>。</li>
+<li>为了防止异常值（例如一辆坏车导致间距超大）干扰结果，会<strong>去掉一个最大间距值</strong>。</li>
+<li>最后，计算<strong>剩余间距的平均值</strong>，作为车流密度的指标（均值越小，密度越大）。</li>
+</ol>
+</li>
+<li><strong>用途 (Usage)</strong>: (来自 image 7, 21) 这个密度值会用于后续的成本计算，例如<code>SafeInterp1</code>（安全距离插值）和<code>costCalcRelative</code>（相对成本）。在密集的车流中，系统可能会倾向于选择更保守（如更大Headway、更低TTC代价）的轨迹。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="2-%E5%8E%86%E5%8F%B2%E8%BD%A8%E8%BF%B9%E5%A4%84%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-history-trajectory-processing-and-evaluation">2. 历史轨迹处理与评估 (History Trajectory Processing and Evaluation)</span></h3>
+<p>为了保证决策的连续性和稳定性（避免车辆在两个相似选项之间高频抖动），模块在采样新轨迹之前，会<strong>首先</strong>处理并评估上一帧选中的“历史轨迹”。这个过程分为两步：</p>
+<ul>
+<li>
+<p><strong>A. 连接与插值 (<code>UpdateHistoryTrajectory</code>)</strong>:</p>
+<ul>
+<li><strong>功能 (Purpose)</strong>: (来自 image 23) 解决一个核心问题：上一帧的轨迹（例如，从 t=0.1s 到 t=5.0s）与“当前时刻”（t=0s）的车辆<strong>真实状态</strong>在<strong>时间和空间</strong>上的不连续问题。此函数的目标就是将这条旧轨迹“嫁接”到当前车辆的真实状态上。</li>
+<li><strong>原理与步骤 (Principle)</strong>: (来自 image 23)
+<ol>
+<li><strong>时间戳计算 (<code>计算对应的原始时间点</code>)</strong>: 首先，函数会遍历历史轨迹上的每个点，根据时间步长（如0.1s）计算出它们对应的“原始绝对时间点”。</li>
+<li><strong>线性插值 (<code>插值和连接</code>)</strong>: 在历史轨迹中，找到“当前时间”所在的区间（例如，在 t=0.0s 和 t=0.1s 之间），通过线性插值计算出一个理论上的“当前启动点”。</li>
+<li><strong>横向动态修正 (<code>横向位置推采用 purepursuit 和 forwardSimulationLateral</code>)</strong>: 这是<strong>最关键</strong>的一步。
+<ul>
+<li><strong>[核心问题]</strong>: 简单插值无法反映车辆当前的<strong>真实横向动态</strong>。例如：上一帧规划了一条直线（横向速度为0），但在这0.1秒的延迟中，由于路面颠簸或转向刚生效，车辆<strong>真实</strong>的横向速度可能已有 <code>0.2 m/s</code>。如果强行“拼接”上旧轨迹，会要求横向速度瞬时从 <code>0.2</code> 变为 <code>0</code>，导致物理上的“急动”(Jerk)，乘客会感觉车辆被“拽”了一下。</li>
+<li><strong>[修正原理]</strong>: (来自 image 23, 26) 为了解决这个问题，系统不进行“硬拼接”，而是启动“横向动态修正”。它把“历史轨迹”当作一个**“目标路径”<strong>，然后使用 <code>purepursuit</code> 算法来</strong>平滑地“跟踪”**这条路径。</li>
+<li><strong>[算法详解] <code>purepursuit</code> (纯跟踪算法)</strong>:
+<ul>
+<li><strong>作用</strong>: (来自 image 26) 模拟人类驾驶：眼睛“瞄准”前方的一个“预瞄点”。</li>
+<li><strong>流程</strong>: 算法会查看车辆<strong>当前的真实状态</strong>（例如，<code>0.2 m/s</code> 的横向速度），然后在“历史轨迹”上找到一个“预瞄点”。它会计算出一个完美的圆弧（即一个<strong>新曲率</strong>），这个圆弧能让车辆从<strong>当前状态</strong>出发，平滑地“瞄准”那个预瞄点。</li>
+</ul>
+</li>
+<li><strong>[算法详解] <code>forwardSimulationLateral</code> (横向推演)</strong>:
+<ul>
+<li><strong>作用</strong>: (来自 image 26) 这是一个执行器。它接收 <code>purepursuit</code> 计算出的<strong>新曲率</strong>，并结合车辆当前的横向速度/加速度，<strong>推演</strong>出下一个时间点（例如0.01秒后）的横向位置和速度。</li>
+</ul>
+</li>
+<li><strong>[修正流程]</strong>: <code>UpdateHistoryTrajectory</code> 函数会循环调用这两个算法：<code>purepursuit</code> “瞄准”历史轨迹并计算<strong>新曲率</strong> -&gt; <code>forwardSimulationLateral</code> 执行这个曲率并<strong>推演下一步</strong>。这个过程会**“重新绘制”<strong>出一条新轨迹，这条新轨迹的</strong>起点<strong>是车辆的</strong>真实动态**，<strong>终点</strong>是<strong>平滑地回归</strong>到历史轨迹上。</li>
+</ul>
+</li>
+<li><strong>纵向对齐 (<code>横向做坐标平移</code>)</strong>: (注：图片原文“横向”应为“纵向”之误) 将整条轨迹在纵向（S轴）上平移，使其新的起点S坐标与自车当前的S坐标（<code>s_ego</code>）完全对齐。</li>
+<li><strong>时间戳重置</strong>: 将这条“嫁接”好的新轨迹的时间戳重置为从0开始（例如 0s, 0.1s, 0.2s…）。</li>
+</ol>
+</li>
+<li><strong>结果 (Result)</strong>: 生成一条平滑地**“连接”**到当前车辆状态上的、可用于本帧评估的“新”历史轨迹。</li>
+</ul>
+</li>
+<li>
+<p><strong>B. 重新评估 (Re-evaluation)</strong>:</p>
+<ul>
+<li>(来自 image 6, 7, 8) 这条“嫁接”后的历史轨迹，将作为<strong>第一条候选轨迹</strong>，进入本帧的评估流程，与所有即将生成的新轨迹<strong>公平竞争</strong>。</li>
+<li><strong>步骤 (Steps)</strong>:
+<ol>
+<li><strong>约束检查 (<code>ConstraintCheck</code>)</strong>: (来自 image 6, 25) 与所有新轨迹一样，首先对它进行严格的<strong>安全约束检查</strong>（详见步骤5）。检查它在<strong>当前新环境</strong>下是否越界、是否碰撞、TTC/Headway是否满足要求。</li>
+<li><strong>失败处理 (<code>FailedFlag</code> 为真)</strong>: (来自 image 7) 如果检查失败（例如，上一帧规划换道，但这一帧突然蹿出来一辆车导致碰撞），则调用 <code>UpdateDecisionResult</code> (来自 image 22) 记录失败原因（例如 <code>egoForcedFailedTrajectory</code>，历史轨迹强制失败）。同时，系统会给它施加一个<strong>高额的惩罚成本</strong>，确保它不会被选中。</li>
+<li><strong>成本重算 (<code>FailedFlag</code> 为假)</strong>: (来自 image 7, 21) 如果检查通过（轨迹在当前环境下仍然安全），系统会<strong>重新计算</strong>它的成本：
+<ul>
+<li><code>costCalcEgoTrajectory</code> (来自 image 3): 计算<strong>自身成本</strong>（如平顺性、舒适性）。</li>
+<li><code>costCalcRelative</code> (来自 image 3, 21): 计算<strong>相对成本</strong>（与他车的TTC、Headway、EACC误差等）。</li>
+</ul>
+</li>
+<li><strong>施加额外惩罚 (Penalty)</strong>: (来自 image 7, 8) 即使轨迹安全，系统也会根据<strong>当前新态势</strong>追加<strong>特定的惩罚项</strong>，以反映潜在风险：
+<ul>
+<li><code>penalty_cost2</code>: 如果存在<strong>多模态碰撞</strong>风险（如他车可能急刹），增加惩罚。</li>
+<li><code>SafeInterp1</code>: 结合轨迹终点与前车的距离和当前<strong>车流密度</strong>（来自步骤1），增加安全距离惩罚。</li>
+<li><code>ForceYieldAbandon2</code>: 如果轨迹放弃了之前的“强制让行”意图，增加惩罚。</li>
+</ul>
+</li>
+<li><strong>记录结果</strong>: (来自 image 22) 调用 <code>UpdateDecisionCost</code> 和 <code>UpdateDecisionResult</code> 记录这条历史轨迹的<strong>最新成本</strong>和评估结果。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-%E5%A4%9A%E7%BB%B4%E5%8F%82%E6%95%B0%E9%87%87%E6%A0%B7-multi-dimensional-parameter-sampling">3. 多维参数采样 (Multi-dimensional Parameter Sampling)</span></h3>
+<p>这是模块的<strong>计算核心</strong>。在处理完历史轨迹后，系统开始生成全新的候选轨迹。它通过<strong>嵌套的 <code>for</code> 循环</strong>，遍历（即“采样”）所有可能的驾驶意图组合。</p>
+<p>这就像是在大脑中同时推演几百种“如果我这么开会怎样？”的可能性。每一个循环都代表一个“决策维度”。（来自 image 5, 9, 11）</p>
+<ul>
+<li>
+<p><strong>A. 前向时间 (<code>for (auto forwardTime : ForwardTimerSample)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 采样“我打算往前开多久？”。例如，同时考虑开3秒、4秒、5秒、6秒…后的情况。</li>
+<li><strong>用途</strong>: 决定了纵向轨迹的规划长度和时间。</li>
+</ul>
+</li>
+<li>
+<p><strong>B. 换道时间 (<code>for (auto laneChangeTime : LaneChangeTimerSample)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 采样“如果我要换道，我打算用几秒完成？”。例如，同时考虑4秒换道、5秒换道、6秒换道…</li>
+<li><strong>用途</strong>: 决定了横向轨迹的形态和缓急程度。如果为0，则代表“保持车道”。</li>
+</ul>
+</li>
+<li>
+<p><strong>C. 速度模式 (<code>for (auto speedChangeTime : SpeedChangePattern)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 采样“我是要加速、减速还是保持匀速？”。</li>
+<li><strong>用途</strong>: 决定了纵向轨迹的速度变化。</li>
+</ul>
+</li>
+<li>
+<p><strong>D. 跟随目标 (<code>for (auto targetObj_behind : followableObject)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 这是<strong>最关键的纵向采样</strong>之一：“我的跟车目标是谁？”。</li>
+<li><strong>逻辑</strong>: (来自 image 9, 10)
+<ol>
+<li><code>FollowableObject</code> 列表是在步骤1中 <code>FollowableObjDecider</code> (目标可跟随决策器) 生成的。</li>
+<li>系统会检查一个<strong>最大跟随目标数 (<code>MAX_FOLLOWABLE_OBJECT_NUM</code>)</strong>，例如，只考虑本车道和目标车道上最多5个车 (来自 image 9, <code>if (i == MAX_FOLLOWABLE_OBJECT_NUM || i == followableObject.size())</code>)。</li>
+<li><code>targetObj_behind == -1</code> 是一个特殊标记 (来自 image 10)，代表**“超越所有车”**（即不跟车，以期望速度巡航）。</li>
+<li>循环遍历所有可跟随的目标车，为每一个目标车都生成一条“以它为跟车目标”的轨迹。</li>
+</ol>
+</li>
+<li><strong>用途</strong>: 生成多种不同的纵向策略（跟车A、跟车B、巡航…）。</li>
+</ul>
+</li>
+<li>
+<p><strong>E. 车头时距 (<code>for (auto tgtHeadway : HeadwaySample)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 采样“如果我跟车，我打算保持多大的车头时距？”。例如，同时考虑1.5秒和2.0秒的时距。</li>
+<li><strong>用途</strong>: (来自 image 10) 结合(D)的跟车目标，精细化纵向跟车轨迹。</li>
+</ul>
+</li>
+<li>
+<p><strong>F. 强制让行 (<code>for (int forceYieldMode = 0; ...; forceYieldMode++)</code>)</strong>:</p>
+<ul>
+<li><strong>含义</strong>: 这是一个<strong>特殊的横向采样</strong>：“我是否需要执行一次‘强制让行’？”（例如，换道时遇到侧后方快车，需要先往旁边让一点，等它过去再换）。</li>
+<li><strong>逻辑 (来自 image 11)</strong>:
+<ol>
+<li><code>forceYieldMode = 0</code> 代表<strong>正常模式</strong>（不强制让行）。</li>
+<li><code>forceYieldMode = 1</code> 代表<strong>强制让行模式</strong>。</li>
+<li>当 <code>forceYieldMode = 1</code> 时，会有一系列**“剪枝” (Pruning)** 判断，用于跳过不合理的组合，以节省计算资源：
+<ul>
+<li><code>if (forwardTime &lt; 2 || forwardTime &gt; 3) continue;</code>: 强制让行是一种短时行为，只在特定的短时间内（如2-3秒）有意义，太长或太短的规划不考虑。</li>
+<li><code>if (forwardTime + laneChangeTime + 1 &gt; 8) continue;</code>: 总规划时间不能太长。</li>
+<li><code>if (laneChangeTime &gt;= 4) continue;</code>: 换道时间不能太长。</li>
+<li><code>if (speedChangeTime != 0) continue;</code>: 强制让行时必须保持匀速，不能同时加减速，这太复杂了。</li>
+<li><code>if (targetObj_behind == -1) continue;</code>: 强制让行时必须有跟车目标，不能是“超越所有车”模式（没有车可以让你）。</li>
+</ul>
+</li>
+<li>如果所有条件都满足，则会计算让行的时间 <code>ForceYieldTime</code> 和横向偏移量 <code>ForceYieldDy</code>。</li>
+</ol>
+</li>
+<li><strong>用途</strong>: 生成一种特殊的、用于主动避让的横向轨迹。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="4-%E5%80%99%E9%80%89%E8%BD%A8%E8%BF%B9%E7%94%9F%E6%88%90-candidate-trajectory-generation">4. 候选轨迹生成 (Candidate Trajectory Generation)</span></h3>
+<p>在嵌套循环的<strong>最内层</strong>，系统会拿到<strong>一个</strong>来自<strong>第三部分</strong>的“配方”组合（即一个 <code>ego_traj_temp</code> 结构体）。</p>
+<p>现在，系统将<strong>按照这个“配方”，真正地“做”出这条轨迹</strong>。这个过程由函数 <code>GenerateLaneChangeSlotSelectionLattice</code> (来自 image 754c57) 执行。</p>
+<p>该函数将这个复杂的二维（S-L）“画线”问题，分解为两个<strong>独立</strong>的一维（1D）问题来解决：</p>
+<hr>
+<h4><span id="a-%E7%BA%B5%E5%90%91%E8%BD%A8%E8%BF%B9%E7%94%9F%E6%88%90-longitudinal-trajectory">A. 纵向轨迹生成 (Longitudinal Trajectory)</span></h4>
+<ul>
+<li><strong>目标</strong>: (来自 image 754c57, 754f00, 754f1d) 计算出未来每个时间点(i)的纵向位置(Dx)、速度(Vx)和加速度(Ax)。</li>
+<li><strong>[核心逻辑]</strong>: 这个过程被巧妙地分为两部分：
+<ul>
+<li><strong>1. “迭代器” (<code>for</code> 循环)</strong>: (来自 image 754c57) 这是一个按时间步进的 <code>for (int i = 0; ...)</code> 循环。</li>
+<li><strong>2. “计算器” (<code>gap_controller</code>)</strong>: (来自 image 74ccb7 等) 一个复杂的函数，<strong>只负责计算“当前这0.1秒”应该使用多大的加速度 <code>ax</code></strong>。</li>
+</ul>
+</li>
+<li><strong>[执行流程]</strong>: “迭代器” <code>for</code> 循环<strong>每一步(i)</strong>，都会<strong>调用一次</strong>“计算器” <code>gap_controller</code> 来获取<code>ax</code>，然后用这个<code>ax</code>推算出下一步的状态。</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>1. “迭代器” (<code>for</code> 循环) 的步进逻辑</strong></p>
+<p>(来自 image 754c57, 754f00, 754f1d)</p>
+<p>这是纵向轨迹的“骨架”，一个按时间步长（例如0.1s）执行的 <code>for</code> 循环：</p>
+<ul>
+<li><strong><code>t = 0.1s</code> (循环 <code>i=1</code>)</strong>:
+<ul>
+<li><strong>a. 获取“配方”</strong>: 从 <code>ego_traj_temp</code> 中读取 <code>targetObj_behind</code>, <code>tgtHeadway</code> 等。</li>
+<li><strong>b. 调用“计算器”</strong>: <strong>调用 <code>gap_controller</code></strong> (输入当前 <code>i</code> 时刻的所有状态)。</li>
+<li><strong>c. 获取 <code>ax</code></strong>: <code>gap_controller</code> 返回一个平滑的加速度 <code>a_0.1</code>。</li>
+<li><strong>d. 存储 <code>ax</code></strong>: <code>ego_traj_temp.egoTrajectory.Ax[i] = a_0.1</code>。</li>
+<li><strong>e. 推演下一步</strong>: <strong>调用 <code>ForwardSimulation</code></strong> (输入 <code>dx[i], vx[i], ax[i]</code>)，计算出 <code>dx[i+1]</code> 和 <code>vx[i+1]</code>。</li>
+</ul>
+</li>
+<li><strong><code>t = 0.2s</code> (循环 <code>i=2</code>)</strong>:
+<ul>
+<li><strong>a. 获取新状态</strong>: 获取 <code>dx[i+1]</code> 和 <code>vx[i+1]</code>。</li>
+<li><strong>b. 再次调用“计算器”</strong>: <strong>再次调用 <code>gap_controller</code></strong> (输入 <code>i=2</code> 时刻的新状态)。</li>
+<li><strong>c. 获取 <code>ax</code></strong>: <code>gap_controller</code> 返回一个新的 <code>a_0.2</code>。</li>
+<li><strong>…循环往复…</strong> 直到达到 <code>minTrajectoryLength_</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>2. “计算器” (<code>gap_controller</code>) 的单次计算 (超详细分析)</strong></p>
+<p>(来自 image 74ccb7.jpg, 74cf64.jpg, 74cf82.png, 74cfa0.jpg)</p>
+<p>当“迭代器”在 <code>t=0.1s</code> 时调用它，它<strong>只执行一次</strong>以下逻辑来返回 <code>ax_0.1</code>：</p>
+<ul>
+<li>
+<p><strong>a. 计算多个安全/期望距离</strong>: (来自 image_74ccb7)</p>
+<ul>
+<li>它首先会根据“配方”中的时距、车辆长度(<code>objlVx</code>)、最小间距(<code>Headwaymin</code>)等，计算出多个关键距离，如 <code>des_min_front</code> (最小前车距离), <code>des_safe_front</code> (安全前车距离), <code>des_safe_back</code> (安全后车距离)。</li>
+</ul>
+</li>
+<li>
+<p><strong>b. 计算多个期望速度</strong>: (来自 image_74ccb7, 74cf64)</p>
+<ul>
+<li>它会计算 <code>desVx</code> (基于前车速度的期望速度)、<code>desVx_back</code> (基于后车速度的期望速度)、<code>desiredSpdAprch</code> (一个基于<code>sqrt</code>开根号的复杂接近速度函数)等。</li>
+<li>最后，它会综合这些速度，得出一个<strong>最终期望速度 <code>desVx_final</code></strong>。这个速度通常是多个计算值中的<strong>最小值</strong>，以确保安全。</li>
+</ul>
+</li>
+<li>
+<p><strong>c. 计算两个核心加速度指令</strong>: (来自 image_74cf64)</p>
+<ul>
+<li><strong><code>aFollow</code></strong>: “跟车加速度”。计算出一个加速度，使自车速度 <code>egoVx</code> 平滑地趋近于 <code>desVx_final</code> (最终期望速度)。</li>
+<li><strong><code>aGapControl</code></strong>: “车距加速度”。计算出一个加速度，用于调整与前车的 <code>current_gap_speed</code> (当前间隙速度)，即控制车距。</li>
+</ul>
+</li>
+<li>
+<p><strong>d. 选择保守指令</strong>: (来自 image_74cf82)</p>
+<ul>
+<li><code>double HLCax = min(aFollow, aGapControl);</code></li>
+<li><strong>[关键]</strong>：系统会<strong>取这两个加速度中的较小值</strong>（即更保守、更安全的那个），作为基础期望加速度 <code>HLCax</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>e. 选择控制模式 (<code>Mode</code>)</strong>: (来自 image_74cf82)</p>
+<ul>
+<li>系统会根据<strong>哪条指令生效了</strong>（是<code>aFollow</code>还是<code>aGapControl</code>胜出）以及其他速度条件（如是否受后车<code>desVx_back</code>影响），来动态选择一个 <code>Mode</code> (模式 0, 1, 2, 3)。</li>
+</ul>
+</li>
+<li>
+<p><strong>f. 应用Jerk（舒适度）限制</strong>: (来自 image_74cfa0)</p>
+<ul>
+<li><strong>[最精妙的一步]</strong>: 系统会根据上一步选择的 <code>Mode</code>，来加载<strong>不同</strong>的 <code>JerkUplim</code> (Jerk上限) 和 <code>JerkBotlim</code> (Jerk下限)。</li>
+<li>这意味着，如果是 <code>Mode = 3</code> (Gap控制，可能需要紧急减速)，Jerk限制会更宽松（<code>JerkUplim = 1.5</code>）；如果是 <code>Mode = 0</code> (巡航)，Jerk限制会更严格（<code>JerkUplim = 1.0</code>），以保证舒适性。</li>
+</ul>
+</li>
+<li>
+<p><strong>g. 输出平滑加速度</strong>: (来自 image_74cfa0)</p>
+<ul>
+<li>系统计算 <code>DesiredJerk_raw</code> (原始期望Jerk)，并将其限制在(f)中查到的Jerk范围内（<code>DesiredJerk</code>）。</li>
+<li>最终输出的<strong>加速度 <code>ax</code></strong> 是 <code>lastax + Jerk * sampleTime</code>。</li>
+<li><strong>[关键]</strong>：它<strong>不是</strong>一个瞬变的加速度值，而是<strong>在上一帧的加速度 <code>lastax</code> 基础上，施加一个平滑的、受Jerk限制的增量</strong>。这保证了加减速的绝对平顺。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>纵向结果</strong>: “迭代器” <code>for</code> 循环执行完毕后，生成了一个完整的<strong>纵向点序列</strong> <code>ego_traj_temp.egoTrajectory</code>，包含 <code>Dx</code> (位置), <code>Vx</code> (速度), <code>Ax</code> (加速度) 三个数组。这个序列“定”下了轨迹的“节奏”。</p>
+</li>
+</ul>
+<hr>
+<h4><span id="b-%E6%A8%AA%E5%90%91%E8%BD%A8%E8%BF%B9%E7%94%9F%E6%88%90-lateral-trajectory">B. 横向轨迹生成 (Lateral Trajectory)</span></h4>
+<ul>
+<li>
+<p><strong>目标</strong>: (来自 image 754f3c ~ 754fbc) 计算出每个纵向位置(S)对应的横向偏移(L)。</p>
+</li>
+<li>
+<p><strong>[核心概念：时空解耦 (Time-Space Decoupling)]</strong></p>
+<ul>
+<li>这是一个<strong>核心设计</strong>：横向轨迹（B部分）<strong>不关心时间(t)</strong>，它只关心<strong>空间(S)</strong>。</li>
+<li>横向轨迹（B部分）是一个**“S-L”函数**，它回答的问题是：“在纵向距离S处，横向偏移L应该是多少？”</li>
+<li><strong>纵向轨迹（A部分）是“时间(t)”和“空间(S)”的主人</strong>，它定义了 <code>(t, S)</code> 的关系（“时刻表”）。</li>
+<li><strong>横向轨迹（B部分）是“空间(L)”的仆人</strong>，它定义了 <code>(S, L)</code> 的关系（“地图”）。</li>
+<li><strong>如何合并</strong>: 系统按时间(t)循环。在<code>t=0.1s</code>时，先查(A)得到<code>S=0.8m</code>，再把<code>S=0.8m</code>代入(B)得到<code>L=0.05m</code>。这就实现了时空合并。</li>
+</ul>
+</li>
+<li>
+<p><strong>[横向生成步骤]</strong>:</p>
+<ul>
+<li>系统有两种方案来生成这条线：</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>方案 1: 五次多项式 (Quintic Polynomial) - (主方案)</strong>
+<ul>
+<li>
+<p><strong>[为什么用它？]</strong>: (来自 image 1, 15) 五次多项式（<code>L = a0 + a1*s + a2*s² + a3*s³ + a4*s⁴ + a5*s⁵</code>）是一条神奇的数学曲线。因为它有6个系数(a0~a5)，所以它能<strong>唯一</strong>且<strong>完美</strong>地连接一个<strong>起始状态</strong>（位置L, 速度L’, 加速度L’‘）和一个<strong>终止状态</strong>（位置L, 速度L’, 加速度L’'）。这能确保轨迹的<strong>绝对平滑</strong>。</p>
+</li>
+<li>
+<p><strong>[生成步骤]</strong>:</p>
+<ol>
+<li>
+<p><strong>计算分段索引</strong>: (来自 image 754f3c, 754f5b)</p>
+<ul>
+<li><strong>目的</strong>: 确定(A)中生成的纵向轨迹点，哪些属于“前向段”，哪些属于“让行段”，哪些属于“换道段”。</li>
+<li><strong>原理</strong>: 根据“配方”中的时间参数（<code>ForwardTime</code>, <code>ForceYieldTime</code>, <code>LaneChangeTime</code>）和时间步长 <code>sampleTime</code>，计算出<strong>数组索引</strong>：<code>forwardEndIndex_raw</code>, <code>ForceYieldEndIndex_raw</code>, <code>LaneChangeEndIndex_raw</code>。</li>
+<li><em>[代码细节]</em>: (来自 image 754f3c) 这里还有一段复杂的逻辑，用于处理纵向S坐标 <code>Dx</code> 可能回退（<code>s &lt; ...</code>）的异常情况，确保 <code>forwardEndIndex</code> 等索引值始终正确。</li>
+</ul>
+</li>
+<li>
+<p><strong>确定起点 (<code>StablizeDyDecider</code>)</strong>: (来自 image 13, 754f63)</p>
+<ul>
+<li><strong>目的</strong>: 吸收车辆当前的横向动态（例如轻微漂移），避免“急动”。</li>
+<li><strong>原理</strong>: 调用 <code>StablizeDyDecider</code> (如V3增强版所分析)，根据自车当前的<strong>横向速度 (<code>vy_ego</code>)</strong>，反算出“如果现在开始刹停横向运动，会漂多远？”。这个距离 <code>StablizeDy</code> 将被用作横向轨迹的“虚拟”平滑起点。</li>
+<li><em>[代码细节]</em>: (来自 image 754f63) <code>useStablizeDySameSlot</code> 标志位用于判断是否复用上一帧的 <code>StablizeDy</code>，以增加决策稳定性。</li>
+</ul>
+</li>
+<li>
+<p><strong>计算分段系数 (<code>QuinticPolynomialCurve1d_ComputeCoefficients</code>)</strong>: (来自 image 754f63, 754f9b)</p>
+<ul>
+<li><strong>目的</strong>: 为<strong>每一段</strong>轨迹计算其“数学公式”（五次多项式系数）。</li>
+<li><strong>逻辑</strong>:
+<ul>
+<li><code>if (ForceYieldMode == 0)</code> (正常模式):
+<ul>
+<li>为 <code>ForwardDx</code> (前向段) 调用一次 <code>ComputeCoefficients</code>，得到系数 <code>a0_0</code>…<code>a5_0</code>。</li>
+<li>为 <code>LaneChangeDx</code> (换道段) 调用一次 <code>ComputeCoefficients</code>，得到系数 <code>a1_1</code>…<code>a5_1</code>。</li>
+</ul>
+</li>
+<li><code>else</code> (让行模式):
+<ul>
+<li>为 <code>ForwardDx</code> (前向段) 调用一次，得到系数 <code>a0_...</code>。</li>
+<li>为 <code>ForceYieldDx</code> (让行段) 调用一次，得到系数 <code>a3_...</code>。</li>
+<li>为 <code>LaneChangeDx</code> (换道段) 调用一次，得到系数 <code>a1_...</code>。</li>
+</ul>
+</li>
+<li><em>[代码细节]</em>: (来自 image 754f9b) <code>ForceYieldFailedDx</code> (强制让行失败) 也有自己的一组系数 <code>a4_...</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>采样点列 (<code>QJS</code>)</strong>: (来自 image 754f9b)</p>
+<ul>
+<li><strong>目的</strong>: 使用(3)中算出的“数学公式”，生成<strong>实际的点列</strong>。</li>
+<li><strong>流程</strong>:
+<ul>
+<li><strong>为每一段</strong>（前向、让行、换道、让行失败）<strong>单独调用 <code>QJS</code> (秦九韶算法)</strong>。</li>
+<li><strong>输入</strong>: 该段的系数（如 <code>a_coef_3</code>）和该段对应的<strong>纵向S坐标切片</strong>（<code>path_section</code>，即(A)中 <code>ego_traj_temp.egoTrajectory.Dx</code> 的一部分）。</li>
+<li><strong>输出</strong>: 该段的横向L点列（<code>ego_l_forward</code>, <code>ego_l_forceYield</code>, <code>ego_l_lanechange</code>, <code>ego_l_forceYieldFailed</code>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>拼接 (<code>TrajectoryCombine</code>)</strong>: (来自 image 754fbc)</p>
+<ul>
+<li><strong>目的</strong>: 将(4)中生成的多段点列“缝合”成一条完整的轨迹。</li>
+<li><strong>流程</strong>: 调用 <code>TrajectoryCombine(ego_l_forward, ego_l_forceYield, 0, temp_traj)</code>，将各段点列按顺序合并到 <code>temp_traj</code> 中。</li>
+<li><em>[代码细节]</em>: 备用的“让行失败”轨迹也会被单独拼接：<code>TrajectoryCombine(ego_l_forward, ego_l_forceYieldFailed, 0, backup_traj)</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>长度补齐 (<code>temp_traj.resize</code>)</strong>: (来自 image 754fbc)</p>
+<ul>
+<li><strong>问题</strong>: 纵向轨迹(A)有 <code>minTrajectoryLength_</code> (例如100个点)，但(B)中拼接的横向轨迹可能只有80个点。</li>
+<li><strong>解决</strong>: <code>if (temp_traj.size() &lt; ...)</code>，调用 <code>temp_traj.resize(minTrajectoryLength_, last_value)</code>，用<strong>最后一个L值</strong>（<code>temp_traj.back()</code>）<strong>填充</strong> <code>temp_traj</code> 的末尾，使其与纵向轨迹等长。备用的 <code>backup_traj</code> 也会做同样处理。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>方案 2: Pure Pursuit (PP) - (备选/Fallback方案)</strong>
+<ul>
+<li>(来自 image 25, 26) <em>[注：这批新代码中未显示，但存在于您之前的截图中]</em></li>
+<li><strong>触发</strong>: 如果五次多项式方案因故（例如数学上无解）失败。</li>
+<li><strong>调用 <code>purepursuit_sampler</code></strong>:
+<ul>
+<li>
+<ol>
+<li><strong><code>purepursuit</code> (PP核心算法)</strong>: 计算出一个“瞄准”目标路径的<strong>新曲率</strong>。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong><code>forwardSimulationLateral</code> (横向推演)</strong>: 使用这个曲率，<strong>推演</strong>下一个点的横向位置。</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>循环此过程，生成一条备选的横向轨迹。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>最终结果</strong>: (来自 image 754fbc)
+<code>ego_traj_temp.egoTrajectory.L = temp_traj;</code>
+<code>ego_traj_temp.egoForceFailedTrajectory.L = backup_traj;</code></p>
+<p>系统将这条完整的横向轨迹 <code>temp_traj</code> 赋值给 <code>ego_traj_temp</code> 结构体。此时，<code>ego_traj_temp</code> 包含了<strong>一条完整的、时空对应的候选轨迹</strong>，准备被送入下一步（第五部分）进行评估。</p>
+<hr>
+<h3><span id="5-%E8%BD%A8%E8%BF%B9%E8%AF%84%E4%BC%B0%E4%B8%8E%E7%BA%A6%E6%9D%9F%E6%A3%80%E6%9F%A5-constraintcheck">5. 轨迹评估与约束检查 (ConstraintCheck)</span></h3>
+<p>在第4步中，<code>for</code> 循环每生成一条<strong>完整</strong>的轨迹 (一个 <code>ego_traj_temp</code> 结构体)，就会<strong>立即</strong>将其送入本步骤进行“安全审查”。</p>
+<p>这个审查的主函数是 <code>ConstraintCheck</code> (来自 image 2, 4, 25)。</p>
+<ul>
+<li><strong>目标</strong>: 判断该轨迹是否<strong>安全</strong>和<strong>可行</strong>。这是一个 <strong>Pass/Fail (通过/失败)</strong> 的检查。</li>
+<li><strong>结果</strong>: 如果检查失败，该轨迹被<strong>立即丢弃</strong>，并记录一个<strong>失败原因码</strong> (来自 image 21)。<code>for</code> 循环继续 <code>continue</code>，开始生成<strong>下一条</strong>轨迹。</li>
+<li><strong>如果检查通过</strong>，该轨迹才会被<strong>允许</strong>进入<strong>第六部分 (成本计算)</strong>。</li>
+</ul>
+<h4><span id="a-%E4%B8%BB%E6%A3%80%E6%9F%A5%E5%87%BD%E6%95%B0-constraintcheck-%E7%9A%84%E5%86%85%E9%83%A8%E9%80%BB%E8%BE%91">A. 主检查函数 (<code>ConstraintCheck</code> 的内部逻辑)</span></h4>
+<p>(来自 image 25)</p>
+<p>当 <code>ConstraintCheck</code> 收到一条轨迹时，它会按顺序执行以下检查：</p>
+<ol>
+<li>
+<p><strong>曲率检查 (<code>CalculateDLFromTrajectory</code>)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 检查轨迹是否“拐弯过急”。</li>
+<li><strong>原理</strong>: (来自 image 16, 27) 调用 <code>CalculateDLFromTrajectory</code> (计算轨迹的DL)，这个函数会计算轨迹的<strong>一阶导数(dl/ds)<strong>和</strong>二阶导数(d²l/ds²)</strong>，后者即<strong>曲率</strong>。</li>
+<li><strong>检查</strong>: 检查曲率是否超过了车辆的物理极限（例如，方向盘打死）。如果超过，则 <strong>Fail</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>越界检查 (<code>crossLaneCheck</code>)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 检查轨迹是否“开出了路面”或“压到了实线”。</li>
+<li><strong>原理</strong>: (来自 image 16, 19, 25) 调用 <code>crossLaneCheck</code> (车道交叉检查)。这个函数会考虑<strong>车身宽度 (<code>egoWidth</code>)</strong>，检查轨迹的<strong>最左/最右</strong>点是否超出了车道边界 (<code>bound_left</code>, <code>bound_right</code>)。</li>
+<li><strong>检查</strong>: 如果越界，则 <strong>Fail</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>目标车道检查</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 检查轨迹的<strong>终点</strong>是否在“配方”所期望的<strong>目标车道 (<code>TargetLane</code>)</strong> 内。</li>
+<li><strong>检查</strong>: 如果不在（例如，规划换道但没换过去），则 <strong>Fail</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>[核心] 碰撞与让行检查 (<code>RelativeStatusCheck</code>)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 这是<strong>最重要、最复杂</strong>的安全检查，用于判断“<strong>我会不会撞到别人？</strong>”或“<strong>我会不会别到别人？</strong>”。</li>
+<li><strong>检查</strong>: 调用 <code>RelativeStatusCheck</code> (详见B部分)。如果这个函数返回 <strong>Fail</strong>，则整条轨迹 <strong>Fail</strong>。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>[失败原因码 (Fail Code)]</strong>: (来自 image 21)
+如果上述任何一步失败，系统会记录一个数字代码，以便工程师调试：
+<ul>
+<li><strong>20</strong>: 碰撞 (Collision) - 阈值内</li>
+<li><strong>21</strong>: TTC (碰撞时间) 过小</li>
+<li><strong>22</strong>: Headway (车头时距) 过小</li>
+<li><strong>23</strong>: 轨迹越界 (Out of Boundary)</li>
+<li><strong>24</strong>: 目标物体被超车 (有横向重叠)</li>
+<li><strong>27</strong>: 自车忽略了前车</li>
+<li><strong>其他</strong>: 曲率、速度等物理约束失败</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4><span id="b-%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3-%E6%A0%B8%E5%BF%83%E5%AE%89%E5%85%A8%E6%A3%80%E6%9F%A5-relativestatuscheck">B. [深度拆解] 核心安全检查 (<code>RelativeStatusCheck</code>)</span></h4>
+<p>(来自 image 18, 19, 20)</p>
+<p><code>ConstraintCheck</code> 会把轨迹交给 <code>RelativeStatusCheck</code> (相对状态检查) 函数。这个函数是真正的“安全专家”。</p>
+<ul>
+<li>
+<p><strong>[核心原理：时空碰撞检查 (Spatio-Temporal Check)]</strong></p>
+<ul>
+<li>(回应您的问题) 这个检查<strong>不是</strong>一个“静态”检查（例如，“我的车头 vs 行人现在的位置”）。</li>
+<li>它是一个**“动态”的、“基于预测”的<strong>检查。它会对比</strong>两条“时间线”**：
+<ol>
+<li><strong>“我”的轨迹 (规划)</strong>: (来自 <code>ego_traj_temp</code>) 我们在第4步生成的<strong>规划轨迹</strong>。我们<strong>精确地知道</strong>在未来的<strong>每一毫秒(i)</strong>，我们的车<strong>计划</strong>在哪里（<code>Dx[i]</code>, <code>L[i]</code>）。</li>
+<li><strong>“它”的轨迹 (预测)</strong>: (来自 <code>objInfo[...].objTrajectory</code>) 系统从“感知预测”模块获取的<strong>所有</strong>其他物体（行人、车辆）的<strong>预测轨迹</strong>。我们<strong>也知道</strong>在未来的<strong>每一毫秒(i)</strong>，它们<strong>预计</strong>会在哪里（<code>objTrajectory.Dx[i]</code>, <code>objTrajectory.Vx[i]</code>）。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>[执行流程]</strong>:
+<code>RelativeStatusCheck</code> 的核心是一个**<code>for</code> 循环**，它从 <code>i = 0</code>（当前时刻）一直循环到 <code>i = minTrajectoryLength_</code>（例如 <code>t=5.0s</code>）。</p>
+<p><strong>在循环的每一步（例如 <code>i = 30</code>，代表 <code>t=3.0s</code>）</strong>：</p>
+<ol>
+<li>
+<p><strong>获取两条“时间线”上的点</strong>:</p>
+<ul>
+<li><strong>“我”在哪？</strong>: 查找 <code>ego_traj_temp.Dx[30]</code> 和 <code>ego_traj_temp.L[30]</code>。</li>
+<li><strong>“目标J”在哪？</strong>: 查找 <code>objInfo[j].objTrajectory.Dx[30]</code> 和 <code>objInfo[j].objTrajectory.L[30]</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>检查：在 <code>t=3.0s</code> 这个时刻，我们俩会撞吗？</strong></p>
+<ul>
+<li>(回应您的例子：如果此时“行人”的预测位置 <code>Dx[30]</code> 已经走远了，那么在 <code>i=30</code> 这一步的检查自然就是“<strong>安全通过</strong>”。)</li>
+</ul>
+</li>
+<li>
+<p><strong>目标分类与检查</strong>: (来自 image 20)</p>
+<ul>
+<li>
+<p>系统会根据“目标J”在 <code>i=30</code> 时的<strong>相对位置</strong>，将其分为三类，并调用不同的“专家”函数来检查：</p>
+</li>
+<li>
+<p><strong>1. 前方物体 (Front Objects)</strong>:</p>
+<ul>
+<li><strong><code>TTC_calc</code></strong>: (来自 image 17) 检查在 <code>t=3.0s</code> 时的<strong>TTC (碰撞时间)</strong>，是否小于安全阈值？</li>
+<li><strong><code>Headway_calc</code></strong>: 检查在 <code>t=3.0s</code> 时的<strong>Headway (车头时距)</strong>，是否小于安全阈值？</li>
+</ul>
+</li>
+<li>
+<p><strong>2. 后方物体 (Rear Objects)</strong>:</p>
+<ul>
+<li><strong><code>TTC_calc</code> / <code>Headway_calc</code></strong>: 检查（例如我方急刹）是否会导致后车在 <code>t=3.0s</code> 时追尾？</li>
+<li><strong>让行检查</strong>: 检查我方（例如换道）是否“别”了后车？</li>
+</ul>
+</li>
+<li>
+<p><strong>3. 侧方物体 (Lateral Objects)</strong>:</p>
+<ul>
+<li><strong><code>CollisionConditionCalc</code></strong>: (来自 image 17) <strong>[最核心]</strong> 检查在 <code>t=3.0s</code> 这个时刻，两个车（考虑车身宽度）的<strong>几何外形是否重叠</strong>。</li>
+<li><strong><code>MultimodalTraj</code></strong>: (来自 image 15, 20) 检查“<strong>鬼探头</strong>”或“<strong>前车急刹</strong>”风险。例如，如果侧前方车辆<strong>突然刹停</strong>（一个与预测不符的“多模态”轨迹），我的轨迹是否来得及躲避？</li>
+<li><strong><code>EACCErrorCalc</code></strong>: (来自 image 17) 检查与侧方车辆的<strong>横向距离</strong>是否始终保持在安全范围内。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>[最终裁决]</strong>:
+<code>RelativeStatusCheck</code> 在<strong>任何一个时间点(i)</strong>，对<strong>任何一辆车(j)</strong>，发现了<strong>任何一个</strong>违规（TTC过小、碰撞、距离过近…），它会<strong>立即返回 <code>Fail</code></strong>。</p>
+<p><code>ConstraintCheck</code> 收到 <code>Fail</code> 结果，<strong>立即丢弃</strong>这条轨迹。</p>
+</li>
+<li>
+<p><strong>[幸存者]</strong>:
+只有<strong>完美通过</strong>上述所有检查的轨迹（即在<strong>所有时间点</strong>对<strong>所有车辆</strong>都安全），才会被 <code>ConstraintCheck</code> 标记为 <strong>Pass (通过)</strong>，并被<strong>荣幸地</strong>送入<strong>第六部分 (成本计算)</strong>。</p>
+</li>
+</ul>
+<h3><span id="6-%E6%88%90%E6%9C%AC%E8%AE%A1%E7%AE%97-cost-calculation">6. 成本计算 (Cost Calculation)</span></h3>
+<p>(来自 image 76b0fb ~ 76b4bb)</p>
+<p>在第五部分 <code>ConstraintCheck</code> (约束检查) 中<strong>幸存</strong>下来的<strong>每一条</strong>轨迹（<code>trajGroupInfo</code>），都会被立即送入本步骤。</p>
+<ul>
+<li><strong>目标</strong>: (来自 image 76b0fb) <code>ProcessTrajectory</code> (处理轨迹) 函数会调用 <code>costCalcEgoTrajectory</code> 和 <code>costCalcRelative</code>，为这条“安全”的轨迹<strong>打一个“分数”</strong>（即 <code>Cost</code>，成本，分数越低越好）。</li>
+<li><strong>原理</strong>: 第五部分是“硬门槛”（Pass/Fail），只管安全。本步骤是“软评分”，它关心<strong>驾驶品质</strong>。</li>
+</ul>
+<p>这个“总成本” (<code>Total Cost</code>) 是由<strong>三个主要部分</strong>加权求和而来的：</p>
+<hr>
+<h4><span id="a-%E8%87%AA%E8%BA%AB%E8%BD%A8%E8%BF%B9%E6%88%90%E6%9C%AC-costcalcegotrajectory">A. 自身轨迹成本 (<code>costCalcEgoTrajectory</code>)</span></h4>
+<p>(来自 image 76b419.jpg, 76b422.jpg, 76b43f.jpg, 76b460.jpg)</p>
+<ul>
+<li>
+<p><strong>目的</strong>: 评估这条轨迹的<strong>自身品质</strong>，不考虑其他车辆。</p>
+</li>
+<li>
+<p><strong>总成本</strong>: <code>traj_cost_temp.TotalCost_ego = Cost_L_1 + Cost_J + Cost_A + Cost_difference_x + Cost_difference_y + Cost_vibrationY + Cost_Efficency + Cost_SteeringWheelRotSpd + Cost_ltAffect;</code></p>
+</li>
+<li>
+<p><strong>[详细拆解]</strong>:</p>
+<ul>
+<li>
+<p><strong>1. <code>Cost_L_1</code> (横向偏移成本)</strong>: (来自 image 76b422.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>不贴近车道中心</strong>”的行为。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>计算轨迹上每个点(L)到<strong>最近车道中心线</strong>的横向距离 <code>dist_to_nearest_lane</code>。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这个距离转换为成本。</li>
+<li><code>sum_cost_l</code> 累加所有点的成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 越贴近车道中心，成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>2. <code>Cost_J</code> (Jerk 成本)</strong>: (来自 image 76b422.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>加减速不平滑</strong>”的行为（<strong>舒适度</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>计算纵向加加速度 <code>j_ego</code> (jerk) 和横向加加速度 <code>jy_ego</code>。</li>
+<li>找出纵向 <code>min_j_ego</code> (最小jerk) 和横向 <code>min_jy_ego</code> (最小jerk)。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这两个Jerk值转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: Jerk 越小（变化越平滑），成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>3. <code>Cost_A</code> (加速度 成本)</strong>: (来自 image 76b419.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>剧烈加减速</strong>”的行为（<strong>舒适度</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>找出纵向加速度 <code>a_ego</code> 的最小值 <code>min_a_ego</code>。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这个加速度值转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 加速度越小（越平稳），成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>4. <code>Cost_difference_x / _y</code> (轨迹差异成本)</strong>: (来自 image 76b43f.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>与上一帧轨迹差异过大</strong>”的行为（<strong>稳定性</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li><code>if (isLastTrajectory)</code> (如果存在上一帧轨迹)。</li>
+<li>计算当前轨迹的<strong>起点(L)</strong> 与 <strong>上一帧轨迹的起点(L)</strong> 之间的<strong>横向差异 <code>jXDiff</code></strong>。</li>
+<li>计算当前轨迹的<strong>起点(Jerk)</strong> 与 <strong>上一帧轨迹的起点(Jerk)</strong> 之间的<strong>横向Jerk差异 <code>jYDiff</code></strong>。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这两个“差异”转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 与上一帧轨迹越接近，成本越低。这能有效抑制决策抖动。</li>
+</ul>
+</li>
+<li>
+<p><strong>5. <code>Cost_vibrationY</code> (横向振动成本)</strong>: (来自 image 76b43f.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>高频左右晃动</strong>”的行为（<strong>舒适度</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>遍历轨迹的横向Jerk <code>trajectory.Jy</code>。</li>
+<li>在一个时间窗口内（<code>VibrationPeriodIndexLength</code>），查找<strong>最大Jerk值 <code>currentMaxPastJ</code></strong>。</li>
+<li><code>vibration_y[i] = currentMaxPastJ * abs(currentJ)</code>，计算出一个“振动值”。</li>
+<li>找出<strong>最大的振动值 <code>max_vibration</code></strong>。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这个“振动值”转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 轨迹越平滑（无高频晃动），成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>6. <code>Cost_Efficency</code> (效率成本)</strong>: (来自 image 76b419.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>龟速行驶</strong>”的行为（<strong>效率</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>计算一个“速度比例” <code>speed_ratio[i] = trajectory.Vx[i] / desiredSpdtemp</code> (当前速度 / 期望速度)。</li>
+<li><code>sum_cost_efficiency</code>: 累加所有点 <code>1.0 - speed_ratio</code> 的值。</li>
+<li><code>cost_vt_ratio</code>: 计算轨迹<strong>终点速度</strong> <code>trajectory.Vx.back()</code> 与<strong>期望速度</strong> <code>egoInfo_...setspeed</code> 的差异成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 轨迹速度越接近期望速度，成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>7. <code>Cost_SteeringWheelRotSpd</code> (方向盘转速成本)</strong>: (来自 image 76b419.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>猛打方向盘</strong>”的行为（<strong>舒适度/安全性</strong>）。</li>
+<li><strong>原理</strong>:
+<ol>
+<li>计算轨迹中所有的<strong>方向盘转速 <code>steeringWheelRotSpd</code></strong>。</li>
+<li>找出<strong>最大转速 <code>max_steeringWheelRotSpd</code></strong>。</li>
+<li>调用 <code>SafeInterp1</code> (查表函数) 将这个“最大转速”转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 方向盘转动越慢，成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>8. <code>Cost_ltAffect</code> (轨迹终点对车道的影响成本)</strong>: (来自 image 76b43f.jpg, 76b460.jpg)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>轨迹终点停在不好的位置</strong>”的行为。</li>
+<li><strong>原理</strong>:
+<ol>
+<li><code>dist_to_nearest_lane.back()</code>: 计算轨迹<strong>终点</strong>到最近车道线的距离。</li>
+<li><code>dy_to_extinct</code>: (来自 image 76b460) 计算轨迹<strong>终点</strong>到<strong>车道边界</strong>的横向距离。</li>
+<li>将这两个距离值都通过 <code>SafeInterp1</code> (查表函数) 转换为成本。</li>
+</ol>
+</li>
+<li><strong>成本</strong>: 轨迹终点越靠近车道中心、远离边界，成本越低。</li>
+</ul>
+</li>
+<li>
+<p><strong>[总和]</strong>: (来自 image 76b460.jpg)</p>
+<ul>
+<li><code>traj_cost_temp.TotalCost_ego = Cost_L_1 + Cost_J + ...</code></li>
+<li>将上述所有8个成本项相加，得到<strong>自身轨迹的总成本</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="b-%E7%9B%B8%E5%AF%B9%E8%BD%A8%E8%BF%B9%E6%88%90%E6%9C%AC-costcalcrelative">B. 相对轨迹成本 (<code>costCalcRelative</code>)</span></h4>
+<p>(来自 image 76b49d.jpg)</p>
+<ul>
+<li>
+<p><strong>目的</strong>: 评估这条轨迹在与<strong>其他车辆</strong>互动时的**“礼貌性”<strong>和</strong>“安全性”**。</p>
+</li>
+<li>
+<p><strong>总成本</strong>: <code>traj_cost_temp.TotalCost_rel = traj_cost_temp.Cost_Headway + traj_cost_temp.Cost_TTC + traj_cost_temp.Cost_EACC;</code></p>
+</li>
+<li>
+<p><strong>[详细拆解]</strong>:</p>
+<ul>
+<li>
+<p><strong>1. <code>Cost_TTC</code> (TTC 成本)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>潜在碰撞风险</strong>”的行为。</li>
+<li><strong>原理</strong>: 第五步 <code>ConstraintCheck</code> 检查了 TTC 是否大于一个“硬门槛”（例如 <code>&gt; 2.0s</code>）。这里则进行“软评分”。</li>
+<li><strong>逻辑</strong>: <code>traj_cost_temp.Cost_TTC = SafeInterp2(ttc_cost_mps_bkp, ttc_cost_bkp, result.TTC, ttc_ego_vx);</code></li>
+<li><strong>[关键]</strong>: (来自 image 21) <code>SafeInterp2</code> 是一个<strong>二维查表</strong>函数。它意味着成本<strong>不仅仅</strong>取决于 <code>result.TTC</code> (计算出的TTC值)，<strong>还</strong>取决于 <code>ttc_ego_vx</code> (当前车速)。</li>
+<li><strong>含义</strong>: 在<strong>高速</strong>时，一个 <code>5s</code> 的TTC可能是低成本的；但在<strong>低速</strong>（例如跟车蠕行）时，一个 <code>5s</code> 的TTC可能反而代表跟车太远，成本会高。</li>
+</ul>
+</li>
+<li>
+<p><strong>2. <code>Cost_Headway</code> (车头时距成本)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>跟车过近</strong>”（不礼貌）的行为。</li>
+<li><strong>原理</strong>: 同样，第五步检查了“硬门槛”（例如 <code>&gt; 1.5s</code>），这里进行“软评分”。</li>
+<li><strong>逻辑</strong>: <code>double minHeadway_cost = SafeInterp2(headway_cost_mps_bkp, headway_cost_bkp, std::min(result.Headway, 2.0), ...);</code></li>
+<li><strong>[关键]</strong>:
+<ol>
+<li><code>SafeInterp2</code>: 成本同样取决于<strong>时距(Headway)<strong>和</strong>车速(ego_vx)</strong>。</li>
+<li><code>std::min(result.Headway, 2.0)</code>: 对用于计算的 Headway 值设置了一个2.0秒的上限，防止时距过大导致成本异常。</li>
+<li>(来自 image 76b49d) <code>lastHeadway_cost</code> 也会被计算，它代表<strong>轨迹终点</strong>的 Headway 成本。</li>
+<li><code>traj_cost_temp.Cost_Headway = std::min(minHeadway_cost, lastHeadway_cost);</code></li>
+<li>系统会取“平均时距成本”和“终点时距成本”中<strong>较小</strong>（较优）的那个作为最终成本。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>3. <code>Cost_EACC</code> (横向安全距离成本)</strong>:</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>横向贴车太近</strong>”的行为（例如换道时）。</li>
+<li><strong>原理</strong>: (来自 image 17, 21, 76b49d)</li>
+<li><strong>逻辑</strong>: <code>traj_cost_temp.Cost_EACC = SafeInterp1(EACCDiffCost_bkp, EACCDiffCost, result.EACCDiffMax);</code></li>
+<li><strong>[关键]</strong>: <code>result.EACCDiffMax</code> 这个值是在<strong>第五步 (ConstraintCheck)</strong> 中 <code>RelativeStatusCheck</code> 函数计算得出的，它代表了在整条轨迹中，自车与侧方车辆<strong>曾经达到的“最小横向距离”</strong>。</li>
+<li><strong>含义</strong>: 这个距离越小（贴得越近），<code>SafeInterp1</code> 查表得到的成本就越高。</li>
+</ul>
+</li>
+<li>
+<p><strong>[总和]</strong>: (来自 image 76b49d)</p>
+<ul>
+<li><code>traj_cost_temp.TotalCost_rel = ... + Cost_Headway + Cost_TTC + Cost_EACC;</code></li>
+<li>将上述所有3个成本项相加，得到<strong>相对轨迹的总成本</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>[重要备注：备用轨迹]</strong>: (来自 image 76b3c3)</p>
+<ul>
+<li>系统也会为那条**“备用的强制让行失败轨迹”** (<code>egoForceFailedTrajectory</code>) <strong>单独调用</strong>一次 <code>costCalcEgoTrajectory</code> 和 <code>costCalcRelative</code>，计算出它自己的全套成本 (<code>traj_cost_temp2</code>)。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="c-%E6%83%A9%E7%BD%9A%E9%A1%B9-cost_penalty">C. 惩罚项 (<code>Cost_penalty</code>)</span></h4>
+<p>(来自 image 76b3a6.jpg, 76b3c3.jpg)</p>
+<ul>
+<li>
+<p><strong>目的</strong>: 在 A (自身成本) 和 B (相对成本) 的基础上，对某些**“虽然安全，但不鼓励”<strong>的特殊行为施加</strong>额外罚分 (Penalty)**。</p>
+</li>
+<li>
+<p><strong>总成本</strong>: <code>traj_cost_temp.Cost_penalty = ...</code> (各项惩罚累加)</p>
+</li>
+<li>
+<p><strong>[详细拆解]</strong>:</p>
+<ul>
+<li>
+<p><strong>1. <code>ForwardCost</code> (前向时间成本)</strong>: (来自 image 76b3c3)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>规划时间过短</strong>”的行为。</li>
+<li><strong>原理</strong>: <code>double ForwardCost = SafeInterp2(...)</code>。</li>
+<li><strong>逻辑</strong>: 规划时长 <code>ForwardTime</code> 越短，成本越高。这鼓励系统尽可能规划更长的轨迹。</li>
+</ul>
+</li>
+<li>
+<p><strong>2. <code>collidewithMultiModal_penalty</code> (多模态碰撞风险成本)</strong>: (来自 image 76b3a6, 76b3c3)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>冒险</strong>”行为。</li>
+<li><strong>原理</strong>: <code>if (result.collidewithMultiModal)</code>。</li>
+<li><strong>逻辑</strong>: 在第五步 <code>ConstraintCheck</code> 中，系统发现这条轨迹与某个“多模态”轨迹（例如，前车急刹）有碰撞风险。虽然在“主预测”上是安全的，但这里会<strong>施加一个高额罚分</strong>，以惩罚这种“赌博式”的轨迹。</li>
+</ul>
+</li>
+<li>
+<p><strong>3. <code>SwitchSlotCost</code> (切换车位成本)</strong>: (来自 image 76b3a6)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>决策抖动</strong>”的行为。</li>
+<li><strong>原理</strong>: <code>if (isHistoryTrajectory &amp;&amp; lastDecisionInfo...SlotID != ...)</code>。</li>
+<li><strong>逻辑</strong>: <strong>仅当</strong>评估“历史轨迹”时，此项生效。如果“历史轨迹”的跟车目标(<code>SlotID</code>) 与“上一帧的最终决策”(<code>lastDecisionInfo</code>) <strong>不一致</strong>（例如，上一帧决定跟车A，但历史轨迹是跟车B的），说明这条历史轨迹已经“过时”了，<strong>施加罚分</strong>，降低它胜出的概率。</li>
+</ul>
+</li>
+<li>
+<p><strong>4. <code>ForceYieldAbandon_penalty</code> (放弃让行成本)</strong>: (来自 image 76b3c3)</p>
+<ul>
+<li><strong>目的</strong>: 惩罚“<strong>意图不坚决</strong>”的行为。</li>
+<li><strong>原理</strong>: <code>if (result.ForceYieldAbandon)</code>。</li>
+<li><strong>逻辑</strong>: 在第五步 <code>ConstraintCheck</code> 中，系统发现这条轨迹放弃了“强制让行”的意图。<strong>施加罚分</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>5. <code>FallbackTimerCost</code> / <code>ManualLaneChangeCost</code> (特殊模式成本)</strong>: (来自 image 76b3a6, 76b3c3)</p>
+<ul>
+<li><strong>逻辑</strong>: 如果轨迹是 <code>isFallback</code> (兜底轨迹) 或 <code>lane_change_reason == 2</code> (人工换道)，它们会使用一套<strong>专属的成本</strong>（例如 <code>GetFutureLaneChangeCost</code>），而不是常规的A+B项。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="d-%E6%80%BB%E6%88%90%E6%9C%AC%E8%AE%A1%E7%AE%97-%E4%B8%8E-%E7%BB%93%E6%9E%9C%E8%AE%B0%E5%BD%95">D. 总成本计算 与 结果记录</span></h4>
+<p>(来自 image 76b3e1.jpg)</p>
+<ul>
+<li>
+<p><strong>目的</strong>: 将 A, B, C 三项成本合成为一个最终分数，并存储它。</p>
+</li>
+<li>
+<p><strong>[核心逻辑：历史轨迹奖励 (Stability Bonus)]</strong>:</p>
+<ul>
+<li><strong>原理</strong>: (来自 image 76b3e1) 为了防止决策在两条成本相近（例如 100 vs 101）的轨迹之间高频“抖动”，系统会给“历史轨迹”一个<strong>优先奖励（即成本折扣）</strong>。</li>
+<li><strong>逻辑</strong>:
+<ol>
+<li><code>double lastTrajectoryBonusRatioTemp;</code></li>
+<li><code>if (isHistoryTrajectory || ...)</code>:
+<ul>
+<li><code>lastTrajectoryBonusRatioTemp = lastTrajectoryBonusRatio;</code> (例如，<code>0.8</code>，即<strong>打8折</strong>)</li>
+</ul>
+</li>
+<li><code>else</code> (如果是新轨迹):
+<ul>
+<li><code>lastTrajectoryBonusRatioTemp = 1.0;</code> (<strong>不打折</strong>)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>[最终总成本 (Total_cost_temp)]</strong>: (来自 image 76b3e1)</p>
+<ul>
+<li><strong>公式</strong>:
+<code>Total_cost_temp = (traj_cost_temp.TotalCost_ego * lastTrajectoryBonusRatioTemp) + (traj_cost_temp.TotalCost_rel * lastTrajectoryBonusRatioTemp) + traj_cost_temp.Cost_penalty;</code></li>
+<li><strong>拆解</strong>:
+<ul>
+<li><strong>(自身成本 * 折扣) + (相对成本 * 折扣) + (惩罚项)</strong></li>
+</ul>
+</li>
+<li><strong>含义</strong>: “历史轨迹”的 <code>Ego</code> 成本和 <code>Rel</code> 成本会<strong>被打折</strong>，使其更容易胜出。但<strong>惩罚项 (<code>Cost_penalty</code>) 不会打折</strong>，如果历史轨迹有“切换车位”等惩罚，它依然要付出全额代价。</li>
+</ul>
+</li>
+<li>
+<p><strong>[结果记录 (<code>UpdateDecisionResult</code>)]</strong>: (来自 image 76b3e1, 76b49d)</p>
+<ul>
+<li><strong>目的</strong>: 将这条轨迹的<strong>最终总分</strong>和<strong>决策“配方”<strong>存入一个</strong>总列表</strong> (<code>DecisionAllResults</code>) 中，等待最后（第七部分）的“开奖”。</li>
+<li><strong>逻辑</strong>:
+<ol>
+<li><code>trajGroupInfo.decisionResult.cost = Total_cost_temp;</code> (将总分存入)</li>
+<li><code>UpdateDecisionResult(Total_cost_temp, trajGroupInfo);</code> (调用存储函数)</li>
+<li>(来自 image 76b49d) 这个函数会将 <code>trajGroupInfo.decisionResult</code> (包含“配方”) 和 <code>trajGroupInfo.decisionResult_cost</code> (包含所有成本分项) 存入一个<strong>总的结果列表</strong>中。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p><strong>[循环结束]</strong>:
+此时，<code>for</code> 循环的这一轮结束了。我们得到了一个<strong>既安全（通过V）</strong>，又**有完整成本（完成VI）**的候选轨迹。</p>
+<p>系统将<strong>继续 <code>for</code> Loop</strong>，去生成和评估<strong>下一条</strong>轨迹…直到所有“配方”都尝试完毕。</p>
+</li>
+</ul>
+<h3><span id="7-%E5%86%B3%E7%AD%96%E9%80%89%E4%BC%98%E4%B8%8E%E8%BE%93%E5%87%BA-decision-selection--output">7. 决策选优与输出 (Decision Selection &amp; Output)</span></h3>
+<p>(来自 image 3, 5, 13, 76b3e1)</p>
+<p>在所有 <code>for</code> 循环（第3-6部分）全部结束后，系统会执行决策的最后一步：</p>
+<h4><span id="a-%E9%80%89%E4%BC%98-find-champion">A. 选优 (Find Champion)</span></h4>
+<ul>
+<li>
+<p><strong>目的</strong>: 从所有“幸存”的轨迹（即<code>DecisionAllResults</code> 列表）中，选出<strong>唯一</strong>的“冠军”轨迹。</p>
+</li>
+<li>
+<p><strong>原理</strong>: <strong>查找列表中的“最低成本”</strong>。</p>
+</li>
+<li>
+<p><strong>逻辑</strong>:</p>
+<ol>
+<li>系统遍历 <code>DecisionAllResults</code> 列表中的<strong>每一条</strong>轨迹。</li>
+<li>它比较它们的<strong>最终总成本 (<code>Total_cost_temp</code>)</strong>。</li>
+<li>它会找到那条拥有<strong>绝对最低</strong> <code>Total_cost_temp</code> 的轨迹，将其标记为“冠军”。</li>
+</ol>
+</li>
+<li>
+<p><strong>[关键：内置的稳定性] (来自 image 76b3e1)</strong>:</p>
+<ul>
+<li>您可能会问：如何防止系统在两条成本相近（例如 100 vs 101）的轨迹之间“抖动”？</li>
+<li><strong>答案</strong>：在<strong>第六部分 (D)</strong> 中，这个问题<strong>已经</strong>被优雅地解决了。</li>
+<li>当时，“历史轨迹”在计算总成本时，获得了<strong>成本折扣</strong>（<code>lastTrajectoryBonusRatioTemp</code>，例如<strong>打8折</strong>）。</li>
+<li><strong>因此，在这个“选优”步骤中，系统无需执行任何特殊逻辑。</strong></li>
+<li><strong>举例</strong>：
+<ul>
+<li>一条<strong>新轨迹</strong>的成本是 <code>95</code>。</li>
+<li>“<strong>历史轨迹</strong>”的原始成本是 <code>100</code>，但它的“打折后”成本是 <code>100 * 0.8 = 80</code>。</li>
+</ul>
+</li>
+<li><strong>结果</strong>：当系统查找“最低成本”时，<code>80 &lt; 95</code>，<strong>“历史轨迹”自动胜出</strong>。</li>
+<li>只有当一条新轨迹<strong>极其优秀</strong>（例如成本 <code>79</code>，比历史轨迹好 20% 以上）时，它才能<strong>战胜</strong>这个“折扣”，赢得冠军。</li>
+<li>这就通过一个简单的“最低成本”查找，<strong>完美地保证了决策的稳定性</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4><span id="b-%E5%85%9C%E5%BA%95%E9%80%BB%E8%BE%91-fallback-logic">B. 兜底逻辑 (Fallback Logic)</span></h4>
+<ul>
+<li><strong>目的</strong>: (来自 image 13, 25) 处理一个<strong>极端情况</strong>：如果<strong>所有</strong>的采样轨迹（例如500条）都<strong>未能通过</strong>第五部分（<code>ConstraintCheck</code> 安全审查）怎么办？</li>
+<li><strong>逻辑</strong>:
+<ol>
+<li>此时，<code>DecisionAllResults</code> 列表将是<strong>空的</strong>。</li>
+<li>系统会检测到这个情况（“若未决策都失败”）。</li>
+<li>它会<strong>放弃</strong>从列表选优，转而<strong>启用“Fallback (兜底) 模式”</strong>。</li>
+<li>它会选择一条在<strong>第四部分 (B)</strong> (来自 image 754fbc) 中<strong>单独生成并拼接</strong>的<code>egoForceFailedTrajectory</code>（强制让行失败的备用轨迹），或者一条最简单的“保持车道”轨迹。</li>
+</ol>
+</li>
+<li><strong>结果</strong>: 保证系统<strong>永远</strong>会输出一条轨迹，<strong>永远</strong>不会“卡死”或“无解”，确保了绝对的<strong>安全冗余</strong>。</li>
+</ul>
+<h4><span id="c-%E6%9C%80%E7%BB%88%E8%BE%93%E5%87%BA-final-output">C. 最终输出 (Final Output)</span></h4>
+<ul>
+<li><strong>目的</strong>: (来自 image 5, 13) 将“冠军”轨迹发送给车辆。</li>
+<li><strong>逻辑</strong>:
+<ol>
+<li>系统从(A)或(B)中选出的“冠军”轨迹（即 <code>ego_traj_temp</code> 结构体）。</li>
+<li>将其<strong>完整</strong>的轨迹点序列（<code>Dx, Vx, Ax, L</code>）和决策信息，作为 <code>RunLaneChangeSlotSelectionLattice</code> 函数的<strong>最终结果</strong>返回。</li>
+<li>车辆的**“控制 (Control)”<strong>模块会接收这条轨迹，并将其</strong>翻译<strong>为</strong>实际的**方向盘转角、油门和刹车指令，在下一帧执行。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3><span id="8-%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD%E6%97%A5%E5%BF%97%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-auxiliary-logging--vis">8. 辅助功能：日志与可视化 (Auxiliary: Logging &amp; Vis)</span></h3>
+<p>(来自 image 23, 28, 76b49d, 76b4bb)</p>
+<p>在主流程之外，该模块还拥有强大的辅助功能，用于工程师的<strong>调试 (Debug)</strong> 和<strong>复盘 (Review)</strong>。</p>
+<h4><span id="a-%E5%86%B3%E7%AD%96%E4%B8%8E%E6%88%90%E6%9C%AC%E6%97%A5%E5%BF%97-savedecisionresultstocsv">A. 决策与成本日志 (<code>SaveDecisionResultsToCSV</code>)</span></h4>
+<ul>
+<li><strong>目的</strong>: (来自 image 23, 76b49d) 记录“系统<strong>为什么</strong>会做出这个选择？”</li>
+<li><strong>触发</strong>: 在 <code>RunLaneChangeSlotSelectionLattice</code> 函数的<strong>最末尾</strong>调用。</li>
+<li><strong>逻辑</strong>: (来自 image 76b4bb)
+<ol>
+<li><strong>打开两个CSV文件</strong>：<code>resultFile</code> (结果文件) 和 <code>costFile</code> (成本文件)。</li>
+<li><strong>遍历总列表</strong>: <strong>遍历（<code>for</code> 循环）</strong> 在第六部分生成的<strong>所有</strong>轨迹（<code>DecisionAllResults</code>），<strong>包括那些成本很高、最终落选的轨迹</strong>。</li>
+<li><strong>写入 <code>resultFile</code></strong>: 写入**“配方”**信息，例如：
+<ul>
+<li><code>Index</code>, <code>FailedReason</code> (失败原因码), <code>ForwardTime</code> (规划时间), <code>LaneChangeTime</code> (换道时间), <code>SpeedPattern</code> (速度模式), <code>TgtHeadway</code> (时距), <code>SlotID</code> (跟车目标) …</li>
+</ul>
+</li>
+<li><strong>写入 <code>costFile</code></strong>: 写入**“成本明细”**，例如：
+<ul>
+<li><code>Index</code>, <code>TotalCost</code> (总成本), <code>Cost_L_1</code> (横向偏移), <code>Cost_J</code> (Jerk), <code>Cost_A</code> (加速度), <code>Cost_TTC</code>, <code>Cost_Headway</code>, <code>Cost_penalty</code> (惩罚) …</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>用途</strong>: 工程师可以通过分析这两个表格，<strong>复盘</strong>每一条轨迹的“得分”，精确地知道“冠军”轨迹<strong>为什么</strong>赢了，而“亚军”轨迹<strong>为什么</strong>输了。</li>
+</ul>
+<h4><span id="b-%E5%8F%AF%E8%A7%86%E5%8C%96%E6%97%A5%E5%BF%97-savetrajectoriesforvisualization">B. 可视化日志 (<code>saveTrajectoriesForVisualization</code>)</span></h4>
+<ul>
+<li><strong>目的</strong>: (来自 image 28) “眼见为实”，以<strong>图形化</strong>方式复现当时的场景。</li>
+<li><strong>逻辑</strong>:
+<ol>
+<li><strong>保存轨迹 (CSV)</strong>: 将关键的轨迹点（如自车轨迹、目标车轨迹、<code>forcefailed</code>轨迹、上一帧轨迹）的<strong>S-L坐标</strong>保存到 CSV 文件。</li>
+<li><strong>保存场景 (<code>.config</code>)</strong>: 将当时的“静态”环境（如自车位置、目标车位置、<strong>车道线</strong>信息）保存到 <code>.config</code> 文件。</li>
+</ol>
+</li>
+<li><strong>用途</strong>: 工程师可以使用一个<strong>专用的可视化工具</strong>，加载这两个文件，**在电脑上“播放”**出一个“小动画”，<strong>亲眼</strong>看到当时的交通流、自车的规划轨迹，以及它是如何与其它车辆互动的。</li>
+</ul>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/07/%E5%B7%A5%E4%BD%9C/MLC%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;07&#x2F;工作&#x2F;MLC的实现&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;07&#x2F;工作&#x2F;MLC的实现&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/gaea%E6%A1%86%E6%9E%B6/" rel="tag">gaea框架</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

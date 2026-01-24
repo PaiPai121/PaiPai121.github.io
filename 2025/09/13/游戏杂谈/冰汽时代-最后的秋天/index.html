@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 冰汽时代 最后的秋天 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/61761150259_.pic.jpg"
+				data-sizes="auto"
+				alt="冰汽时代 最后的秋天"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>冰汽时代 最后的秋天</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年09月13日</a>
+			<a><i class="kirafont icon-edit-fill"></i>2.9k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 11 分钟</a>
+		</div>
+		<html><head></head><body><div id="aplayer-DEQFiCWU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-DEQFiCWU"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "Shan Qiu",
+              author: "Artist",
+              url: "/music/shanqiu.mp3",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p>最后的秋天</p>
+<p>阶级划分：
+工人和工程师
+在《冰汽时代》中，工人和工程师之间存在着一道天然且不可逾越的鸿沟。工程师拥有专业技能、管理权威，被视为独立的群体；而工人则是一个可替换的、同质化的劳动力池。可是日常生活中也许习惯上其实我们更常见的是工人和工程师都是无产阶级，对抗有产阶级，而游戏里几乎没有可能对抗幕后的大资本家。。</p>
+<p>超时工作：
+哥们和大模型讨论，是正常工时好还是24小时两班倒好
+我：白天正常工时，一下班立刻切24小时工时。白天给他希望高效率工作，晚上也不许下班！
+在游戏中，玩家为了赶在最终期限前完成发电机建设，签署“延长工时”、“24小时轮班”等法案，或是默许工人在有毒气体弥漫、随时可能发生坍塌的危险环境中作业，都是为了追求更高的生产效率。这些法案与本篇无异，唯一的区别只是本篇已经到了生死存亡的境地，而此时若非有上帝视角，只是老板的又一个大规模工程。可对背井离乡而言的工人而言，都是要赌上性命。</p>
+<p>远离家乡：
+背后的资本家按照时间节点一步步催着赶紧让工人加班
+现实中公司也因为项目交付节点，逼迫我们天天加班和出差。</p>
+<p>工人们抵达113号工地，背景离乡开始建造大型发电机，像我离开家乡跑到北京工作又被公司发配出差。</p>
+<p>人的异化：
+在高层的眼中，我们也如同游戏中的数字一样，只是完成节点的数据，并无家庭或人情味。
+在《冰汽时代》的游戏过程中，我们会逐渐将工人的死亡从一个个悲剧，看作是需要管理的统计数据——一种可以为了赶工期而接受的代价，一定数量的工伤事故和职业病，成为可被量化的能量塔建造成本。
+相比本篇而言，这里有每天下降的动力，作为邪恶包工头，你不得不保证鼓励员工们提高动力。
+我的方法大概就是丰盛美食+教堂技能卡CD用+工会技能卡CD用，基本上可以把动力一直拉满，吃30%效率的buff。
+也许就像日常中老板给我画大饼吧。
+对管理者——玩家而言，逐步危险的工作环境像是温水煮青蛙，一不注意发现已经变成致命风险了。可初见的时候几乎都不怎么会点开看工作环境的危险程度。</p>
+<p>《最后的秋天》将时间拨回灾难性的寒冬之前。这一次，我们对抗的不再是自然的伟力，而是资本的意志。玩家不再是挣扎求生的领袖，而是背负着交付期限（DDL）的“包工头”。
+一、 隐身的资本家与虚假的阶级</p>
+<p>游戏伊始，工人们背井离乡抵达工地，这正如我离开家乡去北京工作，又被公司发配到各地出差。
+一道天然的鸿沟横亘在工人和工程师之间：工程师拥有技能和权威，被视为独立的专业人士；而工人则是一个庞大、可替换的劳动力池。
+但在现实中，我们更习惯将工程师和工人都视为“无产阶级”。吊诡的是，在《最后的秋天》中，真正的幕后资本家始终隐身，他们只作为“最后期限”和催促进度的压力而存在。玩家所扮演的管理者，与工地上的所有人一样，都在为那个不可违抗的意志服务，几乎没有反抗的余地。</p>
+<p>二、 期限的暴政：从“延长工时”到“24小时轮班”</p>
+<p>为了赶在最终期限前完工，背后的资本家按时间节点步步紧逼，就像现实中公司为了项目交付，逼迫我们无休止地加班和出差。
+于是，玩家被迫签署“延长工时”、“24小时轮班”等法案，默许工人在有毒气体弥漫、随时可能坍塌的环境中作业，一切只为追求更高的生产效率。我们甚至会玩弄“白天正常工时安抚人心，晚上一键切换24小时轮班”的把戏，只为压榨最后一丝效率。
+这与本篇的生死存亡不同。若非拥有上帝视角，在“秋天”的背景下，这仅仅是老板的又一个大型工程。但对工人而言，无论是在冰天雪地还是在尘土飞扬的工地，赌上的都是性命。</p>
+<p>三、 人的异化：从“画大饼”到“可接受的伤亡”</p>
+<p>或许在高层的眼中，我们也如同游戏中的数字，只是完成节点的数据，并无人情味可言。而在游戏中，我们很快就学会了将工人的死亡从一个个悲剧，看作是需要管理的统计数据——一种可以为了赶工期而接受的代价。一定数量的工伤事故和职业病，被冷酷地量化为能量塔的建造成本。
+如果说我大幅增加安全度，规范流程，大概率为的不是工人安全，而是出现意外事件后SL，想尽可能保住建设的进度。</p>
+<p>与本篇不同，“秋天”引入了“动力”系统。作为“邪恶的包工头”，你必须想尽办法维持工人的动力。我的方法通常是：丰盛美食、教堂技能、工会技能卡着CD用，不惜一切代价把动力拉满，只为享受那30%的效率Buff。给工人们猛猛喂大饼。逐步恶化的工作环境就像一锅温水煮青蛙。当你一门心思扑在效率和进度上时，很容易就忽略了那个代表“危险程度”的标识，直到风险悄然变为致命。</p>
+<h2><span id="new">new</span></h2>
+<p>“我叫李华，是一名来自冬日之家的工人。响应了帝国勘探公司的号召。
+同事们偶尔会有几个人再也不见，不知道他们是不是回家了。
+船越来越少，毒气越来越浓，加班越来越重，手上的茧越来越厚，铁塔也越来越高大。
+森林只剩下残桩，钢材淹没了海岸。
+海风里只有铁锈和鱼腥。
+我好想家。
+要是我明天没来工地上，别找我。我大概也是进度的一部分了。”</p>
+<p>“老婆我回来了，我们提前完成了能量塔”</p>
+<p>“什么叫能量塔核心受损？”</p>
+<p>《冰汽时代》系列的核心冲突，在《最后的秋天》这一前传章节中，从对抗极寒这一普适的、无差别的生存威胁转变为阶级的压迫，不可违抗的交付期限。玩家不再是为社群存续而战的救世主，而是为一个看不见摸不着的客户完成项目的“包工头”。</p>
+<p>相比于本篇而言，最后的秋天总是能让我想到现实中的自己，背井离乡来到113号工地，正如我们离开家乡前往大城市工作；被公司派遣到偏远的项目现场，与工人们的处境并无二致；而那来自帝国勘探公司的、仅通过电报传达的催促进度指令，则完美复现了公司里上层的酒囊饭袋们除了push什么也不会的样子。</p>
+<p>作为项目的委托方，“帝国勘探公司”始终隐身幕后。它的意志只通过冰冷的电报、不容变更的最后期限以及定期抵达的资源运输船来体现。我们所扮演的管理者，不过是名“受雇的员工” ，最多是个高级打工人。一旦错过了最后期限，唯一的后果就是被毫不留情地解雇。只能为了自己的绩效凶猛的压榨被我们管理的人们。
+去年入职时候带我的大哥刚从一线晋升成小管理层，手上的活还得接着干，同时又要直接面对高层的质问，被夹在两边伪人之间吐血，想必处境和玩家扮演的角色差不多吧。</p>
+<p>来自下层的压力则表现为罢工、不满和动机下降，这些都会直接阻碍项目进度，威胁到最后期限的达成。“动机”与本篇中的“希望”截然不同。“希望”是关乎社群的存续意志，而“动机”则是一个直接影响效率的修正值。高动机能带来高达30%的全局生产力加成，使其成为一种必须被最大化的核心资源。我的方法通常是：丰盛美食、教堂技能、工会技能卡着CD用，不惜一切代价把动力拉满。给工人们猛猛喂大饼。至于逐步恶化的工作环境，不出事我一般注意不到。
+<img data-fancybox="gallery" data-sizes="auto" data-src="%E6%AF%92%E6%B0%94.jpeg" alt="alt text" class="lazyload">
+从效率的角度看，最“有效”的工具往往是道德上最可疑的，超时加班、不顾危险，似乎都是我们现实中唾弃的资本家行为，只记得唯一的信条：人是效率的障碍，控制比同情更有效。我们经历、听闻的996、007、两班倒，无非是现实中的效率至上。
+当时一个哥们问我，是正常工时效率高还是24小时两班倒更好，我告诉他：白天正常工时，一下班立刻切24小时工时。白天给他希望高效率工作，晚上也不许下班！现在想想大抵我也被异化成邪恶大坏蛋了。
+<img data-fancybox="gallery" data-sizes="auto" data-src="%E4%B8%A4%E7%8F%AD%E5%80%92.jpeg" alt="alt text" class="lazyload"></p>
+<p>马克·费希尔讲过一种“资本主义现实主义”的概念，描述一种资本主义不仅被视为唯一现实的经济和社会制度，而且也被认为是不可替代的意识形态。最后的秋天中玩家可以在工人和工程师两条路线中抉择，可以在福利与压迫之间权衡，但他们唯独不能选择放弃项目，或与工人联合起来对抗那个发号施令的无形资本。</p>
+<p>在现实的阶级叙事中，工程师与工人通常同属无产阶级。然而，游戏却刻意在二者之间制造了一道看似天然且不可逾越的鸿沟 。工程师拥有专业技能、管理权威和专属特权，被视为独立的精英群体；而工人则构成了一个庞大、同质化且可随时替换的劳动力池。这种人为的阶级划分是资本实现其统治的经典策略：通过制造内部矛盾，将本应垂直指向资本的阶级斗争，转化为水平方向的内部消耗，从而阻止一个统一的劳工阵线的形成。</p>
+<p>如果没有未来的短暂寒冬，“最后的秋天”或许就是劳动者在资本之下所处的永恒状态。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/09/13/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3-%E6%9C%80%E5%90%8E%E7%9A%84%E7%A7%8B%E5%A4%A9/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;09&#x2F;13&#x2F;游戏杂谈&#x2F;冰汽时代-最后的秋天&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;09&#x2F;13&#x2F;游戏杂谈&#x2F;冰汽时代-最后的秋天&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" rel="tag">游戏杂谈</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 异形工场 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="异形工场"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>异形工场</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年01月23日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%93%E6%9E%84">基本图形结构</span></h1>
+<h2><span id="%E6%B7%B7%E8%89%B2">混色</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E5%A0%86%E5%8F%A0">堆叠</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-1.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E6%9F%93%E8%89%B2">染色</span></h2>
+<p>单染色
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-4.png" alt="alt text" class="lazyload"></p>
+<p>双染色
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-2.png" alt="alt text" class="lazyload"></p>
+<p>四染色
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-3.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E8%A3%81%E5%89%AA">裁剪</span></h2>
+<p>一分为二
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-5.png" alt="alt text" class="lazyload">
+一分为四
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-6.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E5%AE%B9%E5%99%A8and%E7%BC%93%E5%86%B2">容器and缓冲</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-7.png" alt="alt text" class="lazyload"></p>
+<h1><span id="%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BB%BA%E8%AE%BE%E8%BF%87%E7%A8%8B">自动化建设过程</span></h1>
+<p>终于解锁了所有的电子原件，该踏入自动化生产的过程了，网上搜了很大大佬的教程，都很厉害，优化的也很好，我这个就是从新手易于理解的角度先来描述一下最基本的思路和流程。本文包含最基本的图形自动生成，和计数自动交付功能。</p>
+<h2><span id="%E8%87%AA%E5%8A%A8%E7%94%9F%E4%BA%A7">自动生产</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cx421y7pF/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62">参考文献</a></p>
+<ol>
+<li>
+<p>基本7色+4形构建
+（如果不考虑无色和悬空）我们的图案一共有7种7颜色，四种图形，我们先准备好。这个双储存区的作用就是让他能存但是又不会卡死（避免你的裁剪工具停摆）
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-7.png" alt="alt text" class="lazyload"></p>
+</li>
+<li>
+<p>基本自动生成逻辑
+首先我们从中心拿到目标图形
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-8.png" alt="alt text" class="lazyload">
+然后逐层拆解，这里以两层为例，拆一下就行，造通用的需要考虑四层
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-9.png" alt="alt text" class="lazyload">
+我们先以左侧图形为例开始自动组装单层图形
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-10.png" alt="alt text" class="lazyload">
+首先先用模拟切割器切成四个角
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-11.png" alt="alt text" class="lazyload">
+然后用图形分析器解码出来四个角分别的图形和颜色。注意图形分析器只能解码右上角，所以每个图形都要转到右上角
+接下来就要做逻辑和生产层的链接了
+我们先以图形为例，我们自然只想让这四分之一象限出想要的产品，只希望那一路有信号，所以这里放四个比较器，分别对应生产的四种图形，只有和目标匹配的图形才会被激活
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-13.png" alt="alt text" class="lazyload">
+在放置比较器的时候需要会需要填图形代码，这里一共是8个字符
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-14.png" alt="alt text" class="lazyload">
+分成四个区域，两个字符为一组，第一个字符为图形首字母，第二个字符为颜色首字母，如果是–则为空。
+可以先在游戏提供的网站玩一下
+<a target="_blank" rel="noopener" href="https://viewer.shapez.io/">shapez</a></p>
+</li>
+</ol>
+<h3><span id="%E5%BD%A2%E7%8A%B6%E4%BB%A3%E7%A0%81-shape-codes">形状代码 (Shape Codes)</span></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码 (Code)</th>
+<th style="text-align:left">形状名称 (Shape Name)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>C</strong></td>
+<td style="text-align:left">圆形 (Circle)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>R</strong></td>
+<td style="text-align:left">矩形 (Rectangle)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>W</strong></td>
+<td style="text-align:left">风车 / 风扇 (Windmill / Fan)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S</strong></td>
+<td style="text-align:left">星形 (Star)</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="%E9%A2%9C%E8%89%B2%E4%BB%A3%E7%A0%81-color-codes">颜色代码 (Color Codes)</span></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码 (Code)</th>
+<th style="text-align:left">颜色名称 (Color Name)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>r</strong></td>
+<td style="text-align:left">红色 (Red)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>g</strong></td>
+<td style="text-align:left">绿色 (Green)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>b</strong></td>
+<td style="text-align:left">蓝色 (Blue)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>y</strong></td>
+<td style="text-align:left">黄色 (Yellow)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>p</strong></td>
+<td style="text-align:left">紫色 (Purple)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>c</strong></td>
+<td style="text-align:left">青色 (Cyan)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>u</strong></td>
+<td style="text-align:left">未着色 (Uncolored)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>w</strong></td>
+<td style="text-align:left">白色 (White)</td>
+</tr>
+</tbody>
+</table>
+<p>比如这里我要无色风车，就是WuWuWuWu
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-12.png" alt="alt text" class="lazyload"></p>
+<p>颜色如法炮制
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-16.png" alt="alt text" class="lazyload"></p>
+<p>左上角的红色星星就出来了。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-15.png" alt="alt text" class="lazyload"></p>
+<p>接好单层图形的所有线路
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-19.png" alt="alt text" class="lazyload">
+目标产物就自动出来了
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-18.png" alt="alt text" class="lazyload"></p>
+<h1><span id="%E8%AE%A1%E6%97%B6%E5%99%A8">计时器</span></h1>
+<p>自动生产以后我发现要求的目标是交付速度，相比于重复扩建多个自动化工厂，我想偷点懒（准备图形好麻烦啊），很容易想到的就是我先把东西存起来，然后一股脑放出去，速度自然就达标了。于是就有了计时器的探索。</p>
+<h2><span id="%E5%A4%B1%E8%B4%A5%E7%9A%84%E6%96%B9%E6%A1%881-%E7%85%A7%E6%8A%84%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF">失败的方案1 照抄数字电路</span></h2>
+<p>shapez能量不守恒，简单把非门闭环连起来就能得到振荡器。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="%E6%8C%AF%E8%8D%A1%E5%99%A8.gif" alt="alt text" class="lazyload"></p>
+<p>最开始想做个D触发器串联把频率降下来，然后脉冲式的交货
+不过这里面的信号也太奇怪了，这两个异或门刚插上还行，接个信号就振荡，断了线接着振
+<img data-fancybox="gallery" data-sizes="auto" data-src="%E9%94%99%E8%AF%AF%E9%9C%87%E8%8D%A1.gif" alt="alt text" class="lazyload">
+RS都不可靠，就别说D触发器了</p>
+<p>大家可以试一下，上面的0可以连，输出1，下面的1一连就振荡起来了
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-20.png" alt="alt text" class="lazyload"></p>
+<p>加法器
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-21.png" alt="alt text" class="lazyload"></p>
+<p>全加器
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-22.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E6%88%90%E5%8A%9F%E6%96%B9%E6%A1%88">成功方案</span></h2>
+<p>整体结构学习的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1x4sDzPEhd/?spm_id_from=333.1007.top_right_bar_window_history.content.click">https://www.bilibili.com/video/BV1x4sDzPEhd/?spm_id_from=333.1007.top_right_bar_window_history.content.click</a></p>
+<p>整体方案如下图所示
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-23.png" alt="alt text" class="lazyload"></p>
+<p>大概什么原理呢？首先我们可以分成两个区域，一共是储藏区，就是下面那个储物罐，另一个就是计数区，右边的储物柜以及后面的溢出区和长传送带。
+这个时候可以看出来首先储藏区的左侧是有分流的，输入图形会对称的到两个区域中，我们上面的计数区存放的图形数几乎就是下面实际储存的图形。
+我们希望没存满的时候，两边都在进图形，直到这个和大肠一样的传送带储存满了，溢出口开始喷图形，到达溢出判断区，发出true的flag，让实际储藏区把所有的图形一下子都吐出去。</p>
+<p>对应的电路是下图
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-24.png" alt="alt text" class="lazyload"></p>
+<p>好那我们看电路，要满足刚才的要求的话，首先我们自然要判断输入和目标图形是否一致，如果不一致，那么现在的图形都没有用，这个信号一定要让实际储藏区释放掉，而计数区则是直接进垃圾桶，因为这个图形没用。</p>
+<p>如果一致，那么暂且不释放，我们接着看，这个时候图形会源源不断的进入两个区域，直到计数区溢出，溢出的传感器检查到图形，检查到和输入的图形一致后，我们可以判断存满了，该释放了，那么给储藏区的门一共true信号，让他释放掉。</p>
+<p>以上逻辑只有储藏区有两种true信号控制，所以这里加一个或门。</p>
+<p>这样就能实现自动交付了</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-25.png" alt="alt text" class="lazyload">
+<img data-fancybox="gallery" data-sizes="auto" data-src="ultimate.gif" alt="" class="lazyload"></p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/01/23/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%BC%82%E5%BD%A2%E5%B7%A5%E5%9C%BA/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;01&#x2F;23&#x2F;游戏杂谈&#x2F;异形工场&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;01&#x2F;23&#x2F;游戏杂谈&#x2F;异形工场&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" rel="tag">游戏杂谈</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> DQN与DDNQ -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="DQN与DDNQ"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>DQN与DDNQ</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月16日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><ul>
+<li><a href="#dqn-vs-ddqn">DQN vs DDQN</a>
+<ul>
+<li><a href="#0-%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%88%E6%9E%81%E7%9B%AE%E6%A0%87%E4%B8%80%E6%9C%AC%E5%AE%8C%E7%BE%8E%E7%9A%84%E5%86%B3%E7%AD%96%E6%8C%87%E5%8D%97">0. 我们的终极目标：一本“完美”的决策指南</a></li>
+<li><a href="#1-%E6%95%99%E7%A7%91%E4%B9%A6%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0">1. “教科书”：我们如何学习？</a>
+<ul>
+<li><a href="#%E6%8A%98%E6%89%A3%E5%9B%A0%E5%AD%90">折扣因子</a>
+<ul>
+<li><a href="#%E5%9C%BA%E6%99%AF-a%E5%A6%82%E6%9E%9C-gamma--0-%E6%B2%A1%E6%9C%89%E8%80%90%E5%BF%83">场景 A：如果 $\gamma = 0$ （没有耐心）</a></li>
+<li><a href="#%E5%9C%BA%E6%99%AF-b%E5%A6%82%E6%9E%9C-gamma--1-%E5%9C%A3%E4%BA%BA%E8%88%AC%E7%9A%84%E6%97%A0%E9%99%90%E8%80%90%E5%BF%83">场景 B：如果 $\gamma = 1$ （“圣人”般的无限耐心）</a></li>
+<li><a href="#%E5%9C%BA%E6%99%AF-cgamma--099">场景 C：$\gamma = 0.99$</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-%E9%97%AE%E9%A2%98%E8%BF%B7%E5%AE%AB%E5%A4%AA%E5%A4%A7%E4%BA%86dqn">2. 问题：迷宫太大了（DQN）</a></li>
+<li><a href="#3-%E6%A0%87%E5%87%86-dqn%E4%B8%80%E4%B8%AA%E8%BF%87%E5%BA%A6%E8%87%AA%E4%BF%A1%E7%9A%84%E4%BC%B0%E7%AE%97%E8%80%85">3. 标准 DQN：一个“过度自信”的估算者</a>
+<ul>
+<li><a href="#dqn-%E7%9A%84%E8%87%B4%E5%91%BD%E7%BC%BA%E9%99%B7max-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BF%87%E5%BA%A6%E8%87%AA%E4%BF%A1-overestimation-bias">DQN 的致命缺陷：<code>max</code> 运算符的“过度自信” (Overestimation Bias)</a>
+<ul>
+<li><a href="#%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E7%9A%84%E6%95%B0%E5%AD%A6%E4%BE%8B%E5%AD%90">一个具体的数学例子：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-double-dqn-ddqn%E4%B8%80%E4%B8%AA%E8%B0%A8%E6%85%8E%E7%9A%84%E4%BC%B0%E7%AE%97%E8%80%85">4. Double DQN (DDQN)：一个“谨慎”的估算者</a>
+<ul>
+<li><a href="#ddqn-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E8%A7%A3%E8%80%A6decoupling">DDQN 的核心原理：解耦（Decoupling）</a></li>
+<li><a href="#ddqn-%E7%9A%84%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">DDQN 的数学公式</a></li>
+<li><a href="#%E8%BF%98%E6%98%AF%E9%82%A3%E4%B8%AA%E6%95%B0%E5%AD%A6%E4%BE%8B%E5%AD%90">还是那个数学例子：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1><span id="dqn-vs-ddqn">DQN vs DDQN</span></h1>
+<h2><span id="0-%E6%88%91%E4%BB%AC%E7%9A%84%E7%BB%88%E6%9E%81%E7%9B%AE%E6%A0%87%E4%B8%80%E6%9C%AC%E5%AE%8C%E7%BE%8E%E7%9A%84%E5%86%B3%E7%AD%96%E6%8C%87%E5%8D%97">0. 我们的终极目标：一本“完美”的决策指南</span></h2>
+<p>想象一下，你（AI）被困在一个迷宫里。在<strong>任何</strong>一个“路口”（我们称之为<strong>状态 <code>s</code></strong>），你都有几个“选择”（我们称之为<strong>动作 <code>a</code></strong>，比如“往东”或“往西”）。</p>
+<p>你的目标是找到一条路，能让你<strong>未来的“总分”最高</strong>（例如，+10 分找到出口，-100 分掉进陷阱）。</p>
+<p>你<strong>梦想</strong>能有一本“完美的决策指南”，我们叫它 <strong>$Q^*$</strong>。
+这本指南会告诉你，在<strong>任何</strong>路口 <code>s</code>，选择<strong>任何</strong>动作 <code>a</code> 的“未来总分”是多少。</p>
+<p><strong>例如，你在路口 <code>s</code>：</strong></p>
+<ul>
+<li>$Q^*(s, \text{“往东”})$ = +50分 (这条路最终通向出口)</li>
+<li>$Q^*(s, \text{“往西”})$ = -80分 (这条路通向陷阱)</li>
+</ul>
+<p>有了这本指南，你就无敌了。你只需要在每个路口，选择那个“分数”最高的动作就行了。</p>
+<p><strong>强化学习的唯一目标：</strong> 就是想办法“估算”出这本“完美指南” $Q^*$。</p>
+<p>如果我们有这个“神的公式”，AI 就无敌了。它在任何画面 <code>s</code> 前，只需比较一下：</p>
+<ul>
+<li>$Q^*(s, \text{“不跳”})$ = 10.5 分</li>
+<li>$Q^*(s, \text{“跳”})$ = 8.2 分</li>
+</ul>
+<p>AI 会（贪婪地）选择“不跳”，因为它知道这个动作能带来最高的“未来总分”。</p>
+<hr>
+<h2><span id="1-%E6%95%99%E7%A7%91%E4%B9%A6%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0">1. “教科书”：我们如何学习？</span></h2>
+<p>$$
+Q^<em>(s, a) = \mathbb{E}[r + \gamma \max_{a’} Q^</em>(s’, a’)]
+$$</p>
+<ul>
+<li><code>Q*(s, a)</code> (在“这一帧”执行动作 <code>a</code> 的“完美分数”)…</li>
+<li><code>=</code> (应该等于)…</li>
+<li><code>r</code> (你<strong>立刻</strong>获得的奖励，比如 <code>+0.1</code>)…</li>
+<li><code>+</code> (加上)…</li>
+<li><code>\gamma</code> (一个“折扣因子”，代表 AI 的“耐心”，比如 0.99)…</li>
+<li><code>\max_{a'} Q^*(s', a')</code> (在“下一帧” <code>s'</code>，AI <strong>再次</strong>从所有可能的动作 <code>a'</code> 中，选择那个能带来“未来最高分”的动作)。</li>
+</ul>
+<p><strong>我们的“训练” (<code>optimize_model</code>) 就是为了让 AI 的“神经网络”（<code>policy_net</code>）去强行“模仿”这条法则。</strong></p>
+<p>我们通过最小化“损失”（Loss）来做到这一点：
+<code>Loss = ( "教科书上的目标值" - "AI大脑的当前值" )²</code></p>
+<p><code>"AI大脑的当前值"</code> = $Q_{\theta}(s, a)$ (即 <code>policy_net</code> 的预测)
+<code>"教科书上的目标值"</code> = $Y_t$ (我们对 $r + \gamma \max_{a’} Q^*(s’, a’)$ 的<strong>最佳估算</strong>)</p>
+<p><strong>DQN 和 DDQN 的唯一区别，就在于它们“估算” $Y_t$ 的数学方法不同。</strong></p>
+<h3><span id="%E6%8A%98%E6%89%A3%E5%9B%A0%E5%AD%90">折扣因子</span></h3>
+<h4><span id="%E5%9C%BA%E6%99%AF-a%E5%A6%82%E6%9E%9C-gamma--0-%E6%B2%A1%E6%9C%89%E8%80%90%E5%BF%83">场景 A：如果 $\gamma = 0$ （没有耐心）</span></h4>
+<p>如果 <code>gamma = 0</code>，我们的“黄金法则”会变成：
+$$
+Q(s, a) = r + 0 \cdot \max(Q(s’, a’))
+$$
+$$
+Q(s, a) = r
+$$</p>
+<p><strong>数学翻译：</strong> “未来总奖励”(<code>Q</code>) 等于“即时奖励”(<code>r</code>)。
+<strong>行为翻译（“极度短视”）：</strong>
+* AI 变成了“活在当下”的“瘾君子”。它<strong>只</strong>关心它在<strong>下一帧</strong>能获得的奖励。
+* 它<strong>完全不在乎</strong> 10 步、50 步或 100 步后会发生什么。
+<strong>在 Flappy Bird 中的后果：</strong>
+* 游戏中有两个选择：
+1.  <strong>“摸鱼”：</strong> 什么也不做。<code>r = +0.1</code> (来自 <code>REWARD_SURVIVE</code>)。
+2.  <strong>“冒险”：</strong> 尝试穿过 50 帧以外的柱子。
+* $\gamma = 0$ 的 AI <strong>永远</strong>学不会穿过柱子。为什么？
+* 因为在它看来，“穿过柱子”的 <code>+5.0</code> 奖励在 50 帧后才发生，<strong>太遥远了</strong>，它<strong>看不见</strong>。它只看得到 <code>+0.1</code>（“摸鱼”）和 <code>-5.0</code>（“死亡”）。它会选择“摸鱼”直到撞死。</p>
+<h4><span id="%E5%9C%BA%E6%99%AF-b%E5%A6%82%E6%9E%9C-gamma--1-%E5%9C%A3%E4%BA%BA%E8%88%AC%E7%9A%84%E6%97%A0%E9%99%90%E8%80%90%E5%BF%83">场景 B：如果 $\gamma = 1$ （“圣人”般的无限耐心）</span></h4>
+<p>如果 <code>gamma = 1</code>，“黄金法则”会变成：
+$$
+Q(s, a) = r_t + 1 \cdot (r_{t+1} + 1 \cdot (r_{t+2} + …))
+$$
+$$
+Q(s, a) = r_t + r_{t+1} + r_{t+2} + …
+$$</p>
+<p><strong>数学翻译：</strong> “未来总奖励”等于<strong>所有</strong>未来奖励的<strong>简单总和</strong>。
+<strong>行为翻译（“无限远见”）：</strong>
+* AI 认为“明天”的 100 块钱和“今天”的 100 块钱<strong>价值完全相等</strong>。
+<strong>在 Flappy Bird 中的后果（数学灾难）：</strong>
+* 假设 AI 发现了一个“Bug”，它可以在一个地方“无限摸鱼”，每帧都获得 <code>+0.1</code> 奖励。
+* 它的“未来总奖励”会变成：<code>0.1 + 0.1 + 0.1 + ...</code> 直到<strong>无穷大 (∞)</strong>。
+* <strong>数学崩溃了。</strong> 神经网络无法计算“无穷大”，<code>Loss</code> 会变成 <code>NaN</code>，训练当场爆炸。
+* 这在数学上称为“总和不收敛”。</p>
+<h4><span id="%E5%9C%BA%E6%99%AF-cgamma--099">场景 C：$\gamma = 0.99$</span></h4>
+<p>现在，我们来看看我们选择的 <code>gamma = 0.99</code> 是如何<strong>同时</strong>解决这两个问题的。</p>
+<p><code>\gamma</code> 的意思是：“未来的奖励是好的，但<strong>每晚一帧，它的价值就打 99 折</strong>。”</p>
+<p>假设 AI 马上就要穿过柱子了（<code>+5.0</code> 奖励），并且它知道自己离柱子还有 <strong>3 帧</strong>。</p>
+<p>AI 会这样计算这个奖励在**“今天”<strong>的</strong>“净现值” (Present Value)**：</p>
+<ul>
+<li><strong>第 1 帧后 (存活):</strong> <code>+0.1</code></li>
+<li><strong>第 2 帧后 (存活):</strong> <code>+0.1 * (0.99)</code></li>
+<li><strong>第 3 帧后 (穿过柱子):</strong> <code>+5.0 * (0.99) * (0.99)</code></li>
+</ul>
+<p>如果你把这个链条拉长：</p>
+<ul>
+<li><strong>“现在”的 <code>+1</code> 奖励：</strong> 价值 <code>1.0</code></li>
+<li><strong>10 帧后</strong>的 <code>+1</code> 奖励： 价值 $(0.99)^{10} \approx 0.90$ (打了 9 折)</li>
+<li><strong>100 帧后</strong>的 <code>+1</code> 奖励： 价值 $(0.99)^{100} \approx 0.36$ (只剩 3.6 折)</li>
+<li><strong>1000 帧后</strong>的 <code>+1</code> 奖励： 价值 $(0.99)^{1000} \approx 0.00004$ (几乎一文不值)</li>
+</ul>
+<h2><span id="2-%E9%97%AE%E9%A2%98%E8%BF%B7%E5%AE%AB%E5%A4%AA%E5%A4%A7%E4%BA%86dqn">2. 问题：迷宫太大了（DQN）</span></h2>
+<p>比如在电子游戏中，“路口”（<code>s</code>）就是<strong>游戏画面</strong>。游戏画面的组合是<strong>无限</strong>的。</p>
+<p>我们不可能用一张“表格”来记录所有 $Q(s, a)$ 的分数。</p>
+<p><strong>DQN (Deep Q-Network) 的解决方案：</strong>
+我们不“记录”分数，我们用一个**“估算器”<strong>来“预测”分数。这个“估算器”就是</strong>深度神经网络（Deep Neural Network）**。</p>
+<p>我们现在有了一个“AI 大脑”（一个神经网络），我们叫它 <strong>$Q_{\theta}$</strong>。（$\theta$ 代表神经网络中所有的“权重”或“参数”，即“大脑的配置”）。</p>
+<p><strong>AI 的“学习”</strong>，就是不断调整它的“大脑配置 $\theta$”，让它的“估算” $Q_{\theta}(s, a)$ 尽可能地接近“教科书”上的“完美分数”。</p>
+<hr>
+<h2><span id="3-%E6%A0%87%E5%87%86-dqn%E4%B8%80%E4%B8%AA%E8%BF%87%E5%BA%A6%E8%87%AA%E4%BF%A1%E7%9A%84%E4%BC%B0%E7%AE%97%E8%80%85">3. 标准 DQN：一个“过度自信”的估算者</span></h2>
+<p>DQN 遇到了一个“鸡生蛋，蛋生鸡”的问题：</p>
+<ul>
+<li><strong>AI 的“估算值”</strong> (Current Value) 是：$Q_{\theta}(s, a)$</li>
+<li><strong>AI 的“目标值”</strong> (Target Value) 是：$r + \gamma \max_{a’} Q_{\theta}(s’, a’)$</li>
+</ul>
+<p>如果 AI 用<strong>同一个</strong>大脑 $\theta$ <strong>既</strong>产生“估算值”，<strong>又</strong>产生“目标值”，那么“目标”就会随着“估算”一起移动。这就像一只试图咬自己尾巴的狗，极其不稳定。</p>
+<p><strong>DQN 的第一个创新 (Target Network)：</strong>
+DQN 说：“我们用<strong>两个</strong>大脑！”</p>
+<ol>
+<li><strong><code>policy_net</code> ($\theta$)：</strong> “学生大脑”。它<strong>快速</strong>学习，我们<strong>每一步</strong>都更新它。它用来提供“AI 大Mao的当前值”。</li>
+<li><strong><code>target_net</code> ($\theta’$)：</strong> “老师大脑”。它是“学生大脑”的一个**“冷冻”副本**（例如，每 1000 步才复制一次）。它<strong>缓慢</strong>更新，非常<strong>稳定</strong>。</li>
+</ol>
+<p>DQN <strong>只</strong>用“老师大脑” ($\theta’$) 来计算那个“教科书上的目标值”：
+$$
+Y_t^{DQN} = r + \gamma \max_{a’} Q_{\theta’}(s’, a’)
+$$</p>
+<p><em>(这就是 <code>target_net(next_state).max(1)[0]</code>)</em></p>
+<p>这解决了“稳定性”问题。但它<strong>引入</strong>了一个<strong>新的、更隐蔽的</strong>数学缺陷。</p>
+<h3><span id="dqn-%E7%9A%84%E8%87%B4%E5%91%BD%E7%BC%BA%E9%99%B7max-%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BF%87%E5%BA%A6%E8%87%AA%E4%BF%A1-overestimation-bias">DQN 的致命缺陷：<code>max</code> 运算符的“过度自信” (Overestimation Bias)</span></h3>
+<p><code>target_net</code> ($\theta’$) <strong>仍然只是一个“估算器”</strong>，它不是“神的公式”。它的估算<strong>总是有噪声（Error）</strong>。</p>
+<h4><span id="%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E7%9A%84%E6%95%B0%E5%AD%A6%E4%BE%8B%E5%AD%90">一个具体的数学例子：</span></h4>
+<p>假设 AI 到了“下一个路口 <code>s'</code>”。它有两个选择（“不跳”或“跳”）。
+假设**“神的公式”<strong>（我们看不见）告诉我们，这两个动作</strong>一样好**：</p>
+<ul>
+<li>$Q^*(s’, \text{“不跳”}) = 5.0$</li>
+<li>$Q^*(s’, \text{“跳”}) = 5.0$</li>
+<li><strong>“完美”的目标值</strong> 应该是 $r + \gamma \cdot 5.0$。</li>
+</ul>
+<p>现在，我们“有噪声”的 <code>target_net</code>（$\theta’$）开始“估算”。由于神经网络的随机性，它的估算<strong>不</strong>是 <code>5.0</code> 和 <code>5.0</code>。
+假设它的估算是：</p>
+<ul>
+<li>$Q_{\theta’}(s’, \text{“不跳”}) = 5.0 + (\text{噪声} \epsilon_1 = -0.5) = \mathbf{4.5}$</li>
+<li>$Q_{\theta’}(s’, \text{“跳”}) = 5.0 + (\text{噪声} \epsilon_2 = +0.5) = \mathbf{5.5}$</li>
+</ul>
+<p><code>target_net</code> <strong>错误地</strong>认为“跳”更好，仅仅是因为它的“随机噪声”碰巧是正的。</p>
+<p>现在，DQN 开始计算“目标值”：</p>
+<ul>
+<li>$Y_t^{DQN} = r + \gamma \cdot \max(4.5, 5.5)$</li>
+<li>$Y_t^{DQN} = r + \gamma \cdot \mathbf{5.5}$</li>
+</ul>
+<p><strong>看到了吗？</strong></p>
+<ul>
+<li>“完美”的目标是 <code>5.0</code>。</li>
+<li>DQN 计算出的目标是 <code>5.5</code>。</li>
+</ul>
+<p>DQN <strong>系统性地高估 (Overestimates)</strong> 了未来的奖励。它在用一个<strong>被“噪声”污染了的、过于乐观</strong>的目标来训练它的 <code>policy_net</code>。</p>
+<p><strong>后果：</strong> AI 的“大脑”会变得“过度自信”。它会“幻想”某些状态的价值非常高。这导致了你的日志中出现的不稳定行为：它“自信”地执行一个策略（能跑 467 步），但这个策略是基于“幻想”的，所以当它遇到一个“刁钻”的、它没见过的管道时（幻想破灭），它会立即（在 16 步）崩溃。</p>
+<hr>
+<h2><span id="4-double-dqn-ddqn%E4%B8%80%E4%B8%AA%E8%B0%A8%E6%85%8E%E7%9A%84%E4%BC%B0%E7%AE%97%E8%80%85">4. Double DQN (DDQN)：一个“谨慎”的估算者</span></h2>
+<p>DDQN (Double DQN) 的发明就是为了在数学上<strong>修复</strong>这个 <code>max</code> 导致的“过度自信”问题。</p>
+<h3><span id="ddqn-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E8%A7%A3%E8%80%A6decoupling">DDQN 的核心原理：解耦（Decoupling）</span></h3>
+<p>DDQN 说：“我不能用<strong>同一个</strong>（有噪声的）估算器 <code>target_net</code> 去<strong>同时</strong> 1. 挑选动作 和 2. 评估动作。”</p>
+<p>DDQN 将这个过程<strong>解耦</strong>成两步，它<strong>同时使用两个大脑</strong>：</p>
+<ol>
+<li><strong>挑选 (Select):</strong> 我们用“正在训练”的 <code>policy_net</code> ($\theta$) 来<strong>挑选</strong>它认为的“最佳”下一步动作。</li>
+<li><strong>评估 (Evaluate):</strong> 我们用“稳定”的 <code>target_net</code> ($\theta’$) 来<strong>评估</strong>那个被“新大脑”挑出来的动作<strong>到底值多少钱</strong>。</li>
+</ol>
+<h3><span id="ddqn-%E7%9A%84%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">DDQN 的数学公式</span></h3>
+<p>DDQN 的“目标”计算公式因此变得“双重”（Double）了：
+$$
+Y_t^{DDQN} = r + \gamma Q_{\theta’}(s’, \argmax_{a} Q_{\theta}(s’, a))
+$$</p>
+<p><strong>让我们用“白痴”的视角，一步步解开这个公式：</strong></p>
+<ol>
+<li>
+<p><strong>内部 (挑选)：<code>\argmax_{a} Q_{\theta}(s', a)</code></strong></p>
+<ul>
+<li><code>\argmax</code> (arg-max) 的意思是：“不要给我<code>max</code>（最大值），给我<strong>导致</strong>最大值的那个<strong>参数（<code>a</code>）</strong>。”</li>
+<li><strong>步骤 1：</strong> AI 让 <code>policy_net</code>（$\theta$）查看 <code>s'</code>，并**“挑选”<strong>出它认为“Q 值最高”的那个</strong>动作** <code>a_max</code> (例如 <code>action = 0</code>，即“不跳”)。</li>
+</ul>
+</li>
+<li>
+<p><strong>外部 (评估)：<code>Q_{\theta'}(s', a_{\max})</code></strong></p>
+<ul>
+<li><strong>步骤 2：</strong> AI <strong>不再</strong>使用 <code>max()</code>。它拿着 <code>policy_net</code> 选出的动作 <code>a_max</code>（“不跳”），转头去问<strong>另一个</strong>网络 <code>target_net</code>（$\theta’$）：“请你来<strong>评估</strong>一下，‘不跳’这个动作<strong>真正</strong>值多少钱？”</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E8%BF%98%E6%98%AF%E9%82%A3%E4%B8%AA%E6%95%B0%E5%AD%A6%E4%BE%8B%E5%AD%90">还是那个数学例子：</span></h3>
+<ul>
+<li><strong>“神的公式”</strong> (真实值):
+<ul>
+<li>$Q^*(s’, \text{“不跳”}) = 5.0$</li>
+<li>$Q^*(s’, \text{“跳”}) = 5.0$</li>
+</ul>
+</li>
+<li><strong>“完美”的目标值</strong> 应该是 $r + \gamma \cdot 5.0$。</li>
+</ul>
+<p>现在，我们有两个<strong>独立</strong>的、<strong>都有噪声</strong>的神经网络：</p>
+<ul>
+<li>
+<p><strong><code>policy_net</code> ($\theta$) 的估算 (用于挑选):</strong></p>
+<ul>
+<li>$Q_\theta(s’, \text{“不跳”}) = 5.0 + (\text{噪声} \epsilon_3 = +0.2) = \mathbf{5.2}$</li>
+<li>$Q_\theta(s’, \text{“跳”}) = 5.0 + (\text{噪声} \epsilon_4 = -0.1) = 4.9$</li>
+</ul>
+</li>
+<li>
+<p><strong><code>target_net</code> ($\theta’$) 的估算 (用于评估):</strong></p>
+<ul>
+<li>$Q_{\theta’}(s’, \text{“不跳”}) = 5.0 + (\text{噪声} \epsilon_1 = -0.5) = \mathbf{4.5}$</li>
+<li>$Q_{\theta’}(s’, \text{“跳”}) = 5.0 + (\text{噪声} \epsilon_2 = +0.5) = 5.5$</li>
+<li><em>(注意：$\epsilon_1, \epsilon_2$ 和 $\epsilon_3, \epsilon_4$ 是<strong>独立</strong>的随机噪声，因为它们是两个不同的网络)</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>现在，DDQN 开始计算“目标值”：</strong></p>
+<ol>
+<li>
+<p><strong>挑选 (Select) - (看 <code>policy_net</code>)：</strong></p>
+<ul>
+<li><code>\argmax(5.2, 4.9)</code></li>
+<li><code>policy_net</code> 挑选出的“最佳”动作 <code>a_max</code> 是：<strong>“不跳”</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>评估 (Evaluate) - (看 <code>target_net</code>)：</strong></p>
+<ul>
+<li>AI 现在<strong>忽略</strong> <code>target_net</code> 中那个“被高估”的 <code>5.5</code>（“跳”），因为 <code>policy_net</code> <strong>没有</strong>选择它。</li>
+<li>它只去查找 <code>target_net</code> 对“不跳”这个动作的估值。</li>
+<li><code>target_net</code> 对“不跳”的估值是：<strong><code>4.5</code></strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>DDQN 的“目标值”：</strong></p>
+<ul>
+<li>$Y_t^{DDQN} = r + \gamma \cdot \mathbf{4.5}$</li>
+</ul>
+</li>
+</ol>
+<p><strong>对比一下：</strong></p>
+<ul>
+<li><strong>完美目标:</strong> <code>5.0</code></li>
+<li><strong>DQN 目标:</strong> <code>5.5</code> (过度自信！)</li>
+<li><strong>DDQN 目标:</strong> <code>4.5</code> (更“保守”，更接近现实！)</li>
+</ul>
+<p><strong>结论：</strong>
+DDQN 通过使用一个“独立”的网络（<code>policy_net</code>）来“挑选”动作，<strong>打破</strong>了 <code>max()</code> 运算符的“自我高估”的循环。它不再总是选择“被高估”的噪声。</p>
+<p>这会导致 AI 的 Q 值估算<strong>更低</strong>（轻微的“悲观”），但这<strong>极大地</strong>提高了训练的<strong>稳定性</strong>和<strong>可靠性</strong>。你（作为训练师）的日志会显示出更一致的“时长”，而不是在你（<code>Epsilon=0.05</code>）的日志中看到的 <code>467 步</code> 和 <code>16 步</code> 之间的“剧烈摆动”。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/16/%E5%B7%A5%E4%BD%9C/DQN%E4%B8%8EDDNQ/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;16&#x2F;工作&#x2F;DQN与DDNQ&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;16&#x2F;工作&#x2F;DQN与DDNQ&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

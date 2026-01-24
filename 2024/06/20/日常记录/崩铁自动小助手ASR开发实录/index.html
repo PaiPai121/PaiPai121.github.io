@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 崩铁自动小助手SRA开发实录 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/13aigs.jpeg"
+				data-sizes="auto"
+				alt="崩铁自动小助手SRA开发实录"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>崩铁自动小助手SRA开发实录</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年06月20日</a>
+			<a><i class="kirafont icon-edit-fill"></i>4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 19 分钟</a>
+		</div>
+		<html><head></head><body><ul>
+<li>[[#功能计划|功能计划]]</li>
+<li>[[#功能实现|功能实现]]
+<ul>
+<li>[[#功能实现#操作的模拟|操作的模拟]]</li>
+<li>[[#功能实现#窗口的识别|窗口的识别]]</li>
+<li>[[#功能实现#GUI与自线程|GUI与自线程]]</li>
+<li>[[#功能实现#消息窗口|消息窗口]]</li>
+</ul>
+</li>
+<li>[[#待实现及不足之处|待实现及不足之处]]</li>
+<li>[[#开源地址|开源地址]]</li>
+</ul>
+<h1><span id="%E5%B4%A9%E9%93%81%E5%B0%8F%E5%8A%A9%E6%89%8Basr">崩铁小助手ASR</span></h1>
+<p>天下苦二游上班坐牢久矣。方舟有MAA造福大众，免去日常之苦，能让我专心于关卡，但是米家游戏就不行了，于是就有了这个崩铁小助手——AutoStarRail的想法。</p>
+<h2><span id="%E5%8A%9F%E8%83%BD%E8%AE%A1%E5%88%92">功能计划</span></h2>
+<p>目前初步计划就是能够实现每天自动清体力，领日常奖励，让我不用操心每天还得上线清体力的事情。最后实现的界面如下，大概和方舟的maa差不多。
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240621134224.png" alt="" class="lazyload">
+但是为了防止崩铁全屏运行时难以观察运行信息，所以又做了个始终在前台的message窗口，用于实现实时显示自动化脚本的信息。（窗口可放置在任意位置）
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20240621134258.png" alt="" class="lazyload">
+经过测试，选择好要刷的本（经验\钱、行迹、突破素材、仪器这些都没问题）后能够自动导航至目标副本，然后识别体力，刷到没体力为止。
+演示视频如西瓜视频：<a target="_blank" rel="noopener" href="https://www.ixigua.com/7381843909502042662?logTag=11da010b2e92da74621f">从重复劳动中解脱-崩铁自动日常小助手</a>
+抖音：<a target="_blank" rel="noopener" href="https://v.douyin.com/i6eDMeRN/">从重复劳动中解脱-崩铁自动日常小助手</a>
+完整开源代码见 <a target="_blank" rel="noopener" href="https://github.com/PaiPai121/AutoStarRail">AutoStarRail</a>，欢迎大家star。</p>
+<h2><span id="%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0">功能实现</span></h2>
+<h3><span id="%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A8%A1%E6%8B%9F">操作的模拟</span></h3>
+<p>操作上使用vgamepad创建虚拟手柄来对游戏进行操作。虽然这样会多一个虚拟设备，但是由于手柄操作时对选中部件的高亮，能够更容易的识别当前选中的东西，并进行精确的操作。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Gamepad</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,pigeon = <span class="hljs-literal">None</span></span>):<br>        <span class="hljs-comment"># 初始化一个手柄</span><br>        self.pigeon = pigeon<br>        self.gamepad = vgamepad.VX360Gamepad()<br>        <span class="hljs-comment"># 初始化手柄状态</span><br>        self.reset_gamepad()<br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">reset_gamepad</span>(<span class="hljs-params">self</span>):<br>        self.gamepad.reset()<span class="hljs-comment">#键位扳机摇杆全部重置成初始状态</span><br>        self.gamepad.update()<br>    <span class="hljs-comment"># gamepad 操作</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">click_button</span>(<span class="hljs-params">self,button,duration=<span class="hljs-number">0.15</span></span>):<br>        self.gamepad.press_button(button)<br>        self.gamepad.update()<br>        time.sleep(duration + random.randint(<span class="hljs-number">0</span>,<span class="hljs-built_in">int</span>(<span class="hljs-number">0.05</span>*<span class="hljs-number">100</span>))/<span class="hljs-number">100</span>)<br>        self.gamepad.release_button(button)<br>        self.gamepad.update()<br>        <span class="hljs-keyword">if</span> self.pigeon:<br>            self.pigeon(<span class="hljs-string">"click "</span> + button_mapping[button])<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">press_button</span>(<span class="hljs-params">self,button</span>):<br>        self.gamepad.press_button(button)<br>        self.gamepad.update()<br>        <span class="hljs-keyword">if</span> self.pigeon:<br>            self.pigeon(<span class="hljs-string">"press "</span> + button_mapping[button])<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">release_button</span>(<span class="hljs-params">self,button</span>):<br>        self.gamepad.release_button(button)<br>        self.gamepad.update()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">LEFT_TRIGGER</span>(<span class="hljs-params">self,value</span>):<br>        self.gamepad.left_trigger_float(value)<br>        <span class="hljs-comment"># 左扳机轴 value改成0.0到1.0之间的浮点值，可以精确到小数点后5位</span><br>        self.gamepad.update()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">RIGHT_TRIGGER</span>(<span class="hljs-params">self,value</span>):    <br>        self.gamepad.right_trigger_float(value)<br>        <span class="hljs-comment"># 右扳机轴 value改成0.0到1.0之间的浮点值，可以精确到小数点后5位</span><br>        self.gamepad.update()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">LEFT_JOYSTICK</span>(<span class="hljs-params">self,theta,amplitude,ran_theta = <span class="hljs-number">2</span>*np.pi/<span class="hljs-number">25</span>,ran_amp = <span class="hljs-number">1</span>/<span class="hljs-number">25</span></span>): <span class="hljs-comment">#x_value, y_value):</span><br>        theta = theta + random.randint(<span class="hljs-number">0</span>,ran_theta*<span class="hljs-number">100</span>)/<span class="hljs-number">100</span><br>        amplitude = amplitude + random.randint(<span class="hljs-number">0</span>,ran_amp*<span class="hljs-number">100</span>)/<span class="hljs-number">100</span><br>        x_value = <span class="hljs-number">1.414</span>*amplitude * np.cos(theta)<br>        y_value = <span class="hljs-number">1.414</span>*amplitude * np.sin(theta)<br>        self.gamepad.left_joystick_float(x_value, y_value)<br>        <span class="hljs-comment"># 左摇杆XY轴  x_values和y_values改成-1.0到1.0之间的浮点值，可以精确到小数点后5位</span><br>        self.gamepad.update()<br>        <span class="hljs-keyword">if</span> self.pigeon:<br>            self.pigeon(<span class="hljs-string">""</span> + <span class="hljs-string">"Left joystick"</span>)<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">RIGHT_JOYSTCIK</span>(<span class="hljs-params">self,theta,amplitude,ran_theta = <span class="hljs-number">2</span>*np.pi/<span class="hljs-number">25</span>,ran_amp = <span class="hljs-number">1</span>/<span class="hljs-number">25</span></span>):<br>        theta = theta + random.randint(<span class="hljs-number">0</span>,<span class="hljs-built_in">int</span>(ran_theta*<span class="hljs-number">100</span>))/<span class="hljs-number">100</span><br>        amplitude = amplitude + random.randint(<span class="hljs-number">0</span>,<span class="hljs-built_in">int</span>(ran_amp*<span class="hljs-number">100</span>))/<span class="hljs-number">100</span><br>        x_value = amplitude * np.cos(theta)<br>        y_value = amplitude * np.sin(theta)<br>        self.gamepad.right_joystick_float(x_value, y_value)<br>        <span class="hljs-comment"># 右摇杆XY轴  x_values和y_values改成-1.0到1.0之间的浮点值，可以精确到小数点后5位</span><br>        self.gamepad.update()<br>        <span class="hljs-keyword">if</span> self.pigeon:<br>            self.pigeon(<span class="hljs-string">""</span> + <span class="hljs-string">"Left joystick"</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">joystick_movement</span>(<span class="hljs-params">self, theta=<span class="hljs-number">0</span>, duration=<span class="hljs-number">0.5</span>, amplitude=<span class="hljs-number">1</span></span>):<br>        start_time = time.time()<br>        <span class="hljs-keyword">while</span> time.time() - start_time &lt; duration:<br>            <span class="hljs-comment"># 时间-角度序列</span><br>            theta_time = theta * (time.time() - start_time) / duration<br><br>            <span class="hljs-comment"># 幅度</span><br>            amplitude_time = amplitude * (time.time() - start_time) / duration<br><br>            self.RIGHT_JOYSTCIK(theta_time, amplitude_time)<br><br>            time.sleep(<span class="hljs-number">0.01</span>)<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E7%AA%97%E5%8F%A3%E7%9A%84%E8%AF%86%E5%88%AB">窗口的识别</span></h3>
+<p>这部分涉及到图像的一些识别。为了减少计算资源的消耗，本文主要使用paddleocr识别字符来定位。少部分地方用到了矩形框的识别。</p>
+<h3><span id="%E6%B8%B8%E6%88%8F%E7%AA%97%E5%8F%A3%E8%AF%86%E5%88%AB">游戏窗口识别</span></h3>
+<p>脚本启动时应当先识别当前有没有打开启动器、或游戏，再决定是否需要打开游戏。
+对于老版本而言由于启动器和游戏名称都为“崩坏：星穹铁道”，因此无法仅从名称上判断窗口是哪个，还需要进一步判断是启动器还是游戏。可以通过窗口上是否有启动器上独有的字符判断是否为游戏。
+因此，窗口检测的流程如下图所示。</p>
+<pre class="mermaid">flowchart TB
+    检查星穹铁道窗口 --&gt;|有| 存在星穹铁道;
+    存在星穹铁道 --&gt; 检查特征字符;
+	检查特征字符--&gt;|有| 当前是旧启动器;
+	检查特征字符--&gt;|无| 游戏已启动;
+	当前是旧启动器--&gt; 点击打开游戏;
+	点击打开游戏--&gt; 游戏已启动;	
+	检查星穹铁道窗口 --&gt;|无| 不存在星穹铁道;
+	不存在星穹铁道 --&gt; 检查米哈游启动器窗口;
+	检查米哈游启动器窗口 --&gt;|无| 不存在任何启动器;
+	不存在任何启动器 --&gt; 搜寻启动器并打开;
+	搜寻启动器并打开 --&gt; 点击打开游戏;
+	检查米哈游启动器窗口 --&gt;|有| 启动了米哈游启动器;
+	启动了米哈游启动器--&gt; 点击打开游戏;</pre>
+<p>其相关代码在start_game.py中，该部分代码能够实现自动识别当前是否有游戏窗口，如果无窗口则逐步实现打开游戏。</p>
+<h3><span id="%E5%89%AF%E6%9C%AC%E5%AF%BC%E8%88%AA">副本导航</span></h3>
+<p>该部分代码放置在daily_tasks.py中。
+导航的第一步是打开星际和平指南，该步较为简单，直接使用虚拟手柄打开轮盘，然后拨到对应位置即可。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">open_star_guide</span>(<span class="hljs-params">self</span>):<br><br>	<span class="hljs-comment"># 打开星际和平指南</span><br>	<br>	self.gp.press_button(LEFT_SHOULDER)<br>	<br>	self.gp.joystick_movement(np.pi * <span class="hljs-number">1</span> / <span class="hljs-number">4</span>, duration= <span class="hljs-number">1</span>) <span class="hljs-comment"># 移动到指南</span><br>	<br>	time.sleep(<span class="hljs-number">0.8</span>)<br>	<br>	self.gp.joystick_movement(amplitude=<span class="hljs-number">0</span>)<br>	<br>	self.gp.release_button(LEFT_SHOULDER)<br>	<br>	self.pigeon(<span class="hljs-string">"打开星际和平指南"</span>)<br>	<br>	time.sleep(<span class="hljs-number">0.9</span>)<br></code></pre></td></tr></tbody></table></figure>
+<p>随后需要进一步识别星际和平指南的页面，以及寻找对应的副本。流程如下：</p>
+<pre class="mermaid">flowchart TB
+打开星际和平指南 --&gt; 领取日常奖励;
+领取日常奖励 --&gt; 每日实训;
+打开星际和平指南 --&gt; 清体力;
+清体力 --&gt; 生存索引;
+生存索引 --&gt; |经验/武器经验/信用点|拟造花萼金
+生存索引 --&gt; |行迹材料|拟造花萼赤
+生存索引 --&gt; |突破材料|凝滞虚影
+生存索引 --&gt; |遗器|侵蚀隧洞</pre>
+<h4><span id="%E5%92%8C%E5%B9%B3%E6%8C%87%E5%8D%97%E9%A1%B5%E9%9D%A2%E8%AF%86%E5%88%AB">和平指南页面识别</span></h4>
+<p>对于和平指南的页面，如每日实训、生存索引的识别，只需通过ocr识别有无对应字符即可找到该页面</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_page</span>(<span class="hljs-params">self,tag = <span class="hljs-string">"生存索引"</span></span>):<br><br><span class="hljs-comment"># 已经打开星际和平指南后，通过手柄切换标签找到对应的page</span><br><br>	<span class="hljs-keyword">if</span> TargetDetector(self.window,self.gp).search_button(tag, RIGHT_SHOULDER):<br>	<br>		self.pigeon(<span class="hljs-string">"找到"</span> + tag)<br>	<br>	<span class="hljs-keyword">else</span>:<br>	<br>		self.pigeon(<span class="hljs-string">"未找到"</span> + tag)<br></code></pre></td></tr></tbody></table></figure>
+<p>其中TargetDetect中的search_button为递归寻找，直到满足条件。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">search_button</span>(<span class="hljs-params">self, btn_text, action</span>):<br>	<br>	<span class="hljs-string">"""</span><br><span class="hljs-string">	</span><br><span class="hljs-string">	查找相应按钮</span><br><span class="hljs-string">	</span><br><span class="hljs-string">	:param btn_text: 目标按钮名称</span><br><span class="hljs-string">	</span><br><span class="hljs-string">	:param action: 找不到按钮对应操作</span><br><span class="hljs-string">	</span><br><span class="hljs-string">	:return:</span><br><span class="hljs-string">	</span><br><span class="hljs-string">	"""</span><br>	<br>	figure, _, _, _, _ = self.win_action.get_screenshot(self.window)<br>	<br>	find, _ = self.findText(figure,btn_text)<br>	<br>	<span class="hljs-keyword">if</span> find:<br>		<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'找到<span class="hljs-subst">{btn_text}</span>'</span>)<br>		<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>	<br>	<span class="hljs-keyword">else</span>:<br>		<br>		self.gp.click_button(action)<br>		<br>		time.sleep(<span class="hljs-number">0.2</span> + random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) / <span class="hljs-number">100</span>)<br>		<br>		<span class="hljs-keyword">return</span> self.search_button(btn_text, action)<br></code></pre></td></tr></tbody></table></figure>
+<h4><span id="%E9%A1%B5%E9%9D%A2%E4%B8%AD%E9%AB%98%E4%BA%AE%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%AF%BB%E6%89%BE">页面中高亮位置的寻找</span></h4>
+<p>在确定找到页面后，我们需要识别出当前高亮的标签（如拟造花萼、侵蚀隧洞）是哪个。
+此处我们可以先使用OCR识别有无目标文字，如果没有，说明当前页面不存在目标标签，需要继续翻页。如果存在，通过灰度阈值识别目标文字所在区域的灰度是否是选中的灰度，如果是则退出寻找，否则继续寻找。</p>
+<pre class="mermaid">flowchart TB
+查询目标文字 --&gt; |无|按下down_button;
+按下down_button --&gt; 查询目标文字;
+查询目标文字 --&gt; |有|计算目标文字所在区域灰度;
+计算目标文字所在区域灰度 --&gt; |范围内| 结束查找;
+计算目标文字所在区域灰度 --&gt; |范围外| 按下down_button;</pre>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_highlight</span>(<span class="hljs-params">self, btn_text, action=<span class="hljs-literal">None</span></span>): <br>	<span class="hljs-string">""" </span><br><span class="hljs-string">	寻找按钮的高亮状态。</span><br><span class="hljs-string">	通过截图并查找按钮文本，判断按钮是否处于高亮状态。如果按钮未高亮，则点击按钮并重试。 </span><br><span class="hljs-string">	主要用于自动化测试中对按钮状态的判断和操作。 </span><br><span class="hljs-string">	参数: </span><br><span class="hljs-string">	btn_text (str): 按钮的文本内容，用于查找按钮。 </span><br><span class="hljs-string">	action (function, optional): 当按钮未高亮时执行的操作，默认为None。可以是一个函数，该函数会在按钮未高亮时被调用。 </span><br><span class="hljs-string">	返回: </span><br><span class="hljs-string">	bool: 如果按钮处于高亮状态，则返回True；否则返回False。 </span><br><span class="hljs-string">	"""</span> <br>	<span class="hljs-comment"># 截取窗口的屏幕快照 </span><br>	<span class="hljs-comment"># 转到灰度上看灰度值。先截取字附近的区域 </span><br>	figure, _, _, _, _ = self.win_action.get_screenshot(self.window) <span class="hljs-comment"># 在屏幕快照中查找按钮文本 </span><br>	find, pos = self.findText(figure, btn_text) <br>	<span class="hljs-comment"># 如果按钮未找到 </span><br>	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> find: <span class="hljs-comment"># 没找到</span><br>		<br>		self.gp.click_button(action)<br>		<br>		time.sleep(<span class="hljs-number">0.2</span> + random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) / <span class="hljs-number">100</span>)<br>		<br>		<span class="hljs-keyword">return</span> self.find_highlight(btn_text, action)<br>	<br>	  <br>	<br>	ave_gray = self.get_average_gray_value(figure,pos)<br>	<br>	<span class="hljs-keyword">if</span> ave_gray &lt; <span class="hljs-number">100</span>: <span class="hljs-comment"># 高亮-黑色</span><br>	<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'找到<span class="hljs-subst">{btn_text}</span>'</span>)<br>		<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>	<br>	<span class="hljs-keyword">else</span>:<br>	<br>		self.gp.click_button(action)<br>		<br>		time.sleep(<span class="hljs-number">0.2</span> + random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) / <span class="hljs-number">100</span>)<br>		<br>		<span class="hljs-keyword">return</span> self.find_highlight(btn_text, action)<br></code></pre></td></tr></tbody></table></figure>
+<h4><span id="%E5%8F%B3%E4%BE%A7%E5%85%B7%E4%BD%93%E5%89%AF%E6%9C%AC%E7%9A%84%E5%AF%BB%E6%89%BE">右侧具体副本的寻找</span></h4>
+<p>使用手柄的话，右侧选择的副本会有一个橙色的矩形框作为高亮，因此识别矩形框就知道我们当前选中的是哪个了。
+使用HSV颜色空间对橙色进行区分的效果并不理想。因此还是采用了矩形边框识别。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">detect_dungeon_boxes</span>(<span class="hljs-params">self,image,text</span>):<br>    <span class="hljs-comment"># 可以找出当前高亮的选择区域</span><br>    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)<br>    edges = cv2.Canny(gray, threshold1=<span class="hljs-number">100</span>, threshold2=<span class="hljs-number">200</span>)<br>    contours, _ = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)<br>    min_area_threshold = <span class="hljs-number">10</span>  <span class="hljs-comment"># 设定最小面积阈值</span><br>    height, width = image.shape[:<span class="hljs-number">2</span>]  <span class="hljs-comment"># 获取图像高度和宽度</span><br>    area_ratio = <span class="hljs-number">0.2</span><br>    target_area = height * width * area_ratio  <span class="hljs-comment"># 计算目标最大面积</span><br>    max_area = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> contour <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(contour)<br>        <span class="hljs-keyword">if</span> area &gt; max_area <span class="hljs-keyword">and</span> area &lt; target_area:<br>            max_area = area<br>            max_contour = contour<br><br><br>    <span class="hljs-keyword">for</span> contour <span class="hljs-keyword">in</span> contours:<br>        area = cv2.contourArea(contour)<br>        <span class="hljs-keyword">if</span> area &gt; min_area_threshold:<br>            <span class="hljs-comment"># 计算边界框</span><br>            x, y, w, h = cv2.boundingRect(contour)<br><br>                <span class="hljs-comment"># 绘制矩形</span><br>            cv2.rectangle(image, (x, y), (x+w, y+h), (<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>)<br>    <span class="hljs-comment"># 如果找到了符合条件的轮廓</span><br>    <span class="hljs-keyword">if</span> max_contour <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-comment"># 获取边界框</span><br>        x, y, w, h = cv2.boundingRect(max_contour)<br>        <span class="hljs-comment"># 截取该矩形区域</span><br>        cropped_image = image[y:y+h, x:x+w]<br>        find, pos = self.findText(cropped_image,text)<br>        <span class="hljs-comment"># 显示截取的图像</span><br>        <span class="hljs-comment"># cv2.imshow('Cropped Rectangle', cropped_image)</span><br>        <span class="hljs-comment"># cv2.waitKey(0)</span><br>        <span class="hljs-comment"># cv2.destroyAllWindows()</span><br>        <span class="hljs-keyword">return</span> find<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-comment"># print("Not found.")</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_dungeon</span>(<span class="hljs-params">self,btn_text, action = <span class="hljs-literal">None</span></span>):<br>    figure, _, _, _, _ = self.win_action.get_screenshot(self.window)<br>    <span class="hljs-comment"># self.gp.click_button(action)</span><br>    <span class="hljs-keyword">if</span> self.detect_dungeon_boxes(figure,btn_text):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">'已选中：'</span> + btn_text)<br>    <span class="hljs-keyword">else</span>:<br>        self.gp.click_button(action)<br>        time.sleep(<span class="hljs-number">0.2</span> + random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) / <span class="hljs-number">100</span>)<br>        <span class="hljs-keyword">return</span> self.find_dungeon(btn_text, action)<br><br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="gui">GUI</span></h3>
+<p>GUI采用pyqt6实现。主要包括一个主窗口和一个消息窗口</p>
+<h4><span id="%E5%AD%90%E7%BA%BF%E7%A8%8B">子线程</span></h4>
+<p>在MainWindow中设置一个start案件，当被按下时启动一个子线程</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-meta">@pyqtSlot()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">on_start_button_clicked</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-string">'''</span><br><span class="hljs-string">    开始执行相关任务</span><br><span class="hljs-string">    '''</span><br>    <span class="hljs-keyword">if</span> self.worker_thread <span class="hljs-keyword">and</span> self.worker_thread.isRunning():<br>        self.ui.start_button.setEnabled(<span class="hljs-literal">False</span>)<br>        self.ui.start_button.setText(<span class="hljs-string">"Start"</span>)<br>        self.task_worker.stop()<br>        <br>        self.stop_task_signal.emit()  <span class="hljs-comment"># 发出停止信号</span><br><br>        self.worker_thread.quit()<br>        self.worker_thread.wait()<br>        self.worker_thread = <span class="hljs-literal">None</span><br>        self.ui.start_button.setEnabled(<span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">else</span>:<br>        self.get_task_list() <span class="hljs-comment"># 获取任务列表</span><br>        self.ui.start_button.setText(<span class="hljs-string">"Stop"</span>)<br>        self.worker_thread = QThread()<br>        self.task_worker = TaskWorker(self.to_do,self.get_farm())<br>        self.task_worker.moveToThread(self.worker_thread)<br>        self.task_worker.message_signal.connect(self.append_message)  <span class="hljs-comment"># 连接消息信号</span><br>        self.task_worker.finished_signal.connect(self.on_thread_finished)<br>        self.task_worker.finished_signal.connect(self.worker_thread.quit) <span class="hljs-comment"># ？</span><br>        <span class="hljs-comment"># self.task_worker.stop_signal.connect(self.task_worker.stop)  # 新增：连接停止信号到stop方法</span><br>        self.worker_thread.started.connect(self.task_worker.run)<br>        self.worker_thread.finished.connect(<span class="hljs-keyword">lambda</span>: <span class="hljs-built_in">setattr</span>(self, <span class="hljs-string">'worker_thread'</span>, <span class="hljs-literal">None</span>))<br><br>        <span class="hljs-comment"># self.worker_thread.started.connect(lambda: self.stop_task_signal.connect(self.task_worker.stop))  # 启动线程后建立连接</span><br>        <span class="hljs-comment"># self.worker_thread.finished.connect(lambda: self.stop_task_signal.disconnect(self.task_worker.stop))  # 线程结束后断开连接</span><br><br>        self.worker_thread.start()<br><br>    <span class="hljs-comment">## 邮件发送</span><br>    <span class="hljs-keyword">if</span> self.ui.enable_email.isChecked():<br>        <span class="hljs-comment"># 接受邮件发送</span><br>        sender = Email_sender(self.email,self.password,pigeon=self.append_message)<br>        sender.send_email(self.ui.text_display.toPlainText())<br><br><br><span class="hljs-meta">@pyqtSlot()</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">on_set_email_clicked</span>(<span class="hljs-params">self</span>):<br>    self.email = self.ui.sender_email_edit.text()<br>    self.password = self.ui.sender_password_edit.text()<br>    self.email_server = self.ui.sender_email_server.text()<br>    self.email_port = self.ui.sender_SSL_port.text()<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'./config/credentials.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> file:<br>        file.write(self.email)<br>        file.write(<span class="hljs-string">'\n'</span>)<br>        file.write(self.password)<br>        file.write(<span class="hljs-string">'\n'</span>)<br>        file.write(self.email_server)<br>        file.write(<span class="hljs-string">'\n'</span>)<br>        file.write(self.email_port)<br>        file.write(<span class="hljs-string">'\n'</span>)<br>        <span class="hljs-keyword">if</span> self.ui.enable_email.isChecked():<br>            file.write(<span class="hljs-string">"1"</span>)<br>        <span class="hljs-keyword">else</span>:<br>            file.write(<span class="hljs-string">"0"</span>)<br>        <span class="hljs-comment"># if self.ui.</span><br><br></code></pre></td></tr></tbody></table></figure>
+<p>子线程负责组合之前写好的各种查询、操作的脚本，实现自动化任务的操作</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TaskWorker</span>(<span class="hljs-title class_ inherited__">QObject</span>):<br>    message_signal = pyqtSignal(<span class="hljs-built_in">str</span>)  <span class="hljs-comment"># Signal for sending messages to the GUI</span><br>    finished_signal = pyqtSignal()      <span class="hljs-comment"># Signal indicating the task is finished</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">undefined</span>(<span class="hljs-params">self</span>):<br>        self.message_signal.emit(<span class="hljs-string">"开发中"</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,task_list = [], farm_info = <span class="hljs-literal">None</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        self._stop_requested = <span class="hljs-literal">False</span><br>        self.task_list = task_list<br>        self.game_starter = StartGame(pigeon = self.message_signal.emit)<br>        self.daily_tasker = DailyTask(gw.getWindowsWithTitle(<span class="hljs-string">"崩坏：星穹铁道"</span>)[<span class="hljs-number">0</span>],pigeon = self.message_signal.emit)<br>        self.farm_info = farm_info<br>        <span class="hljs-comment"># self.mainWindow = mainWindow # 为了获取窗口中的状态</span><br>        <span class="hljs-comment"># self.mainWindow.materials_box_1</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">task_dispatcher</span>(<span class="hljs-params">self,task_list</span>):<br>        <span class="hljs-string">"""</span><br><span class="hljs-string">        根据任务列表调度执行任务</span><br><span class="hljs-string">        </span><br><span class="hljs-string">        参数:</span><br><span class="hljs-string">        tasks (list): 一个包含任务名称的列表，如 ['刷体力', '领取日常奖励']</span><br><span class="hljs-string">        """</span><br>        task_functions = {<br>            <span class="hljs-string">'刷体力'</span>: self.daily_tasker.clean_stamina, <span class="hljs-comment"># brush_energy,</span><br>            <span class="hljs-string">'领取日常奖励'</span>: self.daily_tasker.daily_task, <span class="hljs-comment"># claim_daily_reward,</span><br>            <span class="hljs-string">'领取纪行奖励'</span>: self.daily_tasker.get_nameless_honor, <span class="hljs-comment"># claim_chronicle_reward,</span><br>            <span class="hljs-string">'模拟宇宙'</span>: self.undefined <span class="hljs-comment"># simulate_universe,</span><br>        }<br>        <br>        <span class="hljs-keyword">for</span> task <span class="hljs-keyword">in</span> task_list:<br>            <span class="hljs-keyword">if</span> task <span class="hljs-keyword">in</span> task_functions:<br>                self.message_signal.emit(<span class="hljs-string">"Task: "</span> + task)<br>                <span class="hljs-keyword">if</span> task == <span class="hljs-string">"刷体力"</span>:<br>                    self.daily_tasker.clean_stamina(self.farm_info)<br>                <span class="hljs-keyword">else</span>:<br>                    task_function = task_functions[task]<br>                    task_function()<br>                    time.sleep(<span class="hljs-number">5</span>)<br>                self.message_signal.emit(<span class="hljs-string">"Task: "</span> + task + <span class="hljs-string">" complete"</span>)<br>            <span class="hljs-keyword">else</span>:<br>                self.message_signal.emit(<span class="hljs-string">f"未知任务: <span class="hljs-subst">{task}</span>, 跳过执行."</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        self.message_signal.emit(<span class="hljs-string">"Tasks: "</span>+<span class="hljs-built_in">str</span>(self.task_list))<br><br>        <span class="hljs-comment"># 如果tasks不为空，应当先检查是否打开了游戏</span><br>        <span class="hljs-keyword">if</span> self.task_list:<br>            self.message_signal.emit(<span class="hljs-string">"Checking if game is open..."</span>)<br>            self.game_starter.start_game()<br>        self.task_dispatcher(self.task_list)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>(<span class="hljs-params">self</span>):<br>        self._stop_requested = <span class="hljs-literal">True</span><br></code></pre></td></tr></tbody></table></figure>
+<p>线程之间通过</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">message_signal.emit(<span class="hljs-built_in">str</span>)<br></code></pre></td></tr></tbody></table></figure>
+<p>传递消息。</p>
+<h4><span id="%E6%B6%88%E6%81%AF%E7%AA%97%E5%8F%A3">消息窗口</span></h4>
+<p>消息窗口应当常驻在最上端，然后背景透明，且与鼠标不发生交互，大小可以自动调整</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageBox</span>(<span class="hljs-title class_ inherited__">QLabel</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, text = <span class="hljs-string">""</span>, parent=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__(text, parent)<br>        self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.FramelessWindowHint)<br>        self.setStyleSheet(<span class="hljs-string">"background-color: rgba(10, 10, 10, 128); color: red;"</span>)<br>        <br>        self.setGeometry(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>)  <span class="hljs-comment"># 设置初始位置和大小</span><br>        self.set_font_size(<span class="hljs-number">20</span>)<br>        self.adjustSizeToContent()<br>        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_font_size</span>(<span class="hljs-params">self, size</span>):<br>        font = self.font()<br>        font.setPointSize(size)<br>        self.setFont(font)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_text</span>(<span class="hljs-params">self, text</span>):<br>        self.setText(text)<br>        self.adjustSizeToContent()<br>        <br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>().show()<br>        <span class="hljs-comment"># self.move(0, 0)  # 每次显示时都移动到左上角</span><br>        screen = QApplication.primaryScreen()<br>        screen_geometry = screen.geometry()<br>        window_geometry = self.frameGeometry()<br>        x = screen_geometry.width() - window_geometry.width()<br>        self.move(x, <span class="hljs-number">500</span>)  <span class="hljs-comment"># 每次显示时都移动到右上角</span><br><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">resizeEvent</span>(<span class="hljs-params">self, event</span>):<br>        <span class="hljs-built_in">super</span>().resizeEvent(event)<br>        <span class="hljs-comment"># self.move(0, 0)  # 当窗口大小改变时，也移动到左上角</span><br>        screen = QApplication.primaryScreen()<br>        screen_geometry = screen.geometry()<br>        window_geometry = self.frameGeometry()<br>        x = screen_geometry.width() - window_geometry.width()<br>        self.move(x, <span class="hljs-number">500</span>)  <span class="hljs-comment"># 当窗口大小改变时，也移动到右上角</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">adjustSizeToContent</span>(<span class="hljs-params">self</span>):<br>        font_metrics = QFontMetrics(self.font())<br>        lines = self.text().splitlines()<br>        text_width = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:<br>            text_width = <span class="hljs-built_in">max</span>(text_width,font_metrics.horizontalAdvance(line))<br>        text_height = font_metrics.height() * <span class="hljs-built_in">len</span>(lines)  <span class="hljs-comment"># 计算所有文本行的高度</span><br>        self.setFixedSize(text_width, text_height)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">eventFilter</span>(<span class="hljs-params">self, obj, event</span>):<br>        <span class="hljs-keyword">if</span> event.<span class="hljs-built_in">type</span>() <span class="hljs-keyword">in</span> (Qt.EventType.MouseButtonPress, Qt.EventType.MouseButtonRelease, Qt.EventType.MouseButtonDblClick, Qt.EventType.MouseMove):<br>            <span class="hljs-comment"># 将鼠标事件传递到下层的窗口</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>().eventFilter(obj, event)<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">mousePressEvent</span>(<span class="hljs-params">self, event</span>):<br>        <span class="hljs-comment"># 不要处理鼠标点击事件，使其传递到下层窗口</span><br>        event.ignore()<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5">邮件通知</span></h3>
+<p>本助手添加了邮件通知功能，待自动化任务执行完成后将log发送至目标邮箱以实现提醒和记录。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Email_sender</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,username = <span class="hljs-string">""</span>,password = <span class="hljs-string">""</span>,server = <span class="hljs-string">'smtp.163.com'</span>,port = <span class="hljs-number">465</span>, pigeon = <span class="hljs-built_in">print</span></span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-comment"># 网易邮箱的SMTP服务器地址和端口</span><br>        self.smtp_server = server<br>        self.smtp_port = port  <span class="hljs-comment"># 网易邮箱SMTP服务端口通常为465</span><br><br>        <span class="hljs-comment"># # 发件人邮箱账号和授权码</span><br>        <span class="hljs-comment"># username = 'your_email@163.com'</span><br>        <span class="hljs-comment"># password = 'your_authorization_code'  # 这里填写授权码，而不是密码</span><br><br>        <span class="hljs-comment"># 邮箱</span><br>        self.username = username<br>        <span class="hljs-comment"># self.receiver = username</span><br>        self.password = password<br>        self.pigeon = pigeon<br>        <span class="hljs-comment"># 邮件主题和正文</span><br>        <span class="hljs-comment"># self.subject = '自动星铁'</span><br>        <span class="hljs-comment"># self.body = '这是一封测试邮件。'</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">set_email</span>(<span class="hljs-params">self,username,password</span>):<br>        <span class="hljs-comment"># 邮箱</span><br>        self.username = username<br>        <span class="hljs-comment"># self.receiver = username</span><br>        self.password = password<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">send_email</span>(<span class="hljs-params">self,body</span>):<br>        <span class="hljs-comment"># 创建一个MIMEText邮件对象</span><br>        message = MIMEText(body, <span class="hljs-string">'plain'</span>, <span class="hljs-string">'utf-8'</span>)<br>        message[<span class="hljs-string">'From'</span>] = Header(self.username, <span class="hljs-string">'utf-8'</span>)<br>        message[<span class="hljs-string">'To'</span>] = Header(self.username)<br>        message[<span class="hljs-string">'Subject'</span>] = Header(<span class="hljs-string">"自动星铁message"</span>, <span class="hljs-string">'utf-8'</span>)<br>        <span class="hljs-keyword">try</span>:<br>            <span class="hljs-comment"># 连接SMTP服务器</span><br>            server = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port)<br>            server.login(self.username, self.password)  <span class="hljs-comment"># 登录SMTP服务器</span><br>            server.sendmail(self.username, self.username, message.as_string())  <span class="hljs-comment"># 发送邮件</span><br>            self.pigeon(<span class="hljs-string">"邮件发送成功"</span>)<br>        <span class="hljs-keyword">except</span> smtplib.SMTPException <span class="hljs-keyword">as</span> e:<br>            self.pigeon(<span class="hljs-string">"Error: 无法发送邮件"</span>, e)<br>        <span class="hljs-keyword">finally</span>:<br>            server.quit()  <span class="hljs-comment"># 断开与SMTP服务器的连接</span><br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="%E5%BD%93%E5%89%8D%E5%B1%80%E9%99%90">当前局限</span></h2>
+<p>现在的版本要求必须先打开好自动战斗并沿用自动战斗，否则脚本不会自动开启自动战斗，而是静待。
+无战斗失败的异常处理。
+无法设置是否吃燃料。
+模拟宇宙功能未实现。</p>
+<h2><span id="%E5%BC%80%E6%BA%90%E5%9C%B0%E5%9D%80">开源地址</span></h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PaiPai121/AutoStarRail">AutoStarRail</a></li>
+</ul>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/06/20/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/%E5%B4%A9%E9%93%81%E8%87%AA%E5%8A%A8%E5%B0%8F%E5%8A%A9%E6%89%8BASR%E5%BC%80%E5%8F%91%E5%AE%9E%E5%BD%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;06&#x2F;20&#x2F;日常记录&#x2F;崩铁自动小助手ASR开发实录&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;06&#x2F;20&#x2F;日常记录&#x2F;崩铁自动小助手ASR开发实录&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%97%A5%E5%B8%B8/" rel="tag">日常</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> rule based预测模块算法 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="rule based预测模块算法"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>rule based预测模块算法</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年10月29日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.1k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
+		</div>
+		<html><head></head><body><p>本文由AI根据1月版本代码梳理</p>
+<h1><span id="%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E9%A2%84%E6%B5%8Bprediction%E6%A8%A1%E5%9D%97---%E6%A1%86%E6%9E%B6%E4%B8%8E%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3">自动驾驶预测(Prediction)模块 - 框架与算法详解</span></h1>
+<h2><span id="1-%E6%A8%A1%E5%9D%97%E6%A0%B8%E5%BF%83%E6%A6%82%E8%BF%B0">1. 模块核心概述</span></h2>
+<p>该预测模块的核心使命是：<strong>为感知系统提供的每个障碍物，生成其在未来一段时间（例如 5 秒）内一条或多条可能的运动轨迹及其概率。</strong></p>
+<h3><span id="11-%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6">1.1. 核心设计哲学</span></h3>
+<p>该框架采用了**“策略模式 (Strategy Pattern)”<strong>与</strong>“分层降级 (Hierarchical Fallback)”**相结合的经典设计：</p>
+<ol>
+<li>
+<p><strong>策略模式：</strong></p>
+<ul>
+<li>系统（由 <code>PredictorManager</code> 代表）维护一个“算法工具箱”（<code>std.map&lt;PredictorType, Predictor*&gt; predictors_</code>）。</li>
+<li>对于不同类型、不同状态的障碍物（如“车道上的车”、“路口的人”），管理器会<strong>动态选择</strong>（或配置）不同的预测器（“策略”）来处理它。</li>
+</ul>
+</li>
+<li>
+<p><strong>分层降级 (Hierarchical Fallback)：</strong></p>
+<ul>
+<li>这是本模块的<strong>灵魂</strong>。系统不会盲目信任任何单一算法。</li>
+<li><strong>L1 (首选/高清地图)：</strong> 优先尝试最高精度的预测器（如 <code>LaneSequencePredictor</code>），它利用高清地图车道信息进行精确预测。</li>
+<li><strong>L2 (备选/运动学)：</strong> 如果 L1 失败（例如，障碍物不在地图车道上，<code>LaneSequencePredictor</code> 返回 <code>false</code>），系统<strong>立即降级</strong>到 L2 运动学模型（如 CTRV - 恒定转向率模型）。</li>
+<li><strong>L3 (兜底/运动学)：</strong> 如果 L2 也失败（例如，历史数据不足以计算转向率），系统<strong>再次降级</strong>到 L3（如 CV - 恒定速度模型），做直线外推。</li>
+<li><strong>L4 (安全约束)：</strong> 无论使用哪种模型，所有轨迹都会经过一层硬安全约束检查（如 <code>CheckCrossWithCurb</code>），确保轨迹不会“飞檐走壁”。</li>
+</ul>
+</li>
+</ol>
+<h2><span id="2-%E6%A0%B8%E5%BF%83%E6%A1%86%E6%9E%B6%E4%B8%8E%E7%BB%84%E4%BB%B6">2. 核心框架与组件</span></h2>
+<p>下面是这个预测模块的组件架构，它清晰地展示了“管理者-工具箱-工人”的层次结构。</p>
+<pre class="mermaid">classDiagram
+    direction LR
+    class PredictorManager {
+        &lt;&lt; (1) 管理者 &gt;&gt;
+        -predictors_ : map
+        +Run()
+        +PredictObstacle()
+        +RunVehiclePredictor()
+        +RunEmptyPredictor()
+    }
+    class Predictor {
+        &lt;&lt; (2) 抽象基类 &gt;&gt;
+        +virtual Predict()
+        +GenerateTrajectory()
+        +SetEqualProbability()
+    }
+    class SequencePredictor {
+        &lt;&lt; (3) 抽象工具箱 &gt;&gt;
+        +FilterLaneSequences()
+        +GetLongitudinalPolynomial()
+        +GetLateralPolynomial()
+    }
+    class LaneSequencePredictor {
+        &lt;&lt; (4) L1具体实现 &gt;&gt;
+        +Predict()
+        +DrawLaneSequenceTrajectoryPoints()
+    }
+
+    PredictorManager ..&gt; Predictor : 持有(holds)
+    Predictor &lt;|-- SequencePredictor : 继承(inherits)
+    SequencePredictor &lt;|-- LaneSequencePredictor : 继承(inherits)</pre>
+<h3><span id="21-predictormanager-%E7%AE%A1%E7%90%86%E8%80%85">2.1. <code>PredictorManager</code> (管理者)</span></h3>
+<p>这是模块的**“总调度器”<strong>和</strong>“安全网”**。</p>
+<ul>
+<li><strong>职责 1 - 管理：</strong> 在构造时 <code>RegisterPredictors()</code>，将所有具体的预测器（如 <code>LaneSequencePredictor</code>）实例化并存入 <code>predictors_</code> 中。</li>
+<li><strong>职责 2 - 调度：</strong> <code>Run()</code> 是主入口。它负责启用多线程（<code>PredictObstaclesInParallel</code>），并将障碍物分发给线程池（<code>PredictionThreadPool</code>）。</li>
+<li><strong>职责 3 - 决策（L0/L1）：</strong> <code>PredictObstacle()</code> 是核心调度函数。
+<ul>
+<li><strong>L0 决策：</strong> 它首先检查障碍物是否 <code>IsStill()</code> 或 <code>ToIgnore()</code>。如果是，则调用 <code>RunEmptyPredictor()</code>，流程结束。</li>
+<li><strong>L1 决策：</strong> 如果是动态障碍物，它调用 <code>RunVehiclePredictor()</code>。此函数从 <code>predictors_</code> 中<strong>取出 L1 预测器</strong>（即 <code>LaneSequencePredictor</code>），并执行 <code>predictor-&gt;Predict(...)</code>。</li>
+</ul>
+</li>
+<li><strong>职责 4 - 降级（L2/L3）：</strong> <code>PredictObstacle()</code> <strong>最关键的职责</strong>。
+<ul>
+<li>在 L1 预测器执行完毕后，它会检查 <code>flag_free_move_predict</code>（该标志位在 L1 失败或预测对象为行人/自行车时为 <code>true</code>）。</li>
+<li>如果需要降级，<strong>它会亲自执行 L2(CTRV) 或 L3(CV) 预测</strong>，并调用 <code>CheckCrossWithCurb()</code> 进行安全校验。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-predictor-%E6%8A%BD%E8%B1%A1%E5%9F%BA%E7%B1%BB">2.2. <code>Predictor</code> (抽象基类)</span></h3>
+<p>这是所有预测器的“<strong>蓝图</strong>”。</p>
+<ul>
+<li><strong>职责 1 - 契约：</strong> 定义纯虚函数 <code>Predict()</code>，强制所有子类都必须实现这个核心功能。</li>
+<li><strong>职责 2 - 工具：</strong> 提供所有子类都可能用到的<strong>公共辅助函数</strong>，如 <code>GenerateTrajectory()</code>（将 <code>std::vector</code> 点集转为 <code>Trajectory</code> 消息）和 <code>SetEqualProbability()</code>（为多条轨迹分配平均概率）。</li>
+</ul>
+<h3><span id="23-sequencepredictor-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%85%B7%E7%AE%B1">2.3. <code>SequencePredictor</code> (抽象工具箱)</span></h3>
+<p>这是<strong>专门</strong>为“序列”（尤其是车道序列）预测器提供<strong>高级算法</strong>的“<strong>数学工具箱</strong>”。</p>
+<ul>
+<li><strong>职责 1 - 序列过滤：</strong> 提供 <code>FilterLaneSequences()</code>。这是极其重要的<strong>启发式（Heuristic）剪枝算法</strong>，用于在多条可能的车道序列中，过滤掉不合理的、低概率的选项。</li>
+<li><strong>职责 2 - 轨迹数学：</strong> 提供 <code>GetLongitudinalPolynomial()</code> 和 <code>GetLateralPolynomial()</code>。这些函数用于<strong>求解多项式</strong>，以生成在 S-L（Frenet）坐标系下，从当前状态平滑过渡到目标状态（如车道中心）的轨迹。</li>
+</ul>
+<h3><span id="24-lanesequencepredictor-l1-%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">2.4. <code>LaneSequencePredictor</code> (L1 具体实现)</span></h3>
+<p>这是**“主力预测器”**，负责处理在高清地图车道上的障碍物。</p>
+<ul>
+<li><strong>职责 1 - L1 实现：</strong> 它是 <code>SequencePredictor</code> 的子类，<strong>真正实现了 <code>Predict()</code> 函数</strong>。</li>
+<li><strong>职责 2 - 流程编排：</strong> 它的 <code>Predict()</code> 函数是一个清晰的执行流：
+<ol>
+<li>检查 <code>has_lane_graph()</code>（L1 的准入条件）。</li>
+<li>调用<strong>父类的 <code>FilterLaneSequences()</code></strong> 进行剪枝。</li>
+<li>从过滤后的序列中，决策出<strong>最佳序列</strong>（<code>max_prob_index</code>）。</li>
+<li>调用自己的 <code>DrawLaneSequenceTrajectoryPoints()</code> 生成轨迹点。</li>
+<li>调用<strong>基类的 <code>GenerateTrajectory()</code></strong> 打包轨迹。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2><span id="3-%E6%A0%B8%E5%BF%83%E9%A2%84%E6%B5%8B%E6%B5%81%E7%A8%8B---%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3">3. 核心预测流程 - 算法详解</span></h2>
+<p>以下是预测模块处理一个<strong>动态汽车</strong>的完整算法流程。</p>
+<pre class="mermaid">graph TD
+    A[开始: 获得障碍物] --&gt; B{L0: 静态或忽略?}
+    B -- 是 --&gt; C[RunEmptyPredictor]
+    B -- 否 --&gt; D[RunVehiclePredictor]
+    D --&gt; E[L1 LaneSequencePredictor.Predict]
+    E --&gt; F{L1 预测成功? 有车道图且返回True}
+    F -- 是 --&gt; G[添加 L1 轨迹]
+    F -- 否 L1失败 --&gt; H[L2/L3 降级逻辑]
+    H --&gt; I{L2: 历史点 &gt;= 5?}
+    I -- 是 --&gt; J[执行 L2  CTRV  运动学外推]
+    I -- 否 --&gt; K{L3: 历史点 &gt; 1?}
+    K -- 是 --&gt; L[执行 L3  CV  运动学外推]
+    K -- 否 --&gt; M[无法预测, 无轨迹]
+    
+    J --&gt; N[L4: 安全约束检查]
+    L --&gt; N[L4: 安全约束检查]
+    N --&gt; O{轨迹是否穿过马路牙子?}
+    O -- 是 --&gt; P[截断 Truncate 轨迹]
+    O -- 否 --&gt; Q[保留完整轨迹]
+    
+    P --&gt; R[添加 L2/L3 轨迹]
+    Q --&gt; R
+    
+    C --&gt; Z[结束]
+    G --&gt; Z
+    M --&gt; Z
+    R --&gt; Z</pre>
+<h3><span id="%E9%98%B6%E6%AE%B5-0%E5%88%86%E5%8F%91%E4%B8%8E-l0-%E5%88%86%E8%AF%8A-predictormanager">阶段 0：分发与 L0 分诊 (<code>PredictorManager</code>)</span></h3>
+<ol>
+<li><code>PredictorManager::Run()</code> 启动，<code>PredictObstacle()</code> 获得一个障碍物 <code>obstacle</code>。</li>
+<li><strong>[L0 过滤]</strong> <code>if (obstacle-&gt;IsStill())</code> 检查。</li>
+<li><strong>假设：</strong> 障碍物是动态的。<code>IsStill()</code> 为 <code>false</code>。</li>
+<li><code>RunVehiclePredictor()</code> 被调用。</li>
+</ol>
+<h3><span id="%E9%98%B6%E6%AE%B5-1l1-%E9%A2%84%E6%B5%8B---%E9%AB%98%E6%B8%85%E5%9C%B0%E5%9B%BE%E8%BD%A6%E9%81%93-lanesequencepredictor">阶段 1：L1 预测 - 高清地图车道 (<code>LaneSequencePredictor</code>)</span></h3>
+<ol>
+<li><code>RunVehiclePredictor()</code> 从 <code>predictors_</code> 中获取 <code>LANE_SEQUENCE_PREDICTOR</code>（即 <code>LaneSequencePredictor</code> 实例）。</li>
+<li><code>LaneSequencePredictor::Predict()</code> 被调用。</li>
+<li><strong>[L1 准入]</strong> <code>if (!feature-&gt;has_lane_graph())</code> 检查。
+<ul>
+<li><strong>如果为 <code>true</code>（无车道图）：</strong> <code>Predict()</code> 立刻 <code>return false</code>。<strong>L1 预测失败</strong>。流程跳转到**[阶段 2]**。</li>
+<li><strong>假设：</strong> L1 准入通过。</li>
+</ul>
+</li>
+<li><strong>[L1 算法 - 步骤 1：序列过滤]</strong> (详见 4.1 节)
+<ul>
+<li>调用 <code>SequencePredictor::FilterLaneSequences()</code>。</li>
+<li>对 <code>LaneGraph</code> 中所有可能的序列，基于<strong>概率、冗余、启发式场景规则</strong>进行“剪枝”。</li>
+<li><strong>输出：</strong> <code>enable_lane_sequence</code> 布尔向量，标记哪些序列是合理的。</li>
+</ul>
+</li>
+<li><strong>[L1 算法 - 步骤 2：决策最佳序列]</strong>
+<ul>
+<li>遍历所有 <code>enable_lane_sequence == true</code> 的序列。</li>
+<li>使用两个标准寻找 <code>max_prob_index</code>：
+<ol>
+<li>序列概率 <code>sequence.probability()</code>（概率越大越好）。</li>
+<li>航向角差异 <code>std::fabs(common::math::AngleDiff(feature-&gt;theta(), ...))</code>（角度差越小越好）。</li>
+</ol>
+</li>
+<li>（注：根据代码，<strong>角度差（标准2）的优先级更高</strong>，它会覆盖掉概率（标准1）的选择）。</li>
+</ul>
+</li>
+<li><strong>[L1 算法 - 步骤 3：生成轨迹点]</strong> (详见 4.2 节)
+<ul>
+<li>调用 <code>LaneSequencePredictor::DrawLaneSequenceTrajectoryPoints()</code>。</li>
+<li>这是一个**“混合”<strong>轨迹生成器，它</strong>拼接**了两种轨迹：
+<ul>
+<li><strong>初始段：</strong> <code>3阶多项式</code> 平滑轨迹（<code>backup_points</code>），确保起点与障碍物当前姿态（位置、速度）完美匹配。</li>
+<li><strong>后半段：</strong> <code>S-L 坐标系</code> 轨迹（<code>origin_points</code>），确保轨迹“吸附”回车道中心线。</li>
+</ul>
+</li>
+<li>最后，对拼接后的轨迹进行<strong>按时间步重采样</strong>，生成最终点集 <code>points</code>。</li>
+</ul>
+</li>
+<li><strong>[L1 结果]</strong>
+<ul>
+<li><code>GenerateTrajectory(points)</code> 被调用，生成 <code>Trajectory</code> 消息。</li>
+<li><code>obstacle-&gt;add_predicted_trajectory(...)</code> 将轨迹存入障碍物。</li>
+<li><code>LaneSequencePredictor::Predict()</code> <strong>返回 <code>true</code>。L1 预测成功</strong>。</li>
+<li>流程回到 <code>PredictorManager::PredictObstacle()</code>。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E9%98%B6%E6%AE%B5-2l2l3-%E9%99%8D%E7%BA%A7---%E8%BF%90%E5%8A%A8%E5%AD%A6-predictormanager">阶段 2：L2/L3 降级 - 运动学 (<code>PredictorManager</code>)</span></h3>
+<ol>
+<li><code>PredictorManager::PredictObstacle()</code> 检查 L1 的结果。</li>
+<li><code>flag_free_move_predict = !obstacle-&gt;IsStill() &amp;&amp; (obstacle-&gt;latest_feature().predicted_trajectory().empty() || ...)</code></li>
+<li><strong>假设：</strong> L1 预测<strong>失败</strong>（<code>return false</code>），<code>predicted_trajectory().empty()</code> 为 <code>true</code>。</li>
+<li><code>flag_free_move_predict</code> 被设为 <code>true</code>。</li>
+<li><strong>[L2 降级 - CTRV 模型]</strong>
+<ul>
+<li><code>if (x_v.size() &gt;= 5)</code> 检查（历史点是否足够多）。</li>
+<li><strong>假设：</strong> 历史点足够。</li>
+<li><strong>算法：</strong>
+<ul>
+<li>a. 计算转向率 <code>yaw_rate</code>：通过历史的 <code>velocity_heading()</code> 或 <code>theta()</code> 变化，计算出平均角速度 $\dot{\theta}$。</li>
+<li>b. 循环推演：在 <code>for</code> 循环中，按 <code>period</code> 递推：
+<ul>
+<li><code>heading = latest_heading + yaw_rate * i * period</code></li>
+<li><code>velocity_x = speed * std::cos(heading)</code></li>
+<li><code>x = last_x + velocity_x * period</code></li>
+</ul>
+</li>
+<li><strong>结果：</strong> 生成一条恒定转向率的轨迹 <code>trajectory</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>[L3 降级 - CV 模型]</strong>
+<ul>
+<li><code>else if (obstacle-&gt;history_size() &gt; 1)</code>（L2 失败，但 L3 历史点足够）。</li>
+<li><strong>假设：</strong> L2 失败。</li>
+<li><strong>算法：</strong>
+<ul>
+<li><code>PredictWithLinearSeg()</code> 被调用。</li>
+<li><code>velocity_x = speed * std::cos(heading)</code></li>
+<li><code>x = obstacle-&gt;latest_feature().position().x() + i * velocity_x * period</code></li>
+<li><strong>结果：</strong> 生成一条恒定速度的直线轨迹 <code>trajectory</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>[L4 安全约束]</strong>
+<ul>
+<li><code>flag_cross_with_curb = CheckCrossWithCurb(trajectory, ...)</code> 被调用。</li>
+<li><strong>算法：</strong>
+<ul>
+<li>遍历 L2/L3 生成的轨迹 <code>trajectory</code> 的<strong>每一条线段</strong>。</li>
+<li>遍历地图中周围的<strong>马路牙子（Curb）/实线</strong>的<strong>每一条线段</strong>。</li>
+<li>进行<strong>线段相交测试</strong> <code>trajectory_seg.GetIntersect(lane_line_Seg, ...)</code>。</li>
+</ul>
+</li>
+<li><strong>结果：</strong>
+<ul>
+<li>如果相交，<code>flag_cross_with_curb = true</code>，并返回碰撞点索引 <code>cross_trajectory_index</code>。</li>
+<li><code>trajectory.mutable_trajectory_point()-&gt;erase(...)</code>：<strong>截断</strong>轨迹，只保留碰撞前的部分。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>[L2/L3 结果]</strong>
+<ul>
+<li>降级生成的（可能被截断的）轨迹被 <code>add_trajectory()</code>。</li>
+<li>流程结束。</li>
+</ul>
+</li>
+</ol>
+<h3><span id="%E9%98%B6%E6%AE%B5-3%E8%BE%93%E5%87%BA">阶段 3：输出</span></h3>
+<p><code>PredictorManager::Run()</code> 结束，<code>prediction_obstacles_</code> 中包含了所有障碍物的轨迹（L1 或 L2/L3 生成的）。</p>
+<hr>
+<h2><span id="4-%E5%85%B3%E9%94%AE%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90">4. 关键算法深度解析</span></h2>
+<h3><span id="41-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-1filterlanesequences-%E5%90%AF%E5%8F%91%E5%BC%8F%E5%BA%8F%E5%88%97%E5%89%AA%E6%9E%9D">4.1 深度解析 1：<code>FilterLaneSequences</code> (启发式序列剪枝)</span></h3>
+<ul>
+<li><strong>目标：</strong> <code>LaneGraph</code> 提供了所有“拓扑上”可能的路径，但很多路径在“物理上”或“意图上”是不合理的。此函数负责<strong>剪枝</strong>。</li>
+<li><strong>算法步骤：</strong>
+<ol>
+<li><strong>概率剪枝：</strong>
+<ul>
+<li>找到“概率最高”的序列 <code>all.first</code>。</li>
+<li>任何序列的 <code>probability &lt; FLAGS_lane_sequence_threshold_cruise</code> 都会被禁用，<strong>除非</strong>它是那条“概率最高”的。</li>
+</ul>
+</li>
+<li><strong>冗余剪枝：</strong>
+<ul>
+<li>找到“概率最高”的<strong>换道</strong>序列 <code>change.first</code>。</li>
+<li>如果有多条“左换道”序列，只保留概率最高的那条，禁用其他所有“左换道”序列。</li>
+</ul>
+</li>
+<li><strong>场景剪枝（长尾补丁）：</strong>
+<ul>
+<li>这是针对<strong>路口交叉/对向来车</strong>（<code>diff_velocity_heading &gt; M_PI * 2 / 3</code>）场景的启发式规则。</li>
+<li>它检查障碍物是否在转弯道上，并检查其<strong>横向速度</strong> <code>raw_velocity().y()</code>。</li>
+<li><strong>规则：</strong> 如果一个障碍物在“右转”道上，但其横向速度（<code>raw_velocity().y()</code>）显示它在“向左”运动（即<strong>并没有真的在右转</strong>），则<strong>禁用</strong>这条“右转”序列。</li>
+<li><strong>反之：</strong> 如果它在转弯道上，且横向速度<strong>匹配</strong>转弯意图，则<strong>强制选用</strong>该序列，并<strong>禁用</strong>所有其他序列（如直行）。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3><span id="42-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-2drawlanesequencetrajectorypoints-%E6%B7%B7%E5%90%88%E8%BD%A8%E8%BF%B9%E7%94%9F%E6%88%90">4.2 深度解析 2：<code>DrawLaneSequenceTrajectoryPoints</code> (混合轨迹生成)</span></h3>
+<ul>
+<li>
+<p><strong>目标：</strong> 生成一条平滑、连续、物理可信、且最终“吸附”到车道中心的轨迹。</p>
+</li>
+<li>
+<p><strong>算法步骤：</strong></p>
+  <pre class="mermaid">    graph TD
+      subgraph 阶段 1：S-L 原始轨迹推演
+          A1[按恒定加速度, 在 S-L 坐标系下推演]
+          A2[L(横向) 按 `approach_rate` 指数衰减]
+          A3[将 (S, L) 查地图转为 (X, Y)]
+          A4[结果: origin_points (起点不平滑)]
+      end
+      
+      subgraph 阶段 2：3阶多项式初始段
+          B1[在 origin_points 上找到"锚点" check_s_point]
+          B2[求解3阶多项式, 边界条件:]
+          B3["t=0: (pos, vel) = 障碍物当前状态"]
+          B4["t=T: (pos, vel) = 锚点状态"]
+          B5[结果: backup_points (起点平滑)]
+      end
+      
+      subgraph 阶段 3：拼接与重采样
+          C1[拼接: backup_points + origin_points(后半段)]
+          C2[计算拼接后轨迹的总弧长 S_total]
+          C3[按时间步 t 在弧长 S 上进行插值]
+          C4[结果: points (最终轨迹)]
+      end
+<pre><code>  A4 --&gt; B1;
+  B5 --&gt; C1;&lt;/pre&gt;
+</code></pre>
+<ol>
+<li><strong>阶段 1：(S-L) 原始轨迹推演</strong>
+<ul>
+<li>在 <code>for</code> 循环中，沿车道中心线（S方向）做<strong>恒定加速度</strong>运动 (<code>lane_s += ...</code>)。</li>
+<li>同时，向车道中心线（L方向）做<strong>指数衰减</strong>运动 (<code>lane_l *= approach_rate</code>)，确保“吸附”回车道。</li>
+<li><strong>结果：</strong> <code>origin_points</code>。一条完全贴合车道、但**在起点处与障碍物当前姿态有“跳变”**的轨迹。</li>
+</ul>
+</li>
+<li><strong>阶段 2：(Cubic) 初始段平滑</strong>
+<ul>
+<li>为了解决“跳变”问题，它在 <code>origin_points</code> 上找到一个“锚点” <code>check_s_point</code>。</li>
+<li>调用 <code>ComputePolynomial&lt;3&gt;(...)</code> 求解一个 3 阶多项式，该多项式可以<strong>完美地</strong>连接障碍物的<strong>当前状态</strong>（位置 $x, y$ 和速度 $v_x, v_y$）与未来“锚点”的<strong>目标状态</strong>。</li>
+<li><strong>结果：</strong> <code>backup_points</code>。一条从障碍物当前位置<strong>平滑“飞”向</strong>车道锚点的轨迹。</li>
+</ul>
+</li>
+<li><strong>阶段 3：(Stitch) 拼接与重采样</strong>
+<ul>
+<li><strong>拼接：</strong> <code>backup_points.insert(backup_points.end(), origin_points.begin() + check_s_size, ...)</code>，将**阶段2的“平滑段”<strong>和</strong>阶段1的“S-L后半段”**拼接在一起。</li>
+<li><strong>重采样：</strong> 拼接后的轨迹 <code>backup_points</code> 形状是对的，但<strong>时间不对</strong>（轨迹点不是等时间间隔的）。</li>
+<li>最后一个 <code>for</code> 循环（<code>tmp_s</code> 和 <code>points_s</code>）执行了**“按时间步重采样”<strong>。它计算拼接后轨迹的总“弧长” (<code>points_s</code>)，然后按固定的</strong>时间步**（<code>tmp_s</code>）在弧长上进行<strong>线性插值</strong>，生成最终<strong>等时间间隔</strong>的 <code>points</code>。</li>
+</ul>
+</li>
+</ol>
+</pre></li>
+</ul>
+<h2><span id="5-%E6%80%BB%E7%BB%93">5. 总结</span></h2>
+<p>该预测模块是一个健壮的、具有工业级强度的系统。它以<strong>高清地图（L1）<strong>为主要预测依据，保证了预测的“意图性”和“准确性”；同时，它又以</strong>纯运动学（L2/L3）<strong>和</strong>硬安全约束（L4）<strong>作为强大的“降级”和“兜底”手段，保证了系统在 L1 失败（如地图数据缺失、障碍物行为异常）时的</strong>健壮性</strong>。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/10/29/%E5%B7%A5%E4%BD%9C/rule-based%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%AE%97%E6%B3%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;29&#x2F;工作&#x2F;rule-based预测模块算法&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;29&#x2F;工作&#x2F;rule-based预测模块算法&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/gaea%E6%A1%86%E6%9E%B6/" rel="tag">gaea框架</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

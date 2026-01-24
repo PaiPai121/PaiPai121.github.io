@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 一个L4车队公司面试 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="一个L4车队公司面试"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>一个L4车队公司面试</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月03日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E4%B8%80%E4%B8%AA%E5%85%AC%E5%8F%B8-%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C">一个公司 面试经验</span></h1>
+<hr>
+<h2><span id="%F0%9F%93%8C-%E5%9F%BA%E6%9C%AC%E6%83%85%E5%86%B5">📌 基本情况</span></h2>
+<ul>
+<li><strong>公司:</strong> **公司</li>
+<li><strong>岗位:</strong> PNC (规划控制) 核心工程师</li>
+<li><strong>面试轮次:</strong> 共三轮技术面 + 一轮 HR 面</li>
+</ul>
+<hr>
+<h2><span id="%E2%9E%A1%EF%B8%8F-%E4%B8%80%E9%9D%A2-pnc%E6%A0%B8%E5%BF%83%E5%B7%A5%E7%A8%8B%E5%B8%88">➡️ 一面 (PNC核心工程师)</span></h2>
+<ul>
+<li><strong>内容:</strong> 自我介绍，以及针对过去项目（835项目）的沟通。</li>
+<li><strong>面试官评价:</strong> 评论 835 项目架构有些头重脚轻，认为参考线部分承担过多，导致解耦合不好，团队沟通效率低。</li>
+</ul>
+<h3><span id="c-%E5%85%AB%E8%82%A1">C++ 八股</span></h3>
+<p><strong>问题：</strong>
+说说 <code>const int *a</code>, <code>int const *a</code>, <code>const int a</code>, <code>int *const a</code>, <code>const int *const a</code> 分别是什么，有什么特点。</p>
+<blockquote>
+<p>(面试者注：我当时没答出来)</p>
+</blockquote>
+<p><strong>正确回答：</strong></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> a;        <span class="hljs-comment">// a 是一个常量，不允许修改。</span><br><span class="hljs-number">2.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *a;      <span class="hljs-comment">// a 指针所指向的内存里的值不变，即 (*a) 不变。</span><br><span class="hljs-number">3.</span> <span class="hljs-type">int</span> <span class="hljs-type">const</span> *a;      <span class="hljs-comment">// 同 const int *a。</span><br><span class="hljs-number">4.</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a;      <span class="hljs-comment">// a 指针所指向的内存地址不变，即 a 不变。</span><br><span class="hljs-number">5.</span> <span class="hljs-type">const</span> <span class="hljs-type">int</span> *<span class="hljs-type">const</span> a; <span class="hljs-comment">// 都不变，即 (*a) 不变，a 也不变。</span><br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE">编程题目</span></h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game-ii/">LeetCode 45. 跳跃游戏 II</a></li>
+</ul>
+<hr>
+<h2><span id="%E2%9E%A1%EF%B8%8F-%E4%BA%8C%E9%9D%A2-pnc%E5%9B%A2%E9%98%9F%E5%A4%A7leader">➡️ 二面 (PNC团队大leader)</span></h2>
+<p>这一面主要深入聊了项目经历，面试官比较关心<strong>换道决策</strong>。</p>
+<h3><span id="1-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86%E4%BB%8B%E7%BB%8D-%E7%BB%8F%E7%BA%AC%E6%81%92%E6%B6%A6-cx835-%E5%9F%8E%E5%B8%82%E9%A2%86%E8%88%AA%E8%BE%85%E5%8A%A9%E9%A1%B9%E7%9B%AE">1. 项目经历介绍 (经纬恒润 CX835 城市领航辅助项目)</span></h3>
+<ul>
+<li><strong>项目概况：</strong> 2024 年 6 月毕业后参与，当时处于方案确定时期。</li>
+<li><strong>规控框架：</strong> 获取感知和地图信息 -&gt; 确定车道属性 -&gt; 生成参考线 -&gt; 以参考线为坐标系处理动态障碍物 -&gt; 实现绕行和换道。</li>
+<li><strong>过路口方案：</strong> 最初方案有问题，引入轻地图方案，后经多次优化，解决地图信息偏差、车道宽度/数量错误等问题。</li>
+<li><strong>复杂场景处理 (如右转专用道)：</strong>
+<ul>
+<li>早期：混合 A* 搜索方案。</li>
+<li>后期：采集专家轨迹生成参考线（泛化性差，是临时方案）。</li>
+<li>配合状态机处理不同场景。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="2-%E6%96%B9%E6%A1%88%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F">2. 方案验证方式</span></h3>
+<ul>
+<li><strong>验证方法：</strong> 数采团队路测，高频问题直接反馈。</li>
+<li><strong>版本管理：</strong> 分 Daily Build (每天跑 50-100 公里) 和稳定版 (每天跑 200-300 公里)。</li>
+<li><strong>路线选择：</strong> 不固定，根据代码提交内容选择不同路况。</li>
+<li><strong>问题解决流程：</strong> 发现问题打 tag -&gt; 修改后数据回灌验证 -&gt; 测试同学原场景复现 -&gt; 确认解决后提交。</li>
+<li><strong>避免场景回退：</strong> 评估代码改动量。小改动简单测试；大改动多次测试，测试部通过后再提至稳定版。</li>
+</ul>
+<h3><span id="3-%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E4%BA%A4%E6%B5%81">3. 技术问题交流</span></h3>
+<ul>
+<li><strong>修路场景处理：</strong>
+<ul>
+<li>感知不到道线时，参考线以原位置粗解。</li>
+<li>用激光雷达点云的 Free Space 确定边界约束，绕过施工区域。</li>
+<li>锥筒间距小于 2 米认为不可通过。</li>
+</ul>
+</li>
+<li><strong>感知距离及限速：</strong>
+<ul>
+<li>感知距离：车辆 &gt;80m，行人 ~60m，锥桶/水马 ~40m。</li>
+<li>规控使用：车道线后处理后，下游规控拿到 60m 以内。</li>
+<li>调速：根据感知距离、激光雷达边界和地图信息调整（目前方案较粗糙）。</li>
+</ul>
+</li>
+<li><strong>专家轨迹维护：</strong> 离线采集，作为地图图层。自车到对应区域用其作为目标车道中心线（泛化性差，临时方案）。</li>
+<li><strong>自构图情况：</strong> 目前没有专门团队做，方案较粗糙，处于踩南昌交付区域场景阶段。</li>
+<li><strong>个人负责内容：</strong> 轻地图方案边界生成、参考线策略，参与部分车道选择决策。</li>
+</ul>
+<h3><span id="4-%E5%B2%97%E4%BD%8D%E7%9B%B8%E5%85%B3%E4%BA%A4%E6%B5%81-kargo-%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88">4. 岗位相关交流 (Kargo 的技术栈)</span></h3>
+<ul>
+<li><strong>L4 卡车问题：</strong> 接管率低，单车处理不了就降级，远程接管（车上有安全员）。后续想融合高精地图和高清地图。</li>
+<li><strong>轨迹生成方式：</strong> 基于优化，依赖优化空间下的边界信息约束。目前是重图方案，中短期想演进到轻图结合方案。</li>
+<li><strong>换道决策：</strong> 分静态判断和动态检查。选道根据候选区域和导航信息，还有推荐换道和 MLC 方案。</li>
+<li><strong>入职任务（可能）：</strong> 环境结构生成和宏观行为决策（换道相关）。</li>
+<li><strong>AI 应用：</strong> 换道框架做轨迹评价选优，有 AI 强化学习方案用于轨迹生成。</li>
+<li><strong>卡车换道问题：</strong>
+<ul>
+<li>卡车换道能力弱，可在轨迹评价中建模。</li>
+<li>求解空间无可达目标车道轨迹时，减速等待。</li>
+<li>采用时空联合方式做决策。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="%E2%9E%A1%EF%B8%8F-%E4%B8%89%E9%9D%A2-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%AA%E6%9D%A5%E7%9A%84mentor">➡️ 三面 (可能是未来的Mentor)</span></h2>
+<ul>
+<li><strong>内容：</strong> 交流内容与二面类似。</li>
+<li><strong>面试官评价：</strong> 评价我之前（835）的技术栈比较滞后。</li>
+</ul>
+<hr>
+<h2><span id="%E2%9E%A1%EF%B8%8F-hr%E9%9D%A2">➡️ HR面</span></h2>
+<ul>
+<li><strong>常规问题：</strong>
+<ul>
+<li>介绍前几位面试官。</li>
+<li>询问离职原因。</li>
+<li>职业选择与求职倾向。</li>
+<li>有无接触其他企业。</li>
+<li>当前薪资。</li>
+<li>最快什么时候入职。</li>
+</ul>
+</li>
+<li><strong>公司介绍：</strong>
+<ul>
+<li>介绍公司情况。</li>
+<li>后续流程与决策。</li>
+</ul>
+</li>
+<li><strong>技术适应流程 (Onboarding)：</strong>
+<ul>
+<li>有新员工培训。</li>
+<li>会配 Mentor 带小项目。</li>
+<li>合同三年，试用期 6 个月。</li>
+<li>设置明确的试用期目标，有中期反馈和转正答辩。</li>
+</ul>
+</li>
+</ul>
+<h1><span id="%E5%91%A8%E4%BA%8C%E5%8F%8D%E9%A6%88">周二反馈</span></h1>
+<p>岗位不匹配，拒了我</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/03/%E5%B7%A5%E4%BD%9C/%E9%9D%A2%E8%AF%95/Kargo%E9%9D%A2%E8%AF%95/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;03&#x2F;工作&#x2F;面试&#x2F;Kargo面试&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;03&#x2F;工作&#x2F;面试&#x2F;Kargo面试&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

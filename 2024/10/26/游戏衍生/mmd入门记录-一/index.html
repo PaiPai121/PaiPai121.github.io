@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> mmd入门记录-一 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/tuopa.png"
+				data-sizes="auto"
+				alt="mmd入门记录-一"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>mmd入门记录-一</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年10月26日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%89%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%8F%92%E4%BB%B6%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基础入门前置（软件、插件、基本操作）</span></h1>
+<p>插件下载地址<a target="_blank" rel="noopener" href="https://github.com/UuuNyaa/blender_mmd_tools/releases">MMD Tools</a>
+模型下载网站<a target="_blank" rel="noopener" href="https://www.aplaybox.com/">模之屋</a>
+一些参考资料
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1g14y1X7UV/?spm_id_from=333.999.0.0&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62">MMD入门手册：零基础做出第一个自己的MMD</a>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1H54y157Tf/?spm_id_from=888.80997.embed_other.whitelist&amp;bvid=BV1H54y157Tf&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62">MMD从入门到出师系列序言 MMD超详细干货大教程！</a>
+<a target="_blank" rel="noopener" href="https://www.aplaybox.com/article/details/749211379">MMD小白入门宝典</a>
+于我而言，目前就是装了blender和MMDTools插件。
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026195945.png" alt="" class="lazyload">
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026200043.png" alt="" class="lazyload">
+安装好了之后，右侧有个mmd的tag，点开就可以导入你的模型、动作，播放动画了
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241027124400.png" alt="" class="lazyload"></p>
+<p>网上看到的教程开头大概都是如此的，然后就阶跃到了很深入的知识。于是我打算先试试能不能自己调调动作，摆摆样子，像是先做一个hello world一样。</p>
+<pre class="mermaid">graph LR
+    A[导入模型] --&gt; B[镜头动画]
+    B --&gt; C[人物动画]</pre>
+<p>大概就是这样，不管好不好看，先用K帧的方式自己让镜头和人物动一下</p>
+<h1><span id="k%E5%B8%A7%E6%98%AF%E4%BB%80%E4%B9%88">k帧是什么</span></h1>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19i421v7kw?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.videopod.sections">Blender给镜头K动画关键帧，摄像机动画</a>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ih411j7Kh?spm_id_from=333.788.videopod.episodes&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;p=2">【MMD教学】k帧教学，从零基础到进阶！小刻看了也能学会</a></p>
+<h3><span id="%E6%91%84%E5%83%8F%E6%9C%BAk%E5%B8%A7">摄像机k帧</span></h3>
+<p>选中摄像机，
+找准摄像机位置，按i键添加关键帧
+移动时间轴，调整相机位置，继续添加关键帧率
+循环直到全部添加完成</p>
+<pre class="mermaid">graph TD
+    A[找准摄像机位置] --&gt; B[按i键添加关键帧]
+    B --&gt; C[移动时间轴]
+    C --&gt; D[调整相机位置]
+    D --&gt; E[继续添加关键帧]
+    E --&gt; F{全部添加完成?}
+    F -- 是 --&gt; G[结束]
+    F -- 否 --&gt; C</pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026133846.png" alt="" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026135020.png" alt="" class="lazyload"></p>
+<h1><span id="%E8%A1%A8%E6%83%85%E5%88%B6%E4%BD%9C">表情制作</span></h1>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bM4m1Q7cE?vd_source=1d04aeeacc3bad94c47bb6cd6817ae62&amp;spm_id_from=333.788.player.switch">Blender之mmd自制表情邪恶版雷电将军</a></p>
+<h2><span id="%E5%BD%A2%E6%80%81%E9%94%AE%E8%B0%83%E6%95%B4%E8%A1%A8%E6%83%85">形态键调整表情</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026141038.png" alt="" class="lazyload"></p>
+<p>这里模型的键名都是日文，可以挨个试试看看都是对应什么表情（如果你懂日文也可以直接看），比如有认真、愤怒等等，value则是幅度，0就是没有，1就是最大，用这些value系数将这些基本表情组合起来就能得到一个新的表情。（像是线性代数里一组基构成向量）</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026142418.png" alt="" class="lazyload">
+比方随便调整一下</p>
+<h2><span id="%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%BD%A2%E6%80%81%E9%94%AE">如何添加新形态键</span></h2>
+<p>右下角添加，数值拉为1，此时制作的表情就是我们新的形态键的满额度表情。
+进入雕刻模式，选择对应画笔开始在脸上进行调整。
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026143104.png" alt="" class="lazyload"></p>
+<h2><span id="%E5%8A%A8%E7%94%BB%E6%B7%BB%E5%8A%A0">动画添加</span></h2>
+<p>还是关键帧，按i或者点击右边的菱形都可以
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026143649.png" alt="" class="lazyload">
+此时可以如之前的摄像机k帧一样实现表情的动画</p>
+<h1><span id="%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB">骨骼动画</span></h1>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026183320.png" alt="" class="lazyload">
+新版本骨骼层<a href="">关于blender4.0的骨骼系统更新</a>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wQ4y1477c/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62">https://www.bilibili.com/video/BV1wQ4y1477c/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62</a>)</p>
+<p>总之现在没有骨骼层了，我们用骨骼组就好了</p>
+<h2><span id="%E5%90%84%E5%B1%82%E9%AA%A8%E9%AA%BC%E4%BD%9C%E7%94%A8">各层骨骼作用</span></h2>
+<p>头顶的骨骼同时控制两眼朝向（卡妈模型这里眼珠不动，换灵砂了），眼睛上的两个则是单独控制一只眼睛的朝向。
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026190259.png" alt="" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026190707.png" alt="" class="lazyload">
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026194619.png" alt="" class="lazyload"></p>
+<h3><span id="%E5%A6%82%E4%BD%95%E6%8B%BF%E8%B5%B7%E7%89%A9%E5%93%81">如何拿起物品</span></h3>
+<p>在物体模式下，选中两套骨骼
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191014.png" alt="" class="lazyload"></p>
+<p>然后切换为姿态模式</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191314.png" alt="" class="lazyload"></p>
+<p>吸取人物模型</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191433.png" alt="" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191528.png" alt="" class="lazyload"></p>
+<p>选择对应名称的骨骼</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191548.png" alt="" class="lazyload"></p>
+<p>设置反向，此时物体会回到绑定前的位置
+<img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026191717.png" alt="" class="lazyload"></p>
+<p>回到物体模式，调整物品位置，使其拿在手里</p>
+<p>调整完成后切换回姿态模式，移动手臂骨骼可以看到物品随手移动</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026193311.png" alt="" class="lazyload"></p>
+<pre class="mermaid">graph TD
+    A[物体模式] --&gt; B[选中两套骨骼]
+    B --&gt; C{切换姿态模式}
+    C --&gt;|吸取人物模型| D[复制姿态]
+    D --&gt; E[选择对应名称骨骼]
+    E --&gt; F[设置反向]
+    F --&gt; G[回到物体模式]
+    G --&gt; H[调整物品位置]
+    H --&gt; I{切换回姿态模式}
+    I --&gt; J[移动手臂骨骼]</pre>
+<h2><span id="%E5%8A%A8%E5%8A%9B%E5%AD%A6">动力学</span></h2>
+<p>FK(forward kinematics)——正向动力学，调整父集带动子集，如移动大腿会带着小腿和脚丫子一块动。</p>
+<p>IK(inforward kinematics)——反向动力学，子集带动父集，必须添加IK才能使用。</p>
+<p>对于上半身而言，手部、手指的动作比较复杂，使用FK约束能够比较精细的对各个部位进行调节。
+对于下半身而言，腿部动作简单，我们做一个踢腿动作的话，IK约束只需要移动脚部即可实现。</p>
+<p>模之屋下载的米系模型是上半身FK约束，下半身IK约束。
+所以我们在pose mode 中移动大腿根部的骨骼只能旋转，不能抬腿。需要移动脚部末端的骨骼才能调整腿部姿势。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="Pasted_image_20241026193946.png" alt="" class="lazyload"></p>
+<p>这个时候就可以简单的调整动作，然后和前面说的关键帧设置一样设置骨骼动作的关键帧，完成简单的动画了。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/10/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/mmd%E5%85%A5%E9%97%A8%E8%AE%B0%E5%BD%95-%E4%B8%80/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;10&#x2F;26&#x2F;游戏衍生&#x2F;mmd入门记录-一&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;10&#x2F;26&#x2F;游戏衍生&#x2F;mmd入门记录-一&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/MMD/" rel="tag">MMD</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

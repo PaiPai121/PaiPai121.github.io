@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> Apollo部署与简易架构梳理 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/no_game_no_life.png"
+				data-sizes="auto"
+				alt="Apollo部署与简易架构梳理"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>Apollo部署与简易架构梳理</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年07月20日</a>
+			<a><i class="kirafont icon-edit-fill"></i>2.9k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
+		</div>
+		<html><head></head><body><p><a target="_blank" rel="noopener" href="https://blog.shipengx.com/archives/e4b9c8ad.html">https://blog.shipengx.com/archives/e4b9c8ad.html</a></p>
+<h2><span id="apollo-%E5%AE%89%E8%A3%85">apollo 安装</span></h2>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get update<br>sudo apt-add-repository multiverse<br>sudo apt-get update<br><span class="hljs-comment"># sudo apt-get install nividia-driver-455 # 看版本</span><br></code></pre></td></tr></tbody></table></figure>
+<p>启用cuda</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br>distribution=$(. /etc/os-release;<span class="hljs-built_in">echo</span> $ID<span class="hljs-variable">$VERSION_ID</span>)<br>curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -<br>curl -s -L https://nvidia.github.io/nvidia-docker/<span class="hljs-variable">$distribution</span>/nvidia-docker.list | sudo <span class="hljs-built_in">tee</span> /etc/apt/sources.list.d/nvidia-docker.list<br>sudo apt-get -y update<br>sudo apt-get install -y nvidia-docker2<br><br></code></pre></td></tr></tbody></table></figure>
+<p>clone源代码</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用 SSH 的方式  </span><br>git <span class="hljs-built_in">clone</span> git@github.com:ApolloAuto/apollo.git<br></code></pre></td></tr></tbody></table></figure>
+<p>启动容器</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./docker/scripts/dev_start.sh<br></code></pre></td></tr></tbody></table></figure>
+<p>进入容器</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./docker/scripts/dev_into.sh<br></code></pre></td></tr></tbody></table></figure>
+<p>构建</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./apollo.sh build<br></code></pre></td></tr></tbody></table></figure>
+<p>启动</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./scripts/bootstrap.sh start<br></code></pre></td></tr></tbody></table></figure>
+<p><a target="_blank" rel="noopener" href="http://localhost:8888">http://localhost:8888</a> 可以显示DreamView界面</p>
+<p>回放demo
+在docs/02_Quick Start/demo_guide</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 record_helper.py demo_3.5.record<br>cyber_recorder play -f demo_3.5.record -l<br></code></pre></td></tr></tbody></table></figure>
+<p>cyber_recorder在apollo/中</p>
+<h2><span id="apollo%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84">apollo的基本架构</span></h2>
+<p><a target="_blank" rel="noopener" href="https://apollo.baidu.com/community/Apollo-Homepage-Document/Apollo_Doc_CN_8_0">apollo开发文档</a>
+![](Pasted image 20240723161325.png)
+![](Pasted image 20240723165614.png)
+常用数据见本篇末尾</p>
+<h2><span id="%E7%BB%84%E4%BB%B6%E6%9C%BA%E5%88%B6">组件机制</span></h2>
+<p><a target="_blank" rel="noopener" href="https://apollo.baidu.com/community/Apollo-Homepage-Document?doc=BYFxAcGcC4HpYIbgPYBtXIHQCMEEsATAV0wGNkBbWA5UyRFdZWVBEAU0hFgoIH0adPgCY%2BADwCiANnEBBAIziAHDMmqAnBPEAhVRKVytY7Uf2G5i0ZIPGAInIBi4iQBYd2nXtWyADDoMArFI%2BIS4ILqRKBNguAOw%2BUsLRUgBmPuEBpOoB6gg%2BAMyYoBSoQA">Cyber RT 组件机制</a>
+Cyber RT采用了基于Component模块和有向无环图（DAG）的动态加载配置的工程框架。即将相关算法模块通过Component创建，并通过DAG拓扑定义对各Component依赖关系进行动态加载和配置，从而实现对算法进行统一调度，对资源进行统一分配。</p>
+<h3><span id="component">component</span></h3>
+<p>Component构成去中心化的网络，系统由多个component组成，构成一张计算图，如
+![20240723162042.png]
+component分为两类：
+<a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classapollo_1_1cyber_1_1Component.html">apollo::cyber::Component</a>最多可以支持4路消息融合。多个channel读取数据时，第一个channel为主channel。当主 Channel 有消息到达，Cyber RT会调用 Component 的 apollo::cyber::Component::Proc 进行一次数据处理。
+也就是说，每次有主消息到达，其就会执行一次Proc。</p>
+<p><a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classapollo_1_1cyber_1_1TimerComponent.htm">apollo::cyber::TimerComponent</a>不会被消息出发，而是由系统定时调用。</p>
+<p>创建一个Component的方式如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//1、包含头文件</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"cyber/component/component.h"</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"test/proto/examples.pb.h"</span></span><br> <br><span class="hljs-comment">// 2、定义一个类，继承以Driver和Chatter为参数的Component模版类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ComponentSample</span> : <span class="hljs-keyword">public</span> Component&lt;Driver, Chatter&gt; {<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-comment">//3、重写Init() 函数和Proc() 函数</span><br>  <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">Init</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span></span>;<br>  <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">Proc</span><span class="hljs-params">(<span class="hljs-type">const</span> std::shared_ptr&lt;Driver&gt;&amp; msg0,</span></span><br><span class="hljs-params"><span class="hljs-function">  <span class="hljs-type">const</span> std::shared_ptr&lt;Chatter&gt;&amp; msg1)</span> <span class="hljs-keyword">override</span></span>;<br>};<br><span class="hljs-comment">//4、 在cyber中注册ComopnentSample</span><br><span class="hljs-built_in">CYBER_REGISTER_COMPONENT</span>(ComponentSample)<br></code></pre></td></tr></tbody></table></figure>
+<p>也就是说我们需要继承一个模版类，并在cyber RT中注册这个类。</p>
+<h4><span id="%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8A%A0%E8%BD%BD">编译与加载</span></h4>
+<p>在Cyber RT中，Component会变编译为独立的.so文件。Cyber RT可以使用cyber_launch工具启动componenet对应的launch文件（可以是二进制文件或dag）或使用mainboard启动component对应的dag文件。
+![20240723163142.png]</p>
+<h2><span id="%E8%8A%82%E7%82%B9%E9%80%9A%E8%AE%AF">节点通讯</span></h2>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jinzhuojun/article/details/108066714">参考资料</a>
+Publish-Subscribe模式
+Reader和Writer</p>
+<p>![[apollo/Apollo部署与简易架构梳理/Pasted image 20240715111104.png]]
+<strong>RTPS（Real-Time Publish-Subscribe）</strong> 是一种用于实时分布式系统的通信协议，主要用于实现设备间的实时数据交换。</p>
+<p><strong>Fast RTPS</strong>是DDS标准的一个非常流行的开源实现。</p>
+<p><strong>DDS（Data Distribution Service）标准</strong>提供了一个平台无关的数据模型，主要用于实时分布式系统。不同的实现可以相互通信。</p>
+<ol>
+<li><strong>数据中心化</strong>：DDS采用数据为中心的架构，数据被看作是核心，而不是进程之间的直接通信。</li>
+<li><strong>发布/订阅模型</strong>：DDS使用发布/订阅（Pub/Sub）模式，允许数据生产者（发布者）和数据消费者（订阅者）之间进行解耦，从而提高系统的灵活性和可扩展性。</li>
+</ol>
+<p>节点间通过channel进行读写形成数据通路，这些数据通路形成一个动态的数据流图。</p>
+<p>cyber/service_discovery/TopologyManager对网络拓扑进行监控管理。只需要一个管理因此单例即可</p>
+<p>-&nbsp;<code>NodeManager</code>用于管理网络拓扑中的节点。<br>
+  -&nbsp;<code>ChannelManager</code>用于管理channel，即网络拓扑中的边。<br>
+  -&nbsp;<code>ServiceManager</code>用于管理<code>Service</code>和<code>Client</code>。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++">TopologyManager::<span class="hljs-built_in">TopologyManager</span>()<br><br>: <span class="hljs-built_in">init_</span>(<span class="hljs-literal">false</span>),<br><br><span class="hljs-built_in">node_manager_</span>(<span class="hljs-literal">nullptr</span>),<br><br><span class="hljs-built_in">channel_manager_</span>(<span class="hljs-literal">nullptr</span>),<br><br><span class="hljs-built_in">service_manager_</span>(<span class="hljs-literal">nullptr</span>),<br><br><span class="hljs-built_in">participant_</span>(<span class="hljs-literal">nullptr</span>),<br><br><span class="hljs-built_in">participant_listener_</span>(<span class="hljs-literal">nullptr</span>) {<br><br><span class="hljs-built_in">Init</span>();<br><br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>TopologyManager::CreateParticipant()函数可以创建网络拓扑的参与者——transport::Participant对象，其包含host name与process id的名称。
+ParticipantListener用于监听网络的变化。网络拓扑发生变化时，Fast RTPS传上来ParticipantDiscoveryInfo，在TopologyManager::Convert()函数中对该信息转换成Cyber RT中的数据结构ChangeMsg。然后调用回调函数TopologyManager::OnParticipantChange()，它会调用其它几个子管理器的OnTopoModuleLeave()函数。然后子管理器中便可以将相应维护的信息进行更新（如NodeManager中将相应的节点删除）。</p>
+<p>初始化的时候会创建实例</p>
+<h3><span id="%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BC%A0%E8%BE%93">数据的传输</span></h3>
+<p>-&nbsp;<strong>INTRA</strong>：如果是同进程的，因为在同一地址空间，直接传指针就完了。<br>
+  -&nbsp;<strong>SHM(Shared memory)</strong>：如果是同一机器上，但跨进程的，为了高效可以使用共享内存。
+  -&nbsp;<strong>RTPS</strong>：如果是跨设备的，那就老老实实通过网络传吧。
+  （目前我们的车机应该不太设计跨设备咯？）
+![[apollo/Apollo部署与简易架构梳理/Pasted image 20240715120551.png]]
+每个Writer有Transmitter，每个Reader有Receiver。它们是负责消息发送与收取的类。Transmitter与Receiver的基类为Endpoint，代表一个通信的端点，它主要的信息是身份标识与属性。其类型为RoleAttributes（定义在role_attributes.proto）的成员attr_包含了host name，process id和一个根据uuid产生的hash值作为id。通过它们就可以判断节点之间的相对位置关系了。</p>
+<p>Reader和Writer会调用Transport的方法CreateTransmitter()和CreateReceiver()用于创建发送端的transmitter和接收端的receiver。创建时有四种模式可选，分别是INTRA，SHM和RTPS，和HYBRID。最后一种是前三种的混合模式，也是默认的模式。</p>
+<h3><span id="%E6%B6%88%E6%81%AF%E8%AF%BB%E5%86%99%E7%9A%84%E5%AE%9E%E7%8E%B0">消息读写的实现</span></h3>
+<h4><span id="%E6%B6%88%E6%81%AF%E7%9A%84%E5%86%99%E7%AB%AF">消息的写端</span></h4>
+<p>在Component组件中通过CreaterWriter()函数创建Writer对象，然后向指定的channel发送消息。
+如</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++">writer_ = node_-&gt;<span class="hljs-built_in">CreateWriter</span>&lt;Image&gt;(camera_config_-&gt;<span class="hljs-built_in">channel_name</span>());<span class="hljs-comment">// 创建writer对象</span><br><br><span class="hljs-comment">// 在创建该对象时，会在Init()初始化中通过CreateTransmitter()创建Transmitter对象，并调用JointTheTopology()将其加入到ChannelManager维护的拓扑信息中。</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//此外，还会对该channel的读者相应的调用Enable函数和Disable函数。</span><br><span class="hljs-comment">//</span><br>...<br><span class="hljs-keyword">auto</span> pb_image = std::<span class="hljs-built_in">make_shared</span>&lt;Image&gt;();                                 <br>pb_image-&gt;<span class="hljs-built_in">mutable_header</span>()-&gt;<span class="hljs-built_in">set_frame_id</span>(camera_config_-&gt;<span class="hljs-built_in">frame_id</span>());      <br>pb_image-&gt;<span class="hljs-built_in">set_width</span>(raw_image_-&gt;width);                                    <br>pb_image-&gt;<span class="hljs-built_in">set_height</span>(raw_image_-&gt;height);                                  <br>pb_image-&gt;<span class="hljs-built_in">mutable_data</span>()-&gt;<span class="hljs-built_in">reserve</span>(raw_image_-&gt;image_size);  <br><span class="hljs-comment">// 以上完成发送数据的准备</span><br><span class="hljs-comment">// 这些消息如pb_image是定义好的protobuf类消息。</span><br>...<br>writer_-&gt;<span class="hljs-built_in">Write</span>(pb_image);<br><span class="hljs-comment">// 其会调用Transmitter::Transmit()将message发出</span><br></code></pre></td></tr></tbody></table></figure>
+<h4><span id="%E6%B6%88%E6%81%AF%E8%AF%BB%E7%AB%AF">消息读端</span></h4>
+<p>对于一个component而言，其可以从多个channel收取消息。
+上层模块要取用这些消息，主要两种方式：一种是通过<code>Component</code>的<code>Proc()</code>接口，它被调用时参数就是最新的消息。另一种是通过<code>Reader</code>的<code>Observe()</code>函数直接拿
+<strong>例：</strong></p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> M0, <span class="hljs-keyword">typename</span> M1&gt;  <span class="hljs-comment">// 声明一个模板类Component，其中M0和M1是数据类型参数</span><br><span class="hljs-type">bool</span> Component&lt;M0, M1, NullType, NullType&gt;::<span class="hljs-built_in">Initialize</span>(  <span class="hljs-comment">// 初始化函数的定义</span><br>  ...<br>  ReaderConfig reader_cfg;  <span class="hljs-comment">// 创建一个ReaderConfig对象用于配置读者</span><br>  reader_cfg.channel_name = config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">1</span>).<span class="hljs-built_in">channel</span>();  <span class="hljs-comment">// 设置通道名称为配置中的第二个读者通道</span><br>  reader_cfg.qos_profile.<span class="hljs-built_in">CopyFrom</span>(config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">1</span>).<span class="hljs-built_in">qos_profile</span>());  <span class="hljs-comment">// 从配置中复制第二个读者的QoS配置</span><br>  reader_cfg.pending_queue_size = config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">1</span>).<span class="hljs-built_in">pending_queue_size</span>();  <span class="hljs-comment">// 设置待处理队列大小为配置中的第二个读者大小</span><br>  <br>  <span class="hljs-keyword">auto</span> reader1 = node_-&gt;<span class="hljs-keyword">template</span> <span class="hljs-built_in">CreateReader</span>&lt;M1&gt;(reader_cfg);  <span class="hljs-comment">// 使用配置创建一个类型为M1的读者，并命名为reader1</span><br>  <br>  reader_cfg.channel_name = config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">channel</span>();  <span class="hljs-comment">// 更新通道名称为配置中的第一个读者通道</span><br>  reader_cfg.qos_profile.<span class="hljs-built_in">CopyFrom</span>(config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">qos_profile</span>());  <span class="hljs-comment">// 从配置中复制第一个读者的QoS配置</span><br>  reader_cfg.pending_queue_size = config.<span class="hljs-built_in">readers</span>(<span class="hljs-number">0</span>).<span class="hljs-built_in">pending_queue_size</span>();  <span class="hljs-comment">// 设置待处理队列大小为配置中的第一个读者大小</span><br>  <br>  <span class="hljs-keyword">auto</span> reader0 = node_-&gt;<span class="hljs-keyword">template</span> <span class="hljs-built_in">CreateReader</span>&lt;M0&gt;(reader_cfg);  <span class="hljs-comment">// 使用配置创建一个类型为M0的读者，并命名为reader0</span><br>  ...<br>  readers_.<span class="hljs-built_in">push_back</span>(std::<span class="hljs-built_in">move</span>(reader0));  <span class="hljs-comment">// 将reader0移动到readers_向量中</span><br>  readers_.<span class="hljs-built_in">push_back</span>(std::<span class="hljs-built_in">move</span>(reader1));  <span class="hljs-comment">// 将reader1移动到readers_向量中</span><br>  ...  <br>  std::vector&lt;data::VisitorConfig&gt; config_list;  <span class="hljs-comment">// 创建一个data::VisitorConfig类型的向量用于存储访问者配置</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; reader : readers_) {  <span class="hljs-comment">// 遍历所有读者</span><br>    config_list.<span class="hljs-built_in">emplace_back</span>(reader-&gt;<span class="hljs-built_in">ChannelId</span>(), reader-&gt;<span class="hljs-built_in">PendingQueueSize</span>());  <span class="hljs-comment">// 将每个读者的配置添加到配置列表中</span><br>  }  <br>  <span class="hljs-keyword">auto</span> dv = std::make_shared&lt;data::DataVisitor&lt;M0, M1&gt;&gt;(config_list);  <span class="hljs-comment">// 使用配置列表创建一个DataVisitor智能指针，并特化为M0和M1类型</span><br>  croutine::RoutineFactory factory =  <span class="hljs-comment">// 创建一个RoutineFactory对象</span><br>      croutine::<span class="hljs-built_in">CreateRoutineFactory</span>&lt;M0, M1&gt;(func, dv);  <span class="hljs-comment">// 使用工厂函数创建RoutineFactory，并传入func函数和数据访问者</span><br>  <span class="hljs-keyword">return</span> sched-&gt;<span class="hljs-built_in">CreateTask</span>(factory, node_-&gt;<span class="hljs-built_in">Name</span>());  <span class="hljs-comment">// 创建一个任务并返回创建结果，任务使用RoutineFactory和节点名称</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+<p>这个案例中有两个channel并分别创建了reader对象。
+每个channel都有对应的协程进行数据处理，还有一个协程实现消息的组合，所以有n个channel的component至少会有n+1个协程</p>
+<h2><span id="%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD">常用术语</span></h2>
+<h4><span id="component">Component</span></h4>
+<p>在自动驾驶系统中，模块（如感知、定位、控制系统…）在 Cyber RT 下以 Component 的形式存在。不同 Component 之间通过 Channel 进行通信。Component 概念不仅解耦了模块，还为将模块拆分为多个子模块提供了灵活性。</p>
+<h4><span id="channel">Channel</span></h4>
+<p>Channel 用于管理 Cyber RT 中的数据通信。用户可以发布/订阅同一个 Channel，实现 p2p 通信。</p>
+<h4><span id="task">Task</span></h4>
+<p>Task 是 Cyber RT 中异步计算任务的抽象描述。</p>
+<h4><span id="node">Node</span></h4>
+<p><a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classNode.html">Node</a>&nbsp;是 Cyber RT 的基本组成部分；每个模块都包含一个&nbsp;<a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classNode.html">Node</a>&nbsp;并通过&nbsp;<a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classNode.html">Node</a>&nbsp;进行通信。通过在节点中定义 Reader/Writer 或 Service/Client，模块可以具有不同类型的通信形式。</p>
+<h4><span id="readerwriter">Reader/Writer</span></h4>
+<p>Reader/Writer 通常在&nbsp;<a target="_blank" rel="noopener" href="https://apollo.baidu.com/docs/apollo/latest/classNode.html">Node</a>&nbsp;内创建，作为 Cyber RT 中的主要消息传输接口。</p>
+<h4><span id="serviceclient">Service/Client</span></h4>
+<p>除了 Reader/Writer 之外，Cyber RT 还提供了用于模块通信的 Service/Client 模式。它支持节点之间的双向通信。当对服务发出请求时，客户端节点将收到响应。</p>
+<h4><span id="parameter">Parameter</span></h4>
+<p>参数服务在 Cyber RT 中提供了全局参数访问接口。它是基于 Service/Client 模式构建的。</p>
+<h4><span id="%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0">服务发现</span></h4>
+<p>作为一个去中心化的框架，Cyber RT 没有用于服务注册的主/中心节点。所有节点都被平等对待，可以通过“服务发现”找到其他服务节点。使用<code>UDP</code>用来服务发现。</p>
+<h4><span id="croutine">CRoutine</span></h4>
+<p>参考协程（Coroutine）的概念，Cyber RT 实现了 Coroutine 来优化线程使用和系统资源分配。</p>
+<h4><span id="scheduler">Scheduler</span></h4>
+<p>为了更好地支持自动驾驶场景，Cyber RT 提供了多种资源调度算法供开发者选择。</p>
+<h4><span id="message">Message</span></h4>
+<p>Message 是 Cyber RT 中用于模块之间数据传输的数据单元。</p>
+<h4><span id="dag%E6%96%87%E4%BB%B6">Dag文件</span></h4>
+<p>Dag 文件是模块拓扑关系的配置文件。您可以在 dag 文件中定义使用的 Component 和上游/下游通道。</p>
+<h4><span id="launch%E6%96%87%E4%BB%B6">Launch文件</span></h4>
+<p>Launch 文件提供了一种启动模块的简单方法。通过在launch文件中定义一个或多个 dag 文件，可以同时启动多个模块。</p>
+<h4><span id="record%E6%96%87%E4%BB%B6">Record文件</span></h4>
+<p>Record 文件用于记录从 Cyber RT 中的 Channel 发送/接收的消息。回放 Record 文件可以帮助重现Cyber RT之前操作的行为。</p>
+<h4><span id="mainboard">Mainboard</span></h4>
+<p>Cyber RT 的主入口，可以通过<code>mainboard -d xxx.dag</code>来启动一个模块进程。</p>
+<h2><span id="monitor%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8">Monitor工具使用</span></h2>
+<blockquote>
+<p>ESC | q key ---- 退出
+Backspace ---- 后退
+h | H ---- 显示帮助页
+PageDown | Ctrl+d ---- 上一页
+PageUp | Ctrl+u ---- 下一页
+Up, down or w, s keys ---- 上下移动当前的高亮行
+Right arrow or d key ---- 进入高亮行, 显示高亮行数据的详细信息
+Left arrow or a key ---- 从当前界面返回上一层界面
+Enter key ---- 与d键相同
+f | F ---- 显示数据帧频率
+t | T ---- 显示channel消息类型
+Space ---- 关闭|开启 channel (仅在channel有数据到达时有效; channel关闭后会变成黄色)
+i | I ---- 显示channel的Reader和Writer信息
+b | B ---- 显示channel消息内容
+n | N ---- 显示消息中RepeatedField的下一条数据
+m | M ---- 显示消息中RepeatedField的上一条数据</p>
+</blockquote>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2024/07/20/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Apollo%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%80%E6%98%93%E6%9E%B6%E6%9E%84%E6%A2%B3%E7%90%86/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;07&#x2F;20&#x2F;学习记录&#x2F;Apollo部署与简易架构梳理&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2024&#x2F;07&#x2F;20&#x2F;学习记录&#x2F;Apollo部署与简易架构梳理&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%BC%80%E5%8F%91/" rel="tag">开发</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 强化学习？DQN？ -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/katsuragi.png"
+				data-sizes="auto"
+				alt="强化学习？DQN？"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>强化学习？DQN？</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年10月24日</a>
+			<a><i class="kirafont icon-edit-fill"></i>5.3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 24 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><ul>
+<li><a href="#deep-q-network-dqn">Deep Q-Network (DQN)</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-dqn-deep-q-network%E4%B8%80%E4%BB%BD%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97">什么是 DQN (Deep Q-Network)？一份初学者指南</a></li>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E4%BB%8E%E4%BD%9C%E5%BC%8A%E8%A1%A8%E5%88%B0%E4%BC%B0%E7%AE%97%E5%99%A8">1. 核心思想：从“作弊表”到“估算器”</a>
+<ul>
+<li><a href="#a-%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95q-learning-%E5%88%B6%E4%BD%9C%E4%BD%9C%E5%BC%8A%E8%A1%A8">a. 传统方法：Q-Learning (制作“作弊表”)</a></li>
+<li><a href="#b-q-learning-%E7%9A%84%E6%AC%A1%E5%85%83%E8%AF%85%E5%92%92">b. Q-Learning 的“次元诅咒”</a></li>
+<li><a href="#c-dqn-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%94%A8%E5%A4%A7%E8%84%91%E4%BC%B0%E7%AE%97">c. DQN 的解决方案：用“大脑”估算</a></li>
+</ul>
+</li>
+<li><a href="#2-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8Fdqn-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0">2. 核心公式：DQN 如何学习？</a>
+<ul>
+<li><a href="#a-%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8Bai-%E7%9A%84%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3">a. 贝尔曼最优方程（AI 的“指导思想”）</a></li>
+<li><a href="#b-dqn-%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">b. DQN 的“学习目标”与“损失函数”</a></li>
+<li><a href="#c-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-the-loss-function">c. 核心公式：损失函数 (The Loss Function)</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%80%BB%E7%BB%93dqn-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">3. 总结：DQN 算法流程</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84dqn_cartpole%E9%AA%8C%E8%AF%81">一个简易的dqn_cartpole验证</a>
+<ul>
+<li><a href="#%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2">环境部署</a></li>
+<li><a href="#python%E4%BB%A3%E7%A0%81">python代码</a></li>
+<li><a href="#1-q-value-q%E5%80%BC--ai%E7%9A%84%E4%BB%B7%E5%80%BC%E5%88%A4%E6%96%AD">1. Q-Value (Q值) —— AI的“价值判断”</a>
+<ul>
+<li><a href="#%E7%90%86%E8%AE%BA">理论：</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94">代码对应：</a></li>
+</ul>
+</li>
+<li><a href="#2-experience-replay-%E7%BB%8F%E9%AA%8C%E5%9B%9E%E6%94%BE--ai%E7%9A%84%E8%AE%B0%E5%BF%86%E5%AE%AB%E6%AE%BF">2. Experience Replay (经验回放) —— AI的“记忆宫殿”</a>
+<ul>
+<li><a href="#%E7%90%86%E8%AE%BA-1">理论：</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94-1">代码对应：</a></li>
+</ul>
+</li>
+<li><a href="#3-deep-q-network-dqn--ai%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B">3. Deep Q-Network (DQN) —— AI的“学习过程”</a>
+<ul>
+<li><a href="#%E7%90%86%E8%AE%BA-2">理论：</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94-2">代码对应：</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93dqn%E7%9A%84%E9%A3%9E%E8%BD%AE">总结：DQN的“飞轮”</a></li>
+</ul>
+</li>
+<li><a href="#atari%E6%B8%B8%E6%88%8F">Atari游戏</a>
+<ul>
+<li><a href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</a></li>
+<li><a href="#1-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98ai%E7%9A%84%E8%A7%86%E8%A7%89%E7%B3%BB%E7%BB%9F-%E7%8E%AF%E5%A2%83%E5%B0%81%E8%A3%85%E5%99%A8">1. 核心挑战：AI的“视觉系统” (环境封装器)</a>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%8E%AF%E5%A2%83%E5%B0%81%E8%A3%85%E5%99%A8-environment-wrappers">解决方案：环境封装器 (Environment Wrappers)</a></li>
+</ul>
+</li>
+<li><a href="#2-%E7%AE%97%E6%B3%95%E5%8D%87%E7%BA%A7%E4%BB%8E-mlp-%E5%A4%A7%E8%84%91-%E5%88%B0-cnn-%E8%A7%86%E8%A7%89%E7%9A%AE%E5%B1%82">2. 算法升级：从 MLP “大脑” 到 CNN “视觉皮层”</a>
+<ul>
+<li><a href="#21-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90cnn-%E6%9E%B6%E6%9E%84%E7%9A%84%E9%AD%94%E6%B3%95%E6%95%B0%E5%AD%97">2.1 深度解析：CNN 架构的“魔法数字”</a></li>
+<li><a href="#22-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90_feature_size-%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%8A%80%E5%B7%A7">2.2 深度解析：<code>_feature_size</code> 的工程技巧</a></li>
+<li><a href="#23-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E6%8B%89%E5%B9%B3flatten-%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86">2.3 深度解析：“拉平”(Flatten) 操作与数学原理</a></li>
+<li><a href="#24-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-fc-%E7%9A%84%E5%B0%BA%E5%AF%B8">2.4 深度解析：全连接层 (FC) 的尺寸</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p>OMPL，Movelt，RRT*，Lattice</p>
+<p>ADAM是什么</p>
+<h1><span id="deep-q-network-dqn">Deep Q-Network (DQN)</span></h1>
+<h2><span id="%E4%BB%80%E4%B9%88%E6%98%AF-dqn-deep-q-network%E4%B8%80%E4%BB%BD%E5%88%9D%E5%AD%A6%E8%80%85%E6%8C%87%E5%8D%97">什么是 DQN (Deep Q-Network)？一份初学者指南</span></h2>
+<p>DQN（深度Q网络）是一种强化学习（Reinforcement Learning）算法，它巧妙地将<strong>神经网络</strong>的强大“估算”能力与一种经典的决策理论<strong>Q-Learning</strong>结合了起来。</p>
+<p>您可以把 DQN 想象成一个正在学习玩电子游戏的 AI 🤖。</p>
+<hr>
+<h2><span id="1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E4%BB%8E%E4%BD%9C%E5%BC%8A%E8%A1%A8%E5%88%B0%E4%BC%B0%E7%AE%97%E5%99%A8">1. 核心思想：从“作弊表”到“估算器”</span></h2>
+<h3><span id="a-%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95q-learning-%E5%88%B6%E4%BD%9C%E4%BD%9C%E5%BC%8A%E8%A1%A8">a. 传统方法：Q-Learning (制作“作弊表”)</span></h3>
+<p>在 DQN 出现之前，一种流行的方法叫 <strong>Q-Learning</strong>。它试图为游戏建立一张巨大的“作弊表”（称为 <strong>Q-Table</strong>）。</p>
+<ul>
+<li><strong>状态 (State, $s$)：</strong> 游戏中的每一种可能情况（如：“玩家在位置X，敌人在位置Y”）。</li>
+<li><strong>动作 (Action, $a$)：</strong> 玩家能做的每一种动作（如：“向左”、“向右”、“跳”）。</li>
+<li><strong>Q值 (Q-Value), $Q(s, a)$：</strong> 这张表里的“分数”。它代表：
+<blockquote>
+<p>“在状态 $s$ 下，如果执行动作 $a$，那么从这一刻到游戏结束，我**未来能获得的总奖励（总分）**的最佳估计值。”</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>如何决策：</strong> AI 只需要查表，在当前状态 $s$ 下，选择那个 $Q(s, a)$ 分数最高的动作 $a$。</p>
+<h3><span id="b-q-learning-%E7%9A%84%E6%AC%A1%E5%85%83%E8%AF%85%E5%92%92">b. Q-Learning 的“次元诅咒”</span></h3>
+<p>这个“作弊表”在简单游戏（如“井字棋”）中很有效。但如果用在自动驾驶或《星际争霸》中：</p>
+<ol>
+<li><strong>状态空间爆炸：</strong> 摄像头的每一帧图像都是一个独特的状态。状态的数量是<strong>无限</strong>的！</li>
+<li><strong>内存灾难：</strong> 我们根本不可能创建或存储一个“无限行”的表格。</li>
+</ol>
+<h3><span id="c-dqn-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%94%A8%E5%A4%A7%E8%84%91%E4%BC%B0%E7%AE%97">c. DQN 的解决方案：用“大脑”估算</span></h3>
+<p>既然我们不能<em>存储</em>一个无限大的表格，DQN 提出：<strong>我们可以训练一个神经网络 🧠 来<em>估算</em>（或称“拟合”）这个表格！</strong></p>
+<p>这个神经网络就是一个<strong>函数逼近器 (Function Approximator)</strong>。</p>
+<ul>
+<li><strong>DQN模型 ($Q_{\theta}$):</strong> 一个以参数 $\theta$（即权重）为特征的神经网络。</li>
+<li><strong>输入：</strong> 游戏状态 $s$（比如摄像头的图像，或 <code>CartPole</code> 的4个数字）。</li>
+<li><strong>输出：</strong> 一个列表，包含<strong>每一个</strong>可能动作的Q值。
+<ul>
+<li>例如，在 <code>CartPole</code> (动作：0=左, 1=右) 中：
+<ul>
+<li>输入：<code>[0.01, 0.02, -0.03, 0.04]</code> (一个状态 $s$)</li>
+<li>输出：<code>[15.2, 18.7]</code> (即 $Q_{\theta}(s, 0)=15.2$, $Q_{\theta}(s, 1)=18.7$)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="2-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8Fdqn-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0">2. 核心公式：DQN 如何学习？</span></h2>
+<p>DQN 的学习目标是让它的“估算” $Q_{\theta}(s, a)$ 尽可能地接近“真实”的Q值 $Q^*(s, a)$。这个“真实”的Q值是由<strong>贝尔曼最优方程 (Bellman Optimality Equation)</strong> 定义的。</p>
+<h3><span id="a-%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8Bai-%E7%9A%84%E6%8C%87%E5%AF%BC%E6%80%9D%E6%83%B3">a. 贝尔曼最优方程（AI 的“指导思想”）</span></h3>
+<p>这个公式定义了一个“完美”的Q值应该是什么样的：
+$$
+Q^<em>(s, a) = \mathbb{E}<em>{s’ \sim \mathcal{E}} \left[ r + \gamma \max</em>{a’} Q^</em>(s’, a’) \mid s, a \right]
+$$</p>
+<p>用大白话解释这个公式：</p>
+<blockquote>
+<p>“在状态 $s$ 执行动作 $a$ 的<strong>未来总分 (Q*)</strong>，等于：</p>
+<ol>
+<li>你<strong>立刻</strong>拿到的<strong>奖励 ($r$)</strong></li>
+<li><strong>加上</strong></li>
+<li>你到达<strong>下一个状态 ($s’$)</strong> 后，从那个状态出发所能拿到的<strong>未来总分的最大值</strong> ( $\max_{a’} Q^*(s’, a’)$ )。”</li>
+</ol>
+</blockquote>
+<ul>
+<li>$\gamma$ (gamma) 是<strong>折扣因子</strong> (Discount Factor)，一个0到1之间的数字（比如0.99）。它代表了“未来的奖励有多重要”（越接近1越重要）。</li>
+</ul>
+<h3><span id="b-dqn-%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">b. DQN 的“学习目标”与“损失函数”</span></h3>
+<p>DQN 不能直接解这个方程，它使用这个方程来创造自己的“学习目标”。</p>
+<p>DQN 的训练依赖两个关键技术：</p>
+<p><strong>1. 经验回放 (Experience Replay)</strong>
+AI 把它的所有“经验” <code>(s, a, r, s')</code> 存储在一个巨大的“<strong>记忆库</strong>” $\mathcal{D}$ 中。训练时，它从这个库中<strong>随机抽取</strong>一批（mini-batch）经验来学习，而不是使用刚发生的经验。这打破了经验之间的相关性，使训练更稳定。</p>
+<p><strong>2. 目标网络 (Target Network)</strong>
+DQN 使用<strong>两个</strong>神经网络：</p>
+<ul>
+<li><strong>$Q_{\theta}$ (策略网络):</strong> 我们正在训练的“主网络”，用来做决策。</li>
+<li><strong>$Q_{\theta^-}$ (目标网络):</strong> 一个“主网络”的旧版本（它的权重 $\theta^-$ 会定期从 $\theta$ 复制而来，然后保持“冻结”）。</li>
+</ul>
+<p>我们使用这个“冻结”的 $Q_{\theta^-}$ 来计算我们的“学习目标”，这能防止目标值在训练中疯狂摆动，让学习更稳定。</p>
+<hr>
+<h3><span id="c-%E6%A0%B8%E5%BF%83%E5%85%AC%E5%BC%8F%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-the-loss-function">c. 核心公式：损失函数 (The Loss Function)</span></h3>
+<p>对于从“记忆库” $\mathcal{D}$ 中抽取的每一个经验 $(s, a, r, s’)$，我们定义：</p>
+<p><strong>1. “目标Q值” $y_i$ (The Target / “正确答案”)</strong>
+我们使用“目标网络” $Q_{\theta^-}$ 来计算贝尔曼方程的右侧：
+$$
+y_i = r + \gamma \max_{a’} Q_{\theta^-}(s’, a’)
+$$</p>
+<ul>
+<li>（如果 $s’$ 是一个终止状态，则 $y_i = r$）</li>
+</ul>
+<p><strong>2. “预测Q值” (The Prediction)</strong>
+这是我们“主网络” $Q_{\theta}$ 对我们<em>当时</em>所做动作的估算：
+$$
+\text{Prediction} = Q_{\theta}(s, a)
+$$</p>
+<p><strong>3. 损失函数 $L(\theta)$ (The “Error”)</strong>
+我们使用<strong>均方误差 (MSE)</strong> 来衡量“预测值”和“目标值”之间的差距。这就是我们要优化的目标：
+$$
+L(\theta) = \mathbb{E}<em>{(s, a, r, s’) \sim \mathcal{D}} \left[ \left( \underbrace{y_i}</em>{\text{目标}} - \underbrace{Q_{\theta}(s, a)}_{\text{预测}} \right)^2 \right]
+$$</p>
+<p><strong>训练过程</strong>就是通过<strong>梯度下降 (Gradient Descent)</strong> 来调整“主网络”的权重 $\theta$，以最小化这个损失函数 $L(\theta)$。</p>
+<hr>
+<h2><span id="3-%E6%80%BB%E7%BB%93dqn-%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B">3. 总结：DQN 算法流程</span></h2>
+<ol>
+<li>初始化“主网络” $Q_{\theta}$ 和“目标网络” $Q_{\theta^-}$（权重相同）。</li>
+<li>初始化“记忆库” $\mathcal{D}$。</li>
+<li><strong>循环</strong>（玩 $M$ 局游戏）：
+<ol>
+<li>获取游戏初始状态 $s$。</li>
+<li><strong>循环</strong>（直到游戏结束）：
+<ol>
+<li>用 $Q_{\theta}$ 评估当前状态 $s$，然后使用“$\epsilon$-greedy”策略选择一个动作 $a$。
+<ul>
+<li><em>(“$\epsilon$-greedy”：有 $\epsilon$ 的概率随机选动作（探索），有 $1-\epsilon$ 的概率选 $Q_{\theta}$ 估分最高的动作（利用）)</em></li>
+</ul>
+</li>
+<li>在游戏中执行动作 $a$，获得即时奖励 $r$ 和下一个状态 $s’$。</li>
+<li>将这个“经验” $(s, a, r, s’)$ 存入“记忆库” $\mathcal{D}$。</li>
+<li>更新 $s \leftarrow s’$。</li>
+<li><strong>开始学习：</strong>
+<ul>
+<li>从 $\mathcal{D}$ 中<strong>随机</strong>抽取一批（mini-batch）经验。</li>
+<li>对于抽取的<strong>每一条</strong>经验，使用“目标网络” $Q_{\theta^-}$ 计算**“目标Q值” $y_i$**。</li>
+<li>使用“主网络” $Q_{\theta}$ 计算**“预测Q值” $Q_{\theta}(s, a)$**。</li>
+<li>计算这批数据的<strong>均方误差 (MSE)</strong> $L(\theta)$。</li>
+<li>执行一次<strong>梯度下降</strong>，更新“主网络”的权重 $\theta$。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>（关键）</strong> 每隔 $C$ 步，将“主网络”的权重<strong>复制</strong>给“目标网络”：$\theta^- \leftarrow \theta$。</li>
+</ol>
+</li>
+</ol>
+<h1><span id="%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%9A%84dqn_cartpole%E9%AA%8C%E8%AF%81">一个简易的dqn_cartpole验证</span></h1>
+<h2><span id="%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2">环境部署</span></h2>
+<p>创建虚拟环境</p>
+<p>Windows:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br>python -m venv my_rl_env<br></code></pre></td></tr></tbody></table></figure>
+<p>macOS / Linux:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">python3 -m venv my_rl_env<br></code></pre></td></tr></tbody></table></figure>
+<p>激活虚拟环境</p>
+<p>Windows (cmd):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br>.\my_rl_env\Scripts\activate<br></code></pre></td></tr></tbody></table></figure>
+<p>Windows (PowerShell):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br>.\my_rl_env\Scripts\Activate.ps1<br></code></pre></td></tr></tbody></table></figure>
+<p>macOS / Linux:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash"><br><span class="hljs-built_in">source</span> my_rl_env/bin/activate<br></code></pre></td></tr></tbody></table></figure>
+<p>安装必须的库</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install gymnasium[classic-control]<br></code></pre></td></tr></tbody></table></figure>
+<p>退出环境</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">deactivate<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="python%E4%BB%A3%E7%A0%81">python代码</span></h2>
+<h2><span id="1-q-value-q%E5%80%BC--ai%E7%9A%84%E4%BB%B7%E5%80%BC%E5%88%A4%E6%96%AD">1. Q-Value (Q值) —— AI的“价值判断”</span></h2>
+<h3><span id="%E7%90%86%E8%AE%BA">理论：</span></h3>
+<p>Q-Learning（Q学习）的核心是学习一个叫做 <strong>“Q值” (Q-Value)</strong> 的函数。</p>
+<p><code>Q(s, a)</code> 函数代表：在“状态 <code>s</code>”（State）下，执行“动作 <code>a</code>”（Action），<strong>未来能获得的总回报（奖励）的期望值是多少</strong>。</p>
+<p>简单说，<code>Q(s, a)</code> 就是一个“评分”。在某个状态下：</p>
+<ul>
+<li><code>Q(s, '向左') = 10</code></li>
+<li><code>Q(s, '向右') = 50</code></li>
+</ul>
+<p>AI会选择“向右”，因为它“预见”到这个动作的“价值”（Q值）更高。</p>
+<p>由于CartPole的“状态<code>s</code>”（小车位置、杆子角度等）是连续的数字，有无限多种，我们不能用一张“表”（Q-Table）来存储。因此，我们用一个<strong>神经网络</strong>来**近似(approximate)**这个Q函数。</p>
+<h3><span id="%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94">代码对应：</span></h3>
+<p><strong>① 神经网络的“输出”就是Q值：</strong>
+在 <code>DQN</code> 类中，网络的<code>forward</code>方法返回的就是Q值。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">DQN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, n_observations, n_actions</span>):<br>        <span class="hljs-built_in">super</span>(DQN, self).__init__()<br>        self.layer1 = nn.Linear(n_observations, <span class="hljs-number">128</span>) <span class="hljs-comment"># n_observations = 4</span><br>        self.layer2 = nn.Linear(<span class="hljs-number">128</span>, <span class="hljs-number">128</span>)<br>        self.layer3 = nn.Linear(<span class="hljs-number">128</span>, n_actions)       <span class="hljs-comment"># n_actions = 2</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-comment"># x 是输入的 "state" (状态 s)</span><br>        x = F.relu(self.layer1(x))<br>        x = F.relu(self.layer2(x))<br>        <br>        <span class="hljs-comment"># 网络的输出，就是这个状态下所有动作的Q值</span><br>        <span class="hljs-comment"># 例如: [1.5, -0.3]</span><br>        <span class="hljs-keyword">return</span> self.layer3(x)  <br></code></pre></td></tr></tbody></table></figure>
+<p>当你调用 <code>policy_net(state)</code> 时，它的返回值 <code>[1.5, -0.3]</code> 就分别代表 <code>Q(s, '向左')</code> 和 <code>Q(s, '向右')</code> 的Q值。</p>
+<p><strong>② AI如何“使用”Q值做决策：</strong>
+在 <code>select_action</code> 函数中，当AI决定“利用”（Exploitation）时：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">select_action</span>(<span class="hljs-params">state</span>):<br>    <span class="hljs-comment"># ... (省略 "探索" 部分)</span><br>    <span class="hljs-keyword">if</span> sample &gt; eps_threshold: <span class="hljs-comment"># "利用" (Exploitation)</span><br>        <span class="hljs-keyword">with</span> torch.no_grad():<br>            <span class="hljs-comment"># policy_net(state) 返回 [Q(s, left), Q(s, right)]</span><br>            <span class="hljs-comment"># .max(1)[1] 的意思就是：</span><br>            <span class="hljs-comment"># "请告诉我 Q值最高 (max) 的那个动作的索引 (index)"</span><br>            <span class="hljs-keyword">return</span> policy_net(state).<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>].view(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># &lt;--- 在这里！</span><br></code></pre></td></tr></tbody></table></figure>
+<p><code>policy_net(state).max(1)[1]</code> 这行代码，就是Q-Learning理论的<strong>核心执行步骤</strong>：“选择那个Q值最高的动作”。</p>
+<hr>
+<h2><span id="2-experience-replay-%E7%BB%8F%E9%AA%8C%E5%9B%9E%E6%94%BE--ai%E7%9A%84%E8%AE%B0%E5%BF%86%E5%AE%AB%E6%AE%BF">2. Experience Replay (经验回放) —— AI的“记忆宫殿”</span></h2>
+<h3><span id="%E7%90%86%E8%AE%BA">理论：</span></h3>
+<p>如果我们让AI“学完一步就忘掉一步”，训练会非常不稳定（因为相邻的经历高度相关）。</p>
+<p>为了解决这个问题，我们给AI一个“记忆库”（Replay Buffer）。AI把它的<strong>所有经历</strong> <code>(state, action, reward, next_state)</code> 都存进去。这个“经历”在我们的代码里被定义为 <code>Transition</code>。</p>
+<p>当AI要“学习”（训练）时，它不是学习“上一步”的经历，而是从“记忆库”里<strong>随机抽取</strong>一批（比如128个）旧经历来进行“反思”。</p>
+<p><strong>好处：</strong> 打破了经历之间的相关性，让训练更稳定、高效。</p>
+<h3><span id="%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94">代码对应：</span></h3>
+<p><strong>① 记忆库的“数据结构”：</strong>
+<code>ReplayMemory</code> 类和 <code>Transition</code> 命名元组。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 'Transition' 是我们定义的 "一条经历" 的标准格式</span><br>Transition = namedtuple(<span class="hljs-string">'Transition'</span>,<br>                        (<span class="hljs-string">'state'</span>, <span class="hljs-string">'action'</span>, <span class="hljs-string">'next_state'</span>, <span class="hljs-string">'reward'</span>))<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ReplayMemory</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, capacity</span>):<br>        <span class="hljs-comment"># deque 是一个双端队列，当它满了 (maxlen)</span><br>        <span class="hljs-comment"># 新经历加进来时，最旧的经历会自动被挤出去</span><br>        self.memory = deque([], maxlen=capacity) <span class="hljs-comment"># &lt;--- "记忆库" 本库</span><br></code></pre></td></tr></tbody></table></figure>
+<p><strong>② 存入记忆 (push)：</strong>
+在主训练循环（Main Training Loop）中，AI的每一步行动都会被存入记忆。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ... AI 执行完一个动作 ...</span><br><br><span class="hljs-comment"># 3. 存入记忆</span><br>memory.push(state, action, next_state, reward) <span class="hljs-comment"># &lt;--- 在这里！</span><br></code></pre></td></tr></tbody></table></figure>
+<p><strong>③ 随机抽取 (sample)：</strong>
+在 <code>optimize_model</code> 函数（AI的“学习”函数）的开头：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">optimize_model</span>():<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(memory) &lt; BATCH_SIZE:<br>        <span class="hljs-keyword">return</span> <span class="hljs-comment"># 记忆库里的"货"还不够，先不学</span><br><br>    <span class="hljs-comment"># 从记忆库中随机抽取 BATCH_SIZE (128) 条经历</span><br>    transitions = memory.sample(BATCH_SIZE) <span class="hljs-comment"># &lt;--- 在这里！</span><br><br>    <span class="hljs-comment"># 把128条 "经历" 转换成一个 "批次 (Batch)"，方便神经网络处理</span><br>    batch = Transition(*<span class="hljs-built_in">zip</span>(*transitions)) <br>    <span class="hljs-comment"># ...</span><br></code></pre></td></tr></tbody></table></figure>
+<p>这就是“经验回放”的实现。AI不是在学 <code>memory.push()</code> 刚存进去的那个，而是在学 <code>memory.sample()</code> 随机抽出来的128个。</p>
+<hr>
+<h2><span id="3-deep-q-network-dqn--ai%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B">3. Deep Q-Network (DQN) —— AI的“学习过程”</span></h2>
+<h3><span id="%E7%90%86%E8%AE%BA">理论：</span></h3>
+<p>AI如何“学习”？它需要一个“目标”和“现实”的差距（即 <strong>Loss 损失</strong>）。
+DQN的“学习”就是不断调整神经网络的权重，让这个“差距”变小。</p>
+<ul>
+<li>
+<p><strong>“现实” (Reality):</strong> <code>Q(s, a)</code>。</p>
+<blockquote>
+<p>这是我们的 <code>policy_net</code> <strong>当前</strong>认为的Q值。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>“目标” (Target):</strong> <code>r + γ * max(Q(s', a'))</code>。</p>
+<blockquote>
+<p>这就是著名的<strong>贝尔曼方程 (Bellman Equation)</strong>。
+它的大白话意思是：一个“完美”的<code>Q(s, a)</code>值，应该等于：你<strong>马上拿到的奖励<code>r</code></strong>，<strong>加上</strong> (γ是折扣因子)，你在<strong>下一步<code>s'</code><strong>能拿到的</strong>“未来最大Q值”<code>max(Q(s', a'))</code></strong>。</p>
+</blockquote>
+</li>
+</ul>
+<p>DQN的训练，就是强迫 <code>policy_net</code> 去满足这个等式。
+<code>Loss = ( "目标" - "现实" )²</code>
+我们希望这个<code>Loss</code>最小。</p>
+<h3><span id="%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94">代码对应：</span></h3>
+<p>整个 <code>optimize_model</code> 函数就是DQN的“学习过程”！</p>
+<p><strong>① 计算“现实”：<code>Q(s, a)</code></strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 3. 计算 Q(s_t, a_t)</span><br>state_batch = torch.cat(batch.state)   <span class="hljs-comment"># 128个 s</span><br>action_batch = torch.cat(batch.action) <span class="hljs-comment"># 128个 a</span><br><br><span class="hljs-comment"># 得到 [Q(s,左), Q(s,右)]，然后用 .gather()</span><br><span class="hljs-comment"># 来只提取出我们当时 "实际执行的那个动作a" 对应的Q值</span><br>state_action_values = policy_net(state_batch).gather(<span class="hljs-number">1</span>, action_batch) <br><span class="hljs-comment"># &lt;--- 这就是 "现实" Q(s, a)</span><br></code></pre></td></tr></tbody></table></figure>
+<p><strong>② 计算“目标”：<code>r + γ * max(Q(s', a'))</code></strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 4. 计算 V(s_{t+1}) -&gt; 即 "下一步的最大Q值"</span><br>reward_batch = torch.cat(batch.reward) <span class="hljs-comment"># 128个 r</span><br><br>next_state_values = torch.zeros(BATCH_SI, device=device)<br><span class="hljs-keyword">with</span> torch.no_grad():<br>    <span class="hljs-comment"># 用 "target_net" (一个Q值的“稳定”版本)</span><br>    <span class="hljs-comment"># 来计算 "下一步s'" 的 "最大Q值"</span><br>    next_state_values[non_final_mask] = target_net(non_final_next_states).<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>)[<span class="hljs-number">0</span>] <br>    <span class="hljs-comment"># &lt;--- 这就是 max(Q(s', a'))</span><br><br><span class="hljs-comment"># 5. 计算“期望Q值” (Expected Q Values)</span><br><span class="hljs-comment"># Bellman 方程: Expected Q = reward + gamma * next_max_Q</span><br>expected_state_action_values = (next_state_values * GAMMA) + reward_batch <br><span class="hljs-comment"># &lt;--- 这就是 "目标"</span><br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p><strong>注：</strong> 代码里用了一个 <code>target_net</code> 来计算“目标”，这是DQN的一个高级技巧 (Fixed Q-Targets)，它能让训练更稳定。</p>
+</blockquote>
+<p><strong>③ 计算“差距”(Loss)并学习：</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 6. 计算损失 (Loss)</span><br>criterion = nn.SmoothL1Loss()<br><span class="hljs-comment"># 计算 "目标" 和 "现实" 之间的差距</span><br>loss = criterion(state_action_values, expected_state_action_values.unsqueeze(<span class="hljs-number">1</span>)) <br><span class="hljs-comment"># &lt;--- Loss = (目标 - 现实)²</span><br><br><span class="hljs-comment"># 7. 优化 (反向传播)</span><br>optimizer.zero_grad() <span class="hljs-comment"># 清空旧梯度</span><br>loss.backward()       <span class="hljs-comment"># 计算新梯度</span><br>optimizer.step()      <span class="hljs-comment"># 更新 policy_net 的权重！&lt;--- AI 在这里 "学习"</span><br></code></pre></td></tr></tbody></table></figure>
+<p><code>optimizer.step()</code> 这一行，就是AI在“学习”！它在根据<code>loss</code>调整 <code>policy_net</code> 的权重，让它下一次的预测 (<code>Q(s, a)</code>) 能更接近“目标” (<code>r + ...</code>)。</p>
+<hr>
+<h2><span id="%E6%80%BB%E7%BB%93dqn%E7%9A%84%E9%A3%9E%E8%BD%AE">总结：DQN的“飞轮”</span></h2>
+<p>你现在可以把整个流程串起来了：</p>
+<ol>
+<li><strong>AI行动</strong> (<code>select_action</code>): 用 <code>policy_net</code> 预测Q值，选一个动作 <code>a</code>。</li>
+<li><strong>AI记忆</strong> (<code>memory.push</code>): 把经历 <code>(s, a, r, s')</code> 存入记忆库。</li>
+<li><strong>AI反思</strong> (<code>optimize_model</code>):
+<ul>
+<li>从记忆库<strong>随机</strong>抽取 (<code>memory.sample</code>) 一批旧经历。</li>
+<li>计算这批经历的“<strong>现实Q值</strong>” (来自 <code>policy_net</code>)。</li>
+<li>计算这批经历的“<strong>目标Q值</strong>” (来自 <code>target_net</code> 和 <code>reward</code>)。</li>
+<li>计算两者的<strong>差距 <code>Loss</code></strong>。</li>
+<li><strong>更新 <code>policy_net</code></strong> (<code>optimizer.step()</code>)，让“现实”更接近“目标”。</li>
+</ul>
+</li>
+</ol>
+<p>这个“行动-记忆-反思”的飞轮不断旋转，AI的 <code>policy_net</code> 对Q值的估算就越来越准，它的决策（<code>select_action</code>）也就越来越好了。</p>
+<h1><span id="atari%E6%B8%B8%E6%88%8F">Atari游戏</span></h1>
+<h2><span id="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">环境配置</span></h2>
+<p>运行以下命令（它会安装gymnasium的Atari依赖，并自动接受ROM许可证，避免版本问题，指定版本）：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">pip install <span class="hljs-string">"gymnasium[atari,accept-rom-license]==0.29.1"</span> <br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="1-%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98ai%E7%9A%84%E8%A7%86%E8%A7%89%E7%B3%BB%E7%BB%9F-%E7%8E%AF%E5%A2%83%E5%B0%81%E8%A3%85%E5%99%A8">1. 核心挑战：AI的“视觉系统” (环境封装器)</span></h2>
+<p>我们面临的主要问题是：CartPole 的状态是 4 个数字，而 Atari 的状态是 <code>(210, 160, 3)</code> 的彩色图像。AI 必须学会“看懂”像素。</p>
+<h3><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%8E%AF%E5%A2%83%E5%B0%81%E8%A3%85%E5%99%A8-environment-wrappers">解决方案：环境封装器 (Environment Wrappers)</span></h3>
+<p>我们没有直接将原始图像喂给 AI，而是通过一系列“封装器”搭建了一个高效的“视觉预处理流水线”。</p>
+<ul>
+<li>
+<p><strong><code>AtariPreprocessing</code> (官方 v0.29.1 封装器):</strong> 这是你解决问题的关键。这一个封装器替我们完成了三件大事：</p>
+<ol>
+<li><strong>灰度化 (Grayscale):</strong> 抛弃颜色信息，将 <code>(H, W, 3)</code> 降维到 <code>(H, W, 1)</code>。</li>
+<li><strong>缩放 (Resize):</strong> 将高分辨率图像缩小到 <code>(84, 84)</code>，大幅减少计算量。</li>
+<li><strong>跳帧 (Frame Skip):</strong> AI 不需要分析每一帧。我们设置 <code>skip=4</code>，让 AI 每 4 帧才决策一次，这极大加快了训练速度。</li>
+</ol>
+</li>
+<li>
+<p><strong><code>FrameStack</code> (自定义封装器):</strong> 这是为了解决“运动感知”问题。</p>
+<ul>
+<li><strong>理论：</strong> 单张静态图片没有“速度”信息。AI 无法判断球是在移动还是静止。</li>
+<li><strong>实现：</strong> 我们将 <code>k=4</code> 帧预处理过的 <code>(84, 84)</code> 图像堆叠在一起，形成一个 <code>(4, 84, 84)</code> 的张量（Tensor）。</li>
+<li><strong>结果：</strong> AI 现在可以通过对比这 4 帧的差异，来“感知”物体（如球和挡板）的运动方向和速度。</li>
+</ul>
+</li>
+</ul>
+<p><strong>代码对应：</strong> <code>wrap_atari</code> 函数就是这个流水线的“总装厂”。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># --- 你的 wrap_atari 函数 (v0.29.1) ---</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">wrap_atari</span>(<span class="hljs-params">env_id, stack_frames=<span class="hljs-number">4</span>, render_mode=<span class="hljs-string">'rgb_array'</span></span>):<br>    env = gym.make(env_id, render_mode=render_mode)<br>    <br>    <span class="hljs-comment"># 步骤1：灰度化、缩放、跳帧 (由 AtariPreprocessing 一步完成)</span><br>    env = AtariPreprocessing(<br>        env, <br>        frame_skip=<span class="hljs-number">4</span>, <br>        screen_size=<span class="hljs-number">84</span>, <br>        grayscale_obs=<span class="hljs-literal">True</span>, <br>        scale_obs=<span class="hljs-literal">False</span> <span class="hljs-comment"># 我们在 PyTorch 中手动归一化</span><br>    )<br>    <span class="hljs-comment"># 步骤2：帧堆叠 (感知运动)</span><br>    env = FrameStack(env, stack_frames)<br>    <span class="hljs-keyword">return</span> env<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="2-%E7%AE%97%E6%B3%95%E5%8D%87%E7%BA%A7%E4%BB%8E-mlp-%E5%A4%A7%E8%84%91-%E5%88%B0-cnn-%E8%A7%86%E8%A7%89%E7%9A%AE%E5%B1%82">2. 算法升级：从 MLP “大脑” 到 CNN “视觉皮层”</span></h2>
+<p>AI 的“大脑”必须升级，才能处理 <code>(4, 84, 84)</code> 这样的图像数据。</p>
+<ul>
+<li>
+<p><strong>为什么？</strong></p>
+<ul>
+<li><code>nn.Linear</code>（全连接层/MLP）无法处理空间信息。它会把 <code>84x84</code> 的像素粗暴地拉平，完全丢失所有“形状”和“位置”信息（例如，“球在挡板上方”）。</li>
+<li><code>nn.Conv2d</code>（卷积层/CNN）专门用于提取局部特征（如边缘、角落、形状），并通过层次堆叠来理解复杂的空间关系，完美符合视觉任务的需求。</li>
+</ul>
+</li>
+<li>
+<p><strong>代码对应：<code>CNN_DQN</code> 类</strong></p>
+  <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CNN_DQN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, h, w, n_actions</span>):<br>        <span class="hljs-built_in">super</span>(CNN_DQN, self).__init__()<br>        <br>        <span class="hljs-comment"># 1. 卷积层 (提取图像特征)</span><br>        self.conv1 = nn.Conv2d(<span class="hljs-number">4</span>, <span class="hljs-number">32</span>, kernel_size=<span class="hljs-number">8</span>, stride=<span class="hljs-number">4</span>) <br>        self.bn1 = nn.BatchNorm2d(<span class="hljs-number">32</span>) <br>        self.conv2 = nn.Conv2d(<span class="hljs-number">32</span>, <span class="hljs-number">64</span>, kernel_size=<span class="hljs-number">4</span>, stride=<span class="hljs-number">2</span>)<br>        self.bn2 = nn.BatchNorm2d(<span class="hljs-number">64</span>)<br>        self.conv3 = nn.Conv2d(<span class="hljs-number">64</span>, <span class="hljs-number">64</span>, kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">1</span>)<br>        self.bn3 = nn.BatchNorm2d(<span class="hljs-number">64</span>)<br><br>        <span class="hljs-comment"># 2. 辅助函数：计算卷积层的输出尺寸</span><br>        self.feature_size = self._feature_size(h, w)<br>        <br>        <span class="hljs-comment"># 3. 全连接层 (将特征拉平后，计算最终的Q值)</span><br>        self.fc = nn.Linear(self.feature_size, n_actions)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_feature_size</span>(<span class="hljs-params">self, h, w</span>):<br>        <span class="hljs-keyword">with</span> torch.no_grad():<br>            x = torch.zeros(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, h, w) <br>            x = F.relu(self.bn1(self.conv1(x)))<br>            x = F.relu(self.bn2(self.conv2(x)))<br>            x = F.relu(self.bn3(self.conv3(x)))<br>            <span class="hljs-keyword">return</span> x.numel() <span class="hljs-comment"># 返回特征总数</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        <span class="hljs-comment"># 1. 卷积与激活</span><br>        x = F.relu(self.bn1(self.conv1(x)))<br>        x = F.relu(self.bn2(self.conv2(x)))<br>        x = F.relu(self.bn3(self.conv3(x)))<br>        <br>        <span class="hljs-comment"># 2. 展平 (展平成一维向量)</span><br>        x = x.view(x.size(<span class="hljs-number">0</span>), -<span class="hljs-number">1</span>) <br>        <br>        <span class="hljs-comment"># 3. 全连接输出 Q值</span><br>        <span class="hljs-keyword">return</span> self.fc(x)<br></code></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<h3><span id="21-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90cnn-%E6%9E%B6%E6%9E%84%E7%9A%84%E9%AD%94%E6%B3%95%E6%95%B0%E5%AD%97">2.1 深度解析：CNN 架构的“魔法数字”</span></h3>
+<p>你可能会问：<code>kernel_size=8</code>, <code>stride=4</code>, <code>out_channels=32</code> 这些数字是哪来的？
+它们不是随机的，而是直接来源于 <strong>DeepMind 2015 年的DQN论文</strong>，是久经考验的经典架构。</p>
+<ul>
+<li>
+<p><strong><code>in_channels=4</code> (输入通道):</strong></p>
+<ul>
+<li>对应 <code>FrameStack</code> 输出的 <strong>4 帧堆叠图像</strong>，这是 AI 感知运动的“眼睛”。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>conv1</code> (k=8, s=4, out=32):</strong></p>
+<ul>
+<li><strong>大步长 (s=4), 大视野 (k=8):</strong> 在网络初期进行“积极降维”。快速将 <code>84x84</code> 的图像大幅缩小，提取最粗糙、最全局的特征，并减少计算量。</li>
+<li><strong>out=32:</strong> 尝试从原始图像中找出 <strong>32 种</strong>不同的基础特征（如边缘、角落）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>conv2</code> (k=4, s=2, out=64):</strong></p>
+<ul>
+<li><strong>中步长 (s=2):</strong> 降维力度放缓，专注于将 <code>conv1</code> 找到的 32 种基础特征组合成 <strong>64 种</strong>更复杂的特征（如“挡板”的轮廓）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>conv3</code> (k=3, s=1, out=64):</strong></p>
+<ul>
+<li><strong>小步长 (s=1):</strong> 不再缩小图像尺寸。它充当一个“精炼厂”，将 64 种特征进行复杂的混合与精加工，输出最纯粹的特征图，准备交给全连接层。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>nn.BatchNorm2d</code> (BN层):</strong></p>
+<ul>
+<li>这是对原论文的改进。BN 层可以标准化每一批数据在网络中的激活值，能有效防止<strong>梯度爆炸/消失</strong>，让训练更稳定、更快收敛。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90_feature_size-%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%8A%80%E5%B7%A7">2.2 深度解析：<code>_feature_size</code> 的工程技巧</span></h3>
+<ul>
+<li><strong>问题：</strong> 卷积层 <code>conv3</code> 输出的是一个 3D 特征图（<code>[通道, 高, 宽]</code>），而全连接层 <code>fc</code> 的输入必须是一个 1D 向量。我们如何知道 <code>conv3</code> 输出的 <code>C*H*W</code> 到底等于多少？</li>
+<li><strong>笨办法：</strong> 手动计算。根据 <code>84x84</code> 的输入，用复杂的卷积公式去计算 <code>conv1</code> -&gt; <code>conv2</code> -&gt; <code>conv3</code> 后的最终 <code>(C, H, W)</code>。这非常繁琐且容易出错。</li>
+<li><strong>聪明办法 (即本函数):</strong>
+<ol>
+<li><code>with torch.no_grad():</code> 关闭梯度，进入“测量模式”。</li>
+<li><code>x = torch.zeros(1, 4, h, w)</code>: 创建一个和真实数据一模一样的“虚拟测试品”。</li>
+<li><code>x = F.relu(...)</code>: 让“测试品”流过所有的卷积层。</li>
+<li><code>return x.numel()</code>: 测量“测试品”流出时<strong>总共有多少个元素</strong>（例如 5184 个）。这个数字就是我们需要的<code>feature_size</code>。</li>
+</ol>
+</li>
+</ul>
+<h3><span id="23-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E6%8B%89%E5%B9%B3flatten-%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86">2.3 深度解析：“拉平”(Flatten) 操作与数学原理</span></h3>
+<p>“拉平”是连接 CNN（视觉皮层）和 FC（决策大脑）的桥梁。</p>
+<ul>
+<li><strong>目的：</strong> 将 CNN 输出的 3D“空间特征地图” <code>(C, H, W)</code> 转换成 FC 层需要的 1D“抽象特征清单” <code>(N)</code>。</li>
+<li><strong>代码：</strong> <code>x = x.view(x.size(0), -1)</code></li>
+<li><strong>数学原理 (索引映射):</strong>
+<ol>
+<li><code>x.size(0)</code> 保留了 <code>Batch</code> 维度，我们不对其操作。</li>
+<li><code>-1</code> 告诉 PyTorch 自动计算 $N = C \times H \times W$。</li>
+<li>在底层，计算机按照“行主序”（Row-Major Order）将 3D 张量展开。</li>
+<li>一个在 <code>T[c, h, w]</code> 的元素，会被映射到 1D 向量 $T’$ 中的第 $k$ 个位置：
+$$k = c \cdot (H \cdot W) + h \cdot W + w
+$$</li>
+</ol>
+</li>
+</ul>
+<h3><span id="24-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-fc-%E7%9A%84%E5%B0%BA%E5%AF%B8">2.4 深度解析：全连接层 (FC) 的尺寸</span></h3>
+<ul>
+<li><strong>问题：</strong> <code>self.fc = nn.Linear(self.feature_size, n_actions)</code> 的尺寸是如何决定的？</li>
+<li><strong><code>n_actions</code> (输出尺寸):</strong>
+<ul>
+<li>这是最关键的参数，它<strong>必须等于</strong>环境的动作总数（例如 <code>Pong</code> 是 6）。</li>
+<li>它定义了 <code>nn.Linear</code> 要<strong>输出多少个神经元</strong>，每个神经元对应一个动作的 Q 值。</li>
+</ul>
+</li>
+<li><strong><code>self.feature_size</code> (输入尺寸):</strong>
+<ul>
+<li>它<strong>必须等于</strong>上一步“拉平”操作后的 1D 向量长度（例如 5184）。</li>
+</ul>
+</li>
+<li><strong>澄清误区：</strong> 全连接层的<strong>输出尺寸</strong>（<code>n_actions</code>）<strong>不是</strong>输入尺寸（<code>self.feature_size</code>）的总和。</li>
+<li><strong>数学原理 (矩阵乘法):</strong>
+<ul>
+<li>全连接层执行的是一次<strong>矩阵乘法</strong>，将一个长向量 $X$（尺寸 5184）“压缩”成一个小向量 $Y$（尺寸 6）。</li>
+<li>$Y = XW + B$</li>
+<li>$X$ (输入) 的形状是 <code>[Batch, 5184]</code>。</li>
+<li>$W$ (权重) 的形状是 <code>[5184, 6]</code>。</li>
+<li>$B$ (偏置) 的形状是 <code>[6]</code>。</li>
+<li>$Y$ (输出) 的形状是 <code>[Batch, 6]</code>。</li>
+</ul>
+</li>
+</ul>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/10/24/%E5%B7%A5%E4%BD%9C/%E5%9F%BA%E4%BA%8E%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%A7%84%E5%88%92/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;24&#x2F;工作&#x2F;基于学习的规划&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;10&#x2F;24&#x2F;工作&#x2F;基于学习的规划&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

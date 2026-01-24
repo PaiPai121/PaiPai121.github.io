@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 日常bug解决 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="日常bug解决"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>日常bug解决</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月02日</a>
+			<a><i class="kirafont icon-edit-fill"></i>877 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+		</div>
+		<!-- toc --><html><head></head><body><ul>
+<li><a href="#windows%E7%8E%AF%E5%A2%83%E4%B8%8Bg%E6%97%A0%E8%BE%93%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">windows环境下g++无输出的解决方案</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951">解决方法1：</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952">解决方法2：</a></li>
+</ul>
+</li>
+<li><a href="#github%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98">github代理问题</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">配置ssh免密登录</a></li>
+<li><a href="#%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E5%85%AC%E9%92%A5---%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8---%E5%88%9B%E5%BB%BAssh%E7%9B%AE%E5%BD%95---%E6%8A%8A%E5%85%AC%E9%92%A5%E8%BF%BD%E5%8A%A0%E5%86%99%E5%85%A5%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6">读取本地公钥 -&gt; 登录服务器 -&gt; 创建.ssh目录 -&gt; 把公钥追加写入授权文件</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEwsl%E4%BB%A3%E7%90%86">配置WSL代理</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E6%BA%90">配置Docker镜像源</a></li>
+</ul>
+<!-- tocstop -->
+<h1><span id="windows%E7%8E%AF%E5%A2%83%E4%B8%8Bg%E6%97%A0%E8%BE%93%E5%87%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">windows环境下g++无输出的解决方案</span></h1>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">PS</span> D:\work_console\exercises&gt; g++ test.cpp <span class="hljs-literal">-o</span> test.exe <br></code></pre></td></tr></tbody></table></figure>
+<p>无任何输出</p>
+<p>重装、重新配置环境变量无任何效果</p>
+<p>添加-v参数后信息为</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs powershell">test.cpp <span class="hljs-literal">-o</span> test.exe <span class="hljs-literal">-v</span>               <br><span class="hljs-keyword">Using</span> built-in specs.               <br>COLLECT_GCC=C:\msys64\ucrt64\bin\g++.exe<br>COLLECT_LTO_WRAPPER=C:/msys64/ucrt64/bin/../lib/gcc/x86_64<span class="hljs-literal">-w64-mingw32</span>/<span class="hljs-number">15.2</span>.<span class="hljs-number">0</span>/lto<span class="hljs-literal">-wrapper</span>.exe    <br>Target: x86_64<span class="hljs-literal">-w64-mingw32</span><br>Configured with: ../gcc<span class="hljs-literal">-15</span>.<span class="hljs-number">2.0</span>/configure <span class="hljs-literal">--prefix</span>=/ucrt64 <span class="hljs-literal">--with-local-prefix</span>=/ucrt64/local <span class="hljs-literal">--with-native-system-header-dir</span>=/ucrt64/include <span class="hljs-literal">--libexecdir</span>=/ucrt64/lib <span class="hljs-literal">--enable-bootstrap</span> <span class="hljs-literal">--enable-checking</span>=release <span class="hljs-literal">--with-arch</span>=nocona <span class="hljs-literal">--with-tune</span>=generic <span class="hljs-literal">--enable-mingw-wildcard</span> <span class="hljs-literal">--enable-languages</span>=c,lto,c++,fortran,ada,objc,obj<span class="hljs-literal">-c</span>++,jit <span class="hljs-literal">--enable-shared</span> <span class="hljs-literal">--enable-static</span> <span class="hljs-literal">--enable-libatomic</span> <span class="hljs-literal">--enable-threads</span>=posix <span class="hljs-literal">--enable-graphite</span> <span class="hljs-literal">--enable-fully-dynamic-string</span> <span class="hljs-literal">--enable-libstdcxx-backtrace</span>=yes <span class="hljs-literal">--enable-libstdcxx-filesystem-ts</span> <span class="hljs-literal">--enable-libstdcxx-time</span> <span class="hljs-literal">--disable-libstdcxx-pch</span> <span class="hljs-literal">--enable-lto</span> <span class="hljs-literal">--enable-libgomp</span> <span class="hljs-literal">--disable-libssp</span> <span class="hljs-literal">--disable-multilib</span> <span class="hljs-literal">--disable-rpath</span> <span class="hljs-literal">--disable-win32-registry</span> <span class="hljs-literal">--disable-nls</span> <span class="hljs-literal">--disable-werror</span> <span class="hljs-literal">--disable-symvers</span> <span class="hljs-literal">--with-libiconv</span> <span class="hljs-literal">--with-system-zlib</span> <span class="hljs-literal">--with-gmp</span>=/ucrt64 <span class="hljs-literal">--with-mpfr</span>=/ucrt64 <span class="hljs-literal">--with-mpc</span>=/ucrt64 <span class="hljs-literal">--with-isl</span>=/ucrt64 <span class="hljs-literal">--with-pkgversion</span>=<span class="hljs-string">'Rev8, Built by MSYS2 project'</span> <span class="hljs-literal">--with-bugurl</span>=https://github.com/msys2/MINGW<span class="hljs-literal">-packages</span>/issues <span class="hljs-literal">--with-gnu-as</span> <span class="hljs-literal">--with-gnu-ld</span> <span class="hljs-literal">--with-libstdcxx-zoneinfo</span>=yes <span class="hljs-literal">--disable-libstdcxx-debug</span> <span class="hljs-literal">--enable-plugin</span> <span class="hljs-literal">--with-boot-ldflags</span>=<span class="hljs-literal">-static-libstdc</span>++ <span class="hljs-literal">--with-stage1-ldflags</span>=<span class="hljs-literal">-static-libstdc</span>++<br>Thread model: posix<br>Supported LTO compression algorithms: zlib zstd<br>gcc version <span class="hljs-number">15.2</span>.<span class="hljs-number">0</span> (Rev8, Built by MSYS2 project)<br>COLLECT_GCC_OPTIONS=<span class="hljs-string">'-o'</span> <span class="hljs-string">'test.exe'</span> <span class="hljs-string">'-v'</span> <span class="hljs-string">'-shared-libgcc'</span> <span class="hljs-string">'-mtune=generic'</span> <span class="hljs-string">'-march=nocona'</span>       <br> C:/msys64/ucrt64/bin/../lib/gcc/x86_64<span class="hljs-literal">-w64-mingw32</span>/<span class="hljs-number">15.2</span>.<span class="hljs-number">0</span>/cc1plus.exe <span class="hljs-literal">-quiet</span> <span class="hljs-literal">-v</span> <span class="hljs-literal">-iprefix</span> C:/msys64/ucrt64/bin/../lib/gcc/x86_64<span class="hljs-literal">-w64-mingw32</span>/<span class="hljs-number">15.2</span>.<span class="hljs-number">0</span>/ <span class="hljs-literal">-D_REENTRANT</span> test.cpp <span class="hljs-literal">-quiet</span> <span class="hljs-literal">-dumpbase</span> test.cpp <span class="hljs-literal">-dumpbase-ext</span> .cpp <span class="hljs-literal">-mtune</span>=generic <span class="hljs-literal">-march</span>=nocona <span class="hljs-literal">-version</span> <span class="hljs-literal">-o</span> C:\Users\HUNTER~<span class="hljs-number">1</span>\AppData\Local\Temp\cc9zq81P.s<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</span></h1>
+<p>powershell里面弹不出来一个报错信息，cmd才可以
+从cmd窗口执行c++能够看到
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-1.png" alt="alt text" class="lazyload">
+编译器前端组件cc1.exe/cc1plus.exe在运行时加载了错误版本的libwinpthread-1.dll动态链接库。clock_gettime64是近期在mingw-w64运行时库中新引入的API函数。</p>
+<h2><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951">解决方法1：</span></h2>
+<p>直接从C:\msys64\ucrt64\bin中复制libwinpthread-1.dll到工程目录下，然后该工程就可以编译了
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-2.png" alt="alt text" class="lazyload"></p>
+<h2><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952">解决方法2：</span></h2>
+<p>直接从C:\msys64\ucrt64\bin中复制libwinpthread-1.dll到C:\Windows\System32中，则全局的工程都可以编译</p>
+<h1><span id="github%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98">github代理问题</span></h1>
+<p>OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to <a target="_blank" rel="noopener" href="http://github.com:443">github.com:443</a>
+设置代理端口
+windows打开设置，代理服务器，查看使用的端口，一般是7890或10809，然后设置端口即可
+git config --global http.<a target="_blank" rel="noopener" href="https://github.com.proxy">https://github.com.proxy</a> <a target="_blank" rel="noopener" href="http://127.0.0.1:7890">http://127.0.0.1:7890</a>
+git config --global https.<a target="_blank" rel="noopener" href="https://github.com.proxy">https://github.com.proxy</a> <a target="_blank" rel="noopener" href="https://127.0.0.1:7890">https://127.0.0.1:7890</a></p>
+<p>我的mac设置的是</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">kzz6991@SurfaceAir PaiPai121.io % git config --global --get http.proxy<br>http://127.0.0.1:2081<br>kzz6991@SurfaceAir PaiPai121.io % git config --global --get https.proxy<br>http://127.0.0.1:2081<br></code></pre></td></tr></tbody></table></figure>
+<p>如果要去除：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global --<span class="hljs-built_in">unset</span> http.proxy<br>git config --global --<span class="hljs-built_in">unset</span> https.proxy<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="%E9%85%8D%E7%BD%AEssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95">配置ssh免密登录</span></h1>
+<p>查看是否已经存在密钥</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> <span class="hljs-variable">$env</span>:USERPROFILE\.ssh\id_rsa.pub<br></code></pre></td></tr></tbody></table></figure>
+<p>如不存在，则创建</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -b 4096<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E5%85%AC%E9%92%A5---%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8---%E5%88%9B%E5%BB%BAssh%E7%9B%AE%E5%BD%95---%E6%8A%8A%E5%85%AC%E9%92%A5%E8%BF%BD%E5%8A%A0%E5%86%99%E5%85%A5%E6%8E%88%E6%9D%83%E6%96%87%E4%BB%B6">读取本地公钥 -&gt; 登录服务器 -&gt; 创建.ssh目录 -&gt; 把公钥追加写入授权文件</span></h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">type</span> <span class="hljs-variable">$env</span>:USERPROFILE\.ssh\id_rsa.pub | ssh root@148.135.91.160 <span class="hljs-string">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span><br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="%E9%85%8D%E7%BD%AEwsl%E4%BB%A3%E7%90%86">配置WSL代理</span></h1>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">[wsl2]<br># 开启镜像网络模式<br>networkingMode=mirrored<br># 自动代理（让 WSL 自动识别 Windows 代理）<br>autoProxy=true<br># 允许从宿主机访问 WSL<br>localhostForwarding=true<br># 限制内存占用（防止 Dify 跑起来后把 Windows 撑爆，建议根据你总内存调整）<br>memory=8GB<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">wsl --shutdown<br></code></pre></td></tr></tbody></table></figure>
+<h1><span id="%E9%85%8D%E7%BD%AEdocker%E9%95%9C%E5%83%8F%E6%BA%90">配置Docker镜像源</span></h1>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo nano /etc/docker/daemon.json<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">{</span><br>  <span class="hljs-attr">"registry-mirrors"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-string">"https://docker.xuanyuan.me"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"https://docker.m.daocloud.io"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"https://docker.1ms.run"</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">"https://hub.rat.dev"</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">}</span><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/02/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E6%97%A5%E5%B8%B8bug%E8%A7%A3%E5%86%B3/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;02&#x2F;学习记录&#x2F;日常bug解决&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;02&#x2F;学习记录&#x2F;日常bug解决&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" rel="tag">编程基本知识</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

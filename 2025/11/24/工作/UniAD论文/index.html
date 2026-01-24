@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> UniAD论文Planning-oriented Autonomous Driving -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams' // 开启公式自动编号
+      },
+      options: {
+        enableMenu: false
+      },
+      chtml: {
+        scale: 1.05 // 整体放大一点，看着更舒服
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    /* 解决大行列式横向滚动 */
+    mjx-container {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      padding: 1em 0;
+    }
+  </style>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>24</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AI/" style="font-size: 11.11px;">AI</a> <a href="/tags/GameExtend/" style="font-size: 14.44px;">GameExtend</a> <a href="/tags/MMD/" style="font-size: 11.11px;">MMD</a> <a href="/tags/flash/" style="font-size: 11.11px;">flash</a> <a href="/tags/gaea%E6%A1%86%E6%9E%B6/" style="font-size: 13.33px;">gaea框架</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 18.89px;">公众号</a> <a href="/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" style="font-size: 11.11px;">凸优化</a> <a href="/tags/%E5%A6%99%E7%93%A6%E5%BA%95/" style="font-size: 10px;">妙瓦底</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 10px;">工作</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 12.22px;">开发</a> <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="font-size: 12.22px;">强化学习</a> <a href="/tags/%E6%80%80%E6%97%A7/" style="font-size: 11.11px;">怀旧</a> <a href="/tags/%E6%88%91%E7%9A%84%E8%AE%BA%E6%96%87/" style="font-size: 10px;">我的论文</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 17.78px;">日常</a> <a href="/tags/%E6%9C%AC%E5%9C%B0%E5%AD%98%E6%A1%A3/" style="font-size: 18.89px;">本地存档</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" style="font-size: 16.67px;">游戏杂谈</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E7%9C%8B%E7%95%AA/" style="font-size: 11.11px;">看番</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" style="font-size: 11.11px;">编程基本知识</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" style="font-size: 10px;">自动驾驶</a> <a href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" style="font-size: 11.11px;">草履虫的端到端</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15.56px;">面试</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="UniAD论文Planning-oriented Autonomous Driving"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>UniAD论文Planning-oriented Autonomous Driving</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2025年11月24日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 6 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E5%8E%9F%E5%A7%8B%E9%93%BE%E6%8E%A5">原始链接</span></h1>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.10156">Planning-oriented Autonomous Driving</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/OpenDriveLab/UniAD">开源仓库</a></p>
+<h1><span id="%E8%BF%87%E5%BE%80%E7%9A%84%E4%BC%A0%E7%BB%9F%E6%9E%B6%E6%9E%84">过往的传统架构</span></h1>
+<p><strong>完全模块化：</strong> 感知、预测、规划完全解耦，误差累积，信息有损传递
+<strong>完全黑盒端到端：</strong> 不可解释（那怎么解决这个问题呢？）</p>
+<h1><span id="uniad%E7%9A%84%E6%9E%B6%E6%9E%84">UniAD的架构</span></h1>
+<pre class="mermaid">graph TD
+    A["摄像头图像 Images"] --&gt; B("Backbone &amp; BEVFormer")
+    B -- 生成 --&gt; C["BEV 特征图 (Key/Value)"]
+
+    D["预设的 Object Queries"] --&gt; E("检测与跟踪 TrackFormer")
+    C --&gt; E
+    E -- "产出 Track Queries" --&gt; F("预测 MotionFormer")
+    
+    C --&gt; F
+    F -- "产出 Motion Queries" --&gt; G("规划 PlanningFormer")
+    
+    C --&gt; G
+    H["导航指令 Command"] --&gt; G
+    
+    G -- 输出 --&gt; I["自车轨迹 (红线)"]</pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image.png" alt="alt text" class="lazyload">
+<strong>数据流动：</strong>
+$$\text{Video} \rightarrow \text{BEV} \rightarrow \text{Track Queries} \rightarrow \text{Motion Queries} \rightarrow \text{Planning}
+$$</p>
+<p>包含4个基于 Transformer decoder的感知和预测模块，以及一个planner。</p>
+<p>先使用现成的BEVFormer将video图像转化为BEV特征。（这在UniAD中并不重要）</p>
+<p>接下来是TrackFormer和MapFormer</p>
+<h2><span id="trackformer">TrackFormer</span></h2>
+<p>用一个神经网络替代了后处理，不再需要做匈牙利匹配和IOU，或者匹配的计数器。</p>
+<p><strong>Agent Queries ($Q_{agent}$)：</strong> 这代表了“车”或“行人”。假设场景里有 $N$ 个交通参与者，每个参与者用一个向量表示。</p>
+<p>在每个时间步，初始化一个detection queries，探测新生的agent。
+使用track queries 对之前建模出来的agent进行modeling。</p>
+<p>这两种queries都是从BEV Feature去查询的。</p>
+<p>在自车判断时，使用自注意力，
+$$\text{Interaction} = \text{Softmax}(Q_{agent} \cdot Q_{agent}^T) \cdot Q_{agent}
+$$，K，V都是Qagent，这样实际上就是在算路上的所有agent之间的交互，而不是和bev特征的交互。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Step 1: 自注意力 (Self-Attention) —— 您说的 "交互"</span><br><span class="hljs-comment"># 作用：让车与车之间“通气”。</span><br><span class="hljs-comment"># 比如：Query A 发现 Query B 要插队，A 更新自己的状态，准备减速。</span><br><span class="hljs-comment"># 注意：这时候还没看地图，纯粹是 Query 之间的沟通。</span><br>Queries = SelfAttention(Q=Queries, K=Queries, V=Queries);<br><br><span class="hljs-comment"># Step 2: 交叉注意力 (Cross-Attention) —— 您说的 "从BEV查询"</span><br><span class="hljs-comment"># 作用：带着刚才沟通好的意图，去看地图确认位置。</span><br><span class="hljs-comment"># 比如：Query A 决定减速了，现在去 BEV 地图上看看，我现在的精确像素坐标在哪？</span><br>Queries = CrossAttention(Q=Queries, K=BEV_Feature, V=BEV_Feature);<br><br><span class="hljs-comment"># Step 3: 前馈网络 (FFN)</span><br><span class="hljs-comment"># 消化一下信息</span><br>Queries = FeedForward(Queries);<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="mapformer">MapFormer</span></h2>
+<p>与TrackFormer类似，只不过TrackFormer是交通参与者，而mapformer是静态信息。</p>
+<p>K (Key) 和 V (Value)：在 MapFormer 中，依然是同一份 BEV Feature。这意味着无论是找车还是找路，系统查阅的“底层数据库”是完全一样的。</p>
+<p>Q (Query)：意图变了。正如您所说，它的物理含义从“一个物体”变成了“一组点（线条）”。</p>
+<h2><span id="motionformer">MotionFormer</span></h2>
+<h3><span id="%E8%BE%93%E5%85%A5">输入：</span></h3>
+<ul>
+<li>
+<p><strong>Track Queries (来自 TrackFormer):</strong> 知道了“那是谁，在哪，长啥样”。</p>
+</li>
+<li>
+<p><strong>Map Queries (来自 MapFormer):</strong> 知道了“路在哪，车道线怎么弯”。</p>
+</li>
+<li>
+<p><strong>BEV Features:</strong> 兜底的环境纹理信息。</p>
+</li>
+</ul>
+<p>仍然还是利用注意力机制
+<strong>$Q_A$ (Dynamic Agents):</strong> 就是我们在 TrackFormer 讲的 Track Queries（车、人）。
+<strong>$Q_M$ (Static Map):</strong> 就是我们在 MapFormer 讲的 Map Queries（路）。
+<strong>Multimodal (多模态):</strong> 这就是我们之前说的，针对每一辆车，预测 Top-K 条轨迹（比如 K=6，分别代表直行、左转、右转、加速、减速等）。</p>
+<h3><span id="%E8%BE%93%E5%87%BA">输出：</span></h3>
+<p>${ \hat{x}_{i,k} \in \mathbb{R}^{T \times 2} | i = 1,…,N_a; k = 1, . . ., K }$</p>
+<p>$N_a$ (i): Agent 的数量（比如 50 个障碍物）。
+$K$ (k): 模态的数量（比如每个障碍物预测 6 条轨迹）。
+$T$: 预测时长（比如未来 3 秒，每 0.5 秒一个点，T=6）。</p>
+<p>使用查询向量Q来</p>
+<h2><span id="%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%9E%84%E5%BB%BA">特征提取与构建</span></h2>
+<ol>
+<li>
+<p>Backbone (主干网络): 图像首先经过类似 ResNet 的网络，提取 2D 图像特征。</p>
+</li>
+<li>
+<p>BEVFormer: 这是最关键的一步。它通过 View Transformation（视角转换） 将 2D 图像特征“提升”到 3D 的 BEV（鸟瞰图） 空间。</p>
+</li>
+<li>
+<p>它使用 Attention 机制，查询 BEV 网格中的每一个点对应图像中的哪些像素。</p>
+</li>
+<li>
+<p>输出 ($C$): BEV Features。这是一个高维的特征网格（比如 $200 \times 200$ 的网格），它就像上帝视角的地图，包含了车道线、路沿等静态信息，也隐含了障碍物的位置信息。</p>
+</li>
+</ol>
+<h3><span id="bev-feature%E4%B8%8E-cost-map%E7%9A%84%E5%8C%BA%E5%88%AB">BEV Feature与 Cost Map的区别</span></h3>
+<p><strong>Rule-based Cost Map (标量图):</strong>
+形式: 通常是一个二维矩阵（$H \times W$）。
+内容: 每一个格子（Grid）里只有一个数字（Scalar），代表“经过这里的代价”。
+<strong>BEV Feature (高维张量):</strong>
+形式: 是一个三维张量（$H \times W \times C$），其中 $C$ 是通道数（Channel），通常是 256 或更多。
+内容: 每一个格子对应的不再是一个数字，而是一串长长的向量（比如 256 个浮点数）。
+特点: 包含高维语义信息。 这串数字里隐含了“这是一条虚线”、“这是湿滑路面”、“这是半个车头”等丰富信息，甚至是人类语言难以描述的特征。
+优点: 它是可导的。如果最终轨迹与人类驾驶员的轨迹（Ground Truth）不一致，Gradient（梯度）可以直接通过 BEV Feature 反向传播回去，自动修正 Backbone 提取特征的方式。</p>
+<h2><span id="%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%B7%9F%E8%B8%AA-trackformer">检测与跟踪 (TrackFormer)</span></h2>
+<h3><span id="object-queries">Object Queries</span></h3>
+<p>Object Queries 是一组固定数量的可学习参数（Learnable Parameters）。</p>
+<p>假设我们在模型中预设了 $N$ 个查询（例如 $N=900$），每个查询向量的维度为 $d$（例如 $d=256$）。那么，Object Queries 初始化为一个矩阵 $Q_{obj} \in \mathbb{R}^{N \times d}$。</p>
+<p>A. 位置部分 (Positional Embedding) —— “在哪里看”
+这是 Query 的“锚点”属性。经过训练，这 900 个 Query 会学习到不同的空间偏好。</p>
+<blockquote>
+<p>Query #1 可能专注于 BEV 空间的左上角。
+Query #2 可能专注于十字路口的中心。
+学术解释： 它是对场景进行稀疏采样的空间先验（Spatial Prior）。它告诉网络去关注哪些区域可能出现物体。</p>
+</blockquote>
+<p>B. 内容部分 (Content Embedding) —— “看到了什么”
+这是 Query 的“容器”属性。在未经解码器处理前，它通常初始化为零或随机值。
+随着它在 Transformer Decoder 层级中流动（Layer by Layer），它不断地通过 Cross-Attention 从 BEV 特征中“吸取”信息。
+最终，这个向量将编码目标物体的类别（Class）和回归参数（Bounding Box / Velocity）。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/11/24/%E5%B7%A5%E4%BD%9C/UniAD%E8%AE%BA%E6%96%87/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;24&#x2F;工作&#x2F;UniAD论文&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;11&#x2F;24&#x2F;工作&#x2F;UniAD论文&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/AI/" rel="tag">AI</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E8%8D%89%E5%B1%A5%E8%99%AB%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF/" rel="tag">草履虫的端到端</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
