@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 游戏生涯 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>124</div>
+		<div><span>标签</span>9</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/liferecords"
+			title="玩了什么"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				玩了什么
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple true"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">47</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">14</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 17.14px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15.71px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 12.86px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 14.29px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C/" style="font-size: 11.43px;">面试经验</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="游戏生涯"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>游戏生涯</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年01月28日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
+		</div>
+		<html><head><style>
+    .gg-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .gg-card-link { text-decoration: none !important; color: inherit !important; display: block; }
+    .gg-card { 
+      background: var(--background-secondary, rgba(255,255,255,0.05)); 
+      border: 1px solid var(--border-color, #eee); 
+      border-radius: 12px; overflow: hidden; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      position: relative; display: flex; flex-direction: column; height: 100%;
+    }
+    [data-theme="dark"] .gg-card { border-color: #333; background: rgba(255,255,255,0.05); }
+    .gg-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    
+    .gg-cover-wrap { height: 360px; overflow: hidden; position: relative; background: #222; }
+    .gg-cover-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; opacity: 0.95; }
+    .gg-card:hover .gg-cover-wrap img { transform: scale(1.05); opacity: 1; }
+    
+    .gg-badge { position: absolute; top: 8px; right: 8px; background: #e53e3e; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    
+    .gg-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .gg-title { margin: 0 0 0.5rem 0; font-size: 1.1em; font-weight: bold; color: var(--text-color); line-height: 1.3; }
+    .gg-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; color: #888; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color, #eee[0.1]); }
+    .gg-rating { color: #f6ad55; font-weight: bold; font-size: 1rem; }
+    .gg-desc { font-size: 0.9em; opacity: 0.7; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+  </head><body><div class="gg-container">
+  
+    <a href="/2026/01/23/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%BC%82%E5%BD%A2%E5%B7%A5%E5%9C%BA/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://static.render-state.to/wp-content/uploads/2020/02/Alien-Apocalypse-The-Factory-290x377.jpg" loading="lazy" alt="异形工场" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">异形工场</div>
+          <div class="gg-desc">自动化建设</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2026-01-23</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://asiagamemaster.com/upload/1338/ckeditor_images/2cf6012e-1394-4d3a-a739-c4d18b826569.webp" loading="lazy" alt="冬日狂想曲" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">冬日狂想曲</div>
+          <div class="gg-desc">懂的都懂</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 5天</span>
+                <span>📅 2026-01-22</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://images.launchbox-app.com/27be67f3-efd8-419d-80a0-409b6237e2a0.png" loading="lazy" alt="绯红结系" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">绯红结系</div>
+          <div class="gg-desc">2026年开年游玩</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2026-01-06</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2026/01/01/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E7%8A%AF%E7%BD%AA%E7%8E%B0%E5%9C%BA%E6%B8%85%E6%B4%81%E5%B7%A5/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="http://www.kkx.net/uploadfile/2024/0815/20240815042403984.jpg" loading="lazy" alt="犯罪现场清洁工" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">犯罪现场清洁工</div>
+          <div class="gg-desc">解压模拟器</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2026-01-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/fa.jpeg" loading="lazy" alt="英雄传说 空之轨迹FC" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">英雄传说 空之轨迹FC</div>
+          <div class="gg-desc">经典JRPG补票</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-10-03</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.mobygames.com/images/covers/l/416462-hollow-knight-limited-edition-linux-front-cover.jpg" loading="lazy" alt="空洞骑士" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">空洞骑士</div>
+          <div class="gg-desc">受苦之旅</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-10-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2025/09/13/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3-%E6%9C%80%E5%90%8E%E7%9A%84%E7%A7%8B%E5%A4%A9/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/61761150259_.pic.jpg" loading="lazy" alt="冰汽时代" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">冰汽时代</div>
+          <div class="gg-desc">《冰汽时代》的《最后的秋天》揭示出资本意志的冰寒，玩家从救世主变为“包工头”，在期限的暴政下，人性被异化成效率的奴隶，温水煮青蛙式的压迫让人不寒而栗。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-09-13</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.rpgfan.com/wp-content/uploads/2020/06/Baldurs-Gate-III-Artwork-08.jpg" loading="lazy" alt="博德之门3" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">博德之门3</div>
+          <div class="gg-desc">三、四周目达成，DND的魅力</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 10</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 160h</span>
+                <span>📅 2025-06-30</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2025/06/26/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E6%8D%9E%E5%A5%B3%E6%B8%B8%E6%88%8F%E8%AF%84%E4%BB%B7/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/lnyx.jpg" loading="lazy" alt="捞女游戏" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">捞女游戏</div>
+          <div class="gg-desc">《捞女游戏》：剧情跌宕起伏，导演功力深厚，却因反捞主题处理不足略显遗憾。现实影射引人深思，争议风波更是让游戏意义超脱本身，值得一玩。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-06-25</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="/2025/05/20/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%B7%AB%E5%B8%883%E7%AB%9F%E7%84%B6%E5%B7%B2%E7%BB%8F%E5%8D%81%E5%91%A8%E5%B9%B4%E4%BA%86/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="http://www.mobygames.com/images/covers/l/392214-the-witcher-3-wild-hunt-xbox-one-front-cover.png" loading="lazy" alt="巫师3" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">巫师3</div>
+          <div class="gg-desc">《巫师3》：十年匠心，从油画般的画风到深刻的人性探讨，每个选择都是灵魂的审判，这不仅仅是一款游戏，它是猎魔人的史诗，是成年人最后的童话。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-05-20</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="/2025/04/10/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8F/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/sddyx.jpg" loading="lazy" alt="苏丹的游戏" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">苏丹的游戏</div>
+          <div class="gg-desc">《苏丹的游戏》：穿越苏丹，从自由到理想，每一步都充满抉择与牺牲，游戏成就如人生缩影，深刻诠释了欲望、宽容与自我救赎。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-04-10</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://image.gamersky.com/zqimg/split-fiction/image/cover.jpg" loading="lazy" alt="双影奇境" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">双影奇境</div>
+          <div class="gg-desc">一日通关</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 20h</span>
+                <span>📅 2025-03-17</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2025/03/06/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%8D%81%E4%B8%89%E6%9C%BA%E5%85%B5%E9%98%B2%E5%8D%AB%E5%9C%88%E8%AE%B2%E4%BA%86%E4%BB%80%E4%B9%88/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://img.3dmgame.com/uploads/images/news/20201019/1603090016_348800.jpg" loading="lazy" alt="十三机兵防卫圈" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">十三机兵防卫圈</div>
+          <div class="gg-desc">《十三机兵防卫圈》：剧情深似海，人性如迷宫，一局游戏，反思千年，末世求生，唯有智勇双全者才能破局！</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-03-06</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="http://gamingway.fr/wp-content/uploads/2018/04/yakuza-cover.jpg" loading="lazy" alt="如龙6 生命诗篇" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">如龙6 生命诗篇</div>
+          <div class="gg-desc">桐生一马传说的（暂时）终结</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 35h</span>
+                <span>📅 2025-02-24</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn-grm.s3.amazonaws.com/production/media/Portrait/8a18b851f070b531.jpg" loading="lazy" alt="如龙0 誓约的场所" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">如龙0 誓约的场所</div>
+          <div class="gg-desc">如龙系列起点，剧情巅峰</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 9.5</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 71.5h</span>
+                <span>📅 2025-02-18</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2025/01/30/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E7%A5%9E%E4%B9%8B%E5%A4%A9%E5%B9%B3%E6%B8%B8%E6%88%8F%E8%AE%B0%E5%BD%95/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.rpgfan.com/wp-content/uploads/2020/10/Divinity-Original-Sin-II-Cover-Art-001.jpg" loading="lazy" alt="神之天平" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">神之天平</div>
+          <div class="gg-desc">《神之天平》：初尝艰难，渐入佳境，中年男人操作力不足，但探索腐朽白骨与毁灭村子的瞬间，游戏魅力顿显，挑战未竟，期待深入。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2025-01-29</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://hot.game/uploads/media/game/0001/73/66e23d12abaa2bd3fbe25c0d076c240f44ef637e.jpeg" loading="lazy" alt="永劫无间" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">永劫无间</div>
+          <div class="gg-desc">双排混到了修罗段位</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-12-31</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://assetsio.reedpopcdn.com/co6f1s.png?width=1920&amp;height=1920&amp;fit=bounds&amp;quality=80&amp;format=jpg&amp;auto=webp" loading="lazy" alt="崩坏：星穹铁道" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">崩坏：星穹铁道</div>
+          <div class="gg-desc">日常太空喜剧</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-12-31</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2024/12/22/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E9%94%90%E8%AF%84%E5%A6%82%E9%BE%998/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://store-images.s-microsoft.com/image/apps.38127.14427542363794747.182f58ca-3a24-4a65-93bd-cdd320a35776.aa29ae9b-d910-4213-984c-6e3c5dd828f3" loading="lazy" alt="如龙8" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">如龙8</div>
+          <div class="gg-desc">跨年大作，回合制改革成功</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 9</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 106h</span>
+                <span>📅 2024-12-22</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://e.snmc.io/lk/l/x/01afb8e56b71c95a626dd5e0cc8c8dd1/7992329" loading="lazy" alt="明日方舟" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">明日方舟</div>
+          <div class="gg-desc">日常手机搓玻璃，已弃坑？</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-12-15</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://pobierajgry.pl/wp-content/uploads/2021/11/Forza-Horizon-5-download.jpg.png" loading="lazy" alt="极限竞速：地平线5" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">极限竞速：地平线5</div>
+          <div class="gg-desc">买了方向盘，体验完全不同</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-12-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://img.3dmgame.com/uploads/images/news/20191227/1577425899_995502.jpg" loading="lazy" alt="如龙7 光与暗的行踪" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">如龙7 光与暗的行踪</div>
+          <div class="gg-desc">春日一番的起点</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 9</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 110h</span>
+                <span>📅 2024-11-26</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2024/11/25/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E5%88%B0%E4%BA%86%E8%B0%B7%E5%BA%95%E5%B0%B1%E5%8F%AA%E8%83%BD%E4%B8%80%E8%B7%AF%E5%90%91%E4%B8%8A%E4%BA%86-%E5%A6%82%E9%BE%997/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/yakuza7.jpg" loading="lazy" alt="如龙7" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">如龙7</div>
+          <div class="gg-desc">如龙7，热血江湖梦，回合制战斗新体验，日常养成添生活感，剧情跌宕起伏，支线丰富有趣，黑帮江湖，笑与泪交织，值得一试！</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-11-25</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.mobygames.com/images/covers/l/604302-euro-truck-simulator-2-linux-front-cover.jpg" loading="lazy" alt="欧洲卡车模拟2" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">欧洲卡车模拟2</div>
+          <div class="gg-desc">日常开混，听歌模拟器</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-11-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.switch520.org/wp-content/uploads/img/3dm/202112_16_100627ucsdw1jegccjjdg1.jpg" loading="lazy" alt="最终幻想7 重制版" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">最终幻想7 重制版</div>
+          <div class="gg-desc">爱丽丝...</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 40h</span>
+                <span>📅 2024-10-25</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://i.ebayimg.com/images/g/RDsAAeSw5PFonjBQ/s-l1600.jpg" loading="lazy" alt="黑神话：悟空" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">黑神话：悟空</div>
+          <div class="gg-desc">国产之光，既见未来，为何不拜</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 10</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 62.2h</span>
+                <span>📅 2024-09-15</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://m.media-amazon.com/images/I/6110RSDn3PL.jpg" loading="lazy" alt="艾尔登法环" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">艾尔登法环</div>
+          <div class="gg-desc">本体2周目+黄金树幽影DLC</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ 10</span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 144h</span>
+                <span>📅 2024-09-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/fa.jpeg" loading="lazy" alt="FIFA 22" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">FIFA 22</div>
+          <div class="gg-desc">足球年货</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2024-06-03</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.thegamesdb.net/images/original/boxart/front/66611-1.jpg" loading="lazy" alt="杀戮尖塔" class="lazyload">
+           
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">杀戮尖塔</div>
+          <div class="gg-desc">爬塔停不下来</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                <span>⌛ 47h</span>
+                <span>📅 2024-06-01</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/2022/03/16/subscribers/2022-03-16-%E6%88%98%E7%A5%9E%E5%9B%9B%E5%92%8C%E6%9C%80%E5%90%8E%E7%94%9F%E8%BF%98%E8%80%85%E4%B8%A4%E4%BD%8D%E8%80%81%E7%88%B6%E4%BA%B2%E7%9A%84%E5%B8%A6%E5%A8%83%E6%97%85%E9%80%94/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn1.epicgames.com/offer/3ddd6a590da64e3686042d108968a6b2/EGS_GodofWar_SantaMonicaStudio_S2_1200x1600-fbdf3cbc2980749091d52751ffabb7b7_1200x1600-fbdf3cbc2980749091d52751ffabb7b7" loading="lazy" alt="战神四" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">战神四</div>
+          <div class="gg-desc">《战神四》不仅是一场视觉盛宴，更是叙事艺术的新高度，老父亲与儿子的冒险旅程，唤醒了玩家内心深处的英雄梦。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2022-03-16</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="/2022/03/16/subscribers/2022-03-16-%E6%88%98%E7%A5%9E%E5%9B%9B%E5%92%8C%E6%9C%80%E5%90%8E%E7%94%9F%E8%BF%98%E8%80%85%E4%B8%A4%E4%BD%8D%E8%80%81%E7%88%B6%E4%BA%B2%E7%9A%84%E5%B8%A6%E5%A8%83%E6%97%85%E9%80%94/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/fa.jpeg" loading="lazy" alt="最后生还者" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">最后生还者</div>
+          <div class="gg-desc">《最后生还者》以残酷的现实描绘了人性的挣扎，一场末日生存之旅，让玩家在紧张刺激中反思生命的意义。</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2022-03-16</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <a href="/2021/07/11/subscribers/2021-07-11-%5B%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88%5D%E8%81%8A%E8%81%8A%E9%80%86%E8%BD%AC%E8%A3%81%E5%88%A4%E6%97%A0%E5%89%A7%E9%80%8F/" class="gg-card-link" title="阅读评测">
+      <div class="gg-card">
+        <div class="gg-cover-wrap">
+           <img data-fancybox="gallery" data-sizes="auto" data-src="/image/fa.jpeg" loading="lazy" alt="逆转裁判" class="lazyload">
+           <div class="gg-badge">REVIEW</div>
+        </div>
+        <div class="gg-info">
+          <div class="gg-title">逆转裁判</div>
+          <div class="gg-desc">《逆转裁判》：法庭如战场，证据为剑，律师如神探，正义终将逆转，一场逻辑与真相的巅峰对决！</div>
+          <div class="gg-meta">
+             <span class="gg-rating">★ </span>
+             <div style="display:flex; gap:10px;">
+                
+                <span>📅 2021-07-11</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    </div><!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/games/index.html" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;games&#x2F;index.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;games&#x2F;index.html</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
