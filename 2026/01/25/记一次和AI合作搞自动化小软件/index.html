@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 记一次和AI合作搞自动化小软件 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>113</div>
+		<div><span>标签</span>8</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">42</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">14</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 16.67px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.33px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 11.67px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 13.33px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="记一次和AI合作搞自动化小软件"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>记一次和AI合作搞自动化小软件</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年01月25日</a>
+			<a><i class="kirafont icon-edit-fill"></i>2.7k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
+		</div>
+		<html><head></head><body><p>嗯，最初大概是半个月前吧，当时想起来用AI去vibe coding做一个用AI自动分类浏览器收藏夹的东西，后来就想这个AI的 vibe coding还能做什么呢？能帮我完成哪些我自己做不了的？如果说我是一个纯白嫖的免费用户的话。</p>
+<p>实验工具：QWEN-CODE、vscode + ROO + 免费api
+目标：让CLI完全自主完成整个软件的开发</p>
+<p>最开始想的很简单。就是给他需求，然后不断pua他，让他改让他优化让他实现目标，当讨厌的项目经理
+我和我老婆经常拼图，找碎片找到烟花，所以第一个目标就是让他做一个自动化拼图碎片位置查找，我们就可以按图索骥了。
+然后他就开始OpenCV之类的开始搞预处理、轮廓检测，SIFT、SURF 、ORB 特征提取。搞单应性变换（Homography）去矫正包装盒原图。像是公司的ppt高手方案吹的一套一套，结果是一塌糊涂。
+我不动脑春push是没啥长进，翻来覆去就那一套，甚至相同的变量名改过来改过去。感觉再怎么push大概他也就是这个水平了。
+我大概琢磨了一下，识别出来拼图碎片这个事情，空口给他描述确实是一个很难的事情，我也不想单独炼个模型。毕竟是想轻松简单不是想给自己找麻烦，而且我对cv领域可以说一窍不通。于是大概想了一个方法就是先借免费多模态大模型之力让他先粗定位一下碎片或者目标图在哪（当然了，既然是一毛不拔，这里也是免费api），然后让工具在裁定的这个区域内再进行识别，就能大幅降低难度了。
+当然了，明确的告诉他工作流程，他能很快的把框架打出来，
+工具很快就具有了先通过API访问大模型，然后根据返回的坐标，进行初步裁剪，然后在用一些传统cv方法进行下一步的定位和裁剪的能力。接下来的话，其实我们大概有2个东西要定位，一个就是我们拍的拼图外盒的整图，一个就是我们的某一块小碎片。</p>
+<p>这个工作流最开始对整图的判断倒是还准，可能这对于免费大模型的粗定位来讲，挑战不是特别的大，但是仍然会有很多不必要的区域被纳进来。一般来讲，这都是一个在透视下变形之后的矩形，所以我一些传统的识别方法倒是能够进一步的把要去校正和框出来。虽然现在效果不是很完美，但是大体上还算能用的边上，我也多裁一点也没有关系，我们先把工作流跑通。</p>
+<p>另一个问题就是碎片了，我测试的时候这个碎片图像其实在整幅图里边占比是比较小的，而且我们实际使用的时候只要你不是说拿碎片硬往镜头怼的特别近的话，其实本身碎片啊不可能像盒装的一样占那么大。而且本身碎片可能表面特征也不是很明显，然后大模型返回来的粗定位往往是真的非常粗，这个时候基本上比如说我，用手拿着碎片拍照片，以后返回来粗定位之后的图基本还会包含在我的整只手。其实我没有什么好办法，只是让cli去根据碎片边缘的特征去提取目标区域。因为这个时候我觉得我们可能唯一能利用的特征就是拼图碎片，这种类似于四叶草或者凹陷的边缘特征了。这个时候告诉大模型，让他不断的去调整算法，然后去识别判断，并且用他的多模态能力闭环验证自己到底是不是一块裁剪后的拼图碎片，效果自然是不尽人意，很多次他只留了我的一个指甲盖，然后碎片给他截了，一点都不剩。我手动的裁出来一张标准答案，让他持续去对照这个标准答案调整算法，直到它能够正确的把这个碎片搞出来。当然，有时候可能是Prompt没写好，他甚至搞成了作弊行为，然后直接按照这个模板去图上找到对应区域，然后把这个对应区域截下来，然后当做一个结果的输出，所以当他真正输出一个正确的图形以后，我还要把我之前提供的标准答案以及他上次输出结果删除，然后再来一遍。经过几轮迭代，终于有大概的雏形了。对于一些碎片可能能够裁剪个八九不离十，基本视野内就只剩下碎片了。但还有很多碎片，它最多可能周围还保留了有一圈多的空间，大概有八九个碎片那么大的一张图。这个时候其实又不太好搞了，所以我现在考虑的是能不能这里再插入一个AI抠图AI抠图，把背景抠掉这个碎片，这样的话接下来cv方法不是很容易能把碎片找出来的吗？
+<img data-fancybox="gallery" data-sizes="auto" data-src="piece_match.png" alt="alt text" class="lazyload">
+当然了，他自己实现的效果很差，loftr模型半天不会下又给我回去了。不过也罢我寻思着之前有样本能裁剪的很好，不如先死马当作活马医，匹配试试。
+结局自然还是匹配的很差。当然我知道这并不是一个简单的事情，可是这好像也是在说，能让ai做的事情，至少自己应该知道怎么做。作为生成式模型，可能更适合的还是重复造轮子而不是做新轮子。</p>
+<p>接下来说另一个尝试，欧卡有个开源自动驾驶项目，ets2la。大概框架就是拿到游戏的地图数据做高精地图，找出车道中心线，然后控制自车去追踪这个中心线。控制器做的很直接，结果就是效果并不是很好，超调或者震荡的问题时常发生，偏差大的时候还有方向盘猛打的情况。作为一个搞规控的，自然想把他的规划和控制都改改。</p>
+<p>首先是我自己作为下游来做一个 PID 或者 MPC。和刚才所说的 CV 不一样的是，这个我真知道怎么做。那么可以首先让 CLI 快速读一下开源项目的源码，看下软件的接口怎么写，然后把原来的旧控制器的代码复制一份，开始魔改成新的控制器。这个过程中倒也不用我真的去重写一个 MPC，只需要慢慢跟 AI 描述，然后帮它稍微改一改，顺利得多。</p>
+<p>所以我觉得，至少从免费的 Vibe Coding 而言，它提供的机会可能并不是纯依赖 AI 就可以做出来一个全新的东西。如果我们自己并不知道怎么做，稍微超出一些基础知识的范畴，可能它就搞不定了，我们也不知道怎么去指导它。但是如果你本身就知道怎么做，它可以很快地代替你来实现。</p>
+<p>还有就是，比如 CLI 写这个控制器，它提供了一种机会：以前的话，我们的软件基本是开发成什么样就用什么样；而对于现在来讲，每个人都可以对软件进行自己的客制化，就像之前的客制化键盘一样。基本的如让你把工具改好，或者写一些漂亮的页面，它是没有问题的。</p>
+<p>那么就有了另一个尝试。我之前在 GitHub Pages 上做 Hexo 博客，那天看到有人在 Obsidian 里面把玩过的游戏做成卡片展示样式，弄了那么一个页面。我想在我的 Hexo 博客里也实现一个，虽然我完全不懂网页，不管是 JS 还是 CSS 我都不懂，但 AI 懂，这个时候正合适让它来做我的“客制化工程师”。</p>
+<p>这种相对而言比较标准的流程，它很快就给我做出了 Demo。每次 Generate 的时候会自动刷新游戏展页的内容，我还让它把我以前写的一些记录自动化地整理到现在的元数据上，它也搞了一个自动化脚本让我本地 Run 一下。</p>
+<p>当然，效果也还是很一般的，会有各种各样的问题。比如有些链接打不开，或者找的是竖版卡片，还是需要人工精修。这有点像自动驾驶：虽然泛化性和拟人性做得非常好，但最后总得搞一些后处理去用规则兜底，要不然规划轨迹冷不丁给你画个“麻花”就完蛋了。</p>
+<p>不过到细节沟通的时候，它还是总让我脑溢血到想骂人，我现在非常理解那些能和导航吵起来的人。</p>
+<p>所以我还是觉得，对待它就像对待刚招进来的应届生小学徒一样：有明确的架构告诉它改哪、怎么改，它就搞定得很快，而且比人做得好得多；但如果我没有整体框架，给它一个抽象程度比较高的标准，可能就会比较麻烦。</p>
+<p>反正就算有这么多问题，有它还是比自己一个人瞎搞效率要高得多。The more you use, the more you save。但是对个人来讲，用免费的vibe coding来实现庞大的工程似乎还是遥不可及。</p>
+<p>付费版当时用得最多的就是工作时公司买的 Cursor。读代码的能力非常非常强，基本上我只需要像使唤“牛马工程师”一样不断告诉它看哪里、一起分析就行了，感觉像是有了一个结对编程的伙伴。在已有的代码框架内让他修修补补，写写或回回review的能力远超我了，只要我能给他下达正确的任务。每天都在怀疑我们以后应该做什么呢？大家都去做项目经理吗？</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image.png" alt="alt text" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="duplicatename.png" alt="alt text" class="lazyload"></p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/01/25/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%92%8CAI%E5%90%88%E4%BD%9C%E6%90%9E%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B0%8F%E8%BD%AF%E4%BB%B6/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;01&#x2F;25&#x2F;记一次和AI合作搞自动化小软件&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;01&#x2F;25&#x2F;记一次和AI合作搞自动化小软件&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

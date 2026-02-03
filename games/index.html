@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 游戏生涯 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>113</div>
+		<div><span>标签</span>8</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple true"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">42</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">14</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 16.67px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.33px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 11.67px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 13.33px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="游戏生涯"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>游戏生涯</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2024年01月28日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+		</div>
+		<html><head></head><body><div class="game-gallery-container">
+  <style>
+    .game-gallery-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+    .game-year-header {
+      font-size: 1.8em;
+      font-weight: bold;
+      margin: 50px 0 20px 0;
+      border-bottom: 2px solid #ccc;
+      color: #333;
+      opacity: 0.85;
+      position: relative;
+    }
+    .game-year-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #4a90e2, #63b3ed);
+      border-radius: 1px;
+    }
+    .game-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 32px; /* 增加卡片间距至32px */
+      margin-bottom: 40px;
+    }
+    .game-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card-bg, #fff);
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.06),
+        0 4px 8px rgba(0,0,0,0.04),
+        0 8px 16px rgba(0,0,0,0.02);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* 带弹性回馈的过渡 */
+      text-decoration: none !important;
+      color: inherit !important;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: none; /* 取消生硬的边框 */
+      height: 100%;
+      cursor: default;
+      transform: translateY(0);
+      perspective: 1000px; /* 添加透视效果 */
+    }
+    .game-card.has-link { cursor: pointer; }
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.02) rotateX(4deg) rotateY(-2deg); /* 微小视差旋转 */
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.06), /* 基础柔和阴影 */
+        0 12px 24px rgba(0,0,0,0.12), /* 下方长投影 */
+        0 0 25px rgba(74, 144, 226, 0.4); /* 彩色发光阴影 */
+    }
+    .game-cover-bg {
+      display: block;
+      width: 100%;
+      padding-top: 150%;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-color: #f0f0f0;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease; /* 带弹性回馈的过渡 */
+      position: relative;
+    }
+    .game-cover-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      pointer-events: none;
+    }
+    .game-card:hover .game-cover-bg {
+      transform: scale(1.08);
+      filter: brightness(1.1) saturate(1.2); /* 增加饱和度 */
+    }
+    .game-cover-wrapper {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    }
+    .game-info {
+      padding: 14px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.65); /* 亮色下半透明白色 */
+      backdrop-filter: blur(12px); /* 玻璃拟态效果 */
+      -webkit-backdrop-filter: blur(12px); /* Safari 支持 */
+      z-index: 1;
+      margin-top: -15px; /* 向上偏移覆盖封面图15px */
+      position: relative;
+      border-radius: 0 0 12px 12px;
+      border: 1px solid rgba(255,255,255,0.1); /* 细边框 */
+    }
+    @media (prefers-color-scheme: dark) {
+      .game-info {
+        background: rgba(30, 41, 59, 0.7); /* 暗色模式下的半透明深灰色 */
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+    }
+    .game-title {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800; /* 增加字重 */
+      font-size: 0.95rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em; /* 字间距略微收缩 */
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      color: #2c3e50;
+    }
+    .game-meta {
+      font-size: 0.75em;
+      color: #7f8c8d;
+      margin-bottom: 8px;
+    }
+    .game-rating {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px; /* 药丸型设计 */
+      font-size: 0.75em;
+      font-weight: 600;
+      min-width: 50px;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .rating-value {
+      background: rgba(246, 211, 101, 0.2); /* 莫兰迪色系 */
+      color: #7c2d12;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(246, 211, 101, 0.3);
+    }
+    .rating-high {
+      background: rgba(249, 115, 22, 0.2); /* 莫兰迪色系 */
+      color: #7c2d12;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .rating-medium {
+      background: rgba(13, 148, 136, 0.2); /* 莫兰迪色系 */
+      color: #0d9488;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+    }
+    .rating-low {
+      background: rgba(220, 38, 38, 0.2); /* 莫兰迪色系 */
+      color: #dc2626;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+    .rating-none {
+      background: rgba(226, 232, 240, 0.2); /* 莫兰迪色系 */
+      color: #475569;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(226, 232, 240, 0.3);
+    }
+    /* 高分游戏的闪烁动画 */
+    .rating-high.shimmer {
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+    }
+    .game-comment {
+      font-size: 0.8em;
+      color: rgba(82, 100, 132, 0.8); /* 降低透明度 */
+      margin-top: auto;
+      padding-top: 10px;
+      padding-left: 8px; /* 为左侧装饰线留空间 */
+      border-left: 3px solid; /* 左侧带有渐变色装饰线 */
+      border-image: linear-gradient(180deg, #4a90e2, #63b3ed) 1;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .game-rating {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px; /* 药丸型设计 */
+      font-size: 0.75em;
+      font-weight: 600;
+      min-width: 50px;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .rating-value {
+      background: rgba(246, 211, 101, 0.2); /* 莫兰迪色系 */
+      color: #7c2d12;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(246, 211, 101, 0.3);
+    }
+    .rating-high {
+      background: rgba(249, 115, 22, 0.2); /* 莫兰迪色系 */
+      color: #7c2d12;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .rating-medium {
+      background: rgba(13, 148, 136, 0.2); /* 莫兰迪色系 */
+      color: #0d9488;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+    }
+    .rating-low {
+      background: rgba(220, 38, 38, 0.2); /* 莫兰迪色系 */
+      color: #dc2626;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+    .rating-none {
+      background: rgba(226, 232, 240, 0.2); /* 莫兰迪色系 */
+      color: #475569;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(226, 232, 240, 0.3);
+    }
+    .game-card:hover .rating-value {
+      background: rgba(246, 211, 101, 0.3);
+      transform: scale(1.05);
+    }
+    .game-card:hover .rating-high {
+      background: rgba(249, 115, 22, 0.3);
+      transform: scale(1.05);
+    }
+    .game-card:hover .rating-medium {
+      background: rgba(13, 148, 136, 0.3);
+      transform: scale(1.05);
+    }
+    .game-card:hover .rating-low {
+      background: rgba(220, 38, 38, 0.3);
+      transform: scale(1.05);
+    }
+    .game-card:hover .rating-none {
+      background: rgba(226, 232, 240, 0.3);
+      transform: scale(1.05);
+    }
+    /* 呼吸灯动画 */
+    .pulse-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #10b981;
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    @media (prefers-color-scheme: dark) {
+      .game-card {
+        background: linear-gradient(145deg, #2d3748, #1a202c);
+      }
+      .game-cover-bg::before {
+        background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
+      }
+      .game-cover-wrapper {
+        background: linear-gradient(45deg, #2d3748, #1a202c);
+      }
+      .game-info {
+        background: rgba(30, 41, 59, 0.7); /* 暗色下的半透明深灰 */
+        color: #e2e8f0;
+      }
+      .game-title {
+        color: #e2e8f0;
+      }
+      .game-meta {
+        color: #a0aec0;
+      }
+      .game-comment {
+        color: rgba(163, 179, 209, 0.8); /* 降低透明度 */
+        border-left-color: #4a90e2;
+      }
+      .game-year-header {
+        border-bottom-color: #4a5568;
+        color: #e2e8f0;
+      }
+      .game-year-header::after {
+        background: linear-gradient(90deg, #63b3ed, #4a90e2);
+      }
+      .rating-none {
+        background: rgba(55, 61, 81, 0.2);
+        color: #cbd5e0;
+        border: 1px solid rgba(55, 61, 81, 0.3);
+      }
+    }
+  </style>
+  <h2 class="game-year-header">2026</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('/image/endfield.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">终末地</div>
+          <div class="game-meta"><div>2026/01/29</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">欧洲卡车模拟器2</div>
+          <div class="game-meta"><div>2026/01/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 30h</div></div>
+          <div class="game-comment">自制自动驾驶控制器</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2495450/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冬日狂想曲</div>
+          <div class="game-meta"><div>2026/01/17</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="/2026/01/23/游戏杂谈/异形工场/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('/image/shapez.png');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">异形工场</div>
+          <div class="game-meta"><div>2026/01/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/775500/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">绯红结系</div>
+          <div class="game-meta"><div>2026/01/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a></div><h2 class="game-year-header">2025</h2><div class="game-gallery">
+      <a href="/2026/01/01/游戏杂谈/犯罪现场清洁工/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('/image/crime.png');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">犯罪现场清洁工</div>
+          <div class="game-meta"><div>2025/12/27</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/42/7e/294635_s8Hz9.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">空轨</div>
+          <div class="game-meta"><div>2025/10/03</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">1st</div>
+        </div>
+      </a>
+      <a href="/2025/09/13/游戏杂谈/冰汽时代-最后的秋天/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/323190/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冰汽时代</div>
+          <div class="game-meta"><div>2025/09/13</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="/2025/09/13/游戏杂谈/冰汽时代-最后的秋天/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/72/95/339836_5oLab.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后的秋天</div>
+          <div class="game-meta"><div>2025/09/13</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">空洞骑士</div>
+          <div class="game-meta"><div>2025/09/10</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">2025年10月</div>
+        </div>
+      </a>
+      <a href="/2025/06/26/游戏杂谈/捞女游戏评价/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/1e/97/565392_0x480.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">捞女游戏</div>
+          <div class="game-meta"><div>2025/06/26</div><div style="margin-top:4px;"><span class="game-rating rating-medium">★ 7.5</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="/2025/05/20/游戏杂谈/巫师3竟然已经十周年了/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">巫师3</div>
+          <div class="game-meta"><div>2025/05/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">极限竞速：地平线5</div>
+          <div class="game-meta"><div>2025/04/15</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">买了方向盘</div>
+        </div>
+      </a>
+      <a href="/2025/04/10/游戏杂谈/苏丹的游戏/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('/image/sddyx.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">苏丹的游戏</div>
+          <div class="game-meta"><div>2025/04/03</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 40h</div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2001120/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">双影奇境</div>
+          <div class="game-meta"><div>2025/03/17</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 20h</div></div>
+          
+        </div>
+      </a>
+      <a href="/2025/03/06/游戏杂谈/十三机兵防卫圈讲了什么/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/8a/54/146598_m2Dj6.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">十三机兵防卫圈</div>
+          <div class="game-meta"><div>2025/03/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">博德之门3</div>
+          <div class="game-meta"><div>2025/03/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 160h</div></div>
+          <div class="game-comment">三、四周目</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/39/09/188093_qzevT.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙6</div>
+          <div class="game-meta"><div>2025/02/19</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 35h</div></div>
+          
+        </div>
+      </a>
+      <a href="/2025/01/30/游戏杂谈/神之天平游戏记录/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1718570/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">神之天平</div>
+          <div class="game-meta"><div>2025/01/30</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2988580/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙0</div>
+          <div class="game-meta"><div>2025/01/22</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 71.5h</div></div>
+          
+        </div>
+      </a></div><h2 class="game-year-header">2024</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">欧洲卡车模拟器2</div>
+          <div class="game-meta"><div>2024/12/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">旧游重玩，但是有了图马斯特</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">极限竞速：地平线5</div>
+          <div class="game-meta"><div>2024/12/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">买了方向盘</div>
+        </div>
+      </a>
+      <a href="/2024/11/25/游戏杂谈/到了谷底就只能一路向上了-如龙7/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1235140/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙7</div>
+          <div class="game-meta"><div>2024/11/25</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="/2024/12/22/游戏杂谈/锐评如龙8/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1235140/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙8</div>
+          <div class="game-meta"><div>2024/11/11</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 106h</div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/c3/1d/223595_5tNP5.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙7：国际版</div>
+          <div class="game-meta"><div>2024/10/31</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 110h</div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/6e/32/137458_fwH60.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">FF7re</div>
+          <div class="game-meta"><div>2024/10/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 40h</div></div>
+          <div class="game-comment">10月25日</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/be/b4/313495_oVVzV.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">黑神话悟空</div>
+          <div class="game-meta"><div>2024/08/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 62.2h</div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1203220/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">永劫无间</div>
+          <div class="game-meta"><div>2024/07/08</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">双排混到了修罗</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">艾尔登法环</div>
+          <div class="game-meta"><div>2024/06/30</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 144h</div></div>
+          <div class="game-comment">本体2周目+DLC</div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d2/ef/02/d2ef028a-9668-fbc0-4483-d2dd0bfd41a8/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1024x0w.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">FIFA2022</div>
+          <div class="game-meta"><div>2024/05/22</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/646570/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">杀戮尖塔</div>
+          <div class="game-meta"><div>2024/03/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 47h</div></div>
+          
+        </div>
+      </a></div><h2 class="game-year-header">2023</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co65u5.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">崩坏：星穹铁道</div>
+          <div class="game-meta"><div>2023/04/26</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">日常手机上混时间</div>
+        </div>
+      </a></div><h2 class="game-year-header">2022</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co2x3t.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">明日方舟</div>
+          <div class="game-meta"><div>2022/07/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          <div class="game-comment">日常手机上混时间</div>
+        </div>
+      </a>
+      <a href="/2022/03/16/subscribers/2022-03-16-战神四和最后生还者两位老父亲的带娃旅途/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ca/f1/c1/caf1c160-4156-e307-454a-0923f1cae8cc/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1024x0w.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">战神四</div>
+          <div class="game-meta"><div>2022/03/16</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="/2022/03/16/subscribers/2022-03-16-战神四和最后生还者两位老父亲的带娃旅途/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/3d/25/41424_MMP6M.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后生还者</div>
+          <div class="game-meta"><div>2022/03/16</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a></div><h2 class="game-year-header">2021</h2><div class="game-gallery">
+      <a href="/2021/07/11/subscribers/2021-07-11-[游戏杂谈]聊聊逆转裁判无剧透/" class="game-card has-link" >
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2401970/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">逆转裁判</div>
+          <div class="game-meta"><div>2021/07/11</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a></div><h2 class="game-year-header">未知年份</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('/image/61761150259_.pic.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后的秋天</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3117820/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">苏丹的游戏</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co20tm.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">十三机兵防卫圈</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2495450/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冬日狂想曲</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1184710/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">神之天平</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co3dph.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">FIFA2022</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1451940/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">捞女游戏</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://cdn1.epicgames.com/offer/3ddd6a590da64e3686042d108968a6b2/EGS_GodofWar_SantaMonicaStudio_S2_1200x1600-fbdf3cbc2980749091d52751ffabb7b7_1200x1600-fbdf3cbc2980749091d52751ffabb7b7');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">战神4</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">巫师3</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/323190/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冰汽时代</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1888930/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后生还者</div>
+          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
+          
+        </div>
+      </a></div></div><!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/games/index.html" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;games&#x2F;index.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;games&#x2F;index.html</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
