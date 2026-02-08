@@ -450,7 +450,7 @@
 			<a><i class="kirafont icon-edit-fill"></i>3 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<html><head></head><body><div id="<div class="game-gallery-container">
+		<html><head></head><body><div class="game-gallery-container">
   <style>
     .game-gallery-container { 
       max-width: 1400px; 
@@ -458,6 +458,8 @@
       padding: 0 20px; 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
       background-color: #1a1a1a;
+      border-radius: 24px; /* 稍大一点的圆角更显现代化 */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(0,0,0,0.2);
       color: #ffffff;
     }
     
@@ -466,6 +468,7 @@
       font-weight: 700;
       margin: 50px 0 40px 0;
       color: #ffffff;
+      border-left: 6px solid #4a90e2; /* 加个标志性的蓝色侧条 */
       text-transform: uppercase;
       letter-spacing: 1px;
       position: relative;
@@ -474,7 +477,7 @@
     
     .game-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
       gap: 40px;
       margin-bottom: 60px;
     }
@@ -602,7 +605,7 @@
     /* 响应式调整 */
     @media (max-width: 1200px) {
       .game-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 350px));
         gap: 30px;
       }
       
@@ -684,9 +687,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">麻将挺大的</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/02/07</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/02/07</div>
           </div>
         </div>
       </a>
@@ -697,11 +700,11 @@
         <div class="game-info">
           <div class="game-title">终末地</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">初到武陵，感觉有点左右脑互搏，二游抽卡和单机模式都不太完善，也没啥结合</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/01/29</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/29</div>
           </div>
         </div>
       </a>
@@ -714,9 +717,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">自制自动驾驶控制器</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 30h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/01/20</div>
+            <div class="game-duration">⏱ 30hh</div>
+
+            <div class="game-date">📅 2026/01/20</div>
           </div>
         </div>
       </a>
@@ -727,11 +730,11 @@
         <div class="game-info">
           <div class="game-title">冬日狂想曲</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/01/17</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/17</div>
           </div>
         </div>
       </a>
@@ -742,11 +745,11 @@
         <div class="game-info">
           <div class="game-title">异形工场</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/01/06</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/06</div>
           </div>
         </div>
       </a>
@@ -757,11 +760,11 @@
         <div class="game-info">
           <div class="game-title">绯红结系</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2026/01/06</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/06</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">2025</h2><div class="game-gallery">
@@ -772,26 +775,26 @@
         <div class="game-info">
           <div class="game-title">犯罪现场清洁工</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/12/27</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/12/27</div>
           </div>
         </div>
       </a>
       <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/24670/library_600x900.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/42/7e/294635_s8Hz9.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">空轨</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">1st</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/10/03</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/10/03</div>
           </div>
         </div>
       </a>
@@ -802,26 +805,26 @@
         <div class="game-info">
           <div class="game-title">冰汽时代</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/09/13</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/09/13</div>
           </div>
         </div>
       </a>
       <a href="/2025/09/13/游戏杂谈/冰汽时代-最后的秋天/" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1146960/library_600x900.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1146960/header.jpg?t=1727865885');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">最后的秋天</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/09/13</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/09/13</div>
           </div>
         </div>
       </a>
@@ -834,9 +837,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">2025年10月</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/09/10</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/09/10</div>
           </div>
         </div>
       </a>
@@ -847,11 +850,11 @@
         <div class="game-info">
           <div class="game-title">捞女游戏</div>
           <div class="game-rating"><span class="star-rating">★★★★★</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/06/26</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/06/26</div>
           </div>
         </div>
       </a>
@@ -862,11 +865,11 @@
         <div class="game-info">
           <div class="game-title">巫师3</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/05/20</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/05/20</div>
           </div>
         </div>
       </a>
@@ -879,9 +882,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">买了方向盘</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/04/15</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/04/15</div>
           </div>
         </div>
       </a>
@@ -892,26 +895,26 @@
         <div class="game-info">
           <div class="game-title">苏丹的游戏</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 40h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/04/03</div>
+            <div class="game-duration">⏱ 40hh</div>
+
+            <div class="game-date">📅 2025/04/03</div>
           </div>
         </div>
       </a>
       <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/9a/e9/528272_v0kcS.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2001120/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">双影奇境</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 20h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/03/17</div>
+            <div class="game-duration">⏱ 20hh</div>
+
+            <div class="game-date">📅 2025/03/17</div>
           </div>
         </div>
       </a>
@@ -922,11 +925,11 @@
         <div class="game-info">
           <div class="game-title">十三机兵防卫圈</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/03/06</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/03/06</div>
           </div>
         </div>
       </a>
@@ -939,9 +942,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">三、四周目</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 160h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/03/01</div>
+            <div class="game-duration">⏱ 160hh</div>
+
+            <div class="game-date">📅 2025/03/01</div>
           </div>
         </div>
       </a>
@@ -952,11 +955,11 @@
         <div class="game-info">
           <div class="game-title">如龙6</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 35h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/02/19</div>
+            <div class="game-duration">⏱ 35hh</div>
+
+            <div class="game-date">📅 2025/02/19</div>
           </div>
         </div>
       </a>
@@ -967,11 +970,11 @@
         <div class="game-info">
           <div class="game-title">神之天平</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/01/30</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/01/30</div>
           </div>
         </div>
       </a>
@@ -982,11 +985,11 @@
         <div class="game-info">
           <div class="game-title">如龙0</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 71.5h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2025/01/22</div>
+            <div class="game-duration">⏱ 71.5hh</div>
+
+            <div class="game-date">📅 2025/01/22</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">2024</h2><div class="game-gallery">
@@ -999,9 +1002,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">旧游重玩，但是有了图马斯特</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/12/20</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/12/20</div>
           </div>
         </div>
       </a>
@@ -1014,9 +1017,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">买了方向盘</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/12/20</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/12/20</div>
           </div>
         </div>
       </a>
@@ -1027,11 +1030,11 @@
         <div class="game-info">
           <div class="game-title">如龙7</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/11/25</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/11/25</div>
           </div>
         </div>
       </a>
@@ -1042,26 +1045,26 @@
         <div class="game-info">
           <div class="game-title">如龙8</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 106h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/11/11</div>
+            <div class="game-duration">⏱ 106hh</div>
+
+            <div class="game-date">📅 2024/11/11</div>
           </div>
         </div>
       </a>
       <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c5/71/56/c57156d5-a2af-1473-d313-4c87ee292537/AppIcon-0-0-1x_U007emarketing-0-5-0-85-220.png/1024x0w.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/c3/1d/223595_5tNP5.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">如龙7：国际版</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 110h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/10/31</div>
+            <div class="game-duration">⏱ 110hh</div>
+
+            <div class="game-date">📅 2024/10/31</div>
           </div>
         </div>
       </a>
@@ -1074,9 +1077,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">10月25日</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 40h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/10/01</div>
+            <div class="game-duration">⏱ 40hh</div>
+
+            <div class="game-date">📅 2024/10/01</div>
           </div>
         </div>
       </a>
@@ -1087,11 +1090,11 @@
         <div class="game-info">
           <div class="game-title">黑神话悟空</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 62.2h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/08/20</div>
+            <div class="game-duration">⏱ 62.2hh</div>
+
+            <div class="game-date">📅 2024/08/20</div>
           </div>
         </div>
       </a>
@@ -1104,9 +1107,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">双排混到了修罗</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/07/08</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/07/08</div>
           </div>
         </div>
       </a>
@@ -1119,9 +1122,9 @@
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">本体2周目+DLC</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 144h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/06/30</div>
+            <div class="game-duration">⏱ 144hh</div>
+
+            <div class="game-date">📅 2024/06/30</div>
           </div>
         </div>
       </a>
@@ -1132,11 +1135,11 @@
         <div class="game-info">
           <div class="game-title">FIFA2022</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/05/22</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/05/22</div>
           </div>
         </div>
       </a>
@@ -1147,41 +1150,41 @@
         <div class="game-info">
           <div class="game-title">杀戮尖塔</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration">⏱ 47h</div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2024/03/01</div>
+            <div class="game-duration">⏱ 47hh</div>
+
+            <div class="game-date">📅 2024/03/01</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">2023</h2><div class="game-gallery">
       <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co65u5.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://upload-bbs.miyoushe.com/upload/2024/03/14/357876319/d4c31bd0260dac01a76f46ec17883b02_3912538206445877688.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">崩坏：星穹铁道</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">日常手机上混时间</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2023/04/26</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2023/04/26</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">2022</h2><div class="game-gallery">
       <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co2x3t.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://i0.hdslb.com/bfs/new_dyn/0b061915255fee043b831e08350ae6c1161775300.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">明日方舟</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
           <div class="game-description">日常手机上混时间</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2022/07/01</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2022/07/01</div>
           </div>
         </div>
       </a>
@@ -1192,11 +1195,11 @@
         <div class="game-info">
           <div class="game-title">战神四</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2022/03/16</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2022/03/16</div>
           </div>
         </div>
       </a>
@@ -1207,26 +1210,26 @@
         <div class="game-info">
           <div class="game-title">最后生还者</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2022/03/16</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2022/03/16</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">2021</h2><div class="game-gallery">
       <a href="/2021/07/11/subscribers/2021-07-11-[游戏杂谈]聊聊逆转裁判无剧透/" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2401970/library_600x900.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/787480/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">逆转裁判</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date">2021/07/11</div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2021/07/11</div>
           </div>
         </div>
       </a></div><h2 class="game-year-header">未知年份</h2><div class="game-gallery">
@@ -1237,11 +1240,11 @@
         <div class="game-info">
           <div class="game-title">最后的秋天</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1252,11 +1255,11 @@
         <div class="game-info">
           <div class="game-title">苏丹的游戏</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1267,11 +1270,11 @@
         <div class="game-info">
           <div class="game-title">十三机兵防卫圈</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1282,11 +1285,11 @@
         <div class="game-info">
           <div class="game-title">冬日狂想曲</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1297,11 +1300,11 @@
         <div class="game-info">
           <div class="game-title">神之天平</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1312,11 +1315,11 @@
         <div class="game-info">
           <div class="game-title">FIFA2022</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1327,11 +1330,11 @@
         <div class="game-info">
           <div class="game-title">捞女游戏</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1342,11 +1345,11 @@
         <div class="game-info">
           <div class="game-title">战神4</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1357,11 +1360,11 @@
         <div class="game-info">
           <div class="game-title">巫师3</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1372,11 +1375,11 @@
         <div class="game-info">
           <div class="game-title">冰汽时代</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
       </a>
@@ -1387,14 +1390,14 @@
         <div class="game-info">
           <div class="game-title">最后生还者</div>
           <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
-          <div class="game-description"></div>
+          <div class="game-description">暂无评价...</div>
           <div class="game-meta">
-            <div class="game-duration"></div>
-            <div class="game-platform">PC</div>
-            <div class="game-date"></div>
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
           </div>
         </div>
-      </a></div></div>">Loading Game Gallery...</div><!-- hexo injector body_end start -->
+      </a></div></div><!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->
 <script>
 // 检查页面是否包含Mermaid内容
