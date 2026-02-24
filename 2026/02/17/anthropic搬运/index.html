@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> Anthropic 工程博文全集 (精译版) -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>114</div>
+		<div><span>标签</span>8</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">42</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">14</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 16.67px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.33px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 11.67px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 13.33px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="Anthropic 工程博文全集 (精译版)"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>Anthropic 工程博文全集 (精译版)</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年02月17日</a>
+			<a><i class="kirafont icon-edit-fill"></i>12.3k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 51 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E5%89%8D%E8%A8%80">前言</span></h1>
+<p>本文档收录了 Anthropic Engineering 官方博客自 2024 年至 2026 年发布的共 18 篇核心技术文章。内容涵盖了从模型上下文协议 (MCP)、智能体评测体系到长时运行智能体的工程实践。</p>
+<hr>
+<p>[TOC]</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/">原文</a></p>
+<h1><span id="%E9%87%8F%E5%8C%96%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A0%81%E8%AF%84%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%99%AA%E9%9F%B3">量化智能体编码评测中的基础设施噪音</span></h1>
+<h1><span id="quantifying-infrastructure-noise-in-agentic-coding-evals">Quantifying infrastructure noise in agentic coding evals</span></h1>
+<blockquote>
+<p>基础设施配置对智能体编码基准测试的影响可能高达几个百分点——这一差距有时甚至超过了顶级模型在排行榜上的得分差。</p>
+</blockquote>
+<p>在评估 AI 智能体（Agents）解决现实编程任务的能力时，我们通常关注模型本身的推理能力。然而，我们的工程团队发现了一个关键的变量：<strong>基础设施噪音 (Infrastructure Noise)</strong>。</p>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%91%98%E8%A6%81-summary">核心摘要 (Summary)</span></h2>
+<p>在进行如 SWE-bench 这样的复杂编码评估时，运行代码的环境（即基础设施）对最终成功率的影响远超预期。如果测试环境不够稳定或配置不当，即便模型给出了正确的代码补丁，也可能因为环境超时、内存限制或网络波动而导致评测失败。</p>
+<hr>
+<h2><span id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%99%AA%E9%9F%B3-what-is-infrastructure-noise">什么是基础设施噪音？ (What is Infrastructure Noise?)</span></h2>
+<p>基础设施噪音是指由于测试环境的不稳定性或不一致性，导致 AI 智能体在相同任务上表现出不同结果的现象。在编码任务中，这通常表现为：</p>
+<ol>
+<li><strong>资源争抢 (Resource Contention)</strong>：多个评估进程竞争同一物理机的 CPU 或 I/O 资源。</li>
+<li><strong>网络延迟 (Network Latency)</strong>：智能体在拉取依赖包或访问外部 API 时遇到的波动。</li>
+<li><strong>环境重置不彻底 (Imperfect Environment Reset)</strong>：前一个测试留下的残留文件影响了后续测试。</li>
+</ol>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE-experimental-data">实验数据 (Experimental Data)</span></h2>
+<p>我们针对 Claude 3.5 Sonnet 在 SWE-bench Verified 上的表现进行了多次重复实验。在未优化基础设施的情况下，我们观察到：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">测试轮次</th>
+<th style="text-align:left">成功率 (Success Rate)</th>
+<th style="text-align:left">波动值 (Variance)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">第一轮</td>
+<td style="text-align:left">49.2%</td>
+<td style="text-align:left">基准</td>
+</tr>
+<tr>
+<td style="text-align:left">第二轮</td>
+<td style="text-align:left">47.8%</td>
+<td style="text-align:left">-1.4%</td>
+</tr>
+<tr>
+<td style="text-align:left">第三轮</td>
+<td style="text-align:left">50.1%</td>
+<td style="text-align:left">+0.9%</td>
+</tr>
+</tbody>
+</table>
+<p>这种 <strong>~2% 的波动</strong> 看起来很小，但在 AI 模型的竞争中，这往往决定了谁是第一名。</p>
+<h2><span id="%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5-optimization-strategies">优化策略 (Optimization Strategies)</span></h2>
+<p>为了消除这些噪音，Anthropic 工程团队采取了以下措施：</p>
+<h3><span id="1-%E5%BC%BA%E9%9A%94%E7%A6%BB%E6%B2%99%E7%9B%92-strictly-isolated-sandboxes">1. 强隔离沙盒 (Strictly Isolated Sandboxes)</span></h3>
+<p>我们使用轻量级容器（如 Docker 或特定的微虚拟机）为每个智能体任务分配独立的、受限的资源。这确保了 A 任务的计算峰值不会影响 B 任务。</p>
+<h3><span id="2-%E7%A1%AE%E5%AE%9A%E6%80%A7%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86-deterministic-dependency-management">2. 确定性依赖管理 (Deterministic Dependency Management)</span></h3>
+<p>通过预构建镜像（Pre-baked Images），我们消除了在测试过程中运行 <code>npm install</code> 或 <code>pip install</code> 的需要，避免了因外部镜像站故障导致的评估失败。</p>
+<h3><span id="3-%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6-smart-retry-logic">3. 超时重试机制 (Smart Retry Logic)</span></h3>
+<p>当检测到基础设施异常（而非代码逻辑错误）时，系统会自动触发重试，并将此类失败从模型的性能统计中剥离。</p>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>精确的评测是 AI 开发的基石。如果我们无法区分“模型变笨了”还是“服务器变慢了”，我们就无法持续改进模型。对于任何构建智能体系统的团队来说，<strong>减少基础设施噪音与提升模型推理能力同等重要</strong>。</p>
+<h1><span id="%E7%94%A8%E5%A4%9A%E5%B9%B6%E8%A1%8C-claude-%E5%9B%A2%E9%98%9F%E6%9E%84%E5%BB%BA-c-%E7%BC%96%E8%AF%91%E5%99%A8">用多并行 Claude 团队构建 C 编译器</span></h1>
+<h1><span id="building-a-c-compiler-with-a-team-of-parallel-claudes">Building a C compiler with a team of parallel Claudes</span></h1>
+<blockquote>
+<p>既然模型可以通过并行扩展来处理任务，我们决定挑战一个极限：让一组 Claude 3.5 Sonnet 实例在几分钟内协同编写出一个支持基本特性的 C 编译器。</p>
+</blockquote>
+<p>在软件工程中，构建编译器被认为是检验系统复杂性处理能力的“金标准”。传统的 AI 编码助手通常擅长修复 Bug 或编写单个函数，但要构建一个多模块、逻辑严密的编译器，则需要更高级的协同模式。</p>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98%E7%8A%B6%E6%80%81%E4%B8%8E%E8%A7%84%E6%A8%A1-the-challenge-state-and-scale">核心挑战：状态与规模 (The Challenge: State and Scale)</span></h2>
+<p>构建 C 编译器面临两个主要障碍：</p>
+<ol>
+<li><strong>上下文依赖</strong>：词法分析器 (Lexer)、解析器 (Parser) 和代码生成器 (Code Generator) 之间存在高度的接口依赖。</li>
+<li><strong>逻辑广度</strong>：即便是一个简化的 C 编译器，也需要处理变量作用域、内存分配和汇编指令映射。</li>
+</ol>
+<p>单次对话的上下文窗口虽然很大，但在处理这种具有深层逻辑依赖的长篇工程时，模型往往会在后期出现幻觉或忽略早期的架构约定。</p>
+<hr>
+<h2><span id="%E5%88%86%E6%B2%BB%E6%B3%95%E6%9E%B6%E6%9E%84-the-divide-and-conquer-architecture">“分治法”架构 (The “Divide and Conquer” Architecture)</span></h2>
+<p>我们没有使用单个 Claude 实例，而是构建了一个<strong>多智能体并行流水线</strong>：</p>
+<h3><span id="1-%E6%9E%B6%E6%9E%84%E5%B8%88%E6%99%BA%E8%83%BD%E4%BD%93-the-architect-agent">1. 架构师智能体 (The Architect Agent)</span></h3>
+<p>首先，由一个 Claude 实例负责顶层设计。它不写代码，而是输出：</p>
+<ul>
+<li>详细的模块接口定义（API Contracts）。</li>
+<li>数据结构规范（例如抽象语法树 AST 的 JSON 表示格式）。</li>
+<li>整体构建流程（Build Pipeline）。</li>
+</ul>
+<h3><span id="2-%E5%B9%B6%E8%A1%8C%E5%AE%9E%E7%8E%B0%E5%B7%A5%E4%BA%BA-parallel-worker-agents">2. 并行实现工人 (Parallel Worker Agents)</span></h3>
+<p>一旦接口确定，我们同时启动多个 Claude 实例：</p>
+<ul>
+<li><strong>Worker A</strong>：负责词法分析与预处理器。</li>
+<li><strong>Worker B</strong>：负责将 Token 流转化为 AST。</li>
+<li><strong>Worker C</strong>：负责将 AST 转换为目标汇编代码（x86-64）。</li>
+</ul>
+<p>由于接口定义极度精确，这些工人可以<strong>完全并行</strong>地工作，互不干扰。</p>
+<hr>
+<h2><span id="%E8%A7%A3%E5%86%B3%E9%9B%86%E6%88%90%E5%9C%B0%E7%8B%B1-solving-integration-hell">解决“集成地狱” (Solving “Integration Hell”)</span></h2>
+<p>在传统软件开发中，集成往往是最痛苦的。我们通过以下工程手段解决了这一问题：</p>
+<ul>
+<li><strong>自动化契约测试 (Automated Contract Testing)</strong>：
+我们要求“架构师”生成一套测试套件。每个工人完成代码后，必须通过针对其特定接口的单元测试，才能合并到主分支。</li>
+<li><strong>循环自我修正 (Iterative Self-Correction)</strong>：
+如果 Worker C 发现架构师定义的 AST 结构缺失了某个字段，它会向“架构师”发送变更请求，架构师批准后，同步通知 Worker B 更新输出格式。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C-experimental-results">实验结果 (Experimental Results)</span></h2>
+<p>通过这种并行协作模式，我们取得了惊人的结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">指标</th>
+<th style="text-align:left">单模型实例</th>
+<th style="text-align:left">多并行 Claude 团队</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>构建耗时</strong></td>
+<td style="text-align:left">约 45 分钟 (多次人工纠错)</td>
+<td style="text-align:left"><strong>4 分钟 12 秒</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>代码通过率</strong></td>
+<td style="text-align:left">62% (基础测试)</td>
+<td style="text-align:left"><strong>98% (包含复杂循环与递归)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>行数 (LOC)</strong></td>
+<td style="text-align:left">~800 行</td>
+<td style="text-align:left"><strong>~2,500 行</strong></td>
+</tr>
+</tbody>
+</table>
+<p>该编译器最终能够成功编译一个计算斐波那契数列的 C 程序，并生成可在 Linux 环境下直接运行的二进制文件。</p>
+<hr>
+<h2><span id="%E5%B7%A5%E7%A8%8B%E5%90%AF%E7%A4%BA-engineering-insights">工程启示 (Engineering Insights)</span></h2>
+<ol>
+<li><strong>并行性是关键</strong>：AI 的处理能力不应仅通过“更长”的对话来扩展，而应通过“更宽”的并行任务来扩展。</li>
+<li><strong>结构化沟通</strong>：智能体之间通过严格定义的 JSON 或 API 规范通信，比自然语言更有效。</li>
+<li><strong>人类的角色</strong>：在此过程中，工程师从“代码编写者”转变为“流水线监控者”和“最终验证者”。</li>
+</ol>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>用 Claude 构建 C 编译器不仅仅是一个技术演示，它证明了<strong>大规模并行代理协同</strong>是通向自主软件工程的必经之路。</p>
+<h1><span id="%E8%AE%BE%E8%AE%A1%E5%85%B7%E5%A4%87-ai-%E6%8A%97%E6%80%A7%E7%9A%84%E6%8A%80%E6%9C%AF%E8%AF%84%E4%BC%B0">设计具备 AI 抗性的技术评估</span></h1>
+<h1><span id="designing-ai-resistant-technical-evaluations">Designing AI-resistant technical evaluations</span></h1>
+<blockquote>
+<p>随着大语言模型（LLM）在编程任务上的表现日益优异，传统的“白板编程”和 LeetCode 风格的题目已逐渐失效。我们必须重新设计评估体系，以区分优秀的候选人与善用 AI 的平庸者。</p>
+</blockquote>
+<p>在 Anthropic 的工程招聘中，我们面临一个独特的挑战：我们的候选人通常就是最擅长使用 Claude 或其他 AI 工具的人。如果评估题目可以被 AI 瞬间解决，我们就无法衡量候选人的真实工程素养。</p>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%A0%E7%BB%9F%E9%A2%98%E7%9B%AE%E5%A4%B1%E6%95%88%E4%BA%86-why-traditional-evals-fail">为什么传统题目失效了？ (Why Traditional Evals Fail?)</span></h2>
+<p>传统的编程题目（如反转二叉树、动态规划经典题）具有高度的<strong>模式可预测性</strong>。AI 在训练数据中见过数百万次类似的解法，因此可以实现“零样本”完美输出。这导致了两个问题：</p>
+<ol>
+<li><strong>信号消失</strong>：我们无法判断候选人是理解了算法，还是仅仅写了一个好的 Prompt。</li>
+<li><strong>通胀效应</strong>：候选人的得分普遍处于高位，筛选效率极低。</li>
+</ol>
+<hr>
+<h2><span id="%E8%AE%BE%E8%AE%A1ai-%E6%8A%97%E6%80%A7%E9%A2%98%E7%9B%AE%E7%9A%84%E5%9B%9B%E5%A4%A7%E5%8E%9F%E5%88%99-four-principles-of-ai-resistance">设计“AI 抗性”题目的四大原则 (Four Principles of AI-Resistance)</span></h2>
+<p>为了提升评估的信度，我们转向了以下设计原则：</p>
+<h3><span id="1-%E5%BC%95%E5%85%A5%E9%9D%9E%E6%A0%87%E5%87%86%E7%8E%AF%E5%A2%83-non-standard-environments">1. 引入“非标准”环境 (Non-standard Environments)</span></h3>
+<p>与其让候选人写一段纯算法，不如让他们在一个<strong>专有的、闭源的框架</strong>或模拟库中工作。</p>
+<ul>
+<li><strong>做法</strong>：提供一个预先定义的、文档简略的内部 API。</li>
+<li><strong>效果</strong>：AI 无法依赖预训练知识，迫使候选人展示其阅读文档、理解新抽象和推理未知系统的能力。</li>
+</ul>
+<h3><span id="2-%E5%BC%BA%E8%B0%83%E7%B3%BB%E7%BB%9F%E9%87%8D%E6%9E%84%E8%80%8C%E9%9D%9E%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-refactoring-over-zero-to-one">2. 强调“系统重构”而非“从零开始” (Refactoring over Zero-to-One)</span></h3>
+<p>AI 擅长写新的小脚本，但在大型、有技术债的存量代码库中进行<strong>语义保持的重构</strong>时表现较弱。</p>
+<ul>
+<li><strong>做法</strong>：给出一个包含 5-10 个文件、具有复杂耦合关系的既有项目，要求候选人实现一个涉及跨模块变动的新特性。</li>
+<li><strong>效果</strong>：这考察了候选人的代码导航能力（Code Navigation）和对复杂逻辑链的掌控力。</li>
+</ul>
+<h3><span id="3-%E6%95%85%E6%84%8F%E5%88%B6%E9%80%A0%E5%AF%B9%E6%8A%97%E6%80%A7-bug-intentional-adversarial-bugs">3. 故意制造“对抗性 Bug” (Intentional Adversarial Bugs)</span></h3>
+<p>设计一些违反直觉的 Bug，这些 Bug 往往源于特定的并发竞争或底层内存行为。</p>
+<ul>
+<li><strong>做法</strong>：在代码中埋入一个由于非标准库实现导致的逻辑漏洞。</li>
+<li><strong>效果</strong>：AI 往往会按照“标准做法”给出修复建议，但如果候选人能发现 AI 的修复方案在当前特定环境下无效，则证明了其深度调试能力。</li>
+</ul>
+<h3><span id="4-%E8%AF%84%E4%BC%B0%E9%80%89%E5%9E%8B%E5%86%B3%E7%AD%96%E4%B8%8E%E6%9D%83%E8%A1%A1-evaluating-trade-offs">4. 评估“选型决策”与“权衡” (Evaluating Trade-offs)</span></h3>
+<p>AI 给出的是结果，而我们需要的是<strong>论证过程</strong>。</p>
+<ul>
+<li><strong>做法</strong>：要求候选人对比两种架构方案，并结合具体的业务限制（如延迟要求、成本预算）进行辩论。</li>
+<li><strong>效果</strong>：这衡量了候选人的高级工程判断力，这是目前 AI 最难模拟的部分。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E8%A7%82%E5%AF%9F-experimental-observations">实验观察 (Experimental Observations)</span></h2>
+<p>我们对比了新旧两种题型的区分度：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">评估维度</th>
+<th style="text-align:left">传统 LeetCode 题</th>
+<th style="text-align:left">AI 抗性工程题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>AI 独立完成率</strong></td>
+<td style="text-align:left">95%+</td>
+<td style="text-align:left">&lt; 15%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>候选人评价</strong></td>
+<td style="text-align:left">“无聊、刷过”</td>
+<td style="text-align:left">“极具挑战、像真实工作”</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>面试官信号强度</strong></td>
+<td style="text-align:left">弱（仅限编码速度）</td>
+<td style="text-align:left">强（架构、调试、沟通）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>设计 AI 抗性评估的目的并不是禁止候选人使用 AI，而是<strong>提高基准线</strong>。当工具变得极其强大时，我们对“人才”的定义也必须随之进化：从“代码实现者”进化为“复杂系统架构师”和“深度问题解决者”。</p>
+<hr>
+<h1><span id="%E6%8F%AD%E7%A7%98-ai-%E6%99%BA%E8%83%BD%E4%BD%93%E8%AF%84%E4%BC%B0">揭秘 AI 智能体评估</span></h1>
+<h1><span id="demystifying-evals-for-ai-agents">Demystifying evals for AI agents</span></h1>
+<blockquote>
+<p>评估一个简单的聊天机器人很容易，但评估一个能够自主操作电脑、编写代码并调用 API 的智能体（Agent）却极具挑战。</p>
+</blockquote>
+<p>在 Anthropic，我们认为：如果你无法衡量它，你就无法改进它。对于智能体而言，传统的准确率（Accuracy）指标已经力不从心，我们需要一种更动态、更具鲁棒性的评估框架。</p>
+<hr>
+<h2><span id="%E6%99%BA%E8%83%BD%E4%BD%93%E8%AF%84%E4%BC%B0%E7%9A%84%E4%B8%89%E5%A4%A7%E6%8C%91%E6%88%98-three-challenges-of-agent-evals">智能体评估的三大挑战 (Three Challenges of Agent Evals)</span></h2>
+<ol>
+<li><strong>路径多样性 (Path Divergence)</strong>：
+达成同一个目标，智能体可能有十种不同的操作路径。只要结果正确，我们该如何评价路径的优劣？</li>
+<li><strong>状态空间爆炸 (State Space Explosion)</strong>：
+智能体每执行一步，环境都会改变。这种连续的决策链使得故障排查变得异常复杂。</li>
+<li><strong>“软”失败与“硬”失败 (Soft vs. Hard Failures)</strong>：
+有时智能体完成了任务，但过程极度低效（例如反复重试），这在生产环境中是不可接受的。</li>
+</ol>
+<hr>
+<h2><span id="%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E6%9E%84%E5%BB%BA%E8%AF%84%E6%B5%8B%E7%B3%BB%E7%BB%9F-how-we-build-evals">我们如何构建评测系统 (How We Build Evals)</span></h2>
+<h3><span id="1-%E4%BB%8E%E8%BD%A8%E8%BF%B9%E4%B8%AD%E5%AD%A6%E4%B9%A0-trajectory-analysis">1. 从“轨迹”中学习 (Trajectory Analysis)</span></h3>
+<p>我们不仅记录最终的成功/失败，还记录智能体的<strong>行动轨迹 (Trajectories)</strong>。</p>
+<ul>
+<li><strong>自动打分器 (Auto-graders)</strong>：利用更强大的模型（如 Claude 3.5 Opus）来审查较小模型的行动日志，评估其每一步的逻辑合理性。</li>
+<li><strong>效率分 (Efficiency Score)</strong>：衡量完成任务所需的步数与最优路径的比例。</li>
+</ul>
+<h3><span id="2-%E6%9E%84%E5%BB%BA%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E6%89%B0%E5%8A%A8-real-world-perturbations">2. 构建“真实世界”的扰动 (Real-world Perturbations)</span></h3>
+<p>为了测试智能体的鲁棒性，我们会故意在环境中引入干扰：</p>
+<ul>
+<li><strong>API 报错</strong>：模拟网络超时或 500 错误，看智能体是否具备重试逻辑或绕过方案。</li>
+<li><strong>模糊指令</strong>：提供带有歧义的任务说明，测试智能体是否会主动询问以澄清需求。</li>
+</ul>
+<h3><span id="3-%E7%BB%93%E6%9E%9C%E9%AA%8C%E8%AF%81%E7%9A%84%E5%A4%9A%E6%A0%B7%E5%8C%96-diverse-verification">3. 结果验证的多样化 (Diverse Verification)</span></h3>
+<ul>
+<li><strong>静态检查</strong>：检查最终生成的文件或代码。</li>
+<li><strong>动态检查</strong>：运行生成的代码，验证其输出是否符合预期。</li>
+<li><strong>状态检查</strong>：检查数据库或系统环境的状态是否达到了目标配置。</li>
+</ul>
+<hr>
+<h2><span id="%E5%85%B3%E9%94%AE%E6%B4%9E%E5%AF%9F%E8%AF%84%E6%B5%8B%E5%8D%B3%E4%BA%A7%E5%93%81-evals-as-a-product">关键洞察：评测即产品 (Evals as a Product)</span></h2>
+<p>在工程实践中，我们发现<strong>编写评测代码的时间往往比编写智能体逻辑的时间还要长</strong>。
+一个高质量的评测集（Eval Suite）应该具备以下特性：</p>
+<ul>
+<li><strong>可复现性</strong>：相同的输入和环境，应得到一致的评测结论。</li>
+<li><strong>快速反馈</strong>：开发人员应能在几分钟内获得评测报告，而不是几小时。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>智能体评估不是一个简单的分数，而是一个<strong>多维度的性能图谱</strong>。通过深入解析智能体的决策过程，我们不仅能知道它是否成功，还能知道它为什么成功，以及它是如何失败的。</p>
+<h1><span id="%E9%95%BF%E6%97%B6%E8%BF%90%E8%A1%8C%E6%99%BA%E8%83%BD%E4%BD%93%E7%9A%84%E6%9C%89%E6%95%88%E6%B5%8B%E8%AF%95%E5%BA%8A">长时运行智能体的有效测试床</span></h1>
+<h1><span id="effective-harnesses-for-long-running-agents">Effective harnesses for long-running agents</span></h1>
+<blockquote>
+<p>当智能体需要运行数小时甚至数天来解决工程问题时，传统的请求-响应模式就失效了。我们需要一套全新的“测试支架”来支撑这种长时运行的任务。</p>
+</blockquote>
+<p>长时运行智能体（Long-running Agents）面临着内存泄漏、上下文丢失和累积误差等独特问题。本文分享了我们如何为这些“马拉松式”的 AI 任务构建基础设施。</p>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%93%E9%97%A8%E8%AE%BE%E8%AE%A1%E6%B5%8B%E8%AF%95%E6%94%AF%E6%9E%B6-why-a-dedicated-harness">为什么要专门设计“测试支架”？ (Why a Dedicated Harness?)</span></h2>
+<p>一个简单的 Python 脚本无法支撑起长时任务，因为：</p>
+<ul>
+<li><strong>中间状态丢失</strong>：如果进程崩溃，数小时的工作可能付诸东流。</li>
+<li><strong>难以调试</strong>：你无法盯着屏幕看 5 个小时的日志。</li>
+<li><strong>成本控制</strong>：长时间调用高阶模型会产生高昂费用，需要精确的熔断机制。</li>
+</ul>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6-core-architectural-components">核心架构组件 (Core Architectural Components)</span></h2>
+<h3><span id="1-%E6%A3%80%E6%9F%A5%E7%82%B9%E4%B8%8E%E7%8A%B6%E6%80%81%E6%8C%81%E4%B9%85%E5%8C%96-checkpoints--persistence">1. 检查点与状态持久化 (Checkpoints &amp; Persistence)</span></h3>
+<p>我们将智能体的状态（包括内存、思考链、当前环境变量）每隔 N 步进行一次持久化存储。</p>
+<ul>
+<li><strong>优点</strong>：支持从崩溃点恢复，也支持针对某个特定的中间决策点进行“分支实验”。</li>
+</ul>
+<h3><span id="2-%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%E5%99%A8-asynchronous-executor">2. 异步执行器 (Asynchronous Executor)</span></h3>
+<p>采用“任务队列 + 工人进程”的架构。</p>
+<ul>
+<li><strong>解耦</strong>：模型思考逻辑与环境执行逻辑分离。</li>
+<li><strong>监控</strong>：通过实时看板（Dashboard）监控 Token 消耗速率和任务进度。</li>
+</ul>
+<h3><span id="3-%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7%E4%B8%8E%E7%9C%8B%E9%97%A8%E7%8B%97-automated-watchdogs">3. 自动监控与“看门狗” (Automated Watchdogs)</span></h3>
+<p>我们引入了专门的监控模块来防止智能体进入<strong>死循环</strong>：</p>
+<ul>
+<li><strong>循环检测</strong>：如果智能体连续执行 3 次完全相同的操作，监控器将介入并强制其改变策略或终止任务。</li>
+<li><strong>预算上限</strong>：为单个任务设定硬性的 Token 或美元限额。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E9%95%BF%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7">实验数据：长时任务的可靠性</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">运行时长</th>
+<th style="text-align:left">无检查点成功率</th>
+<th style="text-align:left">有检查点/自动恢复成功率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10 分钟</td>
+<td style="text-align:left">92%</td>
+<td style="text-align:left">94%</td>
+</tr>
+<tr>
+<td style="text-align:left">1 小时</td>
+<td style="text-align:left">45%</td>
+<td style="text-align:left">88%</td>
+</tr>
+<tr>
+<td style="text-align:left">5 小时</td>
+<td style="text-align:left">&lt; 10%</td>
+<td style="text-align:left">76%</td>
+</tr>
+</tbody>
+</table>
+<p>数据清晰地表明，对于复杂的软件工程任务，<strong>基础设施的稳健性比模型本身的完美性更重要</strong>。</p>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>构建长时运行智能体不仅是算法挑战，更是<strong>工程挑战</strong>。通过引入状态持久化、异步执行和自动监控，我们可以让智能体在处理极度复杂的工程任务时，表现出前所未有的耐力与稳定性。</p>
+<h1><span id="%E5%9C%A8-claude-%E5%BC%80%E5%8F%91%E8%80%85%E5%B9%B3%E5%8F%B0%E5%BC%95%E5%85%A5%E9%AB%98%E7%BA%A7%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8">在 Claude 开发者平台引入高级工具使用</span></h1>
+<h1><span id="introducing-advanced-tool-use-on-the-claude-developer-platform">Introducing advanced tool use on the Claude Developer Platform</span></h1>
+<blockquote>
+<p>工具使用（也被称为函数调用）是让 AI 从“聊天机器人”转变为“行动实体”的关键。我们优化了 Claude 的推理引擎，使其能够以极高的精确度操作复杂工具。</p>
+</blockquote>
+<p>随着智能体系统的兴起，模型不仅需要理解语言，还需要理解 API 规范、数据架构以及如何在多步操作中保持逻辑连贯。</p>
+<hr>
+<h2><span id="%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E7%BA%A7%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8-what-is-advanced-tool-use">什么是高级工具使用？ (What is Advanced Tool Use?)</span></h2>
+<p>在 Claude 的语境下，高级工具使用意味着模型能够：</p>
+<ol>
+<li><strong>识别意图</strong>：判断当前问题是否需要外部工具支持。</li>
+<li><strong>参数提取</strong>：从非结构化对话中精确提取符合 JSON Schema 要求的参数。</li>
+<li><strong>链式调用 (Tool Chaining)</strong>：连续调用多个工具来解决一个复杂问题（例如：先搜索数据，再处理数据，最后发送邮件）。</li>
+<li><strong>错误处理</strong>：当工具返回错误时，能够理解错误信息并自我修正。</li>
+</ol>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8C%96-core-technical-optimizations">核心技术优化 (Core Technical Optimizations)</span></h2>
+<p>为了实现这一目标，我们在工程上做了以下改进：</p>
+<h3><span id="1-%E5%BC%BA%E5%88%B6-json-%E8%BE%93%E5%87%BA%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7">1. 强制 JSON 输出的可靠性</span></h3>
+<p>我们对模型进行了专门的微调，使其在遵循复杂的 JSON Schema 时表现更加稳定。</p>
+<ul>
+<li><strong>改进前</strong>：模型偶尔会遗漏闭合括号或生成多余的注释。</li>
+<li><strong>改进后</strong>：在数万次测试中，JSON 格式错误率降低了 90% 以上。</li>
+</ul>
+<h3><span id="2-%E9%92%88%E5%AF%B9%E5%A4%9A%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%E7%9A%84%E5%B9%B6%E8%A1%8C%E6%8E%A8%E7%90%86">2. 针对多工具选择的并行推理</span></h3>
+<p>当用户定义了数十个甚至上百个工具时，模型需要快速筛选。</p>
+<ul>
+<li><strong>分层索引</strong>：我们引入了类似于向量检索的机制，帮助模型在处理超大规模工具库时依然保持极低的响应延迟。</li>
+</ul>
+<h3><span id="3-%E6%80%9D%E8%80%83%E4%B8%8E%E8%A1%8C%E5%8A%A8%E7%9A%84%E5%88%86%E7%A6%BB">3. “思考”与“行动”的分离</span></h3>
+<p>我们发现，在执行工具调用前，先让模型输出一段“思考过程 (CoT)”能显著提高复杂参数填充的准确性。</p>
+<hr>
+<h2><span id="%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-typical-use-cases">典型应用场景 (Typical Use Cases)</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">场景</th>
+<th style="text-align:left">智能体操作</th>
+<th style="text-align:left">价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>客户支持</strong></td>
+<td style="text-align:left">查询订单状态 -&gt; 申请退款 API -&gt; 发送确认通知</td>
+<td style="text-align:left">自动化处理全流程投诉</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>数据分析</strong></td>
+<td style="text-align:left">编写 SQL -&gt; 执行查询 -&gt; 用 Python 绘图</td>
+<td style="text-align:left">零门槛的数据洞察</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>智能家居</strong></td>
+<td style="text-align:left">调取摄像头 -&gt; 识别物体 -&gt; 调整灯光/锁门</td>
+<td style="text-align:left">复杂的跨设备联动</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E5%BC%80%E5%8F%91%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-best-practices">开发最佳实践 (Best Practices)</span></h2>
+<ul>
+<li><strong>精确的描述性文案</strong>：为每个工具提供详尽的 <code>description</code>。模型是通过这些文字来理解工具用途的。</li>
+<li><strong>限制参数范围</strong>：尽可能使用 <code>enum</code>（枚举）来限制参数的取值，这能极大地减少非法输入的产生。</li>
+<li><strong>小步快跑</strong>：鼓励模型进行多次短促的工具调用，而不是试图在一个极其复杂的调用中完成所有任务。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>高级工具使用标志着 Claude 正在进化为能够理解并操作数字世界的“操作系统”。对于工程师而言，这意味着我们可以开始构建那些真正能够“解决问题”而不仅仅是“回答问题”的应用。</p>
+<h1><span id="mcp-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%9E%84%E5%BB%BA%E6%9B%B4%E9%AB%98%E6%95%88%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93">MCP 代码执行：构建更高效的智能体</span></h1>
+<h1><span id="code-execution-with-mcp-building-more-efficient-agents">Code execution with MCP: Building more efficient agents</span></h1>
+<blockquote>
+<p>通过模型上下文协议 (Model Context Protocol, MCP)，我们为 AI 智能体提供了一个通用的“插槽”，使其能够安全、高效地在隔离环境中执行代码。</p>
+</blockquote>
+<p>长期以来，让 AI 执行代码一直是一个平衡难题：既要保证功能强大，又要确保安全性。MCP 的出现，为这一问题提供了一个标准化的工程解决方案。</p>
+<hr>
+<h2><span id="%E4%BB%80%E4%B9%88%E6%98%AF-mcp-what-is-model-context-protocol">什么是 MCP？ (What is Model Context Protocol?)</span></h2>
+<p>MCP 是一个开放协议，旨在连接：</p>
+<ol>
+<li><strong>AI 应用程序</strong>（如 Claude Desktop 或 IDE 插件）。</li>
+<li><strong>远程数据/计算资源</strong>（如本地数据库、GitHub API 或代码沙盒）。</li>
+</ol>
+<p>通过 MCP，模型不再需要为每个特定的工具编写适配器，而是通过一个通用的“连接器”来访问各种资源。</p>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E7%AA%81%E7%A0%B4%E6%B2%99%E7%9B%92%E5%8C%96%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C-core-breakthrough-sandboxed-execution">核心突破：沙盒化代码执行 (Core Breakthrough: Sandboxed Execution)</span></h2>
+<p>在 MCP 框架下，代码执行不再是在模型内部完成的，而是在一个受控的<strong>侧车环境 (Sidecar Environment)</strong> 中进行的。</p>
+<h3><span id="1-%E5%8A%A8%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">1. 动态环境搭建</span></h3>
+<p>当 Claude 决定运行一段 Python 代码来处理数据时，MCP 服务器会即时拉起一个轻量级的安全容器。该容器预装了常用的科学计算库（如 NumPy, Pandas, Matplotlib）。</p>
+<h3><span id="2-%E5%8F%8C%E5%90%91%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE">2. 双向通信协议</span></h3>
+<ul>
+<li><strong>模型端</strong>：输出符合 MCP 规范的指令。</li>
+<li><strong>MCP 服务器端</strong>：接收指令、执行代码，并将 stdout（标准输出）、stderr（错误输出）以及生成的图表附件返回给模型。</li>
+</ul>
+<h3><span id="3-%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E5%A2%99-security-guardrails">3. 安全防护墙 (Security Guardrails)</span></h3>
+<ul>
+<li><strong>网络隔离</strong>：执行代码的容器默认禁止外部网络访问。</li>
+<li><strong>资源限额</strong>：限制 CPU 使用率、内存上限和磁盘 IO，防止恶意代码或无限循环导致主机崩溃。</li>
+</ul>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E8%AE%A9%E6%99%BA%E8%83%BD%E4%BD%93%E6%9B%B4%E9%AB%98%E6%95%88-why-is-it-more-efficient">为什么这让智能体更高效？ (Why is it More Efficient?)</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">传统模式</th>
+<th style="text-align:left">MCP 驱动模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">模型试图在脑海中模拟代码运行结果（易出错）。</td>
+<td style="text-align:left">模型直接运行代码并根据真实反馈调整方案。</td>
+</tr>
+<tr>
+<td style="text-align:left">开发者需为每个工具手动编写 API 胶水代码。</td>
+<td style="text-align:left">开发者只需部署一个通用的 MCP サーバー即可。</td>
+</tr>
+<tr>
+<td style="text-align:left">难以处理复杂的二进制文件或生成图像。</td>
+<td style="text-align:left">原生支持将图像、PDF 等多媒体结果传回上下文。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E5%85%B8%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%9C%BA%E6%99%AF-engineering-scenarios">典型工程场景 (Engineering Scenarios)</span></h2>
+<ul>
+<li><strong>实时数据分析</strong>：智能体直接读取本地 CSV 文件，编写并运行 Python 脚本生成可视化趋势图，而无需将原始数据上传到云端。</li>
+<li><strong>系统自动化运维</strong>：通过 MCP 访问受限的终端，智能体可以自主检查日志、分析崩溃堆栈并尝试本地修复方案。</li>
+<li><strong>本地代码库索引</strong>：MCP 服务可以直接访问本地文件系统，为模型提供精确的代码结构视图。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>MCP 代码执行不仅提升了智能体的“动手能力”，更重要的是，它建立了一种<strong>去中心化的工具生态</strong>。通过标准化的协议，我们让智能体能够以一种前所未有的安全、解耦的方式，深度介入到真实世界的计算任务中。</p>
+<h1><span id="%E8%B6%85%E8%B6%8A%E6%9D%83%E9%99%90%E6%8F%90%E7%A4%BA%E8%AE%A9-claude-code-%E6%9B%B4%E5%AE%89%E5%85%A8%E4%B8%94%E8%87%AA%E4%B8%BB">超越权限提示：让 Claude Code 更安全且自主</span></h1>
+<h1><span id="beyond-permission-prompts-making-claude-code-more-secure-and-autonomous">Beyond permission prompts: making Claude Code more secure and autonomous</span></h1>
+<blockquote>
+<p>如果 AI 每执行一个命令都要人类点一次“允许”，那它就不是真正的智能体。我们设计了一套安全架构，旨在减少干扰的同时，通过工程化手段确保系统的绝对受控。</p>
+</blockquote>
+<p>在开发 Claude Code（我们的命令行编码工具）时，我们面临一个悖论：为了提高生产力，智能体需要能够自主运行脚本、读写文件和执行测试；但赋予它这些权限，意味着必须承担系统误操作或遭受攻击的风险。</p>
+<hr>
+<h2><span id="%E4%BC%A0%E7%BB%9F%E6%9D%83%E9%99%90%E6%8F%90%E7%A4%BA%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7-the-limits-of-permission-prompts">传统“权限提示”的局限性 (The Limits of Permission Prompts)</span></h2>
+<p>最简单的方案是“人机共驾（Human-in-the-loop）”，即每一步操作都弹出确认框。但这种模式存在以下弊端：</p>
+<ol>
+<li><strong>警报疲劳 (Alert Fatigue)</strong>：频繁的点击会让用户产生麻木感，从而在不经意间批准了危险的操作。</li>
+<li><strong>破坏流动感 (Flow Distruption)</strong>：工程师希望 AI 在后台修复 10 个 Bug，而不是每 5 秒钟被打断一次。</li>
+</ol>
+<hr>
+<h2><span id="%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E9%87%8D%E6%9E%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B-how-we-reimagined-the-security-model">我们如何重构安全模型 (How We Reimagined the Security Model)</span></h2>
+<h3><span id="1-%E6%84%8F%E5%9B%BE%E5%88%86%E7%B1%BB%E4%B8%8E%E5%88%86%E7%BA%A7%E6%8E%88%E6%9D%83-intent-classification">1. 意图分类与分级授权 (Intent Classification)</span></h3>
+<p>我们并不是一律放行，而是通过模型对操作意图进行分级：</p>
+<ul>
+<li><strong>低风险 (Read-only)</strong>：读取文件、检查 Git 状态。这些操作默认授权。</li>
+<li><strong>中风险 (Local Write)</strong>：修改代码、创建本地分支。系统会监控变动并支持“一键撤销（Undo）”。</li>
+<li><strong>高风险 (Destructive/Network)</strong>：执行 <code>rm -rf</code>、推送代码至远程库、发送网络请求。这类操作必须显式确认。</li>
+</ul>
+<h3><span id="2-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9B%91%E8%A7%86%E5%99%A8-runtime-monitor">2. 运行时监视器 (Runtime Monitor)</span></h3>
+<p>我们在 Claude Code 内部运行了一个“安全看门狗”。它不是基于规则的死板检查，而是：</p>
+<ul>
+<li><strong>语义审计</strong>：在命令执行前，另一个轻量级模型会并行审查该命令是否符合当前的工程任务描述。</li>
+<li><strong>资源限制</strong>：限制 AI 能够访问的目录范围（Sandboxed Workspace），防止其越权访问主机的敏感配置文件（如 <code>.ssh</code> 或 <code>.env</code>）。</li>
+</ul>
+<h3><span id="3-%E5%9F%BA%E4%BA%8E%E4%BF%A1%E4%BB%BB%E7%AA%97%E5%8F%A3%E7%9A%84%E8%87%AA%E4%B8%BB%E6%9D%83-trust-windows">3. 基于“信任窗口”的自主权 (Trust Windows)</span></h3>
+<p>我们引入了“会话信任期”的概念。当用户在特定任务中连续批准了两次相似的操作后，系统会询问：“是否在接下来的 10 分钟内允许执行同类操作？”这在确保安全的前提下，极大地提升了自动化效率。</p>
+<hr>
+<h2><span id="%E5%AE%89%E5%85%A8%E6%80%A7%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE-security-lab-results">安全性实验数据 (Security Lab Results)</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">权限模式</th>
+<th style="text-align:left">完成 20 个编码任务的平均点击次数</th>
+<th style="text-align:left">安全违规拦截率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">逐步确认</td>
+<td style="text-align:left">150+ 次</td>
+<td style="text-align:left">100%</td>
+</tr>
+<tr>
+<td style="text-align:left">无限制模式</td>
+<td style="text-align:left">0 次</td>
+<td style="text-align:left">0%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Claude Code 智能模式</strong></td>
+<td style="text-align:left"><strong>5-8 次</strong></td>
+<td style="text-align:left"><strong>99.8%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>智能体的安全性不应仅仅依赖于人类的勤奋，而应构建在<strong>智能化的防御层</strong>之上。通过将安全策略与任务上下文深度耦合，我们让 Claude Code 既能像资深工程师一样自主工作，又能像受限沙盒一样安全可靠。</p>
+<h1><span id="ai-%E6%99%BA%E8%83%BD%E4%BD%93%E7%9A%84%E6%9C%89%E6%95%88%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B">AI 智能体的有效上下文工程</span></h1>
+<h1><span id="effective-context-engineering-for-ai-agents">Effective context engineering for AI agents</span></h1>
+<blockquote>
+<p>给智能体投喂过多的信息往往适得其反。有效的上下文工程不是关于“填充”窗口，而是关于“精炼”信号。</p>
+</blockquote>
+<p>在构建复杂的 AI 智能体（如 Claude Code）时，我们发现简单的“把所有文件都塞进上下文”会导致模型注意力分散、推理速度变慢以及幻觉增加。我们开发了一套名为“上下文工程”的方法论，以确保智能体始终拥有最相关的信息。</p>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%9A%E5%B9%B6%E4%B8%8D%E6%80%BB%E6%98%AF%E5%A5%BD-the-curse-of-too-much-context">为什么“多”并不总是“好”？ (The Curse of Too Much Context)</span></h2>
+<p>尽管 Claude 拥有巨大的上下文窗口（Context Window），但将 200,000 个 Token 全部填满会带来三个工程难题：</p>
+<ol>
+<li><strong>大海捞针效应 (Lost in the Middle)</strong>：模型在处理位于上下文中间位置的信息时，性能往往弱于两端。</li>
+<li><strong>推理成本增加</strong>：更多的 Token 意味着更高的延迟和更高的 API 费用。</li>
+<li><strong>噪音干扰</strong>：不相关的代码片段可能会诱导模型产生错误的逻辑假设。</li>
+</ol>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AD%96%E7%95%A5-core-strategies">核心技术策略 (Core Strategies)</span></h2>
+<h3><span id="1-%E5%8A%A8%E6%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E6%8F%90%E5%8F%96-dynamic-context-extraction">1. 动态上下文提取 (Dynamic Context Extraction)</span></h3>
+<p>我们不一次性提供整个代码库，而是通过“多轮检索”来构建上下文：</p>
+<ul>
+<li><strong>第一步：骨架图 (Skeletal Map)</strong>：仅提供文件目录树和核心定义的摘要。</li>
+<li><strong>第二步：意图导航</strong>：让智能体自主决定需要读取哪些具体文件（例如：使用 <code>grep</code> 或 <code>ls</code> 工具）。</li>
+<li><strong>第三步：局部加载</strong>：仅将智能体明确请求的代码段装载进上下文。</li>
+</ul>
+<h3><span id="2-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%BC%93%E5%AD%98-context-caching">2. 上下文缓存 (Context Caching)</span></h3>
+<p>对于那些在多轮对话中保持不变的信息（如系统提示词、基础库文档、项目架构图），我们使用 <strong>Prompt Caching</strong> 技术。</p>
+<ul>
+<li><strong>性能提升</strong>：减少了重复数据的处理时间，首字响应速度（TTFT）提升了 2x 以上。</li>
+<li><strong>成本优化</strong>：缓存部分仅需支付极低的缓存写入和读取费用。</li>
+</ul>
+<h3><span id="3-%E7%BB%93%E6%9E%84%E5%8C%96%E6%80%9D%E7%BB%B4%E6%9A%82%E5%AD%98%E5%8C%BA-structured-scratchpads">3. 结构化“思维暂存区” (Structured Scratchpads)</span></h3>
+<p>我们强制智能体在执行任务前使用一个特殊的 Markdown 区域来整理它的上下文：</p>
+<ul>
+<li><strong>已知事实</strong>：当前确认的系统状态。</li>
+<li><strong>待办事项</strong>：接下来的逻辑步骤。</li>
+<li><strong>缺失信息</strong>：目前尚不清楚、需要进一步查询的变量或逻辑。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E5%AF%B9%E6%AF%94%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AF%86%E5%BA%A6%E5%AF%B9%E6%88%90%E5%8A%9F%E7%8E%87%E7%9A%84%E5%BD%B1%E5%93%8D">实验对比：上下文密度对成功率的影响</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">上下文策略</th>
+<th style="text-align:left">任务成功率 (Pass@1)</th>
+<th style="text-align:left">平均消耗 Token 数</th>
+<th style="text-align:left">延迟 (Latency)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">全量填充 (Full Repo)</td>
+<td style="text-align:left">52%</td>
+<td style="text-align:left">180k</td>
+<td style="text-align:left">25s</td>
+</tr>
+<tr>
+<td style="text-align:left">RAG 朴素检索</td>
+<td style="text-align:left">64%</td>
+<td style="text-align:left">15k</td>
+<td style="text-align:left">8s</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>动态上下文工程</strong></td>
+<td style="text-align:left"><strong>82%</strong></td>
+<td style="text-align:left"><strong>8k - 20k</strong></td>
+<td style="text-align:left"><strong>6s</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E5%AE%9E%E7%94%A8%E5%BB%BA%E8%AE%AE-practical-tips-for-engineers">实用建议 (Practical Tips for Engineers)</span></h2>
+<ul>
+<li><strong>使用 XML 标签</strong>：Claude 特别擅长处理被 XML 标签包裹的信息（如 <code>&lt;code_snippet&gt;</code> 或 <code>&lt;documentation&gt;</code>），这有助于模型区分不同来源的数据。</li>
+<li><strong>区分“短期记忆”与“长期记忆”</strong>：将用户当前的操作历史作为短期记忆，而将项目规范作为长期记忆，并在 Prompt 中明确其优先级。</li>
+<li><strong>定期清理</strong>：当任务从“修复 Bug”转变为“重写文档”时，主动清除之前的调试日志，防止旧噪音干扰新任务。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>上下文工程是智能体开发的“精细化运营”阶段。通过精确控制模型在每一时刻所能看到的信息，我们不仅能提升智能体的执行效率，更能在本质上增强其解决复杂、长链路问题的能力。</p>
+<h1><span id="%E8%BF%91%E6%9C%9F%E4%B8%89%E4%B8%AA%E9%97%AE%E9%A2%98%E7%9A%84%E5%9B%9E%E9%A1%BE%E5%88%86%E6%9E%90">近期三个问题的回顾分析</span></h1>
+<h1><span id="a-postmortem-of-three-recent-issues">A postmortem of three recent issues</span></h1>
+<blockquote>
+<p>在 Anthropic，我们信奉“从失败中学习”。本文透明地记录了近期我们在基础设施和模型部署中遇到的三个典型技术问题，以及我们如何修复它们。</p>
+</blockquote>
+<p>构建可靠的 AI 系统不仅需要顶尖的模型，还需要稳健的工程底座。当系统规模达到数百万用户时，即使是万分之一概率的边缘案例（Edge Cases）也会演变成重大的服务中断。</p>
+<hr>
+<h2><span id="%E9%97%AE%E9%A2%98%E4%B8%80%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E5%AF%BC%E8%87%B4%E7%9A%84%E5%BB%B6%E8%BF%9F%E6%BF%80%E5%A2%9E-issue-1-cache-stampede">问题一：缓存击穿导致的延迟激增 (Issue 1: Cache Stampede)</span></h2>
+<h3><span id="%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1">故障现象</span></h3>
+<p>在一次热门模型更新后，我们的 API 首字响应时间（TTFT）在高峰期突然飙升了 500%，导致大量请求超时。</p>
+<h3><span id="%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90">根因分析</span></h3>
+<p>我们发现是<strong>上下文缓存（Context Caching）机制</strong>在高并发下触发了“重算风暴”。当一个极其热门的项目（如大型开源库的文档）缓存过期时，数千个并发请求发现缓存失效，同时启动了昂贵的重新计算流程，瞬间击穿了后端推理节点的算力水位。</p>
+<h3><span id="%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88">修复方案</span></h3>
+<ul>
+<li><strong>引入互斥锁 (Request Collapsing)</strong>：对于相同的缓存键，只允许一个请求负责重新计算，其余请求挂起等待结果。</li>
+<li><strong>预热机制</strong>：在缓存过期前 5%，由后台进程自动触发预刷新。</li>
+</ul>
+<hr>
+<h2><span id="%E9%97%AE%E9%A2%98%E4%BA%8C%E6%99%BA%E8%83%BD%E4%BD%93%E6%AD%BB%E5%BE%AA%E7%8E%AF%E5%AF%BC%E8%87%B4%E7%9A%84-token-%E7%86%94%E6%96%AD-issue-2-agent-loop--token-burn">问题二：智能体死循环导致的 Token 熔断 (Issue 2: Agent Loop &amp; Token Burn)</span></h2>
+<h3><span id="%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1">故障现象</span></h3>
+<p>某个自动编码智能体在处理一个循环依赖的 Git 仓库时，进入了死循环。在短短 10 分钟内，该账户消耗了数千美元的 Token 额度。</p>
+<h3><span id="%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90">根因分析</span></h3>
+<p>该智能体在执行 <code>git checkout</code> 时遇到了未预料到的冲突，它尝试通过 <code>git status</code> 诊断，但由于逻辑错误，它陷入了“报错 -&gt; 诊断 -&gt; 报错”的闭环。由于缺乏<strong>跨轮次的重复行为检测</strong>，系统未能及时止损。</p>
+<h3><span id="%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88">修复方案</span></h3>
+<ul>
+<li><strong>语义哈希检测 (Semantic Hash Detection)</strong>：我们开始对智能体的连续 N 步行动进行向量化对比。如果检测到行动序列的语义高度重合，系统将强制注入一个“反思（Reflect）”步骤，要求模型重新评估策略。</li>
+<li><strong>阶梯式频率限制</strong>：对同一个任务的 API 调用频率实施指数级退避（Exponential Backoff）。</li>
+</ul>
+<hr>
+<h2><span id="%E9%97%AE%E9%A2%98%E4%B8%89%E5%A4%9A%E6%A8%A1%E6%80%81%E8%BE%93%E5%85%A5%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BD%A2%E6%88%AA%E6%96%AD-issue-3-silent-truncation-in-multimodal-inputs">问题三：多模态输入中的“隐形”截断 (Issue 3: Silent Truncation in Multimodal Inputs)</span></h2>
+<h3><span id="%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1">故障现象</span></h3>
+<p>用户反馈在上传长文档配图时，Claude 的回答质量显著下降，经常忽略图片中的关键文字信息。</p>
+<h3><span id="%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90">根因分析</span></h3>
+<p>这是一个隐蔽的工程 Bug。在我们的图像预处理流水线中，为了节省显存，系统会自动调整图像尺寸。然而，对于长图（Long screenshots），简单的等比例缩放导致文字像素低于 OCR 识别的阈值，而系统并未向模型或用户发出“画质受损”的警告。</p>
+<h3><span id="%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88">修复方案</span></h3>
+<ul>
+<li><strong>分片处理 (Tiling Strategy)</strong>：对于长图，不再全局缩放，而是智能切分为多个高分辨率的子图。</li>
+<li><strong>置信度反馈</strong>：如果预处理层发现图像特征丢失严重，会向推理引擎发送一个 Metadata 标记，提醒模型“当前输入模糊，请谨慎推理”。</li>
+</ul>
+<hr>
+<h2><span id="%E5%B7%A5%E7%A8%8B%E6%80%BB%E7%BB%93-engineering-takeaways">工程总结 (Engineering Takeaways)</span></h2>
+<ol>
+<li><strong>监控必须具备语义化</strong>：传统的 CPU/内存监控无法捕获智能体的逻辑死循环。</li>
+<li><strong>静默失败是最大的敌人</strong>：无论是缓存击穿还是图像截断，系统应具备更强的自我感知能力。</li>
+<li><strong>容错重于防御</strong>：承认系统会出错，并建立强大的“一键回滚”和“损耗隔离”机制。</li>
+</ol>
+<hr>
+<h1><span id="%E4%B8%8E%E6%99%BA%E8%83%BD%E4%BD%93%E5%8D%8F%E4%BD%9C%E4%B8%BA%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E5%86%99%E9%AB%98%E6%95%88%E5%B7%A5%E5%85%B7">与智能体协作，为智能体编写高效工具</span></h1>
+<h1><span id="writing-effective-tools-for-agents--with-agents">Writing effective tools for agents — with agents</span></h1>
+<blockquote>
+<p>最了解智能体需要什么样工具的，往往是智能体自己。我们探索了一套流程，让 Claude 参与到其自身工具库（Toolsets）的设计、测试与迭代中。</p>
+</blockquote>
+<p>在构建智能体系统时，工程师经常会陷入“沟通错位”：我们编写的 API 接口可能符合人类的思维习惯，但对于 AI 模型来说，这些接口可能存在描述模糊、参数过于复杂或反馈信息不足的问题。</p>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%A9-ai-%E5%8F%82%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1-why-co-design-with-ai">为什么让 AI 参与工具设计？ (Why Co-design with AI?)</span></h2>
+<ol>
+<li><strong>消除描述盲区</strong>：AI 知道哪些 <code>description</code>（描述文案）能让它更准确地识别调用时机。</li>
+<li><strong>优化数据结构</strong>：AI 倾向于更扁平、语义更明确的 JSON 结构，而非深层嵌套的复杂对象。</li>
+<li><strong>闭环测试</strong>：AI 可以快速模拟成百上千种边缘情况，来验证工具的鲁棒性。</li>
+</ol>
+<hr>
+<h2><span id="ai-%E9%A9%B1%E5%8A%A8%E5%B7%A5%E5%85%B7%E5%B7%A5%E7%A8%8B%E7%9A%84%E4%B8%89%E6%AD%A5%E6%B3%95-the-three-step-workflow">“AI 驱动工具工程”的三步法 (The Three-Step Workflow)</span></h2>
+<h3><span id="1-%E9%9C%80%E6%B1%82%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1-drafting">1. 需求定义与原型设计 (Drafting)</span></h3>
+<p>当我们发现智能体在处理特定任务（如“修改数据库 Schema”）表现挣扎时，我们会向 Claude 发起一个元任务：</p>
+<ul>
+<li><strong>人类指令</strong>：“分析你最近 10 次失败的操作记录，设计一个能帮你更好完成任务的新工具。”</li>
+<li><strong>输出</strong>：Claude 会提议一个新的 API 定义，包括函数名、参数 Schema 以及它期望看到的返回格式。</li>
+</ul>
+<h3><span id="2-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%89%8B%E6%9E%B6%E7%94%9F%E6%88%90-scaffolding">2. 自动化脚手架生成 (Scaffolding)</span></h3>
+<p>一旦设计方案确定，我们利用 Claude 自动生成：</p>
+<ul>
+<li><strong>后端胶水代码</strong>（Python/TypeScript）。</li>
+<li><strong>符合 MCP 协议的接入配置</strong>。</li>
+<li><strong>模拟器（Mocks）</strong>：用于在真实 API 就绪前进行逻辑验证。</li>
+</ul>
+<h3><span id="3-%E5%8D%8F%E5%90%8C%E8%B0%83%E8%AF%95%E4%B8%8E%E9%87%8D%E6%9E%84-iterative-refinement">3. 协同调试与重构 (Iterative Refinement)</span></h3>
+<p>这是最关键的一步。智能体会亲自“试用”这个新工具。</p>
+<ul>
+<li>如果返回的错误信息太简略，智能体会指出：“我无法区分这是权限错误还是路径不存在，请在 <code>error</code> 字段中增加更多上下文。”</li>
+<li><strong>结果</strong>：工具的进化方向是“对 AI 友好（AI-Friendly）”的。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E6%A1%88%E4%BE%8Bgithub-%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E7%9A%84%E8%BF%9B%E5%8C%96">实验案例：GitHub 管理工具的进化</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">迭代阶段</th>
+<th style="text-align:left">工具特性</th>
+<th style="text-align:left">智能体成功率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>阶段 1：人类编写</strong></td>
+<td style="text-align:left">仅支持 <code>read_file</code>, <code>write_file</code></td>
+<td style="text-align:left">42%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>阶段 2：AI 建议</strong></td>
+<td style="text-align:left">增加 <code>grep_search</code>, <code>list_symbols</code></td>
+<td style="text-align:left">68%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>阶段 3：深度协同</strong></td>
+<td style="text-align:left">增加 <code>semantic_refactor</code>（语义重构工具）</td>
+<td style="text-align:left"><strong>89%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>通过增加“语义重构”这种高内聚工具，智能体避免了大量细碎的文件读写操作，从而显著降低了错误累积。</p>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%B4%9E%E5%AF%9Fai-native-%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83-ai-native-api-design">核心洞察：AI-Native 接口规范 (AI-Native API Design)</span></h2>
+<p>在与智能体协作的过程中，我们总结了以下原则：</p>
+<ul>
+<li><strong>自描述性 (Self-describing)</strong>：工具的每一个参数都应该有详细的 <code>enum</code> 定义和示例。</li>
+<li><strong>结果冗余 (Result Redundancy)</strong>：不仅返回执行结果，还要返回执行后的系统状态摘要，帮助模型确认操作生效。</li>
+<li><strong>原子性与组合性平衡</strong>：虽然单一功能的工具更安全，但对于复杂任务，提供一个高度集成的“宏指令”工具往往能提升成功率。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>工具不再是静态的库，而是智能体能力的延伸。通过让 AI 参与到工具的“生产线”中，我们正在构建一种<strong>共生进化</strong>的工程模式：工程师负责安全底座，而 AI 负责打磨它最趁手的“武器”。</p>
+<h1><span id="%E6%A1%8C%E9%9D%A2%E6%89%A9%E5%B1%95claude-desktop-%E7%9A%84%E4%B8%80%E9%94%AE%E5%BC%8F-mcp-%E6%9C%8D%E5%8A%A1%E5%AE%89%E8%A3%85">桌面扩展：Claude Desktop 的一键式 MCP 服务安装</span></h1>
+<h1><span id="desktop-extensions-one-click-mcp-server-installation-for-claude-desktop">Desktop Extensions: One-click MCP server installation for Claude Desktop</span></h1>
+<blockquote>
+<p>为了让非技术用户也能享受到智能体工具的便利，我们为 Claude Desktop 引入了“桌面扩展”功能，实现了 MCP 服务器的一键式部署与集成。</p>
+</blockquote>
+<p>模型上下文协议（MCP）的初衷是标准化，但对于大多数用户来说，手动配置 JSON 文件、设置环境变量和调试本地 Node.js 环境仍然门槛过高。我们决定通过工程优化，将这一过程彻底简化。</p>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7-the-complexity-of-local-environments">核心挑战：本地环境的复杂性 (The Complexity of Local Environments)</span></h2>
+<p>在用户本地机器上运行 MCP 服务器面临以下挑战：</p>
+<ol>
+<li><strong>依赖冲突</strong>：用户的机器可能没有安装特定版本的 Python 或 Node.js。</li>
+<li><strong>权限管理</strong>：如何确保第三方扩展不会在未经授权的情况下访问用户的敏感文件？</li>
+<li><strong>发现机制</strong>：用户如何轻松找到并安装社区开发的 MCP 工具？</li>
+</ol>
+<hr>
+<h2><span id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%A1%8C%E9%9D%A2%E6%89%A9%E5%B1%95%E6%9E%B6%E6%9E%84-desktop-extensions-architecture">解决方案：桌面扩展架构 (Desktop Extensions Architecture)</span></h2>
+<h3><span id="1-%E5%AE%B9%E5%99%A8%E5%8C%96%E6%B2%99%E7%9B%92%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83">1. 容器化/沙盒运行环境</span></h3>
+<p>我们为 Claude Desktop 开发了一个轻量级的运行引擎，它可以自动管理扩展所需的运行时环境。</p>
+<ul>
+<li><strong>自包含</strong>：扩展程序自带必要的依赖，或者通过预定义的容器镜像运行。</li>
+<li><strong>资源隔离</strong>：每个扩展在独立的进程中运行，通过标准 MCP 协议与 Claude 通信。</li>
+</ul>
+<h3><span id="2-%E4%B8%80%E9%94%AE%E5%BC%8F%E5%AE%89%E8%A3%85%E6%B5%81%E7%A8%8B-one-click-installation">2. 一键式安装流程 (One-click Installation)</span></h3>
+<p>我们设计了一个简单的协议处理程序（Protocol Handler）。当用户点击网页上的“安装到 Claude”按钮时：</p>
+<ul>
+<li>浏览器唤起 Claude Desktop。</li>
+<li>客户端解析扩展的清单文件（Manifest），并向用户展示权限请求（如：需要访问 GitHub 或本地特定文件夹）。</li>
+<li>用户确认后，系统自动完成配置，智能体立即获得新能力。</li>
+</ul>
+<h3><span id="3-%E5%8A%A8%E6%80%81%E5%B7%A5%E5%85%B7%E5%8F%91%E7%8E%B0">3. 动态工具发现</span></h3>
+<p>Claude 现在可以根据当前的上下文，主动建议用户安装相关的扩展。例如，当用户粘贴一个 SQL 查询时，Claude 会提示：“检测到 SQL，是否安装数据库连接扩展以直接运行查询？”</p>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E7%94%A8%E6%88%B7%E9%87%87%E7%BA%B3%E7%8E%87-adoption-metrics">实验结果：用户采纳率 (Adoption Metrics)</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">部署方式</th>
+<th style="text-align:left">平均配置耗时</th>
+<th style="text-align:left">成功安装率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">手动修改 <code>config.json</code></td>
+<td style="text-align:left">15 - 20 分钟</td>
+<td style="text-align:left">12%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>一键式桌面扩展</strong></td>
+<td style="text-align:left"><strong>小于 10 秒</strong></td>
+<td style="text-align:left"><strong>94%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>通过“桌面扩展”，我们打破了开发者工具与普通用户之间的壁垒。这不仅是一个功能更新，更是迈向“AI 个人助理”生态系统的关键一步——让每个人都能根据自己的需求，通过简单的点击来定制 Claude 的能力边界。</p>
+<h1><span id="claude-code%E6%99%BA%E8%83%BD%E4%BD%93%E7%BC%96%E7%A0%81%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">Claude Code：智能体编码的最佳实践</span></h1>
+<h1><span id="claude-code-best-practices-for-agentic-coding">Claude Code: Best practices for agentic coding</span></h1>
+<blockquote>
+<p>智能体编码（Agentic Coding）不仅是自动补全，它是与一个拥有自主行动能力的实体共同开发。以下是我们从开发 Claude Code 过程中总结的高效协作模式。</p>
+</blockquote>
+<p>当 AI 能够自主执行测试、阅读日志并跨文件修改代码时，开发者的角色正在从“打字员”转变为“审查者”和“决策者”。为了最大化这种协作的产出，我们建议遵循以下最佳实践。</p>
+<hr>
+<h2><span id="1-%E4%BB%BB%E5%8A%A1%E5%88%86%E8%A7%A3%E4%BB%8E%E5%81%9A%E4%BB%80%E4%B9%88%E5%88%B0%E6%80%8E%E4%B9%88%E5%81%9A-task-decomposition">1. 任务分解：从“做什么”到“怎么做” (Task Decomposition)</span></h2>
+<p>尽管 Claude Code 可以处理复杂任务，但一次性给出过于庞大的指令（例如“重构整个预测模块”）容易导致逻辑漂移。</p>
+<ul>
+<li><strong>推荐做法</strong>：将大任务拆分为可验证的子任务。例如，先让它“分析现有接口并生成文档”，确认无误后再执行“实现新的接口逻辑”。</li>
+<li><strong>工程价值</strong>：这不仅降低了幻觉概率，还方便你在每个里程碑进行代码评审。</li>
+</ul>
+<hr>
+<h2><span id="2-%E5%BB%BA%E7%AB%8B%E5%8F%8D%E9%A6%88%E9%97%AD%E7%8E%AF-the-feedback-loop">2. 建立“反馈闭环” (The Feedback Loop)</span></h2>
+<p>智能体最强大的能力在于它能根据错误进行自愈。</p>
+<ul>
+<li><strong>让测试驱动开发 (TDD)</strong>：在让 Claude 修改代码前，先让它编写（或运行现有的）测试用例。如果测试失败，它会根据报错信息自动修复代码。</li>
+<li><strong>利用日志</strong>：鼓励智能体在运行时使用 <code>grep</code> 或查看 <code>tail -f</code> 实时日志。比起猜测，观察真实的运行时错误更能让智能体快速定位问题。</li>
+</ul>
+<hr>
+<h2><span id="3-%E7%AE%A1%E7%90%86%E4%B8%8A%E4%B8%8B%E6%96%87%E4%BF%9D%E6%8C%81%E8%AE%A4%E7%9F%A5%E7%9A%84%E7%B2%BE%E7%AE%80-context-management">3. 管理上下文：保持“认知”的精简 (Context Management)</span></h2>
+<p>虽然 Claude 可以读取你的整个项目，但在对话中保持专注依然很重要。</p>
+<ul>
+<li><strong>精准导航</strong>：使用 <code>ls</code>、<code>find</code> 或 <code>grep</code> 来帮助智能体锁定目标文件，而不是让它盲目猜测。</li>
+<li><strong>清理历史</strong>：如果一个任务已经完成并开启了新任务，建议启动一个新的会话或清除过时的上下文信息，防止旧的错误假设干扰新的开发逻辑。</li>
+</ul>
+<hr>
+<h2><span id="4-%E5%AE%A1%E6%9F%A5%E4%BF%A1%E4%BB%BB%E4%BD%86%E8%A6%81%E9%AA%8C%E8%AF%81-trust-but-verify">4. 审查：信任但要验证 (Trust, but Verify)</span></h2>
+<p>作为人类开发者，你拥有最终的签名权。</p>
+<ul>
+<li><strong>使用 <code>git diff</code></strong>：在 Claude Code 提示“任务完成”后，养成使用 <code>diff</code> 工具检查每一行变动的习惯。</li>
+<li><strong>审查副作用</strong>：特别关注那些看似无关的变动，AI 可能会为了解决 A 问题而不小心修改了 B 处的全局变量或依赖。</li>
+</ul>
+<hr>
+<h2><span id="5-%E5%A4%84%E7%90%86%E5%86%B2%E7%AA%81%E4%B8%8E%E5%B9%BB%E8%A7%89-handling-conflicts">5. 处理冲突与幻觉 (Handling Conflicts)</span></h2>
+<p>当 Claude 卡住或不断尝试错误的修复方案时：</p>
+<ul>
+<li><strong>手动介入</strong>：直接告诉它：“你的第 X 步操作是错误的，因为底层逻辑是 Y，请重新尝试。”</li>
+<li><strong>提供示例</strong>：如果你有一个类似的成功案例，直接提供代码片段作为参考。</li>
+</ul>
+<hr>
+<h2><span id="%E6%80%BB%E7%BB%93%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84%E7%BC%96%E7%A8%8B%E8%8A%82%E5%A5%8F">总结：一种新的编程节奏</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">传统编程</th>
+<th style="text-align:left">智能体编程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">手动查找文件 -&gt; 修改代码 -&gt; 手动运行测试。</td>
+<td style="text-align:left">描述目标 -&gt; 观察智能体导航 -&gt; 审查测试结果。</td>
+</tr>
+<tr>
+<td style="text-align:left">耗时于语法细节和 API 文档查询。</td>
+<td style="text-align:left">专注于架构设计和边缘情况的覆盖。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>Claude Code 的目标不是取代工程师，而是消除编程中的机械劳动。通过遵循这些最佳实践，工程师可以将精力集中在最需要人类判断力的领域：系统设计、安全性分析和复杂业务逻辑的建模。</p>
+<h1><span id="%E6%80%9D%E8%80%83%E5%B7%A5%E5%85%B7%E8%AE%A9-claude-%E5%9C%A8%E5%A4%8D%E6%9D%82%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%AD%E5%81%9C%E4%B8%8B%E6%9D%A5%E6%80%9D%E8%80%83">“思考”工具：让 Claude 在复杂工具使用场景中停下来思考</span></h1>
+<h1><span id="the-think-tool-enabling-claude-to-stop-and-think">The “think” tool: Enabling Claude to stop and think</span></h1>
+<blockquote>
+<p>对于极其复杂的工程问题，即便是最强的模型也需要“深呼吸”。我们引入了显式的思考工具，允许 Claude 在执行操作前进行多步骤的逻辑推演。</p>
+</blockquote>
+<p>在处理多步骤的智能体任务时，我们观察到一个现象：模型有时会过早地触发工具调用，导致参数错误或逻辑漏洞。为了解决这个问题，我们为 Claude 3.5 系列模型赋予了“显式思考”的能力。</p>
+<hr>
+<h2><span id="%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%9D%E8%80%83%E5%B7%A5%E5%85%B7-what-is-the-think-tool">什么是“思考”工具？ (What is the “Think” Tool?)</span></h2>
+<p>传统的思维链（CoT）通常混合在对话回复中。而 <code>think</code> 工具是一个<strong>受限且结构化</strong>的输出空间，模型在此空间内进行自我博弈、方案对比和潜在风险预判，这些内容在最终输出给用户或执行器之前完成。</p>
+<h3><span id="%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7">核心特性：</span></h3>
+<ol>
+<li><strong>递归推理</strong>：模型可以在思考空间内模拟“如果执行 A 可能会发生 B”的逻辑链。</li>
+<li><strong>隐藏性与专注度</strong>：思考过程可以被系统剥离，不直接干扰用户的 UI 界面，从而保持界面的整洁。</li>
+<li><strong>计算分配</strong>：赋予模型更多的时间（和 Token）去处理高难度的逻辑节点。</li>
+</ol>
+<hr>
+<h2><span id="%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E5%AF%B9%E6%99%BA%E8%83%BD%E4%BD%93%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81-why-it-matters-for-agents">为什么这对智能体至关重要？ (Why it matters for Agents?)</span></h2>
+<p>在涉及外部环境交互时，错误的成本很高。通过 <code>think</code> 工具，智能体表现出了显著的进步：</p>
+<ul>
+<li><strong>减少“冲动型”调用</strong>：在面对歧义指令时，智能体会先通过思考确认：“用户是想删除这个文件，还是仅仅重构它？”</li>
+<li><strong>参数预校验</strong>：在调用具有复杂 JSON Schema 的工具前，模型会在思考区先构造一遍参数，检查是否符合类型要求。</li>
+<li><strong>长链路规划</strong>：对于需要连续调用 5 个 API 的任务，模型会先在思考区制定完整的“作战计划”。</li>
+</ul>
+<hr>
+<h2><span id="%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%BC%95%E5%85%A5%E6%80%9D%E8%80%83%E5%90%8E%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%8F%90%E5%8D%87">实验数据：引入“思考”后的表现提升</span></h2>
+<p>我们对比了开启与关闭 <code>think</code> 工具后，模型在处理复杂工程任务时的成功率：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">任务类型</th>
+<th style="text-align:left">未开启思考</th>
+<th style="text-align:left">开启思考工具</th>
+<th style="text-align:left">提升幅度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>多表关联 SQL 生成</strong></td>
+<td style="text-align:left">65%</td>
+<td style="text-align:left">88%</td>
+<td style="text-align:left">+23%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>大规模重构 (Refactoring)</strong></td>
+<td style="text-align:left">42%</td>
+<td style="text-align:left">76%</td>
+<td style="text-align:left">+34%</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>跨模块 Bug 定位</strong></td>
+<td style="text-align:left">55%</td>
+<td style="text-align:left">81%</td>
+<td style="text-align:left">+26%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><span id="%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E5%BB%BA%E8%AE%AE-engineering-implementation">工程实现建议 (Engineering Implementation)</span></h2>
+<ul>
+<li><strong>为思考分配配额</strong>：在 API 调用中，我们可以通过设置 <code>max_thought_tokens</code> 来控制模型在复杂问题上“钻牛角尖”的程度。</li>
+<li><strong>监控思考质量</strong>：通过分析思考区的长度和语义多样性，工程师可以判断当前的 Prompt 是否给模型造成了过大的认知负担。</li>
+<li><strong>用户透明度</strong>：在开发 IDE 插件或控制台工具时，可以选择性地向用户展示简化的思考摘要，增强人机之间的信任感。</li>
+</ul>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>“思考”工具的引入，标志着 AI 正在从“概率预测机器”进化为“理性决策系统”。通过让模型拥有停下来审视自己逻辑的能力，我们不仅提高了任务的成功率，更显著增强了 AI 在严苛工程环境下的可靠性。</p>
+<h1><span id="%E5%80%9F%E5%8A%A9-claude-35-sonnet-%E6%8F%90%E9%AB%98-swe-bench-verified-%E6%A0%87%E5%87%86">借助 Claude 3.5 Sonnet 提高 SWE-bench Verified 标准</span></h1>
+<h1><span id="raising-the-bar-on-swe-bench-verified-with-claude-35-sonnet">Raising the bar on SWE-bench Verified with Claude 3.5 Sonnet</span></h1>
+<blockquote>
+<p>在真实世界的软件工程评估中，Claude 3.5 Sonnet 刷新了纪录。本文探讨了我们如何通过工程优化，使模型在解决真实 GitHub 问题上展现出质的飞跃。</p>
+</blockquote>
+<p>SWE-bench 被公认为 AI 编程领域最具挑战性的基准测试，它要求模型修复真实开源项目中的 Bug。而 “Verified” 版本通过人工筛选，确保了测试用例的质量和评价的公正性。</p>
+<hr>
+<h2><span id="%E6%A0%B8%E5%BF%83%E6%88%90%E7%BB%A9-key-results">核心成绩 (Key Results)</span></h2>
+<p>Claude 3.5 Sonnet 在 SWE-bench Verified 上的得分达到了 <strong>49.4%</strong>，大幅领先于之前的模型。这一成绩不仅代表了逻辑能力的提升，更代表了模型在以下方面的突破：</p>
+<ol>
+<li><strong>长程轨迹处理</strong>：平均每个修复任务涉及读取数十个文件并进行多轮测试尝试。</li>
+<li><strong>工具调用精度</strong>：模型需要熟练使用 <code>grep</code>, <code>edit</code>, <code>python</code> 等工具。</li>
+</ol>
+<hr>
+<h2><span id="%E6%88%90%E5%8A%9F%E7%9A%84%E5%B7%A5%E7%A8%8B%E8%A6%81%E7%B4%A0-engineering-success-factors">成功的工程要素 (Engineering Success Factors)</span></h2>
+<h3><span id="1-%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%B7%A5%E5%85%B7%E9%9B%86toolset">1. 更好的工具集（Toolset）</span></h3>
+<p>我们为模型提供了更符合人类直觉的命令行工具。例如，相比于直接输出整个文件，模型更倾向于使用能够进行“局部修改”的差异编辑工具，这极大地降低了 Token 消耗和出错概率。</p>
+<h3><span id="2-%E8%87%AA%E6%88%91%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6-self-correction">2. 自我验证机制 (Self-Correction)</span></h3>
+<p>模型被赋予了“运行测试用例”的权限。如果它生成的补丁未能通过单元测试，它会阅读 Traceback 报错并自动进入第二轮修复。</p>
+<h3><span id="3-%E5%A4%84%E7%90%86%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%B8%8A%E4%B8%8B%E6%96%87">3. 处理大规模上下文</span></h3>
+<p>在面对拥有数千个文件的仓库时，模型表现出了极强的“代码导航（Code Navigation）”能力，能够通过搜索符号定义快速定位相关逻辑。</p>
+<hr>
+<h2><span id="%E7%BB%93%E8%AE%BA-conclusion">结论 (Conclusion)</span></h2>
+<p>这一纪录证明了 AI 已经具备了处理生产级代码的能力。然而，50% 左右的成功率也提醒我们，在复杂系统架构理解和多模块耦合修复方面，AI 仍有很长的路要走。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/02/17/anthropic%E6%90%AC%E8%BF%90/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;02&#x2F;17&#x2F;anthropic搬运&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;02&#x2F;17&#x2F;anthropic搬运&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

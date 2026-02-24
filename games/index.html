@@ -95,7 +95,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>113</div>
+		<div><span>文章</span>114</div>
 		<div><span>标签</span>8</div>
 		<div><span>分类</span>5</div>
 	</div>
@@ -348,7 +348,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
 		</div>
 	</div>
 
@@ -452,382 +452,818 @@
 		</div>
 		<html><head></head><body><div class="game-gallery-container">
   <style>
-    .game-gallery-container { max-width: 1200px; margin: 0 auto; }
-    .game-year-header { font-size: 1.8em; font-weight: bold; margin: 50px 0 20px 0; border-bottom: 2px solid #ccc; color: #333; opacity: 0.85; }
-    .game-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-bottom: 40px; }
-    .game-card { border-radius: 10px; overflow: hidden; background: var(--card-bg, #fff); box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: all 0.3s ease; text-decoration: none !important; color: inherit !important; display: flex; flex-direction: column; position: relative; border: 1px solid rgba(0,0,0,0.05); height: 100%; cursor: default; }
-    .game-card.has-link { cursor: pointer; }
-    .game-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.12); }
-    .game-cover-bg { display: block; width: 100%; padding-top: 150%; background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; background-color: #f0f0f0; transition: transform 0.6s ease; }
-    .game-card:hover .game-cover-bg { transform: scale(1.08); }
-    .game-cover-wrapper { width: 100%; overflow: hidden; position: relative; margin: 0; padding: 0; }
-    .game-info { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; background: linear-gradient(to bottom, var(--card-bg, #fff) 80%, rgba(0,0,0,0.02) 100%); z-index: 1; }
-    .game-title { font-weight: 700; font-size: 0.95rem; line-height: 1.3; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .game-meta { font-size: 0.8em; color: #777; margin-bottom: 8px; }
-    .game-rating { display: inline-flex; align-items: center; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: 600; }
-    .rating-value { background: #fff3cd; color: #856404; }
-    .rating-none { background: #e9ecef; color: #6c757d; }
-    .game-comment { font-size: 0.85em; color: #555; margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.06); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .game-gallery-container { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      padding: 0 20px; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+      background-color: #1a1a1a;
+      border-radius: 24px; /* 稍大一点的圆角更显现代化 */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(0,0,0,0.2);
+      color: #ffffff;
+    }
+    
+    .game-year-header {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin: 50px 0 40px 0;
+      color: #ffffff;
+      border-left: 6px solid #4a90e2; /* 加个标志性的蓝色侧条 */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .game-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .game-card {
+      background: #2d2d2d;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #404040;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer; /* 确保鼠标指针显示为可点击 */
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-color: #555555;
+    }
+
+    .game-cover-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 比例，防止图片拉伸 */
+      overflow: hidden;
+    }
+
+    .game-cover-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover !important;
+      background-position: center center !important;
+      transition: transform 0.5s ease;
+    }
+
+    .game-card:hover .game-cover-bg {
+      transform: scale(1.05);
+    }
+
+    .game-info {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      background: #2d2d2d;
+    }
+
+    .game-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .game-rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .star-rating {
+      color: #ffd700;
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+
+    .game-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .game-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #404040;
+      font-size: 0.9rem;
+      color: #999999;
+    }
+
+    .game-duration {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .game-platform {
+      background: #404040;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .game-date {
+      color: #888888;
+    }
+
+    /* 呼吸灯效果 */
+    .pulse-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #4ade80;
+      margin-right: 10px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+      70% { box-shadow: 0 0 0 12px rgba(74, 222, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 1200px) {
+      .game-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 350px));
+        gap: 30px;
+      }
+      
+      .game-year-header {
+        font-size: 2em;
+        margin: 40px 0 30px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .game-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+      }
+      
+      .game-year-header {
+        font-size: 1.8em;
+        margin: 35px 0 25px 0;
+      }
+      
+      .game-info {
+        padding: 18px;
+      }
+      
+      .game-title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+      
+      .game-description {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .game-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .game-year-header {
+        font-size: 1.6em;
+        margin: 30px 0 20px 0;
+      }
+      
+      .game-cover-wrapper {
+        padding-top: 75%; /* 更高的比例，适应小屏幕 */
+      }
+    }
+
+    /* 深色模式适配（已经是深色主题） */
     @media (prefers-color-scheme: dark) {
-      .game-card { background: #2b2b2b; border-color: #3a3a3a; }
-      .game-info { background: linear-gradient(to bottom, #2b2b2b 80%, rgba(255,255,255,0.02) 100%); }
-      .game-title { color: #eee; }
-      .game-meta { color: #aaa; }
-      .game-comment { color: #ccc; border-top-color: #3a3a3a; }
-      .game-year-header { border-bottom-color: #555; color: #eee; }
-      .rating-value { background: #4a3f23; color: #ffd700; }
-      .rating-none { background: #3a3a3a; color: #888; }
+      .game-gallery-container {
+        background-color: #1a1a1a;
+      }
+      .game-card {
+        background: #2d2d2d;
+        border-color: #404040;
+      }
+      .game-card:hover {
+        border-color: #555555;
+      }
+      .game-info {
+        background: #2d2d2d;
+      }
+      .game-meta {
+        border-top-color: #404040;
+      }
     }
   </style>
   <h2 class="game-year-header">2026</h2><div class="game-gallery">
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1771300/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">天国：拯救 2</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/02/23</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3444020/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">我在地府打麻将</div>
+          <div class="game-rating">
+            <div class="star-rating-wrapper" style="position: relative; display: inline-block; color: #404040; font-size: 1.2rem;">
+              <span>☆☆☆☆☆</span>
+              <div style="position: absolute; top: 0; left: 0; width: 85%; overflow: hidden; color: #ffd700; white-space: nowrap;">
+                <span>★★★★★</span>
+              </div>
+            </div></div>
+          <div class="game-description">麻将挺大的</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/02/07</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('/image/endfield.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">终末地</div>
-          <div class="game-meta"><div>2026/01/29</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
+          <div class="game-rating">
+            <div class="star-rating-wrapper" style="position: relative; display: inline-block; color: #404040; font-size: 1.2rem;">
+              <span>☆☆☆☆☆</span>
+              <div style="position: absolute; top: 0; left: 0; width: 70%; overflow: hidden; color: #ffd700; white-space: nowrap;">
+                <span>★★★★★</span>
+              </div>
+            </div></div>
+          <div class="game-description">初到武陵，感觉有点左右脑互搏，二游抽卡和单机模式都不太完善，也没啥结合</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/29</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2495450/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">冬日狂想曲</div>
-          <div class="game-meta"><div>2026/01/17</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/775500/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">绯红结系</div>
-          <div class="game-meta"><div>2026/01/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="/2026/01/23/游戏杂谈/异形工场/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1318690/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">异形工场</div>
-          <div class="game-meta"><div>2026/01/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a></div><h2 class="game-year-header">2025</h2><div class="game-gallery">
-      <a href="/2026/01/01/游戏杂谈/犯罪现场清洁工/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2540100/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">犯罪现场清洁工</div>
-          <div class="game-meta"><div>2025/12/27</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/251150/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">空轨</div>
-          <div class="game-meta"><div>2025/10/03</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">1st</div>
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('/image/61761150259_.pic.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">最后的秋天</div>
-          <div class="game-meta"><div>2025/09/13</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="/2025/09/13/游戏杂谈/冰汽时代-最后的秋天/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/323190/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">冰汽时代</div>
-          <div class="game-meta"><div>2025/09/13</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">空洞骑士</div>
-          <div class="game-meta"><div>2025/09/10</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">2025年10月</div>
-        </div>
-      </a>
-      <a href="/2025/06/26/游戏杂谈/捞女游戏评价/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1451940/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">捞女游戏</div>
-          <div class="game-meta"><div>2025/06/26</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="/2025/05/20/游戏杂谈/巫师3竟然已经十周年了/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">巫师3</div>
-          <div class="game-meta"><div>2025/05/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">极限竞速：地平线5</div>
-          <div class="game-meta"><div>2025/04/15</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">买了方向盘</div>
-        </div>
-      </a>
-      <a href="/2025/04/10/游戏杂谈/苏丹的游戏/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3117820/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">苏丹的游戏</div>
-          <div class="game-meta"><div>2025/04/03</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 40h</div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1426210/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">双影奇境</div>
-          <div class="game-meta"><div>2025/03/17</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 20h</div></div>
-          
-        </div>
-      </a>
-      <a href="/2025/03/06/游戏杂谈/十三机兵防卫圈讲了什么/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co20tm.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">十三机兵防卫圈</div>
-          <div class="game-meta"><div>2025/03/06</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">博德之门3</div>
-          <div class="game-meta"><div>2025/03/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 160h</div></div>
-          <div class="game-comment">三、四周目</div>
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1388590/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">如龙6</div>
-          <div class="game-meta"><div>2025/02/19</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 35h</div></div>
-          
-        </div>
-      </a>
-      <a href="/2025/01/30/游戏杂谈/神之天平游戏记录/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1184710/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">神之天平</div>
-          <div class="game-meta"><div>2025/01/30</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/638970/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">如龙0</div>
-          <div class="game-meta"><div>2025/01/22</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 71.5h</div></div>
-          
-        </div>
-      </a></div><h2 class="game-year-header">2024</h2><div class="game-gallery">
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">欧洲卡车模拟器2</div>
-          <div class="game-meta"><div>2024/12/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">旧游重玩，但是有了图马斯特</div>
+          <div class="game-rating">
+            <div class="star-rating-wrapper" style="position: relative; display: inline-block; color: #404040; font-size: 1.2rem;">
+              <span>☆☆☆☆☆</span>
+              <div style="position: absolute; top: 0; left: 0; width: 90%; overflow: hidden; color: #ffd700; white-space: nowrap;">
+                <span>★★★★★</span>
+              </div>
+            </div></div>
+          <div class="game-description">自制自动驾驶控制器</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 30hh</div>
+
+            <div class="game-date">📅 2026/01/20</div>
+          </div>
         </div>
       </a>
-      <a href="/2024/11/25/游戏杂谈/到了谷底就只能一路向上了-如龙7/" class="game-card has-link" >
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('/image/yakuza7.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/775500/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">绯红结系</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/06</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1318690/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">异形工场</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2026/01/06</div>
+          </div>
+        </div>
+      </a></div><h2 class="game-year-header">2025</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2540100/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">犯罪现场清洁工</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/12/27</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/251150/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">空轨</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">1st</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/10/03</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">空洞骑士</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/09/10</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">极限竞速：地平线5</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">买了方向盘</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2025/04/15</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1426210/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">双影奇境</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 20hh</div>
+
+            <div class="game-date">📅 2025/03/17</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">博德之门3</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">三、四周目</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 160hh</div>
+
+            <div class="game-date">📅 2025/03/01</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1388590/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙6</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 35hh</div>
+
+            <div class="game-date">📅 2025/02/19</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/638970/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">如龙0</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 71.5hh</div>
+
+            <div class="game-date">📅 2025/01/22</div>
+          </div>
+        </div>
+      </a></div><h2 class="game-year-header">2024</h2><div class="game-gallery">
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">欧洲卡车模拟器2</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">旧游重玩，但是有了图马斯特</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/12/20</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1235140/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">如龙7</div>
-          <div class="game-meta"><div>2024/11/25</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/11/25</div>
+          </div>
         </div>
       </a>
-      <a href="/2024/12/22/游戏杂谈/锐评如龙8/" class="game-card has-link" >
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2072450/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">如龙8</div>
-          <div class="game-meta"><div>2024/11/11</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 106h</div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 106hh</div>
+
+            <div class="game-date">📅 2024/11/11</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1235140/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">如龙7：国际版</div>
-          <div class="game-meta"><div>2024/10/31</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 110h</div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 110hh</div>
+
+            <div class="game-date">📅 2024/10/31</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1462040/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">FF7re</div>
-          <div class="game-meta"><div>2024/10/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 40h</div></div>
-          <div class="game-comment">10月25日</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 40hh</div>
+
+            <div class="game-date">📅 2024/10/01</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">黑神话悟空</div>
-          <div class="game-meta"><div>2024/08/20</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 62.2h</div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 62.2hh</div>
+
+            <div class="game-date">📅 2024/08/20</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1203220/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">永劫无间</div>
-          <div class="game-meta"><div>2024/07/08</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">双排混到了修罗</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">双排混到了修罗</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2024/07/08</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">艾尔登法环</div>
-          <div class="game-meta"><div>2024/06/30</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 144h</div></div>
-          <div class="game-comment">本体2周目+DLC</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">本体2周目+DLC</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 144hh</div>
+
+            <div class="game-date">📅 2024/06/30</div>
+          </div>
         </div>
       </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co3dph.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">FIFA2022</div>
-          <div class="game-meta"><div>2024/05/22</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/646570/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">杀戮尖塔</div>
-          <div class="game-meta"><div>2024/03/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span>  · ⏱ 47h</div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ 47hh</div>
+
+            <div class="game-date">📅 2024/03/01</div>
+          </div>
         </div>
       </a></div><h2 class="game-year-header">2023</h2><div class="game-gallery">
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co65u5.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://upload-bbs.miyoushe.com/upload/2024/03/14/357876319/d4c31bd0260dac01a76f46ec17883b02_3912538206445877688.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">崩坏：星穹铁道</div>
-          <div class="game-meta"><div>2023/04/26</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">日常手机上混时间</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">日常手机上混时间</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2023/04/26</div>
+          </div>
         </div>
       </a></div><h2 class="game-year-header">2022</h2><div class="game-gallery">
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co2x3t.jpg');"></div>
+            <div class="game-cover-bg" style="background-image: url('https://i0.hdslb.com/bfs/new_dyn/0b061915255fee043b831e08350ae6c1161775300.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">明日方舟</div>
-          <div class="game-meta"><div>2022/07/01</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          <div class="game-comment">日常手机上混时间</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">日常手机上混时间</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2022/07/01</div>
+          </div>
         </div>
       </a>
-      <a href="/2022/03/16/subscribers/2022-03-16-战神四和最后生还者两位老父亲的带娃旅途/" class="game-card has-link" >
-        <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1888930/library_600x900.jpg');"></div>
-        </div>
-        <div class="game-info">
-          <div class="game-title">最后生还者</div>
-          <div class="game-meta"><div>2022/03/16</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
-        </div>
-      </a>
-      <a href="/2022/03/16/subscribers/2022-03-16-战神四和最后生还者两位老父亲的带娃旅途/" class="game-card has-link" >
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://lain.bgm.tv/pic/cover/l/2a/38/71221_wN567.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">战神四</div>
-          <div class="game-meta"><div>2022/03/16</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2022/03/16</div>
+          </div>
         </div>
       </a></div><h2 class="game-year-header">2021</h2><div class="game-gallery">
-      <a href="/2021/07/11/subscribers/2021-07-11-[游戏杂谈]聊聊逆转裁判无剧透/" class="game-card has-link" >
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
             <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/787480/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">逆转裁判</div>
-          <div class="game-meta"><div>2021/07/11</div><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 2021/07/11</div>
+          </div>
         </div>
       </a></div><h2 class="game-year-header">未知年份</h2><div class="game-gallery">
-      <a href="javascript:void(0);" class="game-card " onclick="return false;">
+      <a href="javascript:void(0);" class="game-card">
         <div class="game-cover-wrapper">
-            <div class="game-cover-bg" style="background-image: url('https://cdn1.epicgames.com/offer/3ddd6a590da64e3686042d108968a6b2/EGS_GodofWar_SantaMonicaStudio_S2_1200x1600-fbdf3cbc2980749091d52751ffabb7b7_1200x1600-fbdf3cbc2980749091d52751ffabb7b7');"></div>
+            <div class="game-cover-bg" style="background-image: url('/image/61761150259_.pic.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后的秋天</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3117820/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">苏丹的游戏</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co20tm.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">十三机兵防卫圈</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2495450/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冬日狂想曲</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1184710/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">神之天平</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://images.igdb.com/igdb/image/upload/t_cover_big/co3dph.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">FIFA2022</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1451940/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">捞女游戏</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/library_600x900.jpg');"></div>
         </div>
         <div class="game-info">
           <div class="game-title">战神4</div>
-          <div class="game-meta"><div style="margin-top:4px;"><span class="game-rating rating-none">暂无评分</span> </div></div>
-          
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">巫师3</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/323190/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">冰汽时代</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
+        </div>
+      </a>
+      <a href="javascript:void(0);" class="game-card">
+        <div class="game-cover-wrapper">
+            <div class="game-cover-bg" style="background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1888930/library_600x900.jpg');"></div>
+        </div>
+        <div class="game-info">
+          <div class="game-title">最后生还者</div>
+          <div class="game-rating"><span class="star-rating">☆☆☆☆☆</span></div>
+          <div class="game-description">暂无评价...</div>
+          <div class="game-meta">
+            <div class="game-duration">⏱ --h</div>
+
+            <div class="game-date">📅 未记录</div>
+          </div>
         </div>
       </a></div></div><!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->
