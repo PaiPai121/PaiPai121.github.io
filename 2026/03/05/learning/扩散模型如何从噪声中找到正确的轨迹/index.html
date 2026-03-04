@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 扩散模型如何从噪声中找到正确的轨迹 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>115</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>6</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习记录/">
+              学习记录
+            </a>
+            <span class="category-list-count">1</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">42</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">14</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">扩散模型</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 17.14px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 11.43px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15.71px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 12.86px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 14.29px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a> <a href="/tags/%E8%BD%A8%E8%BF%B9%E8%A7%84%E5%88%92/" style="font-size: 10px;">轨迹规划</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="扩散模型如何从噪声中找到正确的轨迹"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>扩散模型如何从噪声中找到正确的轨迹</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年03月05日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
+		</div>
+		<html><head></head><body><h2><span id="1-%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E6%81%A2%E5%A4%8D%E8%80%8C%E9%9D%9E%E5%88%9B%E9%80%A0">1. 扩散模型的原因：为什么要学习“恢复”而非“创造”？</span></h2>
+<p>在自动驾驶的路径规划（PnC）中，传统算法往往试图让模型直接给出一个完美的答案——一条精确的轨迹。但人类驾驶的本质是<strong>多模态</strong>且<strong>高度非线性</strong>的：面对前方的障碍物，向左绕行和向右绕行在概率上可能是等效的。</p>
+<p>如果让模型直接预测一个如此复杂的分布，它往往会在多种可能性之间“取平均”，最终吐出一条撞上障碍物的、平滑却错误的“折中轨迹”。</p>
+<p><strong>DDPM（Denoising Diffusion Probabilistic Models）的核心思想实现了一次降维打击：</strong>
+与其直接预测那个捉摸不透的复杂分布，不如学习如何一步步从纯粹的混乱（随机噪声）中恢复出有意义的结构。</p>
+<blockquote>
+<p><strong>问：</strong> 把原本清晰的专家轨迹变成一团乱码，再费劲变回来，这难道不是多此一举吗？</p>
+<p><strong>答：</strong> 关键在于**“步进式修正”的难度分级**。在 $H$ 维的状态空间里，直接画出一条完美的曲线极难；但如果我给你一条几乎已经成型的轨迹，让你识别并剔除其中微小的、不符合物理规律的扰动（噪声），这就变成了数值回归问题。通过 $T$ 步微小的去噪，扩散模型将一个复杂的高维生成问题，转化为了一个连续的、可微的梯度下降问题。</p>
+</blockquote>
+<hr>
+<h2><span id="2-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E8%83%BD%E8%AE%A9%E7%94%9F%E6%88%90%E9%97%AE%E9%A2%98%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98">2. 为什么扩散模型能让“生成问题”转化为“回归问题”？</span></h2>
+<p>在传统的生成模型（如 GAN 或早期的 VAE）中，我们要解决的是一个<strong>全局拟合问题</strong>：模型必须一次性理解从“随机噪声”到“完美轨迹”之间极其复杂的非线性映射。这种映射充满了断裂和多模态，数学上极难收敛。</p>
+<p><strong>扩散模型通过“分步采样”实现了一个巧妙的数学转换：</strong></p>
+<h3><span id="21-%E5%B1%80%E9%83%A8%E7%BA%BF%E6%80%A7%E5%8C%96%E5%B0%86%E5%A4%A7%E8%B1%A1%E6%8B%86%E6%88%90%E5%8E%9F%E5%AD%90">2.1 局部线性化：将“大象”拆成“原子”</span></h3>
+<p>在 DDPM 的 $T$ 步链条中，如果 $T$ 足够大（例如 $T=1000$），那么相邻两个状态 $x_t$ 和 $x_{t-1}$ 之间的差异是极其微小的。</p>
+<ul>
+<li><strong>全局看</strong>：从纯噪声到轨迹是复杂的非线性分布生成。</li>
+<li><strong>局部看</strong>：从 $x_t$ 恢复 $x_{t-1}$，由于变化极其微细，这种变换在局部可以被近似看作是<strong>加性高斯噪声的去除</strong>。</li>
+</ul>
+<h3><span id="22-%E9%A2%84%E6%B5%8B%E7%9B%AE%E6%A0%87%E7%9A%84%E9%99%8D%E7%BA%A7">2.2 预测目标的降级</span></h3>
+<p>当我们把目标从“预测轨迹”转变为“预测这一步注入的噪声 $\epsilon$”时，根据扩散模型的加噪公式：</p>
+<p>$$x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon$$</p>
+<p>其中 $x_0$ 是专家轨迹，$\epsilon$ 是我们注入的随机噪声。神经网络 $\epsilon_\theta(x_t, t)$ 的任务变成了：已知受损的状态 $x_t$，推测出那个被注入的 $\epsilon$。</p>
+<blockquote>
+<p><strong>问：</strong> 为什么说这是“回归”？</p>
+<p><strong>答：</strong> 因为 $\epsilon$ 是从标准正态分布 $N(0, I)$ 中采样出来的。神经网络不再需要去预测一个具有复杂拓扑结构的“轨迹分布”，它只需要去预测一个<strong>连续的数值向量</strong>。</p>
+<p>在训练时，我们的损失函数（Loss Function）极其简单：
+$$L = | \epsilon - \epsilon_\theta(x_t, t) |^2$$
+这就是最典型的 <strong>均方误差回归（MSE Regression）</strong>。</p>
+</blockquote>
+<p>扩散模型把一个需要“艺术创作”的生成难题，拆解成了 1000 个“找不同”的回归练习。</p>
+<ul>
+<li><strong>不再纠结多模态</strong>：在每一个微小的去噪步中，模型只需要根据当前的残缺状态，指明一个“脱离混沌”的方向。</li>
+<li><strong>误差容忍度</strong>：即使某一步回归得不够精确，后续的 999 步迭代依然有反复修正的机会。</li>
+</ul>
+<p>这种将“分布生成”向“数值回归”的降维处理，正是扩散模型在处理复杂车辆动力学约束时，比直接回归轨迹参数（如多项式系数）要稳健得多的根本原因。</p>
+<h2><span id="3-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B1%80%E9%83%A8%E5%BE%AE%E5%B0%8F%E7%9A%84%E7%9C%8B%E4%BC%BC%E9%9A%8F%E6%9C%BA%E7%9A%84%E5%8E%BB%E5%99%AA%E5%8A%A8%E4%BD%9C%E8%83%BD%E4%BA%A7%E7%94%9F%E5%85%B7%E6%9C%89%E5%85%A8%E5%B1%80%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E7%89%A9%E7%90%86%E9%80%BB%E8%BE%91%E7%9A%84%E8%BD%A8%E8%BF%B9">3. 为什么局部微小的、看似随机的去噪动作，能产生具有全局一致性和物理逻辑的轨迹？</span></h2>
+<h3><span id="31-%E9%87%87%E6%A0%B7%E9%98%B6%E6%AE%B5%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E7%BA%A7">3.1 采样阶段的特征分级</span></h3>
+<ul>
+<li><strong>初期（$t \to T$）：在噪声迷雾中捕捉“多峰概率质心”</strong>
+采样从纯高斯噪声开始。此时 $x_T$ 就像一团漫无目的的“云团”。由于噪声占绝对主导，微观物理细节（如曲率、瞬时加速度）完全被淹没在方差中。
+<ul>
+<li><strong>质心定位</strong>：对于 PnC 任务（如避障），概率分布 $P(x)$ 天生是多峰（Multi-modal）的。左绕还是右绕？这是两个不同的概率高峰。模型此时通过回归噪声，本质上是在判定：当前这个随机点更靠近哪一个概率“吸引子”？它确立的是全局语义的质心。</li>
+</ul>
+</li>
+<li><strong>中期（$t \to mid$）：锁定拓扑结构</strong>
+随着 $T$ 次回归的累积，轨迹的形状开始显现。模型开始处理中频特征，通过反馈循环将轨迹约束在特定的驾驶流形内。</li>
+<li><strong>后期（$t \to 0$）：消除毛刺与物理对齐</strong>
+此时信噪比极高，原本被掩盖的物理信号浮现。神经网络发挥其精细感知能力，微调每一帧之间的位移增量，确保最终输出的 $x_0$ 满足执行器的平滑输入要求。</li>
+</ul>
+<h3><span id="32-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%A2%84%E6%B5%8B%E5%99%AA%E5%A3%B0%E4%B8%8E%E9%A2%84%E6%B5%8B%E8%BD%A8%E8%BF%B9%E7%AD%89%E4%BB%B7">3.2 为什么预测噪声与预测轨迹等价？</span></h3>
+<p>在训练扩散模型时，我们最常用的损失函数是 MSE：
+$$\min_{\theta} \mathbb{E}_{x_0, \epsilon} | \epsilon - \epsilon_\theta(x_t, t) |^2$$
+这里的 $\epsilon$ 是我们亲手注入的噪声。看起来我们在训练一个“猜噪声”的模型，但由于 $x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$，预测噪声和预测原始信号 $x_0$ 在数学上是完全等价的。</p>
+<p>如果你想求 $x_0$，只需要对上面的线性方程做简单的移项：
+$$x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \epsilon}{\sqrt{\bar{\alpha}_t}}$$
+在一个确定的时刻 $t$，$\bar{\alpha}_t$ 是已知的常数。</p>
+<ul>
+<li>如果你知道噪声 $\epsilon$，你就能精准地算出 $x_0$。</li>
+<li>反之，如果你知道 $x_0$，你也能精准地推导出当初注入的 $\epsilon$。</li>
+</ul>
+<p><strong>3.2.1. $\sqrt{\alpha_t}$ 到底是什么？</strong>
+在扩散模型（如 DDPM）的定义中，为了控制加噪的节奏，我们引入了一组随时间变化的超参数：</p>
+<ul>
+<li>$\beta_t \in (0, 1)$：每一时刻注入的噪声方差比例。</li>
+<li>$\alpha_t = 1 - \beta_t$：每一时刻保留的原始信号比例。</li>
+<li>$\bar{\alpha}_t = \prod_{i=1}^t \alpha_i$：这是你在公式里真正看到的那个项。（注：为了书写方便，很多文献直接简写为 $\alpha_t$）。</li>
+</ul>
+<p>如果我们想让加噪后的 $x_t$ 始终保持一个标准正态分布（均值为 0，方差为 1），那么我们就必须保证系数的平方和等于 1。那么就需要 $(\sqrt{\bar{\alpha}_t})^2 + (\sqrt{1-\bar{\alpha}_t})^2 = \bar{\alpha}_t + 1 - \bar{\alpha}_t = 1$，即为：
+$$x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$$</p>
+<p><strong>物理意义：</strong>
+$\sqrt{\bar{\alpha}_t}$ 是一个衰减系数。它决定了经过 $t$ 步后，原始信号 $x_0$ 还剩下多少“浓度”。</p>
+<ul>
+<li>当 $t=0$ 时，$\bar{\alpha}_0 = 1$，信号是完美的。</li>
+<li>当 $t=T$ 时，$\bar{\alpha}_T \approx 0$，信号彻底湮灭。</li>
+<li></li>
+</ul>
+<p>根据高斯分布的性质，我们不需要真的模拟 $T$ 次加噪，可以直接一步到位：
+$$x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)$$
+在这个等式里，$x_t$ 是我们观测到的（输入），而 $x_0$（有效信息）和 $\epsilon$（噪声垃圾）是两个互相牵制的变量。</p>
+<h3><span id="322-%E7%BA%AF%E5%99%AA%E5%A3%B0%E7%9A%84%E8%BD%A8%E8%BF%B9%E5%A6%82%E4%BD%95%E8%BF%98%E5%8E%9F%E6%88%90%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E8%BD%A8%E8%BF%B9">3.2.2 纯噪声的轨迹如何还原成有意义的轨迹？</span></h3>
+<p>在整个高纬空间中，我们希望从初始解出发，逐步的走向 $P(x_t)$ 最大的地方。也就是说，我们应该在原来的信号上沿着 $P(x_t)$ 的梯度方向走。</p>
+<p>这里我们把梯度成为Score Function ($\nabla \log p(x)$)</p>
+<p>为什么要取对数呢？</p>
+<ul>
+<li>单调性：对数是单调递增的，不会改变 $p(x)$ 极大值的位置。</li>
+<li>消除归一化常数：概率分布通常包含极其复杂的归一化系数（配分函数）$Z$，即 $p(x) = \frac{1}{Z} e^{-f(x)}$。对 $\ln p(x)$ 求导时，$\ln Z$ 作为常数项直接消失，我们只需要处理能量函数 $f(x)$ 的导数。</li>
+<li>数值稳定性：概率值可能极小（如 $10^{-100}$），取对数后变为线性刻度，更适合神经网络处理。</li>
+</ul>
+<p>那么怎么得到这个梯度呢？</p>
+<p>我们首先人为地给专家轨迹 $x_0$ 注入混乱。（我们先令 $\sigma^2 = 1 - \bar{\alpha}_t$ ）</p>
+<p>$$x_t = \sqrt{\bar{\alpha}_t}x_0 + \sigma \epsilon$$</p>
+<p>这意味着，给定 $x_0$，观测值 $x_t$ 的概率密度函数是一个均值为 $\sqrt{\bar{\alpha}_t}x_0$ 的正态分布：
+$$p(x_t | x_0) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( -\frac{|x_t - \sqrt{\bar{\alpha}_t}x_0|^2}{2\sigma^2} \right)$$</p>
+<p>取对数，求导，有：
+$$\nabla_{x_t} \ln p(x_t | x_0) = \nabla_{x_t} \left( -\frac{|x_t - \sqrt{\bar{\alpha}_t}x_0|^2}{2\sigma^2} + \text{const} \right)$$</p>
+<p>$$\nabla_{x_t} \ln p(x_t | x_0) = -\frac{x_t - \sqrt{\bar{\alpha}_t}x_0}{\sigma^2}=-\frac{\epsilon}{\sigma}$$</p>
+<p>也就是说，噪声其实就是一个梯度方向的向量。这就解释了为什么我们减去噪声，就能让轨迹向着真实的轨迹靠近。</p>
+<h3><span id="323-%E6%B2%A1%E6%9C%89-x_0-%E6%80%8E%E4%B9%88%E5%BE%97%E5%88%B0%E9%A2%84%E6%B5%8B%E7%9A%84%E5%99%AA%E5%A3%B0%E5%91%A2">3.2.3 没有 $x_0$ 怎么得到预测的噪声呢？</span></h3>
+<p>我们的神经网络学习的时候是给他($x_0, \epsilon, t$) 这样一个三元组的。
+但是推理去噪点时候我们可以有逐步减小的t，但是没有$x_0$啊，怎么让模型去预测$\epsilon$呢？我要是有$x_0$干嘛还要做预测，直接用不就完了吗，这不成鸡生蛋蛋生鸡了。</p>
+<p>推理（Inference/Sampling）阶段的本质是盲人摸象。</p>
+<p>在训练的时候，我们庞大的数据可能对应着一系列的模态$x_0^{(1)}, x_0^{(2)}, …$。
+在自动驾驶中他可能是左转、直行、右转的专家轨迹，在图像生成中可能是猫猫狗狗的照片。</p>
+<p>当你把模型部署到车上，给它一个纯噪声 $x_T$ 时，根本没有所谓的“$x_0$”。
+我们想要推断，只能靠贝叶斯定理提供的后验概率
+$$p(x_0 | x_t) = \frac{p(x_t | x_0) p(x_0)}{p(x_t)}$$</p>
+<p>而 MSE 在统计学上有一个特性：它的最优解是所有可能结果的“条件期望”。这意味着模型输出的噪声预测值 $\epsilon_\theta$ 实际上等价于：$$\epsilon_\theta(x_t, t) \approx \int \epsilon(x_t, x_0) p(x_0 | x_t) dx_0$$</p>
+<p>在这种无$x_0$的条件下
+$$\nabla_{x_t} \ln p(x_t) = -\frac{\mathbb{E}[\epsilon | x_t]}{\sigma} \approx -\frac{\epsilon_\theta(x_t, t)}{\sigma}$$</p>
+<p>接下来，我们知道</p>
+<p>$$x_t = \sqrt{\bar{\alpha}_t}x_0 + \sigma \epsilon \quad \Rightarrow \quad \epsilon = \frac{x_t - \sqrt{\bar{\alpha}_t}x_0}{\sigma}$$</p>
+<p>在推理时，对于一个确定的观测值 $x_t$，变量是 $x_0$ 和 $\epsilon$。我们对等式两边同时取关于 $x_0$ 的后验期望 $\mathbb{E}[\cdot | x_t]$：</p>
+<p>$$\mathbb{E}[\epsilon | x_t] = \mathbb{E} \left[ \frac{x_t - \sqrt{\bar{\alpha}_t}x_0}{\sigma} \bigg| x_t \right]$$</p>
+<p>由于 $x_t$、$\sqrt{\bar{\alpha}_t}$ 和 $\sigma$ 在给定时刻 $t$ 时都是观测到的常数，根据期望的线性性质</p>
+<p>$$\mathbb{E}[\epsilon | x_t] = \frac{x_t - \sqrt{\bar{\alpha}_t} \mathbb{E}[x_0 | x_t]}{\sigma}$$</p>
+<p>此时代入就有
+$$\nabla_{x_t} \ln p(x_t) = -\frac{1}{\sigma} \cdot \left( \frac{x_t - \sqrt{\bar{\alpha}_t} \mathbb{E}[x_0 | x_t]}{\sigma} \right)$$</p>
+<p>$$\nabla_{x_t} \ln p(x_t) = -\frac{x_t - \sqrt{\bar{\alpha}_t} \mathbb{E}[x_0 | x_t]}{\sigma^2}$$</p>
+<p>它不需要知道具体的 $x_0$ 是哪一个。它只需要根据当前的 $x_t$，计算出在它记忆的所有专家经验中，最可能的回归方向。</p>
+<h3><span id="33-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BC%9A%E5%83%8F%E7%9B%B4%E6%8E%A5%E5%AF%B9%E6%89%80%E6%9C%89%E8%BD%A8%E8%BF%B9%E5%8F%96%E5%B9%B3%E5%9D%87%E4%B8%80%E6%A0%B7%E7%9B%B4%E6%8E%A5%E4%BB%8E%E5%87%A0%E6%9D%A1%E8%BD%A8%E8%BF%B9%E7%9A%84%E4%B8%AD%E9%97%B4%E8%B5%B0%E5%A4%9A%E6%A8%A1%E6%80%81%E5%9D%8D%E7%BC%A9">3.3 为什么不会像直接对所有轨迹取平均一样直接从几条轨迹的中间走——多模态坍缩</span></h3>
+<p>我们其实有多种不同的专家轨迹 $x_0^{(1)}, x_0^{(2)}, \dots$，在采样初期（$t$ 很大），$\mathbb{E}[x_0 | x_t]$ 确实是所有模态的加权。</p>
+<p>就行我们对x轴y轴两条线取平均的话，他就沿着45度的y=x直线去走了。
+但随着采样迭代（$t \to 0$），$x_t$ 会因为采样中的随机性（噪声注入）稍微偏向某一个模态。模型在每一个微小的 $dt$ 步都在求期望，一旦偏离平衡点，贝叶斯后验 $p(x_0 | x_t)$ 就会发生正反馈效应，让期望值迅速向某一个具体的模态“坍缩”。随着 $t \to 0$，噪声变小，后验分布 $p(x_0 | x_t)$ 会迅速坍缩（变得非常尖锐），最终锁定在某一个具体的 $x_0^{(n)}$ 上。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/03/05/learning/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%A6%82%E4%BD%95%E4%BB%8E%E5%99%AA%E5%A3%B0%E4%B8%AD%E6%89%BE%E5%88%B0%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%BD%A8%E8%BF%B9/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;03&#x2F;05&#x2F;learning&#x2F;扩散模型如何从噪声中找到正确的轨迹&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;03&#x2F;05&#x2F;learning&#x2F;扩散模型如何从噪声中找到正确的轨迹&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			                      
+			<!-- 先找到与当前文字相同的目录 -->
+			   
+			<!-- 在找到当前文章所在的 index -->
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-container-fill -link" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" rel="tag">扩散模型</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E8%BD%A8%E8%BF%B9%E8%A7%84%E5%88%92/" rel="tag">轨迹规划</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
