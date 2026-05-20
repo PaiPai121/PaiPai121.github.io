@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> godot 入门 -  KK空间</title>
+		<title> reconstructmyhome -  KK空间</title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		
@@ -95,7 +95,7 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>117</div>
+		<div><span>文章</span>118</div>
 		<div><span>标签</span>8</div>
 		<div><span>分类</span>5</div>
 	</div>
@@ -348,7 +348,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
 		</div>
 	</div>
 
@@ -439,38 +439,20 @@
 			<img
 				data-src="/image/frieren.png"
 				data-sizes="auto"
-				alt="godot 入门"
+				alt="reconstructmyhome"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>godot 入门</h1>
+			<h1>reconstructmyhome</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2025年01月26日</a>
-			<a><i class="kirafont icon-edit-fill"></i>492 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2026年03月08日</a>
+			<a><i class="kirafont icon-edit-fill"></i>27 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<html><head></head><body><h2><span id="%E7%BA%B9%E7%90%86%E8%BF%87%E6%BB%A4%E8%AE%BE%E7%BD%AE">纹理过滤设置</span></h2>
-<p>在 Godot 中，纹理过滤的 nearest 和 linear 是两种不同的插值方式，用于处理纹理在缩放时的表现。</p>
-<ol>
-<li>Nearest (最近邻)
-原理: 选择离采样点最近的纹理像素（texel）颜色。</li>
-</ol>
-<p>效果: 纹理在放大或缩小时会呈现像素化的效果，边缘清晰但可能显得锯齿状。</p>
-<p>适用场景: 适合像素艺术或需要保持锐利边缘的游戏。</p>
-<ol start="2">
-<li>Linear (线性)
-原理: 对采样点周围的多个纹理像素进行加权平均，生成平滑的颜色过渡。</li>
-</ol>
-<p>效果: 纹理在放大或缩小时会显得平滑，但可能模糊细节。</p>
-<p>适用场景: 适合需要平滑过渡的3D游戏或高分辨率纹理。</p>
-<p>在2d游戏背景中，用Nearest更好一点</p>
-<h1><span id="%E4%BD%BF%E7%94%A8http%E8%AF%B7%E6%B1%82">使用http请求</span></h1>
-<p>Error request(url: String, custom_headers: PackedStringArray = PackedStringArray(), method: HTTPClient.Method = 0, request_data: String = “”)</p>
-<p>在底层的 HTTPClient 上创建请求。如果没有配置错误，它会尝试使用 HTTPClient.connect_to_host() 连接并将参数传递给 HTTPClient.request()。</p>
-<p>如果成功创建请求，则返回 OK。（并不意味着服务器已响应），如果不在树中，则返回 ERR_UNCONFIGURED；如果仍在处理先前的请求，则返回 ERR_BUSY；如果给定的字符串不是有效的 URL 格式，则返回 ERR_INVALID_PARAMETER；或者如果不使用线程并且 HTTPClient 无法连接到主机，则返回 ERR_CANT_CONNECT。</p>
-<p>注意：当 method 为 HTTPClient.METHOD_GET 时，通过 request_data 发送的有效载荷可能会被服务器忽略，甚至导致服务器拒绝请求（见 RFC 7231 第 4.3.1 节了解更多详情）。作为一种变通方法，可以在 URL 中将数据作为查询字符串发送（有关示例，请参见 String.uri_encode()）。</p>
-<p>注意：建议使用传输加密（TLS）并避免在 HTTP GET URL 参数中发送敏感信息（例如登录凭据）。考虑改用 HTTP POST 请求或 HTTP 报头来获取此类信息。</p>
+		<html><head></head><body><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myleaf/p/19003797">https://www.cnblogs.com/myleaf/p/19003797</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KEsZzXEPd/?spm_id_from=333.788.comment.all.click&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62">https://www.bilibili.com/video/BV1KEsZzXEPd/?spm_id_from=333.788.comment.all.click&amp;vd_source=1d04aeeacc3bad94c47bb6cd6817ae62</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fenghuayumo/DIVSHOT">https://github.com/fenghuayumo/DIVSHOT</a></p>
 <!-- hexo injector body_end start -->
 <!-- Mermaid Scripts -->
 <script>
@@ -501,7 +483,7 @@ if (hasMermaid) {
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>战斗包子<br>
-        <strong>本文链接：</strong><a href="https://paipai121.github.io/2025/01/26/godot/godot-%E5%85%A5%E9%97%A8/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;01&#x2F;26&#x2F;godot&#x2F;godot-入门&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2025&#x2F;01&#x2F;26&#x2F;godot&#x2F;godot-入门&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/03/08/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/reconstructmyhome/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;03&#x2F;08&#x2F;日常记录&#x2F;reconstructmyhome&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;03&#x2F;08&#x2F;日常记录&#x2F;reconstructmyhome&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -510,32 +492,12 @@ if (hasMermaid) {
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			  
-			<!-- 先找到与当前文字相同的目录 -->
-			                        
-			<!-- 在找到当前文章所在的 index -->
-			                            
-			<!-- 上一篇文章 -->
-			<div class="old">
-				<span>上一章</span>
-				<a href="/2025/01/23/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/blender%E8%BF%98%E5%8E%9F%E7%9C%9F%E5%AE%9E%E5%BB%BA%E7%AD%91/"> blender 还原真实建筑</a>
-			</div>
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/2025/01/27/godot/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E7%B4%A0%E6%9D%90%E7%BD%91%E7%AB%99/"> 网站收集</a>
-			</div>
-			                                               
+			          
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-container-fill -link" href="/categories/%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/">业余开发</a>
-		
-		
-			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" rel="tag">游戏业余开发</a>
 		
 	</div>
 	
