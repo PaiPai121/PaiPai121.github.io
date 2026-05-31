@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> Deploy传奇athome -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>121</div>
+		<div><span>标签</span>8</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">12</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">20</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">41</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">15</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 16.67px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.33px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 10px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 11.67px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 13.33px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="Deploy传奇athome"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>Deploy传奇athome</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年05月21日</a>
+			<a><i class="kirafont icon-edit-fill"></i>7.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 32 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="background">Background</span></h1>
+<p>七八年前的时候给家父在家里部署过mir2，让他找回找回年轻的感觉，最近他又想玩了</p>
+<h2><span id="gpt%E7%9A%84%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A">GPT的调研报告</span></h2>
+<p>两条主轴：
+一条是以 GOM、翎风、BLUE、GEE 等中文商用/半商用引擎为核心的“整合包—登录器—脚本—版本库”路线，强调尽快开玩、低门槛改表改脚本；</p>
+<ul>
+<li>翎风作为默认起点，把 BLUE 作为“你非常在意假人/假人 AI NPC 时”的备选，把 Crystal 作为后续进入代码层的第二阶段，而不是一开始就直接上 Crystal。原因很简单：翎风官网到 2026 年 5 月仍在发包，且直接提供 1.80基础服务端 MirServer，同时官方协议明确“个人学习研究及单机娱乐”场景；BLUE 则在公开论坛层面提供了更强的教程面和更明确的假人相关公开痕迹；Crystal 虽然是当前最强的开源扩展底座之一，但其构建、数据库、资源链路明显更偏开发者工作流。</li>
+</ul>
+<p>另一条是以 Crystal、mir2x、OpenMir2、mir-eternal、Zircon 为代表的开源怀旧重建路线，强调源代码可控、长期可扩展、适合程序员深改。这两条路线目前都仍在更新，只是目标用户不同：前者更适合“今晚就要玩起来”，后者更适合“以后要自己改系统、改协议、改工具链”。</p>
+<ul>
+<li>如果目标是长期可维护、可读代码、可版本管理，Crystal 和 OpenMir2 仍是最值得优先看的开源方案；如果目标是研究协议、现代化重构或跨平台实验，mir2x 与 Unity/C++ 重建路线更有技术价值。AI 挂机与自动化在技术上完全可行，</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>现状判断</th>
+<th>代表项目/引擎</th>
+<th>典型用户规模与场景</th>
+<th>主要技术栈</th>
+<th>优点</th>
+<th>短板与风险</th>
+<th>可信度与证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传统复古单机</td>
+<td>仍是中文圈主流入口</td>
+<td>翎风、GOM、BLUE、GEE、V8/HERO 遗留生态</td>
+<td>个人怀旧、局域网、两三人小圈子；B 站相关教程常见 1k–1.5 万播放</td>
+<td>Windows、本地 DB/网关/登录/游戏进程、登录器、微端、完整客户端</td>
+<td>上手快、资料多、改表改脚本门槛低</td>
+<td>黑盒多、版本包来源复杂、资产版权风险高</td>
+<td>高 / 中</td>
+</tr>
+<tr>
+<td>单机化客户端</td>
+<td>技术存在，但多数仍是“本地化网游”</td>
+<td>localhost 配置、微端、本地登录器、本地服务端</td>
+<td>演示、调试、离线体验、局域网测试</td>
+<td>客户端连 127.0.0.1，本地 DB/Login/Gate/Game 服务</td>
+<td>体验贴近官服/私服，迁移成本低</td>
+<td>很少是真正纯离线；客户端分发与素材复制风险高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>开源服务端</td>
+<td>当前最稳健的“可维护路线”</td>
+<td>Crystal、OpenMir2、mir2x</td>
+<td>开发者、小型社区服、协议研究与二开</td>
+<td>C#/.NET、C++23/SDL/Lua/FLTK、Git、编译链、数据库</td>
+<td>代码可读、便于协作与版本管理</td>
+<td>编译与资产链更复杂；开源代码不等于拥有官方资产权利</td>
+<td>高</td>
+</tr>
+<tr>
+<td>AI 与自动化</td>
+<td>技术可行，但公网服风险最高</td>
+<td>OpenCV / YOLO / OCR / LLM + 截屏 / 输入注入</td>
+<td>本地刷图试验、辅助脚本、研究型 PoC</td>
+<td>MSS / 截屏、模板匹配、目标检测、OCR、PyAutoGUI / SendInput</td>
+<td>降低重复劳动，可做 PoC</td>
+<td>UI 脆弱、延迟与误识别明显；易触发行为分析与反作弊</td>
+<td>高 / 中</td>
+</tr>
+<tr>
+<td>怀旧重建</td>
+<td>仍活跃但明显小众</td>
+<td>Unity 重建、mir2x、各类 alt versions</td>
+<td>协议 / 渲染研究、跨平台实验、学术 / 工程练手</td>
+<td>C++ / Unity / C#、自定义工具链、重建客户端 / 协议 / 资源格式</td>
+<td>技术价值最高、可摆脱传统黑盒引擎</td>
+<td>工时大、反馈慢；若混用原始资产仍有授权风险</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid">flowchart LR
+    A[传统复古单机] --&gt; B[本地服务端栈]
+    B --&gt; C[DB / Login / Gate / Game]
+    A --&gt; D[完整客户端与补丁]
+    E[单机化客户端] --&gt; B
+    E --&gt; F[127.0.0.1 回环]
+    G[开源服务端] --&gt; H[Crystal / OpenMir2 / mir2x]
+    H --&gt; B
+
+    O[怀旧重建] --&gt; P[协议/资源/渲染重写]
+    O --&gt; Q[Unity / C++ / C#]</pre>
+<table>
+<thead>
+<tr>
+<th>项目名</th>
+<th>类型</th>
+<th>语言/引擎</th>
+<th>仓库/官网名称</th>
+<th>最近可见活动</th>
+<th>Star / 下载 / 热度</th>
+<th>主要贡献者 / 团队</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GOM 引擎</td>
+<td>商业</td>
+<td>GameOfMir</td>
+<td>GameOfMir 官网</td>
+<td>2026-05-18 有“最新免费引擎(922京版)更新”</td>
+<td>官方未公开 Star；官网仍持续更新</td>
+<td>GameOfMir 团队</td>
+<td>26</td>
+</tr>
+<tr>
+<td>翎风引擎</td>
+<td>商业</td>
+<td>LFM2</td>
+<td>翎风官网</td>
+<td>下载页显示 翎风引擎 [20260508]，并持续维护更新日志</td>
+<td>官方未公开 Star；中文资料与迁移教程仍多</td>
+<td>翎风团队</td>
+<td>27</td>
+</tr>
+<tr>
+<td>BLUE 引擎</td>
+<td>商业</td>
+<td>BlueM2</td>
+<td>BLUE 官方论坛</td>
+<td>2026-05-19 仍有签到与技术答疑；2026-03-20 仍发布 SQL 搭建教程</td>
+<td>2026-05-19 签到帖有数千级回复；论坛日更明显</td>
+<td>BLUE 官方论坛 / 版主群体</td>
+<td>28</td>
+</tr>
+<tr>
+<td>Crystal</td>
+<td>开源</td>
+<td>C# / .NET</td>
+<td>Suprcode/Crystal</td>
+<td>2026-05-06 提交</td>
+<td>1.6k★ / 848 forks</td>
+<td>Suprcode、JevLOMCN、daneo1989</td>
+<td>3</td>
+</tr>
+<tr>
+<td>mir2x</td>
+<td>开源</td>
+<td>C++23 / SDL / Lua / FLTK</td>
+<td>etorth/mir2x</td>
+<td>2026-04-25 提交</td>
+<td>494★ / 214 forks</td>
+<td>etorth</td>
+<td>29</td>
+</tr>
+<tr>
+<td>OpenMir2</td>
+<td>开源</td>
+<td>C#</td>
+<td>mirbeta/OpenMir2</td>
+<td>2024-02-14 最后一批高密度提交可见</td>
+<td>344★ / 148 forks</td>
+<td>mirbeta</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Crystal.Database</td>
+<td>开源资料库</td>
+<td>数据库 / 资源配套</td>
+<td>Suprcode/Crystal.Database</td>
+<td>2024-08-30 提交</td>
+<td>154★ / 150 forks</td>
+<td>JevLOMCN</td>
+<td>31</td>
+</tr>
+<tr>
+<td>GEE 引擎</td>
+<td>商业</td>
+<td>GeeM2</td>
+<td>GEE 官网 / GEE 助手生态</td>
+<td>官方站点仍可见；外围更新列表到 2024-07-10</td>
+<td>官方未公开 Star；聚合站转载有 3.31K 浏览</td>
+<td>GEE 团队</td>
+<td>32</td>
+</tr>
+<tr>
+<td>V8M2 社区</td>
+<td>遗留商业 / 社区</td>
+<td>V8M2</td>
+<td><a target="_blank" rel="noopener" href="http://v8m2.com">v8m2.com</a> / LSP 社区</td>
+<td>社区站点可见 2025 年帖子；B 站相关教程约 1.5 万播放</td>
+<td>玩法资料仍活跃，但更多作为迁移目标存在</td>
+<td>社区维护者</td>
+<td>33</td>
+</tr>
+<tr>
+<td>HERO 引擎</td>
+<td>遗留商业</td>
+<td>HeroM2</td>
+<td>HERO 官网导览 / 教程生态</td>
+<td>2024 年公开资料显示官网重新可见、支持三端与 Lua；教程仍在更新</td>
+<td>2024 教程约 2.8k 阅读、相关文章约 3.98K 浏览</td>
+<td>HERO 团队</td>
+<td>34</td>
+</tr>
+</tbody>
+</table>
+<h1><span id="%E9%9C%80%E6%B1%82">需求</span></h1>
+<ol>
+<li>老头想立刻玩</li>
+<li>老头要游戏里有假人</li>
+</ol>
+<h1><span id="%E8%90%BD%E5%9C%B0">落地</span></h1>
+<h2><span id="%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF">客户端和服务端</span></h2>
+<p>既然着急玩，自然先搞最简单的方式了</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>数据库与免 SQL</th>
+<th>是否含登录器</th>
+<th>Windows / 安卓</th>
+<th>公开体积</th>
+<th>常见问题</th>
+<th>可信来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>翎风官方引擎 + 官方 1.80 基础服务端</td>
+<td>通常按 SQLite <code>.db</code> 路线使用，适合免外置数据库；公开页没有逐字写默认库型，但官方页直接提供 SQLite 编辑器，社区实操也围绕该路线展开</td>
+<td>通常有，社区实操里可直接打开登录器配置器</td>
+<td>Win：是；安卓：未明确</td>
+<td>引擎 201.59M + 基础服务端 54.8M；另需官方客户端下载器 123.7M</td>
+<td>登录器配置、补丁路径、客户端版本对应问题较常见</td>
+<td>官方下载页、社区教程与实操帖</td>
+</tr>
+</tbody>
+</table>
+<p><a target="_blank" rel="noopener" href="https://www.lfm2.com/?utm_source=chatgpt.com">https://www.lfm2.com/?utm_source=chatgpt.com</a>
+下载：
+引擎
+基础服务端
+登录器
+SQLite工具</p>
+<p><a target="_blank" rel="noopener" href="https://mir2.sdo.com/?utm_source=chatgpt.com">https://mir2.sdo.com/?utm_source=chatgpt.com</a></p>
+<h2><span id="%E5%81%87%E4%BA%BA">假人</span></h2>
+<table>
+<thead>
+<tr>
+<th>公开实现/模块</th>
+<th>是否存在</th>
+<th>代表证据</th>
+<th>实现方式判断</th>
+<th>适配引擎</th>
+<th>扩展性与二开难度</th>
+<th>典型场景</th>
+<th>可信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BLUE 官方假人/辅机/真人假人数据</td>
+<td>存在</td>
+<td>官方帖提到“真人数据、假人数据无缝转换”，更新日志出现 DummyOptionMask；7bbz 教程列出 OFFLINEPLAYEX、GuardPos、FakePlayer。3</td>
+<td>典型为脚本命令 + 定时器 + 角色数据复用 + 行为开关</td>
+<td>BLUE</td>
+<td>扩展性高于纯整合包，二开中等；需要熟悉命令体系和数据库</td>
+<td>造人气、攻沙、离线打怪、陪练、交易市场氛围</td>
+<td>高</td>
+</tr>
+<tr>
+<td>翎风 Dummy 假人系统</td>
+<td>存在</td>
+<td>2024/2025 两篇中文教程公开展示 DummyNameList.txt、LOADDUMMYCONFIGFILE、攻击模式切换、读取配置文件。17</td>
+<td>明显属于“配置文件 + QManage 脚本 + 行为参数”模式</td>
+<td>翎风</td>
+<td>扩展性较好，二开中等偏低；适合脚本党</td>
+<td>单机陪玩、练级、攻城热闹感、自动捡物</td>
+<td>中高</td>
+</tr>
+<tr>
+<td>翎风假人捡物/穿戴扩展</td>
+<td>存在</td>
+<td>公开教程展示 SetDummyPickItemFile、SetDummyPickItem 等命令。18</td>
+<td>规则列表 + 开关控制 + 指定对象定制</td>
+<td>翎风</td>
+<td>很适合局部扩展，难度低于重写 AI</td>
+<td>提升假人“像真人”的拾取与养成行为</td>
+<td>中</td>
+</tr>
+<tr>
+<td>巅峰假人第二季等打包式假人系统</td>
+<td>存在，但多为整合包 / 销售页证据</td>
+<td>销售页写有默认 400 假人、内置 1000 名单、组队交易、后台控制；B 站与 NGA 有用户讨论“巅峰 2 代假人”。19</td>
+<td>更像完整脚本产品而非公开仓库；核心逻辑未开源</td>
+<td>常见于 V8M2 / GOM / 复古整合包</td>
+<td>能用但黑盒；二开难度取决于是否带明文脚本</td>
+<td>想快速得到“城里很热闹”的本地怀旧体验</td>
+<td>低至中</td>
+</tr>
+<tr>
+<td>GOM 假人相关系统</td>
+<td>存在，但近三年原始公开证据弱于 BLUE / 翎风</td>
+<td>旧有 GOM 假人脚本与 64GM 推荐位存在，但近三年更常见的是版本库“带假人”标签，而非官方公开文档。20</td>
+<td>多半仍是脚本 / 控制后台 / 配置文件体系</td>
+<td>GOM</td>
+<td>取决于你拿到的是明文脚本还是黑盒包</td>
+<td>本地热闹感、自动回收、组队打怪</td>
+<td>中低</td>
+</tr>
+</tbody>
+</table>
+<h1><span id="%E6%96%B9%E6%A1%882">方案2</span></h1>
+<p>GEE 引擎 + Mir2-GeeM2 GitHub 配置仓，更适合“我要 1.76 怀旧味道，而且希望我的底版不是纯黑箱”的用户。Mir2-GeeM2 仓库明确写了它是基于官方 2005 年泄露的 1.76 服务端制作的配置文件，遵照官方/韩服思路扩展，适合单机或小圈子，而且 README 直接给了单机测试方法。</p>
+<p>按公开资料可执行的步骤如下：</p>
+<p>从 GEE 官方页获取最新引擎包。当前搜索可见官方页给出的版本是 GEE v4.8.2（稳定版）；同时，公开帮助文档示例又持续引用 <a target="_blank" rel="noopener" href="http://geem2.com">geem2.com</a>，所以实践中建议把官方搜索结果页 + 官方帮助文档页一起留档，避免只认一个域名。</p>
+<p>下载 Mir2-GeeM2 GitHub 仓库。仓库作者给出的单机测试方法非常明确：下载任意 GeeM2/V8M2/翎风 引擎服务端；替换 Mir200 文件夹为仓库目录；把 GEEM2.db 复制到 Mud2/DB 并覆盖；在引擎控制台的配置向导重新保存并生成配置文件；启动服务器；下载官方客户端；把登录器放进客户端并覆盖 map 文件夹；然后注册角色开玩。</p>
+<p>如果你更想减少 GEE 官方站访问波动带来的干扰，也可以用翎风引擎承载这套 Mir2-GeeM2 配置，因为该仓库说明本来就把 GeeM2/V8M2/翎风都列为可选承载引擎。这也是为什么这条路线在“怀旧 + 可改造”上会比纯闭源一键端更强。</p>
+<p>GEE 路线的首次备份建议更保守：在任何转换数据库、升级 64 位引擎、重做登录器前，先存一份“全量 MirServer 压缩包 + 客户端补丁包 + 当前 GEEM2.db 哈希记录”。GEE 帮助文档和社区资料都表明，新版引擎经常伴随 UI、数据库驱动和登录器配置器一起变，混搭极易出错。</p>
+<p>############### 以下为codex帮忙记录的过程 ###############</p>
+<h1><span id="2026-05-31-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%8E%92%E9%9A%9C%E8%AE%B0%E5%BD%95">2026-05-31 本地部署排障记录</span></h1>
+<p>这次把服务端彻底重新部署到 <code>D:\MirServer</code>，客户端使用 <code>D:\work_console\MirDev\传奇1.80客户端</code>，确认服务端和客户端都走 1.80，不再混用 1.76 或 17 周年客户端。</p>
+<h2><span id="%E4%BB%8A%E5%A4%A9%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91">今天踩到的坑</span></h2>
+<ol>
+<li>
+<p>不要盲目把所有绝对路径改成相对路径。翎风这一套老工具链里，DBServer、LoginSrv、GameCenter、登录器配置器等组件对工作目录和绝对路径很敏感。路径要按文档和实际配置项逐个确认，不能批量替换。</p>
+</li>
+<li>
+<p><code>ExtIPaddr</code> 不是摆设。<code>D:\MirServer\Config.ini</code> 里的外网 IP 会被 GameCenter 用来生成网关信息，例如 <code>DBServer\!serverinfo.txt</code>。本机测试时如果它生成成 <code>127.0.0.1 192.168.0.1 7200</code>，客户端选完角色后就可能跳去连 <code>192.168.0.1:7200</code>，表现就是能登录、能选人，但进游戏黑屏。单机本机测试应确保对客户端下发的是 <code>127.0.0.1</code>。</p>
+</li>
+<li>
+<p>登录器配置里的客户端文件名要和真实文件一致。当前登录器配置使用的是 <code>Client.dat</code>，所以客户端目录里必须有 <code>Client.dat</code>。这次用 <code>Mir.exe</code> 复制出 <code>Client.dat</code> 后，登录器才能正常启动到后续流程。</p>
+</li>
+<li>
+<p><code>mir.dat</code>、<code>Client.dat</code>、登录器 exe 和服务端版本要成套。只要其中一个是旧包、空文件、或者来自另一个客户端，就会出现“登录器找不到东西”“选人后黑屏”“点提交无反应”等看起来很玄学的问题。</p>
+</li>
+<li>
+<p>账号注册、角色创建、进入游戏是三段链路，不是一个动作。账号在 <code>Account.DB</code>，角色在 <code>ApexMir.DB</code>，真正出生点、血蓝、等级等数据通常要等 M2 成功初始化并保存后才完整。只看注册界面成功不代表角色已经能进游戏。</p>
+</li>
+<li>
+<p>新角色默认无敌的根因是 <code>D:\MirServer\Mir200\!setup.txt</code> 里的 <code>StartPermission=10</code>。<code>Command.ini</code> 中 <code>@无敌</code>、<code>@管理</code>、<code>@观察</code> 等 GM 指令权限也是 10，所以新角色一出生就是 GM 权限。登录脚本里还有 <code>ISADMIN</code> 分支，因此新角色会被当管理员处理。把 <code>StartPermission</code> 改成 <code>0</code> 后，新建角色才是普通玩家。</p>
+</li>
+<li>
+<p><code>AdminList.txt</code> 仍然会让指定角色拥有管理员行为。以后如果某个角色异常无敌、能用 GM 指令，要同时查 <code>StartPermission</code>、<code>Command.ini</code> 的权限配置、以及 <code>Mir200\Envir\AdminList.txt</code>。</p>
+</li>
+</ol>
+<h2><span id="%E4%BB%A5%E5%90%8E%E6%8E%92%E9%9A%9C%E7%9A%84%E9%97%AD%E7%8E%AF%E9%A1%BA%E5%BA%8F">以后排障的闭环顺序</span></h2>
+<ol>
+<li>
+<p>先看进程和端口：<code>DBServer</code>、<code>LoginSrv</code>、<code>LoginGate</code>、<code>SelGate</code>、<code>RunGate</code>、<code>M2Server</code>、<code>GameCenter</code> 是否都来自同一个 <code>D:\MirServer</code>，端口 7000、7100、7200、5000、5100/6000、5500/5600 是否正常。</p>
+</li>
+<li>
+<p>再看登录器配置：客户端目录、<code>Client.dat</code>、<code>mir.dat</code>、登录器 exe 是否在同一个 1.80 客户端目录下。</p>
+</li>
+<li>
+<p>再看服务端下发地址：检查 <code>Config.ini</code>、<code>DBServer\!serverinfo.txt</code>，本机测试不要让客户端跳到不可达的局域网或外网 IP。</p>
+</li>
+<li>
+<p>最后查数据库和脚本：账号查 <code>DBServer\FDB\Account.DB</code>，角色查 <code>DBServer\FDB\ApexMir.DB</code>，出生和权限查 <code>Mir200\!setup.txt</code>、<code>Mir200\Command.ini</code>、<code>Mir200\Envir\AdminList.txt</code>、<code>Mir200\Envir\QuestDiary\游戏登陆\登陆脚本.txt</code>。</p>
+</li>
+</ol>
+<h2><span id="%E8%BF%99%E6%AC%A1%E7%95%99%E4%B8%8B%E7%9A%84%E7%BB%8F%E9%AA%8C">这次留下的经验</span></h2>
+<p>老传奇服务端的问题不能只看一个界面现象。点登录没反应、选人后黑屏、注册成功但角色异常、挨打不掉血，背后分别可能是登录器文件、网关地址、M2 初始化、GM 权限脚本的问题。以后每次改配置都要确认“配置文件 -&gt; 生成文件 -&gt; 进程日志/端口 -&gt; 客户端表现 -&gt; 数据库结果”这一整条链路，不能只改一个 ini 就认为生效。</p>
+<h2><span id="%E5%BD%93%E5%89%8D-commandini-%E6%8C%87%E4%BB%A4%E6%9D%83%E9%99%90%E9%80%9F%E6%9F%A5">当前 Command.ini 指令权限速查</span></h2>
+<p>来源：<code>D:\MirServer\Mir200\Command.ini</code>。下表只列出在 <code>[Permission]</code> 中明确配置了权限的指令，按权限从低到高排序。当前已经把 <code>StartPermission</code> 改为 <code>0</code>，所以新建普通角色默认只能使用权限 <code>0</code> 的指令。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">权限</th>
+<th>配置项</th>
+<th>游戏内命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>AddFriend</code></td>
+<td><code>@AddFriend</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>AllowMsg</code></td>
+<td><code>@拒绝私聊</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>BanNationChat</code></td>
+<td><code>@允许国家聊天</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>Date</code></td>
+<td><code>@查看时间</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>DelFriend</code></td>
+<td><code>@DelFriend</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>Friend</code></td>
+<td><code>@Friend</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>LetNation</code></td>
+<td><code>@加入国家</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>LockLogin</code></td>
+<td><code>@锁定</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>PrvMsg</code></td>
+<td><code>@拒绝</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>SendTopChatBoardMsg</code></td>
+<td><code>@传1</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>SETCOLORSAY</code></td>
+<td><code>@设置聊天字体颜色</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>表情</code></td>
+<td><code>@表情</code></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td><code>留言</code></td>
+<td><code>@留言</code></td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td><code>Map</code></td>
+<td><code>@Map</code></td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td><code>Who</code></td>
+<td><code>@Who</code></td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td><code>Total</code></td>
+<td><code>@Total</code></td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td><code>GMRedMsgCmd</code></td>
+<td><code>@!</code></td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td><code>MoveMax</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td><code>PositionMoveMax</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AddGameGold</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AddGold</code></td>
+<td><code>@加钱</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AddGuild</code></td>
+<td><code>@创建行会</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AddToItemEvent</code></td>
+<td><code>@AddToItemEvent</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AddToItemEventAspieces</code></td>
+<td><code>@AddToItemEventAsPieces</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AdjuestExp</code></td>
+<td><code>@调整经验</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AdjuestTestLevel</code></td>
+<td><code>@AdjustTestLevel</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>AdjuestTLevel</code></td>
+<td><code>@调级</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Announcement</code></td>
+<td><code>@Announcement</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Attack</code></td>
+<td><code>@Attack</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>BackStep</code></td>
+<td><code>@弹开</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Ball</code></td>
+<td><code>@Ball</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>BonusPoint</code></td>
+<td><code>@调整属性点</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeDearName</code></td>
+<td><code>@DearName</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeGameDiamond</code></td>
+<td><code>@调整金刚石</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeGameGird</code></td>
+<td><code>@调整灵符</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeGameGlory</code></td>
+<td><code>@调整荣誉值</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeGate</code></td>
+<td><code>@整体切换连接</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeGender</code></td>
+<td><code>@改变性别</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeItemName</code></td>
+<td><code>@ChangeItemName</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeJob</code></td>
+<td><code>@改变职业</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeLuck</code></td>
+<td><code>@ChangeLuck</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeMasterName</code></td>
+<td><code>@MasterName</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeNGLevel</code></td>
+<td><code>@调整内功等级</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeSabukLord</code></td>
+<td><code>@改变城主</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeUserFull</code></td>
+<td><code>@CHGUSERFULL</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeWeaponDura</code></td>
+<td><code>@ChangeWeaponDura</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ChangeZenFastStep</code></td>
+<td><code>@CHGZENFASTSTEP</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ClearBag</code></td>
+<td><code>@清理垃圾</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ClearMission</code></td>
+<td><code>@清除标志</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ClearMon</code></td>
+<td><code>@ClearMon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ClearPlacingItem</code></td>
+<td><code>@ClearPlacingItem</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>CloseUserShop</code></td>
+<td><code>@CloseUserShop</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ColorSay</code></td>
+<td><code>@允许彩色字体聊天</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ContestPoint</code></td>
+<td><code>@ContestPoint</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>CreditPoint</code></td>
+<td><code>@调整声望</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelBonuPoint</code></td>
+<td><code>@删除属性点</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelDenyAccountLogon</code></td>
+<td><code>@DelDenyAccountLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelDenyCharNameLogon</code></td>
+<td><code>@DelDenyCharNameLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelDenyIPLocalLogon</code></td>
+<td><code>@DelDenyIPLocalLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelDenyIPLogon</code></td>
+<td><code>@DelDenyIPLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DeleteAllItemEvent</code></td>
+<td><code>@DeleteAllItemEvent</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DeleteItem</code></td>
+<td><code>@删除物品</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DeleteSkill</code></td>
+<td><code>@删除技能</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelGameGold</code></td>
+<td><code>@DelGamePoint</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelGold</code></td>
+<td><code>@减钱</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelGuild</code></td>
+<td><code>@删除行会</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelMachineIDLogon</code></td>
+<td><code>@DelMachineIDLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelNpc</code></td>
+<td><code>@DelNpc</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelSellPlayer</code></td>
+<td><code>@DelSellPlayer</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DelUserShop</code></td>
+<td><code>@DelUserShop</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DenyAccountLogon</code></td>
+<td><code>@DenyAccountLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DenyCharNameLogon</code></td>
+<td><code>@DenyCharNameLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DenyIPaddrLogon</code></td>
+<td><code>@DenyIPLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DenyIPLocalLogon</code></td>
+<td><code>@DenyIPLocalLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DenyMachineIDLogon</code></td>
+<td><code>@DenyMachineIDLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DisableFilter</code></td>
+<td><code>@禁用脏话</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DisableSendMsg</code></td>
+<td><code>@DisableSendMsg</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>DisableSendMsgList</code></td>
+<td><code>@DisableSendMsgList</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>EnableSendMsg</code></td>
+<td><code>@EnableSendMsg</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>EndContest</code></td>
+<td><code>@EndContest</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>FireBurn</code></td>
+<td><code>@FireBurn</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Flag</code></td>
+<td><code>@showflag</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ForcedWallConQuestWar</code></td>
+<td><code>@攻城</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>FreePenalty</code></td>
+<td><code>@清除PK</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GameGold</code></td>
+<td><code>@调整元宝</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GameGoldEx</code></td>
+<td><code>@GameGoldEx</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GameMaster</code></td>
+<td><code>@管理</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GamePoint</code></td>
+<td><code>@调整泡点</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GameWen</code></td>
+<td><code>@GameWen</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>GiveMine</code></td>
+<td><code>@GiveMine</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Gsa</code></td>
+<td><code>@gsa</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Hair</code></td>
+<td><code>@发型</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>HumanCount</code></td>
+<td><code>@附近人数</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>HumanLocal</code></td>
+<td><code>@IP</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Hunger</code></td>
+<td><code>@Hunger</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>IncPkPoint</code></td>
+<td><code>@增加PK</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Info</code></td>
+<td><code>@查看</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ItemEventList</code></td>
+<td><code>@ItemEventList</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ItemEventTerm</code></td>
+<td><code>@ItemEventTerm</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Kick</code></td>
+<td><code>@T</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Kill</code></td>
+<td><code>@干掉</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Level</code></td>
+<td><code>@Level</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Level0</code></td>
+<td><code>@Level0</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>LotteryTicket</code></td>
+<td><code>@LotteryTicket</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>LoyaltyPoint</code></td>
+<td><code>@调整忠诚度</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>LuckPoint</code></td>
+<td><code>@LuckyPoint</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MachineID</code></td>
+<td><code>@机器码</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MakeMax</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MakeMin</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MapInfo</code></td>
+<td><code>@MapInfo</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MapMove</code></td>
+<td><code>@移动地图</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Mission</code></td>
+<td><code>@Mission</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Mob</code></td>
+<td><code>@Mob</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MobCount</code></td>
+<td><code>@查看怪物</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MobLevel</code></td>
+<td><code>@附近玩家</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MobNpc</code></td>
+<td><code>@MobNpc</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MobPlace</code></td>
+<td><code>@MobPlace</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>MoveMin</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>NameColor</code></td>
+<td><code>@NameColor</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>NGLevel</code></td>
+<td><code>@NGLevel</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>NpcScript</code></td>
+<td><code>@NpcScript</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ObServer</code></td>
+<td><code>@观察</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>OpDeleteSkill</code></td>
+<td><code>@OPDeleteSkill</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>OpenUserShop</code></td>
+<td><code>@OpenUserShop</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>OpTraining</code></td>
+<td><code>@增加技能</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>OXQuizRoom</code></td>
+<td><code>@OXQuizRoom</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>PkPoint</code></td>
+<td><code>@查看PK</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>PositionMoveMin</code></td>
+<td><code>未在 [Command] 配置别名</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReAlive</code></td>
+<td><code>@复活</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Recall</code></td>
+<td><code>@传唤</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>RecallMob</code></td>
+<td><code>@BB</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReConnection</code></td>
+<td><code>@切换连接</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>RefineWeapon</code></td>
+<td><code>@刀</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReGoto</code></td>
+<td><code>@跟踪</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReleaseShutup</code></td>
+<td><code>@ReleaseShutup</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadAbuse</code></td>
+<td><code>@重读脏话</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadAdmin</code></td>
+<td><code>@重读管理</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadChatbox</code></td>
+<td><code>@ReloadChatbox</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadDiary</code></td>
+<td><code>@ReloadDiary</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadFunction</code></td>
+<td><code>@ReloadFunction</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadGuild</code></td>
+<td><code>@ReloadGuild</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadGuildAll</code></td>
+<td><code>@ReloadGuildAll</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadItemDB</code></td>
+<td><code>@重读物品数据库</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadLineNotice</code></td>
+<td><code>@重读公告</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadMagicDB</code></td>
+<td><code>@重读技能数据库</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadManage</code></td>
+<td><code>@重读登陆</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadMonitems</code></td>
+<td><code>@重读爆率</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadMonsterDB</code></td>
+<td><code>@重读怪物数据库</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadNpc</code></td>
+<td><code>@重读商人</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadRobot</code></td>
+<td><code>@重读机器人脚本</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReloadRobotManage</code></td>
+<td><code>@重读机器人配置</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>RemoteMsg</code></td>
+<td><code>@RemoteMsg</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ReNewLevel</code></td>
+<td><code>@转生</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>RestBonuPoint</code></td>
+<td><code>@还原属性点</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SabukWallGold</code></td>
+<td><code>@SabukWallGold</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SbkDoor</code></td>
+<td><code>@SbkDoor</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetFlag</code></td>
+<td><code>@setflag</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetMapMode</code></td>
+<td><code>@SetMapMode</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetOpen</code></td>
+<td><code>@setopen</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetPermission</code></td>
+<td><code>@给予权限</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetUnit</code></td>
+<td><code>@setunit</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SetUserShopName</code></td>
+<td><code>@SetUserShopName</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowDenyAccountLogon</code></td>
+<td><code>@ShowDenyAccountLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowDenyCharNameLogon</code></td>
+<td><code>@ShowDenyCharNameLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowDenyIPLocalLogon</code></td>
+<td><code>@ShowDenyIPLocalLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowDenyIPLogon</code></td>
+<td><code>@ShowDenyIPLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowEffect</code></td>
+<td><code>@ShowEffect</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShoweMapMode</code></td>
+<td><code>@ShowMapMode</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowMachineIDLogon</code></td>
+<td><code>@ShowMachineIDLogon</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowMapMode</code></td>
+<td><code>@ShowMapMode</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowOpen</code></td>
+<td><code>@showopen</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShowUnit</code></td>
+<td><code>@showunit</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Shutup</code></td>
+<td><code>@Shutup</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ShutupList</code></td>
+<td><code>@ShutupList</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SpiritStart</code></td>
+<td><code>@祈祷生效</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SpiritStop</code></td>
+<td><code>@停止叛变</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>StartContest</code></td>
+<td><code>@StartContest</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>StartIngGiftNO</code></td>
+<td><code>@StartingGiftNo</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>StartItemEvent</code></td>
+<td><code>@StartItemEvent</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>StartQuest</code></td>
+<td><code>@开始提问</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>StorageClearPassword</code></td>
+<td><code>@清除玩家仓库密码</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SuperMake</code></td>
+<td><code>@Supermake</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SuperMan</code></td>
+<td><code>@无敌</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>SuperTing</code></td>
+<td><code>@移动范围</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>TakeUserItem</code></td>
+<td><code>@TakeUserItem</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>TestGa</code></td>
+<td><code>@Testga</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>TestGoldChange</code></td>
+<td><code>@Test_GOLD_Change</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>TestStatus</code></td>
+<td><code>@TestStatus</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Ting</code></td>
+<td><code>@Ting</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Training</code></td>
+<td><code>@技能等级</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>Transparecy</code></td>
+<td><code>@Transparency</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>UnlockSellPlayer</code></td>
+<td><code>@UnlockSellPlayer</code></td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td><code>ViewWhisper</code></td>
+<td><code>@私聊</code></td>
+</tr>
+</tbody>
+</table>
+<p>另外，<code>[Command]</code> 中还有一些只配置了命令别名、没有在 <code>[Permission]</code> 中显式声明权限的项。排障时不要默认它们就是 GM 指令，需要结合引擎默认规则或实测确认。</p>
+<table>
+<thead>
+<tr>
+<th>未显式权限配置项</th>
+<th>游戏内命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AddGamePoint</code></td>
+<td><code>@AddGamePoint</code></td>
+</tr>
+<tr>
+<td><code>AllowDearRecall</code></td>
+<td><code>@允许夫妻传送</code></td>
+</tr>
+<tr>
+<td><code>AllowFarMsg</code></td>
+<td><code>@拒绝千里传音</code></td>
+</tr>
+<tr>
+<td><code>AllowGroupCall</code></td>
+<td><code>@允许天地合一</code></td>
+</tr>
+<tr>
+<td><code>AllowGuildReCall</code></td>
+<td><code>@允许行会合一</code></td>
+</tr>
+<tr>
+<td><code>AllowMasterRecall</code></td>
+<td><code>@允许师徒传送</code></td>
+</tr>
+<tr>
+<td><code>AllSysMsg</code></td>
+<td><code>@传</code></td>
+</tr>
+<tr>
+<td><code>AttackMode</code></td>
+<td><code>@AttackMode</code></td>
+</tr>
+<tr>
+<td><code>Auth</code></td>
+<td><code>@联盟</code></td>
+</tr>
+<tr>
+<td><code>AuthAlly</code></td>
+<td><code>@允许联盟</code></td>
+</tr>
+<tr>
+<td><code>AuthCancel</code></td>
+<td><code>@取消联盟</code></td>
+</tr>
+<tr>
+<td><code>BanGuildChat</code></td>
+<td><code>@允许行会聊天</code></td>
+</tr>
+<tr>
+<td><code>ChangeMasterrName</code></td>
+<td><code>@MasterName</code></td>
+</tr>
+<tr>
+<td><code>CHGUSERFULL</code></td>
+<td><code>@CHGUSERFULL</code></td>
+</tr>
+<tr>
+<td><code>CHGZENFASTSTEP</code></td>
+<td><code>@CHGZENFASTSTEP</code></td>
+</tr>
+<tr>
+<td><code>CryChat</code></td>
+<td><code>@CryChat</code></td>
+</tr>
+<tr>
+<td><code>Dear</code></td>
+<td><code>@查询伴侣</code></td>
+</tr>
+<tr>
+<td><code>DearRecall</code></td>
+<td><code>@夫妻传送</code></td>
+</tr>
+<tr>
+<td><code>DisableHorseInvite</code></td>
+<td><code>@禁止邀请上马</code></td>
+</tr>
+<tr>
+<td><code>EndGuild</code></td>
+<td><code>@退出门派</code></td>
+</tr>
+<tr>
+<td><code>GroupCall</code></td>
+<td><code>@天地合一</code></td>
+</tr>
+<tr>
+<td><code>GuildReCall</code></td>
+<td><code>@行会合一</code></td>
+</tr>
+<tr>
+<td><code>HeroFealty</code></td>
+<td><code>@改变忠诚</code></td>
+</tr>
+<tr>
+<td><code>HeroLevel</code></td>
+<td><code>@HeroLevel</code></td>
+</tr>
+<tr>
+<td><code>LetChallenge</code></td>
+<td><code>@允许挑战</code></td>
+</tr>
+<tr>
+<td><code>LetGuild</code></td>
+<td><code>@允许加入门派</code></td>
+</tr>
+<tr>
+<td><code>LetShout</code></td>
+<td><code>@拒绝组队聊天</code></td>
+</tr>
+<tr>
+<td><code>LetTrade</code></td>
+<td><code>@允许交易</code></td>
+</tr>
+<tr>
+<td><code>Make</code></td>
+<td><code>@make</code></td>
+</tr>
+<tr>
+<td><code>Master</code></td>
+<td><code>@查询师徒</code></td>
+</tr>
+<tr>
+<td><code>MasterRecall</code></td>
+<td><code>@师徒传送</code></td>
+</tr>
+<tr>
+<td><code>MemberFunc</code></td>
+<td><code>@MemberFunc</code></td>
+</tr>
+<tr>
+<td><code>MemberFuncEx</code></td>
+<td><code>@MemberFuncEx</code></td>
+</tr>
+<tr>
+<td><code>Move</code></td>
+<td><code>@gmov</code></td>
+</tr>
+<tr>
+<td><code>OpenSellPlayer</code></td>
+<td><code>@角色交易</code></td>
+</tr>
+<tr>
+<td><code>PasswordLock</code></td>
+<td><code>@PasswordLock</code></td>
+</tr>
+<tr>
+<td><code>PasswordUnLock</code></td>
+<td><code>@开锁</code></td>
+</tr>
+<tr>
+<td><code>PositionMove</code></td>
+<td><code>@gmmove</code></td>
+</tr>
+<tr>
+<td><code>PublicChat</code></td>
+<td><code>@PublicChat</code></td>
+</tr>
+<tr>
+<td><code>RELOADMINMAP</code></td>
+<td><code>@重读小地图</code></td>
+</tr>
+<tr>
+<td><code>Rest</code></td>
+<td><code>@rest</code></td>
+</tr>
+<tr>
+<td><code>RestHero</code></td>
+<td><code>@RestHero</code></td>
+</tr>
+<tr>
+<td><code>Searching</code></td>
+<td><code>@探测</code></td>
+</tr>
+<tr>
+<td><code>SHOWFLAG</code></td>
+<td><code>@showflag</code></td>
+</tr>
+<tr>
+<td><code>SignMove</code></td>
+<td><code>@SignMove</code></td>
+</tr>
+<tr>
+<td><code>StorageChgPassword</code></td>
+<td><code>@修改密码</code></td>
+</tr>
+<tr>
+<td><code>StorageLock</code></td>
+<td><code>@锁定仓库</code></td>
+</tr>
+<tr>
+<td><code>StorageSetPassword</code></td>
+<td><code>@设置密码</code></td>
+</tr>
+<tr>
+<td><code>StorageUnLock</code></td>
+<td><code>@仓库开锁</code></td>
+</tr>
+<tr>
+<td><code>StorageUserClearPassword</code></td>
+<td><code>@清除密码</code></td>
+</tr>
+<tr>
+<td><code>TakeOffHorse</code></td>
+<td><code>@下马</code></td>
+</tr>
+<tr>
+<td><code>TakeOnHorse</code></td>
+<td><code>@骑马</code></td>
+</tr>
+<tr>
+<td><code>TESTFIRE</code></td>
+<td><code>@TestFire</code></td>
+</tr>
+<tr>
+<td><code>UserMove</code></td>
+<td><code>@Move</code></td>
+</tr>
+<tr>
+<td><code>ViewDiary</code></td>
+<td><code>@Diary</code></td>
+</tr>
+<tr>
+<td><code>招募队员</code></td>
+<td><code>@招募队员</code></td>
+</tr>
+</tbody>
+</table>
+<h2><span id="npc-%E6%96%B0%E5%BB%BA%E4%B8%8E%E8%B0%83%E6%95%B4%E8%AE%B0%E5%BD%95">NPC 新建与调整记录</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="mir-efu-helper-npc-dialog.png" alt="二福 NPC 对话截图" class="lazyload"></p>
+<p>这次新增了一个名为 <code>二福</code> 的 NPC，用来验证服务端自定义链路，并作为后续本地测试助手。NPC 声明和脚本分离：声明负责让 NPC 出现在地图上，脚本负责点击后的对话与功能。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+<th>本次改动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mir200\Envir\MerChant.txt</code></td>
+<td>声明可点击 NPC 的脚本路径、地图、坐标、显示名、外观</td>
+<td>新增 <code>测试/二福 0 333 270 二福 0 1 0</code></td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\Market_Def\测试\二福-0.txt</code></td>
+<td><code>二福</code> 在地图 <code>0</code> 上的对话脚本</td>
+<td>增加状态查看、回比奇、礼包、测试传送</td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\QuestDiary\数据文件\二福礼包.TXT</code></td>
+<td>记录已领取礼包的角色名</td>
+<td>用于保证每个角色只能领一次礼包</td>
+</tr>
+</tbody>
+</table>
+<p><code>MerChant.txt</code> 的基本格式可以按当前服务端理解为：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">脚本路径  地图号  X  Y  显示名称  方向/状态  外观编号  城堡/归属标记<br></code></pre></td></tr></tbody></table></figure>
+<p>脚本文件命名规则是：<code>脚本路径 + "-" + 地图号 + ".txt"</code>。例如 <code>测试/二福</code> 放在地图 <code>0</code>，对应脚本就是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Mir200\Envir\Market_Def\测试\二福-0.txt<br></code></pre></td></tr></tbody></table></figure>
+<p>当前 <code>二福</code> 支持四个功能：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>脚本入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看状态</td>
+<td><code>@status</code></td>
+<td>显示角色名、等级、经验、PK 值、声望、登录时间、在线时长、在线人数</td>
+</tr>
+<tr>
+<td>回到比奇</td>
+<td><code>@home</code></td>
+<td>执行 <code>MAPMOVE 0 333 270 4</code>，回到 NPC 附近</td>
+</tr>
+<tr>
+<td>领取新手礼包</td>
+<td><code>@gift</code> / <code>@getgift</code></td>
+<td>背包至少 5 格；给金币、红蓝药、木剑、蜡烛；用名单文件限制每角色一次</td>
+</tr>
+<tr>
+<td>测试传送</td>
+<td><code>@teleport</code></td>
+<td>提供比奇、边界村、银杏山谷、盟重、白日门几个测试传送点</td>
+</tr>
+</tbody>
+</table>
+<p>调整 NPC 后，最稳的生效方式是重启 M2。调试时也可以在游戏内用 GM 指令：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">@重读商人<br></code></pre></td></tr></tbody></table></figure>
+<p>这条指令对应 <code>Command.ini</code> 中的 <code>ReloadNpc=重读商人</code>，权限是 <code>10</code>。如果只是改脚本内容，通常重读商人即可；如果涉及地图、坐标、NPC 声明行为异常，重启 M2 更稳。</p>
+<p>这次的 Git 提交记录：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">3ee98e6 feat: add Efu test NPC<br>0852657 feat: expand Efu helper NPC<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="%E4%BA%8C%E7%A6%8F%E4%B9%8B%E5%AE%B6%E5%9C%B0%E5%9B%BE%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95">二福之家地图修改记录</span></h2>
+<p>地图部分先到这里。本轮在原有“二福”测试 NPC 的基础上，补了一张独立的自定义测试地图 <code>ERFU_HOME</code>，用来验证地图注册、NPC 挂载、跨地图传送、即时刷怪和清怪脚本这些基础链路。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+<th>本次改动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Mir200\Map\ERFU_HOME.map</code></td>
+<td>自定义地图文件</td>
+<td>新增“二福之家”测试地图</td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\MapInfo.txt</code></td>
+<td>地图注册表</td>
+<td>新增 <code>[ERFU_HOME 二福之家] DAY FIGHT</code>，让服务端识别并加载该地图</td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\MerChant.txt</code></td>
+<td>NPC 声明</td>
+<td>在 <code>ERFU_HOME</code> 的 <code>10,11</code> 增加 NPC“二福”，脚本路径仍为 <code>测试/二福</code></td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\Market_Def\测试\二福-0.txt</code></td>
+<td>比奇地图上的二福脚本</td>
+<td>增加“进入二福之家”入口，执行 <code>MAPMOVE ERFU_HOME 10 13 1</code></td>
+</tr>
+<tr>
+<td><code>Mir200\Envir\Market_Def\测试\二福-ERFU_HOME.txt</code></td>
+<td>二福之家内的二福脚本</td>
+<td>新增地图内菜单、讲笑话、召唤鸡、开启稻草人训练、清理怪物和返回主城传送</td>
+</tr>
+</tbody>
+</table>
+<p><code>MapInfo.txt</code> 中的地图声明格式这次可以先按下面理解：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">[地图编号 地图显示名] 地图参数<br></code></pre></td></tr></tbody></table></figure>
+<p>所以：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">[ERFU_HOME 二福之家] DAY FIGHT<br></code></pre></td></tr></tbody></table></figure>
+<p>表示新增一个编号为 <code>ERFU_HOME</code>、显示名为“二福之家”的地图，并打开白天与可战斗参数。地图文件名需要和地图编号对应，也就是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Mir200\Map\ERFU_HOME.map<br></code></pre></td></tr></tbody></table></figure>
+<p>这里最开始踩过一个坑：只把地图放进服务端的 <code>Mir200\Map</code> 还不够，客户端也必须有同名地图文件。否则服务端已经能执行 <code>MAPMOVE ERFU_HOME</code>，但客户端没有对应地图资源，进图时就会表现为地图加载异常、黑屏或看不到正确地形。</p>
+<p>本地测试时需要同时确认两边：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">服务端：D:\MirServer\Mir200\Map\ERFU_HOME.map<br>客户端：客户端目录\Map\ERFU_HOME.map<br></code></pre></td></tr></tbody></table></figure>
+<p>如果修改了地图文件本身，也要同步更新客户端 <code>Map</code> 目录里的副本；只改 <code>MapInfo.txt</code>、NPC 脚本或刷怪逻辑时，通常不需要重新复制地图文件。</p>
+<p>NPC 脚本命名仍然沿用之前总结的规则：<code>脚本路径 + "-" + 地图编号 + ".txt"</code>。因此同一个 <code>测试/二福</code> NPC 放到 <code>ERFU_HOME</code> 后，对应脚本就是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Mir200\Envir\Market_Def\测试\二福-ERFU_HOME.txt<br></code></pre></td></tr></tbody></table></figure>
+<p>当前“二福之家”内的二福支持这些测试功能：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>脚本入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>讲个笑话</td>
+<td><code>@joke</code></td>
+<td>验证普通 NPC 对话跳转</td>
+</tr>
+<tr>
+<td>召唤几只鸡</td>
+<td><code>@spawn_chicken</code></td>
+<td>执行 <code>MONGENEX ERFU_HOME 10 15 鸡 4 5</code>，验证即时刷怪</td>
+</tr>
+<tr>
+<td>开启稻草人小活动</td>
+<td><code>@event_straw</code></td>
+<td>先 <code>CLEARMAPMON ERFU_HOME</code> 清图，再刷 8 个稻草人</td>
+</tr>
+<tr>
+<td>清理本地图怪物</td>
+<td><code>@clear_mobs</code></td>
+<td>执行 <code>CLEARMAPMON ERFU_HOME</code></td>
+</tr>
+<tr>
+<td>传送菜单</td>
+<td><code>@teleport</code></td>
+<td>可回比奇、盟重、白日门</td>
+</tr>
+</tbody>
+</table>
+<p>原比奇二福 NPC 增加了入口：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">&lt;进入二福之家/@tp_efu_home&gt;\<br><br>[@tp_efu_home]<br>#ACT<br>MAPMOVE ERFU_HOME 10 13 1<br>SENDMSG 6 二福：欢迎来到二福之家。<br>BREAK<br></code></pre></td></tr></tbody></table></figure>
+<p>这张地图现在更像一个可控的小实验室：玩家从比奇二福进入，在地图里直接验证刷怪、清怪、传送和 NPC 脚本跳转。后续如果继续扩展，可以在这里加固定刷怪点、活动奖励、触发器或完整任务链。</p>
+<p>这次地图相关的 Git 提交记录：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">8efa167 feat: add ERFU_HOME map<br></code></pre></td></tr></tbody></table></figure>
+<h2><span id="%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A3%85%E5%A4%87%E6%B5%8B%E8%AF%95%E8%AE%B0%E5%BD%95">自定义装备测试记录</span></h2>
+<p>本轮验证了装备库新增、NPC 发放、穿戴属性、装备外观和衣服翅膀特效。实际使用的物品库是 SQLite：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">源码库：Mud2\DB\ApexM2.DB<br>运行库：D:\MirServer\Mud2\DB\ApexM2.DB<br></code></pre></td></tr></tbody></table></figure>
+<p>修改时需要同时写入源码库和运行库。运行中的服务端测试前至少执行：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">@重读物品数据库<br></code></pre></td></tr></tbody></table></figure>
+<p>NPC 脚本改动则执行：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">@重读商人<br></code></pre></td></tr></tbody></table></figure>
+<p>如果涉及 <code>UserCmd.txt</code> 这类命令映射，重启 M2 最稳。</p>
+<h3><span id="%E5%B7%B2%E9%AA%8C%E8%AF%81%E7%89%A9%E5%93%81">已验证物品</span></h3>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th style="text-align:right">Idx</th>
+<th style="text-align:right">StdMode</th>
+<th>关键字段</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二福木剑</td>
+<td style="text-align:right">324</td>
+<td style="text-align:right">5</td>
+<td><code>Shape=1</code>, <code>Looks=30</code></td>
+<td>可作为普通自定义武器发放和穿戴</td>
+</tr>
+<tr>
+<td>二福试炼剑</td>
+<td style="text-align:right">325</td>
+<td style="text-align:right">5</td>
+<td><code>Shape=26</code>, <code>Looks=57</code>, <code>HP=50</code>, <code>MP=30</code>, <code>Light=1</code></td>
+<td>可复用屠龙外观，并带基础数值</td>
+</tr>
+<tr>
+<td>二福传送戒指</td>
+<td style="text-align:right">326</td>
+<td style="text-align:right">22</td>
+<td><code>Shape=112</code>, <code>Looks=172</code></td>
+<td>可复用传送戒指特殊壳</td>
+</tr>
+<tr>
+<td>云影战衣(男)</td>
+<td style="text-align:right">510</td>
+<td style="text-align:right">10</td>
+<td><code>Shape=6</code>, <code>Looks=85</code>, <code>Anicount=1002</code></td>
+<td>普通衣服位可穿，可触发外观链路</td>
+</tr>
+<tr>
+<td>云影战衣(女)</td>
+<td style="text-align:right">511</td>
+<td style="text-align:right">11</td>
+<td><code>Shape=6</code>, <code>Looks=88</code>, <code>Anicount=1002</code></td>
+<td>普通衣服位可穿，可触发外观链路</td>
+</tr>
+</tbody>
+</table>
+<h3><span id="%E5%AD%97%E6%AE%B5%E7%BB%8F%E9%AA%8C">字段经验</span></h3>
+<p><code>StdMode</code> 决定物品类型。武器用 <code>5</code>，男衣服用 <code>10</code>，女衣服用 <code>11</code>，戒指用 <code>22</code>。这几个在当前端上已验证可用。</p>
+<p><code>Shape</code> 控制穿戴后的外观。武器、衣服最直接；首饰类则常用于特殊功能壳。</p>
+<p><code>Looks</code> 控制背包和装备栏图标。</p>
+<p><code>Anicount</code> 可用于衣服/武器外观特效。衣服翅膀特效按本地 LFM2 文档走 <code>HumEffect*.wzl/wil</code>，例如 <code>HumEffect2</code> 对应 <code>1000-1024</code>，本次 <code>1002</code> 验证成功。</p>
+<p><code>Light</code> 用于装备栏内观发光，不等同于人物外观翅膀。</p>
+<p><code>Job</code> 建议显式设置。普通全职业可用 <code>99</code>，避免空值导致部分装备类型判断异常。</p>
+<h3><span id="%E7%BF%85%E8%86%80%E7%B4%A0%E6%9D%90%E7%BB%8F%E9%AA%8C">翅膀素材经验</span></h3>
+<p>只改 DB 的 <code>Anicount</code> 不够，客户端必须有对应素材文件。最初只改：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Anicount=1002<br></code></pre></td></tr></tbody></table></figure>
+<p>没有效果，原因是客户端 <code>Data</code> 目录缺少 <code>HumEffect2</code> 资源。</p>
+<p>本次从本机大客户端包中抽取：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">D:\work_console\MirDev\Legend of mir-≮无极传奇≯ Mir.17WuJi.Com★★★★游戏QQ交流群：340370791.rar<br></code></pre></td></tr></tbody></table></figure>
+<p>提取并放入当前客户端：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">D:\work_console\MirDev\传奇1.80客户端\Data\HumEffect2.wzl<br>D:\work_console\MirDev\传奇1.80客户端\Data\HumEffect2.wzx<br>D:\work_console\MirDev\传奇1.80客户端\Data\HumEffect2.wil<br>D:\work_console\MirDev\传奇1.80客户端\Data\HumEffect2.wix<br></code></pre></td></tr></tbody></table></figure>
+<p>当前客户端本身是 <code>.wil/.wix</code> 体系；只放 <code>.wzl/.wzx</code> 时未生效。额外复制成 <code>.wil/.wix</code> 后，<code>云影战衣</code> 的 <code>Anicount=1002</code> 翅膀效果生效。</p>
+<p>测试翅膀时必须关闭并重新打开客户端。客户端资源通常启动时加载，只重读服务端数据库不够。</p>
+<h3><span id="%E7%BB%99%E7%BF%85%E8%86%80%E6%B5%8B%E8%AF%95%E8%A3%85%E5%A4%87">给翅膀测试装备</span></h3>
+<p>翅膀不是单独挂载的道具，本次走的是“普通衣服 + <code>Anicount</code> 特效”的方式。给玩家测试时实际发的是衣服：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">男角色：云影战衣(男)<br>女角色：云影战衣(女)<br></code></pre></td></tr></tbody></table></figure>
+<p>NPC 脚本里发放可以写：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">#ACT<br>GIVE 云影战衣(男) 1<br>GIVE 云影战衣(女) 1<br>SENDMSG 6 已发放云影战衣，请按角色性别穿戴测试翅膀。<br></code></pre></td></tr></tbody></table></figure>
+<p>关键点：</p>
+<ul>
+<li>男衣服必须是 <code>StdMode=10</code>，女衣服必须是 <code>StdMode=11</code>。</li>
+<li><code>Anicount=1002</code> 只负责触发翅膀特效，客户端仍必须有 <code>HumEffect2.wil/.wix</code> 或对应资源。</li>
+<li>改 DB 后需要 <code>@重读物品数据库</code>；改客户端素材后必须重开客户端。</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="mir-custom-equipment-wing-effect.png" alt="自定义装备翅膀动画效果" class="lazyload"></p>
+<h3><span id="%E8%A3%85%E5%A4%87%E4%BC%A0%E9%80%81%E7%BB%8F%E9%AA%8C">装备传送经验</span></h3>
+<p>武器双击优先是穿戴，不适合直接做双击使用触发。保留 <code>二福试炼剑</code> 为武器时，采用自定义命令实现：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">Mir200\Envir\UserCmd.txt<br>二福传送    5<br></code></pre></td></tr></tbody></table></figure>
+<p>对应 <code>QFunction-0.txt</code>：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">[@UserCmd5]<br>#IF<br>CHECKTAKEONITEM 二福试炼剑<br>#ACT<br>MAPMOVE ERFU_HOME 10 13 1<br>SENDMSG 6 二福试炼剑：已传送至二福之家。<br>BREAK<br>#ELSESAY<br>需要佩戴二福试炼剑，才能使用二福传送。\<br>\<br>&lt;关闭/@exit&gt;<br></code></pre></td></tr></tbody></table></figure>
+<p>玩家佩戴 <code>二福试炼剑</code> 后输入：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">@二福传送<br></code></pre></td></tr></tbody></table></figure>
+<p>即可传送到 <code>ERFU_HOME</code>。</p>
+<h3><span id="%E4%B8%8D%E9%80%9A%E7%9A%84%E8%B7%AF%E5%BE%84">不通的路径</span></h3>
+<p><code>StdMode=66/67</code> 时装衣服在当前客户端/登录器上没有成功穿戴。<code>ShowFashion 1</code>、<code>GiveOnItem 18</code>、补齐 <code>Job=99</code> 后仍不通。当前结论是：时装栏链路未接通，后续不要优先走这条路。</p>
+<p>要快速验证新衣服外观，优先用普通衣服位：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">男衣服：StdMode=10<br>女衣服：StdMode=11<br></code></pre></td></tr></tbody></table></figure>
+<p>再改 <code>Shape</code>、<code>Looks</code>、<code>Anicount</code>。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/05/21/Deploy%E4%BC%A0%E5%A5%87athome/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;05&#x2F;21&#x2F;Deploy传奇athome&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;05&#x2F;21&#x2F;Deploy传奇athome&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
