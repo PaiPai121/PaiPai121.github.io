@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 能天使 Mod 开发日记：一个不懂 C# 的人怎么把 Exusiai 塞进杀戮尖塔 2 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>122</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">13</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">20</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">41</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">25</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">15</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/Mod%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Mod开发</a> <a href="/tags/Slay-the-Spire-2/" style="font-size: 10px;">Slay the Spire 2</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 17.14px;">技术学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 18.57px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 11.43px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15.71px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 12.86px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 14.29px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 20px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 20px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/1078-1780219401-1355380219.webp"
+				data-sizes="auto"
+				alt="能天使 Mod 开发日记：一个不懂 C# 的人怎么把 Exusiai 塞进杀戮尖塔 2"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>能天使 Mod 开发日记：一个不懂 C# 的人怎么把 Exusiai 塞进杀戮尖塔 2</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年06月07日</a>
+			<a><i class="kirafont icon-edit-fill"></i>2.1k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 8 分钟</a>
+		</div>
+		<html><head></head><body><p>记录一下最近自己DIY杀戮尖塔2的能天使mod</p>
+<h1><span id="start-with-code">Start with code</span></h1>
+<p>由于完全不懂c#也不会godot，依赖于agent和一些已有的<a target="_blank" rel="noopener" href="https://github.com/Alchyr/ModTemplate-StS2">开源模板</a>的帮助去实现一些添加卡牌等功能。这里必须感觉这个<a target="_blank" rel="noopener" href="https://glitchedreme.github.io/SlayTheSpire2ModdingTutorials/">
+杀戮尖塔2mod制作教程</a>，解决了很多的前期疑惑，也作为给agent学习的素材提供给了cc和codex。</p>
+<p>不过这里也绕了很多弯路，不同模型的能力差异真的很大，最开始一直用的公益站白嫖的模型，说实话即使是好模型（可能掺水），性能也不怎么样，而且时常的断链，不可用，浪费了大批的时间。直到后来切换到正儿八经购买的chatgpt，进度才突飞猛进。这大概又是一个时间和金钱互换的故事，看你愿意花费时间和经历去试各个中转站，还是节省时间花点钱直接买。</p>
+<h1><span id="card-design">card design</span></h1>
+<p>卡牌游戏的核心自然是卡牌，代码交给agent后人类所需的事情就是想有什么卡了。</p>
+<p>能天使在《明日方舟》里的特征太明确了：攻速快，连射多，开技能以后像机关枪一样把伤害灌出去。再加上经典的华法林血浆拐，那个画面很容易让人想到两个核心：一个是“速射”，一个是“过载”。</p>
+<p>所以最原始的设计其实很简单：</p>
+<p>能天使应该有速射机制；</p>
+<p>应该有“过载模式”这种能力，让她进入更高火力的状态；</p>
+<p>应该有“华法林血浆”或者“华法林特调”这种带代价的爆发牌，最好是掉血换输出。</p>
+<p>那时候我想象中的角色，大概就是一个围绕多段攻击和攻速感展开的进攻角色。她应该很快，很猛，能在某些回合突然把伤害打满。这些都很符合我对能天使的印象。</p>
+<p>但现在回头看，这个设想其实也有点窄。</p>
+<p>因为在《杀戮尖塔》里，“攻速快”不是一个可以直接搬过来的概念。尖塔没有实时攻速，只有费用、手牌、抽牌、打出次数、伤害段数、能力叠加。你想表达“攻速快”，就必须把它翻译成卡牌系统里的某种东西。</p>
+<p>一开始我只想到多段攻击和速射牌。后来的“火花”，其实是和 agent 讨论、测试、嫌弃旧设计、再讨论的过程中长出来的。</p>
+<h2><span id="%E7%81%AB%E8%8A%B1%E4%B8%8D%E6%98%AF%E9%A2%84%E8%AE%BE%E6%A0%B8%E5%BF%83%E6%98%AF%E5%90%8E%E6%9D%A5%E9%95%BF%E5%87%BA%E6%9D%A5%E7%9A%84%E6%9C%AC%E6%AE%B5%E8%90%BD%E7%94%B1gpt-55%E6%92%B0%E5%86%99">火花不是预设核心，是后来长出来的（本段落由GPT 5.5撰写）</span></h2>
+<p>火花现在已经变成这个 Mod 很重要的机制，但它最开始并不是我拍脑袋定下来的主轴。</p>
+<p>它更像是一个在开发中慢慢浮出来的答案：如果能天使的“快”不能直接表现成攻速，那能不能表现成一串轻量、可连锁、可被能力强化的小型攻击？</p>
+<p>这样火花就出现了。</p>
+<p>它像能天使射出去的一小串弹幕：单张不一定很强，但数量多，节奏快，可以被生成，也可以被一次性打出去。于是原本只有“速射”和“过载”的设计里，多了一个新的中间层。速射不再只是多段攻击，过载也不只是加伤害，它们可以通过火花串起来。</p>
+<p>这个过程挺有意思的，因为它不是我一开始就规划好的。很多时候是我先说“这个设计好无聊”“这张牌没特点”“能不能更像一口气开火”，然后 agent 给出几种实现方向，我再从玩家角度判断哪个更像能天使。</p>
+<p>比如“全自动”最后变成打出手牌和牌库里的所有火花，就是这种讨论的产物。它一开始并不是这种牌，旧设计太普通，像任何角色都能用的攻击牌。后来我想要一个真正有记忆点的爆发按钮，它才慢慢变成了现在这样。</p>
+<p>“火花回路”也是。我们讨论过很激进的版本，比如打出火花就抽牌。这个版本听起来特别爽，特别像连射停不下来。但仔细想又很危险，因为过牌会过于离谱。最后才收敛成每打出几张火花抽一张。</p>
+<p>这让我有一种很真实的感觉：机制不是写设定时一次性想好的，它有时候是在反复嫌弃旧方案的过程中，被一点点逼出来的。</p>
+<h2><span id="%E5%8D%A1%E7%89%8C%E7%9A%84%E8%B0%83%E6%95%B4">卡牌的调整</span></h2>
+<p>AI介入后，开发一个mod几乎不需要花费心思在写代码上，而是需要考虑做的这些牌哪里合理哪里不合理，那么怎么改牌呢？
+自然就是描述完了让AI去该，这就很像自然语言编程，让AI把我的语言翻译成 C#</p>
+<p>只是目前的AI还不会神奇到替我完成设计。很多时候 agent 给出的方案在代码上可行，但我进游戏一想，还是会觉得无聊或者不对味。于是再改。这个来回，才是这次开发真正的主体。</p>
+<p>对于bug的修复和平衡性的调整，大多数时间我做的只是直接告诉AI</p>
+<p>XX牌升级后还是 2 费，很奇怪。</p>
+<p>XX牌的卡牌描述并不符合实际。</p>
+<p>XX能力打完以后没有状态，玩家不知道发生了什么。</p>
+<p>…</p>
+<p>然后 agent 去项目里找对应的卡牌类、能力类、本地化 JSON、Godot 场景、图片资源，改完以后编译部署。我再进游戏看效果。</p>
+<p>我并没有直接把sts2的mcp功能接近来，不然的话让他自己改完自己玩自己迭代，去除人在回路纯AI迭代，也许也能有个不错的mod出来。</p>
+<h2><span id="ai-%E7%BE%8E%E6%9C%AF%E8%83%BD%E8%A7%A3%E5%86%B3%E6%B2%A1%E6%9C%89%E7%94%BB%E5%B8%88%E7%9A%84%E9%97%AE%E9%A2%98%E4%BD%86%E4%B8%8D%E8%83%BD%E8%A7%A3%E5%86%B3%E5%AE%A1%E7%BE%8E%E9%97%AE%E9%A2%98">AI 美术：能解决没有画师的问题，但不能解决审美问题</span></h2>
+<p>做角色 Mod 很快会碰到现实问题：卡图、能力图标、立绘、动画帧从哪来？如果全部手画，对我来说基本不可能，因为我不会画画！！！！。所以这次的素材除了现成的全都是靠 AI 生成，再筛选、调整、放进项目里。</p>
+<p>AI 生成最大的好处是，它让“没有画师”不再等于“只能用占位图”。至少我可以得到一批看起来还不错的卡牌插图和角色素材，让 Mod 不至于停在纯功能阶段。</p>
+<p>只需要打开游戏向AI返回位置、比例、裁剪对不对即可。</p>
+<h2><span id="%E7%8E%A9%E5%AE%B6%E5%8F%8D%E9%A6%88%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%86%B2%E5%87%BB%E6%AF%94%E6%88%91%E9%A2%84%E6%83%B3%E7%9A%84%E5%A4%A7">玩家反馈带来的冲击，比我预想的大</span></h2>
+<p>这次让我印象很深的是玩家反馈。</p>
+<p>自己设计的时候，人很容易保守。尤其是做一个卡牌游戏 Mod，你会本能地怕牌太强，怕破坏平衡，怕被人说超模。结果就是很多牌做出来以后，功能是有的，但性能偏区，拿在手里不够有吸引力。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="%E8%83%BD%E5%A4%A9%E4%BD%BFmod%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/comentForStS2Exusiai.png" alt="alt text" class="lazyload"></p>
+<p>发布到N网后最开心的就是真的有人会认真的玩并来给我反馈意见。他们真的在体验我的作品。用小时候看魔兵传奇里的一句话说，就是有人和你心灵击球。</p>
+<p>但另一方面也很发愁。作为一个新手开发者，其实我并不会设计杀戮尖塔的角色，本身游戏水平也很一般，而卡牌系统是一个对扰动非常敏感的离散数值系统。你把一张牌从 2 费改成 1 费，可能就不是“小加强”，而是整个使用场景都变了；你让火花多抽一张牌，可能就不是“顺一点”，而是整套牌突然开始失控；你给一张牌多 2 点伤害，单看没什么，但叠上多段、力量、易伤、能力成长以后，就可能完全不是原来的强度。
+也许并不知道怎样改才好。</p>
+<p>这也是我第一次比较真切地体会到开发者面对玩家反馈的那种矛盾：有人反馈很开心，因为说明东西活了；但每个反馈背后都可能牵出一串平衡问题，不能只靠“那就加点数值”解决。</p>
+<h1><span id="mod%E5%8F%91%E5%B8%83">MOD发布</span></h1>
+<p>总之欢迎大家体验和拍砖</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/PaiPai121/STS2-Exusiai">https://github.com/PaiPai121/STS2-Exusiai</a></p>
+<p>Nexus 发布页：<a target="_blank" rel="noopener" href="https://www.nexusmods.com/slaythespire2/mods/1078">https://www.nexusmods.com/slaythespire2/mods/1078</a></p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/06/07/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/%E8%83%BD%E5%A4%A9%E4%BD%BFmod%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;07&#x2F;游戏衍生&#x2F;能天使mod开发日记&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;07&#x2F;游戏衍生&#x2F;能天使mod开发日记&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			      
+			<!-- 先找到与当前文字相同的目录 -->
+			                                       
+			<!-- 在找到当前文章所在的 index -->
+			                                                
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2025/04/01/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/%E5%9F%8E%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF-%E7%9C%9F%E5%AE%9E%E5%9C%B0%E5%BD%A2%E5%AF%BC%E5%85%A5/"> 城市天际线 真实地形导入</a>
+			</div>
+			                      
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-container-fill -link" href="/categories/%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/">业余开发</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/Mod%E5%BC%80%E5%8F%91/" rel="tag">Mod开发</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/Slay-the-Spire-2/" rel="tag">Slay the Spire 2</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" rel="tag">游戏业余开发</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
