@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> 由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor） -  KK空间</title>
+		<title> AssetForge 自动减面记 V2：和 Edge Cost 继续较劲 -  KK空间</title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		
@@ -434,12 +434,12 @@
 		
 		<div class="kira-post-cover">
 			<img
-				data-src="/image/assetforge-skylines-tank.png"
+				data-src="/image/assetforge-v2-ingame-preview.png"
 				data-sizes="auto"
-				alt="由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor）"
+				alt="AssetForge 自动减面记 V2：和 Edge Cost 继续较劲"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor）</h1>
+			<h1>AssetForge 自动减面记 V2：和 Edge Cost 继续较劲</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
@@ -708,7 +708,7 @@ $$</p>
 </ol>
 <p>所以更准确地说：</p>
 <figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">分析/保护/候选区域：可以是 face / triangle / vertex field<br>实际减面 executor：主要是 edge-collapse / vertex-collapse<br></code></pre></td></tr></tbody></table></figure>
-<p>我建议最终给边 cost，不是面 cost。</p>
+<p>最终还是决定给边 cost，不是面 cost。</p>
 <p>原因很直接：如果最后的 executor 是 edge collapse，那么每次真正要决定的是：</p>
 <p>$$
 collapse\ edge\ e=(u,v)\ ?
@@ -910,13 +910,13 @@ if (hasMermaid) {
 			<!-- 上一篇文章 -->
 			<div class="old">
 				<span>上一章</span>
-				<a href="/2026/06/16/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/ATryToSkyLinesAsset/"> 由自定义天际线资产而来的自动减面工具（V1：Rule-Based Optimizer）</a>
+				<a href="/2026/06/16/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/ATryToSkyLinesAsset/"> AssetForge 自动减面记 V1：先把坦克塞进天际线</a>
 			</div>
 			       
 			<!-- 下一篇文章 -->
 			<div class="new">
 				<span>下一章</span>
-				<a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/"> 由自定义天际线资产而来的自动减面工具（V3）</a>
+				<a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/"> AssetForge 自动减面记 V3：别急着写算法，先搞懂 Shape</a>
 			</div>
 			          
 		</nav>
