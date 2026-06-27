@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 由自定义天际线资产而来的自动减面工具（V3） -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>125</div>
+		<div><span>标签</span>16</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">20</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">43</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">28</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">15</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AssetForge/" style="font-size: 12.5px;">AssetForge</a> <a href="/tags/Blender/" style="font-size: 12.5px;">Blender</a> <a href="/tags/Mesh-Simplification/" style="font-size: 12.5px;">Mesh Simplification</a> <a href="/tags/Mir2/" style="font-size: 10px;">Mir2</a> <a href="/tags/Mod%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Mod开发</a> <a href="/tags/Slay-the-Spire-2/" style="font-size: 10px;">Slay the Spire 2</a> <a href="/tags/%E4%BC%A0%E5%A5%87/" style="font-size: 10px;">传奇</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">技术学习</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">服务端部署</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 16.25px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 11.25px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 13.75px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 17.5px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 18.75px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 18.75px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/assetforge-skylines-tank.png"
+				data-sizes="auto"
+				alt="由自定义天际线资产而来的自动减面工具（V3）"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>由自定义天际线资产而来的自动减面工具（V3）</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年06月26日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 13 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="v3-%E6%83%B3%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88">V3 想解决什么</span></h1>
+<p>前面两篇其实已经折腾了两轮。</p>
+<p>V1 做的是 rule-based simplification。</p>
+<p>大概思路就是：先写一堆规则，判断哪些地方要保护，哪些地方可以删。</p>
+<p>比如：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">Boundary<br>Normal<br>Dihedral<br>...<br></code></pre></td></tr></tbody></table></figure>
+<p>然后把这些东西综合起来，变成：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Protect<br></code></pre></td></tr></tbody></table></figure>
+<p>这个思路很直觉，也确实能 work 一部分。毕竟硬表面模型嘛，很多东西看起来确实可以用边界、法线、二面角这些几何特征先保护一下。</p>
+<p>但是问题也很明显：规则会越来越多。</p>
+<p>今天发现炮管断了，就加炮管保护；明天发现履带乱了，就加履带保护；后天发现轮子的小钉子不该保，又得写一套排除逻辑。最后整个东西就会变得像一坨 <code>if else</code> 堆起来的规控系统，哪里都有道理，但是哪里都解释不清。</p>
+<p>更麻烦的是，不同 feature 之间还会互相打架。</p>
+<p>有些东西从 normal 看很重要，从 silhouette 看又不重要；有些东西从曲率看像细节，但从整体形状看又不能删。越写越多，最后也不太知道自己是在做 mesh simplification，还是在给这辆坦克量身定制一个坦克优化器。</p>
+<p>所以 V1 的问题不是完全没效果，而是它很难继续扩展。</p>
+<h2><span id="v2-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88">V2 做了什么</span></h2>
+<p>V2 往前走了一步，把问题统一到了 edge cost。</p>
+<p>也就是说，不再到处写“这个 feature 应该保护、那个 feature 应该压制”，而是把所有判断都投到一条边上：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">edge cost<br></code></pre></td></tr></tbody></table></figure>
+<p>然后 executor 只做一件事：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">选 cost 合适的 edge<br>collapse<br>更新局部 topology<br>继续<br></code></pre></td></tr></tbody></table></figure>
+<p>这一步我觉得是很重要的。</p>
+<p>因为到这里为止，系统终于有了一个比较统一的形状：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">Heatmap<br>Cost Framework<br>Local simplification executor<br>Collapse validation<br>Priority queue<br></code></pre></td></tr></tbody></table></figure>
+<p>V2 解决的是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">怎么删<br></code></pre></td></tr></tbody></table></figure>
+<p>它至少让问题从一堆互相纠缠的规则，变成了一个比较清楚的 executor 框架。</p>
+<p>但是它其实还没有解决：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">为什么这样删<br></code></pre></td></tr></tbody></table></figure>
+<p>这就是我觉得 V3 该开始的地方。</p>
+<h2><span id="v2-%E7%9A%84%E9%97%AE%E9%A2%98">V2 的问题</span></h2>
+<p>回头看 V2 里面那些 cost，不管是 QEM、normal、boundary，还是后面各种组合 score，本质上都还是 collapse 之前的预测量。</p>
+<p>QEM 是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">删之前<br>  ↓<br>预测几何误差<br></code></pre></td></tr></tbody></table></figure>
+<p>Normal 是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">删之前<br>  ↓<br>预测法向变化<br></code></pre></td></tr></tbody></table></figure>
+<p>Boundary 是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">删之前<br>  ↓<br>预测边界风险<br></code></pre></td></tr></tbody></table></figure>
+<p>这些东西当然不是没用。</p>
+<p>但是它们有一个共同问题：它们没有真的测量 shape。</p>
+<p>也就是说，它们并不是在问：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">删完以后，这个东西看起来还是不是原来的东西？<br></code></pre></td></tr></tbody></table></figure>
+<p>而是在问：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">按照某种局部几何指标推测，这一刀可能会不会很危险？<br></code></pre></td></tr></tbody></table></figure>
+<p>这两个问题差得其实很远。</p>
+<h2><span id="geometry-distortion-%E4%B8%8D%E7%AD%89%E4%BA%8E-shape-distortion">Geometry Distortion 不等于 Shape Distortion</span></h2>
+<p>这大概就是 V3 最核心的出发点。</p>
+<p>举个很简单的例子。</p>
+<p>假设有两个 collapse：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">A：轮子上的螺丝没了<br>B：炮管弯了<br></code></pre></td></tr></tbody></table></figure>
+<p>从 QEM 或者一些局部几何误差看，它们可能差不多。</p>
+<p>因为都是删掉一点局部结构，都是让周围的三角形有一点偏差。</p>
+<p>但是人眼看起来完全不是一回事。</p>
+<p>轮子上的螺丝没了，可能无所谓。</p>
+<p>炮管弯了，那就是这辆坦克坏了。</p>
+<p>所以真正的问题不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Geometry Error 有多大？<br></code></pre></td></tr></tbody></table></figure>
+<p>而是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Shape Distortion 有多大？<br></code></pre></td></tr></tbody></table></figure>
+<p>前者是几何量，后者更接近人眼对“这个东西还是不是它自己”的判断。</p>
+<p>这也是为什么我觉得继续在 V2 的框架里调权重，意义会越来越有限。</p>
+<p>不是说 edge cost 不重要，而是如果 cost 本身没有对齐真正的 shape preservation，那 executor 再稳定，也只是稳定地朝一个不够正确的目标优化。</p>
+<h2><span id="v3-%E4%B8%8D%E5%BA%94%E8%AF%A5%E5%8F%AA%E6%98%AF%E6%89%BE%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A5%BD%E7%9A%84-edge-cost">V3 不应该只是找一个更好的 Edge Cost</span></h2>
+<p>所以 V3 我不想把目标写成：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">找一个更好的 edge cost<br></code></pre></td></tr></tbody></table></figure>
+<p>这听起来像是 V2.5。</p>
+<p>真正应该变的是优化目标。</p>
+<p>V3 想做的不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Minimize Geometry Error<br></code></pre></td></tr></tbody></table></figure>
+<p>而是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Minimize Shape Distortion<br></code></pre></td></tr></tbody></table></figure>
+<p>这就是一个更大的理论升级。</p>
+<p>换句话说，V3 不是给 V2 再加一个 cost term，而是要先搞清楚：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">什么指标真的能描述局部 collapse 之后的 shape preservation？<br></code></pre></td></tr></tbody></table></figure>
+<p>只有这个问题清楚了，后面的 executor、heatmap、benchmark 才有意义。</p>
+<h2><span id="v3-%E7%9A%84%E7%BB%93%E6%9E%84">V3 的结构</span></h2>
+<p>我现在比较倾向于把它拆成几层。</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">Executor<br>  ↓<br>Collapse Simulator<br>  ↓<br>Shape Evaluator<br>  ↓<br>Operation Score<br></code></pre></td></tr></tbody></table></figure>
+<p>Executor 不应该理解 shape。</p>
+<p>它只负责调度：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">这条边能不能试着 collapse？<br></code></pre></td></tr></tbody></table></figure>
+<p>然后 Collapse Simulator 做一件事：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">给我看看 collapse 之后会变成什么样<br></code></pre></td></tr></tbody></table></figure>
+<p>真正判断好坏的，是 Shape Evaluator：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">Before Mesh<br>  ↓<br>After Mesh<br>  ↓<br>Shape Distortion<br></code></pre></td></tr></tbody></table></figure>
+<p>最后这个 distortion 才变成 Operation Score，决定这一刀值不值得下。</p>
+<p>这样做的好处是，executor 和 metric 解耦。以后如果 metric 换了，executor 不用重写；如果 executor 优化了，metric 也不用跟着变。</p>
+<h2><span id="%E6%89%80%E4%BB%A5-v3-%E5%85%88%E4%B8%8D%E8%A6%81%E6%80%A5%E7%9D%80%E5%86%99%E4%BB%A3%E7%A0%81">所以 V3 先不要急着写代码</span></h2>
+<p>这里很容易又掉进一个坑：觉得 V3 就应该立刻发明一个 AssetForge Shape Metric。</p>
+<p>但这其实不太科学。</p>
+<p>因为我们现在还没证明现有方法不行。</p>
+<p>更合理的做法应该是先做 research。</p>
+<p>先弄清楚：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">Shape Preservation<br><br>到底是什么？<br></code></pre></td></tr></tbody></table></figure>
+<p>至少要看一圈相关方向：</p>
+<ul>
+<li>Mesh Visual Quality</li>
+<li>Perceptual Metric</li>
+<li>Shape Similarity</li>
+<li>Shape Distortion</li>
+<li>Local Geometry Processing</li>
+<li>Differential Geometry</li>
+<li>Mesh Simplification</li>
+</ul>
+<p>先看别人怎么定义“形状保持”，怎么定义“视觉质量”，怎么判断一个 mesh 变坏了。</p>
+<p>然后不要立刻改 optimizer。</p>
+<p>先复现几个 metric。</p>
+<p>比如 roughness、laplacian、curvature、tensor、topology 之类的候选指标，先单独画 heatmap，看它们到底在模型上响应哪里。</p>
+<p>也就是说，先回答：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">这个指标觉得哪里重要？<br><br>它觉得哪里可以删？<br><br>它和人眼判断一致吗？<br></code></pre></td></tr></tbody></table></figure>
+<p>如果连 heatmap 都解释不通，那就没必要急着接进 executor。</p>
+<h2><span id="benchmark-%E4%B9%9F%E8%A6%81%E5%85%88%E5%81%9A">Benchmark 也要先做</span></h2>
+<p>只拿 Rhino Tank 测是不够的。</p>
+<p>因为如果只针对这个模型调，很容易又回到 V1 的老路。</p>
+<p>测试集至少应该有几类：</p>
+<ul>
+<li>Rhino Tank</li>
+<li>Car</li>
+<li>Tree</li>
+<li>Building</li>
+<li>Human</li>
+<li>Statue</li>
+</ul>
+<p>每个 metric 都跑一遍。</p>
+<p>输出：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">Heatmap<br>Ranking<br>Top Collapse<br></code></pre></td></tr></tbody></table></figure>
+<p>然后人工评价。</p>
+<p>不是为了搞得很学术，而是为了避免自己骗自己。</p>
+<p>如果一个 metric 在坦克上看起来还行，但是到了人形、树、建筑就完全不对，那它就不是一个稳健的 shape preservation metric。</p>
+<h2><span id="%E6%9C%80%E5%90%8E%E5%86%8D%E8%80%83%E8%99%91-af-shape-metric">最后再考虑 AF Shape Metric</span></h2>
+<p>如果调研和复现下来，发现已有方法已经足够好，那其实 V3 就不需要强行发明新东西。</p>
+<p>直接采用就行。</p>
+<p>这也算成果。</p>
+<p>因为这说明我们建立了一套评测流程，并且证明某个现有指标适合 AssetForge。</p>
+<p>如果已有方法都不够好，那再提出 AF Shape Metric。</p>
+<p>比如它可能长这样：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">ShapeScore<br>  =<br>f(<br>  Normal,<br>  Curvature,<br>  Roughness,<br>  Tensor,<br>  Topology,<br>  ...<br>)<br></code></pre></td></tr></tbody></table></figure>
+<p>但这个公式不能一开始就拍脑袋写。</p>
+<p>它应该来自前面的 survey、heatmap、benchmark 和失败案例。</p>
+<p>不然就又变成了：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">我觉得这个应该有用，所以加进去<br></code></pre></td></tr></tbody></table></figure>
+<p>那和 V1 的规则堆叠没有本质区别。</p>
+<h2><span id="%E6%88%91%E8%A7%89%E5%BE%97-v3-%E7%9A%84%E6%88%90%E5%8A%9F%E6%A0%87%E5%87%86">我觉得 V3 的成功标准</span></h2>
+<p>所以 V3 的目标，我觉得不应该写成：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">开发一个新的 Shape Metric<br></code></pre></td></tr></tbody></table></figure>
+<p>因为这等于默认答案一定是“发明”。</p>
+<p>更合理的目标应该是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">建立一个系统化流程，识别、评估并验证最适合作为局部边塌陷优化目标的 Shape Preservation Metric；若现有方法不足，再提出 AssetForge Shape Metric。<br></code></pre></td></tr></tbody></table></figure>
+<p>这样比较稳。</p>
+<p>如果已有方法足够好，那 V3 的成果就是找到它，并把它验证清楚。</p>
+<p>如果已有方法各有缺陷，那 V3 再提出自己的 AF Shape Metric，也不是为了创新而创新，而是因为已经有证据说明现有方法不够。</p>
+<p>整个项目的问题也会更清楚：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">什么指标最符合局部 edge collapse 之后的形状保持？<br></code></pre></td></tr></tbody></table></figure>
+<p>而不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">我还能再加一个什么算法？<br></code></pre></td></tr></tbody></table></figure>
+<p>我觉得这样 V3 才更像一个扎实的研究计划，而不是一次算法重构。</p>
+<p>先理解问题，再写代码；先建立理论目标，再优化工程实现。这个听起来慢一点，但应该比继续堆规则靠谱。</p>
+<h2><span id="%E9%82%A3%E5%85%B7%E4%BD%93%E5%85%88%E5%81%9A%E4%BB%80%E4%B9%88">那具体先做什么</span></h2>
+<p>如果真的按这个思路走，V3 第一件事就不是开一个 <code>afcost_v3.py</code> 然后开始猛写。</p>
+<p>那样大概率会又回到熟悉的节奏：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">写一个指标<br>看起来不对<br>加一个权重<br>还是不对<br>再加一个 feature<br></code></pre></td></tr></tbody></table></figure>
+<p>最后又变成 V1，只不过名字从 rule 变成 metric。</p>
+<p>所以第一步应该是把 research 独立出来。</p>
+<p>我觉得可以先建一个专门的目录，比如：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">research/<br>  shape_preservation/<br>    survey.md<br>    paper_notes/<br>    metric_notes.md<br></code></pre></td></tr></tbody></table></figure>
+<p>先不管 AssetForge 现在的 optimizer 怎么写。</p>
+<p>先把问题本身弄清楚：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">形状保持到底有没有比较公认的定义？<br><br>视觉质量和几何误差到底差在哪里？<br><br>局部 edge collapse 这种操作，适合用什么指标评价？<br></code></pre></td></tr></tbody></table></figure>
+<p>这一步看起来不像在“开发功能”，但我觉得它反而是 V3 最重要的部分。</p>
+<p>因为如果这个问题没想清楚，后面写出来的所有东西都会很像玄学调参。</p>
+<h2><span id="%E7%AC%AC%E4%BA%8C%E6%AD%A5%E6%98%AF%E5%A4%8D%E7%8E%B0%E8%80%8C%E4%B8%8D%E6%98%AF%E9%9B%86%E6%88%90">第二步是复现，而不是集成</span></h2>
+<p>调研以后，也不要急着接进 executor。</p>
+<p>先单独复现几个指标。</p>
+<p>比如：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">roughness<br>laplacian<br>curvature<br>normal variation<br>local tensor<br>topology signal<br></code></pre></td></tr></tbody></table></figure>
+<p>先让它们只做一件事：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">给 mesh 上色<br></code></pre></td></tr></tbody></table></figure>
+<p>也就是输出 heatmap。</p>
+<p>这一步的目标不是减面，而是观察。</p>
+<p>看它到底把哪里标成重要区域，把哪里标成不重要区域。</p>
+<p>如果一个 metric 连 heatmap 都说服不了人，那它接进 executor 以后只会更难 debug。</p>
+<p>这也是前面 V2 留下来的一个经验：heatmap 很重要。</p>
+<p>没有 heatmap 的 cost，基本就是黑箱。</p>
+<p>你只能看到结果坏了，但是不知道坏在哪里，也不知道为什么坏。</p>
+<h2><span id="%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%89%8D%E6%98%AF%E5%B0%8F%E8%A7%84%E6%A8%A1-benchmark">第三步才是小规模 benchmark</span></h2>
+<p>只看一辆 Rhino Tank 肯定不够。</p>
+<p>因为这篇文章最开始就是从这辆坦克来的，所以我太容易围绕它产生偏见。</p>
+<p>比如说，我会本能地觉得：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">炮管很重要<br>轮子小钉子不重要<br>车体大轮廓必须保住<br></code></pre></td></tr></tbody></table></figure>
+<p>这些判断对坦克成立，但不一定对其他模型成立。</p>
+<p>如果换成一棵树，小枝条可能就是整体形状的一部分。</p>
+<p>如果换成人形，脸上的小结构可能比身体上的某些大片平面重要得多。</p>
+<p>所以 benchmark 至少要覆盖几类不同形状：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">Rhino Tank<br>Car<br>Tree<br>Building<br>Human<br>Statue<br></code></pre></td></tr></tbody></table></figure>
+<p>每个模型都跑同一套 metric。</p>
+<p>然后看：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">Heatmap 是否符合直觉<br>Top collapse 是否合理<br>Ranking 是否稳定<br></code></pre></td></tr></tbody></table></figure>
+<p>这一步也不需要一上来就自动化得很完美。</p>
+<p>先人工看一轮也行。</p>
+<p>毕竟 V3 的目标就是先找到“人眼认为合理”的 shape preservation metric，那么人工评价本身就是必要的一部分。</p>
+<h2><span id="%E7%AC%AC%E5%9B%9B%E6%AD%A5%E6%89%8D%E8%80%83%E8%99%91%E6%8E%A5%E5%9B%9E-executor">第四步才考虑接回 executor</span></h2>
+<p>等某个 metric 真的在 heatmap 和 benchmark 里都说得过去，再把它接回 V2 的 executor。</p>
+<p>这个时候 V2 的价值就体现出来了。</p>
+<p>因为 executor 已经有了：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">priority queue<br>local mesh state<br>collapse validation<br>lazy invalidation<br>batching<br></code></pre></td></tr></tbody></table></figure>
+<p>V3 不需要推翻这些。</p>
+<p>它只需要把 operation score 换成更接近 shape preservation 的东西。</p>
+<p>也就是说，V3 和 V2 的关系不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">推倒重写<br></code></pre></td></tr></tbody></table></figure>
+<p>而是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">保留 executor<br>重做目标函数<br></code></pre></td></tr></tbody></table></figure>
+<p>这也是我觉得这条路线比较稳的地方。</p>
+<p>工程上不需要把之前的东西全部扔掉，理论上又能从“怎么删”推进到“为什么这样删”。</p>
+<h2><span id="%E5%8F%AF%E8%83%BD%E7%9A%84%E6%9C%80%E7%BB%88%E5%BD%A2%E6%80%81">可能的最终形态</span></h2>
+<p>如果一切顺利，最后的流程应该会变成这样：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">candidate edge<br>  ↓<br>simulate collapse<br>  ↓<br>before / after local patch<br>  ↓<br>shape metric<br>  ↓<br>operation score<br>  ↓<br>executor collapse<br></code></pre></td></tr></tbody></table></figure>
+<p>也就是说，每一刀不只是预测它会不会有几何误差，而是真的试着看一下：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">这一刀之后，局部形状还像不像原来的形状？<br></code></pre></td></tr></tbody></table></figure>
+<p>当然，这样肯定会比 V2 更贵。</p>
+<p>所以后面还会有工程问题：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">local patch 取多大？<br>metric 怎么缓存？<br>simulator 怎么避免太慢？<br>哪些 edge 值得真的 simulate？<br></code></pre></td></tr></tbody></table></figure>
+<p>但这些是后话。</p>
+<p>至少在 V3 一开始，我不想先被性能问题绑架。</p>
+<p>先证明目标是对的，再考虑怎么跑得快。</p>
+<p>如果目标本身不对，跑得越快只是越快得到一个坏结果。</p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;26&#x2F;游戏衍生&#x2F;AssetForgeSimplificationV3&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;26&#x2F;游戏衍生&#x2F;AssetForgeSimplificationV3&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			                  
+			<!-- 先找到与当前文字相同的目录 -->
+			                                                         
+			<!-- 在找到当前文章所在的 index -->
+			                                                                        
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/BlenderAssetDeface/"> 由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor）</a>
+			</div>
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-container-fill -link" href="/categories/%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/">业余开发</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/AssetForge/" rel="tag">AssetForge</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/Blender/" rel="tag">Blender</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/Mesh-Simplification/" rel="tag">Mesh Simplification</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" rel="tag">游戏业余开发</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>

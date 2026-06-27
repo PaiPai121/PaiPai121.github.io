@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor） -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>125</div>
+		<div><span>标签</span>16</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/game_graph.html"
+			title="小图"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				小图
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/<你的gitee id>"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">20</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">43</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">28</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">15</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AssetForge/" style="font-size: 12.5px;">AssetForge</a> <a href="/tags/Blender/" style="font-size: 12.5px;">Blender</a> <a href="/tags/Mesh-Simplification/" style="font-size: 12.5px;">Mesh Simplification</a> <a href="/tags/Mir2/" style="font-size: 10px;">Mir2</a> <a href="/tags/Mod%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Mod开发</a> <a href="/tags/Slay-the-Spire-2/" style="font-size: 10px;">Slay the Spire 2</a> <a href="/tags/%E4%BC%A0%E5%A5%87/" style="font-size: 10px;">传奇</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">技术学习</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">服务端部署</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 16.25px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 11.25px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 15px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 13.75px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 17.5px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 18.75px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 18.75px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="/image/assetforge-skylines-tank.png"
+				data-sizes="auto"
+				alt="由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor）"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>由自定义天际线资产而来的自动减面工具（V2：Local Simplification Executor）</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年06月26日</a>
+			<a><i class="kirafont icon-edit-fill"></i>4.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 18 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="update-optimizer">Update Optimizer</span></h1>
+<p>续v1版本</p>
+<p>但是吧，这样也不是一个办法，细小的纹理识别还是很差。再让 AI 搞下去，它就要针对坦克的样式去硬编码地写 <code>if else</code> 了。</p>
+<p>目前的方案如果再继续去做 stage 4、stage 5、stage 6，就会变得像 <code>if else</code> 堆起来的 rule-based 自动驾驶规控系统，庞大却又永远有解不完的问题。毕竟我当规控工程师这么久了我能不知道么。</p>
+<p>于是让 AI 大概搜了一些现行方案。</p>
+<h2><span id="%E7%BD%91%E6%A0%BC%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88">网格优化方案</span></h2>
+<h3><span id="classic-mesh-simplification">Classic Mesh Simplification</span></h3>
+<p>代表方法：</p>
+<ul>
+<li>QEM</li>
+<li>Progressive Mesh</li>
+<li>Edge Collapse</li>
+<li>Lindstrom-Turk</li>
+</ul>
+<p>核心流程：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">Mesh<br>  ↓<br>Edge Collapse<br>  ↓<br>Error Metric<br>  ↓<br>删边<br></code></pre></td></tr></tbody></table></figure>
+<p>优点：</p>
+<ul>
+<li>快</li>
+<li>成熟</li>
+<li>工业标准</li>
+<li>Blender / Unity / Unreal 都有影子</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不理解语义</li>
+<li>不知道什么是炮管</li>
+<li>不知道什么是轮子</li>
+</ul>
+<p>如果我没理解错的话，还是聚类。</p>
+<h3><span id="feature-aware-mesh-simplification">Feature-Aware Mesh Simplification</span></h3>
+<p>代表方法：</p>
+<ul>
+<li>Feature Sensitive Metric</li>
+<li>Feature Preserving QEM</li>
+<li>FA-QEM</li>
+<li>Curvature-aware QEM</li>
+</ul>
+<p>核心流程：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">Mesh<br>  ↓<br>Feature Detection<br>  ↓<br>Feature Weight<br>  ↓<br>QEM<br></code></pre></td></tr></tbody></table></figure>
+<p>这个看上去就是在求解一个最优化问题，目标是简化网格，同时保留特征。</p>
+<h3><span id="neural-mesh-simplification">Neural Mesh Simplification</span></h3>
+<p>代表方法：</p>
+<ul>
+<li>Neural Mesh Simplification (CVPR)</li>
+<li>GNN Simplification</li>
+<li>Learned Edge Collapse</li>
+</ul>
+<p>核心流程：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">高模 + 优秀低模<br>  ↓<br>训练<br>  ↓<br>预测保留区域<br></code></pre></td></tr></tbody></table></figure>
+<p>这个就是 AI 方案了，用高模和低模的对比来训练 AI 模型，预测出哪些区域应该保留。</p>
+<h2><span id="region--cluster-simplification%E4%BC%98%E5%8C%96%E8%8C%83%E5%9B%B4">Region / Cluster Simplification：优化范围</span></h2>
+<p>前面三条路线主要在研究怎么简化网格，但是在此之前，还可以先把模型划分区域。</p>
+<p>它解决的是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">在哪里优化<br></code></pre></td></tr></tbody></table></figure>
+<p>而不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">怎么决定删边<br></code></pre></td></tr></tbody></table></figure>
+<p>即：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Optimization Scope<br></code></pre></td></tr></tbody></table></figure>
+<p>而不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Cost Function<br></code></pre></td></tr></tbody></table></figure>
+<p>也就是说，它可以和上面的方法任意组合。</p>
+<h3><span id="region">Region</span></h3>
+<p>核心思想：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">Tank<br> ↓<br>Body<br>Turret<br>Track<br>Wheel<br> ↓<br>分别优化<br></code></pre></td></tr></tbody></table></figure>
+<p>先将模型划分为具有结构意义的区域。</p>
+<p>然后：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">每个区域独立简化<br></code></pre></td></tr></tbody></table></figure>
+<p>例如：</p>
+<ul>
+<li>车体</li>
+<li>炮塔</li>
+<li>炮管</li>
+<li>履带</li>
+<li>轮组</li>
+</ul>
+<p>可以采用不同的简化策略。</p>
+<p>优点：</p>
+<ul>
+<li>更符合模型语义</li>
+<li>容易保留主体结构</li>
+<li>适合硬表面模型</li>
+</ul>
+<h3><span id="cluster">Cluster</span></h3>
+<p>代表：</p>
+<ul>
+<li>Nanite</li>
+<li>Cluster Decimation</li>
+<li>HLOD</li>
+</ul>
+<p>核心思想：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">Mesh<br> ↓<br>Cluster<br> ↓<br>Hierarchy<br> ↓<br>Independent Simplification<br></code></pre></td></tr></tbody></table></figure>
+<p>先把 Mesh 划分为大量小 Cluster。</p>
+<p>然后：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">每个 Cluster 独立优化<br></code></pre></td></tr></tbody></table></figure>
+<p>再构建层级结构。</p>
+<h2><span id="qem-%E6%96%B9%E6%A1%88">QEM 方案</span></h2>
+<p><a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~garland/Papers/quadrics.pdf">Garland &amp; Heckbert 1997《Surface Simplification Using Quadric Error Metrics》</a></p>
+<p>很短，就讲了一件事情：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">如何量化“删掉这条边有多疼”？<br></code></pre></td></tr></tbody></table></figure>
+<p>就是用 Quadric Error Metric（QEM），点到平面距离的平方。</p>
+<p>模型本来就是一堆三角形。
+一个顶点附近有很多三角形。
+如果把这个顶点移动到某个新位置：</p>
+<p>$$
+v’
+$$</p>
+<p>那么它偏离原始表面的程度是多少？</p>
+<p>用这个点到周围以他原位置为顶点的几个三角形平面的距离的平方和来表示。</p>
+<p>平面：</p>
+<p>$$
+p = [a, b, c, d]^T
+$$</p>
+<p>归一化了：</p>
+<p>$$
+a^2 + b^2 + c^2 = 1
+$$</p>
+<p>到单个平面的距离的平方是：</p>
+<p>$$
+d^2 = (v^T p)(p^T v)
+$$</p>
+<p>$$
+Error(v’) = d_1^2 + d_2^2 + d_3^2 + d_4^2
+$$</p>
+<p>$$
+Error(v’) = v^T (K_1 + K_2 + K_3 + K_4) v = v^T Q v
+$$</p>
+<p>这就是移动一个点的代价。而如果这个点在原始的位置的话，那么他完全就在和他相邻的几个面上，这个 cost 就是 0。（这几个平面的方程用的还是移动前的点。）</p>
+<p>如果是删除边呢？其实就是把边的两个顶点移动到一起：</p>
+<p>$$
+Q_{new} = Q_1 + Q_2
+$$</p>
+<p>看上去其实就像让每个面做一个引力场，这样这个 cost 在移动的时候，是被附近的引力场均匀拉扯。</p>
+<p>坍缩边的时候不再需要用规则去写个平均什么的，而是求解一个最优位置：</p>
+<p>$$
+\bar{v} = \arg\min_v v^T Q v
+$$</p>
+<p>这个是一个典型的二次型，对于每个边来说，两个顶点各自的相邻面都一定是知道的，那么矩阵 $Q$ 就可以得知，进而可以求解最优问题。</p>
+<p>这里点的坐标要写成齐次坐标，$Q$ 作为平面方程的系数向量得到的矩阵，是 $4 \times 4$ 的，但是空间点的坐标向量是 $3 \times 1$，所以最后补了 $1$，来让维度相同，这样 $v^T Q v$ 才能得到 $ax + by + cz + d$。</p>
+<p>求最优则是简单的线性代数知识：</p>
+<p>$$
+Q =
+\begin{bmatrix}
+A &amp; b \\
+b^T &amp; c
+\end{bmatrix}
+$$</p>
+<p>$$
+E(x) = x^T A x + 2 b^T x + c
+$$</p>
+<p>最后求解：</p>
+<p>$$
+Ax = -b
+$$</p>
+<p>唯一需要额外特殊考虑的就是如果 $A$ 是奇异的，也就是说，这个点的邻面是共面（法向量一样又过同一个点）。</p>
+<p>这个时候他的方法就是：</p>
+<blockquote>
+<p>If this matrix is not invertible, we attempt to find the optimal vertex along the segment (v_1v_2). If this also fails, we fall back on choosing (\bar{v}) from amongst the endpoints and the midpoint.</p>
+</blockquote>
+<p>三维优化不了就二维，二维不行就直接中点吧。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="qem-edge-cost-heatmap.png" alt="QEM edge cost heatmap" class="lazyload"></p>
+<p>不过看图明显会发现一些问题，QEM可能并不适合我们。不过来都来了，顺便看一眼FA QEM</p>
+<h2><span id="fa-qem">FA-QEM</span></h2>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/html/2605.14029v1">Feature-Aware QEM</a></p>
+<p>原版 QEM 只看几何平面误差，面对现代生成 / 扫描 mesh 时，容易丢边界、锐边、法线细节和纹理外观。FA-QEM 把这些特征也编码进 collapse cost。论文发表于 CVPR 2026 Workshop 3D4S，主题就是 noisy / non-manifold / generated / real-world assets 的快速鲁棒简化。</p>
+<p>FA-QEM 的每个顶点的 cost 变成了：</p>
+<p>$$
+cost_{total}(v’) = cost_{gf}(v’) + w_{area} \cdot cost_{area}(v’)
+$$</p>
+<p>$$
+Q_{gf} = Q_{base} + Q_{boundary} + Q_{normal}
+$$</p>
+<h3><span id="q_base">Q_base</span></h3>
+<p>原版 Garland 的 QEM 是：</p>
+<p>$$
+Q = \sum K_p
+$$</p>
+<p>FA-QEM 改成 area-weighted：</p>
+<h1><span id="%0Aq_base">$$
+Q_{base}</span></h1>
+<p>\sum_{p \in planes(v_i)}
+w_{plane\\_area} \cdot A_p \cdot K_p
+$$</p>
+<p>大的平坦三角形一般属于低频区域，应该允许更激进地简化；小三角形往往对应局部细节、曲率变化、噪声或纹理结构，所以它们的误差权重相对更高。</p>
+<h3><span id="q_boundary">Q_boundary</span></h3>
+<h1><span id="%0Aq_boundary">$$
+Q_{boundary}</span></h1>
+<p>w_{boundary} \cdot \kappa \cdot
+(p_1p_1^T + p_2p_2^T)
+$$</p>
+<p>这个是要求点不要破坏边界方向。</p>
+<h3><span id="q_normal">Q_normal</span></h3>
+<p>$$
+Q_{normal} = w_{normal} \cdot pp^T
+$$</p>
+<p>$$
+p = [n_x, n_y, n_z, -n \cdot v]
+$$</p>
+<p>而是：</p>
+<p>顶点切平面。</p>
+<p>所以是用来保法向的。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="fa-qem-edge-cost-heatmap.png" alt="FA-QEM edge cost heatmap" class="lazyload"></p>
+<p>不过这里立刻就能发现一个问题，我们的需求是什么，这个 cost 又是在做什么？</p>
+<p>举个例子，如果我们是一个大正方体，其中有一个面上有一个小尖尖，那么按照这个 cost 的设计，这个尖尖的 cost 应该会比大正方体的 cost 要高，但是这显然不合理。因为我们的需求是希望这个尖尖作为一个不重要的特征被清除掉。</p>
+<p>用 AI 大哥总结的话讲，我们真正想保留的是 Silhouette 而不是 Curvature。</p>
+<p>比如说轮毂细节：
+虽然几何重要，但是视觉不重要</p>
+<h2><span id="%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">调整方案</span></h2>
+<p>回到真正的问题，我们希望的是：
+输入：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">60000 tris<br></code></pre></td></tr></tbody></table></figure>
+<p>希望得到：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">3000 tris<br></code></pre></td></tr></tbody></table></figure>
+<p>同时：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">看起来还是那辆坦克<br></code></pre></td></tr></tbody></table></figure>
+<p>而不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">保留所有轮毂孔洞<br></code></pre></td></tr></tbody></table></figure>
+<p>所以我们真正想优化的是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">VisualError<br></code></pre></td></tr></tbody></table></figure>
+<p>而不是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">GeometricError<br></code></pre></td></tr></tbody></table></figure>
+<p>和AI大哥讨论的时候，即使再三和大哥说我们要的不是保留局部细节，相反，是想把这些无用的细节清除掉，但是大哥还总是能给我整出来小尺度保护，一不留神就跑偏。</p>
+<p>比如 Center-surround 原理：</p>
+<p>$$
+S(v,\sigma)=\left|G(H,\sigma)-G(H,2\sigma)\right|
+$$</p>
+<p>H</p>
+<p>是 mean curvature</p>
+<p>两者相减：</p>
+<p>$$
+\left|G(H,\sigma)-G(H,2\sigma)\right|
+$$</p>
+<p>意思是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">这个局部区域<br>和它更大范围的周围背景<br>差异有多大<br></code></pre></td></tr></tbody></table></figure>
+<p>想想我们要做的是什么吧。</p>
+<p>AI老师的回复：</p>
+<p>我们当前减面主执行手段是边坍缩类，不是“坍缩面”。</p>
+<p>代码里真正做减面的地方用的是 Blender Decimate modifier：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">modifier.decimate_type = <span class="hljs-string">"COLLAPSE"</span><br></code></pre></td></tr></tbody></table></figure>
+<p>这类 collapse 本质上是 edge/vertex collapse：通过合并顶点、折叠边来减少三角形。</p>
+<p>但 AssetForge 现在的流程里还有两类“面级操作”：</p>
+<ol>
+<li>
+<p>Preprocess</p>
+<ul>
+<li>limited_dissolve</li>
+<li>主要清掉共面/低角度冗余面</li>
+<li>不是主减面 executor</li>
+</ul>
+</li>
+<li>
+<p>Stage 3 detail cleanup</p>
+<ul>
+<li>会 delete polygons / limited dissolve polygons</li>
+<li>这是局部清理小面片/候选面</li>
+<li>也不是最终统一的 collapse cost executor</li>
+</ul>
+</li>
+</ol>
+<p>所以更准确地说：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">分析/保护/候选区域：可以是 face / triangle / vertex field<br>实际减面 executor：主要是 edge-collapse / vertex-collapse<br></code></pre></td></tr></tbody></table></figure>
+<p>我建议最终给边 cost，不是面 cost。</p>
+<p>原因很直接：如果最后的 executor 是 edge collapse，那么每次真正要决定的是：</p>
+<p>$$
+collapse\ edge\ e=(u,v)\ ?
+$$</p>
+<p>所以最终 cost 最自然应该是：</p>
+<p>$$
+C(e)
+$$</p>
+<p>而不是：</p>
+<p>$$
+C(face)
+$$</p>
+<p>推荐结构是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">vertex importance / face evidence / scale signal<br>        ↓<br>project / aggregate onto edges<br>        ↓<br>final edge collapse cost<br></code></pre></td></tr></tbody></table></figure>
+<p>比如：</p>
+<p>$$
+C_{final}(e=(u,v)) =
+C_{QEM}(e)
+\cdot W_{importance}(e)</p>
+<ul>
+<li>P_{boundary}(e)</li>
+<li>P_{sharp}(e)
+$$</li>
+</ul>
+<p>其中：</p>
+<p>$$
+W_{importance}(e) =
+f(\max(I(u), I(v)), \max(S(u), S(v)))
+$$</p>
+<p>I 可以来自 scale persistence，S 可以来自 tiny detail / center-surround。</p>
+<p>面 cost 不是没用，但它更适合做证据图/解释图/区域候选，例如：</p>
+<ul>
+<li>哪些三角面属于 tiny detail candidate</li>
+<li>哪些区域应该保护</li>
+<li>哪些区域可以 aggressive reduce</li>
+</ul>
+<p>但最终 collapse 决策最好还是边 cost。否则你会遇到一个不匹配：面说“这里可删”，但 executor 需要知道“哪条边先坍缩、坍到哪里、会不会破坏边界”。</p>
+<p>引用结束</p>
+<p>一下突然不知道该选什么样的score，不如把几种先画出来看看</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="heatmap_comparison_normal.svg" alt="heatmap comparison normal" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="heatmap_comparison_inverse.svg" alt="heatmap comparison inverse" class="lazyload"></p>
+<p>以及组合起来的score</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="afcost_candidates_comparison.svg" alt="afcost candidates comparison" class="lazyload"></p>
+<p>然后打算从这些score中挑选几个试试塌边减面。</p>
+<h2><span id="local-simplification-executor">Local simplification executor</span></h2>
+<p>有了score以后，接下来要做的就是按score去塌边减面。</p>
+<p>于是给agent布置任务：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">priority queue over edges<br>edge cost = AFCost_xx(e)<br>collapse selected edge<br>update local topology and costs<br>repeat until target<br></code></pre></td></tr></tbody></table></figure>
+<p>这就是后续真正的 QEM as executor 或 custom edge-collapse executor。未来任何评分函数（QEM、Persistence、TinyDetail、LogQEM、D/P 等）都可以直接插进去测试。</p>
+<h3><span id="%E7%AE%80%E5%8C%96%E5%8E%9F%E5%88%99%E5%92%8C%E6%B5%81%E7%A8%8B">简化原则和流程</span></h3>
+<p>Local simplification executor 的目标，是把前面 heatmap diagnostics 和 combo score 产生的“哪里可以删”的判断，真正变成一个可执行的 edge-collapse 减面流程。</p>
+<p>整体可以理解成下面这条链路：</p>
+<pre class="mermaid">flowchart TD
+    A["输入 mesh"] --&gt; B["从 combo score 得到静态删除倾向 StaticPrior(e)"]
+    B --&gt; C["初始化 Local MeshState"]
+    C --&gt; D["为每条 edge 计算 HybridCost(e)"]
+    D --&gt; E["放入 priority queue"]
+    E --&gt; F["pop 当前最适合 collapse 的 edge"]
+    F --&gt; G["QEMPlacement 计算落点"]
+    G --&gt; H{"局部合法性检查"}
+    H -- "失败" --&gt; I["跳过 entry / 记录 skipped_invalid_edges"]
+    I --&gt; E
+    H -- "通过" --&gt; J["执行 edge collapse"]
+    J --&gt; K["删除退化三角形，更新邻接关系"]
+    K --&gt; L["只重算局部邻域 edge 的 HybridCost"]
+    L --&gt; M{"达到目标 triangle count？"}
+    M -- "否" --&gt; E
+    M -- "是" --&gt; N["输出 simplified mesh 和 report.json"]</pre>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs text">输入 mesh<br>  ↓<br>从 combo score 得到静态删除倾向 StaticPrior(e)<br>  ↓<br>初始化 Local MeshState<br>  ↓<br>为每条 edge 计算 HybridCost(e)<br>  ↓<br>放入 priority queue<br>  ↓<br>反复选择当前最适合 collapse 的 edge<br>  ↓<br>QEMPlacement 计算落点<br>  ↓<br>局部合法性检查<br>  ↓<br>执行 edge collapse<br>  ↓<br>删除退化三角形，更新邻接关系<br>  ↓<br>只重算局部邻域 edge 的 HybridCost<br>  ↓<br>达到目标 triangle count 后输出 simplified mesh 和 report.json<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="staticprior%E9%9D%99%E6%80%81%E5%88%A0%E9%99%A4%E5%80%BE%E5%90%91">StaticPrior：静态删除倾向</span></h3>
+<p>前面 heatmap diagnostics 和 combo score 产生的是静态删除倾向：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">StaticPrior(e)<br></code></pre></td></tr></tbody></table></figure>
+<p>它表达的是：这条 edge 所在区域是不是更像可牺牲的小细节、冗余结构、低重要度区域。</p>
+<p>所以它的语义是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">StaticPrior 越高，越希望这条 edge 被删。<br></code></pre></td></tr></tbody></table></figure>
+<p>这和 executor 里的 cost 方向相反。priority queue 取的是最低 cost：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">cost 越低，越先 collapse。<br></code></pre></td></tr></tbody></table></figure>
+<p>因此 combo score 不能直接作为 cost 使用。它必须先作为 prior，再和当前几何风险合成 HybridCost。</p>
+<h3><span id="dynamicqemcost%E5%BD%93%E5%89%8D%E5%87%A0%E4%BD%95%E9%A3%8E%E9%99%A9">DynamicQEMCost：当前几何风险</span></h3>
+<p>如果只按 StaticPrior 删除，会出现一个问题：初始 score 只知道“哪里像小细节”，但不知道“当前这一刀会不会把模型撕坏”。</p>
+<p>edge collapse 是迭代过程。每 collapse 一条边之后，局部拓扑都会改变：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">顶点位置变了<br>edge 消失或新生<br>face 被删除或改写<br>局部 quadric 改变<br>法线、边界、退化风险改变<br></code></pre></td></tr></tbody></table></figure>
+<p>所以每次选择 edge 时，都必须看当前 mesh state 下的几何代价。</p>
+<p>现在这部分用的是 QEM：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">DynamicQEMCost(e)<br></code></pre></td></tr></tbody></table></figure>
+<p>它表达的是：在当前 mesh 状态下，把这条 edge collapse 到 QEMPlacement 给出的落点，会产生多大的几何误差。</p>
+<h3><span id="hybridcost%E6%9C%80%E7%BB%88%E8%BF%9B%E5%85%A5-priority-queue-%E7%9A%84%E6%8E%92%E5%BA%8F%E5%80%BC">HybridCost：最终进入 priority queue 的排序值</span></h3>
+<p>当前 executor 真正放进 priority queue 的不是 StaticPrior，也不是纯 QEM，而是 HybridCost：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">HybridCost(e) = dynamic_weight * DynamicQEMCost(e)<br>              - prior_weight   * StaticPrior(e)<br></code></pre></td></tr></tbody></table></figure>
+<p>含义是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">StaticPrior 高 → 更想删 → cost 降低<br>DynamicQEMCost 高 → 几何风险高 → cost 升高<br></code></pre></td></tr></tbody></table></figure>
+<p>所以最先被 collapse 的 edge 应该同时满足：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">静态上更像可删细节<br>当前几何上 collapse 风险低<br></code></pre></td></tr></tbody></table></figure>
+<p>这也是当前 Local simplification executor 和单纯 QEM、单纯 heatmap score 的区别。</p>
+<h3><span id="qemplacement%E7%BB%9F%E4%B8%80%E8%90%BD%E7%82%B9%E7%AD%96%E7%95%A5">QEMPlacement：统一落点策略</span></h3>
+<p>当前 PlacementProvider 使用 QEMPlacement。</p>
+<p>对 edge：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">e = (u, v)<br></code></pre></td></tr></tbody></table></figure>
+<p>先合并两个端点的 quadric：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">Q = Q(u) + Q(v)<br></code></pre></td></tr></tbody></table></figure>
+<p>然后在当前 edge 附近寻找 QEM error 最小的位置作为 collapse 落点。</p>
+<p>这里有一个重要约束：落点不能随便飞到很远的地方。之前出现过远距离飞边，本质上就是 placement 或 validation 没有把落点限制在合理局部范围。现在 QEMPlacement 会在当前 edge segment / midpoint / endpoints 等候选里取更稳的结果，并且 validation 会拒绝离当前 edge 太远的 placement。</p>
+<h3><span id="collapse-validation%E6%AF%8F%E4%B8%80%E5%88%80%E9%83%BD%E8%A6%81%E5%B1%80%E9%83%A8%E9%AA%8C%E5%90%88%E6%B3%95%E6%80%A7">Collapse validation：每一刀都要局部验合法性</span></h3>
+<p>priority queue pop 出来的 edge 不能直接删。它必须先通过局部验证。</p>
+<p>当前主要检查：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">edge 是否仍然存在<br>两个端点是否仍然 alive<br>placement 是否是有限坐标<br>placement 是否离原 edge 太远<br>是否会破坏 boundary<br>是否会造成退化 face<br>是否会造成 local normal flip<br>是否会产生过长的新 edge<br></code></pre></td></tr></tbody></table></figure>
+<p>如果检查失败，这条 heap entry 会被跳过，计入 skipped_invalid_edges。</p>
+<p>这一步很关键。StaticPrior 只表示“想删”，HybridCost 只表示“排序上合适”，但最终能不能删，必须由 validation 决定。</p>
+<h3><span id="local-meshstate%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%9B%B4%E6%96%B0%E5%B1%80%E9%83%A8">Local MeshState：为什么只更新局部</span></h3>
+<p>如果每 collapse 一条 edge 后都重建全局边表、全局 QEM、全局 score，速度会非常差。</p>
+<p>当前 executor 维护自己的 local mesh state：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs text">vertices<br>triangles<br>alive_vertices<br>vertex -&gt; faces<br>vertex -&gt; edges<br>edge   -&gt; faces<br>edge_versions<br>vertex_quadrics<br>vertex_lineage<br></code></pre></td></tr></tbody></table></figure>
+<p>collapse 执行时只改写受影响的 faces 和 edges：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">removed vertex 合并到 kept vertex<br>kept vertex 更新到 placement<br>含 removed vertex 的 face 被改写<br>出现重复顶点的 triangle 被删除<br>局部 edge/faces adjacency 更新<br>kept vertex 的 quadric 加上 removed vertex 的 quadric<br></code></pre></td></tr></tbody></table></figure>
+<p>远处没有被影响的 edge 不重算。</p>
+<p>这就是 local simplification executor 的核心性能原则：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">全局初始化一次，之后只做局部更新。<br></code></pre></td></tr></tbody></table></figure>
+<h3><span id="lazy-priority-queue">Lazy priority queue</span></h3>
+<p>priority queue 也不全量重建。</p>
+<p>每条 edge 有一个 version：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">edge_versions[e]<br></code></pre></td></tr></tbody></table></figure>
+<p>局部更新时，受影响 edge 会以新 version 重新入队。旧 entry 留在 heap 里。之后 pop 到旧 entry 时，如果发现 edge 已不存在、端点已死亡、version 过期，就直接跳过。</p>
+<p>这叫 lazy invalidation。</p>
+<p>它避免了昂贵的 heap 删除和全量重建。</p>
+<h3><span id="staticprior-%E7%9A%84%E7%BB%A7%E6%89%BF%E6%96%B0-edge-%E6%80%8E%E4%B9%88%E5%8A%9E">StaticPrior 的继承：新 edge 怎么办</span></h3>
+<p>combo score 是在初始 mesh 的 edge 上算出来的。但 collapse 之后会产生新 edge。新 edge 可能没有原始 score。</p>
+<p>如果新 edge 没有 score 就跳过，深度减面会越来越失真。因此当前 executor 给每个当前 vertex 维护 lineage：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">vertex_lineage[current_vertex]<br>= 它来自哪些原始 vertex<br></code></pre></td></tr></tbody></table></figure>
+<p>collapse 时：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">kept vertex 继承 removed vertex 的 lineage<br></code></pre></td></tr></tbody></table></figure>
+<p>当新 edge 找不到原始 edge prior 时，就从两端点 lineage 映射 prior：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">StaticPrior(new_edge)<br>= max(prior(source vertices of endpoint A), prior(source vertices of endpoint B))<br></code></pre></td></tr></tbody></table></figure>
+<p>这样静态删除倾向可以随着 collapse 传播，而不是只在第一轮有效。</p>
+<h3><span id="2-ring-independent-set-batching">2-ring independent-set batching</span></h3>
+<p>基础 edge collapse 是一条一条删。这样最稳，但速度偏慢。</p>
+<p>有些 edge 相距很远，互相不会影响，可以同一轮处理。于是现在 executor 加了一个保守的 2-ring independent-set batching。</p>
+<p>一条 edge 的 2-ring 大致是：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">0-ring: edge 两端点<br>1-ring: 两端点直接相连的邻居<br>2-ring: 1-ring 再向外扩一层<br></code></pre></td></tr></tbody></table></figure>
+<p>同一批 batch 里的 edge 必须满足：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">2-ring vertices 不重叠<br>2-ring faces 不重叠<br></code></pre></td></tr></tbody></table></figure>
+<p>这样可以避免两个 collapse 同时修改同一片局部拓扑。</p>
+<p>当前采用窗口式 batch：</p>
+<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">batch_size = 8<br>batch_ring_depth = 2<br>scan_window = batch_size * 4<br></code></pre></td></tr></tbody></table></figure>
+<p>也就是说，每轮只从 heap 顶部看一个小窗口。能选出多个互不冲突的 edge 就批量 collapse；选不出来就少量甚至单条 collapse，不强行凑满 batch。</p>
+<p>这个设计比盲目 batch 安全，也避免为了凑满 batch 反复扫描大量冲突候选。</p>
+<h3><span id="%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C">测试效果</span></h3>
+<p>看上去是减面了，但是车轮被减的太过分了</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="local-edge-collapse-afcost-result.png" alt="Local edge-collapse AFCost result" class="lazyload"></p>
+<p>也就是说，他现在没法判断轮子是轮子还是无用的小结构。</p>
+<p>至于贴图嘛。。非常糟糕</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="v2-broken-texture-import-preview.png" alt="贴图异常的导入预览" class="lazyload"></p>
+<p>修复了一版终于好了，不管怎么说，比 V1 版本的软件还是强不少的。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="v2-fixed-texture-ingame-preview.png" alt="修复贴图后的游戏预览" class="lazyload"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PaiPai121/OccamForge/releases/tag/v2.0.0">OccamForge v2.0.0 release</a></p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+// 检查页面是否包含Mermaid内容
+const hasMermaid = document.querySelector('.mermaid') !== null;
+
+// 如果存在Mermaid图表，则加载Mermaid库
+if (hasMermaid) {
+  // 加载Mermaid库
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'inherit'
+    });
+
+    // 重新渲染Mermaid图表
+    mermaid.init(undefined, '.mermaid');
+  };
+  document.head.appendChild(mermaidScript);
+}
+</script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/BlenderAssetDeface/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;26&#x2F;游戏衍生&#x2F;BlenderAssetDeface&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;06&#x2F;26&#x2F;游戏衍生&#x2F;BlenderAssetDeface&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			                  
+			<!-- 先找到与当前文字相同的目录 -->
+			                                                      
+			<!-- 在找到当前文章所在的 index -->
+			                                                                    
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2026/06/16/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/ATryToSkyLinesAsset/"> 由自定义天际线资产而来的自动减面工具（V1：Rule-Based Optimizer）</a>
+			</div>
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/"> 由自定义天际线资产而来的自动减面工具（V3）</a>
+			</div>
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-container-fill -link" href="/categories/%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/">业余开发</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/AssetForge/" rel="tag">AssetForge</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/Blender/" rel="tag">Blender</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/Mesh-Simplification/" rel="tag">Mesh Simplification</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" rel="tag">游戏业余开发</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
