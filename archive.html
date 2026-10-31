@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -684,19 +685,19 @@
             <h2>2026</h2>
             <ul>
             
-                <li><span>06-26</span><a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/" >AssetForge 自动减面记 V3：别急着写算法，先搞懂 Shape</a></li>
+                <li><span>08-22</span><a href="/2026/08/22/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/planToBusan/" >planToBusan</a></li>
             
-                <li><span>06-26</span><a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/BlenderAssetDeface/" >AssetForge 自动减面记 V2：和 Edge Cost 继续较劲</a></li>
+                <li><span>06-26</span><a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/AssetForgeSimplificationV3/" >为了刁民开坦克上班尝试算法自动减面 3</a></li>
             
-                <li><span>06-16</span><a href="/2026/06/16/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/ATryToSkyLinesAsset/" >AssetForge 自动减面记 V1：先把坦克塞进天际线</a></li>
+                <li><span>06-26</span><a href="/2026/06/26/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/BlenderAssetDeface/" >为了刁民开坦克上班尝试算法自动减面 2</a></li>
+            
+                <li><span>06-16</span><a href="/2026/06/16/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/ATryToSkyLinesAsset/" >为了刁民开坦克上班尝试算法自动减面 1</a></li>
             
                 <li><span>06-07</span><a href="/2026/06/07/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/%E8%83%BD%E5%A4%A9%E4%BD%BFmod%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0/" >能天使 Mod 开发日记：一个不懂 C# 的人怎么把 Exusiai 塞进杀戮尖塔 2</a></li>
             
                 <li><span>05-21</span><a href="/2026/05/21/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/Deploy%E4%BC%A0%E5%A5%87athome/" >Deploy传奇athome</a></li>
             
                 <li><span>05-21</span><a href="/2026/05/21/2025%E4%B9%8B%E5%86%B3%E7%AD%96%E8%A7%84%E5%88%92/" >2025之决策规划</a></li>
-            
-                <li><span>05-18</span><a href="/2026/05/18/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/planToBusan/" >planToBusan</a></li>
             
                 <li><span>05-06</span><a href="/2026/05/06/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E8%BF%B7%E5%A4%B1%E5%9C%A8%E6%B3%A2%E8%A5%BF%E7%B1%B3%E4%BA%9A-%E5%A4%A9%E5%9B%BD%E6%8B%AF%E6%95%91/" >迷失在波西米亚-天国拯救</a></li>
             
@@ -998,5 +999,23 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body>
 </html>

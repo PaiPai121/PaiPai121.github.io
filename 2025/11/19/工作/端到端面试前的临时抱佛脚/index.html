@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -611,8 +612,8 @@
 <blockquote>
 <p>在 attn_module (MultiheadAttention) 的内部，第一件事就是做线性变换（Linear Projection）：</p>
 </blockquote>
-<p>$$K = \text{bev\\_feat} \times W_K$$
-$$V = \text{bev\\_feat} \times W_V$$$W_K$ (Key 的权重矩阵)：这是网络学出来的参数。它的目的是把原始特征变成适合“被搜索”的样子（比如突出位置信息、类别信息）。</p>
+<p>$$K = \text{bev\_feat} \times W_K$$
+$$V = \text{bev\_feat} \times W_V$$$W_K$ (Key 的权重矩阵)：这是网络学出来的参数。它的目的是把原始特征变成适合“被搜索”的样子（比如突出位置信息、类别信息）。</p>
 <blockquote>
 <p>$W_V$ (Value 的权重矩阵)：这是另一组参数。它的目的是把原始特征变成适合“被规划使用”的样子（比如突出速度、加速度、曲率信息）。
 它们源自同一个 Input，但通过两个不同的全连接层 ($W_K, W_V$)</p>
@@ -735,6 +736,24 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body></html>
 	</article>
 

@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -388,10 +389,10 @@
                     <img
                         data-src="/image/assetforge-v3-shape-metric-heatmap.png"
                         data-sizes="auto"
-                        alt="AssetForge 自动减面记 V3：别急着写算法，先搞懂 Shape"
+                        alt="为了刁民开坦克上班尝试算法自动减面 3"
                         class="lazyload kira-post-cover-image"
                     />
-                    <h1>AssetForge 自动减面记 V3：别急着写算法，先搞懂 Shape</h1>
+                    <h1>为了刁民开坦克上班尝试算法自动减面 3</h1>
                 </div>
                 
             </a>
@@ -425,10 +426,10 @@
                     <img
                         data-src="/image/assetforge-v2-ingame-preview.png"
                         data-sizes="auto"
-                        alt="AssetForge 自动减面记 V2：和 Edge Cost 继续较劲"
+                        alt="为了刁民开坦克上班尝试算法自动减面 2"
                         class="lazyload kira-post-cover-image"
                     />
-                    <h1>AssetForge 自动减面记 V2：和 Edge Cost 继续较劲</h1>
+                    <h1>为了刁民开坦克上班尝试算法自动减面 2</h1>
                 </div>
                 
             </a>
@@ -462,10 +463,10 @@
                     <img
                         data-src="/image/assetforge-v1-tank-source.png"
                         data-sizes="auto"
-                        alt="AssetForge 自动减面记 V1：先把坦克塞进天际线"
+                        alt="为了刁民开坦克上班尝试算法自动减面 1"
                         class="lazyload kira-post-cover-image"
                     />
-                    <h1>AssetForge 自动减面记 V1：先把坦克塞进天际线</h1>
+                    <h1>为了刁民开坦克上班尝试算法自动减面 1</h1>
                 </div>
                 
             </a>
@@ -789,5 +790,23 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body>
 </html>

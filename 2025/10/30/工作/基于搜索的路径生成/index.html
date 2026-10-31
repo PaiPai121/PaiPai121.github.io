@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -610,7 +611,7 @@
 <p>完备性 (Completeness): 是。只要路径存在，BFS 一定能找到。
 最优性 (Optimality): 是 (仅限无权重图)。
 时间复杂度 (Time): $O(V + E)
-$$V$ = 节点 (Vertex) 数量。$E$ = 边 (Edge) 数量。(每个节点和每条边最多被访问一次)。 空间复杂度 (Space): $O(V)$(在最坏情况下，Queue 和 visited 集合可能需要存储所有 $V$ 个节点)。 ## 6. 算法缺陷 不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。 搜索盲目： 像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。 反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。 # Dijkstra 算法 学习笔记 ### 1. 核心思想：成本优先 Dijkstra (迪杰斯特拉) 算法是 BFS 的“<strong>升级版</strong>”。 * <strong>BFS 的目标</strong>：找到<strong>步数最少</strong>的路径。 * <strong>Dijkstra 的目标</strong>：在<strong>带权重</strong>的图中，找到<strong>累计成本最低</strong>的路径。 它的核心规则是：<strong>永远优先探索从起点出发，累计成本最低的那个““前沿” (frontier) 节点</strong>。 ### 2. 核心保证：成本最优 * <strong>最优性</strong>：<strong>是</strong>。只要图中没有<strong>负权重</strong>的边，Dijkstra <strong>保证</strong>能找到从起点到<strong>所有</strong>其他节点的<strong>最低成本路径</strong>。 * <strong>原因</strong>：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出 <code>goal</code> (终点) 时，它所记录的成本<strong>必然</strong>是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。 ### 3. Dijkstra 的“升级工具” (Upgraded Tools) Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。 | 目的 | BFS (步数最少) | Dijkstra (成本最低) | | :— | :— | :— | | <strong>1. 待办列表</strong> | <code>Queue</code> (先进先出) | <strong><code>PriorityQueue</code> (最小堆)</strong><br> (用 <code>heapq</code> 实现) <br> 自动将<strong>成本最低</strong>的节点排到最前。 | | <strong>2. 足迹记录</strong> | <code>visited</code> (Set) <br> (只关心“去过没”) | <strong><code>cost_so_far</code> (Dictionary)</strong> <br> (关心“花销多少”) | | <strong>3. 面包屑</strong> | <code>parent</code> (Dictionary) | <strong><code>parent</code> (Dictionary)</strong> <br> (工作方式相同，但只在找到<strong>更便宜</strong>路径时才更新) | — ### 4. 算法执行伪代码 (专业版) <code>pseudocode function Dijkstra(start, goal): # 1. 初始化 pq = new PriorityQueue() heapq.heappush(pq, (0, start)) # (cost, node) cost_so_far = {start: 0} parent = {start: None} # 2. 循环，直到队列为空 while pq.is_not_empty(): current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的 # 3. (关键优化) 处理“过时”节点 if current_cost &gt; cost_so_far[current_node]: continue # 这是一条旧的、更贵的路径，跳过 # 4. 检查终点 if current_node == goal: return reconstruct_path(parent, start, goal) # 成功！ # 5. 遍历邻居 for neighbor in get_neighbors(current_node): # 6. 计算新路径的 *累计成本* new_cost = current_cost + get_cost(neighbor) # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径 if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]: # 8. 是！更新所有记录 cost_so_far[neighbor] = new_cost parent[neighbor] = current_node heapq.heappush(pq, (new_cost, neighbor)) # 9. 队列为空，仍未找到 return "No Path Found" </code> ## 5. 算法特性总结 完备性 (Completeness): 是。只要路径存在，一定能找到。 最优性 (Optimality): 是 (前提：图中没有负权重的边)。 时间复杂度 (Time): $O((E+V) \log V)$ 或 $O(E \log V)$$V$ = 节点数, $E$ = 边数。复杂度主要取决于优先队列 (heapq) 的性能。
+$$V$ = 节点 (Vertex) 数量。$E$ = 边 (Edge) 数量。(每个节点和每条边最多被访问一次)。 空间复杂度 (Space): $O(V)$(在最坏情况下，Queue 和 visited 集合可能需要存储所有 $V$ 个节点)。 ## 6. 算法缺陷 不懂成本： 找不到“最快”或“最短”的路，只能找到“转弯最少”的路。 搜索盲目： 像水波纹一样向所有方向搜索，在城市地图上会“撑爆”内存和算力。 反应僵硬： 无法应对实时路况（如行人、堵车），必须从头重算，太慢。 # Dijkstra 算法 学习笔记 ### 1. 核心思想：成本优先 Dijkstra (迪杰斯特拉) 算法是 BFS 的“**升级版**”。 * **BFS 的目标**：找到**步数最少**的路径。 * **Dijkstra 的目标**：在**带权重**的图中，找到**累计成本最低**的路径。 它的核心规则是：**永远优先探索从起点出发，累计成本最低的那个““前沿” (frontier) 节点**。 ### 2. 核心保证：成本最优 * **最优性**：**是**。只要图中没有**负权重**的边，Dijkstra **保证**能找到从起点到**所有**其他节点的**最低成本路径**。 * **原因**：由于它总是优先弹出累计成本最低的节点，所以当它第一次弹出 <code>goal</code> (终点) 时，它所记录的成本**必然**是全局最低的。（任何其他可能的路径，其成本在队列中时就已经高于这个值了）。 ### 3. Dijkstra 的“升级工具” (Upgraded Tools) Dijkstra 升级了 BFS 的数据结构，使其能够处理“成本” (cost)。 | 目的 | BFS (步数最少) | Dijkstra (成本最低) | | :— | :— | :— | | **1. 待办列表** | <code>Queue</code> (先进先出) | **<code>PriorityQueue</code> (最小堆)**&lt;br/&gt; (用 <code>heapq</code> 实现) &lt;br/&gt; 自动将**成本最低**的节点排到最前。 | | **2. 足迹记录** | <code>visited</code> (Set) &lt;br/&gt; (只关心“去过没”) | **<code>cost_so_far</code> (Dictionary)** &lt;br/&gt; (关心“花销多少”) | | **3. 面包屑** | <code>parent</code> (Dictionary) | **<code>parent</code> (Dictionary)** &lt;br/&gt; (工作方式相同，但只在找到**更便宜**路径时才更新) | — ### 4. 算法执行伪代码 (专业版) <code>pseudocode function Dijkstra(start, goal): # 1. 初始化 pq = new PriorityQueue() heapq.heappush(pq, (0, start)) # (cost, node) cost_so_far = {start: 0} parent = {start: None} # 2. 循环，直到队列为空 while pq.is_not_empty(): current_cost, current_node = heapq.heappop(pq) # 弹出 *成本最低* 的 # 3. (关键优化) 处理“过时”节点 if current_cost &gt; cost_so_far[current_node]: continue # 这是一条旧的、更贵的路径，跳过 # 4. 检查终点 if current_node == goal: return reconstruct_path(parent, start, goal) # 成功！ # 5. 遍历邻居 for neighbor in get_neighbors(current_node): # 6. 计算新路径的 *累计成本* new_cost = current_cost + get_cost(neighbor) # 7. (Dijkstra 的灵魂) 检查是否是条 *更好的* 路径 if neighbor not in cost_so_far or new_cost &lt; cost_so_far[neighbor]: # 8. 是！更新所有记录 cost_so_far[neighbor] = new_cost parent[neighbor] = current_node heapq.heappush(pq, (new_cost, neighbor)) # 9. 队列为空，仍未找到 return "No Path Found" </code> ## 5. 算法特性总结 完备性 (Completeness): 是。只要路径存在，一定能找到。 最优性 (Optimality): 是 (前提：图中没有负权重的边)。 时间复杂度 (Time): $O((E+V) \log V)$ 或 $O(E \log V)$$V$ = 节点数, $E$ = 边数。复杂度主要取决于优先队列 (heapq) 的性能。
 空间复杂度 (Space): $O(V)$cost_so_far 和 parent 最多存储 $V$ 个节点。pq 在最坏情况下也可能存储 $O(V)$ 个节点。</p>
 <h2><span id="6-%E7%AE%97%E6%B3%95%E7%BC%BA%E9%99%B7">6. 算法缺陷</span></h2>
 <p>Dijkstra 最大的缺陷是<strong>效率</strong>，而不是<strong>正确性</strong>（在无负权边的情况下）。</p>
@@ -1431,6 +1432,24 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body></html>
 	</article>
 

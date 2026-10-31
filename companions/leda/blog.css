@@ -1,0 +1,16 @@
+/* Leave Kira's back-to-top control accessible and its image viewer above the pet. */
+#blog-leda {
+  z-index: 12;
+  right: 16px;
+  bottom: calc(92px + env(safe-area-inset-bottom));
+}
+@media (max-width: 767px) {
+  #blog-leda {
+    --pet-size: 104px !important;
+    right: 12px;
+    bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+}
+@media print {
+  #blog-leda { display: none; }
+}

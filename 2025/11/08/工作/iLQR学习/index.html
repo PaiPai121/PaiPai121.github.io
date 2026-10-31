@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -450,7 +451,7 @@
 		<!-- toc --><html><head></head><body><ul>
 <li><a href="#lqr%E5%9F%BA%E7%A1%80">LQR基础</a>
 <ul>
-<li><a href="#kn-1-%E6%97%B6%E5%88%BB%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E5%BE%8B-u_n-1">$k=N-1$ 时刻的最优控制律 $u^*_{N-1}$</a></li>
+<li><a href="#kn-1-%E6%97%B6%E5%88%BB%E7%9A%84%E6%9C%80%E4%BC%98%E6%8E%A7%E5%88%B6%E5%BE%8B-u%2342%2395%23123n-1%23125">$k=N-1$ 时刻的最优控制律 $u^*_{N-1}$</a></li>
 <li><a href="#riccati">Riccati</a>
 <ul>
 <li><a href="#%E5%AE%8C%E6%95%B4%E5%BD%A2%E5%BC%8Friccati%E6%96%B9%E7%A8%8B">完整形式Riccati方程</a></li>
@@ -491,21 +492,21 @@
 <ul>
 <li><a href="#2-%E5%B7%B2%E7%9F%A5%E4%BF%A1%E6%81%AF-%E8%BE%93%E5%85%A5">2. 已知信息 (输入)</a></li>
 <li><a href="#%E7%9E%AC%E6%97%B6%E6%88%90%E6%9C%AC-l-%E7%9A%84%E5%B1%95%E5%BC%80-%E7%9B%B4%E6%8E%A5%E5%B1%95%E5%BC%80">瞬时成本 $l$ 的展开 (直接展开)</a></li>
-<li><a href="#%E6%9C%AA%E6%9D%A5%E6%88%90%E6%9C%AC-v_k1-%E7%9A%84%E5%B1%95%E5%BC%80-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99">未来成本 $V_{k+1}$ 的展开 (链式法则)</a>
+<li><a href="#%E6%9C%AA%E6%9D%A5%E6%88%90%E6%9C%AC-v%2395%23123k1%23125-%E7%9A%84%E5%B1%95%E5%BC%80-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99">未来成本 $V_{k+1}$ 的展开 (链式法则)</a>
 <ul>
-<li><a href="#v_k1-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的线性项展开</a></li>
-<li><a href="#v_k1-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的二次项展开</a></li>
+<li><a href="#v%2395%23123k1%23125-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的线性项展开</a></li>
+<li><a href="#v%2395%23123k1%23125-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9%E5%B1%95%E5%BC%80">$V_{k+1}$ 的二次项展开</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#%E5%90%88%E6%88%90-q-%E5%87%BD%E6%95%B0%E7%B3%BB%E6%95%B0">合成 Q 函数系数</a>
 <ul>
-<li><a href="#%E6%A2%AF%E5%BA%A6-boldsymbolq-%E5%AF%B9-boldsymboldelta-x_k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{q}$ (对 $\boldsymbol{\delta x}_k$ 的线性项)</a></li>
-<li><a href="#%E6%A2%AF%E5%BA%A6-boldsymbolr-%E5%AF%B9-boldsymboldelta-u_k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{r}$ (对 $\boldsymbol{\delta u}_k$ 的线性项)</a></li>
-<li><a href="#hessian-boldsymbolq-%E5%AF%B9-boldsymboldelta-x_k-boldsymboldelta-x_k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{Q}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta x}_k$ 的二次项)</a></li>
-<li><a href="#hessian-boldsymbolr-%E5%AF%B9-boldsymboldelta-u_k-boldsymboldelta-u_k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{R}$ (对 $\boldsymbol{\delta u}_k, \boldsymbol{\delta u}_k$ 的二次项)</a></li>
-<li><a href="#hessian-boldsymbolm-%E5%AF%B9-boldsymboldelta-x_k-boldsymboldelta-u_k-%E7%9A%84%E4%BA%A4%E5%8F%89%E9%A1%B9">Hessian $\boldsymbol{M}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k$ 的交叉项)</a></li>
+<li><a href="#%E6%A2%AF%E5%BA%A6-%2392boldsymbol%23123q%23125-%E5%AF%B9-%2392boldsymbol%23123%2392delta-x%23125%2395k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{q}$ (对 $\boldsymbol{\delta x}_k$ 的线性项)</a></li>
+<li><a href="#%E6%A2%AF%E5%BA%A6-%2392boldsymbol%23123r%23125-%E5%AF%B9-%2392boldsymbol%23123%2392delta-u%23125%2395k-%E7%9A%84%E7%BA%BF%E6%80%A7%E9%A1%B9">梯度 $\boldsymbol{r}$ (对 $\boldsymbol{\delta u}_k$ 的线性项)</a></li>
+<li><a href="#hessian-%2392boldsymbol%23123q%23125-%E5%AF%B9-%2392boldsymbol%23123%2392delta-x%23125%2395k-%2392boldsymbol%23123%2392delta-x%23125%2395k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{Q}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta x}_k$ 的二次项)</a></li>
+<li><a href="#hessian-%2392boldsymbol%23123r%23125-%E5%AF%B9-%2392boldsymbol%23123%2392delta-u%23125%2395k-%2392boldsymbol%23123%2392delta-u%23125%2395k-%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%A1%B9">Hessian $\boldsymbol{R}$ (对 $\boldsymbol{\delta u}_k, \boldsymbol{\delta u}_k$ 的二次项)</a></li>
+<li><a href="#hessian-%2392boldsymbol%23123m%23125-%E5%AF%B9-%2392boldsymbol%23123%2392delta-x%23125%2395k-%2392boldsymbol%23123%2392delta-u%23125%2395k-%E7%9A%84%E4%BA%A4%E5%8F%89%E9%A1%B9">Hessian $\boldsymbol{M}$ (对 $\boldsymbol{\delta x}_k, \boldsymbol{\delta u}_k$ 的交叉项)</a></li>
 </ul>
 </li>
 </ul>
@@ -753,7 +754,7 @@ $$\boldsymbol{V}_{\boldsymbol{xx}, k} = \boldsymbol{Q}_k + \boldsymbol{K}_k^T \b
 </ol>
 <p>$$\boldsymbol{\delta x}_k = \boldsymbol{x}_{\text{new}, k} - \bar{\boldsymbol{x}}_k$$
 (注意：这里是用<strong>新</strong>状态 $\boldsymbol{x}_{\text{new}, k}$ 和<strong>旧</strong>名义状态 $\bar{\boldsymbol{x}}_k$ 计算偏差。)</p>
-<pre><code>**计算新的控制 $\boldsymbol\{u\}\_\{\text\{new\}, k\}$：**
+<pre><code>**计算新的控制 $&amp;#92;boldsymbol&amp;#123;u&amp;#125;&amp;#95;&amp;#123;&amp;#92;text&amp;#123;new&amp;#125;, k&amp;#125;$：**
 </code></pre>
 <p>$$\boldsymbol{u}_{\text{new}, k} = \bar{\boldsymbol{u}}_k + \alpha \cdot \boldsymbol{k}_k + \boldsymbol{K}_k \boldsymbol{\delta x}_k$$
 (这是关键：<strong>前馈项 $\boldsymbol{k}_k$ 被 $\alpha$ 缩放</strong>，而反馈项 $\boldsymbol{K}_k$ 通常不缩放或与 $\alpha$ 一起缩放，具体取决于实现。)</p>
@@ -1001,7 +1002,7 @@ $$\boldsymbol{V}_{\boldsymbol{xx}, k} = \boldsymbol{Q}_k + \boldsymbol{K}_k^T \b
 <h1><span id="alilqr%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8">ALiLQR在项目中的实际应用</span></h1>
 <h2><span id="%E8%BD%A6%E8%BE%86%E5%8A%A8%E5%8A%9B%E5%AD%A6%E6%A8%A1%E5%9E%8B">车辆动力学模型</span></h2>
 <h3><span id="1%E5%AE%9A%E4%B9%89%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E5%8F%98%E9%87%8F">1.定义状态变量和控制变量</span></h3>
-<p>$$x = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{bmatrix} = \begin{bmatrix} \text{pos\\_x} &amp; (\text{X坐标}) \\ \text{pos\\_y} &amp; (\text{Y坐标}) \\ \theta &amp; (\text{航向角 Yaw}) \\ v &amp; (\text{纵向速度}) \\ a &amp; (\text{纵向加速度}) \\ \omega &amp; (\text{角速度 YawRate}) \end{bmatrix}$$</p>
+<p>$$x = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{bmatrix} = \begin{bmatrix} \text{pos\_x} &amp; (\text{X坐标}) \\ \text{pos\_y} &amp; (\text{Y坐标}) \\ \theta &amp; (\text{航向角 Yaw}) \\ v &amp; (\text{纵向速度}) \\ a &amp; (\text{纵向加速度}) \\ \omega &amp; (\text{角速度 YawRate}) \end{bmatrix}$$</p>
 <p>$$u = \begin{bmatrix} u_0 \\ u_1 \end{bmatrix} = \begin{bmatrix} \text{Jerk} &amp; (\text{加加速度/变加速率}) \\ \dot{\omega} &amp; (\text{角加速度}) \end{bmatrix}$$</p>
 <h3><span id="2%E5%AE%9E%E7%8E%B0%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A7%AF%E5%88%86%E7%A6%BB%E6%95%A3">2.实现运动方程与积分离散</span></h3>
 <a href="/2025/11/18/%E5%B7%A5%E4%BD%9C/IDM%E6%A8%A1%E5%9E%8B/" title="运动学模型的前向递推-IDM与自行车">运动学模型的前向递推-IDM与自行车</a>
@@ -1026,7 +1027,7 @@ $$B_t = \frac{\partial f_{RK4}(x_t, u_t)}{\partial u} \quad (6 \times 2 \text{ �
 <ol>
 <li>gradiants_[i] (向量 g)：一个 $8 \times 1$ 的向量。代表一次项系数。</li>
 </ol>
-<p>$$\mathbf{g} = \begin{bmatrix} -2 \cdot w_{x} \cdot \text{ref\\_x}[i] \\ -2 \cdot w_{y} \cdot \text{ref\\_y}[i] \\ \color{gray}{0} \\ \color{gray}{0} \\ -2 \cdot w_{a} \cdot \text{ref\\_a}[i] \\ \color{gray}{0} \\ \color{green}{0} \\ \color{green}{0} \end{bmatrix}$$</p>
+<p>$$\mathbf{g} = \begin{bmatrix} -2 \cdot w_{x} \cdot \text{ref\_x}[i] \\ -2 \cdot w_{y} \cdot \text{ref\_y}[i] \\ \color{gray}{0} \\ \color{gray}{0} \\ -2 \cdot w_{a} \cdot \text{ref\_a}[i] \\ \color{gray}{0} \\ \color{green}{0} \\ \color{green}{0} \end{bmatrix}$$</p>
 <p><strong>如何获取这两个量？：</strong> 我们要追踪一个参考点 $x_{ref}$。代价函数定义为误差的平方：</p>
 <p>$$J(x) = w \cdot (x - x_{ref})^2 = \underbrace{w}_{H} \cdot x^2 + \underbrace{(-2w \cdot x_{ref})}_{g} \cdot x + \text{const}$$</p>
 <p>$$l_x = \frac{\partial J}{\partial x} = 2 \cdot w \cdot (x - x_{ref}) = 2wx - 2wx_{ref}$$</p>
@@ -1110,12 +1111,12 @@ $x_{new, i+1} = f(x_{new, i}, u_{new, i})$</p>
 Lambda ($\lambda$) 和 Penalty ($\mu$) 不需要像 $x$ 或 $u$ 那样求导、解方程。
 它们的更新规则非常简单粗暴，就是**“后验调整”**。
 <strong>更新拉格朗日乘子 ($\lambda$):</strong>$\lambda_{new} = \lambda_{old} + \mu \cdot C(x)$直觉： 刚才撞得越狠（$C(x)$ 越大），$\lambda$ 就变得越大。$\lambda$ 就像一个“记仇本”，它记住了你刚才在这里犯过错，下次经过这里时，基础代价就会很高。</p>
-<p><strong>更新惩罚因子 ($\mu$ / Penalty):</strong>$\mu_{new} = \mu_{old} \times \text{growth\\_factor}$直觉： 代码里的 penatly_growth_factor 通常是 5 或 10。这意味着下一轮，障碍物这堵墙的“硬度”会变成刚才的 10 倍。iLQR 会发现撞墙的代价变得无法承受，被迫选择绕路。</p>
+<p><strong>更新惩罚因子 ($\mu$ / Penalty):</strong>$\mu_{new} = \mu_{old} \times \text{growth\_factor}$直觉： 代码里的 penatly_growth_factor 通常是 5 或 10。这意味着下一轮，障碍物这堵墙的“硬度”会变成刚才的 10 倍。iLQR 会发现撞墙的代价变得无法承受，被迫选择绕路。</p>
 <h2><span id="alilqr%E7%9A%84constraincost%E6%9E%84%E5%BB%BA">ALiLQR的ConstrainCost构建</span></h2>
 <ol>
 <li>车辆模型：覆盖圆分解 (Circle Decomposition)
 在车身中轴线上放一串圆形。只要这几个圆都不撞，车就不撞。
-状态：$x = [pos\\_x, pos\\_y, \theta, \dots]$
+状态：$x = [pos\_x, pos\_y, \theta, \dots]$
 第 $j$ 个圆心的位置：</li>
 </ol>
 <p>$$\begin{cases}P_{cx} = pos_x + bias_j \cdot \cos(\theta) \\ P_{cy} = pos_y + bias_j \cdot \sin(\theta)\end{cases}$$</p>
@@ -1127,13 +1128,13 @@ Lambda ($\lambda$) 和 Penalty ($\mu$) 不需要像 $x$ 或 $u$ 那样求导、�
 如果 $C(x) &gt; 0$ $\rightarrow$ 撞了（距离太近）。如果 $C(x) \le 0$ $\rightarrow$ 安全。
 利用链式法则求导：</p>
 <ol>
-<li>对 $pos\\_x$ 求导：</li>
+<li>对 $pos\_x$ 求导：</li>
 </ol>
-<p>$$\frac{\partial C}{\partial pos\\_x} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial pos\\_x} = -2\Delta x \cdot 1 = -2\Delta x$$</p>
+<p>$$\frac{\partial C}{\partial pos\_x} = -2\Delta x \cdot \frac{\partial P_{cx}}{\partial pos\_x} = -2\Delta x \cdot 1 = -2\Delta x$$</p>
 <ol start="2">
-<li>对 $pos\\_y$ 求导：</li>
+<li>对 $pos\_y$ 求导：</li>
 </ol>
-<p>$$\frac{\partial C}{\partial pos\\_y} = -2\Delta y \cdot 1 = -2\Delta y$$</p>
+<p>$$\frac{\partial C}{\partial pos\_y} = -2\Delta y \cdot 1 = -2\Delta y$$</p>
 <ol start="3">
 <li>对 $\theta$ 求导 (关键！)：</li>
 </ol>
@@ -1176,6 +1177,24 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body></html>
 	</article>
 

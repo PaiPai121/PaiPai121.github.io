@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -546,7 +547,7 @@
 <ul>
 <li><strong>硬约束</strong>: 如果网格点 <code>(t, s)</code> <strong>位于</strong>模块一生成的 ST 障碍物边界<strong>内部</strong>，则 $StateCost = \infty$ (无穷大)。</li>
 <li><strong>效果</strong>: DP 在计算 $min(\dots)$ 时，会自动抛弃任何试图穿过障碍物的路径。<strong>这是强制 DP 绕行的核心机制</strong>。</li>
-<li><strong>软约束 (Buffer Cost)</strong>: 如果 <code>(t, s)</code> 只是<strong>靠近</strong>（但未进入）障碍物边界，则 $StateCost = \text{High\\_Cost}$。</li>
+<li><strong>软约束 (Buffer Cost)</strong>: 如果 <code>(t, s)</code> 只是<strong>靠近</strong>（但未进入）障碍物边界，则 $StateCost = \text{High\_Cost}$。</li>
 <li><strong>效果</strong>: 这会鼓励 DP 轨迹尽量在“安全通道”的中央行驶，而不是“贴着”障碍物走，为后续 QP 优化留出裕度。</li>
 </ul>
 </li>
@@ -751,13 +752,13 @@
 <ul>
 <li><strong>ST 边界约束</strong>: (来自模块四)
 <ul>
-<li>$S_t \le S_{\text{upper\\_bound}, t}$ (例如，不能超过前方障碍物的尾部减去安全距离)</li>
-<li>$S_t \ge S_{\text{lower\\_bound}, t}$ (例如，不能低于后方障碍物的头部加上安全裕度)</li>
+<li>$S_t \le S_{\text{upper\_bound}, t}$ (例如，不能超过前方障碍物的尾部减去安全距离)</li>
+<li>$S_t \ge S_{\text{lower\_bound}, t}$ (例如，不能低于后方障碍物的头部加上安全裕度)</li>
 </ul>
 </li>
 <li><strong>速度约束 (V)</strong>: (来自地图和车辆)
 <ul>
-<li>$V_t \le V_{\text{speed\\_limit}}$ (道路限速)</li>
+<li>$V_t \le V_{\text{speed\_limit}}$ (道路限速)</li>
 <li>$V_t \ge 0$ (不能倒车)</li>
 </ul>
 </li>
@@ -974,6 +975,24 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body></html>
 	</article>
 

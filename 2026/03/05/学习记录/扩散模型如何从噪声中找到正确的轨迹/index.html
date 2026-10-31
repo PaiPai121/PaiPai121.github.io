@@ -51,18 +51,19 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
           inlineMath: [['$', '$']],
           displayMath: [['$$', '$$']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -474,7 +475,7 @@
 <p><strong>问：</strong> 为什么说这是“回归”？</p>
 <p><strong>答：</strong> 因为 $\epsilon$ 是从标准正态分布 $N(0, I)$ 中采样出来的。神经网络不再需要去预测一个具有复杂拓扑结构的“轨迹分布”，它只需要去预测一个<strong>连续的数值向量</strong>。</p>
 <p>在训练时，我们的损失函数（Loss Function）极其简单：
-$$L = | \epsilon - \epsilon_\theta(x_t, t) |^2$$
+$$L = \| \epsilon - \epsilon_\theta(x_t, t) \|^2$$
 这就是最典型的 <strong>均方误差回归（MSE Regression）</strong>。</p>
 </blockquote>
 <p>扩散模型把一个需要“艺术创作”的生成难题，拆解成了 1000 个“找不同”的回归练习。</p>
@@ -499,7 +500,7 @@ $$L = | \epsilon - \epsilon_\theta(x_t, t) |^2$$
 </ul>
 <h3><span id="32-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%A2%84%E6%B5%8B%E5%99%AA%E5%A3%B0%E4%B8%8E%E9%A2%84%E6%B5%8B%E8%BD%A8%E8%BF%B9%E7%AD%89%E4%BB%B7">3.2 为什么预测噪声与预测轨迹等价？</span></h3>
 <p>在训练扩散模型时，我们最常用的损失函数是 MSE：
-$$\min_{\theta} \mathbb{E}_{x_0, \epsilon} | \epsilon - \epsilon_\theta(x_t, t) |^2$$
+$$\min_{\theta} \mathbb{E}_{x_0, \epsilon} \| \epsilon - \epsilon_\theta(x_t, t) \|^2$$
 这里的 $\epsilon$ 是我们亲手注入的噪声。看起来我们在训练一个“猜噪声”的模型，但由于 $x_t = \sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon$，预测噪声和预测原始信号 $x_0$ 在数学上是完全等价的。</p>
 <p>如果你想求 $x_0$，只需要对上面的线性方程做简单的移项：
 $$x_0 = \frac{x_t - \sqrt{1 - \bar{\alpha}_t} \epsilon}{\sqrt{\bar{\alpha}_t}}$$
@@ -540,9 +541,9 @@ $$x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \e
 <p>我们首先人为地给专家轨迹 $x_0$ 注入混乱。（我们先令 $\sigma^2 = 1 - \bar{\alpha}_t$ ）</p>
 <p>$$x_t = \sqrt{\bar{\alpha}_t}x_0 + \sigma \epsilon$$</p>
 <p>这意味着，给定 $x_0$，观测值 $x_t$ 的概率密度函数是一个均值为 $\sqrt{\bar{\alpha}_t}x_0$ 的正态分布：
-$$p(x_t | x_0) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( -\frac{|x_t - \sqrt{\bar{\alpha}_t}x_0|^2}{2\sigma^2} \right)$$</p>
+$$p(x_t | x_0) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( -\frac{\|x_t - \sqrt{\bar{\alpha}_t}x_0\|^2}{2\sigma^2} \right)$$</p>
 <p>取对数，求导，有：
-$$\nabla_{x_t} \ln p(x_t | x_0) = \nabla_{x_t} \left( -\frac{|x_t - \sqrt{\bar{\alpha}_t}x_0|^2}{2\sigma^2} + \text{const} \right)$$</p>
+$$\nabla_{x_t} \ln p(x_t | x_0) = \nabla_{x_t} \left( -\frac{\|x_t - \sqrt{\bar{\alpha}_t}x_0\|^2}{2\sigma^2} + \text{const} \right)$$</p>
 <p>$$\nabla_{x_t} \ln p(x_t | x_0) = -\frac{x_t - \sqrt{\bar{\alpha}_t}x_0}{\sigma^2}=-\frac{\epsilon}{\sigma}$$</p>
 <p>也就是说，噪声其实就是一个梯度方向的向量。这就解释了为什么我们减去噪声，就能让轨迹向着真实的轨迹靠近。</p>
 <h3><span id="323-%E6%B2%A1%E6%9C%89-x_0-%E6%80%8E%E4%B9%88%E5%BE%97%E5%88%B0%E9%A2%84%E6%B5%8B%E7%9A%84%E5%99%AA%E5%A3%B0%E5%91%A2">3.2.3 没有 $x_0$ 怎么得到预测的噪声呢？</span></h3>
@@ -595,6 +596,24 @@ if (hasMermaid) {
   };
   document.head.appendChild(mermaidScript);
 }
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
 </script><!-- hexo injector body_end end --></body></html>
 	</article>
 

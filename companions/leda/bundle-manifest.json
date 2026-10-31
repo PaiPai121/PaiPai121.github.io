@@ -1,0 +1,67 @@
+{
+  "source": "fortuneweave-pets / leda-head-pat-v4",
+  "version": "leda-head-pat-v4",
+  "role": "Self-contained blog deployment snapshot; canonical editable sources remain in fortuneweave-pets",
+  "files": [
+    {
+      "path": "src/fortuneweave-pet.js",
+      "sha256": "8f8b85510d1b3e8758c3431f62eb04ee6691b5e6d5add66e2933fb04342c1bde",
+      "bytes": 22193
+    },
+    {
+      "path": "src/source-rig.js",
+      "sha256": "df06f0cf753caee2e61ff49547ddc473e2961cab27edfdf81090baf8c4ebc17d",
+      "bytes": 15757
+    },
+    {
+      "path": "src/body-mesh.js",
+      "sha256": "a5ecfc65b7e03130e1a5937311daf1531ec88b379311cfc0e0820e22e2222b79",
+      "bytes": 8284
+    },
+    {
+      "path": "src/gaze-eyes.js",
+      "sha256": "32211dee5597d5279ba758a85bcbed77779cfe5594748c28d6e348f2588d7dea",
+      "bytes": 3447
+    },
+    {
+      "path": "assets/characters/leda/character.json",
+      "sha256": "b6069101e857e73c398138576d9029b3fac65892aac6db253ed403c304f9a4c6",
+      "bytes": 1145
+    },
+    {
+      "path": "assets/characters/leda/source-rig.json",
+      "sha256": "8fefbdf85c3129384af5c7f586324f77903c144aabbc0dfbc935dd63de65d400",
+      "bytes": 10568
+    },
+    {
+      "path": "assets/characters/leda/leda-chibi-v2.png",
+      "sha256": "69296b2a9db068e2b1e92f1ab8f88ae0336b969544ae25d104594114d9bde1f8",
+      "bytes": 1780185
+    },
+    {
+      "path": "assets/characters/leda/leda-cleanplate-v2.png",
+      "sha256": "35c622733d5f02aca0ceda3dd3296442ba09224b035806b16484708b58a7ca21",
+      "bytes": 1762176
+    },
+    {
+      "path": "assets/characters/leda/leda-blink-closed-v2.png",
+      "sha256": "e265a951833e1d45e3a445555a0ed699a4204872a9960735b30119f243bfc01b",
+      "bytes": 1757161
+    },
+    {
+      "path": "assets/characters/leda/leda-blink-half-v2.png",
+      "sha256": "de69f7e5f2614f0a135611bde5509a8419bdadfd081b5fb3feabfd030036e989",
+      "bytes": 1764162
+    },
+    {
+      "path": "assets/characters/leda/leda-face-features-v1.png",
+      "sha256": "eea45ebe243be9ee763cacee3bc7483c7e6427c8721fc7f96f686b61aa0341ee",
+      "bytes": 452435
+    },
+    {
+      "path": "assets/characters/leda/leda-sclera-v3.png",
+      "sha256": "f0abc3e888f1016a5c63553e385fb5c7a9e7ca0f98a473c16989984ac1d2d567",
+      "bytes": 1752006
+    }
+  ]
+}
