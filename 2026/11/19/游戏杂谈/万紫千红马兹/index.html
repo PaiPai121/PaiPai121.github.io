@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 万紫千红马兹 -  KK空间</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="/image/fa.jpeg"
+			type="image/jpeg"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<!-- hexo injector head_end start -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],
+          displayMath: [['$$', '$$']],
+          processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      };
+    </script><link rel="stylesheet" href="/companions/leda/blog.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('/image/frieren.png')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="KK空间">
+        <img
+			src="/image/chongye.png"
+			alt="战斗包子"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="/image/chongye.png" title="战斗包子">
+			<img
+				src="/image/chongye.png"
+				alt="战斗包子"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>133</div>
+		<div><span>标签</span>16</div>
+		<div><span>分类</span>5</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/todolist.html"
+			title="我的Todo"
+		>
+			<i
+				class="kirafont
+					
+						icon-container-fill
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的Todo
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/games/"
+			title="游戏卡片"
+		>
+			<i
+				class="kirafont
+					
+						icon-fullscreen
+					"
+			></i>
+			<div class="kira-list-item-content">
+				游戏卡片
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1040035659&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/6456506"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/PaiPai121/"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+  <div class="kira-widget-wrap">
+    <h3 class="kira-widget-title">分类</h3>
+    <div class="kira-widget">
+      <ul class="category-list">
+        
+        
+
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/业余开发/">
+              业余开发
+            </a>
+            <span class="category-list-count">19</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/学习/">
+              学习
+            </a>
+            <span class="category-list-count">20</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/工作体验/">
+              工作体验
+            </a>
+            <span class="category-list-count">43</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/日常生活/">
+              日常生活
+            </a>
+            <span class="category-list-count">29</span>
+          </li>
+        
+          <li class="category-list-item">
+            <a class="category-list-link" href="/categories/游戏评测/">
+              游戏评测
+            </a>
+            <span class="category-list-count">22</span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/AssetForge/" style="font-size: 12.5px;">AssetForge</a> <a href="/tags/Blender/" style="font-size: 12.5px;">Blender</a> <a href="/tags/Mesh-Simplification/" style="font-size: 12.5px;">Mesh Simplification</a> <a href="/tags/Mir2/" style="font-size: 10px;">Mir2</a> <a href="/tags/Mod%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Mod开发</a> <a href="/tags/Slay-the-Spire-2/" style="font-size: 10px;">Slay the Spire 2</a> <a href="/tags/%E4%BC%A0%E5%A5%87/" style="font-size: 10px;">传奇</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">技术学习</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">服务端部署</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E4%B8%9A%E4%BD%99%E5%BC%80%E5%8F%91/" style="font-size: 15px;">游戏业余开发</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%A1%8D%E7%94%9F/" style="font-size: 11.25px;">游戏衍生</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" style="font-size: 17.5px;">游戏评测</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 13.75px;">生活感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 16.25px;">生活记录</a> <a href="/tags/%E8%81%8C%E5%9C%BA%E7%BB%8F%E9%AA%8C/" style="font-size: 18.75px;">职场经验</a> <a href="/tags/%E8%A1%8C%E4%B8%9A%E8%A7%82%E5%AF%9F/" style="font-size: 18.75px;">行业观察</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">51</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/">2024</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">13</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">战斗包子</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="/image/frieren.png"
+				data-sizes="auto"
+				alt="万紫千红马兹"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>万紫千红马兹</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年11月19日</a>
+			<a><i class="kirafont icon-edit-fill"></i>866 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E9%A9%AC%E5%85%B9">马兹</span></h1>
+<h2><span id="%E5%9C%86%E7%9B%98%E9%87%91%E5%93%81">圆盘金品</span></h2>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-5.png" alt="alt text" class="lazyload">
+马兹的金色颈饰下方，垂挂着一枚醒目的八芒星圆盘。圆盘中央是一颗凸起的圆钮，外面围绕着一圈圆环，八道尖锐的星芒向四周展开。其中，上、下、左、右四条主芒较长，斜向四芒较短，整个星纹又被圆盘的外缘包围。<strong>中央凸钮、放射星芒与圆盘底座共同构成了这件胸饰最鲜明的结构特征。</strong></p>
+<p>与其星纹本体相近的，是大英博物馆收藏的一件<strong>金质八芒星吊坠</strong>。这件吊坠出土于阿朱尔遗址（Tell el-Ajjul），年代约为公元前16世纪，以金片锤揲出立体形状。它同样将半球形凸钮置于中央，在凸钮外设置一圈边缘，再向外伸出八道带有棱面的尖芒。马兹胸饰与它的相似之处，集中在这组“圆钮—圆环—尖星芒”的组合上。文物本身以星形作为外轮廓，马兹的星纹则置于完整圆盘之上。</p>
+<p>圆盘形式还可以与康宁玻璃博物馆收藏的<strong>星纹圆盘吊坠</strong>相对照。</p>
+<blockquote>
+<p>这件玻璃饰物来自北美索不达米亚，年代约为公元前1500—前1200年，圆形表面上模压出中央凸钮与八道放射星芒，顶部设有穿孔，馆方据此推测它曾作为护符佩戴在颈部。它保留了“星纹置于圆盘之上”的完整结构，但星芒之间另有一圈凸点，装饰比马兹的胸饰更加繁密。两件实物分别呈现了星形金饰与星纹圆盘护符的形制，使马兹胸饰的比较能够落实到具体器物。
+这类星纹在古代西亚还具有神祇象征意义。大英博物馆认为，阿朱尔的金质吊坠可能与迦南女神阿斯塔蒂的崇拜有关，并将其星纹与美索不达米亚女神伊什塔尔联系起来；康宁的藏品说明也指出了八芒星与伊什塔尔的关联。**从形制与纹样共同来看，马兹的胸饰可以与古代西亚的星纹佩饰及神性护符建立较为清楚的对应。**这里最值得保留的，正是具有立体圆钮、尖锐星芒和颈部悬挂形式的这一整组特征。</p>
+</blockquote>
+<h2><span id="%E4%BA%BA%E7%89%A9%E5%90%8D%E7%A7%B0">人物名称</span></h2>
+<p>马兹的英文名为 <strong>Mars</strong>，日文写作 <strong>マーズ</strong>，为鞑古扎诸神之一、<strong>掌管武的军神</strong>。
+；罗马神话中的战神<strong>玛尔斯</strong>，其名称同样是 <strong>Mars</strong>。</p>
+<p>在罗马宗教中，玛尔斯是战争之神，在罗马文学中也承担着保护罗马的角色。他在希腊神话中的对应神是<strong>阿瑞斯（Ares）</strong>；</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="image-6.png" alt="alt text" class="lazyload"></p>
+<p>（右侧是大都会艺术博物馆收藏的**《玛尔斯头像大理石浮雕残片》<strong>，年代为</strong>公元3世纪初**，藏品编号 <strong>18.145.49</strong>。浮雕中的玛尔斯留着浓密的胡须，戴着向后掀起的科林斯式头盔；馆方将这种年长、有须、佩戴头盔的形象解释为他的典型表现。看上去和我们鞑古扎的马兹没什么面容相似度了）
+此外，这个名字在现代游戏里面也经常被化用，比如dota2的马尔斯。钢面兽的大招恰好也是竞技场。
+<img data-fancybox="gallery" data-sizes="auto" data-src="image-7.png" alt="alt text" class="lazyload"></p>
+<!-- hexo injector body_end start -->
+<!-- Mermaid Scripts -->
+<script>
+(function() {
+  const mermaidContainers = document.querySelectorAll('.mermaid');
+  if (!mermaidContainers || mermaidContainers.length === 0) return;
+
+  const mermaidScript = document.createElement('script');
+  mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+  mermaidScript.onload = function() {
+    try {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        securityLevel: 'loose',
+        fontFamily: 'inherit'
+      });
+
+      if (typeof mermaid.run === 'function') {
+        mermaid.run({ nodes: mermaidContainers });
+      } else if (typeof mermaid.init === 'function') {
+        mermaid.init(undefined, mermaidContainers);
+      }
+    } catch (err) {
+      console.warn('[Mermaid] render failed:', err);
+    }
+  };
+  document.head.appendChild(mermaidScript);
+})();
+</script>
+<!-- MathJax Lazy Load -->
+<script>
+(function () {
+  if (window.__mathjaxLoaderStarted) return;
+  window.__mathjaxLoaderStarted = true;
+
+  var text = document.body ? document.body.innerText : '';
+  if (!/\$\$[\s\S]+?\$\$/.test(text) && !/\$[^\s$][^$\n]*?\$/.test(text)) return;
+  if (document.querySelector('script[src*="mathjax"]')) return;
+
+  var script = document.createElement('script');
+  script.id = 'MathJax-script';
+  script.async = true;
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+  document.head.appendChild(script);
+})();
+</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script><!-- hexo injector body_end end --></body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>战斗包子<br>
+        <strong>本文链接：</strong><a href="https://paipai121.github.io/2026/11/19/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E4%B8%87%E7%B4%AB%E5%8D%83%E7%BA%A2%E9%A9%AC%E5%85%B9/" title="https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;11&#x2F;19&#x2F;游戏杂谈&#x2F;万紫千红马兹&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;paipai121.github.io&#x2F;2026&#x2F;11&#x2F;19&#x2F;游戏杂谈&#x2F;万紫千红马兹&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			                  
+			<!-- 先找到与当前文字相同的目录 -->
+			                                                            
+			<!-- 在找到当前文章所在的 index -->
+			                                                                            
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2026/11/16/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E4%BD%A0%E6%88%91%E9%83%BD%E6%98%AF2026%E5%B9%B4%E7%9A%84%E8%8D%92%E9%87%8E%E5%A4%A7%E9%95%96%E5%AE%A2/"> 你我都是2026年的荒野大镖客</a>
+			</div>
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/2026/11/22/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/%E4%B8%87%E7%B4%AB%E5%8D%83%E7%BA%A2%E9%9E%91%E5%8F%A4%E6%89%8E/"> 万紫千红牵强附会之鞑古扎与霸罗尔（上）</a>
+			</div>
+			                 
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-container-fill -link" href="/categories/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/">游戏评测</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" rel="tag">游戏评测</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="PaiPai121/discuss"
+      data-repo-id="R_kgDOMFuZdw"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMFuZd84Cf5yz"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
