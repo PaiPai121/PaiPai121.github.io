@@ -51,7 +51,7 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
@@ -63,7 +63,7 @@
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script><link rel="stylesheet" href="/companions/leda/blog.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -450,7 +450,8 @@
 <p>交通灯信号，定义枚举变量TLState和一个TLState字段tl_state。</p>
 <p>看上去项目中的protobuf主要的数据类型是double，bool和enum</p>
 <p>在其中添加了一个tl_id的字段，然后测试一下</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fstream&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"example.pb.h"</span></span><br><br>  <br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"></span>{<br><br>GOOGLE_PROTOBUF_VERIFY_VERSION;<br><br><span class="hljs-comment">// rina::planning::TrafficLightState state;</span><br><br>rina::planning::TrafficLightState state;<br><br>state.<span class="hljs-built_in">set_tl_state</span>(rina::planning::TrafficLightState_TLState_APPROACH);<br><br>state.<span class="hljs-built_in">set_tl_id</span>(<span class="hljs-number">1</span>);<br><br>std::string str; <span class="hljs-comment">// 创建字符串缓冲区</span><br><br>state.<span class="hljs-built_in">SerializeToString</span>(&amp;str);<br><br>std::cout &lt;&lt; <span class="hljs-string">"序列化结果: "</span> &lt;&lt; str &lt;&lt; std::endl;<br><br>rina::planning::TrafficLightState state2;<br><br>state2.<span class="hljs-built_in">ParseFromString</span>(str);<br><br>std::cout &lt;&lt; <span class="hljs-string">"反序列化结果: "</span> &lt;&lt; <span class="hljs-string">"state: "</span> &lt;&lt; state2.<span class="hljs-built_in">tl_state</span>() &lt;&lt; <span class="hljs-string">"id: "</span> &lt;&lt; state2.<span class="hljs-built_in">tl_id</span>()&lt;&lt; std::endl;<br><br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>}<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start -->
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fstream&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"example.pb.h"</span></span><br><br>  <br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"></span>{<br><br>GOOGLE_PROTOBUF_VERIFY_VERSION;<br><br><span class="hljs-comment">// rina::planning::TrafficLightState state;</span><br><br>rina::planning::TrafficLightState state;<br><br>state.<span class="hljs-built_in">set_tl_state</span>(rina::planning::TrafficLightState_TLState_APPROACH);<br><br>state.<span class="hljs-built_in">set_tl_id</span>(<span class="hljs-number">1</span>);<br><br>std::string str; <span class="hljs-comment">// 创建字符串缓冲区</span><br><br>state.<span class="hljs-built_in">SerializeToString</span>(&amp;str);<br><br>std::cout &lt;&lt; <span class="hljs-string">"序列化结果: "</span> &lt;&lt; str &lt;&lt; std::endl;<br><br>rina::planning::TrafficLightState state2;<br><br>state2.<span class="hljs-built_in">ParseFromString</span>(str);<br><br>std::cout &lt;&lt; <span class="hljs-string">"反序列化结果: "</span> &lt;&lt; <span class="hljs-string">"state: "</span> &lt;&lt; state2.<span class="hljs-built_in">tl_state</span>() &lt;&lt; <span class="hljs-string">"id: "</span> &lt;&lt; state2.<span class="hljs-built_in">tl_id</span>()&lt;&lt; std::endl;<br><br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>}<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start --><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
 <!-- Mermaid Scripts -->
 <script>
 (function() {
@@ -496,8 +497,7 @@
   script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
   document.head.appendChild(script);
 })();
-</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
-<script defer src="/companions/leda/blog.js"></script><!-- hexo injector body_end end --></body></html>
+</script><!-- hexo injector body_end end --></body></html>
 	</article>
 
 	 
@@ -512,7 +512,7 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			          
+			              
 			<!-- 先找到与当前文字相同的目录 -->
 			               
 			<!-- 在找到当前文章所在的 index -->
@@ -528,7 +528,7 @@
 				<span>下一章</span>
 				<a href="/2024/07/29/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E5%87%B8%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ADuality%20%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98/"> 凸优化学习笔记：Duality 对偶问题</a>
 			</div>
-			                                                                                                                    
+			                                                                                                                
 		</nav>
 	</div>
 	

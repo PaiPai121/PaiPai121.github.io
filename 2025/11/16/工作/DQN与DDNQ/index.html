@@ -51,7 +51,7 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
@@ -63,7 +63,7 @@
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script><link rel="stylesheet" href="/companions/leda/blog.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -680,7 +680,8 @@ DQN 说：“我们用<strong>两个</strong>大脑！”</p>
 <p><strong>结论：</strong>
 DDQN 通过使用一个“独立”的网络（<code>policy_net</code>）来“挑选”动作，<strong>打破</strong>了 <code>max()</code> 运算符的“自我高估”的循环。它不再总是选择“被高估”的噪声。</p>
 <p>这会导致 AI 的 Q 值估算<strong>更低</strong>（轻微的“悲观”），但这<strong>极大地</strong>提高了训练的<strong>稳定性</strong>和<strong>可靠性</strong>。你（作为训练师）的日志会显示出更一致的“时长”，而不是在你（<code>Epsilon=0.05</code>）的日志中看到的 <code>467 步</code> 和 <code>16 步</code> 之间的“剧烈摆动”。</p>
-<!-- hexo injector body_end start -->
+<!-- hexo injector body_end start --><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
 <!-- Mermaid Scripts -->
 <script>
 (function() {
@@ -726,8 +727,7 @@ DDQN 通过使用一个“独立”的网络（<code>policy_net</code>）来“�
   script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
   document.head.appendChild(script);
 })();
-</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
-<script defer src="/companions/leda/blog.js"></script><!-- hexo injector body_end end --></body></html>
+</script><!-- hexo injector body_end end --></body></html>
 	</article>
 
 	 

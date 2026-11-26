@@ -51,7 +51,7 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
@@ -63,7 +63,7 @@
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script><link rel="stylesheet" href="/companions/leda/blog.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -541,7 +541,8 @@ $$\nabla_{x_t} \ln p(x_t) = -\frac{1}{\sigma} \cdot \left( \frac{x_t - \sqrt{\ba
 <p>我们其实有多种不同的专家轨迹 $x_0^{(1)}, x_0^{(2)}, \dots$，在采样初期（$t$ 很大），$\mathbb{E}[x_0 | x_t]$ 确实是所有模态的加权。</p>
 <p>就行我们对x轴y轴两条线取平均的话，他就沿着45度的y=x直线去走了。
 但随着采样迭代（$t \to 0$），$x_t$ 会因为采样中的随机性（噪声注入）稍微偏向某一个模态。模型在每一个微小的 $dt$ 步都在求期望，一旦偏离平衡点，贝叶斯后验 $p(x_0 | x_t)$ 就会发生正反馈效应，让期望值迅速向某一个具体的模态“坍缩”。随着 $t \to 0$，噪声变小，后验分布 $p(x_0 | x_t)$ 会迅速坍缩（变得非常尖锐），最终锁定在某一个具体的 $x_0^{(n)}$ 上。</p>
-<!-- hexo injector body_end start -->
+<!-- hexo injector body_end start --><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
 <!-- Mermaid Scripts -->
 <script>
 (function() {
@@ -587,8 +588,7 @@ $$\nabla_{x_t} \ln p(x_t) = -\frac{1}{\sigma} \cdot \left( \frac{x_t - \sqrt{\ba
   script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
   document.head.appendChild(script);
 })();
-</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
-<script defer src="/companions/leda/blog.js"></script><!-- hexo injector body_end end --></body></html>
+</script><!-- hexo injector body_end end --></body></html>
 	</article>
 
 	 
@@ -603,7 +603,7 @@ $$\nabla_{x_t} \ln p(x_t) = -\frac{1}{\sigma} \cdot \left( \frac{x_t - \sqrt{\ba
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			          
+			              
 			<!-- 先找到与当前文字相同的目录 -->
 			                                                            
 			<!-- 在找到当前文章所在的 index -->
@@ -613,7 +613,7 @@ $$\nabla_{x_t} \ln p(x_t) = -\frac{1}{\sigma} \cdot \left( \frac{x_t - \sqrt{\ba
 				<span>上一章</span>
 				<a href="/2026/02/17/%E5%B7%A5%E4%BD%9C/anthropic%E6%90%AC%E8%BF%90/"> Anthropic 工程博文全集 (精译版)</a>
 			</div>
-			                  
+			              
 		</nav>
 	</div>
 	

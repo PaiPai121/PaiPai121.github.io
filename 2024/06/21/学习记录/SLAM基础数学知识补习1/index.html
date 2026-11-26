@@ -51,7 +51,7 @@
 <script src="/deps/js/APlayer.min.js"></script>
 <script src="/deps/js/Meting.min.js"></script>
 
-	<!-- hexo injector head_end start -->
+	<!-- hexo injector head_end start --><link rel="stylesheet" href="/companions/leda/blog.css">
     <script>
       window.MathJax = {
         tex: {
@@ -63,7 +63,7 @@
           skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
       };
-    </script><link rel="stylesheet" href="/companions/leda/blog.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+    </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 
 	<body>
 		<div
@@ -528,7 +528,8 @@ R2的位姿为$q_2 = [-0.5,0.4,-0.1,0.2]^T,t_2 = [-0.1,0.5,0.3]^T$。
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span></span>{<br>	Quaterniond q_1 = <span class="hljs-built_in">Quaterniond</span>(<span class="hljs-number">0.35</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>);<br>	Quaterniond q_2 = <span class="hljs-built_in">Quaterniond</span>(<span class="hljs-number">-0.5</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">-0.1</span>, <span class="hljs-number">0.2</span>);<br>	q_1.<span class="hljs-built_in">normalize</span>();<br>	q_2.<span class="hljs-built_in">normalize</span>();<br>	Vector3d t_1 = <span class="hljs-built_in">Vector3d</span>(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>);<br>	Vector3d t_2 = <span class="hljs-built_in">Vector3d</span>(<span class="hljs-number">-0.1</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.3</span>);<br>	Vector3d p = <span class="hljs-built_in">Vector3d</span>(<span class="hljs-number">0.5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.2</span>);<br>	<span class="hljs-comment">// 生成世界坐标系到两个坐标系各自的变换矩阵</span><br>	<span class="hljs-function">Isometry3d <span class="hljs-title">T1w</span><span class="hljs-params">(q_1)</span></span>;<br>	<span class="hljs-function">Isometry3d <span class="hljs-title">T2w</span><span class="hljs-params">(q_2)</span></span>;<br>	T1w.<span class="hljs-built_in">pretranslate</span>(t_1); <span class="hljs-comment">// 添加平移量</span><br>	T2w.<span class="hljs-built_in">pretranslate</span>(t_2);<br>	Vector3d p2 = T2w * T1w.<span class="hljs-built_in">inverse</span>() * p;<br>	cout &lt;&lt; <span class="hljs-string">"p2 = "</span> &lt;&lt; p2.<span class="hljs-built_in">transpose</span>() &lt;&lt; endl;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
 <h2><span id="%E5%8F%AF%E8%A7%86%E5%8C%96">可视化</span></h2>
 <p>安装pangolin</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/stevenlovegrove/Pangolin.git<br><span class="hljs-built_in">cd</span> Pangolin<br><br>// 安装Pangolin所需依赖项<br>sudo apt-get install libglew-dev<br>sudo apt-get install libboost-dev libboost-thread-dev libboost-filesystem-dev<br>sudo apt-get install libepoxy-dev<br><br><br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>make -j$(<span class="hljs-built_in">nproc</span>)<br>sudo make install<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start -->
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/stevenlovegrove/Pangolin.git<br><span class="hljs-built_in">cd</span> Pangolin<br><br>// 安装Pangolin所需依赖项<br>sudo apt-get install libglew-dev<br>sudo apt-get install libboost-dev libboost-thread-dev libboost-filesystem-dev<br>sudo apt-get install libepoxy-dev<br><br><br><span class="hljs-built_in">mkdir</span> build<br><span class="hljs-built_in">cd</span> build<br>cmake ..<br>make -j$(<span class="hljs-built_in">nproc</span>)<br>sudo make install<br></code></pre></td></tr></tbody></table></figure><!-- hexo injector body_end start --><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
+<script defer src="/companions/leda/blog.js"></script>
 <!-- Mermaid Scripts -->
 <script>
 (function() {
@@ -574,8 +575,7 @@ R2的位姿为$q_2 = [-0.5,0.4,-0.1,0.2]^T,t_2 = [-0.1,0.5,0.3]^T$。
   script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
   document.head.appendChild(script);
 })();
-</script><script defer src="/companions/leda/src/fortuneweave-pet.js"></script>
-<script defer src="/companions/leda/blog.js"></script><!-- hexo injector body_end end --></body></html>
+</script><!-- hexo injector body_end end --></body></html>
 	</article>
 
 	 
@@ -590,7 +590,7 @@ R2的位姿为$q_2 = [-0.5,0.4,-0.1,0.2]^T,t_2 = [-0.1,0.5,0.3]^T$。
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			          
+			              
 			<!-- 先找到与当前文字相同的目录 -->
 			   
 			<!-- 在找到当前文章所在的 index -->
@@ -600,7 +600,7 @@ R2的位姿为$q_2 = [-0.5,0.4,-0.1,0.2]^T,t_2 = [-0.1,0.5,0.3]^T$。
 				<span>下一章</span>
 				<a href="/2024/07/03/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/SLAM-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E5%9B%BE%E5%83%8F/"> SLAM-相机与图像</a>
 			</div>
-			                                                                                                                                                
+			                                                                                                                                            
 		</nav>
 	</div>
 	
